@@ -24,19 +24,23 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Computes the cosine of the source operand in register ST(0) and stores the result in ST(0). The source operand must be given in radians and must be within the range −263 to +263. The following table shows the results obtained when taking the cosine of various classes of numbers.</p><table>
+<p>Computes the cosine of the source operand in register ST(0) and stores the result in ST(0). The source operand must be given in radians and must be within the range −263 to +263. The following table shows the results obtained when taking the cosine of various classes of numbers.</p>
+<table>
 <tr>
 	<td>Table 3-33.</td>
 	<td>FCOS Results ST(0) DEST − ∞−1 to +1+1+1− 1 to + 1+ ∞NaN</td>
 </tr>
 </table>
-<p class="notes">Notes: F Means finite floating-point value.</p><table>
+<p class="notes">Notes: F Means finite floating-point value.</p>
+<table>
 <tr>
 	<td>*</td>
 	<td>Indicates floating-point invalid-arithmetic-operand (#IA) exception.</td>
 </tr>
 </table>
-<p>If the source operand is outside the acceptable range, the C2 flag in the FPU status word is set, and the value in register ST(0) remains unchanged. The instruction does not raise an exception when the source operand is out of range. It is up to the program to check the C2 flag for out-of-range conditions. Source values outside the range −263 to +263 can be reduced to the range of the instruction by subtracting an appropriate integer multiple of 2π or by using the FPREM instruction with a divisor of 2π. See the section titled “Pi” in Chapter 8 of the Intel® 64 and IA-32Architectures Software Developer’s Manual, Volume 1, for a discussion of the proper value to use for π in performing such reductions.</p><p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p><h2 id="operation">Operation</h2>
+<p>If the source operand is outside the acceptable range, the C2 flag in the FPU status word is set, and the value in register ST(0) remains unchanged. The instruction does not raise an exception when the source operand is out of range. It is up to the program to check the C2 flag for out-of-range conditions. Source values outside the range −263 to +263 can be reduced to the range of the instruction by subtracting an appropriate integer multiple of 2π or by using the FPREM instruction with a divisor of 2π. See the section titled “Pi” in Chapter 8 of the Intel® 64 and IA-32Architectures Software Developer’s Manual, Volume 1, for a discussion of the proper value to use for π in performing such reductions.</p>
+<p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
+<h2 id="operation">Operation</h2>
 <pre>IF |ST(0)| < 263
 THEN
   C2 ← 0;
@@ -44,7 +48,8 @@ THEN
 ELSE (* Source operand is out-of-range *)
   C2 ← 1;
 FI;
-</pre><h2 id="fpu-flags-affected">FPU Flags Affected</h2>
+</pre>
+<h2 id="fpu-flags-affected">FPU Flags Affected</h2>
 <table>
 <tr>
 	<td>C1</td>
@@ -94,8 +99,12 @@ FI;
 </tr>
 </table>
 <h2 id="real-address-mode-exceptions">Real-Address Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p></body>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+</body>
 </html>

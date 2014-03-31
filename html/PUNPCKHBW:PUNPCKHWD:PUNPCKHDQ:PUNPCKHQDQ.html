@@ -121,7 +121,8 @@
 	<td>Interleave high-order quadword from ymm2and ymm3/m256 into ymm1 register.</td>
 </tr>
 </table>
-<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual,Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p><h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual,Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>
 	<td>Op/En</td>
@@ -146,7 +147,8 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Unpacks and interleaves the high-order data elements (bytes, words, doublewords, or quadwords) of the destination operand (first operand) and source operand (second operand) into the destination operand. Figure 4-16 shows the unpack operation for bytes in 64-bit operands. The low-order data elements are ignored.</p><table>
+<p>Unpacks and interleaves the high-order data elements (bytes, words, doublewords, or quadwords) of the destination operand (first operand) and source operand (second operand) into the destination operand. Figure 4-16 shows the unpack operation for bytes in 64-bit operands. The low-order data elements are ignored.</p>
+<table>
 <tr>
 	<td>SRC SRC</td>
 	<td>Y7DEST Figure 4-16. 255Y7</td>
@@ -168,7 +170,14 @@
 	<td>DEST 0</td>
 </tr>
 </table>
-<p>When the source data comes from a 64-bit memory operand, the full 64-bit operand is accessed from memory, but the instruction uses only the high-order 32 bits. When the source data comes from a 128-bit memory operand, an implementation may fetch only the appropriate 64 bits; however, alignment to a 16-byte boundary and normal segment checking will still be enforced.</p><p>The (V)PUNPCKHBW instruction interleaves the high-order bytes of the source and destination operands, the (V)PUNPCKHWD instruction interleaves the high-order words of the source and destination operands, the (V)PUNPCKHDQ instruction interleaves the high-order doubleword (or doublewords) of the source and destination operands, and the (V)PUNPCKHQDQ instruction interleaves the high-order quadwords of the source and destination operands.</p><p>These instructions can be used to convert bytes to words, words to doublewords, doublewords to quadwords, and quadwords to double quadwords, respectively, by placing all 0s in the source operand. Here, if the source operand contains all 0s, the result (stored in the destination operand) contains zero extensions of the high-order data elements from the original value in the destination operand. For example, with the (V)PUNPCKHBW instruction the high-order bytes are zero extended (that is, unpacked into unsigned word integers), and with the (V)PUNPCKHWD instruction, the high-order words are zero extended (unpacked into unsigned doubleword integers).</p><p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15).</p><p>Legacy SSE versions: The source operand can be an MMX technology register or a 64-bit memory location. The destination operand is an MMX technology register. 128-bit Legacy SSE versions: The second source operand is an XMM register or a 128-bit memory location. The first source operand and destination operands are XMM registers. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged.</p><p>VEX.128 encoded versions: The second source operand is an XMM register or a 128-bit memory location. The first source operand and destination operands are XMM registers. Bits (VLMAX-1:128) of the destination YMM register are zeroed. VEX.256 encoded version: The second source operand is an YMM register or a 256-bit memory location. The first source operand and destination operands are YMM registers.</p><p>Note: VEX.L must be 0, otherwise instructions will #UD.</p><h2 id="operation">Operation</h2>
+<p>When the source data comes from a 64-bit memory operand, the full 64-bit operand is accessed from memory, but the instruction uses only the high-order 32 bits. When the source data comes from a 128-bit memory operand, an implementation may fetch only the appropriate 64 bits; however, alignment to a 16-byte boundary and normal segment checking will still be enforced.</p>
+<p>The (V)PUNPCKHBW instruction interleaves the high-order bytes of the source and destination operands, the (V)PUNPCKHWD instruction interleaves the high-order words of the source and destination operands, the (V)PUNPCKHDQ instruction interleaves the high-order doubleword (or doublewords) of the source and destination operands, and the (V)PUNPCKHQDQ instruction interleaves the high-order quadwords of the source and destination operands.</p>
+<p>These instructions can be used to convert bytes to words, words to doublewords, doublewords to quadwords, and quadwords to double quadwords, respectively, by placing all 0s in the source operand. Here, if the source operand contains all 0s, the result (stored in the destination operand) contains zero extensions of the high-order data elements from the original value in the destination operand. For example, with the (V)PUNPCKHBW instruction the high-order bytes are zero extended (that is, unpacked into unsigned word integers), and with the (V)PUNPCKHWD instruction, the high-order words are zero extended (unpacked into unsigned doubleword integers).</p>
+<p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15).</p>
+<p>Legacy SSE versions: The source operand can be an MMX technology register or a 64-bit memory location. The destination operand is an MMX technology register. 128-bit Legacy SSE versions: The second source operand is an XMM register or a 128-bit memory location. The first source operand and destination operands are XMM registers. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged.</p>
+<p>VEX.128 encoded versions: The second source operand is an XMM register or a 128-bit memory location. The first source operand and destination operands are XMM registers. Bits (VLMAX-1:128) of the destination YMM register are zeroed. VEX.256 encoded version: The second source operand is an YMM register or a 256-bit memory location. The first source operand and destination operands are YMM registers.</p>
+<p>Note: VEX.L must be 0, otherwise instructions will #UD.</p>
+<h2 id="operation">Operation</h2>
 <pre>PUNPCKHBW instruction with 64-bit operands:
   DEST[7:0] ← DEST[39:32];
   DEST[15:8] ← SRC[39:32];
@@ -350,7 +359,8 @@ DEST[127:0] ← INTERLEAVE_HIGH_QWORDS(SRC1, SRC2)
 DEST[255:127] ← 0
 VPUNPCKHQDQ (VEX.256 encoded version)
 DEST[255:0] ← INTERLEAVE_HIGH_QWORDS_256(SRC1, SRC2)
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
 <table>
 <tr>
 	<td>PUNPCKHBW:</td>
@@ -398,9 +408,12 @@ DEST[255:0] ← INTERLEAVE_HIGH_QWORDS_256(SRC1, SRC2)
 </tr>
 </table>
 <h2 id="flags-affected">Flags Affected</h2>
-<p>None.</p><h2 id="numeric-exceptions">Numeric Exceptions</h2>
-<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 4; additionally</p><table>
+<p>None.</p>
+<h2 id="numeric-exceptions">Numeric Exceptions</h2>
+<p>None.</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4; additionally</p>
+<table>
 <tr>
 	<td>#UD</td>
 	<td>If VEX.L = 1.</td>

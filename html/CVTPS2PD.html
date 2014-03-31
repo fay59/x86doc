@@ -55,7 +55,9 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Converts two or four packed single-precision floating-point values in the source operand (second operand) to two or four packed double-precision floating-point values in the destination operand (first operand).</p><p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: The source operand is an XMM register or 64- bit memory location. The destination operation is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. VEX.128 encoded version: The source operand is an XMM register or 64- bit memory location. The destination operation is a YMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed. VEX.256 encoded version: The source operand is an XMM register or 128- bit memory location. The destination operation is a YMM register. Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.</p><table>
+<p>Converts two or four packed single-precision floating-point values in the source operand (second operand) to two or four packed double-precision floating-point values in the destination operand (first operand).</p>
+<p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: The source operand is an XMM register or 64- bit memory location. The destination operation is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. VEX.128 encoded version: The source operand is an XMM register or 64- bit memory location. The destination operation is a YMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed. VEX.256 encoded version: The source operand is an XMM register or 128- bit memory location. The destination operation is a YMM register. Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.</p>
+<table>
 <tr>
 	<td>SRC X3</td>
 	<td>X3X2</td>
@@ -64,7 +66,8 @@
 	<td>X0X0</td>
 </tr>
 </table>
-<p>DEST</p><table>
+<p>DEST</p>
+<table>
 <tr>
 	<td>Figure 3-13.</td>
 	<td>CVTPS2PD (VEX.256 encoded version)</td>
@@ -84,7 +87,8 @@ DEST[63:0] ← Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[3
 DEST[127:64] ← Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[63:32])
 DEST[191:128] ← Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[95:64])
 DEST[255:192] ← Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[127:96)
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>CVTPS2PD:</td>
@@ -96,6 +100,9 @@ DEST[255:192] ← Convert_Single_Precision_To_Double_Precision_Floating_Point(SR
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>Invalid, Denormal.</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 3; additionally</p><p>#UDIf VEX.vvvv != 1111B.</p></body>
+<p>Invalid, Denormal.</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 3; additionally</p>
+<p>#UDIf VEX.vvvv != 1111B.</p>
+</body>
 </html>

@@ -59,7 +59,11 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Returns program control from an exception or interrupt handler to a program or procedure that was interrupted by an exception, an external interrupt, or a software-generated interrupt. These instructions are also used to perform a return from a nested task. (A nested task is created when a CALL instruction is used to initiate a task switch or when an interrupt or exception causes a task switch to an interrupt or exception handler.) See the section titled “Task Linking” in Chapter 7 of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p><p>IRET and IRETD are mnemonics for the same opcode. The IRETD mnemonic (interrupt return double) is intended for use when returning from an interrupt when using the 32-bit operand size; however, most assemblers use the IRET mnemonic interchangeably for both operand sizes.</p><p>In Real-Address Mode, the IRET instruction preforms a far return to the interrupted program or procedure. During this operation, the processor pops the return instruction pointer, return code segment selector, and EFLAGS image from the stack to the EIP, CS, and EFLAGS registers, respectively, and then resumes execution of the interrupted program or procedure.</p><p>In Protected Mode, the action of the IRET instruction depends on the settings of the NT (nested task) and VM flags in the EFLAGS register and the VM flag in the EFLAGS image stored on the current stack. Depending on the setting of these flags, the processor performs the following types of interrupt returns:</p><table>
+<p>Returns program control from an exception or interrupt handler to a program or procedure that was interrupted by an exception, an external interrupt, or a software-generated interrupt. These instructions are also used to perform a return from a nested task. (A nested task is created when a CALL instruction is used to initiate a task switch or when an interrupt or exception causes a task switch to an interrupt or exception handler.) See the section titled “Task Linking” in Chapter 7 of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
+<p>IRET and IRETD are mnemonics for the same opcode. The IRETD mnemonic (interrupt return double) is intended for use when returning from an interrupt when using the 32-bit operand size; however, most assemblers use the IRET mnemonic interchangeably for both operand sizes.</p>
+<p>In Real-Address Mode, the IRET instruction preforms a far return to the interrupted program or procedure. During this operation, the processor pops the return instruction pointer, return code segment selector, and EFLAGS image from the stack to the EIP, CS, and EFLAGS registers, respectively, and then resumes execution of the interrupted program or procedure.</p>
+<p>In Protected Mode, the action of the IRET instruction depends on the settings of the NT (nested task) and VM flags in the EFLAGS register and the VM flag in the EFLAGS image stored on the current stack. Depending on the setting of these flags, the processor performs the following types of interrupt returns:</p>
+<table>
 <tr>
 	<td>•</td>
 	<td>Return from virtual-8086 mode.</td>
@@ -81,7 +85,13 @@
 	<td>Return from nested task (task switch).</td>
 </tr>
 </table>
-<p>If the NT flag (EFLAGS register) is cleared, the IRET instruction performs a far return from the interrupt procedure,without a task switch. The code segment being returned to must be equally or less privileged than the interrupt handler routine (as indicated by the RPL field of the code segment selector popped from the stack).</p><p>As with a real-address mode interrupt return, the IRET instruction pops the return instruction pointer, return code segment selector, and EFLAGS image from the stack to the EIP, CS, and EFLAGS registers, respectively, and then resumes execution of the interrupted program or procedure. If the return is to another privilege level, the IRET instruction also pops the stack pointer and SS from the stack, before resuming program execution. If the return is to virtual-8086 mode, the processor also pops the data segment registers from the stack.</p><p>If the NT flag is set, the IRET instruction performs a task switch (return) from a nested task (a task called with a CALL instruction, an interrupt, or an exception) back to the calling or interrupted task. The updated state of the task executing the IRET instruction is saved in its TSS. If the task is re-entered later, the code that follows the IRET instruction is executed.</p><p>If the NT flag is set and the processor is in IA-32e mode, the IRET instruction causes a general protection exception.</p><p>In 64-bit mode, the instruction’s default operation size is 32 bits. Use of the REX.W prefix promotes operation to 64bits (IRETQ). See the summary chart at the beginning of this section for encoding data and limits.</p><p>See “Changes to Instruction Behavior in VMX Non-Root Operation” in Chapter 25 of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3C, for more information about the behavior of this instruction in VMX non-root operation.</p><h2 id="operation">Operation</h2>
+<p>If the NT flag (EFLAGS register) is cleared, the IRET instruction performs a far return from the interrupt procedure,without a task switch. The code segment being returned to must be equally or less privileged than the interrupt handler routine (as indicated by the RPL field of the code segment selector popped from the stack).</p>
+<p>As with a real-address mode interrupt return, the IRET instruction pops the return instruction pointer, return code segment selector, and EFLAGS image from the stack to the EIP, CS, and EFLAGS registers, respectively, and then resumes execution of the interrupted program or procedure. If the return is to another privilege level, the IRET instruction also pops the stack pointer and SS from the stack, before resuming program execution. If the return is to virtual-8086 mode, the processor also pops the data segment registers from the stack.</p>
+<p>If the NT flag is set, the IRET instruction performs a task switch (return) from a nested task (a task called with a CALL instruction, an interrupt, or an exception) back to the calling or interrupted task. The updated state of the task executing the IRET instruction is saved in its TSS. If the task is re-entered later, the code that follows the IRET instruction is executed.</p>
+<p>If the NT flag is set and the processor is in IA-32e mode, the IRET instruction causes a general protection exception.</p>
+<p>In 64-bit mode, the instruction’s default operation size is 32 bits. Use of the REX.W prefix promotes operation to 64bits (IRETQ). See the summary chart at the beginning of this section for encoding data and limits.</p>
+<p>See “Changes to Instruction Behavior in VMX Non-Root Operation” in Chapter 25 of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3C, for more information about the behavior of this instruction in VMX non-root operation.</p>
+<h2 id="operation">Operation</h2>
 <pre>IF PE = 0
   THEN
      GOTO REAL-ADDRESS-MODE;
@@ -353,8 +363,10 @@ IA-32e-MODE-RETURN: (* IA32_EFER.LMA = 1, PE = 1 *)
      THEN GOTO RETURN-OUTER-PRIVILEGE-LEVEL;
      ELSE GOTO RETURN-TO-SAME-PRIVILEGE-LEVEL; FI;
 END;
-</pre><h2 id="flags-affected">Flags Affected</h2>
-<p>All the flags and fields in the EFLAGS register are potentially modified, depending on the mode of operation of the processor. If performing a return from a nested task to a previous task, the EFLAGS register will be modified according to the EFLAGS image stored in the previous task’s TSS.</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+</pre>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>All the flags and fields in the EFLAGS register are potentially modified, depending on the mode of operation of the processor. If performing a return from a nested task to a previous task, the EFLAGS register will be modified according to the EFLAGS image stored in the previous task’s TSS.</p>
+<h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#GP(0)</td>
@@ -403,7 +415,8 @@ END;
 	<td>If the return instruction pointer is not within the return code segment limit.</td>
 </tr>
 </table>
-<p>IF IOPL not equal to 3.</p><table>
+<p>IF IOPL not equal to 3.</p>
+<table>
 <tr>
 	<td>#PF(fault-code)</td>
 	<td>If a page fault occurs.</td>

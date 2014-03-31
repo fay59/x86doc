@@ -184,7 +184,8 @@
 	<td>Shift quadwords in ymm2 left by imm8 while VPSLLQ ymm1, ymm2, imm8</td>
 </tr>
 </table>
-<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual,Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p><h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual,Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>
 	<td>Op/En</td>
@@ -223,7 +224,9 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Shifts the bits in the individual data elements (words, doublewords, or quadword) in the destination operand (first operand) to the left by the number of bits specified in the count operand (second operand). As the bits in the data elements are shifted left, the empty low-order bits are cleared (set to 0). If the value specified by the count operand is greater than 15 (for words), 31 (for doublewords), or 63 (for a quadword), then the destination operand is set to all 0s. Figure 4-13 gives an example of shifting words in a 64-bit operand.</p><p>Pre-Shift</p><table>
+<p>Shifts the bits in the individual data elements (words, doublewords, or quadword) in the destination operand (first operand) to the left by the number of bits specified in the count operand (second operand). As the bits in the data elements are shifted left, the empty low-order bits are cleared (set to 0). If the value specified by the count operand is greater than 15 (for words), 31 (for doublewords), or 63 (for a quadword), then the destination operand is set to all 0s. Figure 4-13 gives an example of shifting words in a 64-bit operand.</p>
+<p>Pre-Shift</p>
+<table>
 <tr>
 	<td>X3</td>
 	<td>X2X2 << COUNT</td>
@@ -231,7 +234,12 @@
 	<td>X0DEST Shift Left with Zero Extension X0 << COUNT DEST PSLLW, PSLLD, and PSLLQ Instruction Operation Using 64-bit Operand</td>
 </tr>
 </table>
-<p>The (V)PSLLW instruction shifts each of the words in the destination operand to the left by the number of bits specified in the count operand; the (V)PSLLD instruction shifts each of the doublewords in the destination operand; and the (V)PSLLQ instruction shifts the quadword (or quadwords) in the destination operand.</p><p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15).</p><p>Legacy SSE instructions: The destination operand is an MMX technology register; the count operand can be either an MMX technology register or an 64-bit memory location. 128-bit Legacy SSE version: The destination and first source operands are XMM registers. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged. The count operand can be either an XMM register or a 128-bit memory location or an 8-bit immediate. If the count operand is a memory address, 128 bits are loaded but the upper 64 bits are ignored.</p><p>VEX.128 encoded version: The destination and first source operands are XMM registers. Bits (VLMAX-1:128) of the destination YMM register are zeroed. The count operand can be either an XMM register or a 128-bit memory location or an 8-bit immediate. If the count operand is a memory address, 128 bits are loaded but the upper 64 bits are ignored. VEX.256 encoded version: The destination and first source operands are YMM registers. The count operand can be either an XMM register or a 128-bit memory location or an 8-bit immediate.</p><p>Note: For shifts with an immediate count (VEX.128.66.0F 71-73 /6), VEX.vvvv encodes the destination register,and VEX.B + ModRM.r/m encodes the source register. VEX.L must be 0, otherwise instructions will #UD.</p><h2 id="operation">Operation</h2>
+<p>The (V)PSLLW instruction shifts each of the words in the destination operand to the left by the number of bits specified in the count operand; the (V)PSLLD instruction shifts each of the doublewords in the destination operand; and the (V)PSLLQ instruction shifts the quadword (or quadwords) in the destination operand.</p>
+<p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15).</p>
+<p>Legacy SSE instructions: The destination operand is an MMX technology register; the count operand can be either an MMX technology register or an 64-bit memory location. 128-bit Legacy SSE version: The destination and first source operands are XMM registers. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged. The count operand can be either an XMM register or a 128-bit memory location or an 8-bit immediate. If the count operand is a memory address, 128 bits are loaded but the upper 64 bits are ignored.</p>
+<p>VEX.128 encoded version: The destination and first source operands are XMM registers. Bits (VLMAX-1:128) of the destination YMM register are zeroed. The count operand can be either an XMM register or a 128-bit memory location or an 8-bit immediate. If the count operand is a memory address, 128 bits are loaded but the upper 64 bits are ignored. VEX.256 encoded version: The destination and first source operands are YMM registers. The count operand can be either an XMM register or a 128-bit memory location or an 8-bit immediate.</p>
+<p>Note: For shifts with an immediate count (VEX.128.66.0F 71-73 /6), VEX.vvvv encodes the destination register,and VEX.B + ModRM.r/m encodes the source register. VEX.L must be 0, otherwise instructions will #UD.</p>
+<h2 id="operation">Operation</h2>
 <pre>PSLLW (with 64-bit operand)
   IF (COUNT > 15)
   THEN
@@ -345,7 +353,8 @@ VPSLLQ (ymm, ymm, xmm/m128)
 DEST[255:0] ← LOGICAL_LEFT_SHIFT_QWORDS_256b(SRC1, SRC2)
 VPSLLQ (ymm, imm8)
 DEST[255:0] ← LOGICAL_LEFT_SHIFT_QWORDS_256b(SRC1, imm8)
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
 <table>
 <tr>
 	<td>PSLLW:</td>
@@ -421,9 +430,12 @@ DEST[255:0] ← LOGICAL_LEFT_SHIFT_QWORDS_256b(SRC1, imm8)
 </tr>
 </table>
 <h2 id="flags-affected">Flags Affected</h2>
-<p>None.</p><h2 id="numeric-exceptions">Numeric Exceptions</h2>
-<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 4 and 7 for non-VEX-encoded instructions; additionally</p><table>
+<p>None.</p>
+<h2 id="numeric-exceptions">Numeric Exceptions</h2>
+<p>None.</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4 and 7 for non-VEX-encoded instructions; additionally</p>
+<table>
 <tr>
 	<td>#UD</td>
 	<td>If VEX.L = 1.</td>

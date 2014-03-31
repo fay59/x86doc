@@ -51,7 +51,9 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Verifies whether the code or data segment specified with the source operand is readable (VERR) or writable (VERW) from the current privilege level (CPL). The source operand is a 16-bit register or a memory location that contains the segment selector for the segment to be verified. If the segment is accessible and readable (VERR) or writable (VERW), the ZF flag is set; otherwise, the ZF flag is cleared. Code segments are never verified as writable. This check cannot be performed on system segments.</p><p>To set the ZF flag, the following conditions must be met:</p><table>
+<p>Verifies whether the code or data segment specified with the source operand is readable (VERR) or writable (VERW) from the current privilege level (CPL). The source operand is a 16-bit register or a memory location that contains the segment selector for the segment to be verified. If the segment is accessible and readable (VERR) or writable (VERW), the ZF flag is set; otherwise, the ZF flag is cleared. Code segments are never verified as writable. This check cannot be performed on system segments.</p>
+<p>To set the ZF flag, the following conditions must be met:</p>
+<table>
 <tr>
 	<td>•</td>
 	<td>The segment selector is not NULL.</td>
@@ -93,9 +95,12 @@ and (CPL > DPL) or (RPL > DPL)
           ZF ← 1;
      FI;
 FI;
-</pre><h2 id="flags-affected">Flags Affected</h2>
-<p>The ZF flag is set to 1 if the segment is accessible and readable (VERR) or writable (VERW); otherwise, it is set to 0.</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
-<p>The only exceptions generated for these instructions are those related to illegal addressing of the source operand.</p><table>
+</pre>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>The ZF flag is set to 1 if the segment is accessible and readable (VERR) or writable (VERW); otherwise, it is set to 0.</p>
+<h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+<p>The only exceptions generated for these instructions are those related to illegal addressing of the source operand.</p>
+<table>
 <tr>
 	<td>#GP(0)</td>
 	<td>If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit. If the DS, ES, FS, or GS register is used to access memory and it contains a NULL segment selector.</td>
@@ -132,7 +137,8 @@ FI;
 </tr>
 </table>
 <h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#SS(0)</td>

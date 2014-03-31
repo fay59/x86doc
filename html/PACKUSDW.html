@@ -62,7 +62,8 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Converts packed signed doubleword integers into packed unsigned word integers using unsigned saturation to</p><table>
+<p>Converts packed signed doubleword integers into packed unsigned word integers using unsigned saturation to</p>
+<table>
 <tr>
 	<td>handle overflow conditions. greater than FFFFH or less than 0000H), the saturated unsigned word integer value of FFFFH or 0000H, respectively, is stored in the destination. 128-bit Legacy SSE version: The first source operand is an XMM register. The second operand can be an XMM register or a 128-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. VEX.128 encoded version: The first source operand is an XMM register. The second source operand is an XMM register or 128-bit memory location. The destination operand is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed. VEX.256 encoded version: The first source operand is a YMM register. The second source operand is a YMM register or a 256-bit memory location. The destination operand is a YMM register. Note: VEX.L must be 0, otherwise the instruction will #UD.</td>
 	<td>If the signed doubleword value is beyond the range of an unsigned word (that is,</td>
@@ -137,17 +138,22 @@ TMP[239:224] ← (SRC2[223:192] < 0) ? 0 : SRC2[207:192];
 DEST[239:224] ← (SRC2[223:192] > FFFFH) ? FFFFH : TMP[239:224] ;
 TMP[255:240] ← (SRC2[255:224] < 0) ? 0 : SRC2[239:224];
 DEST[255:240] ← (SRC2[255:224] > FFFFH) ? FFFFH : TMP[255:240] ;
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
-<p>(V)PACKUSDW: __m128i _mm_packus_epi32(__m128i m1, __m128i m2);</p><table>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<p>(V)PACKUSDW: __m128i _mm_packus_epi32(__m128i m1, __m128i m2);</p>
+<table>
 <tr>
 	<td>VPACKUSDW:</td>
 	<td>__m256i _mm256_packus_epi32(__m256i m1, __m256i m2);</td>
 </tr>
 </table>
 <h2 id="flags-affected">Flags Affected</h2>
-<p>None.</p><h2 id="simd-exceptions">SIMD Exceptions</h2>
-<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 4; additionally</p><table>
+<p>None.</p>
+<h2 id="simd-exceptions">SIMD Exceptions</h2>
+<p>None.</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4; additionally</p>
+<table>
 <tr>
 	<td>#UD</td>
 	<td>If VEX.L = 1.</td>

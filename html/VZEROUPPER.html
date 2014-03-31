@@ -41,7 +41,9 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>The instruction zeros the bits in position 128 and higher of all YMM registers. The lower 128-bits of the registers (the corresponding XMM registers) are unmodified.</p><p>This instruction is recommended when transitioning between AVX and legacy SSE code - it will eliminate performance penalties caused by false dependencies. Note: VEX.vvvv is reserved and must be 1111b otherwise instructions will #UD. In Compatibility and legacy 32-bit mode only the lower 8 registers are modified.</p><h2 id="operation">Operation</h2>
+<p>The instruction zeros the bits in position 128 and higher of all YMM registers. The lower 128-bits of the registers (the corresponding XMM registers) are unmodified.</p>
+<p>This instruction is recommended when transitioning between AVX and legacy SSE code - it will eliminate performance penalties caused by false dependencies. Note: VEX.vvvv is reserved and must be 1111b otherwise instructions will #UD. In Compatibility and legacy 32-bit mode only the lower 8 registers are modified.</p>
+<h2 id="operation">Operation</h2>
 <pre>VZEROUPPER
 IF (64-bit mode)
   YMM0[VLMAX-1:128] ← 0
@@ -71,7 +73,8 @@ ELSE
   YMM7[VLMAX-1:128] ← 0
   YMM8-15: unmodified
 FI
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>VZEROUPPER:</td>
@@ -79,6 +82,8 @@ FI
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 8.</p></body>
+<p>None.</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 8.</p>
+</body>
 </html>

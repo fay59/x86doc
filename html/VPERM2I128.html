@@ -41,7 +41,8 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Permute 128 bit integer data from the first source operand (second operand) and second source operand (third operand) using bits in the 8-bit immediate and store results in the destination operand (first operand). The first source operand is a YMM register, the second source operand is a YMM register or a 256-bit memory location, and the destination operand is a YMM register.</p><table>
+<p>Permute 128 bit integer data from the first source operand (second operand) and second source operand (third operand) using bits in the 8-bit immediate and store results in the destination operand (first operand). The first source operand is a YMM register, the second source operand is a YMM register or a 256-bit memory location, and the destination operand is a YMM register.</p>
+<table>
 <tr>
 	<td>SRC2</td>
 	<td>Y1</td>
@@ -58,7 +59,8 @@
 	<td>X0, X1, Y0, or Y1</td>
 </tr>
 </table>
-<p>Imm8[1:0] select the source for the first destination 128-bit field, imm8[5:4] select the source for the second destination field. If imm8[3] is set, the low 128-bit field is zeroed. If imm8[7] is set, the high 128-bit field is zeroed. VEX.L must be 1, otherwise the instruction will #UD.</p><h2 id="operation">Operation</h2>
+<p>Imm8[1:0] select the source for the first destination 128-bit field, imm8[5:4] select the source for the second destination field. If imm8[3] is set, the low 128-bit field is zeroed. If imm8[7] is set, the high 128-bit field is zeroed. VEX.L must be 1, otherwise the instruction will #UD.</p>
+<h2 id="operation">Operation</h2>
 <pre>VPERM2I128
 CASE IMM8[1:0] of
 0: DEST[127:0] ← SRC1[127:0]
@@ -78,10 +80,14 @@ FI
 IF (imm8[7])
 DEST[255:128] ← 0
 FI
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
-<p>VPERM2I128: __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, int control)</p><h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 6; additionally</p><table>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<p>VPERM2I128: __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, int control)</p>
+<h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 6; additionally</p>
+<table>
 <tr>
 	<td>#UD</td>
 	<td>If VEX.L = 0,If VEX.W = 1.</td>

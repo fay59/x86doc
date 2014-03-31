@@ -44,7 +44,8 @@
 	<td>Multiply 16-bit signed words, scale and round VPMULHRSW ymm1, ymm2, ymm3/m256ymm1.</td>
 </tr>
 </table>
-<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual,Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p><h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual,Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>
 	<td>Op/En</td>
@@ -69,7 +70,11 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>PMULHRSW multiplies vertically each signed 16-bit integer from the destination operand (first operand) with the corresponding signed 16-bit integer of the source operand (second operand), producing intermediate, signed 32bit integers. Each intermediate 32-bit integer is truncated to the 18 most significant bits. Rounding is always performed by adding 1 to the least significant bit of the 18-bit intermediate result. The final result is obtained by selecting the 16 bits immediately to the right of the most significant bit of each 18-bit intermediate result and packed to the destination operand.</p><p>When the source operand is a 128-bit memory operand, the operand must be aligned on a 16-byte boundary or a general-protection exception (#GP) will be generated.</p><p>In 64-bit mode, use the REX prefix to access additional registers. Legacy SSE version: Both operands can be MMX registers. The second source operand is an MMX register or a 64bit memory location.</p><p>128-bit Legacy SSE version: The first source and destination operands are XMM registers. The second source operand is an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: The first source and destination operands are XMM registers. The second source operand is an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the destination YMM register are zeroed. VEX.L must be 0, otherwise the instruction will #UD. VEX.256 encoded version: The second source operand can be an YMM register or a 256-bit memory location. The first source and destination operands are YMM registers.</p><h2 id="operation">Operation</h2>
+<p>PMULHRSW multiplies vertically each signed 16-bit integer from the destination operand (first operand) with the corresponding signed 16-bit integer of the source operand (second operand), producing intermediate, signed 32bit integers. Each intermediate 32-bit integer is truncated to the 18 most significant bits. Rounding is always performed by adding 1 to the least significant bit of the 18-bit intermediate result. The final result is obtained by selecting the 16 bits immediately to the right of the most significant bit of each 18-bit intermediate result and packed to the destination operand.</p>
+<p>When the source operand is a 128-bit memory operand, the operand must be aligned on a 16-byte boundary or a general-protection exception (#GP) will be generated.</p>
+<p>In 64-bit mode, use the REX prefix to access additional registers. Legacy SSE version: Both operands can be MMX registers. The second source operand is an MMX register or a 64bit memory location.</p>
+<p>128-bit Legacy SSE version: The first source and destination operands are XMM registers. The second source operand is an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: The first source and destination operands are XMM registers. The second source operand is an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the destination YMM register are zeroed. VEX.L must be 0, otherwise the instruction will #UD. VEX.256 encoded version: The second source operand can be an YMM register or a 256-bit memory location. The first source and destination operands are YMM registers.</p>
+<h2 id="operation">Operation</h2>
 <pre>PMULHRSW (with 64-bit operands)
   temp0[31:0] = INT32 ((DEST[15:0] * SRC[15:0]) >>14) + 1;
   temp1[31:0] = INT32 ((DEST[31:16] * SRC[31:16]) >>14) + 1;
@@ -131,7 +136,8 @@ temp12[31:0] ← INT32 ((SRC1[207:192] * SRC2[207:192]) >>14) + 1
 temp13[31:0] ← INT32 ((SRC1[223:208] * SRC2[223:208]) >>14) + 1
 temp14[31:0] ← INT32 ((SRC1[239:224] * SRC2[239:224]) >>14) + 1
 temp15[31:0] ← INT32 ((SRC1[255:240] * SRC2[255:240) >>14) + 1
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
 <table>
 <tr>
 	<td>PMULHRSW:</td>
@@ -147,8 +153,10 @@ temp15[31:0] ← INT32 ((SRC1[255:240] * SRC2[255:240) >>14) + 1
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 4; additionally</p><table>
+<p>None.</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4; additionally</p>
+<table>
 <tr>
 	<td>#UD</td>
 	<td>If VEX.L = 1.</td>

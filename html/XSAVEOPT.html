@@ -48,7 +48,10 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Performs a full or partial save of processor state components to the XSAVE area located at the memory address specified by the destination operand. The implicit EDX:EAX register pair specifies a 64-bit instruction mask. The specific state components saved correspond to the bits set in the requested-feature bitmap (RFBM), which is the logical-AND of EDX:EAX and XCR0.</p><p>The format of the XSAVE area is detailed in Section 13.4, “XSAVE Area,” of Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1.</p><p>Section 13.8, “Operation of XSAVEOPT,” of Intel® 64 and IA-32 Architectures Software Developer’s Manual,Volume 1 provides a detailed description of the operation of the XSAVEOPT instruction. The following items provide a high-level outline:</p><table>
+<p>Performs a full or partial save of processor state components to the XSAVE area located at the memory address specified by the destination operand. The implicit EDX:EAX register pair specifies a 64-bit instruction mask. The specific state components saved correspond to the bits set in the requested-feature bitmap (RFBM), which is the logical-AND of EDX:EAX and XCR0.</p>
+<p>The format of the XSAVE area is detailed in Section 13.4, “XSAVE Area,” of Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1.</p>
+<p>Section 13.8, “Operation of XSAVEOPT,” of Intel® 64 and IA-32 Architectures Software Developer’s Manual,Volume 1 provides a detailed description of the operation of the XSAVEOPT instruction. The following items provide a high-level outline:</p>
+<table>
 <tr>
 	<td>•••••Use of a destination operand not aligned to 64-byte boundary (in either 64-bit or 32-bit modes) will result in a general-protection (#GP) exception. In 64-bit mode, the upper 32 bits of RDX and RAX are ignored.</td>
 	<td>Execution of XSAVEOPT is similar to that of XSAVE. XSAVEOPT differs from XSAVE in that it uses compaction and that it may use the init and modified optimizations. The performance of XSAVEOPT will be equal to or better than that of XSAVE. XSAVEOPT saves state component i only if RFBM[i] = 1 and XINUSE[i] = 1.1 (XINUSE is a bitmap by which the processor tracks the status of various state components. See Section 13.5.4, “Processor Tracking of XSAVEManaged State.”) Even if both bits are 1, XSAVEOPT may optimize and not save state component i if (1) state component i has not been modified since the last execution of XRTOR or XRSTORS; and (2) this execution of XSAVES corresponds to that last execution of XRTOR or XRSTORS as determined by the internal value XRSTOR_INFO (see the Operation section below). XSAVEOPT does not modify bytes 511:464 of the legacy region of the XSAVE area (see Section 13.4.1, “Legacy Region of an XSAVE Area”). XSAVEOPT reads the XSTATE_BV field of the XSAVE header (see Section 13.4.2, “XSAVE Header”) and writes a modified value back to memory as follows. If RFBM[i] = 1, XSAVEOPT writes XSTATE_BV[i] with the value of XINUSE[i]. If RFBM[i] = 0, XSAVEOPT writes XSTATE_BV[i] with the value that it read from memory (it does not modify the bit). XSAVEOPT does not write to any part of the XSAVE header other than the XSTATE_BV field. XSAVEOPT always uses the standard format of the extended region of the XSAVE area (see Section 13.4.3,“Extended Region of an XSAVE Area”).</td>
@@ -85,8 +88,10 @@ IF RFBM[1] = 1 or RFBM[2] = 1
   THEN store MXCSR and MXCSR_MASK into legacy region of XSAVE area;
 FI;
 XSTATE_BV field in XSAVE header ← (OLD_BV AND ~RFBM) OR (XINUSE AND RFBM);
-</pre><h2 id="flags-affected">Flags Affected</h2>
-<p>None.</p><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>XSAVEOPT:</td>
@@ -136,8 +141,10 @@ XSTATE_BV field in XSAVE header ← (OLD_BV AND ~RFBM) OR (XINUSE AND RFBM);
 </tr>
 </table>
 <h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#SS(0)</td>

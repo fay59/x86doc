@@ -505,7 +505,8 @@
 	<td>Set byte if zero (ZF=1).</td>
 </tr>
 </table>
-<p class="notes">Notes: * In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.</p><h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<p class="notes">Notes: * In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.</p>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>
 	<td>Op/En</td>
@@ -523,13 +524,20 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Sets the destination operand to 0 or 1 depending on the settings of the status flags (CF, SF, OF, ZF, and PF) in the EFLAGS register. The destination operand points to a byte register or a byte in memory. The condition code suffix (cc) indicates the condition being tested for.</p><p>The terms “above” and “below” are associated with the CF flag and refer to the relationship between two unsigned integer values. The terms “greater” and “less” are associated with the SF and OF flags and refer to the relationship between two signed integer values.</p><p>Many of the SETcc instruction opcodes have alternate mnemonics. For example, SETG (set byte if greater) and SETNLE (set if not less or equal) have the same opcode and test for the same condition: ZF equals 0 and SF equals OF. These alternate mnemonics are provided to make code more intelligible. Appendix B, “EFLAGS Condition Codes,” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, shows the alternate mnemonics for various test conditions.</p><p>Some languages represent a logical one as an integer with all bits set. This representation can be obtained by choosing the logically opposite condition for the SETcc instruction, then decrementing the result. For example, to test for overflow, use the SETNO instruction, then decrement the result.</p><p>In IA-64 mode, the operand size is fixed at 8 bits. Use of REX prefix enable uniform addressing to additional byte registers. Otherwise, this instruction’s operation is the same as in legacy mode and compatibility mode.</p><h2 id="operation">Operation</h2>
+<p>Sets the destination operand to 0 or 1 depending on the settings of the status flags (CF, SF, OF, ZF, and PF) in the EFLAGS register. The destination operand points to a byte register or a byte in memory. The condition code suffix (cc) indicates the condition being tested for.</p>
+<p>The terms “above” and “below” are associated with the CF flag and refer to the relationship between two unsigned integer values. The terms “greater” and “less” are associated with the SF and OF flags and refer to the relationship between two signed integer values.</p>
+<p>Many of the SETcc instruction opcodes have alternate mnemonics. For example, SETG (set byte if greater) and SETNLE (set if not less or equal) have the same opcode and test for the same condition: ZF equals 0 and SF equals OF. These alternate mnemonics are provided to make code more intelligible. Appendix B, “EFLAGS Condition Codes,” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, shows the alternate mnemonics for various test conditions.</p>
+<p>Some languages represent a logical one as an integer with all bits set. This representation can be obtained by choosing the logically opposite condition for the SETcc instruction, then decrementing the result. For example, to test for overflow, use the SETNO instruction, then decrement the result.</p>
+<p>In IA-64 mode, the operand size is fixed at 8 bits. Use of REX prefix enable uniform addressing to additional byte registers. Otherwise, this instruction’s operation is the same as in legacy mode and compatibility mode.</p>
+<h2 id="operation">Operation</h2>
 <pre>IF condition
   THEN DEST ← 1;
   ELSE DEST ← 0;
 FI;
-</pre><h2 id="flags-affected">Flags Affected</h2>
-<p>None.</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+</pre>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p>
+<h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#GP(0)</td>
@@ -583,7 +591,8 @@ FI;
 </tr>
 </table>
 <h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#SS(0)</td>

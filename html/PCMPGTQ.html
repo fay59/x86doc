@@ -62,7 +62,10 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Performs an SIMD signed compare for the packed quadwords in the destination operand (first operand) and the source operand (second operand). If the data element in the first (destination) operand is greater than the corresponding element in the second (source) operand, the corresponding data element in the destination is set to all 1s; otherwise, it is set to 0s.</p><p>128-bit Legacy SSE version: The second source operand can be an XMM register or a 128-bit memory location. The first source operand and destination operand are XMM registers. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: The second source operand can be an XMM register or a 128-bit memory location. The first source operand and destination operand are XMM registers. Bits (VLMAX-1:128) of the corresponding YMM register are zeroed. VEX.256 encoded version: The first source operand is a YMM register. The second source operand is a YMM register or a 256-bit memory location. The destination operand is a YMM register.</p><p>Note: VEX.L must be 0, otherwise the instruction will #UD.</p><h2 id="operation">Operation</h2>
+<p>Performs an SIMD signed compare for the packed quadwords in the destination operand (first operand) and the source operand (second operand). If the data element in the first (destination) operand is greater than the corresponding element in the second (source) operand, the corresponding data element in the destination is set to all 1s; otherwise, it is set to 0s.</p>
+<p>128-bit Legacy SSE version: The second source operand can be an XMM register or a 128-bit memory location. The first source operand and destination operand are XMM registers. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: The second source operand can be an XMM register or a 128-bit memory location. The first source operand and destination operand are XMM registers. Bits (VLMAX-1:128) of the corresponding YMM register are zeroed. VEX.256 encoded version: The first source operand is a YMM register. The second source operand is a YMM register or a 256-bit memory location. The destination operand is a YMM register.</p>
+<p>Note: VEX.L must be 0, otherwise the instruction will #UD.</p>
+<h2 id="operation">Operation</h2>
 <pre>IF (DEST[63-0] > SRC[63-0])
   THEN DEST[63-0] ← FFFFFFFFFFFFFFFFH;
   ELSE DEST[63-0] ← 0; FI
@@ -75,7 +78,8 @@ DEST[VLMAX-1:128] ← 0
 VPCMPGTQ (VEX.256 encoded version)
 DEST[127:0] ←COMPARE_QWORDS_GREATER(SRC1[127:0],SRC2[127:0])
 DEST[255:128] ←COMPARE_QWORDS_GREATER(SRC1[255:128],SRC2[255:128])
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>(V)PCMPGTQ:</td>
@@ -87,9 +91,12 @@ DEST[255:128] ←COMPARE_QWORDS_GREATER(SRC1[255:128],SRC2[255:128])
 </tr>
 </table>
 <h2 id="flags-affected">Flags Affected</h2>
-<p>None.</p><h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 4; additionally</p><table>
+<p>None.</p>
+<h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None.</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4; additionally</p>
+<table>
 <tr>
 	<td>#UD</td>
 	<td>If VEX.L = 1.</td>

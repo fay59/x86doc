@@ -62,7 +62,8 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Performs an interleaved unpack of the low-order single-precision floating-point values from the source operand (second operand) and the destination operand (first operand). See Figure 4-26. The source operand can be an XMM register or a 128-bit memory location; the destination operand is an XMM register.</p><table>
+<p>Performs an interleaved unpack of the low-order single-precision floating-point values from the source operand (second operand) and the destination operand (first operand). See Figure 4-26. The source operand can be an XMM register or a 128-bit memory location; the destination operand is an XMM register.</p>
+<table>
 <tr>
 	<td>DEST</td>
 	<td>X3</td>
@@ -85,7 +86,9 @@
 	<td>X0Figure 4-26.</td>
 </tr>
 </table>
-<p>When unpacking from a memory operand, an implementation may fetch only the appropriate 64 bits; however,alignment to 16-byte boundary and normal segment checking will still be enforced.</p><p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: The second source can be an XMM register or an 128-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. VEX.128 encoded version: The first source operand is an XMM register or 128-bit memory location. The destination operand is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed.</p><h2 id="operation">Operation</h2>
+<p>When unpacking from a memory operand, an implementation may fetch only the appropriate 64 bits; however,alignment to 16-byte boundary and normal segment checking will still be enforced.</p>
+<p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: The second source can be an XMM register or an 128-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. VEX.128 encoded version: The first source operand is an XMM register or 128-bit memory location. The destination operand is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed.</p>
+<h2 id="operation">Operation</h2>
 <pre>UNPCKLPS (128-bit Legacy SSE version)
 DEST[31:0] ← SRC1[31:0]
 DEST[63:32] ← SRC2[31:0]
@@ -107,7 +110,8 @@ DEST[159:128] ← SRC1[159:128]
 DEST[191:160] ← SRC2[159:128]
 DEST[223:192] ← SRC1[191:160]
 DEST[255:224] ← SRC2[191:160]
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>UNPCKLPS:</td>
@@ -119,6 +123,8 @@ DEST[255:224] ← SRC2[191:160]
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 4.</p></body>
+<p>None.</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4.</p>
+</body>
 </html>

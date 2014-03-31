@@ -43,10 +43,16 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Stores the segment selector from the task register (TR) in the destination operand. The destination operand can be a general-purpose register or a memory location. The segment selector stored with this instruction points to the task state segment (TSS) for the currently running task.</p><p>When the destination operand is a 32-bit register, the 16-bit segment selector is copied into the lower 16 bits of the register and the upper 16 bits of the register are cleared. When the destination operand is a memory location, the segment selector is written to memory as a 16-bit quantity, regardless of operand size.</p><p>In 64-bit mode, operation is the same. The size of the memory operand is fixed at 16 bits. In register stores, the 2byte TR is zero extended if stored to a 64-bit register.</p><p>The STR instruction is useful only in operating-system software. It can only be executed in protected mode.</p><h2 id="operation">Operation</h2>
+<p>Stores the segment selector from the task register (TR) in the destination operand. The destination operand can be a general-purpose register or a memory location. The segment selector stored with this instruction points to the task state segment (TSS) for the currently running task.</p>
+<p>When the destination operand is a 32-bit register, the 16-bit segment selector is copied into the lower 16 bits of the register and the upper 16 bits of the register are cleared. When the destination operand is a memory location, the segment selector is written to memory as a 16-bit quantity, regardless of operand size.</p>
+<p>In 64-bit mode, operation is the same. The size of the memory operand is fixed at 16 bits. In register stores, the 2byte TR is zero extended if stored to a 64-bit register.</p>
+<p>The STR instruction is useful only in operating-system software. It can only be executed in protected mode.</p>
+<h2 id="operation">Operation</h2>
 <pre>DEST ← TR(SegmentSelector);
-</pre><h2 id="flags-affected">Flags Affected</h2>
-<p>None.</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+</pre>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p>
+<h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#GP(0)</td>
@@ -84,7 +90,8 @@
 </tr>
 </table>
 <h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#GP(0)</td>

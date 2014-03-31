@@ -41,7 +41,8 @@
 	<td>Load: r64 ← segment limit, selector r32/m16</td>
 </tr>
 </table>
-<p class="notes">Notes: * For all loads (regardless of destination sizing), only bits 16-0 are used. Other bits are ignored.</p><h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<p class="notes">Notes: * For all loads (regardless of destination sizing), only bits 16-0 are used. Other bits are ignored.</p>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>
 	<td>Op/En</td>
@@ -59,7 +60,12 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Loads the unscrambled segment limit from the segment descriptor specified with the second operand (source operand) into the first operand (destination operand) and sets the ZF flag in the EFLAGS register. The source operand (which can be a register or a memory location) contains the segment selector for the segment descriptor being accessed. The destination operand is a general-purpose register.</p><p>The processor performs access checks as part of the loading process. Once loaded in the destination register, software can compare the segment limit with the offset of a pointer.</p><p>The segment limit is a 20-bit value contained in bytes 0 and 1 and in the first 4 bits of byte 6 of the segment descriptor. If the descriptor has a byte granular segment limit (the granularity flag is set to 0), the destination operand is loaded with a byte granular value (byte limit). If the descriptor has a page granular segment limit (the granularity flag is set to 1), the LSL instruction will translate the page granular limit (page limit) into a byte limit before loading it into the destination operand. The translation is performed by shifting the 20-bit “raw” limit left 12bits and filling the low-order 12 bits with 1s.</p><p>When the operand size is 32 bits, the 32-bit byte limit is stored in the destination operand. When the operand size is 16 bits, a valid 32-bit limit is computed; however, the upper 16 bits are truncated and only the low-order 16 bits are loaded into the destination operand.</p><p>This instruction performs the following checks before it loads the segment limit into the destination register:</p><table>
+<p>Loads the unscrambled segment limit from the segment descriptor specified with the second operand (source operand) into the first operand (destination operand) and sets the ZF flag in the EFLAGS register. The source operand (which can be a register or a memory location) contains the segment selector for the segment descriptor being accessed. The destination operand is a general-purpose register.</p>
+<p>The processor performs access checks as part of the loading process. Once loaded in the destination register, software can compare the segment limit with the offset of a pointer.</p>
+<p>The segment limit is a 20-bit value contained in bytes 0 and 1 and in the first 4 bits of byte 6 of the segment descriptor. If the descriptor has a byte granular segment limit (the granularity flag is set to 0), the destination operand is loaded with a byte granular value (byte limit). If the descriptor has a page granular segment limit (the granularity flag is set to 1), the LSL instruction will translate the page granular limit (page limit) into a byte limit before loading it into the destination operand. The translation is performed by shifting the 20-bit “raw” limit left 12bits and filling the low-order 12 bits with 1s.</p>
+<p>When the operand size is 32 bits, the 32-bit byte limit is stored in the destination operand. When the operand size is 16 bits, a valid 32-bit limit is computed; however, the upper 16 bits are truncated and only the low-order 16 bits are loaded into the destination operand.</p>
+<p>This instruction performs the following checks before it loads the segment limit into the destination register:</p>
+<table>
 <tr>
 	<td>•</td>
 	<td>Checks that the segment selector is not NULL.</td>
@@ -90,8 +96,10 @@ or Segment type is not valid for instruction
           DEST ← temp AND FFFFH;
        FI;
 FI;
-</pre><h2 id="flags-affected">Flags Affected</h2>
-<p>The ZF flag is set to 1 if the segment limit is loaded successfully; otherwise, it is set to 0.</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+</pre>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>The ZF flag is set to 1 if the segment limit is loaded successfully; otherwise, it is set to 0.</p>
+<h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#GP(0)</td>
@@ -129,7 +137,8 @@ FI;
 </tr>
 </table>
 <h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#SS(0)</td>

@@ -83,7 +83,8 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Load floating point values from the source operand (second operand) and broadcast to all elements of the destination operand (first operand). VBROADCASTSD and VBROADCASTF128 are only supported as 256-bit wide versions. VBROADCASTSS is supported in both 128-bit and 256-bit wide versions. Memory and register source operand syntax support of 256-bit instructions depend on the processor’s enumeration of the following conditions with respect to CPUID.1:ECX.AVX[bit 28] and CPUID.(EAX=07H,ECX=0H):EBX.AVX2[bit 5]:</p><table>
+<p>Load floating point values from the source operand (second operand) and broadcast to all elements of the destination operand (first operand). VBROADCASTSD and VBROADCASTF128 are only supported as 256-bit wide versions. VBROADCASTSS is supported in both 128-bit and 256-bit wide versions. Memory and register source operand syntax support of 256-bit instructions depend on the processor’s enumeration of the following conditions with respect to CPUID.1:ECX.AVX[bit 28] and CPUID.(EAX=07H,ECX=0H):EBX.AVX2[bit 5]:</p>
+<table>
 <tr>
 	<td>••Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b otherwise instructions will #UD. An attempt to execute VBROADCASTSD or VBROADCASTF128 encoded with VEX.L= 0 will cause an #UD exception. Attempts to execute any VBROADCAST* instruction with VEX.W = 1 will cause #UD.</td>
 	<td>If CPUID.1:ECX.AVX = 1 and CPUID.(EAX=07H, ECX=0H):EBX.AVX2 = 0: the destination operand is a YMM register. The source operand support can be either a 32-bit, 64-bit, or 128-bit memory location. Register source encodings are reserved and will #UD. If CPUID.1:ECX.AVX = 1 and CPUID.(EAX=07H, ECX=0H):EBX.AVX2 = 1: the destination operand is a YMM register. The source operand support can be a register or memory location. X0X0VBROADCASTSS Operation (VEX.256 encoded version)X0X0VBROADCASTSS Operation (128-bit version)X0X0VBROADCASTSD Operation X0X0VBROADCASTF128 Operation</td>
@@ -117,7 +118,8 @@ VBROADCASTF128
 temp ← SRC[127:0]
 DEST[127:0] ← temp
 DEST[VLMAX-1:128] ← temp
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>VBROADCASTSS:</td>
@@ -141,8 +143,10 @@ DEST[VLMAX-1:128] ← temp
 </tr>
 </table>
 <h2 id="flags-affected">Flags Affected</h2>
-<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 6; additionally</p><table>
+<p>None.</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 6; additionally</p>
+<table>
 <tr>
 	<td>#UD</td>
 	<td>If VEX.L = 0 for VBROADCASTSD,If VEX.L = 0 for VBROADCASTF128,If VEX.W = 1.</td>

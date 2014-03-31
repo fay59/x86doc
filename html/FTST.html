@@ -24,20 +24,25 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Compares the value in the ST(0) register with 0.0 and sets the condition code flags C0, C2, and C3 in the FPU status word according to the results (see table below).</p><table>
+<p>Compares the value in the ST(0) register with 0.0 and sets the condition code flags C0, C2, and C3 in the FPU status word according to the results (see table below).</p>
+<table>
 <tr>
 	<td>Table 3-50.</td>
 	<td>FTST Results C00101</td>
 </tr>
 </table>
-<p>This instruction performs an “unordered comparison.” An unordered comparison also checks the class of the numbers being compared (see “FXAM—Examine ModR/M” in this chapter). If the value in register ST(0) is a NaN or is in an undefined format, the condition flags are set to “unordered” and the invalid operation exception is generated.</p><p>The sign of zero is ignored, so that (- 0.0 ← +0.0).</p><p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p><h2 id="operation">Operation</h2>
+<p>This instruction performs an “unordered comparison.” An unordered comparison also checks the class of the numbers being compared (see “FXAM—Examine ModR/M” in this chapter). If the value in register ST(0) is a NaN or is in an undefined format, the condition flags are set to “unordered” and the invalid operation exception is generated.</p>
+<p>The sign of zero is ignored, so that (- 0.0 ← +0.0).</p>
+<p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
+<h2 id="operation">Operation</h2>
 <pre>CASE (relation of operands) OF
   Not comparable:
   ST(0) > 0.0:
   ST(0) < 0.0:
   ST(0) = 0.0:
 ESAC;
-</pre><h2 id="fpu-flags-affected">FPU Flags Affected</h2>
+</pre>
+<h2 id="fpu-flags-affected">FPU Flags Affected</h2>
 <table>
 <tr>
 	<td>C1</td>
@@ -79,8 +84,12 @@ ESAC;
 </tr>
 </table>
 <h2 id="real-address-mode-exceptions">Real-Address Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p></body>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+</body>
 </html>

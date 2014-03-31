@@ -24,7 +24,8 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Computes (ST(1) ∗ log2(ST(0) + 1.0)), stores the result in register ST(1), and pops the FPU register stack. The source operand in ST(0) must be in the range:</p><table>
+<p>Computes (ST(1) ∗ log2(ST(0) + 1.0)), stores the result in register ST(1), and pops the FPU register stack. The source operand in ST(0) must be in the range:</p>
+<table>
 <tr>
 	<td>-(1 -</td>
 	<td>2⁄2))to(1− ∞</td>
@@ -36,10 +37,15 @@
 	<td>NaN NaN NaN NaN NaN NaN</td>
 </tr>
 </table>
-<p class="notes">Notes: F Means finite floating-point value. * Indicates floating-point invalid-operation (#IA) exception.</p><p>This instruction provides optimal accuracy for values of epsilon [the value in register ST(0)] that are close to 0. For small epsilon (ε) values, more significant digits can be retained by using the FYL2XP1 instruction than by using (ε+1) as an argument to the FYL2X instruction. The (ε+1) expression is commonly found in compound interest and annuity calculations. The result can be simply converted into a value in another logarithm base by including a scale factor in the ST(1) source operand. The following equation is used to calculate the scale factor for a particular logarithm base, where n is the logarithm base desired for the result of the FYL2XP1 instruction:</p><p>scale factor ← logn 2</p><p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p><h2 id="operation">Operation</h2>
+<p class="notes">Notes: F Means finite floating-point value. * Indicates floating-point invalid-operation (#IA) exception.</p>
+<p>This instruction provides optimal accuracy for values of epsilon [the value in register ST(0)] that are close to 0. For small epsilon (ε) values, more significant digits can be retained by using the FYL2XP1 instruction than by using (ε+1) as an argument to the FYL2X instruction. The (ε+1) expression is commonly found in compound interest and annuity calculations. The result can be simply converted into a value in another logarithm base by including a scale factor in the ST(1) source operand. The following equation is used to calculate the scale factor for a particular logarithm base, where n is the logarithm base desired for the result of the FYL2XP1 instruction:</p>
+<p>scale factor ← logn 2</p>
+<p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
+<h2 id="operation">Operation</h2>
 <pre>ST(1) ← ST(1) ∗ log2(ST(0) + 1.0);
 PopRegisterStack;
-</pre><h2 id="fpu-flags-affected">FPU Flags Affected</h2>
+</pre>
+<h2 id="fpu-flags-affected">FPU Flags Affected</h2>
 <table>
 <tr>
 	<td>C1</td>
@@ -93,8 +99,12 @@ PopRegisterStack;
 </tr>
 </table>
 <h2 id="real-address-mode-exceptions">Real-Address Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p></body>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+</body>
 </html>

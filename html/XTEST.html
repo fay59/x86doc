@@ -41,7 +41,8 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>The XTEST instruction queries the transactional execution status. If the instruction executes inside a transactionally executing RTM region or a transactionally executing HLE region, then the ZF flag is cleared, else it is set.</p><h2 id="operation">Operation</h2>
+<p>The XTEST instruction queries the transactional execution status. If the instruction executes inside a transactionally executing RTM region or a transactionally executing HLE region, then the ZF flag is cleared, else it is set.</p>
+<h2 id="operation">Operation</h2>
 <pre>XTEST
 IF (RTM_ACTIVE = 1 OR HLE_ACTIVE = 1)
   THEN
@@ -49,8 +50,10 @@ IF (RTM_ACTIVE = 1 OR HLE_ACTIVE = 1)
   ELSE
      ZF ← 1
 FI;
-</pre><h2 id="flags-affected">Flags Affected</h2>
-<p>The ZF flag is cleared if the instruction is executed transactionally; otherwise it is set to 1. The CF, OF, SF, PF, and AF, flags are cleared.</p><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>The ZF flag is cleared if the instruction is executed transactionally; otherwise it is set to 1. The CF, OF, SF, PF, and AF, flags are cleared.</p>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>XTEST:</td>
@@ -58,7 +61,8 @@ FI;
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>None</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
 <table>
 <tr>
 	<td>#UD</td>

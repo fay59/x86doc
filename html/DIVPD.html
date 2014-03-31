@@ -62,7 +62,9 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Performs an SIMD divide of the two or four packed double-precision floating-point values in the first source operand by the two or four packed double-precision floating-point values in the second source operand. See Chapter 11 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, for an overview of a SIMD doubleprecision floating-point operation.</p><p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: The second source can be an XMM register or an 128-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. VEX.128 encoded version: the first source operand is an XMM register or 128-bit memory location. The destination operand is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed. VEX.256 encoded version: The first source operand is a YMM register. The second source operand can be a YMM register or a 256-bit memory location. The destination operand is a YMM register.</p><h2 id="operation">Operation</h2>
+<p>Performs an SIMD divide of the two or four packed double-precision floating-point values in the first source operand by the two or four packed double-precision floating-point values in the second source operand. See Chapter 11 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, for an overview of a SIMD doubleprecision floating-point operation.</p>
+<p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: The second source can be an XMM register or an 128-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. VEX.128 encoded version: the first source operand is an XMM register or 128-bit memory location. The destination operand is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed. VEX.256 encoded version: The first source operand is a YMM register. The second source operand can be a YMM register or a 256-bit memory location. The destination operand is a YMM register.</p>
+<h2 id="operation">Operation</h2>
 <pre>DIVPD (128-bit Legacy SSE version)
 DEST[63:0] ← SRC1[63:0] / SRC2[63:0]
 DEST[127:64] ← SRC1[127:64] / SRC2[127:64]
@@ -76,7 +78,8 @@ DEST[63:0] ← SRC1[63:0] / SRC2[63:0]
 DEST[127:64] ← SRC1[127:64] / SRC2[127:64]
 DEST[191:128] ← SRC1[191:128] / SRC2[191:128]
 DEST[255:192] ← SRC1[255:192] / SRC2[255:192]
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>DIVPD:</td>
@@ -88,6 +91,8 @@ DEST[255:192] ← SRC1[255:192] / SRC2[255:192]
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>Overflow, Underflow, Invalid, Divide-by-Zero, Precision, Denormal.</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 2.</p></body>
+<p>Overflow, Underflow, Invalid, Divide-by-Zero, Precision, Denormal.</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 2.</p>
+</body>
 </html>

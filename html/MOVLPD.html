@@ -76,7 +76,9 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>This instruction cannot be used for register to register or memory to memory moves. 128-bit Legacy SSE load:Moves a double-precision floating-point value from the source 64-bit memory operand and stores it in the low 64bits of the destination XMM register. The upper 64bits of the XMM register are preserved. The upper 128-bits of the corresponding YMM destination register are preserved.</p><p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). VEX.128 encoded load:Loads a double-precision floating-point value from the source 64-bit memory operand (third operand), merges it with the upper 64-bits of the first source XMM register (second operand), and stores it in the low 128-bits of the destination XMM register (first operand). The upper 128-bits of the destination YMM register are zeroed. 128-bit store:Stores a double-precision floating-point value from the low 64-bits of the XMM register source (second operand) to the 64-bit memory location (first operand). Note: VMOVLPD (store) (VEX.128.66.0F 13 /r) is legal and has the same behavior as the existing 66 0F 13 store. For VMOVLPD (store) (VEX.128.66.0F 13 /r) instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD. If VMOVLPD is encoded with VEX.L= 1, an attempt to execute the instruction encoded with VEX.L= 1 will cause an #UD exception.</p><h2 id="operation">Operation</h2>
+<p>This instruction cannot be used for register to register or memory to memory moves. 128-bit Legacy SSE load:Moves a double-precision floating-point value from the source 64-bit memory operand and stores it in the low 64bits of the destination XMM register. The upper 64bits of the XMM register are preserved. The upper 128-bits of the corresponding YMM destination register are preserved.</p>
+<p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). VEX.128 encoded load:Loads a double-precision floating-point value from the source 64-bit memory operand (third operand), merges it with the upper 64-bits of the first source XMM register (second operand), and stores it in the low 128-bits of the destination XMM register (first operand). The upper 128-bits of the destination YMM register are zeroed. 128-bit store:Stores a double-precision floating-point value from the low 64-bits of the XMM register source (second operand) to the 64-bit memory location (first operand). Note: VMOVLPD (store) (VEX.128.66.0F 13 /r) is legal and has the same behavior as the existing 66 0F 13 store. For VMOVLPD (store) (VEX.128.66.0F 13 /r) instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD. If VMOVLPD is encoded with VEX.L= 1, an attempt to execute the instruction encoded with VEX.L= 1 will cause an #UD exception.</p>
+<h2 id="operation">Operation</h2>
 <pre>MOVLPD (128-bit Legacy SSE load)
 DEST[63:0] ← SRC[63:0]
 DEST[VLMAX-1:64] (Unmodified)
@@ -86,7 +88,8 @@ DEST[127:64] ← SRC1[127:64]
 DEST[VLMAX-1:128] ← 0
 VMOVLPD (store)
 DEST[63:0] ← SRC[63:0]
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>MOVLPD:</td>
@@ -98,8 +101,10 @@ DEST[63:0] ← SRC[63:0]
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 5; additionally</p><table>
+<p>None.</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 5; additionally</p>
+<table>
 <tr>
 	<td>#UD</td>
 	<td>If VEX.L= 1. If VEX.vvvv != 1111B.</td>

@@ -59,15 +59,18 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>This instruction calculates of number of bits set to 1 in the second operand (source) and returns the count in the first operand (a destination register).</p><h2 id="operation">Operation</h2>
+<p>This instruction calculates of number of bits set to 1 in the second operand (source) and returns the count in the first operand (a destination register).</p>
+<h2 id="operation">Operation</h2>
 <pre>Count = 0;
 For (i=0; i < OperandSize; i++)
 {
      THEN Count++; FI;
 }
 DEST ← Count;
-</pre><h2 id="flags-affected">Flags Affected</h2>
-<p>OF, SF, ZF, AF, CF, PF are all cleared. ZF is set if SRC = 0, otherwise ZF is cleared</p><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>OF, SF, ZF, AF, CF, PF are all cleared. ZF is set if SRC = 0, otherwise ZF is cleared</p>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>POPCNT:</td>
@@ -140,7 +143,8 @@ DEST ← Count;
 </tr>
 </table>
 <h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in Protected Mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in Protected Mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#GP(0)</td>

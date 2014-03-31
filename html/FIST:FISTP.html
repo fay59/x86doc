@@ -52,25 +52,33 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>The FIST instruction converts the value in the ST(0) register to a signed integer and stores the result in the destination operand. Values can be stored in word or doubleword integer format. The destination operand specifies the address where the first byte of the destination value is to be stored.</p><p>The FISTP instruction performs the same operation as the FIST instruction and then pops the register stack. To pop the register stack, the processor marks the ST(0) register as empty and increments the stack pointer (TOP) by 1. The FISTP instruction also stores values in quadword integer format.</p><p>The following table shows the results obtained when storing various classes of numbers in integer format.</p><table>
+<p>The FIST instruction converts the value in the ST(0) register to a signed integer and stores the result in the destination operand. Values can be stored in word or doubleword integer format. The destination operand specifies the address where the first byte of the destination value is to be stored.</p>
+<p>The FISTP instruction performs the same operation as the FIST instruction and then pops the register stack. To pop the register stack, the processor marks the ST(0) register as empty and increments the stack pointer (TOP) by 1. The FISTP instruction also stores values in quadword integer format.</p>
+<p>The following table shows the results obtained when storing various classes of numbers in integer format.</p>
+<table>
 <tr>
 	<td>Table 3-37.</td>
 	<td>FIST/FISTP Results DEST − ∞ or Value Too Large for DEST Format − I **00**+ I + ∞ or Value Too Large for DEST Format NaN</td>
 </tr>
 </table>
-<p class="notes">Notes: F Means finite floating-point value.</p><table>
+<p class="notes">Notes: F Means finite floating-point value.</p>
+<table>
 <tr>
 	<td>I * Indicates floating-point invalid-operation (#IA) exception. ** 0 or ±1, depending on the rounding mode.</td>
 	<td>Means integer.</td>
 </tr>
 </table>
-<p>If the source value is a non-integral value, it is rounded to an integer value, according to the rounding mode specified by the RC field of the FPU control word.</p><p>If the converted value is too large for the destination format, or if the source operand is an ∞, SNaN, QNAN, or is in an unsupported format, an invalid-arithmetic-operand condition is signaled. If the invalid-operation exception is not masked, an invalid-arithmetic-operand exception (#IA) is generated and no value is stored in the destination operand. If the invalid-operation exception is masked, the integer indefinite value is stored in memory.</p><p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p><h2 id="operation">Operation</h2>
+<p>If the source value is a non-integral value, it is rounded to an integer value, according to the rounding mode specified by the RC field of the FPU control word.</p>
+<p>If the converted value is too large for the destination format, or if the source operand is an ∞, SNaN, QNAN, or is in an unsupported format, an invalid-arithmetic-operand condition is signaled. If the invalid-operation exception is not masked, an invalid-arithmetic-operand exception (#IA) is generated and no value is stored in the destination operand. If the invalid-operation exception is masked, the integer indefinite value is stored in memory.</p>
+<p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
+<h2 id="operation">Operation</h2>
 <pre>DEST ← Integer(ST(0));
 IF Instruction = FISTP
   THEN
      PopRegisterStack;
 FI;
-</pre><h2 id="fpu-flags-affected">FPU Flags Affected</h2>
+</pre>
+<h2 id="fpu-flags-affected">FPU Flags Affected</h2>
 <table>
 <tr>
 	<td>C1</td>
@@ -170,7 +178,8 @@ FI;
 </tr>
 </table>
 <h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#SS(0)</td>

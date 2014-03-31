@@ -55,7 +55,8 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>This instruction performs a single round of the AES decryption flow using the Equivalent Inverse Cipher, with the round key from the second source operand, operating on a 128-bit data (state) from the first source operand, and store the result in the destination operand. Use the AESDEC instruction for all but the last decryption round. For the last decryption round, use the AESDECCLAST instruction. 128-bit Legacy SSE version: The first source operand and the destination operand are the same and must be an XMM register. The second source operand can be an XMM register or a 128-bit memory location. Bits (VLMAX1:128) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: The first source operand and the destination operand are XMM registers. The second source operand can be an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the destination YMM register are zeroed.</p><h2 id="operation">Operation</h2>
+<p>This instruction performs a single round of the AES decryption flow using the Equivalent Inverse Cipher, with the round key from the second source operand, operating on a 128-bit data (state) from the first source operand, and store the result in the destination operand. Use the AESDEC instruction for all but the last decryption round. For the last decryption round, use the AESDECCLAST instruction. 128-bit Legacy SSE version: The first source operand and the destination operand are the same and must be an XMM register. The second source operand can be an XMM register or a 128-bit memory location. Bits (VLMAX1:128) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: The first source operand and the destination operand are XMM registers. The second source operand can be an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the destination YMM register are zeroed.</p>
+<h2 id="operation">Operation</h2>
 <pre>AESDEC
 STATE ← SRC1;
 RoundKey ← SRC2;
@@ -72,7 +73,8 @@ STATE ← InvSubBytes( STATE );
 STATE ← InvMixColumns( STATE );
 DEST[127:0] ← STATE XOR RoundKey;
 DEST[VLMAX-1:128] ← 0
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>(V)AESDEC:</td>
@@ -80,6 +82,8 @@ DEST[VLMAX-1:128] ← 0
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 4.</p></body>
+<p>None</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4.</p>
+</body>
 </html>

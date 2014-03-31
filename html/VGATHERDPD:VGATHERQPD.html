@@ -62,7 +62,8 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>The instruction conditionally loads up to 2 or 4 double-precision floating-point values from memory addresses specified by the memory operand (the second operand) and using qword indices. The memory operand uses the VSIB form of the SIB byte to specify a general purpose register operand as the common base, a vector register for an array of indices relative to the base and a constant scale factor. The mask operand (the third operand) specifies the conditional load operation from each memory address and the corresponding update of each data element of the destination operand (the first operand). Conditionality is specified by the most significant bit of each data element of the mask register. If an element’s mask bit is not set, the corresponding element of the destination register is left unchanged. The width of data element in the destination register and mask register are identical. The entire mask register will be set to zero by this instruction unless the instruction causes an exception. Using dword indices in the lower half of the mask register, the instruction conditionally loads up to 2 or 4 doubleprecision floating-point values from the VSIB addressing memory operand, and updates the destination register. This instruction can be suspended by an exception if at least one element is already gathered (i.e., if the exception</p><table>
+<p>The instruction conditionally loads up to 2 or 4 double-precision floating-point values from memory addresses specified by the memory operand (the second operand) and using qword indices. The memory operand uses the VSIB form of the SIB byte to specify a general purpose register operand as the common base, a vector register for an array of indices relative to the base and a constant scale factor. The mask operand (the third operand) specifies the conditional load operation from each memory address and the corresponding update of each data element of the destination operand (the first operand). Conditionality is specified by the most significant bit of each data element of the mask register. If an element’s mask bit is not set, the corresponding element of the destination register is left unchanged. The width of data element in the destination register and mask register are identical. The entire mask register will be set to zero by this instruction unless the instruction causes an exception. Using dword indices in the lower half of the mask register, the instruction conditionally loads up to 2 or 4 doubleprecision floating-point values from the VSIB addressing memory operand, and updates the destination register. This instruction can be suspended by an exception if at least one element is already gathered (i.e., if the exception</p>
+<table>
 <tr>
 	<td>is triggered by an element other than the rightmost one with its mask bit set). register and the mask operand are partially updated; those elements that have been gathered are placed into the destination register and have their mask bits set to zero. ered elements, they will be delivered in lieu of the exception; in this case, EFLAG.RF is set to one so an instruction breakpoint is not re-triggered when the instruction is continued. If the data size and index size are different, part of the destination register and part of the mask register do not correspond to any elements being gathered. of those registers even if the instruction triggers an exception, and even if the instruction triggers the exception before gathering any elements.</td>
 	<td>When this happens, the destination If any traps or interrupts are pending from already gathIt may do this to one or both</td>
@@ -72,7 +73,8 @@
 	<td>For dword indices, only the</td>
 </tr>
 </table>
-<p>lower two indices in the vector index register are used.</p><table>
+<p>lower two indices in the vector index register are used.</p>
+<table>
 <tr>
 	<td>VEX.256 version: The instruction will gather four double-precision floating-point values. the lower four indices in the vector index register are used. Note that:If any pair of the index, mask, or destination registers are the same, this instruction results a #UD fault.</td>
 	<td>For dword indices, only</td>
@@ -179,8 +181,19 @@ FOR j← 0 to 3
   MASK[i +63:i] ← 0;
 ENDFOR
 (non-masked elements of the mask register have the content of respective element
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
-<p>VGATHERDPD: __m128d _mm_i32gather_pd (double const * base, __m128i index, const int scale);</p><p>VGATHERDPD: __m128d _mm_mask_i32gather_pd (__m128d src, double const * base, __m128i index, __m128d mask, const int scale);</p><p>VGATHERDPD: __m256d _mm256_i32gather_pd (double const * base, __m128i index, const int scale);</p><p>VGATHERDPD: __m256d _mm256_mask_i32gather_pd (__m256d src, double const * base, __m128i index, __m256d mask, const int scale);</p><p>VGATHERQPD: __m128d _mm_i64gather_pd (double const * base, __m128i index, const int scale);</p><p>VGATHERQPD: __m128d _mm_mask_i64gather_pd (__m128d src, double const * base, __m128i index, __m128d mask, const int scale);</p><p>VGATHERQPD: __m256d _mm256_i64gather_pd (double const * base, __m256i index, const int scale);</p><p>VGATHERQPD: __m256d _mm256_mask_i64gather_pd (__m256d src, double const * base, __m256i index, __m256d mask, const int scale);</p><h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 12</p></body>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<p>VGATHERDPD: __m128d _mm_i32gather_pd (double const * base, __m128i index, const int scale);</p>
+<p>VGATHERDPD: __m128d _mm_mask_i32gather_pd (__m128d src, double const * base, __m128i index, __m128d mask, const int scale);</p>
+<p>VGATHERDPD: __m256d _mm256_i32gather_pd (double const * base, __m128i index, const int scale);</p>
+<p>VGATHERDPD: __m256d _mm256_mask_i32gather_pd (__m256d src, double const * base, __m128i index, __m256d mask, const int scale);</p>
+<p>VGATHERQPD: __m128d _mm_i64gather_pd (double const * base, __m128i index, const int scale);</p>
+<p>VGATHERQPD: __m128d _mm_mask_i64gather_pd (__m128d src, double const * base, __m128i index, __m128d mask, const int scale);</p>
+<p>VGATHERQPD: __m256d _mm256_i64gather_pd (double const * base, __m256i index, const int scale);</p>
+<p>VGATHERQPD: __m256d _mm256_mask_i64gather_pd (__m256d src, double const * base, __m256i index, __m256d mask, const int scale);</p>
+<h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 12</p>
+</body>
 </html>

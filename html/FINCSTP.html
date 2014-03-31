@@ -24,14 +24,19 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Adds one to the TOP field of the FPU status word (increments the top-of-stack pointer). If the TOP field contains a 7, it is set to 0. The effect of this instruction is to rotate the stack by one position. The contents of the FPU data registers and tag register are not affected. This operation is not equivalent to popping the stack, because the tag for the previous top-of-stack register is not marked empty.</p><p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p><h2 id="operation">Operation</h2>
+<p>Adds one to the TOP field of the FPU status word (increments the top-of-stack pointer). If the TOP field contains a 7, it is set to 0. The effect of this instruction is to rotate the stack by one position. The contents of the FPU data registers and tag register are not affected. This operation is not equivalent to popping the stack, because the tag for the previous top-of-stack register is not marked empty.</p>
+<p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
+<h2 id="operation">Operation</h2>
 <pre>IF TOP = 7
   THEN TOP ← 0;
   ELSE TOP ← TOP + 1;
 FI;
-</pre><h2 id="fpu-flags-affected">FPU Flags Affected</h2>
-<p>The C1 flag is set to 0. The C0, C2, and C3 flags are undefined.</p><h2 id="floating-point-exceptions">Floating-Point Exceptions</h2>
-<p>None.</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+</pre>
+<h2 id="fpu-flags-affected">FPU Flags Affected</h2>
+<p>The C1 flag is set to 0. The C0, C2, and C3 flags are undefined.</p>
+<h2 id="floating-point-exceptions">Floating-Point Exceptions</h2>
+<p>None.</p>
+<h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#NM</td>
@@ -47,8 +52,12 @@ FI;
 </tr>
 </table>
 <h2 id="real-address-mode-exceptions">Real-Address Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p></body>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+</body>
 </html>

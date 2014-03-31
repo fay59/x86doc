@@ -57,7 +57,8 @@
 	<td>Exchange r64 and r/m64; load sum into r/m64.</td>
 </tr>
 </table>
-<p class="notes">Notes: * In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.</p><h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<p class="notes">Notes: * In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.</p>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>
 	<td>Op/En</td>
@@ -75,13 +76,19 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Exchanges the first operand (destination operand) with the second operand (source operand), then loads the sum of the two values into the destination operand. The destination operand can be a register or a memory location; the source operand is a register.</p><p>In 64-bit mode, the instruction’s default operation size is 32 bits. Using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). Using a REX prefix in the form of REX.W promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.</p><p>This instruction can be used with a LOCK prefix to allow the instruction to be executed atomically.</p><h2 id="ia-32-architecture-compatibility">IA-32 Architecture Compatibility</h2>
-<p>IA-32 processors earlier than the Intel486 processor do not recognize this instruction. If this instruction is used,you should provide an equivalent code sequence that runs on earlier processors.</p><h2 id="operation">Operation</h2>
+<p>Exchanges the first operand (destination operand) with the second operand (source operand), then loads the sum of the two values into the destination operand. The destination operand can be a register or a memory location; the source operand is a register.</p>
+<p>In 64-bit mode, the instruction’s default operation size is 32 bits. Using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). Using a REX prefix in the form of REX.W promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.</p>
+<p>This instruction can be used with a LOCK prefix to allow the instruction to be executed atomically.</p>
+<h2 id="ia-32-architecture-compatibility">IA-32 Architecture Compatibility</h2>
+<p>IA-32 processors earlier than the Intel486 processor do not recognize this instruction. If this instruction is used,you should provide an equivalent code sequence that runs on earlier processors.</p>
+<h2 id="operation">Operation</h2>
 <pre>TEMP ← SRC + DEST;
 SRC ← DEST;
 DEST ← TEMP;
-</pre><h2 id="flags-affected">Flags Affected</h2>
-<p>The CF, PF, AF, SF, ZF, and OF flags are set according to the result of the addition, which is stored in the destination operand.</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+</pre>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>The CF, PF, AF, SF, ZF, and OF flags are set according to the result of the addition, which is stored in the destination operand.</p>
+<h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#GP(0)</td>
@@ -143,7 +150,8 @@ DEST ← TEMP;
 </tr>
 </table>
 <h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#SS(0)</td>

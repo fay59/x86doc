@@ -62,10 +62,14 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Loads the FS or GS segment base address with the general-purpose register indicated by the modR/M:r/m field.</p><p>The source operand may be either a 32-bit or a 64-bit general-purpose register. The REX.W prefix indicates the operand size is 64 bits. If no REX.W prefix is used, the operand size is 32 bits; the upper 32 bits of the source register are ignored and upper 32 bits of the base address (for FS or GS) are cleared. This instruction is supported only in 64-bit mode.</p><h2 id="operation">Operation</h2>
+<p>Loads the FS or GS segment base address with the general-purpose register indicated by the modR/M:r/m field.</p>
+<p>The source operand may be either a 32-bit or a 64-bit general-purpose register. The REX.W prefix indicates the operand size is 64 bits. If no REX.W prefix is used, the operand size is 32 bits; the upper 32 bits of the source register are ignored and upper 32 bits of the base address (for FS or GS) are cleared. This instruction is supported only in 64-bit mode.</p>
+<h2 id="operation">Operation</h2>
 <pre>FS/GS segment base address ← SRC;
-</pre><h2 id="flags-affected">Flags Affected</h2>
-<p>None</p><h2 id="c-c---compiler-intrinsic-equivalent">C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>None</p>
+<h2 id="c-c---compiler-intrinsic-equivalent">C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>WRFSBASE:</td>

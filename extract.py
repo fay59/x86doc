@@ -129,7 +129,7 @@ class DocumentWriter(object):
 		if self.__output_mode == "p":
 			if self.__break_p(row):
 				css_class = ' class="%s"' % self.__output_mode_data["class"] if "class" in self.__output_mode_data else ""
-				self.__output.write("<p%s>%s</p>" % (css_class, self.__output_mode_data["contents"]))
+				self.__output.write("<p%s>%s</p>\n" % (css_class, self.__output_mode_data["contents"]))
 				self.__output_mode = None
 				return self.write(row)
 			
@@ -141,7 +141,7 @@ class DocumentWriter(object):
 		elif self.__output_mode == "code":
 			cell = row[0]
 			if self.__is_title(cell):
-				self.__output.write("</pre>")
+				self.__output.write("</pre>\n")
 				self.__output_mode = None
 				return self.write(row)
 				

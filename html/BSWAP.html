@@ -33,7 +33,8 @@
 	<td>Reverses the byte order of a 64-bit register.</td>
 </tr>
 </table>
-<p class="notes">Notes: * See IA-32 Architecture Compatibility section below.</p><h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<p class="notes">Notes: * See IA-32 Architecture Compatibility section below.</p>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>
 	<td>Op/En</td>
@@ -51,8 +52,11 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Reverses the byte order of a 32-bit or 64-bit (destination) register. This instruction is provided for converting littleendian values to big-endian format and vice versa. To swap bytes in a word value (16-bit register), use the XCHG instruction. When the BSWAP instruction references a 16-bit register, the result is undefined.</p><p>In 64-bit mode, the instruction’s default operation size is 32 bits. Using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). Using a REX prefix in the form of REX.W promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.</p><h2 id="ia-32-architecture-legacy-compatibility">IA-32 Architecture Legacy Compatibility</h2>
-<p>The BSWAP instruction is not supported on IA-32 processors earlier than the Intel486™ processor family. For compatibility with this instruction, software should include functionally equivalent code for execution on Intel processors earlier than the Intel486 processor family.</p><h2 id="operation">Operation</h2>
+<p>Reverses the byte order of a 32-bit or 64-bit (destination) register. This instruction is provided for converting littleendian values to big-endian format and vice versa. To swap bytes in a word value (16-bit register), use the XCHG instruction. When the BSWAP instruction references a 16-bit register, the result is undefined.</p>
+<p>In 64-bit mode, the instruction’s default operation size is 32 bits. Using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). Using a REX prefix in the form of REX.W promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.</p>
+<h2 id="ia-32-architecture-legacy-compatibility">IA-32 Architecture Legacy Compatibility</h2>
+<p>The BSWAP instruction is not supported on IA-32 processors earlier than the Intel486™ processor family. For compatibility with this instruction, software should include functionally equivalent code for execution on Intel processors earlier than the Intel486 processor family.</p>
+<h2 id="operation">Operation</h2>
 <pre>TEMP ← DEST
 IF 64-bit mode AND OperandSize = 64
   THEN
@@ -70,8 +74,10 @@ IF 64-bit mode AND OperandSize = 64
      DEST[23:16] ← TEMP[15:8];
      DEST[31:24] ← TEMP[7:0];
 FI;
-</pre><h2 id="flags-affected">Flags Affected</h2>
-<p>None.</p><h2 id="exceptions--all-operating-modes-">Exceptions (All Operating Modes)</h2>
+</pre>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p>
+<h2 id="exceptions--all-operating-modes-">Exceptions (All Operating Modes)</h2>
 <table>
 <tr>
 	<td>#UD</td>

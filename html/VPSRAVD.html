@@ -48,7 +48,8 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Shifts the bits in the individual doubleword data elements in the first source operand to the right by the count value of respective data elements in the second source operand. As the bits in each data element are shifted right, the empty high-order bits are filled with the sign bit of the source element. The count values are specified individually in each data element of the second source operand. If the unsigned integer value specified in the respective data element of the second source operand is greater than 31, then the destination data element are filled with the corresponding sign bit of the source element. VEX.128 encoded version: The destination and first source operands are XMM registers. The count operand can be either an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the corresponding YMM register are zeroed. VEX.256 encoded version: The destination and first source operands are YMM registers. The count operand can be either an YMM register or a 256-bit memory location.</p><h2 id="operation">Operation</h2>
+<p>Shifts the bits in the individual doubleword data elements in the first source operand to the right by the count value of respective data elements in the second source operand. As the bits in each data element are shifted right, the empty high-order bits are filled with the sign bit of the source element. The count values are specified individually in each data element of the second source operand. If the unsigned integer value specified in the respective data element of the second source operand is greater than 31, then the destination data element are filled with the corresponding sign bit of the source element. VEX.128 encoded version: The destination and first source operands are XMM registers. The count operand can be either an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the corresponding YMM register are zeroed. VEX.256 encoded version: The destination and first source operands are YMM registers. The count operand can be either an YMM register or a 256-bit memory location.</p>
+<h2 id="operation">Operation</h2>
 <pre>VPSRAVD (VEX.128 version)
 COUNT_0 ← SRC2[31: 0]
   (* Repeat Each COUNT_i for the 2nd through 4th dwords of SRC2*)
@@ -80,10 +81,15 @@ IF COUNT_7 < 32 THEN
 ELSE
   For (i = 0 to 31) DEST[i + 224] ← (SRC1[255] );
 FI;
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
-<p>VPSRAVD: __m256i _mm256_srav_epi32 (__m256i m, __m256i count)</p><p>VPSRAVD: __m128i _mm_srav_epi32 (__m128i m, __m128i count)</p><h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 4; additionally</p><table>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<p>VPSRAVD: __m256i _mm256_srav_epi32 (__m256i m, __m256i count)</p>
+<p>VPSRAVD: __m128i _mm_srav_epi32 (__m128i m, __m128i count)</p>
+<h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4; additionally</p>
+<table>
 <tr>
 	<td>#UD</td>
 	<td>If VEX.W = 1.</td>

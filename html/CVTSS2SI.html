@@ -44,7 +44,8 @@
 	<td>Convert one single-precision floating-point VCVTSS2SI r64, xmm1/m32quadword integer in r64.</td>
 </tr>
 </table>
-<p class="notes">Notes: 1. Encoding the VEX prefix with VEX.W=1 in non-64-bit mode is ignored.</p><h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<p class="notes">Notes: 1. Encoding the VEX prefix with VEX.W=1 in non-64-bit mode is ignored.</p>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>
 	<td>Op/En</td>
@@ -62,17 +63,24 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Converts a single-precision floating-point value in the source operand (second operand) to a signed doubleword integer (or signed quadword integer if operand size is 64 bits) in the destination operand (first operand). The source operand can be an XMM register or a memory location. The destination operand is a general-purpose register. When the source operand is an XMM register, the single-precision floating-point value is contained in the low doubleword of the register.</p><p>When a conversion is inexact, the value returned is rounded according to the rounding control bits in the MXCSR register. If a converted result is larger than the maximum signed doubleword integer, the floating-point invalid exception is raised, and if this exception is masked, the indefinite integer value (80000000H) is returned.</p><p>In 64-bit mode, the instruction can access additional registers (XMM8-XMM15, R8-R15) when used with a REX.R prefix. Use of the REX.W prefix promotes the instruction to 64-bit operands. See the summary chart at the beginning of this section for encoding data and limits. Legacy SSE instructions: In 64-bit mode, Use of the REX.W prefix promotes the instruction to 64-bit operands. See the summary chart at the beginning of this section for encoding data and limits. Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise instructions will #UD.</p><h2 id="operation">Operation</h2>
+<p>Converts a single-precision floating-point value in the source operand (second operand) to a signed doubleword integer (or signed quadword integer if operand size is 64 bits) in the destination operand (first operand). The source operand can be an XMM register or a memory location. The destination operand is a general-purpose register. When the source operand is an XMM register, the single-precision floating-point value is contained in the low doubleword of the register.</p>
+<p>When a conversion is inexact, the value returned is rounded according to the rounding control bits in the MXCSR register. If a converted result is larger than the maximum signed doubleword integer, the floating-point invalid exception is raised, and if this exception is masked, the indefinite integer value (80000000H) is returned.</p>
+<p>In 64-bit mode, the instruction can access additional registers (XMM8-XMM15, R8-R15) when used with a REX.R prefix. Use of the REX.W prefix promotes the instruction to 64-bit operands. See the summary chart at the beginning of this section for encoding data and limits. Legacy SSE instructions: In 64-bit mode, Use of the REX.W prefix promotes the instruction to 64-bit operands. See the summary chart at the beginning of this section for encoding data and limits. Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise instructions will #UD.</p>
+<h2 id="operation">Operation</h2>
 <pre>IF 64-bit Mode and OperandSize = 64
   THEN
      DEST[64:0] ← Convert_Single_Precision_Floating_Point_To_Integer(SRC[31:0]);
   ELSE
      DEST[31:0] ← Convert_Single_Precision_Floating_Point_To_Integer(SRC[31:0]);
 FI;
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
-<p>int _mm_cvtss_si32(__m128d a)__int64 _mm_cvtss_si64(__m128d a)</p><h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>Invalid, Precision.</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 3; additionally</p><table>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<p>int _mm_cvtss_si32(__m128d a)__int64 _mm_cvtss_si64(__m128d a)</p>
+<h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>Invalid, Precision.</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 3; additionally</p>
+<table>
 <tr>
 	<td>#UD</td>
 	<td>If VEX.vvvv != 1111B.</td>

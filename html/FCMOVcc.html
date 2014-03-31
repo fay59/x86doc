@@ -72,13 +72,20 @@
 	<td>Move if not unordered (PF=0).</td>
 </tr>
 </table>
-<p class="notes">Notes: * See IA-32 Architecture Compatibility section below.</p><h2 id="description">Description</h2>
-<p>Tests the status flags in the EFLAGS register and moves the source operand (second operand) to the destination operand (first operand) if the given test condition is true. The condition for each mnemonic os given in the Description column above and in Chapter 8 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1. The source operand is always in the ST(i) register and the destination operand is always ST(0).</p><p>The FCMOVcc instructions are useful for optimizing small IF constructions. They also help eliminate branching overhead for IF operations and the possibility of branch mispredictions by the processor.</p><p>A processor may not support the FCMOVcc instructions. Software can check if the FCMOVcc instructions are supported by checking the processor’s feature information with the CPUID instruction (see “COMISS—Compare Scalar Ordered Single-Precision Floating-Point Values and Set EFLAGS” in this chapter). If both the CMOV and FPU feature bits are set, the FCMOVcc instructions are supported.</p><p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p><h2 id="ia-32-architecture-compatibility">IA-32 Architecture Compatibility</h2>
-<p>The FCMOVcc instructions were introduced to the IA-32 Architecture in the P6 family processors and are not available in earlier IA-32 processors.</p><h2 id="operation">Operation</h2>
+<p class="notes">Notes: * See IA-32 Architecture Compatibility section below.</p>
+<h2 id="description">Description</h2>
+<p>Tests the status flags in the EFLAGS register and moves the source operand (second operand) to the destination operand (first operand) if the given test condition is true. The condition for each mnemonic os given in the Description column above and in Chapter 8 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1. The source operand is always in the ST(i) register and the destination operand is always ST(0).</p>
+<p>The FCMOVcc instructions are useful for optimizing small IF constructions. They also help eliminate branching overhead for IF operations and the possibility of branch mispredictions by the processor.</p>
+<p>A processor may not support the FCMOVcc instructions. Software can check if the FCMOVcc instructions are supported by checking the processor’s feature information with the CPUID instruction (see “COMISS—Compare Scalar Ordered Single-Precision Floating-Point Values and Set EFLAGS” in this chapter). If both the CMOV and FPU feature bits are set, the FCMOVcc instructions are supported.</p>
+<p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
+<h2 id="ia-32-architecture-compatibility">IA-32 Architecture Compatibility</h2>
+<p>The FCMOVcc instructions were introduced to the IA-32 Architecture in the P6 family processors and are not available in earlier IA-32 processors.</p>
+<h2 id="operation">Operation</h2>
 <pre>IF condition TRUE
   THEN ST(0) ← ST(i);
 FI;
-</pre><h2 id="fpu-flags-affected">FPU Flags Affected</h2>
+</pre>
+<h2 id="fpu-flags-affected">FPU Flags Affected</h2>
 <table>
 <tr>
 	<td>C1</td>
@@ -97,7 +104,8 @@ FI;
 </tr>
 </table>
 <h2 id="integer-flags-affected">Integer Flags Affected</h2>
-<p>None.</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+<p>None.</p>
+<h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#NM</td>
@@ -109,8 +117,12 @@ FI;
 </tr>
 </table>
 <h2 id="real-address-mode-exceptions">Real-Address Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p></body>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+</body>
 </html>

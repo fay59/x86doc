@@ -33,7 +33,8 @@
 	<td>reg ← access rights referenced by r32/m16</td>
 </tr>
 </table>
-<p class="notes">Notes: 1. For all loads (regardless of source or destination sizing) only bits 16-0 are used. Other bits are ignored.</p><h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<p class="notes">Notes: 1. For all loads (regardless of source or destination sizing) only bits 16-0 are used. Other bits are ignored.</p>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>
 	<td>Op/En</td>
@@ -51,7 +52,10 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Loads the access rights from the segment descriptor specified by the second operand (source operand) into the first operand (destination operand) and sets the ZF flag in the flag register. The source operand (which can be a register or a memory location) contains the segment selector for the segment descriptor being accessed. If the source operand is a memory address, only 16 bits of data are accessed. The destination operand is a generalpurpose register.</p><p>The processor performs access checks as part of the loading process. Once loaded in the destination register, software can perform additional checks on the access rights information.</p><p>The access rights for a segment descriptor include fields located in the second doubleword (bytes 4-7) of the segment descriptor. The following fields are loaded by the LAR instruction:</p><table>
+<p>Loads the access rights from the segment descriptor specified by the second operand (source operand) into the first operand (destination operand) and sets the ZF flag in the flag register. The source operand (which can be a register or a memory location) contains the segment selector for the segment descriptor being accessed. If the source operand is a memory address, only 16 bits of data are accessed. The destination operand is a generalpurpose register.</p>
+<p>The processor performs access checks as part of the loading process. Once loaded in the destination register, software can perform additional checks on the access rights information.</p>
+<p>The access rights for a segment descriptor include fields located in the second doubleword (bytes 4-7) of the segment descriptor. The following fields are loaded by the LAR instruction:</p>
+<table>
 <tr>
 	<td>•</td>
 	<td>Bits 7:0 are returned as 0</td>
@@ -81,7 +85,8 @@
 	<td>Checks that the segment selector points to a descriptor that is within the limits of the GDT or LDT being accessed Checks that the descriptor type is valid for this instruction. All code and data segment descriptors are valid for (can be accessed with) the LAR instruction. The valid system segment and gate descriptor types are given in Table 3-62. If the segment is not a conforming code segment, it checks that the specified segment descriptor is visible at the CPL (that is, if the CPL and the RPL of the segment selector are less than or equal to the DPL of the segment selector).</td>
 </tr>
 </table>
-<p>The LAR instruction can only be executed in protected mode and IA-32e mode.</p><table>
+<p>The LAR instruction can only be executed in protected mode and IA-32e mode.</p>
+<table>
 <tr>
 	<td>Table 3-62.</td>
 	<td>Segment and Gate Types IA-32e Mode Valid No No No No No No No No No Yes No Yes Yes No No No</td>
@@ -103,8 +108,10 @@
           ZF ← 1;
      FI;
 FI;
-</pre><h2 id="flags-affected">Flags Affected</h2>
-<p>The ZF flag is set to 1 if the access rights are loaded successfully; otherwise, it is cleared to 0.</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+</pre>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>The ZF flag is set to 1 if the access rights are loaded successfully; otherwise, it is cleared to 0.</p>
+<h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#GP(0)</td>
@@ -142,7 +149,8 @@ FI;
 </tr>
 </table>
 <h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#SS(0)</td>

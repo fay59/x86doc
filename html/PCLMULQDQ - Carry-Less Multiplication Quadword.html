@@ -55,13 +55,17 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Performs a carry-less multiplication of two quadwords, selected from the first source and second source operand according to the value of the immediate byte. Bits 4 and 0 are used to select which 64-bit half of each operand to use according to Table 4-10, other bits of the immediate byte are ignored.</p><table>
+<p>Performs a carry-less multiplication of two quadwords, selected from the first source and second source operand according to the value of the immediate byte. Bits 4 and 0 are used to select which 64-bit half of each operand to use according to Table 4-10, other bits of the immediate byte are ignored.</p>
+<table>
 <tr>
 	<td>Table 4-10.</td>
 	<td>PCLMULQDQ Quadword Selection of Immediate Byte PCLMULQDQ Operation CL_MUL( SRC21[63:0], SRC1[63:0] )CL_MUL( SRC2[63:0], SRC1[127:64] )CL_MUL( SRC2[127:64], SRC1[63:0] )CL_MUL( SRC2[127:64], SRC1[127:64] )</td>
 </tr>
 </table>
-<p class="notes">Notes: 1. SRC2 denotes the second source operand, which can be a register or memory; SRC1 denotes the first source and destination operand.</p><p>The first source operand and the destination operand are the same and must be an XMM register. The second source operand can be an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged.</p><p>Compilers and assemblers may implement the following pseudo-op syntax to simply programming and emit the required encoding for Imm8.</p><table>
+<p class="notes">Notes: 1. SRC2 denotes the second source operand, which can be a register or memory; SRC1 denotes the first source and destination operand.</p>
+<p>The first source operand and the destination operand are the same and must be an XMM register. The second source operand can be an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged.</p>
+<p>Compilers and assemblers may implement the following pseudo-op syntax to simply programming and emit the required encoding for Imm8.</p>
+<table>
 <tr>
 	<td>Table 4-11.</td>
 	<td>Pseudo-Op and PCLMULQDQ Implementation Imm8 Encoding 0000_0000B 0000_0001B 0001_0000B 0001_0001B</td>
@@ -125,7 +129,8 @@ For i = 64 to 126 {
   DEST[i] ← TmpB[i];
 }
 DEST[VLMAX-1:127] ← 0;
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>(V)PCLMULQDQ:</td>
@@ -134,6 +139,8 @@ DEST[VLMAX-1:127] ← 0;
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 4.</p></body>
+<p>None.</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4.</p>
+</body>
 </html>

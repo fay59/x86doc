@@ -43,7 +43,12 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Loads the source operand into the segment selector field of the local descriptor table register (LDTR). The source operand (a general-purpose register or a memory location) contains a segment selector that points to a local descriptor table (LDT). After the segment selector is loaded in the LDTR, the processor uses the segment selector to locate the segment descriptor for the LDT in the global descriptor table (GDT). It then loads the segment limit and base address for the LDT from the segment descriptor into the LDTR. The segment registers DS, ES, SS, FS,GS, and CS are not affected by this instruction, nor is the LDTR field in the task state segment (TSS) for the current task.</p><p>If bits 2-15 of the source operand are 0, LDTR is marked invalid and the LLDT instruction completes silently. However, all subsequent references to descriptors in the LDT (except by the LAR, VERR, VERW or LSL instructions)cause a general protection exception (#GP).</p><p>The operand-size attribute has no effect on this instruction.</p><p>The LLDT instruction is provided for use in operating-system software; it should not be used in application programs. This instruction can only be executed in protected mode or 64-bit mode.</p><p>In 64-bit mode, the operand size is fixed at 16 bits.</p><h2 id="operation">Operation</h2>
+<p>Loads the source operand into the segment selector field of the local descriptor table register (LDTR). The source operand (a general-purpose register or a memory location) contains a segment selector that points to a local descriptor table (LDT). After the segment selector is loaded in the LDTR, the processor uses the segment selector to locate the segment descriptor for the LDT in the global descriptor table (GDT). It then loads the segment limit and base address for the LDT from the segment descriptor into the LDTR. The segment registers DS, ES, SS, FS,GS, and CS are not affected by this instruction, nor is the LDTR field in the task state segment (TSS) for the current task.</p>
+<p>If bits 2-15 of the source operand are 0, LDTR is marked invalid and the LLDT instruction completes silently. However, all subsequent references to descriptors in the LDT (except by the LAR, VERR, VERW or LSL instructions)cause a general protection exception (#GP).</p>
+<p>The operand-size attribute has no effect on this instruction.</p>
+<p>The LLDT instruction is provided for use in operating-system software; it should not be used in application programs. This instruction can only be executed in protected mode or 64-bit mode.</p>
+<p>In 64-bit mode, the operand size is fixed at 16 bits.</p>
+<h2 id="operation">Operation</h2>
 <pre>IF SRC(Offset) > descriptor table limit
   THEN #GP(segment selector); FI;
 IF segment selector is valid
@@ -56,8 +61,10 @@ IF segment selector is valid
   LDTR(SegmentDescriptor) ← GDTSegmentDescriptor;
 ELSE LDTR ← INVALID
 FI;
-</pre><h2 id="flags-affected">Flags Affected</h2>
-<p>None.</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+</pre>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p>
+<h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#GP(0)</td>
@@ -99,7 +106,8 @@ FI;
 </tr>
 </table>
 <h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#SS(0)</td>

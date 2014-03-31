@@ -59,7 +59,8 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Computes the effective address of the second operand (the source operand) and stores it in the first operand (destination operand). The source operand is a memory address (offset part) specified with one of the processors addressing modes; the destination operand is a general-purpose register. The address-size and operand-size attributes affect the action performed by this instruction, as shown in the following table. The operand-size attribute of the instruction is determined by the chosen register; the address-size attribute is determined by the attribute of the code segment.</p><table>
+<p>Computes the effective address of the second operand (the source operand) and stores it in the first operand (destination operand). The source operand is a memory address (offset part) specified with one of the processors addressing modes; the destination operand is a general-purpose register. The address-size and operand-size attributes affect the action performed by this instruction, as shown in the following table. The operand-size attribute of the instruction is determined by the chosen register; the address-size attribute is determined by the attribute of the code segment.</p>
+<table>
 <tr>
 	<td>Table 3-63.</td>
 	<td>Non-64-bit Mode LEA Operation with Address and Operand Size Attributes</td>
@@ -69,7 +70,9 @@
 	<td>Action Performed 16-bit effective address is calculated and stored in requested 16-bit register destination. 32-bit effective address is calculated. The lower 16 bits of the address are stored in the requested 16-bit register destination. 16-bit effective address is calculated. The 16-bit address is zero-extended and stored in the requested 32-bit register destination. 32-bit effective address is calculated and stored in the requested 32-bit register destination.</td>
 </tr>
 </table>
-<p>Different assemblers may use different algorithms based on the size attribute and symbolic reference of the source operand.</p><p>In 64-bit mode, the instruction’s destination operand is governed by operand size attribute, the default operand size is 32 bits. Address calculation is governed by address size attribute, the default address size is 64-bits. In 64bit mode, address size of 16 bits is not encodable. See Table 3-64.</p><table>
+<p>Different assemblers may use different algorithms based on the size attribute and symbolic reference of the source operand.</p>
+<p>In 64-bit mode, the instruction’s destination operand is governed by operand size attribute, the default operand size is 32 bits. Address calculation is governed by address size attribute, the default address size is 64-bits. In 64bit mode, address size of 16 bits is not encodable. See Table 3-64.</p>
+<table>
 <tr>
 	<td>Table 3-64.</td>
 	<td>64-bit Mode LEA Operation with Address and Operand Size Attributes</td>
@@ -136,8 +139,10 @@
        DEST ← EffectiveAddress(SRC); (* 64-bit address *)
      FI;
 FI;
-</pre><h2 id="flags-affected">Flags Affected</h2>
-<p>None.</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+</pre>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p>
+<h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#UD</td>
@@ -145,8 +150,12 @@ FI;
 </tr>
 </table>
 <h2 id="real-address-mode-exceptions">Real-Address Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p></body>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+</body>
 </html>

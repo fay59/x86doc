@@ -43,10 +43,16 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Generates an invalid opcode exception. This instruction is provided for software testing to explicitly generate an invalid opcode exception. The opcode for this instruction is reserved for this purpose.</p><p>Other than raising the invalid opcode exception, this instruction has no effect on processor state or memory.</p><p>Even though it is the execution of the UD2 instruction that causes the invalid opcode exception, the instruction pointer saved by delivery of the exception references the UD2 instruction (and not the following instruction).</p><p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p><h2 id="operation">Operation</h2>
+<p>Generates an invalid opcode exception. This instruction is provided for software testing to explicitly generate an invalid opcode exception. The opcode for this instruction is reserved for this purpose.</p>
+<p>Other than raising the invalid opcode exception, this instruction has no effect on processor state or memory.</p>
+<p>Even though it is the execution of the UD2 instruction that causes the invalid opcode exception, the instruction pointer saved by delivery of the exception references the UD2 instruction (and not the following instruction).</p>
+<p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
+<h2 id="operation">Operation</h2>
 <pre>#UD (* Generates invalid opcode exception *);
-</pre><h2 id="flags-affected">Flags Affected</h2>
-<p>None.</p><h2 id="exceptions--all-operating-modes-">Exceptions (All Operating Modes)</h2>
+</pre>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p>
+<h2 id="exceptions--all-operating-modes-">Exceptions (All Operating Modes)</h2>
 <table>
 <tr>
 	<td>#UD</td>

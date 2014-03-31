@@ -27,14 +27,17 @@
 	<td>A hint used with an “XRELEASE-enabled“ instruction to end lock elision on the instruction memory operand address.</td>
 </tr>
 </table>
-<p class="notes">Notes: 1. Software is not required to check the HLE feature flag to use XACQUIRE or XRELEASE, as they are treated as regular prefix if HLE feature flag reports 0.</p><h2 id="description">Description</h2>
-<p>The XACQUIRE prefix is a hint to start lock elision on the memory address specified by the instruction and the XRELEASE prefix is a hint to end lock elision on the memory address specified by the instruction. The XACQUIRE prefix hint can only be used with the following instructions (these instructions are also referred to as XACQUIRE-enabled when used with the XACQUIRE prefix):</p><table>
+<p class="notes">Notes: 1. Software is not required to check the HLE feature flag to use XACQUIRE or XRELEASE, as they are treated as regular prefix if HLE feature flag reports 0.</p>
+<h2 id="description">Description</h2>
+<p>The XACQUIRE prefix is a hint to start lock elision on the memory address specified by the instruction and the XRELEASE prefix is a hint to end lock elision on the memory address specified by the instruction. The XACQUIRE prefix hint can only be used with the following instructions (these instructions are also referred to as XACQUIRE-enabled when used with the XACQUIRE prefix):</p>
+<table>
 <tr>
 	<td>••</td>
 	<td>Instructions with an explicit LOCK prefix (F0H) prepended to forms of the instruction where the destination operand is a memory operand: ADD, ADC, AND, BTC, BTR, BTS, CMPXCHG, CMPXCHG8B, DEC, INC, NEG, NOT,OR, SBB, SUB, XOR, XADD, and XCHG. The XCHG instruction either with or without the presence of the LOCK prefix.</td>
 </tr>
 </table>
-<p>The XRELEASE prefix hint can only be used with the following instructions (also referred to as XRELEASE-enabled when used with the XRELEASE prefix):</p><table>
+<p>The XRELEASE prefix hint can only be used with the following instructions (also referred to as XRELEASE-enabled when used with the XRELEASE prefix):</p>
+<table>
 <tr>
 	<td>••</td>
 	<td>Instructions with an explicit LOCK prefix (F0H) prepended to forms of the instruction where the destination operand is a memory operand: ADD, ADC, AND, BTC, BTR, BTS, CMPXCHG, CMPXCHG8B, DEC, INC, NEG, NOT,OR, SBB, SUB, XOR, XADD, and XCHG. The XCHG instruction either with or without the presence of the LOCK prefix.</td>
@@ -60,7 +63,8 @@
 	<td>Undefined for non-string instructions or other situations.</td>
 </tr>
 </table>
-<p>For instructions that do not support the XRELEASE hint, the presence of the F3H prefix behaves the same way as in prior hardware, according to</p><table>
+<p>For instructions that do not support the XRELEASE hint, the presence of the F3H prefix behaves the same way as in prior hardware, according to</p>
+<table>
 <tr>
 	<td>•</td>
 	<td>REP/REPE/REPZ semantics for string instructions,</td>
@@ -155,8 +159,10 @@ HLE_ABORT_PROCESSING:
   FI;
   Execute and retire instruction at RIP (or EIP) and ignore any HLE hint
 END
-</pre><h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None</p><h2 id="other-exceptions">Other Exceptions</h2>
+</pre>
+<h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
 <table>
 <tr>
 	<td>#GP(0)</td>

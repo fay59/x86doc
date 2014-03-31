@@ -48,7 +48,8 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Converts four/eight packed half precision (16-bits) floating-point values in the low-order 64/128 bits of an XMM/YMM register or 64/128-bit memory location to four/eight packed single-precision floating-point values and writes the converted values into the destination XMM/YMM register. If case of a denormal operand, the correct normal result is returned. MXCSR.DAZ is ignored and is treated as if it 0. No denormal exception is reported on MXCSR. 128-bit version: The source operand is a XMM register or 64-bit memory location. The destination operand is a XMM register. The upper bits (VLMAX-1:128) of the corresponding destination YMM register are zeroed. 256-bit version: The source operand is a XMM register or 128-bit memory location. The destination operand is a YMM register. The diagram below illustrates how data is converted from four packed half precision (in 64 bits) to four single precision (in 128 bits) FP values. Note: VEX.vvvv is reserved (must be 1111b).</p><table>
+<p>Converts four/eight packed half precision (16-bits) floating-point values in the low-order 64/128 bits of an XMM/YMM register or 64/128-bit memory location to four/eight packed single-precision floating-point values and writes the converted values into the destination XMM/YMM register. If case of a denormal operand, the correct normal result is returned. MXCSR.DAZ is ignored and is treated as if it 0. No denormal exception is reported on MXCSR. 128-bit version: The source operand is a XMM register or 64-bit memory location. The destination operand is a XMM register. The upper bits (VLMAX-1:128) of the corresponding destination YMM register are zeroed. 256-bit version: The source operand is a XMM register or 128-bit memory location. The destination operand is a YMM register. The diagram below illustrates how data is converted from four packed half precision (in 64 bits) to four single precision (in 128 bits) FP values. Note: VEX.vvvv is reserved (must be 1111b).</p>
+<table>
 <tr>
 	<td>VCVTPH2PS xmm1, xmm2/mem64,95convert</td>
 	<td>imm80xmm2/mem64convert convert</td>
@@ -82,11 +83,17 @@ DEST[63:32] ←vCvt_h2s(SRC1[31:16]);
 DEST[95:64] ←vCvt_h2s(SRC1[47:32]);
 DEST[127:96] ←vCvt_h2s(SRC1[63:48]);
 DEST[VLMAX-1:128] ←0
-</pre><h2 id="flags-affected">Flags Affected</h2>
-<p>None</p><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
-<p>__m128 _mm_cvtph_ps ( __m128i m1);</p><p>__m256 _mm256_cvtph_ps ( __m128i m1)</p><h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>Invalid</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>Exceptions Type 11 (do not report #AC); additionally</p><table>
+</pre>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>None</p>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<p>__m128 _mm_cvtph_ps ( __m128i m1);</p>
+<p>__m256 _mm256_cvtph_ps ( __m128i m1)</p>
+<h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>Invalid</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>Exceptions Type 11 (do not report #AC); additionally</p>
+<table>
 <tr>
 	<td>#UD</td>
 	<td>If VEX.W=1.</td>

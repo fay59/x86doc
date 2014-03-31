@@ -24,17 +24,26 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Computes the arctangent of the source operand in register ST(1) divided by the source operand in register ST(0),stores the result in ST(1), and pops the FPU register stack. The result in register ST(0) has the same sign as the source operand ST(1) and a magnitude less than +π.</p><p>The FPATAN instruction returns the angle between the X axis and the line from the origin to the point (X,Y), where Y (the ordinate) is ST(1) and X (the abscissa) is ST(0). The angle depends on the sign of X and Y independently,not just on the sign of the ratio Y/X. This is because a point (−X,Y) is in the second quadrant, resulting in an angle between π/2 and π, while a point (X,−Y) is in the fourth quadrant, resulting in an angle between 0 and −π/2. A point (−X,−Y) is in the third quadrant, giving an angle between −π/2 and −π.</p><p>The following table shows the results obtained when computing the arctangent of various classes of numbers,assuming that underflow does not occur.</p><table>
+<p>Computes the arctangent of the source operand in register ST(1) divided by the source operand in register ST(0),stores the result in ST(1), and pops the FPU register stack. The result in register ST(0) has the same sign as the source operand ST(1) and a magnitude less than +π.</p>
+<p>The FPATAN instruction returns the angle between the X axis and the line from the origin to the point (X,Y), where Y (the ordinate) is ST(1) and X (the abscissa) is ST(0). The angle depends on the sign of X and Y independently,not just on the sign of the ratio Y/X. This is because a point (−X,Y) is in the second quadrant, resulting in an angle between π/2 and π, while a point (X,−Y) is in the fourth quadrant, resulting in an angle between 0 and −π/2. A point (−X,−Y) is in the third quadrant, giving an angle between −π/2 and −π.</p>
+<p>The following table shows the results obtained when computing the arctangent of various classes of numbers,assuming that underflow does not occur.</p>
+<table>
 <tr>
 	<td>Table 3-40.</td>
 	<td>FPATAN Results ST(0)NaN NaN NaN NaN NaN NaN NaN NaN</td>
 </tr>
 </table>
-<p class="notes">Notes: F Means finite floating-point value. * Table 8-10 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, specifies that the ratios 0/0 and ∞/∞generate the floating-point invalid arithmetic-operation exception and, if this exception is masked, the floating-point QNaN indefinite value is returned. With the FPATAN instruction, the 0/0 or ∞/∞ value is actually not calculated using division. Instead, the arctangent of the two variables is derived from a standard mathematical formulation that is generalized to allow complex numbers as arguments. In this complex variable formulation, arctangent(0,0) etc. has well defined values. These values are needed to develop a library to compute transcendental functions with complex arguments, based on the FPU functions that only allow floating-point values as arguments.</p><p>There is no restriction on the range of source operands that FPATAN can accept.</p><p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p><h2 id="ia-32-architecture-compatibility">IA-32 Architecture Compatibility</h2>
-<p>The source operands for this instruction are restricted for the 80287 math coprocessor to the following range:</p><p>0 ≤ |ST(1)| < |ST(0)| < +∞</p><h2 id="operation">Operation</h2>
+<p class="notes">Notes: F Means finite floating-point value. * Table 8-10 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, specifies that the ratios 0/0 and ∞/∞generate the floating-point invalid arithmetic-operation exception and, if this exception is masked, the floating-point QNaN indefinite value is returned. With the FPATAN instruction, the 0/0 or ∞/∞ value is actually not calculated using division. Instead, the arctangent of the two variables is derived from a standard mathematical formulation that is generalized to allow complex numbers as arguments. In this complex variable formulation, arctangent(0,0) etc. has well defined values. These values are needed to develop a library to compute transcendental functions with complex arguments, based on the FPU functions that only allow floating-point values as arguments.</p>
+<p>There is no restriction on the range of source operands that FPATAN can accept.</p>
+<p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
+<h2 id="ia-32-architecture-compatibility">IA-32 Architecture Compatibility</h2>
+<p>The source operands for this instruction are restricted for the 80287 math coprocessor to the following range:</p>
+<p>0 ≤ |ST(1)| < |ST(0)| < +∞</p>
+<h2 id="operation">Operation</h2>
 <pre>ST(1) ← arctan(ST(1) / ST(0));
 PopRegisterStack;
-</pre><h2 id="fpu-flags-affected">FPU Flags Affected</h2>
+</pre>
+<h2 id="fpu-flags-affected">FPU Flags Affected</h2>
 <table>
 <tr>
 	<td>C1</td>
@@ -84,8 +93,12 @@ PopRegisterStack;
 </tr>
 </table>
 <h2 id="real-address-mode-exceptions">Real-Address Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p></body>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+</body>
 </html>

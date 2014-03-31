@@ -104,7 +104,9 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Moves a scalar single-precision floating-point value from the source operand (second operand) to the destination operand (first operand). The source and destination operands can be XMM registers or 32-bit memory locations. This instruction can be used to move a single-precision floating-point value to and from the low doubleword of an XMM register and a 32-bit memory location, or to move a single-precision floating-point value between the low doublewords of two XMM registers. The instruction cannot be used to transfer data between memory locations. For non-VEX encoded syntax and when the source and destination operands are XMM registers, the high doublewords of the destination operand remains unchanged. When the source operand is a memory location and destination operand is an XMM registers, the high doublewords of the destination operand is cleared to all 0s.</p><p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). VEX encoded instruction syntax supports two source operands and a destination operand if ModR/M.mod field is 11B. VEX.vvvv is used to encode the first source operand (the second operand). The low 128 bits of the destination operand stores the result of merging the low dword of the second source operand with three dwords in bits 127:32of the first source operand. The upper bits of the destination operand are cleared. Note: For the “VMOVSS m32, xmm1” (memory store form) instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD. Note: For the “VMOVSS xmm1, m32” (memory load form) instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD.</p><h2 id="operation">Operation</h2>
+<p>Moves a scalar single-precision floating-point value from the source operand (second operand) to the destination operand (first operand). The source and destination operands can be XMM registers or 32-bit memory locations. This instruction can be used to move a single-precision floating-point value to and from the low doubleword of an XMM register and a 32-bit memory location, or to move a single-precision floating-point value between the low doublewords of two XMM registers. The instruction cannot be used to transfer data between memory locations. For non-VEX encoded syntax and when the source and destination operands are XMM registers, the high doublewords of the destination operand remains unchanged. When the source operand is a memory location and destination operand is an XMM registers, the high doublewords of the destination operand is cleared to all 0s.</p>
+<p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). VEX encoded instruction syntax supports two source operands and a destination operand if ModR/M.mod field is 11B. VEX.vvvv is used to encode the first source operand (the second operand). The low 128 bits of the destination operand stores the result of merging the low dword of the second source operand with three dwords in bits 127:32of the first source operand. The upper bits of the destination operand are cleared. Note: For the “VMOVSS m32, xmm1” (memory store form) instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD. Note: For the “VMOVSS xmm1, m32” (memory load form) instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD.</p>
+<h2 id="operation">Operation</h2>
 <pre>MOVSS (Legacy SSE version when the source and destination operands are both XMM registers)
 DEST[31:0] ← SRC[31:0]
 DEST[VLMAX-1:32] (Unmodified)
@@ -125,7 +127,8 @@ DEST[VLMAX-1:128] ← 0
 VMOVSS (VEX.NDS.128.F3.0F 10 /r when the source operand is memory and the destination is an XMM register)
 DEST[31:0] ← SRC[31:0]
 DEST[VLMAX-1:32] ← 0
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>MOVSS:</td>
@@ -141,8 +144,10 @@ DEST[VLMAX-1:32] ← 0
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 5; additionally</p><table>
+<p>None.</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 5; additionally</p>
+<table>
 <tr>
 	<td>#UD</td>
 	<td>If VEX.vvvv != 1111B.</td>

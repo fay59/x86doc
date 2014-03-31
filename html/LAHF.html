@@ -25,7 +25,8 @@
 	<td>Load: AH ← EFLAGS(SF:ZF:0:AF:0:PF:1:CF).</td>
 </tr>
 </table>
-<p class="notes">Notes: *Valid in specific steppings. See Description section.</p><h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<p class="notes">Notes: *Valid in specific steppings. See Description section.</p>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>
 	<td>Op/En</td>
@@ -43,7 +44,8 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>This instruction executes as described above in compatibility mode and legacy mode. It is valid in 64-bit mode only if CPUID.80000001H:ECX.LAHF-SAHF[bit 0] = 1.</p><h2 id="operation">Operation</h2>
+<p>This instruction executes as described above in compatibility mode and legacy mode. It is valid in 64-bit mode only if CPUID.80000001H:ECX.LAHF-SAHF[bit 0] = 1.</p>
+<h2 id="operation">Operation</h2>
 <pre>IF 64-Bit Mode
   THEN
      IF CPUID.80000001H:ECX.LAHF-SAHF[bit 0] = 1;
@@ -53,8 +55,10 @@
   ELSE
      AH ← EFLAGS(SF:ZF:0:AF:0:PF:1:CF);
 FI;
-</pre><h2 id="flags-affected">Flags Affected</h2>
-<p>None. The state of the flags in the EFLAGS register is not affected.</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+</pre>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>None. The state of the flags in the EFLAGS register is not affected.</p>
+<h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#UD</td>
@@ -62,9 +66,12 @@ FI;
 </tr>
 </table>
 <h2 id="real-address-mode-exceptions">Real-Address Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#UD</td>

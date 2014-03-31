@@ -55,7 +55,10 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>The linear address corresponds to the address of the least-significant byte of the referenced memory data. When a memory address is indicated, the 16 bytes of data at memory location m128 are loaded and the single-precision elements in positions 1 and 3 are duplicated. When the register-register form of this operation is used, the same operation is performed but with data coming from the 128-bit source register. See Figure 3-25.</p><p>MOVSHDUP xmm1, xmm2/m128</p><p>xmm2/</p><table>
+<p>The linear address corresponds to the address of the least-significant byte of the referenced memory data. When a memory address is indicated, the 16 bytes of data at memory location m128 are loaded and the single-precision elements in positions 1 and 3 are duplicated. When the register-register form of this operation is used, the same operation is performed but with data coming from the 128-bit source register. See Figure 3-25.</p>
+<p>MOVSHDUP xmm1, xmm2/m128</p>
+<p>xmm2/</p>
+<table>
 <tr>
 	<td>[127:96]xmm2/</td>
 	<td>[95:64]xmm1[95:64]xmm2/m128[127:96]</td>
@@ -69,13 +72,15 @@
 	<td>[31:0]</td>
 </tr>
 </table>
-<p>OM15998</p><table>
+<p>OM15998</p>
+<table>
 <tr>
 	<td>Figure 3-25.</td>
 	<td>MOVSHDUP—Move Packed Single-FP High and Duplicate</td>
 </tr>
 </table>
-<p>In 64-bit mode, use of the REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: Bits (VLMAX-1:128) of the destination YMM register are zeroed. Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.</p><h2 id="operation">Operation</h2>
+<p>In 64-bit mode, use of the REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: Bits (VLMAX-1:128) of the destination YMM register are zeroed. Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.</p>
+<h2 id="operation">Operation</h2>
 <pre>MOVSHDUP (128-bit Legacy SSE version)
 DEST[31:0] ← SRC[63:32]
 DEST[63:32] ← SRC[63:32]
@@ -97,7 +102,8 @@ DEST[159:128] ← SRC[191:160]
 DEST[191:160] ← SRC[191:160]
 DEST[223:192] ← SRC[255:224]
 DEST[255:224] ← SRC[255:224]
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>(V)MOVSHDUP:</td>
@@ -109,7 +115,10 @@ DEST[255:224] ← SRC[255:224]
 </tr>
 </table>
 <h2 id="exceptions">Exceptions</h2>
-<p>General protection exception if not aligned on 16-byte boundary, regardless of segment.</p><h2 id="numeric-exceptions">Numeric Exceptions</h2>
-<p>None</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 2.</p></body>
+<p>General protection exception if not aligned on 16-byte boundary, regardless of segment.</p>
+<h2 id="numeric-exceptions">Numeric Exceptions</h2>
+<p>None</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 2.</p>
+</body>
 </html>

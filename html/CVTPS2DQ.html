@@ -55,7 +55,10 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Converts four or eight packed single-precision floating-point values in the source operand to four or eight signed doubleword integers in the destination operand.</p><p>When a conversion is inexact, the value returned is rounded according to the rounding control bits in the MXCSR register. If a converted result is larger than the maximum signed doubleword integer, the floating-point invalid exception is raised, and if this exception is masked, the indefinite integer value (80000000H) is returned.</p><p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: The source operand is an XMM register or 128- bit memory location. The destination operation is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. VEX.128 encoded version: The source operand is an XMM register or 128- bit memory location. The destination operation is a YMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed. VEX.256 encoded version: The source operand is a YMM register or 256- bit memory location. The destination operation is a YMM register. Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.</p><h2 id="operation">Operation</h2>
+<p>Converts four or eight packed single-precision floating-point values in the source operand to four or eight signed doubleword integers in the destination operand.</p>
+<p>When a conversion is inexact, the value returned is rounded according to the rounding control bits in the MXCSR register. If a converted result is larger than the maximum signed doubleword integer, the floating-point invalid exception is raised, and if this exception is masked, the indefinite integer value (80000000H) is returned.</p>
+<p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: The source operand is an XMM register or 128- bit memory location. The destination operation is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. VEX.128 encoded version: The source operand is an XMM register or 128- bit memory location. The destination operation is a YMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed. VEX.256 encoded version: The source operand is a YMM register or 256- bit memory location. The destination operation is a YMM register. Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.</p>
+<h2 id="operation">Operation</h2>
 <pre>CVTPS2DQ (128-bit Legacy SSE version)
 DEST[31:0] ← Convert_Single_Precision_Floating_Point_To_Integer(SRC[31:0])
 DEST[63:32] ← Convert_Single_Precision_Floating_Point_To_Integer(SRC[63:32])
@@ -77,7 +80,8 @@ DEST[159:128] ← Convert_Single_Precision_Floating_Point_To_Integer(SRC[159:128
 DEST[191:160] ← Convert_Single_Precision_Floating_Point_To_Integer(SRC[191:160])
 DEST[223:192] ← Convert_Single_Precision_Floating_Point_To_Integer(SRC[223:192])
 DEST[255:224] ← Convert_Single_Precision_Floating_Point_To_Integer(SRC[255:224])
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>CVTPS2DQ:</td>
@@ -89,8 +93,10 @@ DEST[255:224] ← Convert_Single_Precision_Floating_Point_To_Integer(SRC[255:224
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>Invalid, Precision.</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 2; additionally</p><table>
+<p>Invalid, Precision.</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 2; additionally</p>
+<table>
 <tr>
 	<td>#UD</td>
 	<td>If VEX.vvvv != 1111B.</td>

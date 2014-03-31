@@ -137,7 +137,8 @@
 	<td>Push GS.</td>
 </tr>
 </table>
-<p class="notes">Notes: * See IA-32 Architecture Compatibility section below.</p><h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<p class="notes">Notes: * See IA-32 Architecture Compatibility section below.</p>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>
 	<td>Op/En</td>
@@ -176,13 +177,15 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Decrements the stack pointer and then stores the source operand on the top of the stack. Address and operand sizes are determined and used as follows:</p><table>
+<p>Decrements the stack pointer and then stores the source operand on the top of the stack. Address and operand sizes are determined and used as follows:</p>
+<table>
 <tr>
 	<td>•••</td>
 	<td>Address size. The D flag in the current code-segment descriptor determines the default address size; it may be overridden by an instruction prefix (67H). The address size is used only when referencing a source operand in memory. Operand size. The D flag in the current code-segment descriptor determines the default operand size; it may be overridden by instruction prefixes (66H or REX.W). The operand size (16, 32, or 64 bits) determines the amount by which the stack pointer is decremented (2, 4or 8). If the source operand is an immediate of size less than the operand size, a sign-extended value is pushed on the stack. If the source operand is a segment register (16 bits) and the operand size is 64-bits, a zeroextended value is pushed on the stack; if the operand size is 32-bits, either a zero-extended value is pushed on the stack or the segment selector is written on the stack using a 16-bit move. For the last case, all recent Core and Atom processors perform a 16-bit move, leaving the upper portion of the stack location unmodified. Stack-address size. Outside of 64-bit mode, the B flag in the current stack-segment descriptor determines the size of the stack pointer (16 or 32 bits); in 64-bit mode, the size of the stack pointer is always 64 bits.</td>
 </tr>
 </table>
-<p>The stack-address size determines the width of the stack pointer when writing to the stack in memory and</p><table>
+<p>The stack-address size determines the width of the stack pointer when writing to the stack in memory and</p>
+<table>
 <tr>
 	<td>when decremented is determined by the operand size.)If the operand size is less than the stack-address size, the PUSH instruction may result in a misaligned stack pointer (a stack pointer that is not aligned on a doubleword or quadword boundary).</td>
 	<td>decremen</td>
@@ -203,7 +206,8 @@
 </tr>
 </table>
 <h2 id="ia-32-architecture-compatibility">IA-32 Architecture Compatibility</h2>
-<p>For IA-32 processors from the Intel 286 on, the PUSH ESP instruction pushes the value of the ESP register as it existed before the instruction was executed. (This is also true for Intel 64 architecture, real-address and virtual8086 modes of IA-32 architecture.) For the Intel® 8086 processor, the PUSH SP instruction pushes the new value of the SP register (that is the value after it has been decremented by 2).</p><h2 id="operation">Operation</h2>
+<p>For IA-32 processors from the Intel 286 on, the PUSH ESP instruction pushes the value of the ESP register as it existed before the instruction was executed. (This is also true for Intel 64 architecture, real-address and virtual8086 modes of IA-32 architecture.) For the Intel® 8086 processor, the PUSH SP instruction pushes the new value of the SP register (that is the value after it has been decremented by 2).</p>
+<h2 id="operation">Operation</h2>
 <pre>(* See Description section for possible sign-extension or zero-extension of source operand and for *)
 (* a case in which the size of the memory store may be smaller than the instruction’s operand size *)
 IF StackAddrSize = 64
@@ -244,8 +248,10 @@ ELSE IF StackAddrSize = 32
           Memory[SS:SP] ← SRC;
      FI;
 FI;
-</pre><h2 id="flags-affected">Flags Affected</h2>
-<p>None.</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+</pre>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p>
+<h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#GP(0)</td>
@@ -307,7 +313,8 @@ FI;
 </tr>
 </table>
 <h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#GP(0)</td>

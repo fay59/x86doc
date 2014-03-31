@@ -38,18 +38,25 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>FISTTP converts the value in ST into a signed integer using truncation (chop) as rounding mode, transfers the result to the destination, and pop ST. FISTTP accepts word, short integer, and long integer destinations.</p><p>The following table shows the results obtained when storing various classes of numbers in integer format.</p><table>
+<p>FISTTP converts the value in ST into a signed integer using truncation (chop) as rounding mode, transfers the result to the destination, and pop ST. FISTTP accepts word, short integer, and long integer destinations.</p>
+<p>The following table shows the results obtained when storing various classes of numbers in integer format.</p>
+<table>
 <tr>
 	<td>Table 3-38.</td>
 	<td>FISTTP Results DEST Value Too Large for DEST Format − I 0+ I or Value Too Large for DEST Format NaN</td>
 </tr>
 </table>
-<p class="notes">Notes: F Means finite floating-point value. Ι Means integer. ∗ Indicates floating-point invalid-operation (#IA) exception.</p><p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p><h2 id="operation">Operation</h2>
+<p class="notes">Notes: F Means finite floating-point value. Ι Means integer. ∗ Indicates floating-point invalid-operation (#IA) exception.</p>
+<p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
+<h2 id="operation">Operation</h2>
 <pre>DEST ← ST;
 pop ST;
-</pre><h2 id="flags-affected">Flags Affected</h2>
-<p>C1 is cleared; C0, C2, C3 undefined.</p><h2 id="numeric-exceptions">Numeric Exceptions</h2>
-<p>Invalid, Stack Invalid (stack underflow), Precision.</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+</pre>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>C1 is cleared; C0, C2, C3 undefined.</p>
+<h2 id="numeric-exceptions">Numeric Exceptions</h2>
+<p>Invalid, Stack Invalid (stack underflow), Precision.</p>
+<h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#GP(0)</td>
@@ -115,7 +122,8 @@ pop ST;
 </tr>
 </table>
 <h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#SS(0)</td>

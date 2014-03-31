@@ -62,7 +62,8 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>The instruction conditionally loads up to 4 or 8 single-precision floating-point values from memory addresses specified by the memory operand (the second operand) and using dword indices. The memory operand uses the VSIB form of the SIB byte to specify a general purpose register operand as the common base, a vector register for an array of indices relative to the base and a constant scale factor. The mask operand (the third operand) specifies the conditional load operation from each memory address and the corresponding update of each data element of the destination operand (the first operand). Conditionality is specified by the most significant bit of each data element of the mask register. If an element’s mask bit is not set, the corresponding element of the destination register is left unchanged. The width of data element in the destination register and mask register are identical. The entire mask register will be set to zero by this instruction unless the instruction causes an exception. Using qword indices, the instruction conditionally loads up to 2 or 4 single-precision floating-point values from the VSIB addressing memory operand, and updates the lower half of the destination register. The upper 128 or 256bits of the destination register are zero’ed with qword indices. This instruction can be suspended by an exception if at least one element is already gathered (i.e., if the exception</p><table>
+<p>The instruction conditionally loads up to 4 or 8 single-precision floating-point values from memory addresses specified by the memory operand (the second operand) and using dword indices. The memory operand uses the VSIB form of the SIB byte to specify a general purpose register operand as the common base, a vector register for an array of indices relative to the base and a constant scale factor. The mask operand (the third operand) specifies the conditional load operation from each memory address and the corresponding update of each data element of the destination operand (the first operand). Conditionality is specified by the most significant bit of each data element of the mask register. If an element’s mask bit is not set, the corresponding element of the destination register is left unchanged. The width of data element in the destination register and mask register are identical. The entire mask register will be set to zero by this instruction unless the instruction causes an exception. Using qword indices, the instruction conditionally loads up to 2 or 4 single-precision floating-point values from the VSIB addressing memory operand, and updates the lower half of the destination register. The upper 128 or 256bits of the destination register are zero’ed with qword indices. This instruction can be suspended by an exception if at least one element is already gathered (i.e., if the exception</p>
+<table>
 <tr>
 	<td>is triggered by an element other than the rightmost one with its mask bit set). register and the mask operand are partially updated; those elements that have been gathered are placed into the destination register and have their mask bits set to zero. ered elements, they will be delivered in lieu of the exception; in this case, EFLAG.RF is set to one so an instruction breakpoint is not re-triggered when the instruction is continued. If the data size and index size are different, part of the destination register and part of the mask register do not correspond to any elements being gathered. of those registers even if the instruction triggers an exception, and even if the instruction triggers the exception before gathering any elements.</td>
 	<td>When this happens, the destination If any traps or interrupts are pending from already gathIt may do this to one or both</td>
@@ -72,7 +73,8 @@
 	<td>For</td>
 </tr>
 </table>
-<p>qword indices, the instruction will gather two values and zeroes the upper 64 bits of the destination.</p><table>
+<p>qword indices, the instruction will gather two values and zeroes the upper 64 bits of the destination.</p>
+<table>
 <tr>
 	<td>VEX.256 version: For dword indices, the instruction will gather eight single-precision floating-point values. qword indices, the instruction will gather four values and zeroes the upper 128 bits of the destination. Note that:If any pair of the index, mask, or destination registers are the same, this instruction results a UD fault.</td>
 	<td>For</td>
@@ -178,7 +180,8 @@ ENDFOR
 MASK[VLMAX-1:128] ← 0;
 DEST[VLMAX-1:128] ← 0;
 (non-masked elements of the mask register have the content of respective element
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>VGATHERDPS:</td>
@@ -214,6 +217,8 @@ DEST[VLMAX-1:128] ← 0;
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 12</p></body>
+<p>None</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 12</p>
+</body>
 </html>

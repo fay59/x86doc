@@ -55,7 +55,9 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>This instruction cannot be used for memory to register moves. 128-bit two-argument form:Moves two packed single-precision floating-point values from the high quadword of the second XMM argument (second operand) to the low quadword of the first XMM register (first argument). The high quadword of the destination operand is left unchanged. Bits (VLMAX-1:64) of the corresponding YMM destination register are unmodified. 128-bit three-argument form Moves two packed single-precision floating-point values from the high quadword of the third XMM argument (third operand) to the low quadword of the destination (first operand). Copies the high quadword from the second XMM argument (second operand) to the high quadword of the destination (first operand). Bits (VLMAX-1:128) of the destination YMM register are zeroed.</p><p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). If VMOVHLPS is encoded with VEX.L= 1, an attempt to execute the instruction encoded with VEX.L= 1 will cause an #UD exception.</p><h2 id="operation">Operation</h2>
+<p>This instruction cannot be used for memory to register moves. 128-bit two-argument form:Moves two packed single-precision floating-point values from the high quadword of the second XMM argument (second operand) to the low quadword of the first XMM register (first argument). The high quadword of the destination operand is left unchanged. Bits (VLMAX-1:64) of the corresponding YMM destination register are unmodified. 128-bit three-argument form Moves two packed single-precision floating-point values from the high quadword of the third XMM argument (third operand) to the low quadword of the destination (first operand). Copies the high quadword from the second XMM argument (second operand) to the high quadword of the destination (first operand). Bits (VLMAX-1:128) of the destination YMM register are zeroed.</p>
+<p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). If VMOVHLPS is encoded with VEX.L= 1, an attempt to execute the instruction encoded with VEX.L= 1 will cause an #UD exception.</p>
+<h2 id="operation">Operation</h2>
 <pre>MOVHLPS (128-bit two-argument form)
 DEST[63:0] ← SRC[127:64]
 DEST[VLMAX-1:64] (Unmodified)
@@ -63,7 +65,8 @@ VMOVHLPS (128-bit three-argument form)
 DEST[63:0] ← SRC2[127:64]
 DEST[127:64] ← SRC1[127:64]
 DEST[VLMAX-1:128] ← 0
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>MOVHLPS:</td>
@@ -71,8 +74,10 @@ DEST[VLMAX-1:128] ← 0
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 7; additionally</p><table>
+<p>None.</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 7; additionally</p>
+<table>
 <tr>
 	<td>#UD</td>
 	<td>If VEX.L= 1.</td>

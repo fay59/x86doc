@@ -48,13 +48,16 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>The instruction compares data from two strings based on the encoded value in the imm8 byte (see Section 4.1,“Imm8 Control Byte Operation for PCMPESTRI / PCMPESTRM / PCMPISTRI / PCMPISTRM”) generating a mask stored to XMM0.</p><p>Each string is represented by a single value. The value is an xmm (or possibly m128 for the second operand) which</p><table>
+<p>The instruction compares data from two strings based on the encoded value in the imm8 byte (see Section 4.1,“Imm8 Control Byte Operation for PCMPESTRI / PCMPESTRM / PCMPISTRI / PCMPISTRM”) generating a mask stored to XMM0.</p>
+<p>Each string is represented by a single value. The value is an xmm (or possibly m128 for the second operand) which</p>
+<table>
 <tr>
 	<td>contains the data elements of the string (byte or word data). A byte/word is considered valid only if it has a lower index than the least significant null (The least significant null byte/word is also considered invalid.)The comparison and aggregation operation are performed according to the encoded value of Imm8 bit fields (see Section 4.1). As defined by imm8[6], IntRes2 is then either stored to the least significant bits of XMM0 (zero extended to 128 bits) or expanded into a byte/word-mask and then stored to XMM0. Note that the Arithmetic Flags are written in a non-standard manner in order to supply the most relevant information:</td>
 	<td>Each input byte/word is augmented with a</td>
 </tr>
 </table>
-<p>CFlag - Reset if IntRes2 is equal to zero, set otherwise ZFlag - Set if any byte/word of xmm2/mem128 is null, reset otherwise SFlag - Set if any byte/word of xmm1 is null, reset otherwise OFlag - IntRes2[0]AFlag - Reset PFlag - Reset Note: In VEX.128 encoded versions, bits (VLMAX-1:128) of XMM0 are zeroed. VEX.vvvv is reserved and must be 1111b, VEX.L must be 0, otherwise the instruction will #UD.</p><h2 id="effective-operand-size">Effective Operand Size</h2>
+<p>CFlag - Reset if IntRes2 is equal to zero, set otherwise ZFlag - Set if any byte/word of xmm2/mem128 is null, reset otherwise SFlag - Set if any byte/word of xmm1 is null, reset otherwise OFlag - IntRes2[0]AFlag - Reset PFlag - Reset Note: In VEX.128 encoded versions, bits (VLMAX-1:128) of XMM0 are zeroed. VEX.vvvv is reserved and must be 1111b, VEX.L must be 0, otherwise the instruction will #UD.</p>
+<h2 id="effective-operand-size">Effective Operand Size</h2>
 <table>
 <tr>
 	<td>Operating mode/size</td>
@@ -88,7 +91,8 @@
 </tr>
 </table>
 <h2 id="intel-c-c---compiler-intrinsic-equivalent-for-returning-mask">Intel C/C++ Compiler Intrinsic Equivalent For Returning Mask</h2>
-<p>__m128i _mm_cmpistrm (__m128i a, __m128i b, const int mode);</p><h2 id="intel-c-c---compiler-intrinsics-for-reading-eflag-results">Intel C/C++ Compiler Intrinsics For Reading EFlag Results</h2>
+<p>__m128i _mm_cmpistrm (__m128i a, __m128i b, const int mode);</p>
+<h2 id="intel-c-c---compiler-intrinsics-for-reading-eflag-results">Intel C/C++ Compiler Intrinsics For Reading EFlag Results</h2>
 <table>
 <tr>
 	<td>int</td>
@@ -112,8 +116,10 @@
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 4; additionally, this instruction does not cause #GP if the memory operand is not aligned to 16Byte boundary, and</p><table>
+<p>None.</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4; additionally, this instruction does not cause #GP if the memory operand is not aligned to 16Byte boundary, and</p>
+<table>
 <tr>
 	<td>#UD</td>
 	<td>If VEX.L = 1. If VEX.vvvv != 1111B.</td>

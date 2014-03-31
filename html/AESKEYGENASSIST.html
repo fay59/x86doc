@@ -48,7 +48,10 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Assist in expanding the AES cipher key, by computing steps towards generating a round key for encryption, using 128-bit data specified in the source operand and an 8-bit round constant specified as an immediate, store the result in the destination operand. The destination operand is an XMM register. The source operand can be an XMM register or a 128-bit memory location.</p><p>128-bit Legacy SSE version:Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: Bits (VLMAX-1:128) of the destination YMM register are zeroed.</p><p>Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise instructions will #UD.</p><h2 id="operation">Operation</h2>
+<p>Assist in expanding the AES cipher key, by computing steps towards generating a round key for encryption, using 128-bit data specified in the source operand and an 8-bit round constant specified as an immediate, store the result in the destination operand. The destination operand is an XMM register. The source operand can be an XMM register or a 128-bit memory location.</p>
+<p>128-bit Legacy SSE version:Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: Bits (VLMAX-1:128) of the destination YMM register are zeroed.</p>
+<p>Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise instructions will #UD.</p>
+<h2 id="operation">Operation</h2>
 <pre>AESKEYGENASSIST
 X3[31:0] ← SRC [127: 96];
 X2[31:0] ← SRC [95: 64];
@@ -71,7 +74,8 @@ DEST[63:32 ] ← RotWord( SubWord(X1) ) XOR RCON;
 DEST[95:64] ← SubWord(X3);
 DEST[127:96] ← RotWord( SubWord(X3) ) XOR RCON;
 DEST[VLMAX-1:128] ← 0;
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>(V)AESKEYGENASSIST:</td>
@@ -79,8 +83,10 @@ DEST[VLMAX-1:128] ← 0;
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 4; additionally</p><table>
+<p>None</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4; additionally</p>
+<table>
 <tr>
 	<td>#UD</td>
 	<td>If VEX.vvvv != 1111B.</td>

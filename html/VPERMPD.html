@@ -41,16 +41,21 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Use two-bit index values in the immediate byte to select a double-precision floating-point element in the source operand; the resultant data from the source operand is copied to the corresponding element of the destination operand in the order of the index field. Note that this instruction permits a qword in the source operand to be copied to multiple location in the destination operand. An attempt to execute VPERMPD encoded with VEX.L= 0 will cause an #UD exception.</p><h2 id="operation">Operation</h2>
+<p>Use two-bit index values in the immediate byte to select a double-precision floating-point element in the source operand; the resultant data from the source operand is copied to the corresponding element of the destination operand in the order of the index field. Note that this instruction permits a qword in the source operand to be copied to multiple location in the destination operand. An attempt to execute VPERMPD encoded with VEX.L= 0 will cause an #UD exception.</p>
+<h2 id="operation">Operation</h2>
 <pre>VPERMPD (VEX.256 encoded version)
 DEST[63:0] ← (SRC[255:0] >> (IMM8[1:0] * 64))[63:0];
 DEST[127:64] ← (SRC[255:0] >> (IMM8[3:2] * 64))[63:0];
 DEST[191:128] ← (SRC[255:0] >> (IMM8[5:4] * 64))[63:0];
 DEST[255:192] ← (SRC[255:0] >> (IMM8[7:6] * 64))[63:0];
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
-<p>VPERMPD: __m256d _mm256_permute4x64_pd(__m256d a, int control) ;</p><h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 4; additionally</p><table>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<p>VPERMPD: __m256d _mm256_permute4x64_pd(__m256d a, int control) ;</p>
+<h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4; additionally</p>
+<table>
 <tr>
 	<td>#UD</td>
 	<td>If VEX.L = 0.</td>

@@ -69,7 +69,8 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>(variable control version)Permute single-precision floating-point values in the first source operand (second operand) using 8-bit control fields in the low bytes of corresponding elements the shuffle control (third operand) and store results in the destination operand (first operand). The first source operand is a YMM register, the second source operand is a YMM register or a 256-bit memory location, and the destination operand is a YMM register.</p><table>
+<p>(variable control version)Permute single-precision floating-point values in the first source operand (second operand) using 8-bit control fields in the low bytes of corresponding elements the shuffle control (third operand) and store results in the destination operand (first operand). The first source operand is a YMM register, the second source operand is a YMM register or a 256-bit memory location, and the destination operand is a YMM register.</p>
+<table>
 <tr>
 	<td>SRC1</td>
 	<td>X7</td>
@@ -93,7 +94,9 @@
 	<td>X3 .. X0</td>
 </tr>
 </table>
-<p>There is one control byte per destination single-precision element. Each control byte is aligned with the low 8 bits of the corresponding single-precision destination element. Each control byte contains a 2-bit select field (see Figure 4-41) that determines which of the source elements are selected. Source elements are restricted to lie in the same source 128-bit region as the destination.</p><p>Bit</p><table>
+<p>There is one control byte per destination single-precision element. Each control byte is aligned with the low 8 bits of the corresponding single-precision destination element. Each control byte contains a 2-bit select field (see Figure 4-41) that determines which of the source elements are selected. Source elements are restricted to lie in the same source 128-bit region as the destination.</p>
+<p>Bit</p>
+<table>
 <tr>
 	<td>255ignored</td>
 	<td>226Control Field 7</td>
@@ -106,7 +109,8 @@
 	<td>0</td>
 </tr>
 </table>
-<p>(immediate control version)Permute single-precision floating-point values in the first source operand (second operand) using four 2-bit control fields in the 8-bit immediate and store results in the destination operand (first operand). The source operand is a YMM register or 256-bit memory location and the destination operand is a YMM register. This is similar to a wider version of PSHUFD, just operating on single-precision floating-point values. Note: For the VEX.128.66.0F3A 04 instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD. Note: For the VEX.256.66.0F3A 04 instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD.</p><h2 id="operation">Operation</h2>
+<p>(immediate control version)Permute single-precision floating-point values in the first source operand (second operand) using four 2-bit control fields in the 8-bit immediate and store results in the destination operand (first operand). The source operand is a YMM register or 256-bit memory location and the destination operand is a YMM register. This is similar to a wider version of PSHUFD, just operating on single-precision floating-point values. Note: For the VEX.128.66.0F3A 04 instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD. Note: For the VEX.256.66.0F3A 04 instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD.</p>
+<h2 id="operation">Operation</h2>
 <pre>Select4(SRC, control) {
 CASE (control[1:0]) OF
   0:
@@ -146,7 +150,8 @@ DEST[63:32] ← Select4(SRC1[127:0], SRC2[33:32]);
 DEST[95:64] ← Select4(SRC1[127:0], SRC2[65:64]);
 DEST[127:96] ← Select4(SRC1[127:0], SRC2[97:96]);
 DEST[VLMAX-1:128] ← 0
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>VPERM1LPS:</td>
@@ -166,8 +171,10 @@ DEST[VLMAX-1:128] ← 0
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 6; additionally</p><table>
+<p>None.</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 6; additionally</p>
+<table>
 <tr>
 	<td>#UD</td>
 	<td>If VEX.W = 1.</td>

@@ -62,7 +62,8 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Packed single-precision floating-point values from the second source operand (third operand) are conditionally merged with values from the first source operand (second operand) and written to the destination operand (first operand). The immediate bits [7:0] determine whether the corresponding single precision floating-point value in the destination is copied from the second source or first source. If a bit in the mask, corresponding to a word, is “1",then the single-precision floating-point value in the second source operand is copied, else the value in the first source operand is copied. 128-bit Legacy SSE version: The second source can be an XMM register or an 128-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. VEX.128 encoded version: The first source operand an XMM register. The second source operand is an XMM register or 128-bit memory location. The destination operand is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed. VEX.256 encoded version: The first source operand is a YMM register. The second source operand can be a YMM register or a 256-bit memory location. The destination operand is a YMM register.</p><h2 id="operation">Operation</h2>
+<p>Packed single-precision floating-point values from the second source operand (third operand) are conditionally merged with values from the first source operand (second operand) and written to the destination operand (first operand). The immediate bits [7:0] determine whether the corresponding single precision floating-point value in the destination is copied from the second source or first source. If a bit in the mask, corresponding to a word, is “1",then the single-precision floating-point value in the second source operand is copied, else the value in the first source operand is copied. 128-bit Legacy SSE version: The second source can be an XMM register or an 128-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. VEX.128 encoded version: The first source operand an XMM register. The second source operand is an XMM register or 128-bit memory location. The destination operand is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed. VEX.256 encoded version: The first source operand is a YMM register. The second source operand can be a YMM register or a 256-bit memory location. The destination operand is a YMM register.</p>
+<h2 id="operation">Operation</h2>
 <pre>BLENDPS (128-bit Legacy SSE version)
 IF (IMM8[0] = 0) THEN DEST[31:0] ←DEST[31:0]
      ELSE DEST [31:0] ← SRC[31:0] FI
@@ -100,7 +101,8 @@ IF (IMM8[6] = 0) THEN DEST[223:192] ← SRC1[223:192]
      ELSE DEST [223:192] ← SRC2[223:192] FI
 IF (IMM8[7] = 0) THEN DEST[255:224] ← SRC1[255:224]
      ELSE DEST [255:224] ← SRC2[255:224] FI.
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>BLENDPS:</td>
@@ -112,6 +114,8 @@ IF (IMM8[7] = 0) THEN DEST[255:224] ← SRC1[255:224]
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 4.</p></body>
+<p>None</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4.</p>
+</body>
 </html>

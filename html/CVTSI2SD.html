@@ -44,7 +44,8 @@
 	<td>Convert one signed quadword integer from VCVTSI2SD xmm1, xmm2, r/m64value in xmm1.</td>
 </tr>
 </table>
-<p class="notes">Notes: 1. Encoding the VEX prefix with VEX.W=1 in non-64-bit mode is ignored.</p><h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<p class="notes">Notes: 1. Encoding the VEX prefix with VEX.W=1 in non-64-bit mode is ignored.</p>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>
 	<td>Op/En</td>
@@ -69,7 +70,8 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Converts a signed doubleword integer (or signed quadword integer if operand size is 64 bits) in the second source operand to a double-precision floating-point value in the destination operand. The result is stored in the low quadword of the destination operand, and the high quadword left unchanged. When conversion is inexact, the value returned is rounded according to the rounding control bits in the MXCSR register. Legacy SSE instructions: Use of the REX.W prefix promotes the instruction to 64-bit operands. See the summary chart at the beginning of this section for encoding data and limits. The second source operand can be a general-purpose register or a 32/64-bit memory location. The first source and destination operands are XMM registers. 128-bit Legacy SSE version: The destination and first source operand are the same. Bits (VLMAX-1:64) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: Bits (127:64) of the XMM register destination are copied from corresponding bits in the first source operand. Bits (VLMAX-1:128) of the destination YMM register are zeroed.</p><h2 id="operation">Operation</h2>
+<p>Converts a signed doubleword integer (or signed quadword integer if operand size is 64 bits) in the second source operand to a double-precision floating-point value in the destination operand. The result is stored in the low quadword of the destination operand, and the high quadword left unchanged. When conversion is inexact, the value returned is rounded according to the rounding control bits in the MXCSR register. Legacy SSE instructions: Use of the REX.W prefix promotes the instruction to 64-bit operands. See the summary chart at the beginning of this section for encoding data and limits. The second source operand can be a general-purpose register or a 32/64-bit memory location. The first source and destination operands are XMM registers. 128-bit Legacy SSE version: The destination and first source operand are the same. Bits (VLMAX-1:64) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: Bits (127:64) of the XMM register destination are copied from corresponding bits in the first source operand. Bits (VLMAX-1:128) of the destination YMM register are zeroed.</p>
+<h2 id="operation">Operation</h2>
 <pre>CVTSI2SD
 IF 64-Bit Mode And OperandSize = 64
 THEN
@@ -87,7 +89,8 @@ ELSE
 FI;
 DEST[127:64] ← SRC1[127:64]
 DEST[VLMAX-1:128] ← 0
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>CVTSI2SD:</td>
@@ -99,6 +102,8 @@ DEST[VLMAX-1:128] ← 0
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>Precision.</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 3.</p></body>
+<p>Precision.</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 3.</p>
+</body>
 </html>

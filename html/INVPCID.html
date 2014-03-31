@@ -48,13 +48,18 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Invalidates mappings in the translation lookaside buffers (TLBs) and paging-structure caches based on processcontext identifier (PCID). (See Section 4.10, “Caching Translation Information,” in Intel 64 and IA-32 Architecture Software Developer’s Manual, Volume 3A.) Invalidation is based on the INVPCID type specified in the register operand and the INVPCID descriptor specified in the memory operand.</p><p>Outside 64-bit mode, the register operand is always 32 bits, regardless of the value of CS.D. In 64-bit mode the register operand has 64 bits.</p><p>There are four INVPCID types currently defined:</p><table>
+<p>Invalidates mappings in the translation lookaside buffers (TLBs) and paging-structure caches based on processcontext identifier (PCID). (See Section 4.10, “Caching Translation Information,” in Intel 64 and IA-32 Architecture Software Developer’s Manual, Volume 3A.) Invalidation is based on the INVPCID type specified in the register operand and the INVPCID descriptor specified in the memory operand.</p>
+<p>Outside 64-bit mode, the register operand is always 32 bits, regardless of the value of CS.D. In 64-bit mode the register operand has 64 bits.</p>
+<p>There are four INVPCID types currently defined:</p>
+<table>
 <tr>
 	<td>••••The INVPCID descriptor comprises 128 bits and consists of a PCID and a linear address as shown in Figure 3-23. For INVPCID type 0, the processor uses the full 64 bits of the linear address even outside 64-bit mode; the linear address is not used for other INVPCID types.</td>
 	<td>Individual-address invalidation: If the INVPCID type is 0, the logical processor invalidates mappings—except global translations—for the linear address and PCID specified in the INVPCID descriptor. In some cases, the instruction may invalidate global translations or mappings for other linear addresses (or other PCIDs) as well. Single-context invalidation: If the INVPCID type is 1, the logical processor invalidates all mappings—except global translations—associated with the PCID specified in the INVPCID descriptor. In some cases, the instruction may invalidate global translations or mappings for other PCIDs as well. All-context invalidation, including global translations: If the INVPCID type is 2, the logical processor invalidates all mappings—including global translations—associated with any PCID. All-context invalidation: If the INVPCID type is 3, the logical processor invalidates all mappings—except global translations—associated with any PCID. In some case, the instruction may invalidate global translations as well. 0PCID INVPCID Descriptor</td>
 </tr>
 </table>
-<p>If CR4.PCIDE = 0, a logical processor does not cache information for any PCID other than 000H. In this case,executions with INVPCID types 0 and 1 are allowed only if the PCID specified in the INVPCID descriptor is 000H;</p><p>executions with INVPCID types 2 and 3 invalidate mappings only for PCID 000H. Note that CR4.PCIDE must be 0outside 64-bit mode (see Chapter 4.10.1, “Process-Context Identifiers (PCIDs)‚” of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A).</p><h2 id="operation">Operation</h2>
+<p>If CR4.PCIDE = 0, a logical processor does not cache information for any PCID other than 000H. In this case,executions with INVPCID types 0 and 1 are allowed only if the PCID specified in the INVPCID descriptor is 000H;</p>
+<p>executions with INVPCID types 2 and 3 invalidate mappings only for PCID 000H. Note that CR4.PCIDE must be 0outside 64-bit mode (see Chapter 4.10.1, “Process-Context Identifiers (PCIDs)‚” of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A).</p>
+<h2 id="operation">Operation</h2>
 <pre>INVPCID_TYPE ← value of register operand;
 INVPCID_DESC ← value of memory operand;
 CASE INVPCID_TYPE OF
@@ -74,7 +79,8 @@ CASE INVPCID_TYPE OF
      Invalidate all mappings for all PCIDs except global translations;
      BREAK;
 ESAC;
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>INVPCID:</td>
@@ -82,7 +88,8 @@ ESAC;
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+<p>None</p>
+<h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#GP(0)</td>
@@ -108,7 +115,8 @@ ESAC;
 	<td>If an invalid type is specified in the register operand, i.e., INVPCID_TYPE > 3. If bits 63:12 of INVPCID_DESC are not all zero.</td>
 </tr>
 </table>
-<p>If INVPCID_TYPE is either 0 or 1 and INVPCID_DESC[11:0] is not zero. If INVPCID_TYPE is 0 and the linear address in INVPCID_DESC[127:64] is not canonical.</p><table>
+<p>If INVPCID_TYPE is either 0 or 1 and INVPCID_DESC[11:0] is not zero. If INVPCID_TYPE is 0 and the linear address in INVPCID_DESC[127:64] is not canonical.</p>
+<table>
 <tr>
 	<td>#UD</td>
 	<td>If CPUID.(EAX=07H, ECX=0H):EBX.INVPCID (bit 10) = 0. If the LOCK prefix is used.</td>
@@ -122,7 +130,8 @@ ESAC;
 </tr>
 </table>
 <h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#GP(0)</td>

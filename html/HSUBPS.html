@@ -62,7 +62,15 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Subtracts the single-precision floating-point value in the second dword of the destination operand from the first dword of the destination operand and stores the result in the first dword of the destination operand.</p><p>Subtracts the single-precision floating-point value in the fourth dword of the destination operand from the third dword of the destination operand and stores the result in the second dword of the destination operand.</p><p>Subtracts the single-precision floating-point value in the second dword of the source operand from the first dword of the source operand and stores the result in the third dword of the destination operand.</p><p>Subtracts the single-precision floating-point value in the fourth dword of the source operand from the third dword of the source operand and stores the result in the fourth dword of the destination operand.</p><p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15).</p><p>See Figure 3-21 for HSUBPS; see Figure 3-22 for VHSUBPS.</p><p>HSUBPS xmm1, xmm2/m128</p><p>xmm2/</p><table>
+<p>Subtracts the single-precision floating-point value in the second dword of the destination operand from the first dword of the destination operand and stores the result in the first dword of the destination operand.</p>
+<p>Subtracts the single-precision floating-point value in the fourth dword of the destination operand from the third dword of the destination operand and stores the result in the second dword of the destination operand.</p>
+<p>Subtracts the single-precision floating-point value in the second dword of the source operand from the first dword of the source operand and stores the result in the third dword of the destination operand.</p>
+<p>Subtracts the single-precision floating-point value in the fourth dword of the source operand from the third dword of the source operand and stores the result in the fourth dword of the destination operand.</p>
+<p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15).</p>
+<p>See Figure 3-21 for HSUBPS; see Figure 3-22 for VHSUBPS.</p>
+<p>HSUBPS xmm1, xmm2/m128</p>
+<p>xmm2/</p>
+<table>
 <tr>
 	<td>[127:96]</td>
 	<td>[95:64]</td>
@@ -82,7 +90,8 @@
 	<td>[31:0]</td>
 </tr>
 </table>
-<p>OM15996</p><table>
+<p>OM15996</p>
+<table>
 <tr>
 	<td>Figure 3-21.</td>
 	<td>HSUBPS—Packed Single-FP Horizontal Subtract</td>
@@ -100,7 +109,8 @@
 	<td>X0-X1VHSUBPS operation</td>
 </tr>
 </table>
-<p>128-bit Legacy SSE version: The second source can be an XMM register or an 128-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. VEX.128 encoded version: the first source operand is an XMM register or 128-bit memory location. The destination operand is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed. VEX.256 encoded version: The first source operand is a YMM register. The second source operand can be a YMM register or a 256-bit memory location. The destination operand is a YMM register.</p><h2 id="operation">Operation</h2>
+<p>128-bit Legacy SSE version: The second source can be an XMM register or an 128-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. VEX.128 encoded version: the first source operand is an XMM register or 128-bit memory location. The destination operand is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed. VEX.256 encoded version: The first source operand is a YMM register. The second source operand can be a YMM register or a 256-bit memory location. The destination operand is a YMM register.</p>
+<h2 id="operation">Operation</h2>
 <pre>HSUBPS (128-bit Legacy SSE version)
 DEST[31:0] ← SRC1[31:0] - SRC1[63:32]
 DEST[63:32] ← SRC1[95:64] - SRC1[127:96]
@@ -122,7 +132,8 @@ DEST[159:128] ← SRC1[159:128] - SRC1[191:160]
 DEST[191:160] ← SRC1[223:192] - SRC1[255:224]
 DEST[223:192] ← SRC2[159:128] - SRC2[191:160]
 DEST[255:224] ← SRC2[223:192] - SRC2[255:224]
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>HSUBPS:</td>
@@ -134,7 +145,10 @@ DEST[255:224] ← SRC2[223:192] - SRC2[255:224]
 </tr>
 </table>
 <h2 id="exceptions">Exceptions</h2>
-<p>When the source operand is a memory operand, the operand must be aligned on a 16-byte boundary or a generalprotection exception (#GP) will be generated.</p><h2 id="numeric-exceptions">Numeric Exceptions</h2>
-<p>Overflow, Underflow, Invalid, Precision, Denormal.</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 2.</p></body>
+<p>When the source operand is a memory operand, the operand must be aligned on a 16-byte boundary or a generalprotection exception (#GP) will be generated.</p>
+<h2 id="numeric-exceptions">Numeric Exceptions</h2>
+<p>Overflow, Underflow, Invalid, Precision, Denormal.</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 2.</p>
+</body>
 </html>

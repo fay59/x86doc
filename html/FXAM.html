@@ -24,13 +24,16 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Examines the contents of the ST(0) register and sets the condition code flags C0, C2, and C3 in the FPU status word to indicate the class of value or number in the register (see the table below).</p><table>
+<p>Examines the contents of the ST(0) register and sets the condition code flags C0, C2, and C3 in the FPU status word to indicate the class of value or number in the register (see the table below).</p>
+<table>
 <tr>
 	<td>Table 3-52.</td>
 	<td>FXAM Results C00101010</td>
 </tr>
 </table>
-<p>The C1 flag is set to the sign of the value in ST(0), regardless of whether the register is empty or full.</p><p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p><h2 id="operation">Operation</h2>
+<p>The C1 flag is set to the sign of the value in ST(0), regardless of whether the register is empty or full.</p>
+<p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
+<h2 id="operation">Operation</h2>
 <pre>C1 ← sign bit of ST; (* 0 for positive, 1 for negative *)
 CASE (class of value or number in ST(0)) OF
   Unsupported:C3, C2, C0 ← 000;
@@ -41,7 +44,8 @@ CASE (class of value or number in ST(0)) OF
   Empty:
   Denormal:
 ESAC;
-</pre><h2 id="fpu-flags-affected">FPU Flags Affected</h2>
+</pre>
+<h2 id="fpu-flags-affected">FPU Flags Affected</h2>
 <table>
 <tr>
 	<td>C1</td>
@@ -53,7 +57,8 @@ ESAC;
 </tr>
 </table>
 <h2 id="floating-point-exceptions">Floating-Point Exceptions</h2>
-<p>None.</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+<p>None.</p>
+<h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
 <table>
 <tr>
 	<td>#NM</td>
@@ -69,8 +74,12 @@ ESAC;
 </tr>
 </table>
 <h2 id="real-address-mode-exceptions">Real-Address Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
-<p>Same exceptions as in protected mode.</p></body>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+<h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p>
+</body>
 </html>

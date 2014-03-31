@@ -41,7 +41,8 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>The instruction marks the end of an RTM code region. If this corresponds to the outermost scope (that is, including this XEND instruction, the number of XBEGIN instructions is the same as number of XEND instructions), the logical processor will attempt to commit the logical processor state atomically. If the commit fails, the logical processor will rollback all architectural register and memory updates performed during the RTM execution. The logical processor will resume execution at the fallback address computed from the outermost XBEGIN instruction. The EAX register is updated to reflect RTM abort information. XEND executed outside a transactional region will cause a #GP (General Protection Fault).</p><h2 id="operation">Operation</h2>
+<p>The instruction marks the end of an RTM code region. If this corresponds to the outermost scope (that is, including this XEND instruction, the number of XBEGIN instructions is the same as number of XEND instructions), the logical processor will attempt to commit the logical processor state atomically. If the commit fails, the logical processor will rollback all architectural register and memory updates performed during the RTM execution. The logical processor will resume execution at the fallback address computed from the outermost XBEGIN instruction. The EAX register is updated to reflect RTM abort information. XEND executed outside a transactional region will cause a #GP (General Protection Fault).</p>
+<h2 id="operation">Operation</h2>
 <pre>XEND
 IF (RTM_ACTIVE = 0) THEN
   SIGNAL #GP
@@ -71,8 +72,10 @@ RTM_ABORT_PROCESSING:
        EIP ← fallbackEIP
   FI;
 END
-</pre><h2 id="flags-affected">Flags Affected</h2>
-<p>None</p><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>None</p>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>XEND:</td>
@@ -80,7 +83,8 @@ END
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>None</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
 <table>
 <tr>
 	<td>#UD</td>

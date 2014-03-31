@@ -41,7 +41,8 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Extracts 128-bits of packed floating-point values from the source operand (second operand) at an 128-bit offset from imm8[0] into the destination operand (first operand). The destination may be either an XMM register or an 128-bit memory location. VEX.vvvv is reserved and must be 1111b otherwise instructions will #UD. The high 7 bits of the immediate are ignored. If VEXTRACTF128 is encoded with VEX.L= 0, an attempt to execute the instruction encoded with VEX.L= 0 will cause an #UD exception.</p><h2 id="operation">Operation</h2>
+<p>Extracts 128-bits of packed floating-point values from the source operand (second operand) at an 128-bit offset from imm8[0] into the destination operand (first operand). The destination may be either an XMM register or an 128-bit memory location. VEX.vvvv is reserved and must be 1111b otherwise instructions will #UD. The high 7 bits of the immediate are ignored. If VEXTRACTF128 is encoded with VEX.L= 0, an attempt to execute the instruction encoded with VEX.L= 0 will cause an #UD exception.</p>
+<h2 id="operation">Operation</h2>
 <pre>VEXTRACTF128 (memory destination form)
 CASE (imm8[0]) OF
   0: DEST[127:0] ← SRC1[127:0]
@@ -53,7 +54,8 @@ CASE (imm8[0]) OF
   1: DEST[127:0] ← SRC1[255:128]
 ESAC.
 DEST[VLMAX-1:128] ← 0
-</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+</pre>
+<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>VEXTRACTF128:</td>
@@ -69,8 +71,10 @@ DEST[VLMAX-1:128] ← 0
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>None</p><h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 6; additionally</p><table>
+<p>None</p>
+<h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 6; additionally</p>
+<table>
 <tr>
 	<td>#UD</td>
 	<td>If VEX.L= 0If VEX.W=1.</td>
