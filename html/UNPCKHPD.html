@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>UNPCKHPD—Unpack and Interleave High Packed Double-Precision Floating-Point Values</title>
+</head>
+<body>
+<h1 id="unpckhpd-unpack-and-interleave-high-packed-double-precision-floating-point-values">UNPCKHPD—Unpack and Interleave High Packed Double-Precision Floating-Point Values</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32 bit Mode Support</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>66 0F 15 /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE2</td>
+	<td>Unpacks and Interleaves double-precision UNPCKHPD xmm1, xmm2/m128xmm1 and xmm2/m128.</td>
+</tr>
+<tr>
+	<td>VEX.NDS.128.66.0F.WIG 15 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Unpacks and Interleaves double precision VUNPCKHPD xmm1,xmm2, xmm3/m128xmm2 and xmm3/m128.</td>
+</tr>
+<tr>
+	<td>VEX.NDS.256.66.0F.WIG 15 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Unpacks and Interleaves double precision VUNPCKHPD ymm1,ymm2, ymm3/m256ymm2 and ymm3/m256.</td>
+</tr>
+</table>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>RM</td>
+	<td>ModRM:reg (r, w)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+<tr>
+	<td>RVM</td>
+	<td>ModRM:reg (w)</td>
+	<td>VEX.vvvv (r)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Performs an interleaved unpack of the high double-precision floating-point values from the source operand (second operand) and the destination operand (first operand). See Figure 4-23.</p><table>
+<tr>
+	<td>DEST</td>
+	<td>X1</td>
+	<td>X0</td>
+</tr>
+<tr>
+	<td>SRC</td>
+	<td>Y1</td>
+	<td>Y0</td>
+</tr>
+<tr>
+	<td>DEST</td>
+	<td>Y1UNPCKHPD Instruction High Unpack and Interleave Operation</td>
+	<td>X1Figure 4-23.</td>
+</tr>
+</table>
+<p>When unpacking from a memory operand, an implementation may fetch only the appropriate 64 bits; however,alignment to 16-byte boundary and normal segment checking will still be enforced.</p><p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15).</p><p>128-bit Legacy SSE version: The second source can be an XMM register or an 128-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. VEX.128 encoded version: the first source operand is an XMM register or 128-bit memory location. The destination operand is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed.</p><h2 id="operation">Operation</h2>
+<pre>UNPCKHPD (128-bit Legacy SSE version)
+DEST[63:0] ← SRC1[127:64]
+DEST[127:64] ← SRC2[127:64]
+DEST[VLMAX-1:128] (Unmodified)
+VUNPCKHPD (VEX.128 encoded version)
+DEST[63:0] ← SRC1[127:64]
+DEST[127:64] ← SRC2[127:64]
+DEST[VLMAX-1:128] ← 0
+VUNPCKHPD (VEX.256 encoded version)
+DEST[63:0] ← SRC1[127:64]
+DEST[127:64] ← SRC2[127:64]
+DEST[191:128]←SRC1[255:192]
+DEST[255:192]←SRC2[255:192]
+</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<table>
+<tr>
+	<td>UNPCKHPD:</td>
+	<td>__m128d _mm_unpackhi_pd(__m128d a, __m128d b)</td>
+</tr>
+<tr>
+	<td>UNPCKHPD:</td>
+	<td>__m256d _mm256_unpackhi_pd(__m256d a, __m256d b)</td>
+</tr>
+</table>
+<h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4.</p></body>
+</html>

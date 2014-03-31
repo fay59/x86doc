@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>VCVTPS2PH—Convert Single-Precision FP value to 16-bit FP value</title>
+</head>
+<body>
+<h1 id="vcvtps2ph-convert-single-precision-fp-value-to-16-bit-fp-value">VCVTPS2PH—Convert Single-Precision FP value to 16-bit FP value</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32bit Mode</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>VEX.256.66.0F3A.W0 1D /r ib VCVTPS2PH xmm1/m128, ymm2,</td>
+	<td>MR imm8</td>
+	<td>V/V</td>
+	<td>F16C</td>
+	<td>Convert eight packed single-precision floating-point value in ymm2 to packed half-precision (16-bit) floating-point value in xmm1/mem. Imm8 provides rounding controls.</td>
+</tr>
+<tr>
+	<td>VEX.128.66.0F3A.W0.1D /r ib VCVTPS2PH xmm1/m64, xmm2,</td>
+	<td>MR imm8</td>
+	<td>V/V</td>
+	<td>F16C</td>
+	<td>Convert four packed single-precision floating-point value in xmm2 to packed halfprecision (16-bit) floating-point value in xmm1/mem. Imm8 provides rounding controls.</td>
+</tr>
+</table>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>MR</td>
+	<td>ModRM:r/m (w)</td>
+	<td>ModRM:reg (r)</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Convert four or eight packed single-precision floating values in first source operand to four or eight packed halfprecision (16-bit) floating-point values. The rounding mode is specified using the immediate field (imm8). Underflow results (i.e. tiny results) are converted to denormals. MXCSR.FTZ is ignored. If a source element is denormal relative to input format with MXCSR.DAZ not set, DM masked and at least one of PM or UM unmasked; a SIMD exception will be raised with DE, UE and PE set. 128-bit version: The source operand is a XMM register. The destination operand is a XMM register or 64-bit memory location. The upper-bits vector register zeroing behavior of VEX prefix encoding still applies if the destination operand is a xmm register. So the upper bits (255:64) of corresponding YMM register are zeroed. 256-bit version: The source operand is a YMM register. The destination operand is a XMM register or 128-bit memory location. The upper-bits vector register zeroing behavior of VEX prefix encoding still applies if the destination operand is a xmm register. So the upper bits (255:128) of the corresponding YMM register are zeroed. Note: VEX.vvvv is reserved (must be 1111b). The diagram below illustrates how data is converted from four packed single precision (in 128 bits) to four half precision (in 64 bits) FP values.</p><table>
+<tr>
+	<td>VCVTPS2PH xmm1/mem64, xmm2,95VS2</td>
+	<td>imm80xmm2</td>
+</tr>
+<tr>
+	<td>convert</td>
+	<td>convert convert</td>
+</tr>
+<tr>
+	<td>95</td>
+	<td>0xmm1/mem64</td>
+</tr>
+<tr>
+	<td>Figure 4-32.</td>
+	<td>VCVTPS2PH (128-bit Version)</td>
+</tr>
+</table>
+<p>The immediate byte defines several bit fields that controls rounding operation. The effect and encoding of RC field are listed in Table 4-16.</p><table>
+<tr>
+	<td>Table 4-16.</td>
+	<td>Immediate Byte Encoding for 16-bit Floating-Point Conversion Instructions</td>
+</tr>
+<tr>
+	<td>Field Name/value</td>
+	<td>Comment</td>
+</tr>
+<tr>
+	<td>RC=00B</td>
+	<td>If Imm[2] = 0</td>
+</tr>
+<tr>
+	<td>RC=01B</td>
+	<td>Round down</td>
+</tr>
+<tr>
+	<td>RC=10B</td>
+	<td>Round up</td>
+</tr>
+<tr>
+	<td>RC=11B</td>
+	<td>Truncate</td>
+</tr>
+<tr>
+	<td>MS1=0</td>
+	<td>Ignore MXCSR.RC</td>
+</tr>
+<tr>
+	<td>MS1=1</td>
+	<td>Use MXCSR.RC for rounding</td>
+</tr>
+<tr>
+	<td>Ignored</td>
+	<td>Ignored by processor</td>
+</tr>
+</table>
+<h2 id="operation">Operation</h2>
+<pre>vCvt_s2h(SRC1[31:0])
+{
+IF Imm[2] = 0
+THEN // using Imm[1:0] for rounding control, see Table 4-16
+     RETURN Cvt_Single_Precision_To_Half_Precision_FP_Imm(SRC1[31:0]);
+ELSE // using MXCSR.RC for rounding control
+     RETURN Cvt_Single_Precision_To_Half_Precision_FP_Mxcsr(SRC1[31:0]);
+FI;
+}
+VCVTPS2PH (VEX.256 encoded version)
+DEST[15:0] ← vCvt_s2h(SRC1[31:0]);
+DEST[31:16] ← vCvt_s2h(SRC1[63:32]);
+DEST[47:32] ← vCvt_s2h(SRC1[95:64]);
+DEST[63:48] ← vCvt_s2h(SRC1[127:96]);
+DEST[79:64] ← vCvt_s2h(SRC1[159:128]);
+DEST[95:80] ← vCvt_s2h(SRC1[191:160]);
+DEST[111:96] ← vCvt_s2h(SRC1[223:192]);
+DEST[127:112] ← vCvt_s2h(SRC1[255:224]);
+DEST[255:128] ← 0; // if DEST is a register
+VCVTPS2PH (VEX.128 encoded version)
+DEST[15:0] ← vCvt_s2h(SRC1[31:0]);
+DEST[31:16] ← vCvt_s2h(SRC1[63:32]);
+DEST[47:32] ← vCvt_s2h(SRC1[95:64]);
+DEST[63:48] ← vCvt_s2h(SRC1[127:96]);
+DEST[VLMAX-1:64] ←0; // if DEST is a register
+</pre><h2 id="flags-affected">Flags Affected</h2>
+<p>None</p><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<p>__m128i _mm_cvtps_ph ( __m128 m1, const int imm);</p><p>__m128i _mm256_cvtps_ph(__m256 m1, const int imm);</p><h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>Invalid, Underflow, Overflow, Precision, Denormal (if MXCSR.DAZ=0);</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>Exceptions Type 11 (do not report #AC); additionally</p><table>
+<tr>
+	<td>#UD</td>
+	<td>If VEX.W=1.</td>
+</tr>
+</table>
+</body>
+</html>

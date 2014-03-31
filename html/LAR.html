@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>LAR—Load Access Rights Byte</title>
+</head>
+<body>
+<h1 id="lar-load-access-rights-byte">LAR—Load Access Rights Byte</h1>
+<table>
+<tr>
+	<td>Opcode</td>
+	<td>Instruction</td>
+	<td>Op/En</td>
+	<td>64-Bit Mode</td>
+	<td>Compat/Leg Mode</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>0F 02 /r</td>
+	<td>LAR r16, r16/m16</td>
+	<td>RM</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>r16 ← access rights referenced by r16/m16</td>
+</tr>
+<tr>
+	<td>0F 02 /r</td>
+	<td>LAR reg, r32/m161</td>
+	<td>RM</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>reg ← access rights referenced by r32/m16</td>
+</tr>
+</table>
+<p class="notes">Notes: 1. For all loads (regardless of source or destination sizing) only bits 16-0 are used. Other bits are ignored.</p><h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>RM</td>
+	<td>ModRM:reg (w)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Loads the access rights from the segment descriptor specified by the second operand (source operand) into the first operand (destination operand) and sets the ZF flag in the flag register. The source operand (which can be a register or a memory location) contains the segment selector for the segment descriptor being accessed. If the source operand is a memory address, only 16 bits of data are accessed. The destination operand is a generalpurpose register.</p><p>The processor performs access checks as part of the loading process. Once loaded in the destination register, software can perform additional checks on the access rights information.</p><p>The access rights for a segment descriptor include fields located in the second doubleword (bytes 4-7) of the segment descriptor. The following fields are loaded by the LAR instruction:</p><table>
+<tr>
+	<td>•</td>
+	<td>Bits 7:0 are returned as 0</td>
+</tr>
+<tr>
+	<td>•</td>
+	<td>Bits 11:8 return the segment type.</td>
+</tr>
+<tr>
+	<td>•</td>
+	<td>Bit 12 returns the S flag.</td>
+</tr>
+<tr>
+	<td>•</td>
+	<td>Bits 14:13 return the DPL.</td>
+</tr>
+<tr>
+	<td>•</td>
+	<td>Bit 15 returns the P flag.</td>
+</tr>
+<tr>
+	<td>•This instruction performs the following checks before it loads the access rights in the destination register:•</td>
+	<td>The following fields are returned only if the operand size is greater than 16 bits:Bits 19:16 are undefined. Bit 20 returns the software-available bit in the descriptor. Bit 21 returns the L flag. Bit 22 returns the D/B flag. Bit 23 returns the G flag. Bits 31:24 are returned as 0. Checks that the segment selector is not NULL.</td>
+</tr>
+<tr>
+	<td>•••If the segment descriptor cannot be accessed or is an invalid type for the instruction, the ZF flag is cleared and no access rights are loaded in the destination operand.</td>
+	<td>Checks that the segment selector points to a descriptor that is within the limits of the GDT or LDT being accessed Checks that the descriptor type is valid for this instruction. All code and data segment descriptors are valid for (can be accessed with) the LAR instruction. The valid system segment and gate descriptor types are given in Table 3-62. If the segment is not a conforming code segment, it checks that the specified segment descriptor is visible at the CPL (that is, if the CPL and the RPL of the segment selector are less than or equal to the DPL of the segment selector).</td>
+</tr>
+</table>
+<p>The LAR instruction can only be executed in protected mode and IA-32e mode.</p><table>
+<tr>
+	<td>Table 3-62.</td>
+	<td>Segment and Gate Types IA-32e Mode Valid No No No No No No No No No Yes No Yes Yes No No No</td>
+</tr>
+</table>
+<h2 id="operation">Operation</h2>
+<pre>IF Offset(SRC) > descriptor table limit
+  THEN
+     ZF ← 0;
+  ELSE
+     SegmentDescriptor ← descriptor referenced by SRC;
+     IF SegmentDescriptor(Type) ≠ conforming code segment
+     and (CPL > DPL) or (RPL > DPL)
+     or SegmentDescriptor(Type) is not valid for instruction
+       THEN
+          ZF ← 0;
+       ELSE
+          DEST ← access rights from SegmentDescriptor as given in Description section;
+          ZF ← 1;
+     FI;
+FI;
+</pre><h2 id="flags-affected">Flags Affected</h2>
+<p>The ZF flag is set to 1 if the access rights are loaded successfully; otherwise, it is cleared to 0.</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#GP(0)</td>
+	<td>If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit. If the DS, ES, FS, or GS register is used to access memory and it contains a NULL segment selector.</td>
+</tr>
+<tr>
+	<td>#SS(0)</td>
+	<td>If a memory operand effective address is outside the SS segment limit.</td>
+</tr>
+<tr>
+	<td>#PF(fault-code)</td>
+	<td>If a page fault occurs.</td>
+</tr>
+<tr>
+	<td>#AC(0)</td>
+	<td>If alignment checking is enabled and the memory operand effective address is unaligned while the current privilege level is 3.</td>
+</tr>
+<tr>
+	<td>#UD</td>
+	<td>If the LOCK prefix is used.</td>
+</tr>
+</table>
+<h2 id="real-address-mode-exceptions">Real-Address Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#UD</td>
+	<td>The LAR instruction is not recognized in real-address mode.</td>
+</tr>
+</table>
+<h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#UD</td>
+	<td>The LAR instruction cannot be executed in virtual-8086 mode.</td>
+</tr>
+</table>
+<h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#SS(0)</td>
+	<td>If the memory operand effective address referencing the SS segment is in a non-canonical form.</td>
+</tr>
+<tr>
+	<td>#GP(0)</td>
+	<td>If the memory operand effective address is in a non-canonical form.</td>
+</tr>
+<tr>
+	<td>#PF(fault-code)</td>
+	<td>If a page fault occurs.</td>
+</tr>
+<tr>
+	<td>#AC(0)</td>
+	<td>If alignment checking is enabled and the memory operand effective address is unaligned while the current privilege level is 3.</td>
+</tr>
+<tr>
+	<td>#UD</td>
+	<td>If the LOCK prefix is used.</td>
+</tr>
+</table>
+</body>
+</html>

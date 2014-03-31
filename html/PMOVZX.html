@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>PMOVZX — Packed Move with Zero Extend</title>
+</head>
+<body>
+<h1 id="pmovzx---packed-move-with-zero-extend">PMOVZX — Packed Move with Zero Extend</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32 bit Mode Support</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>66 0f 38 30 /r PMOVZXBW xmm1, xmm2/m64</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE4_1</td>
+	<td>Zero extend 8 packed 8-bit integers in the low 8 bytes of xmm2/m64 to 8 packed 16-bit integers in xmm1.</td>
+</tr>
+<tr>
+	<td>66 0f 38 31 /r PMOVZXBD xmm1, xmm2/m32</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE4_1</td>
+	<td>Zero extend 4 packed 8-bit integers in the low 4 bytes of xmm2/m32 to 4 packed 32-bit integers in xmm1.</td>
+</tr>
+<tr>
+	<td>66 0f 38 32 /r PMOVZXBQ xmm1, xmm2/m16</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE4_1</td>
+	<td>Zero extend 2 packed 8-bit integers in the low 2 bytes of xmm2/m16 to 2 packed 64-bit integers in xmm1.</td>
+</tr>
+<tr>
+	<td>66 0f 38 33 /r PMOVZXWD xmm1, xmm2/m64</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE4_1</td>
+	<td>Zero extend 4 packed 16-bit integers in the low 8 bytes of xmm2/m64 to 4 packed 32-bit integers in xmm1.</td>
+</tr>
+<tr>
+	<td>66 0f 38 34 /r PMOVZXWQ xmm1, xmm2/m32</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE4_1</td>
+	<td>Zero extend 2 packed 16-bit integers in the low 4 bytes of xmm2/m32 to 2 packed 64-bit integers in xmm1.</td>
+</tr>
+<tr>
+	<td>66 0f 38 35 /r PMOVZXDQ xmm1, xmm2/m64</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE4_1</td>
+	<td>Zero extend 2 packed 32-bit integers in the low 8 bytes of xmm2/m64 to 2 packed 64-bit integers in xmm1.</td>
+</tr>
+<tr>
+	<td>VEX.128.66.0F38.WIG 30 /r VPMOVZXBW xmm1, xmm2/m64</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Zero extend 8 packed 8-bit integers in the low 8 bytes of xmm2/m64 to 8 packed 16-bit integers in xmm1.</td>
+</tr>
+<tr>
+	<td>VEX.128.66.0F38.WIG 31 /r VPMOVZXBD xmm1, xmm2/m32</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Zero extend 4 packed 8-bit integers in the low 4 bytes of xmm2/m32 to 4 packed 32-bit integers in xmm1.</td>
+</tr>
+<tr>
+	<td>VEX.128.66.0F38.WIG 32 /r VPMOVZXBQ xmm1, xmm2/m16</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Zero extend 2 packed 8-bit integers in the low 2 bytes of xmm2/m16 to 2 packed 64-bit integers in xmm1.</td>
+</tr>
+<tr>
+	<td>VEX.128.66.0F38.WIG 33 /r VPMOVZXWD xmm1, xmm2/m64</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Zero extend 4 packed 16-bit integers in the low 8 bytes of xmm2/m64 to 4 packed 32-bit integers in xmm1.</td>
+</tr>
+<tr>
+	<td>VEX.128.66.0F38.WIG 34 /r VPMOVZXWQ xmm1, xmm2/m32</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Zero extend 2 packed 16-bit integers in the low 4 bytes of xmm2/m32 to 2 packed 64-bit integers in xmm1.</td>
+</tr>
+<tr>
+	<td>VEX.128.66.0F38.WIG 35 /r VPMOVZXDQ xmm1, xmm2/m64</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Zero extend 2 packed 32-bit integers in the low 8 bytes of xmm2/m64 to 2 packed 64-bit integers in xmm1.</td>
+</tr>
+<tr>
+	<td>VEX.256.66.0F38.WIG 30 /r VPMOVZXBW ymm1, xmm2/m128</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Zero extend 16 packed 8-bit integers in the low 16 bytes of xmm2/m128 to 16 packed 16-bit integers in ymm1.</td>
+</tr>
+<tr>
+	<td>VEX.256.66.0F38.WIG 31 /r VPMOVZXBD ymm1, xmm2/m64</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Zero extend 8 packed 8-bit integers in the low 8 bytes of xmm2/m64 to 8 packed 32-bit integers in ymm1.</td>
+</tr>
+<tr>
+	<td>VEX.256.66.0F38.WIG 32 /r VPMOVZXBQ ymm1, xmm2/m32</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Zero extend 4 packed 8-bit integers in the low 4 bytes of xmm2/m32 to 4 packed 64-bit integers in ymm1.</td>
+</tr>
+<tr>
+	<td>VEX.256.66.0F38.WIG 33 /r VPMOVZXWD ymm1, xmm2/m128</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Zero extend 8 packed 16-bit integers in the low 16 bytes of xmm2/m128 to 8 packed 32bit integers in ymm1.</td>
+</tr>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32 bit Mode Support</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>VEX.256.66.0F38.WIG 34 /r VPMOVZXWQ ymm1, xmm2/m64</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Zero extend 4 packed 16-bit integers in the low 8 bytes of xmm2/m64 to 4 packed 64-bit integers in xmm1.</td>
+</tr>
+<tr>
+	<td>VEX.256.66.0F38.WIG 35 /r VPMOVZXDQ ymm1, xmm2/m128</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Zero extend 4 packed 32-bit integers in the low 16 bytes of xmm2/m128 to 4 packed 64bit integers in ymm1.</td>
+</tr>
+</table>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>RM</td>
+	<td>ModRM:reg (w)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Zero-extend the low byte/word/dword values in each word/dword/qword element of the source operand (second operand) to word/dword/qword integers and stored as packed data in the destination operand (first operand). 128-bit Legacy SSE version: Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: Bits (VLMAX-1:128) of the destination YMM register are zeroed. VEX.256 encoded version: The destination register is YMM Register.</p><p>Note: VEX.vvvv is reserved and must be 1111b, VEX.L must be 0, otherwise the instruction will #UD.</p><h2 id="operation">Operation</h2>
+<pre>PMOVZXBW
+  DEST[15:0] ← ZeroExtend(SRC[7:0]);
+  DEST[31:16] ← ZeroExtend(SRC[15:8]);
+  DEST[47:32] ← ZeroExtend(SRC[23:16]);
+  DEST[63:48] ← ZeroExtend(SRC[31:24]);
+  DEST[79:64] ← ZeroExtend(SRC[39:32]);
+  DEST[95:80] ← ZeroExtend(SRC[47:40]);
+  DEST[111:96] ← ZeroExtend(SRC[55:48]);
+  DEST[127:112] ← ZeroExtend(SRC[63:56]);
+PMOVZXBD
+  DEST[31:0] ← ZeroExtend(SRC[7:0]);
+  DEST[63:32] ← ZeroExtend(SRC[15:8]);
+  DEST[95:64] ← ZeroExtend(SRC[23:16]);
+  DEST[127:96] ← ZeroExtend(SRC[31:24]);
+PMOVZXQB
+  DEST[63:0] ← ZeroExtend(SRC[7:0]);
+  DEST[127:64] ← ZeroExtend(SRC[15:8]);
+PMOVZXWD
+  DEST[31:0] ← ZeroExtend(SRC[15:0]);
+  DEST[63:32] ← ZeroExtend(SRC[31:16]);
+  DEST[95:64] ← ZeroExtend(SRC[47:32]);
+  DEST[127:96] ← ZeroExtend(SRC[63:48]);
+PMOVZXWQ
+  DEST[63:0] ← ZeroExtend(SRC[15:0]);
+  DEST[127:64] ← ZeroExtend(SRC[31:16]);
+PMOVZXDQ
+  DEST[63:0] ← ZeroExtend(SRC[31:0]);
+  DEST[127:64] ← ZeroExtend(SRC[63:32]);
+VPMOVZXBW (VEX.128 encoded version)
+Packed_Zero_Extend_BYTE_to_WORD()
+DEST[VLMAX-1:128] ← 0
+VPMOVZXBD (VEX.128 encoded version)
+Packed_Zero_Extend_BYTE_to_DWORD()
+DEST[VLMAX-1:128] ← 0
+VPMOVZXBQ (VEX.128 encoded version)
+Packed_Zero_Extend_BYTE_to_QWORD()
+DEST[VLMAX-1:128] ← 0
+VPMOVZXWD (VEX.128 encoded version)
+Packed_Zero_Extend_WORD_to_DWORD()
+DEST[VLMAX-1:128] ← 0
+VPMOVZXWQ (VEX.128 encoded version)
+Packed_Zero_Extend_WORD_to_QWORD()
+DEST[VLMAX-1:128] ← 0
+VPMOVZXDQ (VEX.128 encoded version)
+Packed_Zero_Extend_DWORD_to_QWORD()
+DEST[VLMAX-1:128] ← 0
+VPMOVZXBW (VEX.256 encoded version)
+Packed_Zero_Extend_BYTE_to_WORD(DEST[127:0], SRC[63:0])
+Packed_Zero_Extend_BYTE_to_WORD(DEST[255:128], SRC[127:64])
+VPMOVZXBD (VEX.256 encoded version)
+Packed_Zero_Extend_BYTE_to_DWORD(DEST[127:0], SRC[31:0])
+Packed_Zero_Extend_BYTE_to_DWORD(DEST[255:128], SRC[63:32])
+VPMOVZXBQ (VEX.256 encoded version)
+Packed_Zero_Extend_BYTE_to_QWORD(DEST[127:0], SRC[15:0])
+Packed_Zero_Extend_BYTE_to_QWORD(DEST[255:128], SRC[31:16])
+VPMOVZXWD (VEX.256 encoded version)
+Packed_Zero_Extend_WORD_to_DWORD(DEST[127:0], SRC[63:0])
+Packed_Zero_Extend_WORD_to_DWORD(DEST[255:128], SRC[127:64])
+VPMOVZXWQ (VEX.256 encoded version)
+Packed_Zero_Extend_WORD_to_QWORD(DEST[127:0], SRC[31:0])
+Packed_Zero_Extend_WORD_to_QWORD(DEST[255:128], SRC[63:32])
+VPMOVZXDQ (VEX.256 encoded version)
+Packed_Zero_Extend_DWORD_to_QWORD(DEST[127:0], SRC[63:0])
+Packed_Zero_Extend_DWORD_to_QWORD(DEST[255:128], SRC[127:64])
+</pre><h2 id="flags-affected">Flags Affected</h2>
+<p>None</p><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<table>
+<tr>
+	<td>(V)PMOVZXBW:</td>
+	<td>__m128i _mm_ cvtepu8_epi16 ( __m128i a);</td>
+</tr>
+<tr>
+	<td>VPMOVZXBW:</td>
+	<td>__m256i _mm256_cvtepu8_epi16 ( __m128i a);</td>
+</tr>
+<tr>
+	<td>(V)PMOVZXBD:</td>
+	<td>__m128i _mm_ cvtepu8_epi32 ( __m128i a);</td>
+</tr>
+<tr>
+	<td>VPMOVZXBD:</td>
+	<td>__m256i _mm256_cvtepu8_epi32 ( __m128i a);</td>
+</tr>
+<tr>
+	<td>(V)PMOVZXBQ:</td>
+	<td>__m128i _mm_ cvtepu8_epi64 ( __m128i a);</td>
+</tr>
+<tr>
+	<td>VPMOVZXBQ:</td>
+	<td>__m256i _mm256_cvtepu8_epi64 ( __m128i a);</td>
+</tr>
+<tr>
+	<td>(V)PMOVZXWD:</td>
+	<td>__m128i _mm_ cvtepu16_epi32 ( __m128i a);</td>
+</tr>
+<tr>
+	<td>VPMOVZXWD:</td>
+	<td>__m256i _mm256_cvtepu16_epi32 ( __m128i a);</td>
+</tr>
+<tr>
+	<td>(V)PMOVZXWQ:</td>
+	<td>__m128i _mm_ cvtepu16_epi64 ( __m128i a);</td>
+</tr>
+<tr>
+	<td>VPMOVZXWQ:</td>
+	<td>__m256i _mm256_cvtepu16_epi64 ( __m128i a);</td>
+</tr>
+<tr>
+	<td>(V)PMOVZXDQ:</td>
+	<td>__m128i _mm_ cvtepu32_epi64 ( __m128i a);</td>
+</tr>
+<tr>
+	<td>VPMOVZXDQ:</td>
+	<td>__m256i _mm256_cvtepu32_epi64 ( __m128i a);</td>
+</tr>
+</table>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p><h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 5; additionally</p><table>
+<tr>
+	<td>#UD</td>
+	<td>If VEX.L = 1. If VEX.vvvv != 1111B.</td>
+</tr>
+</table>
+</body>
+</html>

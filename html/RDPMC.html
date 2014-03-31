@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>RDPMC—Read Performance-Monitoring Counters</title>
+</head>
+<body>
+<h1 id="rdpmc-read-performance-monitoring-counters">RDPMC—Read Performance-Monitoring Counters</h1>
+<table>
+<tr>
+	<td>Opcode*</td>
+	<td>Instruction</td>
+	<td>Op/En</td>
+	<td>64-Bit Mode</td>
+	<td>Compat/Leg Mode</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>0F 33</td>
+	<td>RDPMC</td>
+	<td>NP</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Read performance-monitoring counter specified by ECX into EDX:EAX.</td>
+</tr>
+</table>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>NP</td>
+	<td>NA</td>
+	<td>NA</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>The EAX register is loaded with the low-order 32 bits. The EDX register is loaded with the supported high-order bits of the counter. The number of high-order bits loaded into EDX is implementation specific on processors that do no support architectural performance monitoring. The width of fixed-function and general-purpose performance counters on processors supporting architectural performance monitoring are reported by CPUID 0AH leaf. See below for the treatment of the EDX register for “fast” reads.</p><p>The ECX register selects one of two type of performance counters, specifies the index relative to the base of each counter type, and selects “fast” read mode if supported. The two counter types are :</p><table>
+<tr>
+	<td>••ECX[29:0] specifies the index. The width of general-purpose performance counters are 40-bits for processors that do not support architectural performance monitoring counters.The width of special-purpose performance counters are implementation specific. The width of fixed-function performance counters and general-purpose performance counters on processor supporting architectural performance monitoring are reported by CPUID 0AH leaf. Table 4-12 lists valid indices of the general-purpose and special-purpose performance counters according to the derived DisplayFamily_DisplayModel values of CPUID encoding for each processor family (see CPUID instruction in Chapter 3, “Instruction Set Reference, A-M” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A).</td>
+	<td>General-purpose or special-purpose performance counters: The number of general-purpose counters is model specific if the processor does not support architectural performance monitoring, see Chapter 30 of Intel® 64and IA-32 Architectures Software Developer’s Manual, Volume 3B. Special-purpose counters are available only in selected processor members, see Section 30.13, 30.14 of Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3B. This counter type is selected if ECX[30] is clear. Fixed-function performance counter. The number fixed-function performance counters is enumerated by CPUID 0AH leaf. See Chapter 30 of Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3B. This counter type is selected if ECX[30] is set. Valid General and Special Purpose Performance Counter Index Range for RDPMC</td>
+</tr>
+<tr>
+	<td>Processor Family</td>
+	<td>General-purpose Counters</td>
+</tr>
+<tr>
+	<td>P6</td>
+	<td>0, 106H_06H, 06H_07H, 06H_08H,06H_0AH, 06H_0BH</td>
+</tr>
+<tr>
+	<td>Pentium® 4, Intel® Xeon processors</td>
+	<td>≥ 0 and ≤ 17</td>
+</tr>
+<tr>
+	<td>Pentium 4, Intel Xeon processors</td>
+	<td>≥ 0 and ≤ 17and (L3 is absent)</td>
+</tr>
+<tr>
+	<td>Pentium M processors</td>
+	<td>0, 1</td>
+</tr>
+<tr>
+	<td>64-bit Intel Xeon processors with L3</td>
+	<td>≥ 0 and ≤ 17present)</td>
+</tr>
+<tr>
+	<td>Intel® Core™ Solo and Intel® Core™ Duo processors, Dual-core Intel® Xeon® processor LV</td>
+	<td>0, 1Valid General and Special Purpose Performance Counter Index Range for RDPMC (Contd.)</td>
+</tr>
+<tr>
+	<td>Processor Family</td>
+	<td>General-purpose Counters</td>
+</tr>
+<tr>
+	<td>Intel® Core™2 Duo processor, Intel Xeon processor 3000, 5100, 5300, 7300 Series - general-purpose PMC</td>
+	<td>0, 1</td>
+</tr>
+<tr>
+	<td>Intel Xeon processors 7100 series with L3</td>
+	<td>≥ 0 and ≤ 17</td>
+</tr>
+<tr>
+	<td>Intel® Core™2 Duo processor family, Intel Xeon processor family - general-purpose PMC</td>
+	<td>0, 1</td>
+</tr>
+<tr>
+	<td>Intel Xeon processors 7400 series</td>
+	<td>0, 1</td>
+</tr>
+<tr>
+	<td>Intel® Atom™ processor family</td>
+	<td>0, 1</td>
+</tr>
+<tr>
+	<td>Intel® Core™i7 processor, Intel Xeon processors</td>
+	<td>0, 1, 2, 3</td>
+</tr>
+<tr>
+	<td>5500 series</td>
+	<td>06H_2EH</td>
+</tr>
+</table>
+<p>The Pentium 4 and Intel Xeon processors also support “fast” (32-bit) and “slow” (40-bit) reads on the first 18performance counters. Selected this option using ECX[31]. If bit 31 is set, RDPMC reads only the low 32 bits of the selected performance counter. If bit 31 is clear, all 40 bits are read. A 32-bit result is returned in EAX and EDX is set to 0. A 32-bit read executes faster on Pentium 4 processors and Intel Xeon processors than a full 40-bit read.</p><p>On 64-bit Intel Xeon processors with L3, performance counters with indices 18-25 are 32-bit counters. EDX is cleared after executing RDPMC for these counters. On Intel Xeon processor 7100 series with L3, performance counters with indices 18-25 are also 32-bit counters.</p><p>In Intel Core 2 processor family, Intel Xeon processor 3000, 5100, 5300 and 7400 series, the fixed-function performance counters are 40-bits wide; they can be accessed by RDMPC with ECX between from 4000_0000H and 4000_0002H.</p><p>On Intel Xeon processor 7400 series, there are eight 32-bit special-purpose counters addressable with indices 2-9,ECX[30]=0.</p><p>When in protected or virtual 8086 mode, the performance-monitoring counters enabled (PCE) flag in register CR4restricts the use of the RDPMC instruction as follows. When the PCE flag is set, the RDPMC instruction can be executed at any privilege level; when the flag is clear, the instruction can only be executed at privilege level 0. (When in real-address mode, the RDPMC instruction is always enabled.)</p><p>The performance-monitoring counters can also be read with the RDMSR instruction, when executing at privilege level 0.</p><p>The performance-monitoring counters are event counters that can be programmed to count events such as the number of instructions decoded, number of interrupts received, or number of cache loads. Chapter 19, “Performance Monitoring Events,” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3B, lists the events that can be counted for various processors in the Intel 64 and IA-32 architecture families.</p><p>The RDPMC instruction is not a serializing instruction; that is, it does not imply that all the events caused by the preceding instructions have been completed or that events caused by subsequent instructions have not begun. If an exact event count is desired, software must insert a serializing instruction (such as the CPUID instruction)before and/or after the RDPMC instruction.</p><p>In the Pentium 4 and Intel Xeon processors, performing back-to-back fast reads are not guaranteed to be monotonic. To guarantee monotonicity on back-to-back reads, a serializing instruction must be placed between the two RDPMC instructions.</p><p>The RDPMC instruction can execute in 16-bit addressing mode or virtual-8086 mode; however, the full contents of the ECX register are used to select the counter, and the event count is stored in the full EAX and EDX registers. The RDPMC instruction was introduced into the IA-32 Architecture in the Pentium Pro processor and the Pentium processor with MMX technology. The earlier Pentium processors have performance-monitoring counters, but they must be read with the RDMSR instruction.</p><h2 id="operation">Operation</h2>
+<pre>(* Intel Core i7 processor family and Intel Xeon processor 3400, 5500 series*)
+Most significant counter bit (MSCB) = 47
+IF ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
+  THEN IF (ECX[30] = 1 and ECX[29:0] in valid fixed-counter range)
+     EAX ← IA32_FIXED_CTR(ECX)[30:0];
+     EDX ← IA32_FIXED_CTR(ECX)[MSCB:32];
+  ELSE IF (ECX[30] = 0 and ECX[29:0] in valid general-purpose counter range)
+     EAX ← PMC(ECX[30:0])[31:0];
+     EDX ← PMC(ECX[30:0])[MSCB:32];
+  ELSE (* ECX is not valid or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 *)
+     #GP(0);
+FI;
+(* Intel Core 2 Duo processor family and Intel Xeon processor 3000, 5100, 5300, 7400 series*)
+Most significant counter bit (MSCB) = 39
+IF ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
+  THEN IF (ECX[30] = 1 and ECX[29:0] in valid fixed-counter range)
+     EAX ← IA32_FIXED_CTR(ECX)[30:0];
+     EDX ← IA32_FIXED_CTR(ECX)[MSCB:32];
+  ELSE IF (ECX[30] = 0 and ECX[29:0] in valid general-purpose counter range)
+     EAX ← PMC(ECX[30:0])[31:0];
+     EDX ← PMC(ECX[30:0])[MSCB:32];
+  ELSE IF (ECX[30] = 0 and ECX[29:0] in valid special-purpose counter range)
+     EAX ← PMC(ECX[30:0])[31:0]; (* 32-bit read *)
+  ELSE (* ECX is not valid or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 *)
+     #GP(0);
+FI;
+(* P6 family processors and Pentium processor with MMX technology *)
+IF (ECX = 0 or 1) and ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
+  THEN
+     EAX ← PMC(ECX)[31:0];
+     EDX ← PMC(ECX)[39:32];
+  ELSE (* ECX is not 0 or 1 or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 *)
+     #GP(0);
+FI;
+(* Processors with CPUID family 15 *)
+IF ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
+  THEN IF (ECX[30:0] = 0:17)
+     THEN IF ECX[31] = 0
+       THEN
+          EAX ← PMC(ECX[30:0])[31:0]; (* 40-bit read *)
+          EDX ← PMC(ECX[30:0])[39:32];
+     ELSE (* ECX[31] = 1*)
+       THEN
+          EAX ← PMC(ECX[30:0])[31:0]; (* 32-bit read *)
+          EDX ← 0;
+     FI;
+  ELSE IF (*64-bit Intel Xeon processor with L3 *)
+     THEN IF (ECX[30:0] = 18:25 )
+       EAX ← PMC(ECX[30:0])[31:0]; (* 32-bit read *)
+       EDX ← 0;
+     FI;
+  ELSE IF (*Intel Xeon processor 7100 series with L3 *)
+     THEN IF (ECX[30:0] = 18:25 )
+       EAX ← PMC(ECX[30:0])[31:0]; (* 32-bit read *)
+       EDX ← 0;
+     FI;
+  ELSE (* Invalid PMC index in ECX[30:0], see Table 4-15. *)
+     GP(0);
+  FI;
+ELSE
+  #GP(0);
+FI;
+</pre><h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#GP(0)</td>
+	<td>If the current privilege level is not 0 and the PCE flag in the CR4 register is clear. If an invalid performance counter index is specified (see Table 4-12). (Pentium 4 and Intel Xeon processors) If the value in ECX[30:0] is not within the valid range.</td>
+</tr>
+<tr>
+	<td>#UD</td>
+	<td>If the LOCK prefix is used.</td>
+</tr>
+</table>
+<h2 id="real-address-mode-exceptions">Real-Address Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#GP</td>
+	<td>If an invalid performance counter index is specified (see Table 4-12). (Pentium 4 and Intel Xeon processors) If the value in ECX[30:0] is not within the valid range.</td>
+</tr>
+<tr>
+	<td>#UD</td>
+	<td>If the LOCK prefix is used.</td>
+</tr>
+</table>
+<h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#GP(0)</td>
+	<td>If the PCE flag in the CR4 register is clear. If an invalid performance counter index is specified (see Table 4-12). (Pentium 4 and Intel Xeon processors) If the value in ECX[30:0] is not within the valid range.</td>
+</tr>
+<tr>
+	<td>#UD</td>
+	<td>If the LOCK prefix is used.</td>
+</tr>
+</table>
+<h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#GP(0)</td>
+	<td>If the current privilege level is not 0 and the PCE flag in the CR4 register is clear. If an invalid performance counter index is specified in ECX[30:0] (see Table 4-12).</td>
+</tr>
+<tr>
+	<td>#UD</td>
+	<td>If the LOCK prefix is used.</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>PSRLW/PSRLD/PSRLQ—Shift Packed Data Right Logical</title>
+</head>
+<body>
+<h1 id="psrlw-psrld-psrlq-shift-packed-data-right-logical">PSRLW/PSRLD/PSRLQ—Shift Packed Data Right Logical</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32 bit Mode Support</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>0F D1 /r1PSRLW mm, mm/m64</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>MMX</td>
+	<td>Shift words in mm right by amount specified in mm/m64 while shifting in 0s.</td>
+</tr>
+<tr>
+	<td>66 0F D1 /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE2</td>
+	<td>Shift words in xmm1 right by amount PSRLW xmm1, xmm2/m128</td>
+</tr>
+<tr>
+	<td>0F 71 /2 ib1</td>
+	<td>MI</td>
+	<td>V/V</td>
+	<td>MMX</td>
+	<td>Shift words in mm right by imm8 while shifting PSRLW mm, imm8</td>
+</tr>
+<tr>
+	<td>66 0F 71 /2 ib</td>
+	<td>MI</td>
+	<td>V/V</td>
+	<td>SSE2</td>
+	<td>Shift words in xmm1 right by imm8 while PSRLW xmm1, imm8</td>
+</tr>
+<tr>
+	<td>0F D2 /r1PSRLD mm, mm/m64</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>MMX</td>
+	<td>Shift doublewords in mm right by amount specified in mm/m64 while shifting in 0s.</td>
+</tr>
+<tr>
+	<td>66 0F D2 /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE2</td>
+	<td>Shift doublewords in xmm1 right by amount PSRLD xmm1, xmm2/m128</td>
+</tr>
+<tr>
+	<td>0F 72 /2 ib1</td>
+	<td>MI</td>
+	<td>V/V</td>
+	<td>MMX</td>
+	<td>Shift doublewords in mm right by imm8 while PSRLD mm, imm8</td>
+</tr>
+<tr>
+	<td>66 0F 72 /2 ib</td>
+	<td>MI</td>
+	<td>V/V</td>
+	<td>SSE2</td>
+	<td>Shift doublewords in xmm1 right by imm8PSRLD xmm1, imm8</td>
+</tr>
+<tr>
+	<td>0F D3 /r1</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>MMX</td>
+	<td>Shift mm right by amount specified in PSRLQ mm, mm/m64</td>
+</tr>
+<tr>
+	<td>66 0F D3 /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE2</td>
+	<td>Shift quadwords in xmm1 right by amount PSRLQ xmm1, xmm2/m128</td>
+</tr>
+<tr>
+	<td>0F 73 /2 ib1PSRLQ mm, imm8</td>
+	<td>MI</td>
+	<td>V/V</td>
+	<td>MMX</td>
+	<td>Shift mm right by imm8 while shifting in 0s.</td>
+</tr>
+<tr>
+	<td>66 0F 73 /2 ib</td>
+	<td>MI</td>
+	<td>V/V</td>
+	<td>SSE2</td>
+	<td>Shift quadwords in xmm1 right by imm8 while PSRLQ xmm1, imm8</td>
+</tr>
+<tr>
+	<td>VEX.NDS.128.66.0F.WIG D1 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Shift words in xmm2 right by amount VPSRLW xmm1, xmm2, xmm3/m128</td>
+</tr>
+<tr>
+	<td>VEX.NDD.128.66.0F.WIG 71 /2 ib</td>
+	<td>VMI</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Shift words in xmm2 right by imm8 while VPSRLW xmm1, xmm2, imm8</td>
+</tr>
+<tr>
+	<td>VEX.NDS.128.66.0F.WIG D2 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Shift doublewords in xmm2 right by amount VPSRLD xmm1, xmm2, xmm3/m128</td>
+</tr>
+<tr>
+	<td>VEX.NDD.128.66.0F.WIG 72 /2 ib</td>
+	<td>VMI</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Shift doublewords in xmm2 right by imm8VPSRLD xmm1, xmm2, imm8</td>
+</tr>
+<tr>
+	<td>VEX.NDS.128.66.0F.WIG D3 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Shift quadwords in xmm2 right by amount VPSRLQ xmm1, xmm2, xmm3/m128</td>
+</tr>
+<tr>
+	<td>VEX.NDD.128.66.0F.WIG 73 /2 ib</td>
+	<td>VMI</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Shift quadwords in xmm2 right by imm8 while VPSRLQ xmm1, xmm2, imm8</td>
+</tr>
+<tr>
+	<td>VEX.NDS.256.66.0F.WIG D1 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Shift words in ymm2 right by amount specified VPSRLW ymm1, ymm2, xmm3/m128</td>
+</tr>
+<tr>
+	<td>VEX.NDD.256.66.0F.WIG 71 /2 ib</td>
+	<td>VMI</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Shift words in ymm2 right by imm8 while VPSRLW ymm1, ymm2, imm8</td>
+</tr>
+<tr>
+	<td>VEX.NDS.256.66.0F.WIG D2 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Shift doublewords in ymm2 right by amount VPSRLD ymm1, ymm2, xmm3/m128</td>
+</tr>
+<tr>
+	<td>VEX.NDD.256.66.0F.WIG 72 /2 ib</td>
+	<td>VMI</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Shift doublewords in ymm2 right by imm8VPSRLD ymm1, ymm2, imm8</td>
+</tr>
+<tr>
+	<td>VEX.NDS.256.66.0F.WIG D3 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Shift quadwords in ymm2 right by amount VPSRLQ ymm1, ymm2, xmm3/m128</td>
+</tr>
+<tr>
+	<td>VEX.NDD.256.66.0F.WIG 73 /2 ib</td>
+	<td>VMI</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Shift quadwords in ymm2 right by imm8 while VPSRLQ ymm1, ymm2, imm8</td>
+</tr>
+</table>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual,Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p><h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>RM</td>
+	<td>ModRM:reg (r, w)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+<tr>
+	<td>MI</td>
+	<td>ModRM:r/m (r, w)</td>
+	<td>imm8</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+<tr>
+	<td>RVM</td>
+	<td>ModRM:reg (w)</td>
+	<td>VEX.vvvv (r)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+</tr>
+<tr>
+	<td>VMI</td>
+	<td>VEX.vvvv (w)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>imm8</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Shifts the bits in the individual data elements (words, doublewords, or quadword) in the destination operand (first operand) to the right by the number of bits specified in the count operand (second operand). As the bits in the data elements are shifted right, the empty high-order bits are cleared (set to 0). If the value specified by the count operand is greater than 15 (for words), 31 (for doublewords), or 63 (for a quadword), then the destination operand is set to all 0s. Figure 4-15 gives an example of shifting words in a 64-bit operand.</p><p>Note that only the first 64-bits of a 128-bit count operand are checked to compute the count.</p><p>Pre-Shift</p><table>
+<tr>
+	<td>X3</td>
+	<td>X2X2 >> COUNT</td>
+	<td>X1X1 >> COUNT</td>
+	<td>X0DEST Shift Right with Zero Extension X0 >> COUNT DEST PSRLW, PSRLD, and PSRLQ Instruction Operation Using 64-bit Operand</td>
+</tr>
+</table>
+<p>The (V)PSRLW instruction shifts each of the words in the destination operand to the right by the number of bits specified in the count operand; the (V)PSRLD instruction shifts each of the doublewords in the destination operand;and the PSRLQ instruction shifts the quadword (or quadwords) in the destination operand.</p><p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15).</p><p>Legacy SSE instructions: The destination operand is an MMX technology register; the count operand can be either an MMX technology register or an 64-bit memory location. 128-bit Legacy SSE version: The destination operand is an XMM register; the count operand can be either an XMM register or a 128-bit memory location, or an 8-bit immediate. If the count operand is a memory address, 128 bits</p><p>are loaded but the upper 64 bits are ignored. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: The destination operand is an XMM register; the count operand can be either an XMM register or a 128-bit memory location, or an 8-bit immediate. If the count operand is a memory address, 128 bits are loaded but the upper 64 bits are ignored. Bits (VLMAX-1:128) of the destination YMM register are zeroed.</p><p>VEX.256 encoded version: The destination and first source operands are YMM registers. The count operand can be either an YMM register or a 128-bit memory location or an 8-bit immediate.</p><p>Note: For shifts with an immediate count (VEX.128.66.0F 71-73 /2), VEX.vvvv encodes the destination register,and VEX.B + ModRM.r/m encodes the source register. VEX.L must be 0, otherwise instructions will #UD.</p><h2 id="operation">Operation</h2>
+<pre>PSRLW (with 64-bit operand)
+  IF (COUNT > 15)
+  THEN
+     DEST[64:0] ← 0000000000000000H
+  ELSE
+     DEST[15:0] ← ZeroExtend(DEST[15:0] >> COUNT);
+     (* Repeat shift operation for 2nd and 3rd words *)
+     DEST[63:48] ← ZeroExtend(DEST[63:48] >> COUNT);
+  FI;
+PSRLD (with 64-bit operand)
+  IF (COUNT > 31)
+  THEN
+     DEST[64:0] ← 0000000000000000H
+  ELSE
+     DEST[31:0] ← ZeroExtend(DEST[31:0] >> COUNT);
+     DEST[63:32] ← ZeroExtend(DEST[63:32] >> COUNT);
+  FI;
+PSRLQ (with 64-bit operand)
+  IF (COUNT > 63)
+  THEN
+     DEST[64:0] ← 0000000000000000H
+  ELSE
+     DEST ← ZeroExtend(DEST >> COUNT);
+  FI;
+PSRLW (with 128-bit operand)
+  COUNT ← COUNT_SOURCE[63:0];
+  IF (COUNT > 15)
+  THEN
+     DEST[128:0] ← 00000000000000000000000000000000H
+  ELSE
+     DEST[15:0]
+     (* Repeat shift operation for 2nd through 7th words *)
+     DEST[127:112] ← ZeroExtend(DEST[127:112] >> COUNT);
+  FI;
+PSRLD (with 128-bit operand)
+  COUNT ← COUNT_SOURCE[63:0];
+  IF (COUNT > 31)
+  THEN
+     DEST[128:0] ← 00000000000000000000000000000000H
+  ELSE
+     DEST[31:0]
+     (* Repeat shift operation for 2nd and 3rd doublewords *)
+     DEST[127:96] ← ZeroExtend(DEST[127:96] >> COUNT);
+  FI;
+PSRLQ (with 128-bit operand)
+  COUNT ← COUNT_SOURCE[63:0];
+  IF (COUNT > 15)
+  THEN
+     DEST[128:0] ← 00000000000000000000000000000000H
+  ELSE
+     DEST[63:0]
+     DEST[127:64] ← ZeroExtend(DEST[127:64] >> COUNT);
+  FI;
+PSRLW (xmm, xmm, xmm/m128)
+DEST[127:0] ← LOGICAL_RIGHT_SHIFT_WORDS(DEST, SRC)
+DEST[VLMAX-1:128] (Unmodified)
+PSRLW (xmm, imm8)
+DEST[127:0] ← LOGICAL_RIGHT_SHIFT_WORDS(DEST, imm8)
+DEST[VLMAX-1:128] (Unmodified)
+VPSRLW (xmm, xmm, xmm/m128)
+DEST[127:0] ← LOGICAL_RIGHT_SHIFT_WORDS(SRC1, SRC2)
+DEST[VLMAX-1:128] ← 0
+VPSRLW (xmm, imm8)
+DEST[127:0] ← LOGICAL_RIGHT_SHIFT_WORDS(SRC1, imm8)
+DEST[VLMAX-1:128] ← 0
+PSRLD (xmm, xmm, xmm/m128)
+DEST[127:0] ← LOGICAL_RIGHT_SHIFT_DWORDS(DEST, SRC)
+DEST[VLMAX-1:128] (Unmodified)
+PSRLD (xmm, imm8)
+DEST[127:0] ← LOGICAL_RIGHT_SHIFT_DWORDS(DEST, imm8)
+DEST[VLMAX-1:128] (Unmodified)
+VPSRLD (xmm, xmm, xmm/m128)
+DEST[127:0] ← LOGICAL_RIGHT_SHIFT_DWORDS(SRC1, SRC2)
+DEST[VLMAX-1:128] ← 0
+VPSRLD (xmm, imm8)
+DEST[127:0] ← LOGICAL_RIGHT_SHIFT_DWORDS(SRC1, imm8)
+DEST[VLMAX-1:128] ← 0
+PSRLQ (xmm, xmm, xmm/m128)
+DEST[127:0] ← LOGICAL_RIGHT_SHIFT_QWORDS(DEST, SRC)
+DEST[VLMAX-1:128] (Unmodified)
+PSRLQ (xmm, imm8)
+DEST[127:0] ← LOGICAL_RIGHT_SHIFT_QWORDS(DEST, imm8)
+DEST[VLMAX-1:128] (Unmodified)
+VPSRLQ (xmm, xmm, xmm/m128)
+DEST[127:0] ← LOGICAL_RIGHT_SHIFT_QWORDS(SRC1, SRC2)
+DEST[VLMAX-1:128] ← 0
+VPSRLQ (xmm, imm8)
+DEST[127:0] ← LOGICAL_RIGHT_SHIFT_QWORDS(SRC1, imm8)
+DEST[VLMAX-1:128] ← 0
+VPSRLW (ymm, ymm, xmm/m128)
+DEST[255:0] ← LOGICAL_RIGHT_SHIFT_WORDS_256b(SRC1, SRC2)
+VPSRLW (ymm, imm8)
+DEST[255:0] ← LOGICAL_RIGHT_SHIFT_WORDS_256b(SRC1, imm8)
+VPSRLD (ymm, ymm, xmm/m128)
+DEST[255:0] ← LOGICAL_RIGHT_SHIFT_DWORDS_256b(SRC1, SRC2)
+VPSRLD (ymm, imm8)
+DEST[255:0] ← LOGICAL_RIGHT_SHIFT_DWORDS_256b(SRC1, imm8)
+VPSRLQ (ymm, ymm, xmm/m128)
+DEST[255:0] ← LOGICAL_RIGHT_SHIFT_QWORDS_256b(SRC1, SRC2)
+VPSRLQ (ymm, imm8)
+DEST[255:0] ← LOGICAL_RIGHT_SHIFT_QWORDS_256b(SRC1, imm8)
+</pre><h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+<table>
+<tr>
+	<td>PSRLW:PSRLW:(V)PSRLW:(V)PSRLW:VPSRLW:VPSRLW:</td>
+	<td>__m64 _mm_srli_pi16(__m64 m, int __m64 _mm_srl_pi16 (__m64 m, __m64 count)__m128i _mm_srli_epi16 (__m128i m, int count)__m128i _mm_srl_epi16 (__m128i m, __m128i count)__m256i _mm256_srli_epi16 (__m256i m, int count)__m256i _mm256_srl_epi16 (__m256i m, __m128i count)</td>
+	<td>count)</td>
+</tr>
+<tr>
+	<td>PSRLD:PSRLD:</td>
+	<td>__m64 _mm_srli_pi32 (__m64 m, int __m64 _mm_srl_pi32 (__m64 m, __m64 count)</td>
+	<td>count)</td>
+</tr>
+<tr>
+	<td>(V)PSRLD:(V)PSRLD:VPSRLD:VPSRLD:</td>
+	<td>__m128i _mm_srli_epi32 (__m128i m, int __m128i _mm_srl_epi32 (__m128i m, __m128i count)__m256i _mm256_srli_epi32 (__m256i m, int count)__m256i _mm256_srl_epi32 (__m256i m, __m128i count)</td>
+	<td>count)</td>
+</tr>
+<tr>
+	<td>PSRLQ:PSRLQ:</td>
+	<td>__m64 _mm_srli_si64 (__m64 m, int __m64 _mm_srl_si64 (__m64 m, __m64 count)</td>
+	<td>count)</td>
+</tr>
+<tr>
+	<td>(V)PSRLQ:(V)PSRLQ:VPSRLQ:VPSRLQ:</td>
+	<td>__m128i _mm_srli_epi64 (__m128i m, int __m128i _mm_srl_epi64 (__m128i m, __m128i count)__m256i _mm256_srli_epi64 (__m256i m, int count)__m256i _mm256_srl_epi64 (__m256i m, __m128i count)</td>
+	<td>count)</td>
+</tr>
+</table>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p><h2 id="numeric-exceptions">Numeric Exceptions</h2>
+<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4 and 7 for non-VEX-encoded instructions; additionally</p><table>
+<tr>
+	<td>#UD</td>
+	<td>If VEX.L = 1.</td>
+</tr>
+</table>
+</body>
+</html>

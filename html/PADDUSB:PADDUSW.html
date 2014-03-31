@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>PADDUSB/PADDUSW—Add Packed Unsigned Integers with Unsigned Saturation</title>
+</head>
+<body>
+<h1 id="paddusb-paddusw-add-packed-unsigned-integers-with-unsigned-saturation">PADDUSB/PADDUSW—Add Packed Unsigned Integers with Unsigned Saturation</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32 bit Mode Support</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>0F DC /r1</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>MMX</td>
+	<td>Add packed unsigned byte integers from PADDUSB mm, mm/m64</td>
+</tr>
+<tr>
+	<td>66 0F DC /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE2</td>
+	<td>Add packed unsigned byte integers from PADDUSB xmm1, xmm2/m128</td>
+</tr>
+<tr>
+	<td>0F DD /r1</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>MMX</td>
+	<td>Add packed unsigned word integers from PADDUSW mm, mm/m64</td>
+</tr>
+<tr>
+	<td>66 0F DD /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE2</td>
+	<td>Add packed unsigned word integers from PADDUSW xmm1, xmm2/m128results.</td>
+</tr>
+<tr>
+	<td>VEX.NDS.128.660F.WIG DC /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Add packed unsigned byte integers from VPADDUSB xmm1, xmm2, xmm3/m128results.</td>
+</tr>
+<tr>
+	<td>VEX.NDS.128.66.0F.WIG DD /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Add packed unsigned word integers from VPADDUSW xmm1, xmm2, xmm3/m128results.</td>
+</tr>
+<tr>
+	<td>VEX.NDS.256.66.0F.WIG DC /r VPADDUSB ymm1, ymm2, ymm3/m256</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Add packed unsigned byte integers from ymm2, and ymm3/m256 and store the saturated results in ymm1.</td>
+</tr>
+<tr>
+	<td>VEX.NDS.256.66.0F.WIG DD /r VPADDUSW ymm1, ymm2, ymm3/m256</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Add packed unsigned word integers from ymm2, and ymm3/m256 and store the saturated results in ymm1.</td>
+</tr>
+</table>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual,Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p><h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>RM</td>
+	<td>ModRM:reg (r, w)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+<tr>
+	<td>RVM</td>
+	<td>ModRM:reg (w)</td>
+	<td>VEX.vvvv (r)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Performs a SIMD add of the packed unsigned integers from the source operand (second operand) and the destination operand (first operand), and stores the packed integer results in the destination operand. See Figure 9-4 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, for an illustration of a SIMD operation. Overflow is handled with unsigned saturation, as described in the following paragraphs.</p><p>The (V)PADDUSB instruction adds packed unsigned byte integers. When an individual byte result is beyond the range of an unsigned byte integer (that is, greater than FFH), the saturated value of FFH is written to the destination operand.</p><p>The (V)PADDUSW instruction adds packed unsigned word integers. When an individual word result is beyond the range of an unsigned word integer (that is, greater than FFFFH), the saturated value of FFFFH is written to the destination operand.</p><p>These instructions can operate on either 64-bit, 128-bit or 256-bit operands. When operating on 64-bit operands,the destination operand must be an MMX technology register and the source operand can be either an MMX tech-</p><p>nology register or a 64-bit memory location. In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: The first source operand is an XMM register. The second operand can be an XMM register or a 128-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified.</p><p>VEX.128 encoded version: The first source operand is an XMM register. The second source operand is an XMM register or 128-bit memory location. The destination operand is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed. VEX.256 encoded version: The first source operand is a YMM register. The second source operand is a YMM register or a 256-bit memory location. The destination operand is a YMM register. Note: VEX.L must be 0, otherwise the instruction will #UD.</p><h2 id="operation">Operation</h2>
+<pre>PADDUSB (with 64-bit operands)
+  DEST[7:0] ← SaturateToUnsignedByte(DEST[7:0] + SRC (7:0] );
+  (* Repeat add operation for 2nd through 7th bytes *)
+  DEST[63:56] ← SaturateToUnsignedByte(DEST[63:56] + SRC[63:56]
+PADDUSB (with 128-bit operands)
+  DEST[7:0] ← SaturateToUnsignedByte (DEST[7:0] + SRC[7:0]);
+  (* Repeat add operation for 2nd through 14th bytes *)
+  DEST[127:120] ← SaturateToUnSignedByte (DEST[127:120] + SRC[127:120]);
+VPADDUSB (VEX.128 encoded version)
+  DEST[7:0] ← SaturateToUnsignedByte (SRC1[7:0] + SRC2[7:0]);
+  (* Repeat subtract operation for 2nd through 14th bytes *)
+  DEST[127:120] ← SaturateToUnsignedByte (SRC1[111:120] + SRC2[127:120]);
+  DEST[VLMAX-1:128] ← 0
+VPADDUSB (VEX.256 encoded version)
+  DEST[7:0] ← SaturateToUnsignedByte (SRC1[7:0] + SRC2[7:0]);
+  (* Repeat add operation for 2nd through 31st bytes *)
+  DEST[255:248]← SaturateToUnsignedByte (SRC1[255:248] + SRC2[255:248]);
+PADDUSW (with 64-bit operands)
+  DEST[15:0] ← SaturateToUnsignedWord(DEST[15:0] + SRC[15:0] );
+  (* Repeat add operation for 2nd and 3rd words *)
+  DEST[63:48] ← SaturateToUnsignedWord(DEST[63:48] + SRC[63:48] );
+PADDUSW (with 128-bit operands)
+  DEST[15:0] ← SaturateToUnsignedWord (DEST[15:0] + SRC[15:0]);
+  (* Repeat add operation for 2nd through 7th words *)
+  DEST[127:112] ← SaturateToUnSignedWord (DEST[127:112] + SRC[127:112]);
+VPADDUSW (VEX.128 encoded version)
+  DEST[15:0] ← SaturateToUnsignedWord (SRC1[15:0] + SRC2[15:0]);
+  (* Repeat subtract operation for 2nd through 7th words *)
+  DEST[127:112] ← SaturateToUnsignedWord (SRC1[127:112] + SRC2[127:112]);
+  DEST[VLMAX-1:128] ← 0
+VPADDUSW (VEX.256 encoded version)
+  DEST[15:0] ← SaturateToUnsignedWord (SRC1[15:0] + SRC2[15:0]);
+  (* Repeat add operation for 2nd through 15th words *)
+  DEST[255:240] ← SaturateToUnsignedWord (SRC1[255:240] + SRC2[255:240])
+</pre><h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+<table>
+<tr>
+	<td>PADDUSB:</td>
+	<td>__m64 _mm_adds_pu8(__m64 m1, __m64 m2)</td>
+</tr>
+<tr>
+	<td>PADDUSW:</td>
+	<td>__m64 _mm_adds_pu16(__m64 m1, __m64 m2)</td>
+</tr>
+<tr>
+	<td>(V)PADDUSB:</td>
+	<td>__m128i _mm_adds_epu8 ( __m128i a, __m128i b)</td>
+</tr>
+<tr>
+	<td>(V)PADDUSW:</td>
+	<td>__m128i _mm_adds_epu16 ( __m128i a, __m128i b)</td>
+</tr>
+<tr>
+	<td>VPADDUSB:</td>
+	<td>__m256i _mm256_adds_epu8 ( __m256i a, __m256i b)</td>
+</tr>
+<tr>
+	<td>VPADDUSW:</td>
+	<td>__m256i _mm256_adds_epu16 ( __m256i a, __m256i b)</td>
+</tr>
+</table>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p><h2 id="numeric-exceptions">Numeric Exceptions</h2>
+<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4; additionally</p><table>
+<tr>
+	<td>#UD</td>
+	<td>If VEX.L = 1.</td>
+</tr>
+</table>
+</body>
+</html>

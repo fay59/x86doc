@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>MOVSD—Move Scalar Double-Precision Floating-Point Value</title>
+</head>
+<body>
+<h1 id="movsd-move-scalar-double-precision-floating-point-value">MOVSD—Move Scalar Double-Precision Floating-Point Value</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32-bit Mode</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>F2 0F 10 /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE2</td>
+	<td>Move scalar double-precision floating-point MOVSD xmm1, xmm2/m64</td>
+</tr>
+<tr>
+	<td>VEX.NDS.LIG.F2.0F.WIG 10 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Merge scalar double-precision floating-point VMOVSD xmm1, xmm2, xmm3register.</td>
+</tr>
+<tr>
+	<td>VEX.LIG.F2.0F.WIG 10 /r</td>
+	<td>XM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Load scalar double-precision floating-point VMOVSD xmm1, m64</td>
+</tr>
+<tr>
+	<td>F2 0F 11 /r</td>
+	<td>MR</td>
+	<td>V/V</td>
+	<td>SSE2</td>
+	<td>Move scalar double-precision floating-point MOVSD xmm2/m64, xmm1</td>
+</tr>
+<tr>
+	<td>VEX.NDS.LIG.F2.0F.WIG 11 /r</td>
+	<td>MVR</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Merge scalar double-precision floating-point VMOVSD xmm1, xmm2, xmm3xmm1.</td>
+</tr>
+<tr>
+	<td>VEX.LIG.F2.0F.WIG 11 /r</td>
+	<td>MR</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Move scalar double-precision floating-point VMOVSD m64, xmm1</td>
+</tr>
+</table>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>RM</td>
+	<td>ModRM:reg (w)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+<tr>
+	<td>RVM</td>
+	<td>ModRM:reg (w)</td>
+	<td>VEX.vvvv (r)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+</tr>
+<tr>
+	<td>MR</td>
+	<td>ModRM:r/m (w)</td>
+	<td>ModRM:reg (r)</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+<tr>
+	<td>XM</td>
+	<td>ModRM:reg (w)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+<tr>
+	<td>MVR</td>
+	<td>ModRM:r/m (w)</td>
+	<td>VEX.vvvv (r)</td>
+	<td>ModRM:reg (r)</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>MOVSD moves a scalar double-precision floating-point value from the source operand (second operand) to the destination operand (first operand). The source and destination operands can be XMM registers or 64-bit memory locations. This instruction can be used to move a double-precision floating-point value to and from the low quadword of an XMM register and a 64-bit memory location, or to move a double-precision floating-point value between the low quadwords of two XMM registers. The instruction cannot be used to transfer data between memory locations. For non-VEX encoded instruction syntax and when the source and destination operands are XMM registers, the high quadword of the destination operand remains unchanged. When the source operand is a memory location and destination operand is an XMM registers, the high quadword of the destination operand is cleared to all 0s.</p><p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). Note: For the “VMOVSD m64, xmm1” (memory store form) instruction version, VEX.vvvv is reserved and must be 1111b, otherwise instruction will #UD. Note: For the “VMOVSD xmm1, m64” (memory load form) instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD. VEX encoded instruction syntax supports two source operands and a destination operand if ModR/M.mod field is 11B. VEX.vvvv is used to encode the first source operand (the second operand). The low 128 bits of the destination operand stores the result of merging the low quadword of the second source operand with the quad word in bits 127:64 of the first source operand. The upper bits of the destination operand are cleared.</p><h2 id="operation">Operation</h2>
+<pre>MOVSD (128-bit Legacy SSE version: MOVSD XMM1, XMM2)
+DEST[63:0] ← SRC[63:0]
+DEST[VLMAX-1:64] (Unmodified)
+MOVSD/VMOVSD (128-bit versions: MOVSD m64, xmm1 or VMOVSD m64, xmm1)
+DEST[63:0] ← SRC[63:0]
+MOVSD (128-bit Legacy SSE version: MOVSD XMM1, m64)
+DEST[63:0] ← SRC[63:0]
+DEST[127:64] ← 0
+DEST[VLMAX-1:128] (Unmodified)
+VMOVSD (VEX.NDS.128.F2.0F 11 /r: VMOVSD xmm1, xmm2, xmm3)
+DEST[63:0] ← SRC2[63:0]
+DEST[127:64] ← SRC1[127:64]
+DEST[VLMAX-1:128] ← 0
+VMOVSD (VEX.NDS.128.F2.0F 10 /r: VMOVSD xmm1, xmm2, xmm3)
+DEST[63:0] ← SRC2[63:0]
+DEST[127:64] ← SRC1[127:64]
+DEST[VLMAX-1:128] ← 0
+VMOVSD (VEX.NDS.128.F2.0F 10 /r: VMOVSD xmm1, m64)
+DEST[63:0] ← SRC[63:0]
+DEST[VLMAX-1:64] ← 0
+</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<table>
+<tr>
+	<td>MOVSD:</td>
+	<td>__m128d _mm_load_sd (double *p)</td>
+</tr>
+<tr>
+	<td>MOVSD:</td>
+	<td>void _mm_store_sd (double *p, __m128d a)</td>
+</tr>
+<tr>
+	<td>MOVSD:</td>
+	<td>__m128d _mm_store_sd (__m128d a, __m128d b)</td>
+</tr>
+</table>
+<h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 5; additionally</p><table>
+<tr>
+	<td>#UD</td>
+	<td>If VEX.vvvv != 1111B.</td>
+</tr>
+</table>
+</body>
+</html>

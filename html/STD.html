@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>STD—Set Direction Flag</title>
+</head>
+<body>
+<h1 id="std-set-direction-flag">STD—Set Direction Flag</h1>
+<table>
+<tr>
+	<td>Opcode*</td>
+	<td>Instruction</td>
+	<td>Op/En</td>
+	<td>64-Bit Mode</td>
+	<td>Compat/Leg Mode</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>FD</td>
+	<td>STD</td>
+	<td>NP</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Set DF flag.</td>
+</tr>
+</table>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>NP</td>
+	<td>NA</td>
+	<td>NA</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Sets the DF flag in the EFLAGS register. When the DF flag is set to 1, string operations decrement the index registers (ESI and/or EDI).</p><p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p><h2 id="operation">Operation</h2>
+<pre>DF ← 1;
+</pre><h2 id="flags-affected">Flags Affected</h2>
+<p>The DF flag is set. The CF, OF, ZF, SF, AF, and PF flags are unaffected.</p><h2 id="exceptions--all-operating-modes-">Exceptions (All Operating Modes)</h2>
+<table>
+<tr>
+	<td>#UD</td>
+	<td>If the LOCK prefix is used.</td>
+</tr>
+</table>
+</body>
+</html>

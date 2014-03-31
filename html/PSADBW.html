@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>PSADBW—Compute Sum of Absolute Differences</title>
+</head>
+<body>
+<h1 id="psadbw-compute-sum-of-absolute-differences">PSADBW—Compute Sum of Absolute Differences</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32 bit Mode Support</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>0F F6 /r1</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE</td>
+	<td>Computes the absolute differences of the PSADBW mm1, mm2/m64/m64 and mm1; differences are then summed to produce an unsigned word integer result.</td>
+</tr>
+<tr>
+	<td>66 0F F6 /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE2</td>
+	<td>Computes the absolute differences of the PSADBW xmm1, xmm2/m128/m128 and xmm1; the 8 low differences and 8high differences are then summed separately to produce two unsigned word integer results.</td>
+</tr>
+<tr>
+	<td>VEX.NDS.128.66.0F.WIG F6 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Computes the absolute differences of the VPSADBW xmm1, xmm2, xmm3/m128/m128 and xmm2; the 8 low differences and 8high differences are then summed separately to produce two unsigned word integer results.</td>
+</tr>
+<tr>
+	<td>VEX.NDS.256.66.0F.WIG F6 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Computes the absolute differences of the VPSADBW ymm1, ymm2, ymm3/m256/m256 and ymm2; then each consecutive 8differences are summed separately to produce four unsigned word integer results.</td>
+</tr>
+</table>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual,Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p><h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>RM</td>
+	<td>ModRM:reg (r, w)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+<tr>
+	<td>RVM</td>
+	<td>ModRM:reg (w)</td>
+	<td>VEX.vvvv (r)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Computes the absolute value of the difference of 8 unsigned byte integers from the source operand (second operand) and from the destination operand (first operand). These 8 differences are then summed to produce an unsigned word integer result that is stored in the destination operand. Figure 4-10 shows the operation of the PSADBW instruction when using 64-bit operands.</p><p>When operating on 64-bit operands, the word integer result is stored in the low word of the destination operand,and the remaining bytes in the destination operand are cleared to all 0s.</p><p>When operating on 128-bit operands, two packed results are computed. Here, the 8 low-order bytes of the source and destination operands are operated on to produce a word result that is stored in the low word of the destination operand, and the 8 high-order bytes are operated on to produce a word result that is stored in bits 64 through 79of the destination operand. The remaining bytes of the destination operand are cleared.</p><p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15). Legacy SSE version: The source operand can be an MMX technology register or a 64-bit memory location. The destination operand is an MMX technology register.</p><p>128-bit Legacy SSE version: The first source operand and destination register are XMM registers. The second source operand is an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged.</p><p>VEX.128 encoded version: The first source operand and destination register are XMM registers. The second source operand is an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the destination YMM register are zeroed. VEX.256 encoded version: The first source operand and destination register are YMM registers. The second source operand is an YMM register or a 256-bit memory location.</p><p>Note: VEX.L must be 0, otherwise the instruction will #UD.</p><table>
+<tr>
+	<td>SRC Figure 4-10.</td>
+	<td>X7Y7ABS(X7:Y7)00H</td>
+	<td>X6Y6ABS(X6:Y6)00H PSADBW Instruction Operation Using 64-bit Operands</td>
+	<td>X5Y5ABS(X5:Y5)00H</td>
+	<td>X4Y4ABS(X4:Y4)00H</td>
+	<td>X3Y3ABS(X3:Y3)00H</td>
+	<td>X2Y2ABS(X2:Y2)00H</td>
+	<td>X1Y1ABS(X1:Y1)SUM(TEMP7...TEMP0)</td>
+	<td>X0Y0ABS(X0:Y0)DEST</td>
+</tr>
+</table>
+<h2 id="operation">Operation</h2>
+<pre>PSADBW (when using 64-bit operands)
+  TEMP0 ← ABS(DEST[7:0] − SRC[7:0]);
+  (* Repeat operation for bytes 2 through 6 *)
+  TEMP7 ← ABS(DEST[63:56] − SRC[63:56]);
+  DEST[15:0] ← SUM(TEMP0:TEMP7);
+  DEST[63:16] ← 000000000000H;
+PSADBW (when using 128-bit operands)
+  TEMP0 ← ABS(DEST[7:0] − SRC[7:0]);
+  (* Repeat operation for bytes 2 through 14 *)
+  TEMP15 ← ABS(DEST[127:120] − SRC[127:120]);
+  DEST[15:0] ← SUM(TEMP0:TEMP7);
+  DEST[63:16] ← 000000000000H;
+  DEST[79:64] ← SUM(TEMP8:TEMP15);
+  DEST[127:80] ← 000000000000H;
+  DEST[VLMAX-1:128] (Unmodified)
+VPSADBW (VEX.128 encoded version)
+TEMP0 ← ABS(SRC1[7:0] - SRC2[7:0])
+(* Repeat operation for bytes 2 through 14 *)
+TEMP15 ← ABS(SRC1[127:120] - SRC2[127:120])
+DEST[15:0] ←SUM(TEMP0:TEMP7)
+DEST[63:16] ← 000000000000H
+DEST[79:64] ← SUM(TEMP8:TEMP15)
+DEST[127:80] ← 00000000000
+DEST[VLMAX-1:128] ← 0
+VPSADBW (VEX.256 encoded version)
+TEMP0 ← ABS(SRC1[7:0] - SRC2[7:0])
+(* Repeat operation for bytes 2 through 30*)
+TEMP31 ← ABS(SRC1[255:248] - SRC2[255:248])
+DEST[15:0] ←SUM(TEMP0:TEMP7)
+DEST[63:16] ← 000000000000H
+DEST[79:64] ← SUM(TEMP8:TEMP15)
+DEST[127:80] ← 00000000000H
+DEST[143:128] ←SUM(TEMP16:TEMP23)
+DEST[191:144] ← 000000000000H
+DEST[207:192] ← SUM(TEMP24:TEMP31)
+DEST[223:208] ← 00000000000H
+</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<table>
+<tr>
+	<td>PSADBW:</td>
+	<td>__m64 _mm_sad_pu8(__m64 a,__m64 b)</td>
+</tr>
+<tr>
+	<td>(V)PSADBW:</td>
+	<td>__m128i _mm_sad_epu8(__m128i a, __m128i b)</td>
+</tr>
+<tr>
+	<td>VPSADBW:</td>
+	<td>__m256i _mm256_sad_epu8( __m256i a, __m256i b)</td>
+</tr>
+</table>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p><h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4; additionally</p><table>
+<tr>
+	<td>#UD</td>
+	<td>If VEX.L = 1.</td>
+</tr>
+</table>
+</body>
+</html>

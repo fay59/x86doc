@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>EXTRACTPS — Extract Packed Single Precision Floating-Point Value</title>
+</head>
+<body>
+<h1 id="extractps---extract-packed-single-precision-floating-point-value">EXTRACTPS — Extract Packed Single Precision Floating-Point Value</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32-bit Mode</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>66 0F 3A 17EXTRACTPS reg/m32, xmm2, imm8</td>
+	<td>MRI</td>
+	<td>V/V</td>
+	<td>SSE4_1</td>
+	<td>Extract a single-precision floating-point value /r ib imm8 and store the result to reg or m32. The upper 32 bits of r64 is zeroed if reg is r64.</td>
+</tr>
+<tr>
+	<td>VEX.128.66.0F3A.WIG 17 /r ib</td>
+	<td>MRI</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Extract one single-precision floating-point VEXTRACTPS r/m32, xmm1, imm8imm8 and store the result in reg or m32. Zero extend the results in 64-bit register if applicable.</td>
+</tr>
+</table>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>MRI</td>
+	<td>ModRM:r/m (w)</td>
+	<td>ModRM:reg (r)</td>
+	<td>imm8</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Extracts a single-precision floating-point value from the source operand (second operand) at the 32-bit offset specified from imm8. Immediate bits higher than the most significant offset for the vector length are ignored. The extracted single-precision floating-point value is stored in the low 32-bits of the destination operand In 64-bit mode, destination register operand has default operand size of 64 bits. The upper 32-bits of the register are filled with zero. REX.W is ignored. 128-bit Legacy SSE version: When a REX.W prefix is used in 64-bit mode with a general purpose register (GPR) as a destination operand, the packed single quantity is zero extended to 64 bits. VEX.128 encoded version: When VEX.128.66.0F3A.W1 17 form is used in 64-bit mode with a general purpose register (GPR) as a destination operand, the packed single quantity is zero extended to 64 bits. VEX.vvvv is reserved and must be 1111b otherwise instructions will #UD. The source register is an XMM register. Imm8[1:0] determine the starting DWORD offset from which to extract the 32-bit floating-point value. If VEXTRACTPS is encoded with VEX.L= 1, an attempt to execute the instruction encoded with VEX.L= 1 will cause an #UD exception.</p><h2 id="operation">Operation</h2>
+<pre>EXTRACTPS (128-bit Legacy SSE version)
+SRC_OFFSET ← IMM8[1:0]
+IF ( 64-Bit Mode and DEST is register)
+  DEST[31:0] ← (SRC[127:0] » (SRC_OFFET*32)) AND 0FFFFFFFFh
+  DEST[63:32] ← 0
+ELSE
+  DEST[31:0] ← (SRC[127:0] » (SRC_OFFET*32)) AND 0FFFFFFFFh
+FI
+VEXTRACTPS (VEX.128 encoded version)
+SRC_OFFSET ← IMM8[1:0]
+IF ( 64-Bit Mode and DEST is register)
+  DEST[31:0] ← (SRC[127:0] » (SRC_OFFET*32)) AND 0FFFFFFFFh
+  DEST[63:32] ← 0
+ELSE
+  DEST[31:0] ← (SRC[127:0] » (SRC_OFFET*32)) AND 0FFFFFFFFh
+FI
+</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<table>
+<tr>
+	<td>EXTRACTPS:</td>
+	<td>_mm_extractmem_ps (float *dest, __m128 a, const int nidx);</td>
+</tr>
+<tr>
+	<td>EXTRACTPS:</td>
+	<td>__m128 _mm_extract_ps (__m128 a, const int nidx);</td>
+</tr>
+</table>
+<h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 5; additionally</p><table>
+<tr>
+	<td>#UD</td>
+	<td>If VEX.L= 1.</td>
+</tr>
+</table>
+</body>
+</html>

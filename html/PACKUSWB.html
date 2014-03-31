@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>PACKUSWB—Pack with Unsigned Saturation</title>
+</head>
+<body>
+<h1 id="packuswb-pack-with-unsigned-saturation">PACKUSWB—Pack with Unsigned Saturation</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32 bit Mode Support</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>0F 67 /r1</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>MMX</td>
+	<td>Converts 4 signed word integers from mm and PACKUSWB mm, mm/m64unsigned byte integers in mm using unsigned saturation.</td>
+</tr>
+<tr>
+	<td>66 0F 67 /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE2</td>
+	<td>Converts 8 signed word integers from xmm1PACKUSWB xmm1, xmm2/m128into 16 unsigned byte integers in xmm1 using unsigned saturation.</td>
+</tr>
+<tr>
+	<td>VEX.NDS.128.66.0F.WIG 67 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Converts 8 signed word integers from xmm2VPACKUSWB xmm1, xmm2, xmm3/m128into 16 unsigned byte integers in xmm1 using unsigned saturation.</td>
+</tr>
+<tr>
+	<td>VEX.NDS.256.66.0F.WIG 67 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Converts 16 signed word integers from ymm2VPACKUSWB ymm1, ymm2, ymm3/m256ymm3/m256 into 32 unsigned byte integers in ymm1 using unsigned saturation.</td>
+</tr>
+</table>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual,Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p><h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>RM</td>
+	<td>ModRM:reg (r, w)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+<tr>
+	<td>RVM</td>
+	<td>ModRM:reg (w)</td>
+	<td>VEX.vvvv (r)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Converts 4, 8 or 16 signed word integers from the destination operand (first operand) and 4, 8 or 16 signed word integers from the source operand (second operand) into 8, 16 or 32 unsigned byte integers and stores the result in the destination operand. (See Figure 4-2 for an example of the packing operation.) If a signed word integer value is beyond the range of an unsigned byte integer (that is, greater than FFH or less than 00H), the saturated unsigned byte integer value of FFH or 00H, respectively, is stored in the destination.</p><p>The PACKUSWB instruction operates on either 64-bit, 128-bit or 256-bit operands. When operating on 64-bit operands, the destination operand must be an MMX technology register and the source operand can be either an MMX technology register or a 64-bit memory location. In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: The first source operand is an XMM register. The second operand can be an XMM register or a 128-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. VEX.128 encoded version: The first source operand is an XMM register. The second source operand is an XMM register or 128-bit memory location. The destination operand is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed. VEX.256 encoded version: The first source operand is a YMM register. The second source operand is a YMM register or a 256-bit memory location. The destination operand is a YMM register.</p><h2 id="operation">Operation</h2>
+<pre>PACKUSWB (with 64-bit operands)
+  DEST[7:0] ← SaturateSignedWordToUnsignedByte DEST[15:0];
+  DEST[15:8] ← SaturateSignedWordToUnsignedByte DEST[31:16];
+  DEST[23:16] ← SaturateSignedWordToUnsignedByte DEST[47:32];
+  DEST[31:24] ← SaturateSignedWordToUnsignedByte DEST[63:48];
+  DEST[39:32] ← SaturateSignedWordToUnsignedByte SRC[15:0];
+  DEST[47:40] ← SaturateSignedWordToUnsignedByte SRC[31:16];
+  DEST[55:48] ← SaturateSignedWordToUnsignedByte SRC[47:32];
+  DEST[63:56] ← SaturateSignedWordToUnsignedByte SRC[63:48];
+PACKUSWB (Legacy SSE instruction)
+  DEST[7:0]←SaturateSignedWordToUnsignedByte (DEST[15:0]);
+  DEST[15:8] ←SaturateSignedWordToUnsignedByte (DEST[31:16]);
+  DEST[23:16] ←SaturateSignedWordToUnsignedByte (DEST[47:32]);
+  DEST[31:24] ← SaturateSignedWordToUnsignedByte (DEST[63:48]);
+  DEST[39:32] ← SaturateSignedWordToUnsignedByte (DEST[79:64]);
+  DEST[47:40] ← SaturateSignedWordToUnsignedByte (DEST[95:80]);
+  DEST[55:48] ← SaturateSignedWordToUnsignedByte (DEST[111:96]);
+  DEST[63:56] ← SaturateSignedWordToUnsignedByte (DEST[127:112]);
+  DEST[71:64] ← SaturateSignedWordToUnsignedByte (SRC[15:0]);
+  DEST[79:72] ← SaturateSignedWordToUnsignedByte (SRC[31:16]);
+  DEST[87:80] ← SaturateSignedWordToUnsignedByte (SRC[47:32]);
+  DEST[95:88] ← SaturateSignedWordToUnsignedByte (SRC[63:48]);
+  DEST[103:96] ← SaturateSignedWordToUnsignedByte (SRC[79:64]);
+  DEST[111:104] ← SaturateSignedWordToUnsignedByte (SRC[95:80]);
+  DEST[119:112] ← SaturateSignedWordToUnsignedByte (SRC[111:96]);
+  DEST[127:120] ← SaturateSignedWordToUnsignedByte (SRC[127:112]);
+PACKUSWB (VEX.128 encoded version)
+  DEST[7:0]← SaturateSignedWordToUnsignedByte (SRC1[15:0]);
+  DEST[15:8] ←SaturateSignedWordToUnsignedByte (SRC1[31:16]);
+  DEST[23:16] ←SaturateSignedWordToUnsignedByte (SRC1[47:32]);
+  DEST[31:24] ← SaturateSignedWordToUnsignedByte (SRC1[63:48]);
+  DEST[39:32] ← SaturateSignedWordToUnsignedByte (SRC1[79:64]);
+  DEST[47:40] ← SaturateSignedWordToUnsignedByte (SRC1[95:80]);
+  DEST[55:48] ← SaturateSignedWordToUnsignedByte (SRC1[111:96]);
+  DEST[63:56] ← SaturateSignedWordToUnsignedByte (SRC1[127:112]);
+  DEST[71:64] ← SaturateSignedWordToUnsignedByte (SRC2[15:0]);
+  DEST[79:72] ← SaturateSignedWordToUnsignedByte (SRC2[31:16]);
+  DEST[87:80] ← SaturateSignedWordToUnsignedByte (SRC2[47:32]);
+  DEST[95:88] ← SaturateSignedWordToUnsignedByte (SRC2[63:48]);
+  DEST[103:96] ← SaturateSignedWordToUnsignedByte (SRC2[79:64]);
+  DEST[111:104] ← SaturateSignedWordToUnsignedByte (SRC2[95:80]);
+  DEST[119:112] ← SaturateSignedWordToUnsignedByte (SRC2[111:96]);
+  DEST[127:120] ← SaturateSignedWordToUnsignedByte (SRC2[127:112]);
+  DEST[VLMAX-1:128] ← 0;
+VPACKUSWB (VEX.256 encoded version)
+  DEST[7:0]← SaturateSignedWordToUnsignedByte (SRC1[15:0]);
+  DEST[15:8] ←SaturateSignedWordToUnsignedByte (SRC1[31:16]);
+  DEST[23:16] ←SaturateSignedWordToUnsignedByte (SRC1[47:32]);
+  DEST[31:24] ← SaturateSignedWordToUnsignedByte (SRC1[63:48]);
+  DEST[39:32] ←SaturateSignedWordToUnsignedByte (SRC1[79:64]);
+  DEST[47:40] ← SaturateSignedWordToUnsignedByte (SRC1[95:80]);
+  DEST[55:48] ← SaturateSignedWordToUnsignedByte (SRC1[111:96]);
+  DEST[63:56] ← SaturateSignedWordToUnsignedByte (SRC1[127:112]);
+  DEST[71:64] ←SaturateSignedWordToUnsignedByte (SRC2[15:0]);
+  DEST[79:72] ← SaturateSignedWordToUnsignedByte (SRC2[31:16]);
+  DEST[87:80] ← SaturateSignedWordToUnsignedByte (SRC2[47:32]);
+  DEST[95:88] ← SaturateSignedWordToUnsignedByte (SRC2[63:48]);
+  DEST[103:96] ← SaturateSignedWordToUnsignedByte (SRC2[79:64]);
+  DEST[111:104] ← SaturateSignedWordToUnsignedByte (SRC2[95:80]);
+  DEST[119:112] ← SaturateSignedWordToUnsignedByte (SRC2[111:96]);
+  DEST[127:120] ← SaturateSignedWordToUnsignedByte (SRC2[127:112]);
+  DEST[135:128]← SaturateSignedWordToUnsignedByte (SRC1[143:128]);
+  DEST[143:136] ←SaturateSignedWordToUnsignedByte (SRC1[159:144]);
+  DEST[151:144] ←SaturateSignedWordToUnsignedByte (SRC1[175:160]);
+  DEST[159:152] ←SaturateSignedWordToUnsignedByte (SRC1[191:176]);
+  DEST[167:160] ← SaturateSignedWordToUnsignedByte (SRC1[207:192]);
+  DEST[175:168] ← SaturateSignedWordToUnsignedByte (SRC1[223:208]);
+  DEST[183:176] ← SaturateSignedWordToUnsignedByte (SRC1[239:224]);
+  DEST[191:184] ← SaturateSignedWordToUnsignedByte (SRC1[255:240]);
+  DEST[199:192] ← SaturateSignedWordToUnsignedByte (SRC2[143:128]);
+  DEST[207:200] ← SaturateSignedWordToUnsignedByte (SRC2[159:144]);
+  DEST[215:208] ← SaturateSignedWordToUnsignedByte (SRC2[175:160]);
+  DEST[223:216] ← SaturateSignedWordToUnsignedByte (SRC2[191:176]);
+  DEST[231:224] ← SaturateSignedWordToUnsignedByte (SRC2[207:192]);
+  DEST[239:232] ← SaturateSignedWordToUnsignedByte (SRC2[223:208]);
+  DEST[247:240] ← SaturateSignedWordToUnsignedByte (SRC2[239:224]);
+  DEST[255:248] ← SaturateSignedWordToUnsignedByte (SRC2[255:240]);
+</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<table>
+<tr>
+	<td>PACKUSWB:</td>
+	<td>__m64 _mm_packs_pu16(__m64 m1, __m64 m2)</td>
+</tr>
+<tr>
+	<td>(V)PACKUSWB:</td>
+	<td>__m128i _mm_packus_epi16(__m128i m1, __m128i m2)</td>
+</tr>
+<tr>
+	<td>VPACKUSWB:</td>
+	<td>__m256i _mm256_packus_epi16(__m256i m1, __m256i m2);</td>
+</tr>
+</table>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p><h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4; additionally</p><table>
+<tr>
+	<td>#UD</td>
+	<td>If VEX.L = 1.</td>
+</tr>
+</table>
+</body>
+</html>

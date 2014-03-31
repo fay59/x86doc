@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>RDRAND—Read Random Number</title>
+</head>
+<body>
+<h1 id="rdrand-read-random-number">RDRAND—Read Random Number</h1>
+<table>
+<tr>
+	<td>Opcode*/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32 bit Mode Support</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>0F C7 /6</td>
+	<td>M</td>
+	<td>V/V</td>
+	<td>RDRAND</td>
+	<td>Read a 16-bit random number and store in the RDRAND r16</td>
+</tr>
+<tr>
+	<td>0F C7 /6</td>
+	<td>M</td>
+	<td>V/V</td>
+	<td>RDRAND</td>
+	<td>Read a 32-bit random number and store in the RDRAND r32</td>
+</tr>
+<tr>
+	<td>REX.W + 0F C7 /6</td>
+	<td>M</td>
+	<td>V/I</td>
+	<td>RDRAND</td>
+	<td>Read a 64-bit random number and store in the RDRAND r64</td>
+</tr>
+</table>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>M</td>
+	<td>ModRM:r/m (w)</td>
+	<td>NA</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Loads a hardware generated random value and store it in the destination register. The size of the random value is determined by the destination register size and operating mode. The Carry Flag indicates whether a random value is available at the time the instruction is executed. CF=1 indicates that the data in the destination is valid. Otherwise CF=0 and the data in the destination operand will be returned as zeros for the specified width. All other flags are forced to 0 in either situation. Software must check the state of CF=1 for determining if a valid random value has been returned, otherwise it is expected to loop and retry execution of RDRAND (see Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, Section 7.3.17, “Random Number Generator Instruction”). This instruction is available at all privilege levels. In 64-bit mode, the instruction's default operation size is 32 bits. Using a REX prefix in the form of REX.B permits access to additional registers (R8-R15). Using a REX prefix in the form of REX.W promotes operation to 64 bit operands. See the summary chart at the beginning of this section for encoding data and limits.</p><h2 id="operation">Operation</h2>
+<pre>IF HW_RND_GEN.ready = 1
+  THEN
+     CASE of
+       osize is 64: DEST[63:0] ← HW_RND_GEN.data;
+       osize is 32: DEST[31:0] ← HW_RND_GEN.data;
+       osize is 16: DEST[15:0] ← HW_RND_GEN.data;
+     ESAC
+     CF ← 1;
+  ELSE
+     CASE of
+       osize is 64: DEST[63:0] ← 0;
+       osize is 32: DEST[31:0] ← 0;
+       osize is 16: DEST[15:0] ← 0;
+     ESAC
+     CF ← 0;
+FI
+OF, SF, ZF, AF, PF ← 0;
+</pre><h2 id="flags-affected">Flags Affected</h2>
+<p>The CF flag is set according to the result (see the “Operation” section above). The OF, SF, ZF, AF, and PF flags are set to 0.</p><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<table>
+<tr>
+	<td>RDRAND:</td>
+	<td>int _rdrand16_step( unsigned short * );</td>
+</tr>
+<tr>
+	<td>RDRAND:</td>
+	<td>int _rdrand32_step( unsigned int * );</td>
+</tr>
+<tr>
+	<td>RDRAND:</td>
+	<td>int _rdrand64_step( unsigned __int64 *);</td>
+</tr>
+</table>
+<h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#UD</td>
+	<td>If the LOCK prefix is used. If the F2H or F3H prefix is used. If CPUID.01H:ECX.RDRAND[bit 30] = 0.</td>
+</tr>
+</table>
+<h2 id="real-address-mode-exceptions">Real-Address Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p><h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p><h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p></body>
+</html>

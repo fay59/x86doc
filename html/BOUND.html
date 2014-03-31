@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>BOUND—Check Array Index Against Bounds</title>
+</head>
+<body>
+<h1 id="bound-check-array-index-against-bounds">BOUND—Check Array Index Against Bounds</h1>
+<table>
+<tr>
+	<td>Opcode</td>
+	<td>Instruction</td>
+	<td>Op/En</td>
+	<td>64-bit Mode</td>
+	<td>Compat/Leg Mode</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>62 /r</td>
+	<td>BOUND r16, m16&16</td>
+	<td>RM</td>
+	<td>Invalid</td>
+	<td>Valid</td>
+	<td>Check if r16 (array index) is within bounds specified by m16&16.</td>
+</tr>
+<tr>
+	<td>62 /r</td>
+	<td>BOUND r32, m32&32</td>
+	<td>RM</td>
+	<td>Invalid</td>
+	<td>Valid</td>
+	<td>Check if r32 (array index) is within bounds specified by m16&16.</td>
+</tr>
+</table>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>RM</td>
+	<td>ModRM:reg (r)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>BOUND determines if the first operand (array index) is within the bounds of an array specified the second operand (bounds operand). The array index is a signed integer located in a register. The bounds operand is a memory location that contains a pair of signed doubleword-integers (when the operand-size attribute is 32) or a pair of signed word-integers (when the operand-size attribute is 16). The first doubleword (or word) is the lower bound of the array and the second doubleword (or word) is the upper bound of the array. The array index must be greater than or equal to the lower bound and less than or equal to the upper bound plus the operand size in bytes. If the index is not within bounds, a BOUND range exceeded exception (#BR) is signaled. When this exception is generated, the saved return instruction pointer points to the BOUND instruction.</p><p>The bounds limit data structure (two words or doublewords containing the lower and upper limits of the array) is usually placed just before the array itself, making the limits addressable via a constant offset from the beginning of the array. Because the address of the array already will be present in a register, this practice avoids extra bus cycles to obtain the effective address of the array bounds.</p><p>This instruction executes as described in compatibility mode and legacy mode. It is not valid in 64-bit mode.</p><h2 id="operation">Operation</h2>
+<pre>IF 64bit Mode
+  THEN
+     #UD;
+  ELSE
+     IF (ArrayIndex < LowerBound OR ArrayIndex > UpperBound)
+     (* Below lower bound or above upper bound *)
+       THEN #BR; FI;
+FI;
+</pre><h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#BR</td>
+	<td>If the bounds test fails.</td>
+</tr>
+<tr>
+	<td>#UD</td>
+	<td>If second operand is not a memory location. If the LOCK prefix is used.</td>
+</tr>
+<tr>
+	<td>#GP(0)</td>
+	<td>If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit. If the DS, ES, FS, or GS register contains a NULL segment selector.</td>
+</tr>
+<tr>
+	<td>#SS(0)</td>
+	<td>If a memory operand effective address is outside the SS segment limit.</td>
+</tr>
+<tr>
+	<td>#PF(fault-code)</td>
+	<td>If a page fault occurs.</td>
+</tr>
+<tr>
+	<td>#AC(0)</td>
+	<td>If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.</td>
+</tr>
+</table>
+<h2 id="real-address-mode-exceptions">Real-Address Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#BR</td>
+	<td>If the bounds test fails.</td>
+</tr>
+<tr>
+	<td>#UD</td>
+	<td>If second operand is not a memory location. If the LOCK prefix is used.</td>
+</tr>
+<tr>
+	<td>#GP</td>
+	<td>If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.</td>
+</tr>
+<tr>
+	<td>#SS</td>
+	<td>If a memory operand effective address is outside the SS segment limit.</td>
+</tr>
+</table>
+<h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#BR</td>
+	<td>If the bounds test fails.</td>
+</tr>
+<tr>
+	<td>#UD</td>
+	<td>If second operand is not a memory location. If the LOCK prefix is used.</td>
+</tr>
+<tr>
+	<td>#GP(0)</td>
+	<td>If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.</td>
+</tr>
+<tr>
+	<td>#SS(0)</td>
+	<td>If a memory operand effective address is outside the SS segment limit.</td>
+</tr>
+<tr>
+	<td>#PF(fault-code)</td>
+	<td>If a page fault occurs.</td>
+</tr>
+<tr>
+	<td>#AC(0)</td>
+	<td>If alignment checking is enabled and an unaligned memory reference is made.</td>
+</tr>
+</table>
+<h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#UD</td>
+	<td>If in 64-bit mode.</td>
+</tr>
+</table>
+</body>
+</html>

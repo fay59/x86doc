@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>FXTRACT—Extract Exponent and Significand</title>
+</head>
+<body>
+<h1 id="fxtract-extract-exponent-and-significand">FXTRACT—Extract Exponent and Significand</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>64-Bit Mode</td>
+	<td>Compat/Leg Mode</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>D9 F4</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Separate value in ST(0) into exponent and significand, store FXTRACT stack.</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Separates the source value in the ST(0) register into its exponent and significand, stores the exponent in ST(0),and pushes the significand onto the register stack. Following this operation, the new top-of-stack register ST(0)contains the value of the original significand expressed as a floating-point value. The sign and significand of this value are the same as those found in the source operand, and the exponent is 3FFFH (biased value for a true exponent of zero). The ST(1) register contains the value of the original operand’s true (unbiased) exponent expressed as a floating-point value. (The operation performed by this instruction is a superset of the IEEE-recommended logb(x) function.)</p><p>This instruction and the F2XM1 instruction are useful for performing power and range scaling operations. The FXTRACT instruction is also useful for converting numbers in double extended-precision floating-point format to decimal representations (e.g., for printing or displaying).</p><p>If the floating-point zero-divide exception (#Z) is masked and the source operand is zero, an exponent value of ∞ is stored in register ST(1) and 0 with the sign of the source operand is stored in register ST(0).</p><p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p><h2 id="operation">Operation</h2>
+<pre>TEMP ← Significand(ST(0));
+ST(0) ← Exponent(ST(0));
+TOP← TOP − 1;
+ST(0) ← TEMP;
+</pre><h2 id="fpu-flags-affected">FPU Flags Affected</h2>
+<table>
+<tr>
+	<td>C1</td>
+	<td>Set to 0 if stack underflow occurred; set to 1 if stack overflow occurred.</td>
+</tr>
+<tr>
+	<td>C0, C2, C3</td>
+	<td>Undefined.</td>
+</tr>
+</table>
+<h2 id="floating-point-exceptions">Floating-Point Exceptions</h2>
+<table>
+<tr>
+	<td>#IS</td>
+	<td>Stack underflow or overflow occurred.</td>
+</tr>
+<tr>
+	<td>#IA</td>
+	<td>Source operand is an SNaN value or unsupported format.</td>
+</tr>
+<tr>
+	<td>#Z</td>
+	<td>ST(0) operand is ±0.</td>
+</tr>
+<tr>
+	<td>#D</td>
+	<td>Source operand is a denormal value.</td>
+</tr>
+</table>
+<h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#NM</td>
+	<td>CR0.EM[bit 2] or CR0.TS[bit 3] = 1.</td>
+</tr>
+<tr>
+	<td>#MF</td>
+	<td>If there is a pending x87 FPU exception.</td>
+</tr>
+<tr>
+	<td>#UD</td>
+	<td>If the LOCK prefix is used.</td>
+</tr>
+</table>
+<h2 id="real-address-mode-exceptions">Real-Address Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p><h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p><h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p></body>
+</html>

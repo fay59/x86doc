@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>VPERMQ — Qwords Element Permutation</title>
+</head>
+<body>
+<h1 id="vpermq---qwords-element-permutation">VPERMQ — Qwords Element Permutation</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32-bit Mode</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>VEX.256.66.0F3A.W1 00 /r ib</td>
+	<td>RMI</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Permute qwords in ymm2/m256 using indexes in VPERMQ ymm1, ymm2/m256, imm8</td>
+</tr>
+</table>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>RMI</td>
+	<td>ModRM:reg (w)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>Imm8</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Use two-bit index values in the immediate byte to select a qword element in the source operand, the resultant qword value from the source operand is copied to the corresponding element of the destination operand in the order of the index field. Note that this instruction permits a qword in the source operand to be copied to multiple locations in the destination operand. An attempt to execute VPERMQ encoded with VEX.L= 0 will cause an #UD exception.</p><h2 id="operation">Operation</h2>
+<pre>VPERMQ (VEX.256 encoded version)
+DEST[63:0] ← (SRC[255:0] >> (IMM8[1:0] * 64))[63:0];
+DEST[127:64] ← (SRC[255:0] >> (IMM8[3:2] * 64))[63:0];
+DEST[191:128] ← (SRC[255:0] >> (IMM8[5:4] * 64))[63:0];
+DEST[255:192] ← (SRC[255:0] >> (IMM8[7:6] * 64))[63:0];
+</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<p>VPERMQ: __m256i _mm256_permute4x64_epi64(__m256i a, int control)</p><h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4; additionally</p><table>
+<tr>
+	<td>#UD</td>
+	<td>If VEX.L = 0.</td>
+</tr>
+</table>
+</body>
+</html>

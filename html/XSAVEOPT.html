@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>XSAVEOPT—Save Processor Extended States Optimized</title>
+</head>
+<body>
+<h1 id="xsaveopt-save-processor-extended-states-optimized">XSAVEOPT—Save Processor Extended States Optimized</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32 bit Mode Support</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>0F AE /6</td>
+	<td>M</td>
+	<td>V/V</td>
+	<td>XSAVEOPT</td>
+	<td>Save state components specified by EDX:EAX XSAVEOPT mem</td>
+</tr>
+<tr>
+	<td>REX.W + 0F AE /6</td>
+	<td>M</td>
+	<td>V/V</td>
+	<td>XSAVEOPT</td>
+	<td>Save state components specified by EDX:EAX XSAVEOPT64 mem</td>
+</tr>
+</table>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>M</td>
+	<td>ModRM:r/m (w)</td>
+	<td>NA</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Performs a full or partial save of processor state components to the XSAVE area located at the memory address specified by the destination operand. The implicit EDX:EAX register pair specifies a 64-bit instruction mask. The specific state components saved correspond to the bits set in the requested-feature bitmap (RFBM), which is the logical-AND of EDX:EAX and XCR0.</p><p>The format of the XSAVE area is detailed in Section 13.4, “XSAVE Area,” of Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1.</p><p>Section 13.8, “Operation of XSAVEOPT,” of Intel® 64 and IA-32 Architectures Software Developer’s Manual,Volume 1 provides a detailed description of the operation of the XSAVEOPT instruction. The following items provide a high-level outline:</p><table>
+<tr>
+	<td>•••••Use of a destination operand not aligned to 64-byte boundary (in either 64-bit or 32-bit modes) will result in a general-protection (#GP) exception. In 64-bit mode, the upper 32 bits of RDX and RAX are ignored.</td>
+	<td>Execution of XSAVEOPT is similar to that of XSAVE. XSAVEOPT differs from XSAVE in that it uses compaction and that it may use the init and modified optimizations. The performance of XSAVEOPT will be equal to or better than that of XSAVE. XSAVEOPT saves state component i only if RFBM[i] = 1 and XINUSE[i] = 1.1 (XINUSE is a bitmap by which the processor tracks the status of various state components. See Section 13.5.4, “Processor Tracking of XSAVEManaged State.”) Even if both bits are 1, XSAVEOPT may optimize and not save state component i if (1) state component i has not been modified since the last execution of XRTOR or XRSTORS; and (2) this execution of XSAVES corresponds to that last execution of XRTOR or XRSTORS as determined by the internal value XRSTOR_INFO (see the Operation section below). XSAVEOPT does not modify bytes 511:464 of the legacy region of the XSAVE area (see Section 13.4.1, “Legacy Region of an XSAVE Area”). XSAVEOPT reads the XSTATE_BV field of the XSAVE header (see Section 13.4.2, “XSAVE Header”) and writes a modified value back to memory as follows. If RFBM[i] = 1, XSAVEOPT writes XSTATE_BV[i] with the value of XINUSE[i]. If RFBM[i] = 0, XSAVEOPT writes XSTATE_BV[i] with the value that it read from memory (it does not modify the bit). XSAVEOPT does not write to any part of the XSAVE header other than the XSTATE_BV field. XSAVEOPT always uses the standard format of the extended region of the XSAVE area (see Section 13.4.3,“Extended Region of an XSAVE Area”).</td>
+</tr>
+</table>
+<h2 id="operation">Operation</h2>
+<pre>RFBM ← XCR0 AND EDX:EAX;
+OLD_BV ← XSTATE_BV field from XSAVE header;
+1.
+  these to memory if RFBM[1] = 1 or RFBM[2] = 1, regardless of the value of XINUSE.
+IF in VMX non-root operation
+  THEN VMXNR ← 1;
+  ELSE VMXNR ← 0;
+FI;
+LAXA ← linear address of XSAVE area;
+COMPMASK ← 00000000_00000000H;
+IF XRSTOR_INFO = CPL,VMXNR,LAXA,COMPMASK
+  THEN MODOPT ← 1;
+  ELSE MODOPT ← 0;
+FI;
+IF RFBM[0] = 1 and XINUSE[0] = 1
+  THEN store x87 state into legacy region of XSAVE area;
+  /* might avoid saving if x87 state is not modified and MODOPT = 1 */
+FI;
+IF RFBM[1] = 1 and XINUSE[1]
+  THEN store XMM registers into legacy region of XSAVE area;
+  /* might avoid saving if XMM registers are not modified and MODOPT = 1 */
+FI;
+IF RFBM[2] = 1 AND XINUSE[2] = 1
+  THEN store AVX state into extended region of XSAVE area;
+  /* might avoid saving if AVX state is not modified and MODOPT = 1 */
+FI;
+IF RFBM[1] = 1 or RFBM[2] = 1
+  THEN store MXCSR and MXCSR_MASK into legacy region of XSAVE area;
+FI;
+XSTATE_BV field in XSAVE header ← (OLD_BV AND ~RFBM) OR (XINUSE AND RFBM);
+</pre><h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<table>
+<tr>
+	<td>XSAVEOPT:</td>
+	<td>void _xsaveopt( void * , unsigned __int64);</td>
+</tr>
+<tr>
+	<td>XSAVEOPT:</td>
+	<td>void _xsaveopt64( void * , unsigned __int64);</td>
+</tr>
+</table>
+<h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#GP(0)</td>
+	<td>If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit. If a memory operand is not aligned on a 64-byte boundary, regardless of segment.</td>
+</tr>
+<tr>
+	<td>#SS(0)</td>
+	<td>If a memory operand effective address is outside the SS segment limit.</td>
+</tr>
+<tr>
+	<td>#PF(fault-code)</td>
+	<td>If a page fault occurs.</td>
+</tr>
+<tr>
+	<td>#NM</td>
+	<td>If CR0.TS[bit 3] = 1.</td>
+</tr>
+<tr>
+	<td>#UD</td>
+	<td>If CPUID.01H:ECX.XSAVE[bit 26] = 0 or CPUID.(EAX=0DH,ECX=1):EAX.XSAVEOPT[bit 0] =0. If CR4.OSXSAVE[bit 18] = 0. If the LOCK prefix is used. If 66H, F3H or F2H prefix is used.</td>
+</tr>
+</table>
+<h2 id="real-address-mode-exceptions">Real-Address Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#GP</td>
+	<td>If a memory operand is not aligned on a 64-byte boundary, regardless of segment. If any part of the operand lies outside the effective address space from 0 to FFFFH.</td>
+</tr>
+<tr>
+	<td>#NM</td>
+	<td>If CR0.TS[bit 3] = 1.</td>
+</tr>
+<tr>
+	<td>#UD</td>
+	<td>0] =0. If CR4.OSXSAVE[bit 18] = 0. If the LOCK prefix is used. If 66H, F3H or F2H prefix is used.</td>
+</tr>
+</table>
+<h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p><h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#SS(0)</td>
+	<td>If a memory address referencing the SS segment is in a non-canonical form.</td>
+</tr>
+<tr>
+	<td>#GP(0)</td>
+	<td>If the memory address is in a non-canonical form. If a memory operand is not aligned on a 64-byte boundary, regardless of segment.</td>
+</tr>
+<tr>
+	<td>#PF(fault-code)</td>
+	<td>If a page fault occurs.</td>
+</tr>
+<tr>
+	<td>#NM</td>
+	<td>If CR0.TS[bit 3] = 1.</td>
+</tr>
+<tr>
+	<td>#UD</td>
+	<td>0] =0. If CR4.OSXSAVE[bit 18] = 0. If the LOCK prefix is used. If 66H, F3H or F2H prefix is used.</td>
+</tr>
+</table>
+</body>
+</html>

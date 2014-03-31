@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>CVTDQ2PD—Convert Packed Dword Integers to Packed Double-Precision FP Values</title>
+</head>
+<body>
+<h1 id="cvtdq2pd-convert-packed-dword-integers-to-packed-double-precision-fp-values">CVTDQ2PD—Convert Packed Dword Integers to Packed Double-Precision FP Values</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32-bit Mode</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>F3 0F E6</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE2</td>
+	<td>Convert two packed signed doubleword CVTDQ2PD xmm1, xmm2/m64double-precision floating-point values in xmm1.</td>
+</tr>
+<tr>
+	<td>VEX.128.F3.0F.WIG E6 /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Convert two packed signed doubleword VCVTDQ2PD xmm1, xmm2/m64double-precision floating-point values in xmm1.</td>
+</tr>
+<tr>
+	<td>VEX.256.F3.0F.WIG E6 /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Convert four packed signed doubleword VCVTDQ2PD ymm1, xmm2/m128double-precision floating-point values in ymm1.</td>
+</tr>
+</table>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>RM</td>
+	<td>ModRM:reg (w)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Converts two packed signed doubleword integers in the source operand (second operand) to two packed doubleprecision floating-point values in the destination operand (first operand).</p><p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: The source operand is an XMM register or 64- bit memory location. The destination operation is an XMM register. The upper bits (VLMAX-1:128) of the corresponding XMM register destination are unmodified. VEX.128 encoded version: The source operand is an XMM register or 64- bit memory location. The destination operation is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed. VEX.256 encoded version: The source operand is a YMM register or 128- bit memory location. The destination operation is a YMM register. Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise instructions will #UD.</p><table>
+<tr>
+	<td>SRC X3</td>
+	<td>X3X2</td>
+	<td>X2X1</td>
+	<td>X1</td>
+	<td>X0X0</td>
+</tr>
+</table>
+<p>DEST</p><table>
+<tr>
+	<td>Figure 3-10.</td>
+	<td>CVTDQ2PD (VEX.256 encoded version)</td>
+</tr>
+</table>
+<h2 id="operation">Operation</h2>
+<pre>CVTDQ2PD (128-bit Legacy SSE version)
+DEST[63:0] ← Convert_Integer_To_Double_Precision_Floating_Point(SRC[31:0])
+DEST[127:64] ← Convert_Integer_To_Double_Precision_Floating_Point(SRC[63:32])
+DEST[VLMAX-1:128] (unmodified)
+VCVTDQ2PD (VEX.128 encoded version)
+DEST[63:0] ← Convert_Integer_To_Double_Precision_Floating_Point(SRC[31:0])
+DEST[127:64] ← Convert_Integer_To_Double_Precision_Floating_Point(SRC[63:32])
+DEST[VLMAX-1:128] ← 0
+VCVTDQ2PD (VEX.256 encoded version)
+DEST[63:0] ← Convert_Integer_To_Double_Precision_Floating_Point(SRC[31:0])
+DEST[127:64] ← Convert_Integer_To_Double_Precision_Floating_Point(SRC[63:32])
+DEST[191:128] ← Convert_Integer_To_Double_Precision_Floating_Point(SRC[95:64])
+DEST[255:192] ← Convert_Integer_To_Double_Precision_Floating_Point(SRC[127:96)
+</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<table>
+<tr>
+	<td>CVTDQ2PD:</td>
+	<td>__m128d _mm_cvtepi32_pd(__m128i a)</td>
+</tr>
+<tr>
+	<td>VCVTDQ2PD:</td>
+	<td>__m256d _mm256_cvtepi32_pd (__m128i src)</td>
+</tr>
+</table>
+<h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 5; additionally</p><table>
+<tr>
+	<td>#UD</td>
+	<td>If VEX.vvvv != 1111B.</td>
+</tr>
+</table>
+</body>
+</html>

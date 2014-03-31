@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>PCMPGTB/PCMPGTW/PCMPGTD—Compare Packed Signed Integers for Greater Than</title>
+</head>
+<body>
+<h1 id="pcmpgtb-pcmpgtw-pcmpgtd-compare-packed-signed-integers-for-greater-than">PCMPGTB/PCMPGTW/PCMPGTD—Compare Packed Signed Integers for Greater Than</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32 bit Mode Support</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>0F 64 /r1</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>MMX</td>
+	<td>Compare packed signed byte integers in mm PCMPGTB mm, mm/m64</td>
+</tr>
+<tr>
+	<td>66 0F 64 /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE2</td>
+	<td>Compare packed signed byte integers in xmm1PCMPGTB xmm1, xmm2/m128</td>
+</tr>
+<tr>
+	<td>0F 65 /r1</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>MMX</td>
+	<td>Compare packed signed word integers in mm PCMPGTW mm, mm/m64</td>
+</tr>
+<tr>
+	<td>66 0F 65 /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE2</td>
+	<td>Compare packed signed word integers in PCMPGTW xmm1, xmm2/m128</td>
+</tr>
+<tr>
+	<td>0F 66 /r1</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>MMX</td>
+	<td>Compare packed signed doubleword integers in PCMPGTD mm, mm/m64</td>
+</tr>
+<tr>
+	<td>66 0F 66 /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE2</td>
+	<td>Compare packed signed doubleword integers in PCMPGTD xmm1, xmm2/m128</td>
+</tr>
+<tr>
+	<td>VEX.NDS.128.66.0F.WIG 64 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Compare packed signed byte integers in xmm2VPCMPGTB xmm1, xmm2, xmm3/m128</td>
+</tr>
+<tr>
+	<td>VEX.NDS.128.66.0F.WIG 65 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Compare packed signed word integers in VPCMPGTW xmm1, xmm2, xmm3/m128</td>
+</tr>
+<tr>
+	<td>VEX.NDS.128.66.0F.WIG 66 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Compare packed signed doubleword integers in VPCMPGTD xmm1, xmm2, xmm3/m128</td>
+</tr>
+<tr>
+	<td>VEX.NDS.256.66.0F.WIG 64 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Compare packed signed byte integers in ymm2VPCMPGTB ymm1, ymm2, ymm3/m256</td>
+</tr>
+<tr>
+	<td>VEX.NDS.256.66.0F.WIG 65 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Compare packed signed word integers in ymm2VPCMPGTW ymm1, ymm2, ymm3/m256</td>
+</tr>
+<tr>
+	<td>VEX.NDS.256.66.0F.WIG 66 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Compare packed signed doubleword integers in VPCMPGTD ymm1, ymm2, ymm3/m256</td>
+</tr>
+</table>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual,Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p><h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>RM</td>
+	<td>ModRM:reg (r, w)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+<tr>
+	<td>RVM</td>
+	<td>ModRM:reg (w)</td>
+	<td>VEX.vvvv (r)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Performs an SIMD signed compare for the greater value of the packed byte, word, or doubleword integers in the destination operand (first operand) and the source operand (second operand). If a data element in the destination operand is greater than the corresponding date element in the source operand, the corresponding data element in the destination operand is set to all 1s; otherwise, it is set to all 0s.</p><p>The PCMPGTB instruction compares the corresponding signed byte integers in the destination and source operands; the PCMPGTW instruction compares the corresponding signed word integers in the destination and source</p><p>operands; and the PCMPGTD instruction compares the corresponding signed doubleword integers in the destination and source operands. In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15).</p><p>Legacy SSE instructions: The source operand can be an MMX technology register or a 64-bit memory location. The destination operand can be an MMX technology register. 128-bit Legacy SSE version: The second source operand can be an XMM register or a 128-bit memory location. The first source operand and destination operand are XMM registers. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: The second source operand can be an XMM register or a 128-bit memory location. The first source operand and destination operand are XMM registers. Bits (VLMAX-1:128) of the corresponding YMM register are zeroed. VEX.256 encoded version: The first source operand is a YMM register. The second source operand is a YMM register or a 256-bit memory location. The destination operand is a YMM register.</p><p>Note: VEX.L must be 0, otherwise the instruction will #UD.</p><h2 id="operation">Operation</h2>
+<pre>PCMPGTB (with 64-bit operands)
+  IF DEST[7:0] > SRC[7:0]
+     THEN DEST[7:0) ← FFH;
+     ELSE DEST[7:0] ← 0; FI;
+  (* Continue comparison of 2nd through 7th bytes in DEST and SRC *)
+  IF DEST[63:56] > SRC[63:56]
+     THEN DEST[63:56] ← FFH;
+     ELSE DEST[63:56] ← 0; FI;
+PCMPGTB (with 128-bit operands)
+  IF DEST[7:0] > SRC[7:0]
+     THEN DEST[7:0) ← FFH;
+     ELSE DEST[7:0] ← 0; FI;
+  (* Continue comparison of 2nd through 15th bytes in DEST and SRC *)
+  IF DEST[127:120] > SRC[127:120]
+     THEN DEST[127:120] ← FFH;
+     ELSE DEST[127:120] ← 0; FI;
+VPCMPGTB (VEX.128 encoded version)
+DEST[127:0] ←COMPARE_BYTES_GREATER(SRC1,SRC2)
+DEST[VLMAX-1:128] ← 0
+VPCMPGTB (VEX.256 encoded version)
+DEST[127:0] ←COMPARE_BYTES_GREATER(SRC1[127:0],SRC2[127:0])
+DEST[255:128] ←COMPARE_BYTES_GREATER(SRC1[255:128],SRC2[255:128])
+PCMPGTW (with 64-bit operands)
+  IF DEST[15:0] > SRC[15:0]
+     THEN DEST[15:0] ← FFFFH;
+     ELSE DEST[15:0] ← 0; FI;
+  (* Continue comparison of 2nd and 3rd words in DEST and SRC *)
+  IF DEST[63:48] > SRC[63:48]
+     THEN DEST[63:48] ← FFFFH;
+     ELSE DEST[63:48] ← 0; FI;
+PCMPGTW (with 128-bit operands)
+  IF DEST[15:0] > SRC[15:0]
+     THEN DEST[15:0] ← FFFFH;
+     ELSE DEST[15:0] ← 0; FI;
+  (* Continue comparison of 2nd through 7th words in DEST and SRC *)
+  IF DEST[63:48] > SRC[127:112]
+     THEN DEST[127:112] ← FFFFH;
+     ELSE DEST[127:112] ← 0; FI;
+VPCMPGTW (VEX.128 encoded version)
+DEST[127:0] ←COMPARE_WORDS_GREATER(SRC1,SRC2)
+DEST[VLMAX-1:128] ← 0
+VPCMPGTW (VEX.256 encoded version)
+DEST[127:0] ←COMPARE_WORDS_GREATER(SRC1[127:0],SRC2[127:0])
+DEST[255:128] ←COMPARE_WORDS_GREATER(SRC1[255:128],SRC2[255:128])
+PCMPGTD (with 64-bit operands)
+  IF DEST[31:0] > SRC[31:0]
+     THEN DEST[31:0] ← FFFFFFFFH;
+     ELSE DEST[31:0] ← 0; FI;
+  IF DEST[63:32] > SRC[63:32]
+     THEN DEST[63:32] ← FFFFFFFFH;
+     ELSE DEST[63:32] ← 0; FI;
+PCMPGTD (with 128-bit operands)
+  IF DEST[31:0] > SRC[31:0]
+     THEN DEST[31:0] ← FFFFFFFFH;
+     ELSE DEST[31:0] ← 0; FI;
+  (* Continue comparison of 2nd and 3rd doublewords in DEST and SRC *)
+  IF DEST[127:96] > SRC[127:96]
+     THEN DEST[127:96] ← FFFFFFFFH;
+     ELSE DEST[127:96] ← 0; FI;
+VPCMPGTD (VEX.128 encoded version)
+DEST[127:0] ←COMPARE_DWORDS_GREATER(SRC1,SRC2)
+DEST[VLMAX-1:128] ← 0
+VPCMPGTD (VEX.256 encoded version)
+DEST[127:0] ←COMPARE_DWORDS_GREATER(SRC1[127:0],SRC2[127:0])
+DEST[255:128] ←COMPARE_DWORDS_GREATER(SRC1[255:128],SRC2[255:128])
+</pre><h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+<table>
+<tr>
+	<td>PCMPGTB:</td>
+	<td>__m64 _mm_cmpgt_pi8 (__m64 m1, __m64 m2)</td>
+</tr>
+<tr>
+	<td>PCMPGTW:</td>
+	<td>__m64 _mm_pcmpgt_pi16 (__m64 m1, __m64 m2)</td>
+</tr>
+<tr>
+	<td>DCMPGTD:</td>
+	<td>__m64 _mm_pcmpgt_pi32 (__m64 m1, __m64 m2)</td>
+</tr>
+<tr>
+	<td>(V)PCMPGTB:</td>
+	<td>__m128i _mm_cmpgt_epi8 ( __m128i a, __m128i b)</td>
+</tr>
+<tr>
+	<td>(V)PCMPGTW:</td>
+	<td>__m128i _mm_cmpgt_epi16 ( __m128i a, __m128i b)</td>
+</tr>
+<tr>
+	<td>(V)DCMPGTD:</td>
+	<td>__m128i _mm_cmpgt_epi32 ( __m128i a, __m128i b)</td>
+</tr>
+<tr>
+	<td>VPCMPGTB:</td>
+	<td>__m256i _mm256_cmpgt_epi8 ( __m256i a, __m256i b)</td>
+</tr>
+<tr>
+	<td>VPCMPGTW:</td>
+	<td>__m256i _mm256_cmpgt_epi16 ( __m256i a, __m256i b)</td>
+</tr>
+<tr>
+	<td>VPCMPGTD:</td>
+	<td>__m256i _mm256_cmpgt_epi32 ( __m256i a, __m256i b)</td>
+</tr>
+</table>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p><h2 id="numeric-exceptions">Numeric Exceptions</h2>
+<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4; additionally</p><table>
+<tr>
+	<td>#UD</td>
+	<td>If VEX.L = 1.</td>
+</tr>
+</table>
+</body>
+</html>

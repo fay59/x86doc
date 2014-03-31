@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>MOVDDUP—Move One Double-FP and Duplicate</title>
+</head>
+<body>
+<h1 id="movddup-move-one-double-fp-and-duplicate">MOVDDUP—Move One Double-FP and Duplicate</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32-bit Mode</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>F2 0F 12 /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE3</td>
+	<td>Move one double-precision floating-point MOVDDUP xmm1, xmm2/m64xmm2/m64 to xmm1 and duplicate.</td>
+</tr>
+<tr>
+	<td>VEX.128.F2.0F.WIG 12 /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Move double-precision floating-point values VMOVDDUP xmm1, xmm2/m64</td>
+</tr>
+<tr>
+	<td>VEX.256.F2.0F.WIG 12 /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Move even index double-precision floatingVMOVDDUP ymm1, ymm2/m256each element into ymm1.</td>
+</tr>
+</table>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>RM</td>
+	<td>ModRM:reg (w)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>The linear address corresponds to the address of the least-significant byte of the referenced memory data. When a memory address is indicated, the 8 bytes of data at memory location m64 are loaded. When the register-register form of this operation is used, the lower half of the 128-bit source register is duplicated and copied into the 128-bit destination register. See Figure 3-24.</p><p>MOVDDUP xmm1, xmm2/m64</p><table>
+<tr>
+	<td>[63:0]</td>
+	<td>xmm2/m64</td>
+</tr>
+</table>
+<p>RESULT:</p><table>
+<tr>
+	<td>xmm1[127:64]</td>
+	<td>xmm2/m64[63:0][127:64]</td>
+	<td>xmm1[63:0]</td>
+	<td>xmm2/m64[63:0]xmm1[63:0]</td>
+</tr>
+</table>
+<p>OM15997</p><table>
+<tr>
+	<td>Figure 3-24.</td>
+	<td>MOVDDUP—Move One Double-FP and Duplicate</td>
+</tr>
+</table>
+<p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15).</p><h2 id="operation">Operation</h2>
+<pre>IF (Source = m64)
+  THEN
+     (* Load instruction *)
+     xmm1[63:0] = m64;
+     xmm1[127:64] = m64;
+  ELSE
+     (* Move instruction *)
+     xmm1[63:0] = xmm2[63:0];
+     xmm1[127:64] = xmm2[63:0];
+FI;
+MOVDDUP (128-bit Legacy SSE version)
+DEST[63:0] ← SRC[63:0]
+DEST[127:64] ← SRC[63:0]
+DEST[VLMAX-1:128] (Unmodified)
+VMOVDDUP (VEX.128 encoded version)
+DEST[63:0] ← SRC[63:0]
+DEST[127:64] ← SRC[63:0]
+DEST[VLMAX-1:128] ← 0
+VMOVDDUP (VEX.256 encoded version)
+DEST[63:0] ← SRC[63:0]
+DEST[127:64] ← SRC[63:0]
+DEST[191:128] ← SRC[191:128]
+DEST[255:192] ← SRC[191:128]
+</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<table>
+<tr>
+	<td>MOVDDUP:</td>
+	<td>__m128d _mm_movedup_pd(__m128d a)</td>
+</tr>
+<tr>
+	<td>MOVDDUP:</td>
+	<td>__m128d _mm_loaddup_pd(double const * dp)</td>
+</tr>
+</table>
+<h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 5; additionally</p><table>
+<tr>
+	<td>#UD</td>
+	<td>If VEX.vvvv != 1111B.</td>
+</tr>
+</table>
+</body>
+</html>

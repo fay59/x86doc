@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>PEXT — Parallel Bits Extract</title>
+</head>
+<body>
+<h1 id="pext---parallel-bits-extract">PEXT — Parallel Bits Extract</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32-bit Mode</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>VEX.NDS.LZ.F3.0F38.W0 F5 /r VEX.NDS.LZ.F3.0F38.W1 F5 /r PEXT r64a, r64b, r/m64</td>
+	<td>RVM RVM</td>
+	<td>V/V BMI2</td>
+	<td>BMI2</td>
+	<td>Parallel extract of bits from r32b using mask in r/m32, result is writPEXT r32a, r32b, r/m32Parallel extract of bits from r64b using mask in r/m64, result is written to r64a.</td>
+</tr>
+</table>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>RVM</td>
+	<td>ModRM:reg (w)</td>
+	<td>VEX.vvvv (r)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>PEXT uses a mask in the second source operand (the third operand) to transfer either contiguous or non-contiguous bits in the first source operand (the second operand) to contiguous low order bit positions in the destination (the first operand). For each bit set in the MASK, PEXT extracts the corresponding bits from the first source operand and writes them into contiguous lower bits of destination operand. The remaining upper bits of destination are zeroed.</p><p>SRC1</p><table>
+<tr>
+	<td>S31</td>
+	<td>S30</td>
+	<td>S29 S28</td>
+	<td>S27</td>
+	<td>S7</td>
+	<td>S6</td>
+	<td>S5</td>
+	<td>S4</td>
+	<td>S3</td>
+	<td>S2</td>
+	<td>S1</td>
+	<td>S0</td>
+</tr>
+</table>
+<p>SRC2</p><table>
+<tr>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0(mask)</td>
+</tr>
+<tr>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0Figure 4-5.</td>
+	<td>0PEXT Example</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>S28</td>
+	<td>S7</td>
+	<td>S5</td>
+	<td>S2bit 31</td>
+</tr>
+</table>
+<p>This instruction is not supported in real mode and virtual-8086 mode. The operand size is always 32 bits if not in 64-bit mode. In 64-bit mode operand size 64 requires VEX.W1. VEX.W1 is ignored in non-64-bit modes. An attempt to execute this instruction with VEX.L not equal to 0 will cause #UD.</p><h2 id="operation">Operation</h2>
+<pre>TEMP ← SRC1;
+MASK ← SRC2;
+DEST ← 0 ;
+m← 0, k← 0;
+DO WHILE m< OperandSize
+     IF MASK[ m] = 1 THEN
+       DEST[ k] ← TEMP[ m];
+       k ← k+ 1;
+     FI
+     m ← m+ 1;
+OD
+</pre><h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<table>
+<tr>
+	<td>PEXT:</td>
+	<td>unsigned __int32 _pext_u32(unsigned __int32 src, unsigned __int32 mask);</td>
+</tr>
+<tr>
+	<td>PEXT:</td>
+	<td>unsigned __int64 _pext_u64(unsigned __int64 src, unsigned __int32 mask);</td>
+</tr>
+</table>
+<h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Section 2.5.1, “Exception Conditions for VEX-Encoded GPR Instructions”, Table 2-29; additionally</p><table>
+<tr>
+	<td>#UD</td>
+	<td>If VEX.W = 1.</td>
+</tr>
+</table>
+</body>
+</html>

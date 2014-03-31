@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>PADDQ—Add Packed Quadword Integers</title>
+</head>
+<body>
+<h1 id="paddq-add-packed-quadword-integers">PADDQ—Add Packed Quadword Integers</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32 bit Mode Support</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>0F D4 /r1PADDQ mm1, mm2/m64</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE2</td>
+	<td>Add quadword integer mm2/m64 to mm1.</td>
+</tr>
+<tr>
+	<td>66 0F D4 /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE2</td>
+	<td>Add packed quadword integers xmm2/m128PADDQ xmm1, xmm2/m128</td>
+</tr>
+<tr>
+	<td>VEX.NDS.128.66.0F.WIG D4 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Add packed quadword integers xmm3/m128VPADDQ xmm1, xmm2, xmm3/m128</td>
+</tr>
+<tr>
+	<td>VEX.NDS.256.66.0F.WIG D4 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Add packed quadword integers from ymm2,VPADDQ ymm1, ymm2, ymm3/m256</td>
+</tr>
+</table>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual,Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p><h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>RM</td>
+	<td>ModRM:reg (r, w)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+<tr>
+	<td>RVM</td>
+	<td>ModRM:reg (w)</td>
+	<td>VEX.vvvv (r)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Adds the first operand (destination operand) to the second operand (source operand) and stores the result in the destination operand. The source operand can be a quadword integer stored in an MMX technology register or a 64bit memory location, or it can be two packed quadword integers stored in an XMM register or an 128-bit memory location. The destination operand can be a quadword integer stored in an MMX technology register or two packed quadword integers stored in an XMM register. When packed quadword operands are used, a SIMD add is performed. When a quadword result is too large to be represented in 64 bits (overflow), the result is wrapped around and the low 64 bits are written to the destination element (that is, the carry is ignored).</p><p>Note that the (V)PADDQ instruction can operate on either unsigned or signed (two’s complement notation) integers; however, it does not set bits in the EFLAGS register to indicate overflow and/or a carry. To prevent undetected overflow conditions, software must control the ranges of the values operated on.</p><p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: The first source operand is an XMM register. The second operand can be an XMM register or a 128-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. VEX.128 encoded version: The first source operand is an XMM register. The second source operand is an XMM register or 128-bit memory location. The destination operand is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed. VEX.256 encoded version: The first source operand is a YMM register. The second source operand is a YMM register or a 256-bit memory location. The destination operand is a YMM register.</p><p>Note: VEX.L must be 0, otherwise the instruction will #UD.</p><h2 id="operation">Operation</h2>
+<pre>PADDQ (with 64-Bit operands)
+  DEST[63:0] ← DEST[63:0] + SRC[63:0];
+PADDQ (with 128-Bit operands)
+  DEST[63:0] ← DEST[63:0] + SRC[63:0];
+  DEST[127:64] ← DEST[127:64] + SRC[127:64];
+VPADDQ (VEX.128 encoded instruction)
+  DEST[63:0]← SRC1[63:0]
+  DEST[127:64] ← SRC1[127:64] + SRC2[127:64];
+  DEST[VLMAX-1:128] ← 0;
+VPADDQ (VEX.256 encoded instruction)
+  DEST[63:0]← SRC1[63:0]
+  DEST[127:64] ← SRC1[127:64] + SRC2[127:64];
+  DEST[191:128]← SRC1[191:128]
+  DEST[255:192] ← SRC1[255:192] + SRC2[255:192];
+</pre><h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+<table>
+<tr>
+	<td>PADDQ:</td>
+	<td>__m64 _mm_add_si64 (__m64 a, __m64 b)</td>
+</tr>
+<tr>
+	<td>(V)PADDQ:</td>
+	<td>__m128i _mm_add_epi64 ( __m128i a, __m128i b)</td>
+</tr>
+<tr>
+	<td>VPADDQ:</td>
+	<td>__m256i _mm256_add_epi64 ( __m256i a, __m256i b)</td>
+</tr>
+</table>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p><h2 id="numeric-exceptions">Numeric Exceptions</h2>
+<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4; additionally</p><table>
+<tr>
+	<td>#UD</td>
+	<td>If VEX.L = 1.</td>
+</tr>
+</table>
+</body>
+</html>

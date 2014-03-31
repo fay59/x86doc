@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>PMULLW—Multiply Packed Signed Integers and Store Low Result</title>
+</head>
+<body>
+<h1 id="pmullw-multiply-packed-signed-integers-and-store-low-result">PMULLW—Multiply Packed Signed Integers and Store Low Result</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32 bit Mode Support</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>0F D5 /r1</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>MMX</td>
+	<td>Multiply the packed signed word integers in PMULLW mm, mm/m64low 16 bits of the results in mm1.</td>
+</tr>
+<tr>
+	<td>66 0F D5 /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE2</td>
+	<td>Multiply the packed signed word integers in PMULLW xmm1, xmm2/m128bits of the results in xmm1.</td>
+</tr>
+<tr>
+	<td>VEX.NDS.128.66.0F.WIG D5 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Multiply the packed dword signed integers in VPMULLW xmm1, xmm2, xmm3/m128bits of each product in xmm1.</td>
+</tr>
+<tr>
+	<td>VEX.NDS.256.66.0F.WIG D5 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX2</td>
+	<td>Multiply the packed signed word integers in VPMULLW ymm1, ymm2, ymm3/m256bits of the results in ymm1.</td>
+</tr>
+</table>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual,Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p><h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>RM</td>
+	<td>ModRM:reg (r, w)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+<tr>
+	<td>RVM</td>
+	<td>ModRM:reg (w)</td>
+	<td>VEX.vvvv (r)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Performs a SIMD signed multiply of the packed signed word integers in the destination operand (first operand) and the source operand (second operand), and stores the low 16 bits of each intermediate 32-bit result in the destination operand. (Figure 4-8 shows this operation when using 64-bit operands.)</p><p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15). Legacy SSE version: The source operand can be an MMX technology register or a 64-bit memory location. The destination operand is an MMX technology register.</p><p>128-bit Legacy SSE version: The first source and destination operands are XMM registers. The second source operand is an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: The first source and destination operands are XMM registers. The second source operand is an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the destination YMM register are zeroed. VEX.L must be 0, otherwise the instruction will #UD. VEX.256 encoded version: The second source operand can be an YMM register or a 256-bit memory location. The first source and destination operands are YMM registers.</p><table>
+<tr>
+	<td>SRC</td>
+	<td>X3</td>
+	<td>X2</td>
+	<td>X1</td>
+	<td>X0</td>
+</tr>
+<tr>
+	<td>DEST</td>
+	<td>Y3Z2 = X2 ∗ Y2</td>
+	<td>Y2</td>
+	<td>Y1Z1 = X1 ∗ Y1</td>
+	<td>Y0Z0 = X0 ∗ Y0</td>
+</tr>
+<tr>
+	<td>DEST PMULLU Instruction Operation Using 64-bit Operands</td>
+	<td>Z3[15:0]</td>
+	<td>Z2[15:0]</td>
+	<td>Z1[15:0]</td>
+	<td>Z0[15:0]Figure 4-9.</td>
+</tr>
+</table>
+<h2 id="operation">Operation</h2>
+<pre>PMULLW (with 64-bit operands)
+  TEMP0[31:0] ←
+  TEMP1[31:0] ←
+  TEMP2[31:0] ←
+  TEMP3[31:0] ←
+  DEST[15:0] ←
+  DEST[31:16] ←
+  DEST[47:32] ←
+  DEST[63:48] ←
+PMULLW (with 128-bit operands)
+  TEMP0[31:0] ←
+  TEMP1[31:0] ←
+  TEMP2[31:0] ←
+  TEMP3[31:0] ←
+  TEMP4[31:0] ←
+  TEMP5[31:0] ←
+  TEMP6[31:0] ←
+  TEMP7[31:0] ←
+  DEST[15:0] ←
+  DEST[31:16] ←
+  DEST[47:32] ←
+  DEST[63:48] ←
+  DEST[79:64] ←
+  DEST[95:80] ←
+  DEST[111:96] ←
+  DEST[127:112] ← TEMP7[15:0];
+VPMULLW (VEX.128 encoded version)
+Temp0[31:0] ← SRC1[15:0] * SRC2[15:0]
+Temp1[31:0] ← SRC1[31:16] * SRC2[31:16]
+Temp2[31:0] ← SRC1[47:32] * SRC2[47:32]
+Temp3[31:0] ← SRC1[63:48] * SRC2[63:48]
+Temp4[31:0] ← SRC1[79:64] * SRC2[79:64]
+Temp5[31:0] ← SRC1[95:80] * SRC2[95:80]
+Temp6[31:0] ← SRC1[111:96] * SRC2[111:96]
+Temp7[31:0] ← SRC1[127:112] * SRC2[127:112]
+DEST[15:0] ← Temp0[15:0]
+DEST[31:16] ← Temp1[15:0]
+DEST[47:32] ← Temp2[15:0]
+DEST[63:48] ← Temp3[15:0]
+DEST[79:64] ← Temp4[15:0]
+DEST[95:80] ← Temp5[15:0]
+DEST[111:96] ← Temp6[15:0]
+DEST[127:112] ← Temp7[15:0]
+DEST[VLMAX-1:128] ← 0
+VPMULLD (VEX.256 encoded version)
+Temp0[63:0] ← SRC1[31:0] * SRC2[31:0]
+Temp1[63:0] ← SRC1[63:32] * SRC2[63:32]
+Temp2[63:0] ← SRC1[95:64] * SRC2[95:64]
+Temp3[63:0] ← SRC1[127:96] * SRC2[127:96]
+Temp4[63:0] ← SRC1[159:128] * SRC2[159:128]
+Temp5[63:0] ← SRC1[191:160] * SRC2[191:160]
+Temp6[63:0] ← SRC1[223:192] * SRC2[223:192]
+Temp7[63:0] ← SRC1[255:224] * SRC2[255:224]
+DEST[31:0] ← Temp0[31:0]
+DEST[63:32] ← Temp1[31:0]
+DEST[95:64] ← Temp2[31:0]
+DEST[127:96] ← Temp3[31:0]
+DEST[159:128] ← Temp4[31:0]
+DEST[191:160] ← Temp5[31:0]
+DEST[223:192] ← Temp6[31:0]
+DEST[255:224] ← Temp7[31:0]
+</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<table>
+<tr>
+	<td>PMULLW:</td>
+	<td>__m64 _mm_mullo_pi16(__m64 m1, __m64 m2)</td>
+</tr>
+<tr>
+	<td>(V)PMULLW:</td>
+	<td>__m128i _mm_mullo_epi16 ( __m128i a, __m128i b)</td>
+</tr>
+<tr>
+	<td>VPMULLW:</td>
+	<td>__m256i _mm256_mullo_epi16 ( __m256i a, __m256i b);</td>
+</tr>
+</table>
+<h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p><h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4; additionally</p><table>
+<tr>
+	<td>#UD</td>
+	<td>If VEX.L = 1.</td>
+</tr>
+</table>
+</body>
+</html>

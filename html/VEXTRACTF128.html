@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>VEXTRACTF128 — Extract Packed Floating-Point Values</title>
+</head>
+<body>
+<h1 id="vextractf128---extract-packed-floating-point-values">VEXTRACTF128 — Extract Packed Floating-Point Values</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32-bit Mode</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>VEX.256.66.0F3A.W0 19 /r ib</td>
+	<td>MR</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Extract 128 bits of packed floating-point VEXTRACTF128 xmm1/m128, ymm2, imm8xmm1/mem.</td>
+</tr>
+</table>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>MR</td>
+	<td>ModRM:r/m (w)</td>
+	<td>ModRM:reg (r)</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Extracts 128-bits of packed floating-point values from the source operand (second operand) at an 128-bit offset from imm8[0] into the destination operand (first operand). The destination may be either an XMM register or an 128-bit memory location. VEX.vvvv is reserved and must be 1111b otherwise instructions will #UD. The high 7 bits of the immediate are ignored. If VEXTRACTF128 is encoded with VEX.L= 0, an attempt to execute the instruction encoded with VEX.L= 0 will cause an #UD exception.</p><h2 id="operation">Operation</h2>
+<pre>VEXTRACTF128 (memory destination form)
+CASE (imm8[0]) OF
+  0: DEST[127:0] ← SRC1[127:0]
+  1: DEST[127:0] ← SRC1[255:128]
+ESAC.
+VEXTRACTF128 (register destination form)
+CASE (imm8[0]) OF
+  0: DEST[127:0] ← SRC1[127:0]
+  1: DEST[127:0] ← SRC1[255:128]
+ESAC.
+DEST[VLMAX-1:128] ← 0
+</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<table>
+<tr>
+	<td>VEXTRACTF128:</td>
+	<td>__m128 _mm256_extractf128_ps (__m256 a, int offset);</td>
+</tr>
+<tr>
+	<td>VEXTRACTF128:</td>
+	<td>__m128d _mm256_extractf128_pd (__m256d a, int offset);</td>
+</tr>
+<tr>
+	<td>VEXTRACTF128:</td>
+	<td>__m128i_mm256_extractf128_si256(__m256i a, int offset);</td>
+</tr>
+</table>
+<h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 6; additionally</p><table>
+<tr>
+	<td>#UD</td>
+	<td>If VEX.L= 0If VEX.W=1.</td>
+</tr>
+</table>
+</body>
+</html>

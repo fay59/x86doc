@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>FISTTP—Store Integer with Truncation</title>
+</head>
+<body>
+<h1 id="fisttp-store-integer-with-truncation">FISTTP—Store Integer with Truncation</h1>
+<table>
+<tr>
+	<td>Opcode</td>
+	<td>Instruction</td>
+	<td>64-Bit Mode</td>
+	<td>Compat/Leg Mode</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>DF /1</td>
+	<td>FISTTP m16int</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Store ST(0) in m16int with truncation.</td>
+</tr>
+<tr>
+	<td>DB /1</td>
+	<td>FISTTP m32int</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Store ST(0) in m32int with truncation.</td>
+</tr>
+<tr>
+	<td>DD /1</td>
+	<td>FISTTP m64int</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Store ST(0) in m64int with truncation.</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>FISTTP converts the value in ST into a signed integer using truncation (chop) as rounding mode, transfers the result to the destination, and pop ST. FISTTP accepts word, short integer, and long integer destinations.</p><p>The following table shows the results obtained when storing various classes of numbers in integer format.</p><table>
+<tr>
+	<td>Table 3-38.</td>
+	<td>FISTTP Results DEST Value Too Large for DEST Format − I 0+ I or Value Too Large for DEST Format NaN</td>
+</tr>
+</table>
+<p class="notes">Notes: F Means finite floating-point value. Ι Means integer. ∗ Indicates floating-point invalid-operation (#IA) exception.</p><p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p><h2 id="operation">Operation</h2>
+<pre>DEST ← ST;
+pop ST;
+</pre><h2 id="flags-affected">Flags Affected</h2>
+<p>C1 is cleared; C0, C2, C3 undefined.</p><h2 id="numeric-exceptions">Numeric Exceptions</h2>
+<p>Invalid, Stack Invalid (stack underflow), Precision.</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#GP(0)</td>
+	<td>If the destination is in a nonwritable segment. For an illegal memory operand effective address in the CS, DS, ES, FS or GS segments.</td>
+</tr>
+<tr>
+	<td>#SS(0)</td>
+	<td>For an illegal address in the SS segment.</td>
+</tr>
+<tr>
+	<td>#PF(fault-code)</td>
+	<td>For a page fault.</td>
+</tr>
+<tr>
+	<td>#AC(0)</td>
+	<td>If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.</td>
+</tr>
+<tr>
+	<td>#NM</td>
+	<td>If CR0.EM[bit 2] = 1. If CR0.TS[bit 3] = 1.</td>
+</tr>
+<tr>
+	<td>#UD</td>
+	<td>If CPUID.01H:ECX.SSE3[bit 0] = 0. If the LOCK prefix is used.</td>
+</tr>
+</table>
+<h2 id="real-address-mode-exceptions">Real Address Mode Exceptions</h2>
+<table>
+<tr>
+	<td>GP(0)</td>
+	<td>If any part of the operand would lie outside of the effective address space from 0 to 0FFFFH.</td>
+</tr>
+<tr>
+	<td>#NM</td>
+	<td>If CR0.EM[bit 2] = 1. If CR0.TS[bit 3] = 1.</td>
+</tr>
+<tr>
+	<td>#UD</td>
+	<td>If CPUID.01H:ECX.SSE3[bit 0] = 0. If the LOCK prefix is used.</td>
+</tr>
+</table>
+<h2 id="virtual-8086-mode-exceptions">Virtual 8086 Mode Exceptions</h2>
+<table>
+<tr>
+	<td>GP(0)</td>
+	<td>If any part of the operand would lie outside of the effective address space from 0 to 0FFFFH.</td>
+</tr>
+<tr>
+	<td>#NM</td>
+	<td>If CR0.EM[bit 2] = 1. If CR0.TS[bit 3] = 1.</td>
+</tr>
+<tr>
+	<td>#UD</td>
+	<td>If CPUID.01H:ECX.SSE3[bit 0] = 0. If the LOCK prefix is used.</td>
+</tr>
+<tr>
+	<td>#PF(fault-code)</td>
+	<td>For a page fault.</td>
+</tr>
+<tr>
+	<td>#AC(0)</td>
+	<td>For unaligned memory reference if the current privilege is 3.</td>
+</tr>
+</table>
+<h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#SS(0)</td>
+	<td>If a memory address referencing the SS segment is in a non-canonical form.</td>
+</tr>
+<tr>
+	<td>#GP(0)</td>
+	<td>If the memory address is in a non-canonical form.</td>
+</tr>
+<tr>
+	<td>#NM</td>
+	<td>CR0.EM[bit 2] or CR0.TS[bit 3] = 1.</td>
+</tr>
+<tr>
+	<td>#MF</td>
+	<td>If there is a pending x87 FPU exception.</td>
+</tr>
+<tr>
+	<td>#PF(fault-code)</td>
+	<td>If a page fault occurs.</td>
+</tr>
+<tr>
+	<td>#AC(0)</td>
+	<td>If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3. If the LOCK prefix is used.</td>
+</tr>
+</table>
+</body>
+</html>

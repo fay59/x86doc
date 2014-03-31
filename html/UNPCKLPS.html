@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>UNPCKLPS—Unpack and Interleave Low Packed Single-Precision Floating-Point Values</title>
+</head>
+<body>
+<h1 id="unpcklps-unpack-and-interleave-low-packed-single-precision-floating-point-values">UNPCKLPS—Unpack and Interleave Low Packed Single-Precision Floating-Point Values</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32 bit Mode Support</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>0F 14 /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE</td>
+	<td>Unpacks and Interleaves single-precision UNPCKLPS xmm1, xmm2/m128xmm1 and xmm2/mem into xmm1.</td>
+</tr>
+<tr>
+	<td>VEX.NDS.128.0F.WIG 14 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Unpacks and Interleaves single-precision VUNPCKLPS xmm1,xmm2, xmm3/m128xmm2 and xmm3/m128.</td>
+</tr>
+<tr>
+	<td>VEX.NDS.256.0F.WIG 14 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Unpacks and Interleaves single-precision VUNPCKLPS ymm1,ymm2,ymm3/m256ymm2 and ymm3/m256.</td>
+</tr>
+</table>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>RM</td>
+	<td>ModRM:reg (r, w)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+<tr>
+	<td>RVM</td>
+	<td>ModRM:reg (w)</td>
+	<td>VEX.vvvv (r)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Performs an interleaved unpack of the low-order single-precision floating-point values from the source operand (second operand) and the destination operand (first operand). See Figure 4-26. The source operand can be an XMM register or a 128-bit memory location; the destination operand is an XMM register.</p><table>
+<tr>
+	<td>DEST</td>
+	<td>X3</td>
+	<td>X2</td>
+	<td>X1</td>
+	<td>X0</td>
+</tr>
+<tr>
+	<td>SRC</td>
+	<td>Y3</td>
+	<td>Y2</td>
+	<td>Y1</td>
+	<td>Y0</td>
+</tr>
+<tr>
+	<td>DEST</td>
+	<td>Y1UNPCKLPS Instruction Low Unpack and Interleave Operation</td>
+	<td>X1</td>
+	<td>Y0</td>
+	<td>X0Figure 4-26.</td>
+</tr>
+</table>
+<p>When unpacking from a memory operand, an implementation may fetch only the appropriate 64 bits; however,alignment to 16-byte boundary and normal segment checking will still be enforced.</p><p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: The second source can be an XMM register or an 128-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. VEX.128 encoded version: The first source operand is an XMM register or 128-bit memory location. The destination operand is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed.</p><h2 id="operation">Operation</h2>
+<pre>UNPCKLPS (128-bit Legacy SSE version)
+DEST[31:0] ← SRC1[31:0]
+DEST[63:32] ← SRC2[31:0]
+DEST[95:64] ← SRC1[63:32]
+DEST[127:96] ← SRC2[63:32]
+DEST[VLMAX-1:128] (Unmodified)
+VUNPCKLPS (VEX.128 encoded version)
+DEST[31:0] ← SRC1[31:0]
+DEST[63:32] ← SRC2[31:0]
+DEST[95:64] ← SRC1[63:32]
+DEST[127:96] ← SRC2[63:32]
+DEST[VLMAX-1:128] ← 0
+UNPCKLPS (VEX.256 encoded version)
+DEST[31:0] ← SRC1[31:0]
+DEST[63:32] ← SRC2[31:0]
+DEST[95:64] ← SRC1[63:32]
+DEST[127:96] ← SRC2[63:32]
+DEST[159:128] ← SRC1[159:128]
+DEST[191:160] ← SRC2[159:128]
+DEST[223:192] ← SRC1[191:160]
+DEST[255:224] ← SRC2[191:160]
+</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<table>
+<tr>
+	<td>UNPCKLPS:</td>
+	<td>__m128 _mm_unpacklo_ps(__m128 a, __m128 b)</td>
+</tr>
+<tr>
+	<td>UNPCKLPS:</td>
+	<td>__m256 _mm256_unpacklo_ps (__m256 a, __m256 b);</td>
+</tr>
+</table>
+<h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 4.</p></body>
+</html>

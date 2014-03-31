@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>VZEROUPPER—Zero Upper Bits of YMM Registers</title>
+</head>
+<body>
+<h1 id="vzeroupper-zero-upper-bits-of-ymm-registers">VZEROUPPER—Zero Upper Bits of YMM Registers</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32 bit Mode Support</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>VEX.128.0F.WIG 77VZEROUPPER</td>
+	<td>NP</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Zero upper 128 bits of all YMM registers.</td>
+</tr>
+</table>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>NP</td>
+	<td>NA</td>
+	<td>NA</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>The instruction zeros the bits in position 128 and higher of all YMM registers. The lower 128-bits of the registers (the corresponding XMM registers) are unmodified.</p><p>This instruction is recommended when transitioning between AVX and legacy SSE code - it will eliminate performance penalties caused by false dependencies. Note: VEX.vvvv is reserved and must be 1111b otherwise instructions will #UD. In Compatibility and legacy 32-bit mode only the lower 8 registers are modified.</p><h2 id="operation">Operation</h2>
+<pre>VZEROUPPER
+IF (64-bit mode)
+  YMM0[VLMAX-1:128] ← 0
+  YMM1[VLMAX-1:128] ← 0
+  YMM2[VLMAX-1:128] ← 0
+  YMM3[VLMAX-1:128] ← 0
+  YMM4[VLMAX-1:128] ← 0
+  YMM5[VLMAX-1:128] ← 0
+  YMM6[VLMAX-1:128] ← 0
+  YMM7[VLMAX-1:128] ← 0
+  YMM8[VLMAX-1:128] ← 0
+  YMM9[VLMAX-1:128] ← 0
+  YMM10[VLMAX-1:128] ← 0
+  YMM11[VLMAX-1:128] ← 0
+  YMM12[VLMAX-1:128] ← 0
+  YMM13[VLMAX-1:128] ← 0
+  YMM14[VLMAX-1:128] ← 0
+  YMM15[VLMAX-1:128] ← 0
+ELSE
+  YMM0[VLMAX-1:128] ← 0
+  YMM1[VLMAX-1:128] ← 0
+  YMM2[VLMAX-1:128] ← 0
+  YMM3[VLMAX-1:128] ← 0
+  YMM4[VLMAX-1:128] ← 0
+  YMM5[VLMAX-1:128] ← 0
+  YMM6[VLMAX-1:128] ← 0
+  YMM7[VLMAX-1:128] ← 0
+  YMM8-15: unmodified
+FI
+</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<table>
+<tr>
+	<td>VZEROUPPER:</td>
+	<td>_mm256_zeroupper()</td>
+</tr>
+</table>
+<h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 8.</p></body>
+</html>

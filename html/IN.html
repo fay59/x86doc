@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>IN—Input from Port</title>
+</head>
+<body>
+<h1 id="in-input-from-port">IN—Input from Port</h1>
+<table>
+<tr>
+	<td>Opcode</td>
+	<td>Instruction</td>
+	<td>Op/En</td>
+	<td>64-Bit Mode</td>
+	<td>Compat/Leg Mode</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>E4 ib</td>
+	<td>IN AL, imm8</td>
+	<td>I</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Input byte from imm8 I/O port address into AL.</td>
+</tr>
+<tr>
+	<td>E5 ib</td>
+	<td>IN AX, imm8</td>
+	<td>I</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Input word from imm8 I/O port address into AX.</td>
+</tr>
+<tr>
+	<td>E5 ib</td>
+	<td>IN EAX, imm8</td>
+	<td>I</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Input dword from imm8 I/O port address into EAX.</td>
+</tr>
+<tr>
+	<td>EC</td>
+	<td>IN AL,DX</td>
+	<td>NP</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Input byte from I/O port in DX into AL.</td>
+</tr>
+<tr>
+	<td>ED</td>
+	<td>IN AX,DX</td>
+	<td>NP</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Input word from I/O port in DX into AX.</td>
+</tr>
+<tr>
+	<td>ED</td>
+	<td>IN EAX,DX</td>
+	<td>NP</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Input doubleword from I/O port in DX into EAX.</td>
+</tr>
+</table>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>I</td>
+	<td>imm8</td>
+	<td>NA</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+<tr>
+	<td>NP</td>
+	<td>NA</td>
+	<td>NA</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Copies the value from the I/O port specified with the second operand (source operand) to the destination operand (first operand). The source operand can be a byte-immediate or the DX register; the destination operand can be register AL, AX, or EAX, depending on the size of the port being accessed (8, 16, or 32 bits, respectively). Using the DX register as a source operand allows I/O port addresses from 0 to 65,535 to be accessed; using a byte immediate allows I/O port addresses 0 to 255 to be accessed.</p><p>When accessing an 8-bit I/O port, the opcode determines the port size; when accessing a 16- and 32-bit I/O port,the operand-size attribute determines the port size. At the machine code level, I/O instructions are shorter when accessing 8-bit I/O ports. Here, the upper eight bits of the port address will be 0.</p><p>This instruction is only useful for accessing I/O ports located in the processor’s I/O address space. See Chapter 16,“Input/Output,” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, for more information on accessing I/O ports in the I/O address space.</p><p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p><h2 id="operation">Operation</h2>
+<pre>IF ((PE = 1) and ((CPL > IOPL) or (VM = 1)))
+  THEN (* Protected mode with CPL > IOPL or virtual-8086 mode *)
+     IF (Any I/O Permission Bit for I/O port being accessed = 1)
+       THEN (* I/O operation is not allowed *)
+          #GP(0);
+       ELSE ( * I/O operation is allowed *)
+          DEST ← SRC; (* Read from selected I/O port *)
+     FI;
+  ELSE (Real Mode or Protected Mode with CPL ≤ IOPL *)
+     DEST ← SRC; (* Read from selected I/O port *)
+FI;
+</pre><h2 id="flags-affected">Flags Affected</h2>
+<p>None.</p><h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#GP(0)</td>
+	<td>If the CPL is greater than (has less privilege) the I/O privilege level (IOPL) and any of the corresponding I/O permission bits in TSS for the I/O port being accessed is 1.</td>
+</tr>
+<tr>
+	<td>#UD</td>
+	<td>If the LOCK prefix is used.</td>
+</tr>
+</table>
+<h2 id="real-address-mode-exceptions">Real-Address Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#UD</td>
+	<td>If the LOCK prefix is used.</td>
+</tr>
+</table>
+<h2 id="virtual-8086-mode-exceptions">Virtual-8086 Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#GP(0)</td>
+	<td>If any of the I/O permission bits in the TSS for the I/O port being accessed is 1.</td>
+</tr>
+<tr>
+	<td>#PF(fault-code)</td>
+	<td>If a page fault occurs.</td>
+</tr>
+<tr>
+	<td>#UD</td>
+	<td>If the LOCK prefix is used.</td>
+</tr>
+</table>
+<h2 id="compatibility-mode-exceptions">Compatibility Mode Exceptions</h2>
+<p>Same exceptions as in protected mode.</p><h2 id="64-bit-mode-exceptions">64-Bit Mode Exceptions</h2>
+<table>
+<tr>
+	<td>#GP(0)</td>
+	<td>If the CPL is greater than (has less privilege) the I/O privilege level (IOPL) and any of the corresponding I/O permission bits in TSS for the I/O port being accessed is 1.</td>
+</tr>
+<tr>
+	<td>#UD</td>
+	<td>If the LOCK prefix is used.</td>
+</tr>
+</table>
+</body>
+</html>

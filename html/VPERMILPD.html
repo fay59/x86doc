@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>VPERMILPD — Permute Double-Precision Floating-Point Values</title>
+</head>
+<body>
+<h1 id="vpermilpd---permute-double-precision-floating-point-values">VPERMILPD — Permute Double-Precision Floating-Point Values</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32 bit Mode Support</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>VEX.NDS.128.66.0F38.W0 0D /r VPERMILPD xmm1, xmm2, xmm3/m128</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Permute double-precision floating-point values in xmm2 using controls from xmm3/mem and store result in xmm1.</td>
+</tr>
+<tr>
+	<td>VEX.NDS.256.66.0F38.W0 0D /r VPERMILPD ymm1, ymm2, ymm3/m256</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Permute double-precision floating-point values in ymm2 using controls from ymm3/mem and store result in ymm1.</td>
+</tr>
+<tr>
+	<td>VEX.128.66.0F3A.W0 05 /r ib VPERMILPD xmm1, xmm2/m128, imm8</td>
+	<td>RMI</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Permute double-precision floating-point values in xmm2/mem using controls from imm8.</td>
+</tr>
+<tr>
+	<td>VEX.256.66.0F3A.W0 05 /r ib VPERMILPD ymm1, ymm2/m256, imm8</td>
+	<td>RMI</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Permute double-precision floating-point values in ymm2/mem using controls from imm8.</td>
+</tr>
+</table>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>RVM</td>
+	<td>ModRM:reg (w)</td>
+	<td>VEX.vvvv (r)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+</tr>
+<tr>
+	<td>RMI</td>
+	<td>ModRM:reg (w)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>imm8</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Permute double-precision floating-point values in the first source operand (second operand) using 8-bit control fields in the low bytes of the second source operand (third operand) and store results in the destination operand (first operand). The first source operand is a YMM register, the second source operand is a YMM register or a 256bit memory location, and the destination operand is a YMM register.</p><table>
+<tr>
+	<td>SRC1</td>
+	<td>X3</td>
+	<td>X2</td>
+	<td>X1</td>
+	<td>X0</td>
+</tr>
+<tr>
+	<td>DEST</td>
+	<td>X2..X3Figure 4-38.</td>
+	<td>X2..X3VPERMILPD operation</td>
+	<td>X0..X1</td>
+	<td>X0..X1</td>
+</tr>
+</table>
+<p>There is one control byte per destination double-precision element. Each control byte is aligned with the low 8 bits of the corresponding double-precision destination element. Each control byte contains a 1-bit select field (see Figure 4-39) that determines which of the source elements are selected. Source elements are restricted to lie in the same source 128-bit region as the destination.</p><p>Bit</p><table>
+<tr>
+	<td>255</td>
+	<td>194 193sel Control Field 4Figure 4-39.</td>
+	<td>127VPERMILPD Shuffle Control</td>
+	<td>66ignored Control Field 2</td>
+	<td>65sel</td>
+	<td>63</td>
+	<td>2ignored Control Field1</td>
+	<td>1sel</td>
+</tr>
+</table>
+<p>(immediate control version)Permute double-precision floating-point values in the first source operand (second operand) using two, 1-bit control fields in the low 2 bits of the 8-bit immediate and store results in the destination operand (first operand). The source operand is a YMM register or 256-bit memory location and the destination operand is a YMM register. Note: For the VEX.128.66.0F3A 05 instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD. Note: For the VEX.256.66.0F3A 05 instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD.</p><h2 id="operation">Operation</h2>
+<pre>VPERMILPD (256-bit immediate version)
+IF (imm8[0] = 0) THEN DEST[63:0]←SRC1[63:0]
+IF (imm8[0] = 1) THEN DEST[63:0]←SRC1[127:64]
+IF (imm8[1] = 0) THEN DEST[127:64]←SRC1[63:0]
+IF (imm8[1] = 1) THEN DEST[127:64]←SRC1[127:64]
+IF (imm8[2] = 0) THEN DEST[191:128]←SRC1[191:128]
+IF (imm8[2] = 1) THEN DEST[191:128]←SRC1[255:192]
+IF (imm8[3] = 0) THEN DEST[255:192]←SRC1[191:128]
+IF (imm8[3] = 1) THEN DEST[255:192]←SRC1[255:192]
+VPERMILPD (128-bit immediate version)
+IF (imm8[0] = 0) THEN DEST[63:0]←SRC1[63:0]
+IF (imm8[0] = 1) THEN DEST[63:0]←SRC1[127:64]
+IF (imm8[1] = 0) THEN DEST[127:64]←SRC1[63:0]
+IF (imm8[1] = 1) THEN DEST[127:64]←SRC1[127:64]
+DEST[VLMAX-1:128] ← 0
+VPERMILPD (256-bit variable version)
+IF (SRC2[1] = 0) THEN DEST[63:0]←SRC1[63:0]
+IF (SRC2[1] = 1) THEN DEST[63:0]←SRC1[127:64]
+IF (SRC2[65] = 0) THEN DEST[127:64]←SRC1[63:0]
+IF (SRC2[65] = 1) THEN DEST[127:64]←SRC1[127:64]
+IF (SRC2[129] = 0) THEN DEST[191:128]←SRC1[191:128]
+IF (SRC2[129] = 1) THEN DEST[191:128]←SRC1[255:192]
+IF (SRC2[193] = 0) THEN DEST[255:192]←SRC1[191:128]
+IF (SRC2[193] = 1) THEN DEST[255:192]←SRC1[255:192]
+VPERMILPD (128-bit variable version)
+IF (SRC2[1] = 0) THEN DEST[63:0]←SRC1[63:0]
+IF (SRC2[1] = 1) THEN DEST[63:0]←SRC1[127:64]
+IF (SRC2[65] = 0) THEN DEST[127:64]←SRC1[63:0]
+IF (SRC2[65] = 1) THEN DEST[127:64]←SRC1[127:64]
+DEST[VLMAX-1:128] ← 0
+</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<table>
+<tr>
+	<td>VPERMILPD:</td>
+	<td>__m128d _mm_permute_pd (__m128d a, int control)</td>
+</tr>
+<tr>
+	<td>VPERMILPD:</td>
+	<td>__m256d _mm256_permute_pd (__m256d a, int control)</td>
+</tr>
+<tr>
+	<td>VPERMILPD:</td>
+	<td>__m128d _mm_permutevar_pd (__m128d a, __m128i control);</td>
+</tr>
+<tr>
+	<td>VPERMILPD:</td>
+	<td>__m256d _mm256_permutevar_pd (__m256d a, __m256i control);</td>
+</tr>
+</table>
+<h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>None.</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 6; additionally</p><table>
+<tr>
+	<td>#UD</td>
+	<td>If VEX.W = 1</td>
+</tr>
+</table>
+</body>
+</html>

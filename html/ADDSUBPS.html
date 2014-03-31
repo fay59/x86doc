@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>ADDSUBPS—Packed Single-FP Add/Subtract</title>
+</head>
+<body>
+<h1 id="addsubps-packed-single-fp-add-subtract">ADDSUBPS—Packed Single-FP Add/Subtract</h1>
+<table>
+<tr>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32-bit Mode</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>F2 0F D0 /r</td>
+	<td>RM</td>
+	<td>V/V</td>
+	<td>SSE3</td>
+	<td>Add/subtract single-precision floating-point ADDSUBPS xmm1, xmm2/m128</td>
+</tr>
+<tr>
+	<td>VEX.NDS.128.F2.0F.WIG D0 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Add/subtract single-precision floating-point VADDSUBPS xmm1, xmm2, xmm3/m128result in xmm1.</td>
+</tr>
+<tr>
+	<td>VEX.NDS.256.F2.0F.WIG D0 /r</td>
+	<td>RVM</td>
+	<td>V/V</td>
+	<td>AVX</td>
+	<td>Add / subtract single-precision floating-point VADDSUBPS ymm1, ymm2, ymm3/m256result in ymm1.</td>
+</tr>
+</table>
+<h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
+<table>
+<tr>
+	<td>Op/En</td>
+	<td>Operand 1</td>
+	<td>Operand 2</td>
+	<td>Operand 3</td>
+	<td>Operand 4</td>
+</tr>
+<tr>
+	<td>RM</td>
+	<td>ModRM:reg (r, w)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+	<td>NA</td>
+</tr>
+<tr>
+	<td>RVM</td>
+	<td>ModRM:reg (w)</td>
+	<td>VEX.vvvv (r)</td>
+	<td>ModRM:r/m (r)</td>
+	<td>NA</td>
+</tr>
+</table>
+<h2 id="description">Description</h2>
+<p>Adds odd-numbered single-precision floating-point values of the first source operand (second operand) with the corresponding single-precision floating-point values from the second source operand (third operand); stores the result in the odd-numbered values of the destination operand (first operand). Subtracts the even-numbered single-precision floating-point values from the second source operand from the corresponding single-precision floating values in the first source operand; stores the result into the even-numbered values of the destination operand.</p><p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: The second source can be an XMM register or an 128-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. See Figure 3-4. VEX.128 encoded version: the first source operand is an XMM register or 128-bit memory location. The destination operand is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed. VEX.256 encoded version: The first source operand is a YMM register. The second source operand can be a YMM register or a 256-bit memory location. The destination operand is a YMM register.</p><p>ADDSUBPS xmm1, xmm2/m128</p><p>xmm2/</p><table>
+<tr>
+	<td>[127:96]</td>
+	<td>[95:64]xmm1[95:64] - xmm2/m128[95:64]</td>
+	<td>[63:32]xmm1[63:32] +xmm2/m128[63:32]</td>
+	<td>[31:0]m128RESULT:xmm1</td>
+</tr>
+<tr>
+	<td>[127:96]</td>
+	<td>[95:64]</td>
+	<td>[63:32]</td>
+	<td>[31:0]</td>
+</tr>
+</table>
+<p>OM15992</p><table>
+<tr>
+	<td>Figure 3-4.</td>
+	<td>ADDSUBPS—Packed Single-FP Add/Subtract</td>
+</tr>
+</table>
+<h2 id="operation">Operation</h2>
+<pre>ADDSUBPS (128-bit Legacy SSE version)
+DEST[31:0] ← DEST[31:0] - SRC[31:0]
+DEST[63:32] ← DEST[63:32] + SRC[63:32]
+DEST[95:64] ← DEST[95:64] - SRC[95:64]
+DEST[127:96] ← DEST[127:96] + SRC[127:96]
+DEST[VLMAX-1:128] (Unmodified)
+VADDSUBPS (VEX.128 encoded version)
+DEST[31:0] ← SRC1[31:0] - SRC2[31:0]
+DEST[63:32] ← SRC1[63:32] + SRC2[63:32]
+DEST[95:64] ← SRC1[95:64] - SRC2[95:64]
+DEST[127:96] ← SRC1[127:96] + SRC2[127:96]
+DEST[VLMAX-1:128] ← 0
+VADDSUBPS (VEX.256 encoded version)
+DEST[31:0] ← SRC1[31:0] - SRC2[31:0]
+DEST[63:32] ← SRC1[63:32] + SRC2[63:32]
+DEST[95:64] ← SRC1[95:64] - SRC2[95:64]
+DEST[127:96] ← SRC1[127:96] + SRC2[127:96]
+DEST[159:128] ← SRC1[159:128] - SRC2[159:128]
+DEST[191:160]← SRC1[191:160] + SRC2[191:160]
+DEST[223:192] ← SRC1[223:192] - SRC2[223:192]
+DEST[255:224] ← SRC1[255:224] + SRC2[255:224].
+</pre><h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<table>
+<tr>
+	<td>ADDSUBPS:</td>
+	<td>__m128 _mm_addsub_ps(__m128 a, __m128 b)</td>
+</tr>
+<tr>
+	<td>VADDSUBPS:</td>
+	<td>__m256 _mm256_addsub_ps (__m256 a, __m256 b)</td>
+</tr>
+</table>
+<h2 id="exceptions">Exceptions</h2>
+<p>When the source operand is a memory operand, the operand must be aligned on a 16-byte boundary or a generalprotection exception (#GP) will be generated.</p><h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
+<p>Overflow, Underflow, Invalid, Precision, Denormal.</p><h2 id="other-exceptions">Other Exceptions</h2>
+<p>See Exceptions Type 2.</p></body>
+</html>
