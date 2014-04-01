@@ -60,34 +60,16 @@
 </table>
 <h2 id="description">Description</h2>
 <p>Stores the machine status word (bits 0 through 15 of control register CR0) into the destination operand. The destination operand can be a general-purpose register or a memory location.</p>
-<p>In non-64-bit modes, when the destination operand is a 32-bit register, the low-order 16 bits of register CR0 are copied into the low-order 16 bits of the register and the high-order 16 bits are undefined. When the destination operand is a memory location, the low-order 16 bits of register CR0 are written to memory as a 16-bit quantity,regardless of the operand size.</p>
+<p>In non-64-bit modes, when the destination operand is a 32-bit register, the low-order 16 bits of register CR0 are copied into the low-order 16 bits of the register and the high-order 16 bits are undefined. When the destination operand is a memory location, the low-order 16 bits of register CR0 are written to memory as a 16-bit quantity, regardless of the operand size.</p>
 <p>In 64-bit mode, the behavior of the SMSW instruction is defined by the following examples:</p>
-<table>
-<tr>
-	<td>•</td>
-	<td>SMSW r16 operand size 16, store CR0[15:0] in r16</td>
-</tr>
-<tr>
-	<td>•</td>
-	<td>SMSW r32 operand size 32, zero-extend CR0[31:0], and store in r32</td>
-</tr>
-<tr>
-	<td>•</td>
-	<td>SMSW r64 operand size 64, zero-extend CR0[63:0], and store in r64</td>
-</tr>
-<tr>
-	<td>•</td>
-	<td>SMSW m16 operand size 16, store CR0[15:0] in m16</td>
-</tr>
-<tr>
-	<td>•</td>
-	<td>SMSW m16 operand size 32, store CR0[15:0] in m16 (not m32)</td>
-</tr>
-<tr>
-	<td>•</td>
-	<td>SMSW m16 operands size 64, store CR0[15:0] in m16 (not m64)</td>
-</tr>
-</table>
+<ul>
+	<li>SMSW r16 operand size 16, store CR0[15:0] in r16</li>
+	<li>SMSW r32 operand size 32, zero-extend CR0[31:0], and store in r32</li>
+	<li>SMSW r64 operand size 64, zero-extend CR0[63:0], and store in r64</li>
+	<li>SMSW m16 operand size 16, store CR0[15:0] in m16</li>
+	<li>SMSW m16 operand size 32, store CR0[15:0] in m16 (not m32)</li>
+	<li>SMSW m16 operands size 64, store CR0[15:0] in m16 (not m64)</li>
+</ul>
 <p>SMSW is only useful in operating-system software. However, it is not a privileged instruction and can be used in application programs. The is provided for compatibility with the Intel 286 processor. Programs and procedures intended to run on the Pentium 4, Intel Xeon, P6 family, Pentium, Intel486, and Intel386 processors should use the MOV (control registers) instruction to load the machine status word.</p>
 <p>See “Changes to Instruction Behavior in VMX Non-Root Operation” in Chapter 25 of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3C, for more information about the behavior of this instruction in VMX non-root operation.</p>
 <h2 id="operation">Operation</h2>

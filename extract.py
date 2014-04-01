@@ -92,9 +92,9 @@ class UglyDocument(object):
 			x = style["left"]
 			y = style["top"]
 			
-			text = ""
 			# TODO change <span> tags into <em>, <strong> somewhere around this place
 			
+			text = div.text.strip()
 			text_parts = []
 			last_offset = 0
 			match = re.search(" {2,}", text)
@@ -125,12 +125,26 @@ class DocumentWriter(object):
 		self.__output_mode = None # could be one of None, "p", "list", "code", "table"
 		self.__output_mode_data = {}
 		self.__output = StringIO()
+		self.__spaced_chars = set(['.', ',', ';', ':'])
 	
 	def write(self, row):
 		if self.__output_mode == "p":
 			if self.__break_p(row):
-				css_class = ' class="%s"' % self.__output_mode_data["class"] if "class" in self.__output_mode_data else ""
-				self.__output.write("<p%s>%s</p>\n" % (css_class, self.__output_mode_data["contents"]))
+				text = self.__output_mode_data["contents"]
+				if self.__output_mode_data["color"] == [0,0,0]:
+					css_class = ' class="%s"' % self.__output_mode_data["class"] if "class" in self.__output_mode_data else ""
+					self.__output.write("<p%s>%s</p>\n" % (css_class, text))
+				else:
+					lowered = text.lower()
+					if lowered != "notes:":
+						if self.__output_mode_data["size"] > 12:
+							self.title = text
+							tag = "h1"
+						else:
+							tag = "h2"
+						id = re.sub("[^a-z0-9]", "-", lowered)
+						self.__output.write('<%s id="%s">%s</%s>\n' % (tag, id, text, tag))
+				
 				self.__output_mode = None
 				return self.write(row)
 			
@@ -195,13 +209,36 @@ class DocumentWriter(object):
 			length = len(row)
 			if length == 0: return False
 			elif length == 1:
-				# one-cell rows can pretty much either be a title or a paragraph
 				cell = row[0]
-				if self.__is_title(cell):
-					return self.__write_title(cell)
-
 				self.__output_mode = "p"
-				self.__output_mode_data = {"top": cell.y, "contents": ""}
+				self.__output_mode_data = {
+					"top": cell.y,
+					"left": cell.x,
+					"contents": "",
+					"color": cell.style["color"],
+					"size": cell.style["font-size"],
+				}
+				
+				if self.__output_mode_data["color"] != [0,0,0]:
+					if self.__output_mode_data["size"] > 12:
+						if len(self.title) != 0:
+							self.__output_mode = None
+							self.__output_mode_data = {}
+							return False
+					
+					lowered = cell.contents.lower()
+					# hacks!
+					if lowered == "notes:":
+						self.__output_mode_data["color"] = [0,0,0]
+						self.__output_mode_data["contents"] = "Notes: "
+						self.__output_mode_data["class"] = "notes"
+						return True
+				
+					if lowered == "operation":
+						self.__output.write('<h2 id="operation">Operation</h2>\n')
+						self.__output_mode = "code"
+						self.__output.write("<pre>")
+						return True
 			else:
 				if len(row) == 2 and row[0].contents == u"•":
 					self.__output.write("<ul>\n")
@@ -221,27 +258,6 @@ class DocumentWriter(object):
 	
 	def __is_title(self, cell):
 		return cell.style["color"] != [0,0,0]
-	
-	def __write_title(self, cell):
-		if cell.style["font-size"] > 12:
-			if len(self.title) != 0: return False
-			self.title = cell.contents
-			tag = "h1"
-		elif cell.contents.lower() == "notes:":
-			self.__output_mode = "p"
-			self.__output_mode_data = {"top": cell.y, "contents": "Notes: ", "class": "notes"}
-			return True
-		else:
-			if cell.contents.lower() == "operation":
-				self.__output_mode = "code"
-				self.__output_mode_data = {"left": cell.x}
-			tag = "h2"
-		
-		id = re.sub("[^a-z0-9]", "-", cell.contents.lower())
-		self.__output.write('<%s id="%s">%s</%s>\n' % (tag, id, cell.contents, tag))
-		if self.__output_mode == "code":
-			self.__output.write("<pre>")
-		return True
 	
 	def __write_table(self):
 		# first merge cells
@@ -273,7 +289,7 @@ class DocumentWriter(object):
 		if len(row) != 1: return True
 		
 		cell = row[0]
-		if self.__is_title(cell): return True
+		if cell.style["color"] != self.__output_mode_data["color"]: return True
 		if abs(cell.y - self.__output_mode_data["top"]) > 15: return True
 		return False
 	
@@ -299,7 +315,7 @@ class DocumentWriter(object):
 	
 	def __append(self, a, b):
 		if len(a) == 0: return b
-		if a[-1].isalpha() or a[-1] == ".": return a + " " + b
+		if a[-1].isalpha() or a[-1] in self.__spaced_chars: return a + " " + b
 		if a[-1] == u"-": return a[:-1] + b
 		return a + b
 	
@@ -325,7 +341,7 @@ if __name__ == "__main__":
 		print "usage: %s file [file...]" % sys.argv[0]
 	
 	for i in xrange(1, len(sys.argv)):
-		soup = bs4.BeautifulSoup(open(sys.argv[1]))
+		soup = bs4.BeautifulSoup(open(sys.argv[i]))
 		input = UglyDocument(soup)
 		output = DocumentWriter()
 		for row in input.all_rows():

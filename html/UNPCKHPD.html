@@ -80,7 +80,7 @@
 	<td>X1Figure 4-23.</td>
 </tr>
 </table>
-<p>When unpacking from a memory operand, an implementation may fetch only the appropriate 64 bits; however,alignment to 16-byte boundary and normal segment checking will still be enforced.</p>
+<p>When unpacking from a memory operand, an implementation may fetch only the appropriate 64 bits; however, alignment to 16-byte boundary and normal segment checking will still be enforced.</p>
 <p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15).</p>
 <p>128-bit Legacy SSE version: The second source can be an XMM register or an 128-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. VEX.128 encoded version: the first source operand is an XMM register or 128-bit memory location. The destination operand is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed.</p>
 <h2 id="operation">Operation</h2>

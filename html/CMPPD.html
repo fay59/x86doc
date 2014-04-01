@@ -127,11 +127,11 @@
 </table>
 <p>The unordered relationship is true when at least one of the two source operands being compared is a NaN; the ordered relationship is true when neither source operand is a NaN.</p>
 <p>A subsequent computational instruction that uses the mask result in the destination operand as an input operand will not generate an exception, because a mask of all 0s corresponds to a floating-point value of +0.0 and a mask of all 1s corresponds to a QNaN.</p>
-<p>Note that the processors with “CPUID.1H:ECX.AVX =0” do not implement the greater-than, greater-than-or-equal,not-greater-than, and not-greater-than-or-equal relations. These comparisons can be made either by using the inverse relationship (that is, use the “not-less-than-or-equal” to make a “greater-than” comparison) or by using software emulation. When using software emulation, the program must swap the operands (copying registers when necessary to protect the data that will now be in the destination), and then perform the compare using a different predicate. The predicate to be used for these emulations is listed in Table 3-7 under the heading Emulation.</p>
+<p>Note that the processors with “CPUID.1H:ECX.AVX =0” do not implement the greater-than, greater-than-or-equal, not-greater-than, and not-greater-than-or-equal relations. These comparisons can be made either by using the inverse relationship (that is, use the “not-less-than-or-equal” to make a “greater-than” comparison) or by using software emulation. When using software emulation, the program must swap the operands (copying registers when necessary to protect the data that will now be in the destination), and then perform the compare using a different predicate. The predicate to be used for these emulations is listed in Table 3-7 under the heading Emulation.</p>
 <p>Compilers and assemblers may implement the following two-operand pseudo-ops in addition to the three-operand CMPPD instruction, for processors with “CPUID.1H:ECX.AVX =0”. See Table 3-8. Compiler should treat reserved Imm8 values as illegal syntax.</p>
 <table>
 <tr>
-	<td>:Pseudo-Op CMPEQPD xmm1, xmm2CMPLTPD xmm1, xmm2CMPLEPD xmm1, xmm2CMPUNORDPD xmm1, xmm2CMPNEQPD xmm1, xmm2CMPNLTPD xmm1, xmm2CMPNLEPD xmm1, xmm2CMPORDPD xmm1, xmm2</td>
+	<td>: Pseudo-Op CMPEQPD xmm1, xmm2CMPLTPD xmm1, xmm2CMPLEPD xmm1, xmm2CMPUNORDPD xmm1, xmm2CMPNEQPD xmm1, xmm2CMPNLTPD xmm1, xmm2CMPNLEPD xmm1, xmm2CMPORDPD xmm1, xmm2</td>
 	<td>Table 3-8.</td>
 	<td>Pseudo-Op and CMPPD Implementation CMPPD Implementation CMPPD xmm1, xmm2, 0CMPPD xmm1, xmm2, 1CMPPD xmm1, xmm2, 2CMPPD xmm1, xmm2, 3CMPPD xmm1, xmm2, 4CMPPD xmm1, xmm2, 5CMPPD xmm1, xmm2, 6CMPPD xmm1, xmm2, 7</td>
 </tr>
@@ -161,7 +161,7 @@
 	<td>Yes</td>
 </tr>
 <tr>
-	<td>Less-than-or-equal (ordered,signaling)</td>
+	<td>Less-than-or-equal (ordered, signaling)</td>
 	<td>Yes</td>
 </tr>
 <tr>
@@ -177,7 +177,7 @@
 	<td>Yes</td>
 </tr>
 <tr>
-	<td>Not-less-than-or-equal (unordered,signaling)</td>
+	<td>Not-less-than-or-equal (unordered, signaling)</td>
 	<td>Yes</td>
 </tr>
 <tr>
@@ -241,7 +241,7 @@
 	<td>No</td>
 </tr>
 <tr>
-	<td>Not-less-than-or-equal (unordered,nonsignaling)</td>
+	<td>Not-less-than-or-equal (unordered, nonsignaling)</td>
 	<td>No</td>
 </tr>
 <tr>
@@ -273,7 +273,7 @@
 	<td>Yes</td>
 </tr>
 <tr>
-	<td>Greater-than-or-equal (ordered,nonsignaling)</td>
+	<td>Greater-than-or-equal (ordered, nonsignaling)</td>
 	<td>No</td>
 </tr>
 <tr>
@@ -286,10 +286,10 @@
 </tr>
 </table>
 <p class="notes">Notes: 1. If either operand A or B is a NAN.</p>
-<p>Processors with “CPUID.1H:ECX.AVX =1” implement the full complement of 32 predicates shown in Table 3-9, software emulation is no longer needed. Compilers and assemblers may implement the following three-operand pseudo-ops in addition to the four-operand VCMPPD instruction. See Table 3-10, where the notations of reg1 reg2,and reg3 represent either XMM registers or YMM registers. Compiler should treat reserved Imm8 values as illegal syntax. Alternately, intrinsics can map the pseudo-ops to pre-defined constants to support a simpler intrinsic interface.</p>
+<p>Processors with “CPUID.1H:ECX.AVX =1” implement the full complement of 32 predicates shown in Table 3-9, software emulation is no longer needed. Compilers and assemblers may implement the following three-operand pseudo-ops in addition to the four-operand VCMPPD instruction. See Table 3-10, where the notations of reg1 reg2, and reg3 represent either XMM registers or YMM registers. Compiler should treat reserved Imm8 values as illegal syntax. Alternately, intrinsics can map the pseudo-ops to pre-defined constants to support a simpler intrinsic interface.</p>
 <table>
 <tr>
-	<td>:Pseudo-Op VCMPEQPD reg1, reg2, reg3VCMPLTPD reg1, reg2, reg3VCMPLEPD reg1, reg2, reg3VCMPUNORDPD reg1, reg2, reg3VCMPNEQPD reg1, reg2, reg3VCMPNLTPD reg1, reg2, reg3VCMPNLEPD reg1, reg2, reg3VCMPORDPD reg1, reg2, reg3VCMPEQ_UQPD reg1, reg2, reg3VCMPNGEPD reg1, reg2, reg3VCMPNGTPD reg1, reg2, reg3VCMPFALSEPD reg1, reg2, reg3VCMPNEQ_OQPD reg1, reg2, reg3VCMPGEPD reg1, reg2, reg3VCMPGTPD reg1, reg2, reg3VCMPTRUEPD reg1, reg2, reg3VCMPEQ_OSPD reg1, reg2, reg3VCMPLT_OQPD reg1, reg2, reg3VCMPLE_OQPD reg1, reg2, reg3Pseudo-Op VCMPUNORD_SPD reg1, reg2, reg3VCMPNEQ_USPD reg1, reg2, reg3VCMPNLT_UQPD reg1, reg2, reg3VCMPNLE_UQPD reg1, reg2, reg3VCMPORD_SPD reg1, reg2, reg3VCMPEQ_USPD reg1, reg2, reg3VCMPNGE_UQPD reg1, reg2, reg3VCMPNGT_UQPD reg1, reg2, reg3VCMPFALSE_OSPD reg1, reg2, reg3VCMPNEQ_OSPD reg1, reg2, reg3VCMPGE_OQPD reg1, reg2, reg3VCMPGT_OQPD reg1, reg2, reg3VCMPTRUE_USPD reg1, reg2, reg3</td>
+	<td>: Pseudo-Op VCMPEQPD reg1, reg2, reg3VCMPLTPD reg1, reg2, reg3VCMPLEPD reg1, reg2, reg3VCMPUNORDPD reg1, reg2, reg3VCMPNEQPD reg1, reg2, reg3VCMPNLTPD reg1, reg2, reg3VCMPNLEPD reg1, reg2, reg3VCMPORDPD reg1, reg2, reg3VCMPEQ_UQPD reg1, reg2, reg3VCMPNGEPD reg1, reg2, reg3VCMPNGTPD reg1, reg2, reg3VCMPFALSEPD reg1, reg2, reg3VCMPNEQ_OQPD reg1, reg2, reg3VCMPGEPD reg1, reg2, reg3VCMPGTPD reg1, reg2, reg3VCMPTRUEPD reg1, reg2, reg3VCMPEQ_OSPD reg1, reg2, reg3VCMPLT_OQPD reg1, reg2, reg3VCMPLE_OQPD reg1, reg2, reg3Pseudo-Op VCMPUNORD_SPD reg1, reg2, reg3VCMPNEQ_USPD reg1, reg2, reg3VCMPNLT_UQPD reg1, reg2, reg3VCMPNLE_UQPD reg1, reg2, reg3VCMPORD_SPD reg1, reg2, reg3VCMPEQ_USPD reg1, reg2, reg3VCMPNGE_UQPD reg1, reg2, reg3VCMPNGT_UQPD reg1, reg2, reg3VCMPFALSE_OSPD reg1, reg2, reg3VCMPNEQ_OSPD reg1, reg2, reg3VCMPGE_OQPD reg1, reg2, reg3VCMPGT_OQPD reg1, reg2, reg3VCMPTRUE_USPD reg1, reg2, reg3</td>
 	<td>Table 3-10. Table 3-10.</td>
 	<td>Pseudo-Op and VCMPPD Implementation CMPPD Implementation VCMPPD reg1, reg2, reg3, 0VCMPPD reg1, reg2, reg3, 1VCMPPD reg1, reg2, reg3, 2VCMPPD reg1, reg2, reg3, 3VCMPPD reg1, reg2, reg3, 4VCMPPD reg1, reg2, reg3, 5VCMPPD reg1, reg2, reg3, 6VCMPPD reg1, reg2, reg3, 7VCMPPD reg1, reg2, reg3, 8VCMPPD reg1, reg2, reg3, 9VCMPPD reg1, reg2, reg3, 0AH VCMPPD reg1, reg2, reg3, 0BH VCMPPD reg1, reg2, reg3, 0CH VCMPPD reg1, reg2, reg3, 0DH VCMPPD reg1, reg2, reg3, 0EH VCMPPD reg1, reg2, reg3, 0FH VCMPPD reg1, reg2, reg3, 10H VCMPPD reg1, reg2, reg3, 11H VCMPPD reg1, reg2, reg3, 12H Pseudo-Op and VCMPPD Implementation CMPPD Implementation VCMPPD reg1, reg2, reg3, 13H VCMPPD reg1, reg2, reg3, 14H VCMPPD reg1, reg2, reg3, 15H VCMPPD reg1, reg2, reg3, 16H VCMPPD reg1, reg2, reg3, 17H VCMPPD reg1, reg2, reg3, 18H VCMPPD reg1, reg2, reg3, 19H VCMPPD reg1, reg2, reg3, 1AH VCMPPD reg1, reg2, reg3, 1BH VCMPPD reg1, reg2, reg3, 1CH VCMPPD reg1, reg2, reg3, 1DH VCMPPD reg1, reg2, reg3, 1EH VCMPPD reg1, reg2, reg3, 1FH</td>
 </tr>
@@ -374,7 +374,7 @@ IF CMP3 = TRUE
 	<td>__m128d _mm_cmpeq_pd(__m128d a, __m128d b)</td>
 </tr>
 <tr>
-	<td>CMPPD for less-than:CMPPD for less-than-or-equal: __m128d _mm_cmple_pd(__m128d a, __m128d b)</td>
+	<td>CMPPD for less-than: CMPPD for less-than-or-equal: __m128d _mm_cmple_pd(__m128d a, __m128d b)</td>
 	<td>__m128d _mm_cmplt_pd(__m128d a, __m128d b)</td>
 </tr>
 <tr>
@@ -410,7 +410,7 @@ IF CMP3 = TRUE
 	<td>__m128d _mm_cmpunord_pd(__m128d a, __m128d b)</td>
 </tr>
 <tr>
-	<td>CMPPD for not-less-than-or-equal:__m256 _mm256_cmp_pd(__m256 a, __m256 b, const int imm)</td>
+	<td>CMPPD for not-less-than-or-equal: __m256 _mm256_cmp_pd(__m256 a, __m256 b, const int imm)</td>
 	<td>__m128d _mm_cmpnle_pd(__m128d a, __m128d b)</td>
 </tr>
 <tr>

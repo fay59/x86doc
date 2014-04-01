@@ -184,7 +184,7 @@
 	<td>Shift quadwords in ymm2 right by imm8 while VPSRLQ ymm1, ymm2, imm8</td>
 </tr>
 </table>
-<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual,Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>
@@ -235,12 +235,12 @@
 	<td>X0DEST Shift Right with Zero Extension X0 >> COUNT DEST PSRLW, PSRLD, and PSRLQ Instruction Operation Using 64-bit Operand</td>
 </tr>
 </table>
-<p>The (V)PSRLW instruction shifts each of the words in the destination operand to the right by the number of bits specified in the count operand; the (V)PSRLD instruction shifts each of the doublewords in the destination operand;and the PSRLQ instruction shifts the quadword (or quadwords) in the destination operand.</p>
+<p>The (V)PSRLW instruction shifts each of the words in the destination operand to the right by the number of bits specified in the count operand; the (V)PSRLD instruction shifts each of the doublewords in the destination operand; and the PSRLQ instruction shifts the quadword (or quadwords) in the destination operand.</p>
 <p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15).</p>
 <p>Legacy SSE instructions: The destination operand is an MMX technology register; the count operand can be either an MMX technology register or an 64-bit memory location. 128-bit Legacy SSE version: The destination operand is an XMM register; the count operand can be either an XMM register or a 128-bit memory location, or an 8-bit immediate. If the count operand is a memory address, 128 bits</p>
 <p>are loaded but the upper 64 bits are ignored. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: The destination operand is an XMM register; the count operand can be either an XMM register or a 128-bit memory location, or an 8-bit immediate. If the count operand is a memory address, 128 bits are loaded but the upper 64 bits are ignored. Bits (VLMAX-1:128) of the destination YMM register are zeroed.</p>
 <p>VEX.256 encoded version: The destination and first source operands are YMM registers. The count operand can be either an YMM register or a 128-bit memory location or an 8-bit immediate.</p>
-<p>Note: For shifts with an immediate count (VEX.128.66.0F 71-73 /2), VEX.vvvv encodes the destination register,and VEX.B + ModRM.r/m encodes the source register. VEX.L must be 0, otherwise instructions will #UD.</p>
+<p>Note: For shifts with an immediate count (VEX.128.66.0F 71-73 /2), VEX.vvvv encodes the destination register, and VEX.B + ModRM.r/m encodes the source register. VEX.L must be 0, otherwise instructions will #UD.</p>
 <h2 id="operation">Operation</h2>
 <pre>PSRLW (with 64-bit operand)
   IF (COUNT > 15)
@@ -347,27 +347,27 @@ DEST[255:0] ← LOGICAL_RIGHT_SHIFT_QWORDS_256b(SRC1, imm8)
 <h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
 <table>
 <tr>
-	<td>PSRLW:PSRLW:(V)PSRLW:(V)PSRLW:VPSRLW:VPSRLW:</td>
+	<td>PSRLW: PSRLW: (V)PSRLW: (V)PSRLW: VPSRLW: VPSRLW:</td>
 	<td>__m64 _mm_srli_pi16(__m64 m, int __m64 _mm_srl_pi16 (__m64 m, __m64 count)__m128i _mm_srli_epi16 (__m128i m, int count)__m128i _mm_srl_epi16 (__m128i m, __m128i count)__m256i _mm256_srli_epi16 (__m256i m, int count)__m256i _mm256_srl_epi16 (__m256i m, __m128i count)</td>
 	<td>count)</td>
 </tr>
 <tr>
-	<td>PSRLD:PSRLD:</td>
+	<td>PSRLD: PSRLD:</td>
 	<td>__m64 _mm_srli_pi32 (__m64 m, int __m64 _mm_srl_pi32 (__m64 m, __m64 count)</td>
 	<td>count)</td>
 </tr>
 <tr>
-	<td>(V)PSRLD:(V)PSRLD:VPSRLD:VPSRLD:</td>
+	<td>(V)PSRLD: (V)PSRLD: VPSRLD: VPSRLD:</td>
 	<td>__m128i _mm_srli_epi32 (__m128i m, int __m128i _mm_srl_epi32 (__m128i m, __m128i count)__m256i _mm256_srli_epi32 (__m256i m, int count)__m256i _mm256_srl_epi32 (__m256i m, __m128i count)</td>
 	<td>count)</td>
 </tr>
 <tr>
-	<td>PSRLQ:PSRLQ:</td>
+	<td>PSRLQ: PSRLQ:</td>
 	<td>__m64 _mm_srli_si64 (__m64 m, int __m64 _mm_srl_si64 (__m64 m, __m64 count)</td>
 	<td>count)</td>
 </tr>
 <tr>
-	<td>(V)PSRLQ:(V)PSRLQ:VPSRLQ:VPSRLQ:</td>
+	<td>(V)PSRLQ: (V)PSRLQ: VPSRLQ: VPSRLQ:</td>
 	<td>__m128i _mm_srli_epi64 (__m128i m, int __m128i _mm_srl_epi64 (__m128i m, __m128i count)__m256i _mm256_srli_epi64 (__m256i m, int count)__m256i _mm256_srl_epi64 (__m256i m, __m128i count)</td>
 	<td>count)</td>
 </tr>

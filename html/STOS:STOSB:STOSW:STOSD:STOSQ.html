@@ -22,7 +22,7 @@
 	<td>NA</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>For legacy mode, store AL at address ES:(E)DI;For 64-bit mode store AL at address RDI or EDI.</td>
+	<td>For legacy mode, store AL at address ES:(E)DI; For 64-bit mode store AL at address RDI or EDI.</td>
 </tr>
 <tr>
 	<td>AB</td>
@@ -30,7 +30,7 @@
 	<td>NA</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>For legacy mode, store AX at address ES:(E)DI;For 64-bit mode store AX at address RDI or EDI.</td>
+	<td>For legacy mode, store AX at address ES:(E)DI; For 64-bit mode store AX at address RDI or EDI.</td>
 </tr>
 <tr>
 	<td>AB</td>
@@ -54,7 +54,7 @@
 	<td>NA</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>For legacy mode, store AL at address ES:(E)DI;For 64-bit mode store AL at address RDI or EDI.</td>
+	<td>For legacy mode, store AL at address ES:(E)DI; For 64-bit mode store AL at address RDI or EDI.</td>
 </tr>
 <tr>
 	<td>AB</td>
@@ -62,7 +62,7 @@
 	<td>NA</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>For legacy mode, store AX at address ES:(E)DI;For 64-bit mode store AX at address RDI or EDI.</td>
+	<td>For legacy mode, store AX at address ES:(E)DI; For 64-bit mode store AX at address RDI or EDI.</td>
 </tr>
 <tr>
 	<td>AB</td>
@@ -100,7 +100,7 @@
 </table>
 <h2 id="description">Description</h2>
 <p>In non-64-bit and default 64-bit mode; stores a byte, word, or doubleword from the AL, AX, or EAX register (respectively) into the destination operand. The destination operand is a memory location, the address of which is read from either the ES:EDI or ES:DI register (depending on the address-size attribute of the instruction and the mode of operation). The ES segment cannot be overridden with a segment override prefix.</p>
-<p>At the assembly-code level, two forms of the instruction are allowed: the “explicit-operands” form and the “nooperands” form. The explicit-operands form (specified with the STOS mnemonic) allows the destination operand to be specified explicitly. Here, the destination operand should be a symbol that indicates the size and location of the destination value. The source operand is then automatically selected to match the size of the destination operand (the AL register for byte operands, AX for word operands, EAX for doubleword operands). The explicit-operands form is provided to allow documentation; however, note that the documentation provided by this form can be misleading. That is, the destination operand symbol must specify the correct type (size) of the operand (byte,word, or doubleword), but it does not have to specify the correct location. The location is always specified by the ES:(E)DI register. These must be loaded correctly before the store string instruction is executed.</p>
+<p>At the assembly-code level, two forms of the instruction are allowed: the “explicit-operands” form and the “nooperands” form. The explicit-operands form (specified with the STOS mnemonic) allows the destination operand to be specified explicitly. Here, the destination operand should be a symbol that indicates the size and location of the destination value. The source operand is then automatically selected to match the size of the destination operand (the AL register for byte operands, AX for word operands, EAX for doubleword operands). The explicit-operands form is provided to allow documentation; however, note that the documentation provided by this form can be misleading. That is, the destination operand symbol must specify the correct type (size) of the operand (byte, word, or doubleword), but it does not have to specify the correct location. The location is always specified by the ES:(E)DI register. These must be loaded correctly before the store string instruction is executed.</p>
 <p>The no-operands form provides “short forms” of the byte, word, doubleword, and quadword versions of the STOS instructions. Here also ES:(E)DI is assumed to be the destination operand and AL, AX, or EAX is assumed to be the source operand. The size of the destination and source operands is selected by the mnemonic: STOSB (byte read from register AL), STOSW (word from AX), STOSD (doubleword from EAX).</p>
 <p>After the byte, word, or doubleword is transferred from the register to the memory location, the (E)DI register is incremented or decremented according to the setting of the DF flag in the EFLAGS register. If the DF flag is 0, the register is incremented; if the DF flag is 1, the register is decremented (the register is incremented or decremented by 1 for byte operations, by 2 for word operations, by 4 for doubleword operations).</p>
 <h2 id="note">NOTE</h2>

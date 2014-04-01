@@ -51,7 +51,7 @@
 <p>Convert four or eight packed single-precision floating values in first source operand to four or eight packed halfprecision (16-bit) floating-point values. The rounding mode is specified using the immediate field (imm8). Underflow results (i.e. tiny results) are converted to denormals. MXCSR.FTZ is ignored. If a source element is denormal relative to input format with MXCSR.DAZ not set, DM masked and at least one of PM or UM unmasked; a SIMD exception will be raised with DE, UE and PE set. 128-bit version: The source operand is a XMM register. The destination operand is a XMM register or 64-bit memory location. The upper-bits vector register zeroing behavior of VEX prefix encoding still applies if the destination operand is a xmm register. So the upper bits (255:64) of corresponding YMM register are zeroed. 256-bit version: The source operand is a YMM register. The destination operand is a XMM register or 128-bit memory location. The upper-bits vector register zeroing behavior of VEX prefix encoding still applies if the destination operand is a xmm register. So the upper bits (255:128) of the corresponding YMM register are zeroed. Note: VEX.vvvv is reserved (must be 1111b). The diagram below illustrates how data is converted from four packed single precision (in 128 bits) to four half precision (in 64 bits) FP values.</p>
 <table>
 <tr>
-	<td>VCVTPS2PH xmm1/mem64, xmm2,95VS2</td>
+	<td>VCVTPS2PH xmm1/mem64, xmm2, 95VS2</td>
 	<td>imm80xmm2</td>
 </tr>
 <tr>

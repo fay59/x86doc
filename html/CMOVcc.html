@@ -771,7 +771,7 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>The CMOVcc instructions check the state of one or more of the status flags in the EFLAGS register (CF, OF, PF, SF,and ZF) and perform a move operation if the flags are in a specified state (or condition). A condition code (cc) is associated with each instruction to indicate the condition being tested for. If the condition is not satisfied, a move is not performed and execution continues with the instruction following the CMOVcc instruction.</p>
+<p>The CMOVcc instructions check the state of one or more of the status flags in the EFLAGS register (CF, OF, PF, SF, and ZF) and perform a move operation if the flags are in a specified state (or condition). A condition code (cc) is associated with each instruction to indicate the condition being tested for. If the condition is not satisfied, a move is not performed and execution continues with the instruction following the CMOVcc instruction.</p>
 <p>These instructions can move 16-bit, 32-bit or 64-bit values from memory to a general-purpose register or from one general-purpose register to another. Conditional moves of 8-bit register operands are not supported.</p>
 <p>The condition for each CMOVcc mnemonic is given in the description column of the above table. The terms “less”and “greater” are used for comparisons of signed integers and the terms “above” and “below” are used for unsigned integers.</p>
 <p>Because a particular state of the status flags can sometimes be interpreted in two ways, two mnemonics are defined for some opcodes. For example, the CMOVA (conditional move if above) instruction and the CMOVNBE (conditional move if not below or equal) instruction are alternate mnemonics for the opcode 0F 47H.</p>

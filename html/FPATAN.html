@@ -16,7 +16,7 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>D9 F3NOTES:* See IA-32 Architecture Compatibility section below.</td>
+	<td>D9 F3NOTES: * See IA-32 Architecture Compatibility section below.</td>
 	<td>FPATAN</td>
 	<td>Valid</td>
 	<td>Valid</td>
@@ -24,9 +24,9 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Computes the arctangent of the source operand in register ST(1) divided by the source operand in register ST(0),stores the result in ST(1), and pops the FPU register stack. The result in register ST(0) has the same sign as the source operand ST(1) and a magnitude less than +π.</p>
-<p>The FPATAN instruction returns the angle between the X axis and the line from the origin to the point (X,Y), where Y (the ordinate) is ST(1) and X (the abscissa) is ST(0). The angle depends on the sign of X and Y independently,not just on the sign of the ratio Y/X. This is because a point (−X,Y) is in the second quadrant, resulting in an angle between π/2 and π, while a point (X,−Y) is in the fourth quadrant, resulting in an angle between 0 and −π/2. A point (−X,−Y) is in the third quadrant, giving an angle between −π/2 and −π.</p>
-<p>The following table shows the results obtained when computing the arctangent of various classes of numbers,assuming that underflow does not occur.</p>
+<p>Computes the arctangent of the source operand in register ST(1) divided by the source operand in register ST(0), stores the result in ST(1), and pops the FPU register stack. The result in register ST(0) has the same sign as the source operand ST(1) and a magnitude less than +π.</p>
+<p>The FPATAN instruction returns the angle between the X axis and the line from the origin to the point (X,Y), where Y (the ordinate) is ST(1) and X (the abscissa) is ST(0). The angle depends on the sign of X and Y independently, not just on the sign of the ratio Y/X. This is because a point (−X,Y) is in the second quadrant, resulting in an angle between π/2 and π, while a point (X,−Y) is in the fourth quadrant, resulting in an angle between 0 and −π/2. A point (−X,−Y) is in the third quadrant, giving an angle between −π/2 and −π.</p>
+<p>The following table shows the results obtained when computing the arctangent of various classes of numbers, assuming that underflow does not occur.</p>
 <table>
 <tr>
 	<td>Table 3-40.</td>

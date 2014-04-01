@@ -77,7 +77,7 @@
 </table>
 <h2 id="description">Description</h2>
 <p>Performs an unsigned multiplication of the first operand (destination operand) and the second operand (source operand) and stores the result in the destination operand. The destination operand is an implied operand located in register AL, AX or EAX (depending on the size of the operand); the source operand is located in a generalpurpose register or a memory location. The action of this instruction and the location of the result depends on the opcode and the operand size as shown in Table 3-66.</p>
-<p>The result is stored in register AX, register pair DX:AX, or register pair EDX:EAX (depending on the operand size),with the high-order bits of the product contained in register AH, DX, or EDX, respectively. If the high-order bits of the product are 0, the CF and OF flags are cleared; otherwise, the flags are set.</p>
+<p>The result is stored in register AX, register pair DX:AX, or register pair EDX:EAX (depending on the operand size), with the high-order bits of the product contained in register AH, DX, or EDX, respectively. If the high-order bits of the product are 0, the CF and OF flags are cleared; otherwise, the flags are set.</p>
 <p>In 64-bit mode, the instruction’s default operation size is 32 bits. Use of the REX.R prefix permits access to additional registers (R8-R15). Use of the REX.W prefix promotes operation to 64 bits.</p>
 <p>See the summary chart at the beginning of this section for encoding data and limits.</p>
 <table>

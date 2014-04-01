@@ -55,7 +55,7 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>The instruction is functionally similar to (V)MOVDQU ymm/xmm, m256/m128 for loading from memory. That is:32/16 bytes of data starting at an address specified by the source memory operand (second operand) are fetched from memory and placed in a destination register (first operand). The source operand need not be aligned on a 32/16-byte boundary. Up to 64/32 bytes may be loaded from memory; this is implementation dependent.</p>
+<p>The instruction is functionally similar to (V)MOVDQU ymm/xmm, m256/m128 for loading from memory. That is: 32/16 bytes of data starting at an address specified by the source memory operand (second operand) are fetched from memory and placed in a destination register (first operand). The source operand need not be aligned on a 32/16-byte boundary. Up to 64/32 bytes may be loaded from memory; this is implementation dependent.</p>
 <p>This instruction may improve performance relative to (V)MOVDQU if the source operand crosses a cache line boundary. In situations that require the data loaded by (V)LDDQU be modified and stored to the same location, use (V)MOVDQU or (V)MOVDQA instead of (V)LDDQU. To move a double quadword to or from memory locations that are known to be aligned on 16-byte boundaries, use the (V)MOVDQA instruction.</p>
 <h2 id="implementation-notes">Implementation Notes</h2>
 <ul>
@@ -89,6 +89,6 @@ DEST[255:0] ← SRC[255:0]
 <h2 id="numeric-exceptions">Numeric Exceptions</h2>
 <p>None.</p>
 <h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 4;Note treatment of #AC varies.</p>
+<p>See Exceptions Type 4; Note treatment of #AC varies.</p>
 </body>
 </html>

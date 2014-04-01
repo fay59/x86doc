@@ -53,8 +53,8 @@
 </table>
 <p class="notes">Notes: F Means finite floating-point value.</p>
 <p>In most cases, only the exponent is changed and the mantissa (significand) remains unchanged. However, when the value being scaled in ST(0) is a denormal value, the mantissa is also changed and the result may turn out to be a normalized number. Similarly, if overflow or underflow results from a scale operation, the resulting mantissa will differ from the source’s mantissa.</p>
-<p>The FSCALE instruction can also be used to reverse the action of the FXTRACT instruction, as shown in the following example:FXTRACT;FSCALE;FSTP ST(1);</p>
-<p>In this example, the FXTRACT instruction extracts the significand and exponent from the value in ST(0) and stores them in ST(0) and ST(1) respectively. The FSCALE then scales the significand in ST(0) by the exponent in ST(1),recreating the original value before the FXTRACT operation was performed. The FSTP ST(1) instruction overwrites the exponent (extracted by the FXTRACT instruction) with the recreated value, which returns the stack to its original state with only one register [ST(0)] occupied.</p>
+<p>The FSCALE instruction can also be used to reverse the action of the FXTRACT instruction, as shown in the following example: FXTRACT; FSCALE; FSTP ST(1);</p>
+<p>In this example, the FXTRACT instruction extracts the significand and exponent from the value in ST(0) and stores them in ST(0) and ST(1) respectively. The FSCALE then scales the significand in ST(0) by the exponent in ST(1), recreating the original value before the FXTRACT operation was performed. The FSTP ST(1) instruction overwrites the exponent (extracted by the FXTRACT instruction) with the recreated value, which returns the stack to its original state with only one register [ST(0)] occupied.</p>
 <p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
 <h2 id="operation">Operation</h2>
 <pre>ST(0) ← ST(0) ∗ 2RoundTowardZero(ST(1));

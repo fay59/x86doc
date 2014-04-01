@@ -56,7 +56,7 @@
 <tr>
 	<td>A</td>
 	<td>ModRM:reg (r,w)</td>
-	<td>BaseReg (R): VSIB:base,VectorReg(R): VSIB:index</td>
+	<td>BaseReg (R): VSIB:base, VectorReg(R): VSIB:index</td>
 	<td>VEX.vvvv (r, w)</td>
 	<td>NA</td>
 </tr>
@@ -76,7 +76,7 @@
 <p>qword indices, the instruction will gather two values and zeroes the upper 64 bits of the destination.</p>
 <table>
 <tr>
-	<td>VEX.256 version: For dword indices, the instruction will gather eight single-precision floating-point values. qword indices, the instruction will gather four values and zeroes the upper 128 bits of the destination. Note that:If any pair of the index, mask, or destination registers are the same, this instruction results a UD fault.</td>
+	<td>VEX.256 version: For dword indices, the instruction will gather eight single-precision floating-point values. qword indices, the instruction will gather four values and zeroes the upper 128 bits of the destination. Note that: If any pair of the index, mask, or destination registers are the same, this instruction results a UD fault.</td>
 	<td>For</td>
 </tr>
 <tr>
@@ -196,7 +196,7 @@ DEST[VLMAX-1:128] ← 0;
 	<td>__m256 _mm256_i32gather_ps (float const * base, __m256i index, const int scale);</td>
 </tr>
 <tr>
-	<td>VGATHERDPS:scale);</td>
+	<td>VGATHERDPS: scale);</td>
 	<td>__m256 _mm256_mask_i32gather_ps (__m256 src, float const * base, __m256i index, __m256 mask, const int</td>
 </tr>
 <tr>
@@ -212,7 +212,7 @@ DEST[VLMAX-1:128] ← 0;
 	<td>__m128 _mm256_i64gather_ps (float const * base, __m256i index, const int scale);</td>
 </tr>
 <tr>
-	<td>VGATHERQPS:scale);</td>
+	<td>VGATHERQPS: scale);</td>
 	<td>__m128 _mm256_mask_i64gather_ps (__m128 src, float const * base, __m256i index, __m128 mask, const int</td>
 </tr>
 </table>

@@ -68,12 +68,9 @@
 <h2 id="description">Description</h2>
 <p>This instruction performs no operation. It is a one-byte or multi-byte NOP that takes up space in the instruction stream but does not impact machine context, except for the EIP register.</p>
 <p>The multi-byte form of NOP is available on processors with model encoding:</p>
-<table>
-<tr>
-	<td>•</td>
-	<td>CPUID.01H.EAX[Bytes 11:8] = 0110B or 1111B</td>
-</tr>
-</table>
+<ul>
+	<li>CPUID.01H.EAX[Bytes 11:8] = 0110B or 1111B</li>
+</ul>
 <p>The multi-byte NOP instruction does not alter the content of a register and will not issue a memory operation. The instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
 <h2 id="operation">Operation</h2>
 <pre>The one-byte NOP instruction is an alias mnemonic for the XCHG (E)AX, (E)AX instruction.
