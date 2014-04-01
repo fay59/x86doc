@@ -84,19 +84,19 @@
 <p class="notes">Notes: </p>
 <p>BIT_REFLECT64: DST[63-0] = SRC[0-63]BIT_REFLECT32: DST[31-0] = SRC[0-31]BIT_REFLECT16: DST[15-0] = SRC[0-15]BIT_REFLECT8: DST[7-0] = SRC[0-7]MOD2: Remainder from Polynomial division modulus 2</p>
 <p>CRC32 instruction for 64-bit source operand and 64-bit destination operand:</p>
-<p>TEMP1[63-0]  BIT_REFLECT64 (SRC[63-0])TEMP2[31-0]  BIT_REFLECT32 (DEST[31-0])TEMP3[95-0]  TEMP1[63-0] « 32TEMP4[95-0]  TEMP2[31-0] « 64TEMP5[95-0]  TEMP3[95-0] XOR TEMP4[95-0]TEMP6[31-0]  TEMP5[95-0] MOD2 11EDC6F41H DEST[31-0]  BIT_REFLECT (TEMP6[31-0])DEST[63-32]  00000000H</p>
+<p>TEMP1[63-0]  BIT_REFLECT64 (SRC[63-0]) TEMP2[31-0]  BIT_REFLECT32 (DEST[31-0]) TEMP3[95-0]  TEMP1[63-0] « 32TEMP4[95-0]  TEMP2[31-0] « 64TEMP5[95-0]  TEMP3[95-0] XOR TEMP4[95-0]TEMP6[31-0]  TEMP5[95-0] MOD2 11EDC6F41H DEST[31-0]  BIT_REFLECT (TEMP6[31-0]) DEST[63-32]  00000000H</p>
 <p>CRC32 instruction for 32-bit source operand and 32-bit destination operand:</p>
-<p>TEMP1[31-0]  BIT_REFLECT32 (SRC[31-0])TEMP2[31-0]  BIT_REFLECT32 (DEST[31-0])TEMP3[63-0]  TEMP1[31-0] « 32TEMP4[63-0]  TEMP2[31-0] « 32TEMP5[63-0]  TEMP3[63-0] XOR TEMP4[63-0]TEMP6[31-0]  TEMP5[63-0] MOD2 11EDC6F41H DEST[31-0]  BIT_REFLECT (TEMP6[31-0])</p>
+<p>TEMP1[31-0]  BIT_REFLECT32 (SRC[31-0]) TEMP2[31-0]  BIT_REFLECT32 (DEST[31-0]) TEMP3[63-0]  TEMP1[31-0] « 32TEMP4[63-0]  TEMP2[31-0] « 32TEMP5[63-0]  TEMP3[63-0] XOR TEMP4[63-0]TEMP6[31-0]  TEMP5[63-0] MOD2 11EDC6F41H DEST[31-0]  BIT_REFLECT (TEMP6[31-0])</p>
 <p>CRC32 instruction for 16-bit source operand and 32-bit destination operand:</p>
-<p>TEMP1[15-0]  BIT_REFLECT16 (SRC[15-0])TEMP2[31-0]  BIT_REFLECT32 (DEST[31-0])TEMP3[47-0]  TEMP1[15-0] « 32TEMP4[47-0]  TEMP2[31-0] « 16TEMP5[47-0]  TEMP3[47-0] XOR TEMP4[47-0]TEMP6[31-0]  TEMP5[47-0] MOD2 11EDC6F41H DEST[31-0]  BIT_REFLECT (TEMP6[31-0])</p>
+<p>TEMP1[15-0]  BIT_REFLECT16 (SRC[15-0]) TEMP2[31-0]  BIT_REFLECT32 (DEST[31-0]) TEMP3[47-0]  TEMP1[15-0] « 32TEMP4[47-0]  TEMP2[31-0] « 16TEMP5[47-0]  TEMP3[47-0] XOR TEMP4[47-0]TEMP6[31-0]  TEMP5[47-0] MOD2 11EDC6F41H DEST[31-0]  BIT_REFLECT (TEMP6[31-0])</p>
 <p>CRC32 instruction for 8-bit source operand and 64-bit destination operand:</p>
-<p>TEMP1[7-0]  BIT_REFLECT8(SRC[7-0])TEMP2[31-0]  BIT_REFLECT32 (DEST[31-0])TEMP3[39-0]  TEMP1[7-0] « 32TEMP4[39-0]  TEMP2[31-0] « 8TEMP5[39-0]  TEMP3[39-0] XOR TEMP4[39-0]TEMP6[31-0]  TEMP5[39-0] MOD2 11EDC6F41H DEST[31-0]  BIT_REFLECT (TEMP6[31-0])DEST[63-32]  00000000H</p>
+<p>TEMP1[7-0]  BIT_REFLECT8(SRC[7-0]) TEMP2[31-0]  BIT_REFLECT32 (DEST[31-0]) TEMP3[39-0]  TEMP1[7-0] « 32TEMP4[39-0]  TEMP2[31-0] « 8TEMP5[39-0]  TEMP3[39-0] XOR TEMP4[39-0]TEMP6[31-0]  TEMP5[39-0] MOD2 11EDC6F41H DEST[31-0]  BIT_REFLECT (TEMP6[31-0]) DEST[63-32]  00000000H</p>
 <p>CRC32 instruction for 8-bit source operand and 32-bit destination operand:</p>
-<p>TEMP1[7-0]  BIT_REFLECT8(SRC[7-0])TEMP2[31-0]  BIT_REFLECT32 (DEST[31-0])TEMP3[39-0]  TEMP1[7-0] « 32TEMP4[39-0]  TEMP2[31-0] « 8TEMP5[39-0]  TEMP3[39-0] XOR TEMP4[39-0]TEMP6[31-0]  TEMP5[39-0] MOD2 11EDC6F41H DEST[31-0]  BIT_REFLECT (TEMP6[31-0])</p>
+<p>TEMP1[7-0]  BIT_REFLECT8(SRC[7-0]) TEMP2[31-0]  BIT_REFLECT32 (DEST[31-0]) TEMP3[39-0]  TEMP1[7-0] « 32TEMP4[39-0]  TEMP2[31-0] « 8TEMP5[39-0]  TEMP3[39-0] XOR TEMP4[39-0]TEMP6[31-0]  TEMP5[39-0] MOD2 11EDC6F41H DEST[31-0]  BIT_REFLECT (TEMP6[31-0])</p>
 <h2 id="flags-affected">Flags Affected</h2>
 <p>None</p>
 <h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
-<p>unsigned int _mm_crc32_u8( unsigned int crc, unsigned char data )unsigned int _mm_crc32_u16( unsigned int crc, unsigned short data )unsigned int _mm_crc32_u32( unsigned int crc, unsigned int data )unsinged __int64 _mm_crc32_u64( unsinged __int64 crc, unsigned __int64 data )</p>
+<p>unsigned int _mm_crc32_u8( unsigned int crc, unsigned char data ) unsigned int _mm_crc32_u16( unsigned int crc, unsigned short data ) unsigned int _mm_crc32_u32( unsigned int crc, unsigned int data ) unsinged __int64 _mm_crc32_u64( unsinged __int64 crc, unsigned __int64 data )</p>
 <h2 id="simd-floating-point-exceptions">SIMD Floating Point Exceptions</h2>
 <p>None</p>
 <h2 id="protected-mode-exceptions">Protected Mode Exceptions</h2>

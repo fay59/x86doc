@@ -30,7 +30,7 @@
 <table>
 <tr>
 	<td>Table 3-40.</td>
-	<td>FPATAN Results ST(0)NaN NaN NaN NaN NaN NaN NaN NaN</td>
+	<td>FPATAN Results ST(0) NaN NaN NaN NaN NaN NaN NaN NaN</td>
 </tr>
 </table>
 <p class="notes">Notes: F Means finite floating-point value. * Table 8-10 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, specifies that the ratios 0/0 and ∞/∞generate the floating-point invalid arithmetic-operation exception and, if this exception is masked, the floating-point QNaN indefinite value is returned. With the FPATAN instruction, the 0/0 or ∞/∞ value is actually not calculated using division. Instead, the arctangent of the two variables is derived from a standard mathematical formulation that is generalized to allow complex numbers as arguments. In this complex variable formulation, arctangent(0,0) etc. has well defined values. These values are needed to develop a library to compute transcendental functions with complex arguments, based on the FPU functions that only allow floating-point values as arguments.</p>

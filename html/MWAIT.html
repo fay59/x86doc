@@ -60,11 +60,11 @@
 <table>
 <tr>
 	<td>Table 3-67.</td>
-	<td>MWAIT Extension Register (ECX)Description Treat interrupts as break events even if masked (e.g., even if EFLAGS.IF=0). May be set only if CPUID.05H:ECX[bit 1] = 1. Reserved</td>
+	<td>MWAIT Extension Register (ECX) Description Treat interrupts as break events even if masked (e.g., even if EFLAGS.IF=0). May be set only if CPUID.05H:ECX[bit 1] = 1. Reserved</td>
 </tr>
 <tr>
 	<td>Table 3-68.</td>
-	<td>MWAIT Hints Register (EAX)Description Sub C-state within a C-state, indicated by bits [7:4]Target C-state*Value of 0 means C1; 1 means C2 and so on Value of 01111B means C0</td>
+	<td>MWAIT Hints Register (EAX) Description Sub C-state within a C-state, indicated by bits [7:4]Target C-state*Value of 0 means C1; 1 means C2 and so on Value of 01111B means C0</td>
 </tr>
 </table>
 <p>Note: Target C states for MWAIT extensions are processor-specific C-states, not ACPI C-states</p>
@@ -95,7 +95,7 @@ Set the state of Monitor Hardware as triggered;
 <h2 id="example">Example</h2>
 <p>MONITOR/MWAIT instruction pair must be coded in the same loop because execution of the MWAIT instruction will trigger the monitor hardware. It is not a proper usage to execute MONITOR once and then execute MWAIT in a loop. Setting up MONITOR without executing MWAIT has no adverse effects.</p>
 <p>Typically the MONITOR/MWAIT pair is used in a sequence, such as:</p>
-<p>EAX = Logical Address(Trigger)ECX = 0 (*Hints *)EDX = 0 (* Hints *)</p>
+<p>EAX = Logical Address(Trigger) ECX = 0 (*Hints *) EDX = 0 (* Hints *)</p>
 <p>IF ( !trigger_store_happened) {MONITOR EAX, ECX, EDX IF ( !trigger_store_happened ) {MWAIT EAX, ECX }}</p>
 <p>The above code sequence makes sure that a triggering store does not happen between the first check of the trigger and the execution of the monitor instruction. Without the second check that triggering store would go un-noticed. Typical usage of MONITOR and MWAIT would have the above code sequence within a loop.</p>
 <h2 id="numeric-exceptions">Numeric Exceptions</h2>

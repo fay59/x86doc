@@ -62,7 +62,7 @@
 	<li>If RFBM[i] = 1 and XSTATE_BV[i] = 1, XRSTORS loads state component i from the XSAVE area.</li>
 	<li>If XRSTORS attempts to load MXCSR with an illegal value, a general-protection exception (#GP) occurs.</li>
 	<li>XRSTORS loads the internal value XRSTOR_INFO, which may be used to optimize a subsequent execution of XSAVEOPT or XSAVES.</li>
-	<li>Immediately following an execution of XRSTORS, the processor tracks as in-use (not in initial configuration)any state component i for which RFBM[i] = 1 and XSTATE_BV[i] = 1; it tracks as modified any state component i for which RFBM[i] = 0.</li>
+	<li>Immediately following an execution of XRSTORS, the processor tracks as in-use (not in initial configuration) any state component i for which RFBM[i] = 1 and XSTATE_BV[i] = 1; it tracks as modified any state component i for which RFBM[i] = 0.</li>
 </ul>
 <p>Use of a source operand not aligned to 64-byte boundary (for 64-bit and 32-bit modes) results in a general-protection (#GP) exception. In 64-bit mode, the upper 32 bits of RDX and RAX are ignored.</p>
 <h2 id="operation">Operation</h2>

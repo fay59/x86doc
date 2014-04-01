@@ -27,7 +27,7 @@
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Round the low packed double precision floating-point value in xmm3/m64 and place the result in xmm1. The rounding mode is determined by imm8. Upper packed double precision floating-point value (bits[127:64])from xmm2 is copied to xmm1[127:64].</td>
+	<td>Round the low packed double precision floating-point value in xmm3/m64 and place the result in xmm1. The rounding mode is determined by imm8. Upper packed double precision floating-point value (bits[127:64]) from xmm2 is copied to xmm1[127:64].</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -82,7 +82,7 @@ DEST[VLMAX-1:128] ← 0
 </tr>
 </table>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>Invalid (signaled only if SRC = SNaN)Precision (signaled only if imm[3] = ‘0; if imm[3] = ‘1, then the Precision Mask in the MXSCSR is ignored and precision exception is not signaled.)Note that Denormal is not signaled by ROUNDSD.</p>
+<p>Invalid (signaled only if SRC = SNaN) Precision (signaled only if imm[3] = ‘0; if imm[3] = ‘1, then the Precision Mask in the MXSCSR is ignored and precision exception is not signaled.) Note that Denormal is not signaled by ROUNDSD.</p>
 <h2 id="other-exceptions">Other Exceptions</h2>
 <p>See Exceptions Type 3.</p>
 </body>

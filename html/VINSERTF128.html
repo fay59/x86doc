@@ -41,7 +41,7 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Performs an insertion of 128-bits of packed floating-point values from the second source operand (third operand)into an the destination operand (first operand) at an 128-bit offset from imm8[0]. The remaining portions of the destination are written by the corresponding fields of the first source operand (second operand). The second source operand can be either an XMM register or a 128-bit memory location. The high 7 bits of the immediate are ignored.</p>
+<p>Performs an insertion of 128-bits of packed floating-point values from the second source operand (third operand) into an the destination operand (first operand) at an 128-bit offset from imm8[0]. The remaining portions of the destination are written by the corresponding fields of the first source operand (second operand). The second source operand can be either an XMM register or a 128-bit memory location. The high 7 bits of the immediate are ignored.</p>
 <h2 id="operation">Operation</h2>
 <pre>TEMP[255:0] ← SRC1[255:0]
 CASE (imm8[0]) OF

@@ -61,38 +61,16 @@
 	<li>Bit 12 returns the S flag.</li>
 	<li>Bits 14:13 return the DPL.</li>
 	<li>Bit 15 returns the P flag.</li>
-	<li>The following fields are returned only if the operand size is greater than 16 bits:</li>
+	<li>The following fields are returned only if the operand size is greater than 16 bits: —Bits 19:16 are undefined. —Bit 20 returns the software-available bit in the descriptor. —Bit 21 returns the L flag. —Bit 22 returns the D/B flag. —Bit 23 returns the G flag. —Bits 31:24 are returned as 0.</li>
 </ul>
-<table>
-<tr>
-	<td>—</td>
-	<td>Bits 19:16 are undefined.</td>
-</tr>
-<tr>
-	<td>—</td>
-	<td>Bit 20 returns the software-available bit in the descriptor.</td>
-</tr>
-<tr>
-	<td>—</td>
-	<td>Bit 21 returns the L flag.</td>
-</tr>
-<tr>
-	<td>—</td>
-	<td>Bit 22 returns the D/B flag.</td>
-</tr>
-<tr>
-	<td>—</td>
-	<td>Bit 23 returns the G flag.</td>
-</tr>
-<tr>
-	<td>—Checks that the segment selector is not NULL.</td>
-	<td>Bits 31:24 are returned as 0. This instruction performs the following checks before it loads the access rights in the destination register: •</td>
-</tr>
-<tr>
-	<td>Checks that the segment selector points to a descriptor that is within the limits of the GDT or LDT being accessed Checks that the descriptor type is valid for this instruction. All code and data segment descriptors are valid for (can be accessed with) the LAR instruction. The valid system segment and gate descriptor types are given in Table 3-62. If the segment is not a conforming code segment, it checks that the specified segment descriptor is visible at the CPL (that is, if the CPL and the RPL of the segment selector are less than or equal to the DPL of the segment selector).</td>
-	<td>•••If the segment descriptor cannot be accessed or is an invalid type for the instruction, the ZF flag is cleared and no access rights are loaded in the destination operand.</td>
-</tr>
-</table>
+<p>This instruction performs the following checks before it loads the access rights in the destination register:</p>
+<ul>
+	<li>Checks that the segment selector is not NULL.</li>
+	<li>Checks that the segment selector points to a descriptor that is within the limits of the GDT or LDT being accessed</li>
+	<li>Checks that the descriptor type is valid for this instruction. All code and data segment descriptors are valid for (can be accessed with) the LAR instruction. The valid system segment and gate descriptor types are given in Table 3-62.</li>
+	<li>If the segment is not a conforming code segment, it checks that the specified segment descriptor is visible at the CPL (that is, if the CPL and the RPL of the segment selector are less than or equal to the DPL of the segment selector).</li>
+</ul>
+<p>If the segment descriptor cannot be accessed or is an invalid type for the instruction, the ZF flag is cleared and no access rights are loaded in the destination operand.</p>
 <p>The LAR instruction can only be executed in protected mode and IA-32e mode.</p>
 <table>
 <tr>

@@ -47,8 +47,8 @@
 <ul>
 	<li>Any reserved bit of CR4 is set to 1.</li>
 	<li>Any illegal combination of bits in CR0, such as (PG=1 and PE=0) or (NW=1 and CD=0).</li>
+	<li>(Intel Pentium and Intel486™ processors only.) The value stored in the state dump base field is not a 32-KByte aligned address.</li>
 </ul>
-<p>•(Intel Pentium and Intel486™ processors only.) The value stored in the state dump base field is not a 32-KByte aligned address.</p>
 <p>The contents of the model-specific registers are not affected by a return from SMM.</p>
 <p>The SMM state map used by RSM supports resuming processor context for non-64-bit modes and 64-bit mode.</p>
 <p>See Chapter 34, “System Management Mode,” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3C, for more information about SMM and the behavior of the RSM instruction.</p>

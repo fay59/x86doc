@@ -101,7 +101,7 @@ DEST[255:224] ← RoundToInteger(SRC[255:224] ], ROUND_CONTROL)
 <p>__m256 _mm256_floor_ps(__m256 s1);</p>
 <p>__m256 _mm256_ceil_ps(__m256 s1)</p>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
-<p>Invalid (signaled only if SRC = SNaN)Precision (signaled only if imm[3] = ‘0; if imm[3] = ‘1, then the Precision Mask in the MXSCSR is ignored and precision exception is not signaled.)Note that Denormal is not signaled by ROUNDPS.</p>
+<p>Invalid (signaled only if SRC = SNaN) Precision (signaled only if imm[3] = ‘0; if imm[3] = ‘1, then the Precision Mask in the MXSCSR is ignored and precision exception is not signaled.) Note that Denormal is not signaled by ROUNDPS.</p>
 <h2 id="other-exceptions">Other Exceptions</h2>
 <p>See Exceptions Type 2; additionally</p>
 <table>

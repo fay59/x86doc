@@ -51,7 +51,7 @@
 <p>The instruction compares data from two strings based on the encoded value in the Imm8 Control Byte (see Section 4.1, “Imm8 Control Byte Operation for PCMPESTRI / PCMPESTRM / PCMPISTRI / PCMPISTRM”), and generates an index stored to ECX.</p>
 <table>
 <tr>
-	<td>Each string is represented by a single value. contains the data elements of the string (byte or word data). A byte/word is considered valid only if it has a lower index than the least significant null (The least significant null byte/word is also considered invalid.)The comparison and aggregation operations are performed according to the encoded value of Imm8 bit fields (see Section 4.1). The index of the first (or last, according to imm8[6]) set bit of IntRes2 is returned in ECX. If no bits are set in IntRes2, ECX is set to 16 (8). Note that the Arithmetic Flags are written in a non-standard manner in order to supply the most relevant information:</td>
+	<td>Each string is represented by a single value. contains the data elements of the string (byte or word data). A byte/word is considered valid only if it has a lower index than the least significant null (The least significant null byte/word is also considered invalid.) The comparison and aggregation operations are performed according to the encoded value of Imm8 bit fields (see Section 4.1). The index of the first (or last, according to imm8[6]) set bit of IntRes2 is returned in ECX. If no bits are set in IntRes2, ECX is set to 16 (8). Note that the Arithmetic Flags are written in a non-standard manner in order to supply the most relevant information:</td>
 	<td>The value is an xmm (or possibly m128 for the second operand) which Each input byte/word is augmented with a</td>
 </tr>
 </table>

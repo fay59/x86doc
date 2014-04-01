@@ -80,14 +80,15 @@
 <p>tion will gather four values and zeroes the upper 128 bits of the destination. Note that:</p>
 <ul>
 	<li>If any pair of the index, mask, or destination registers are the same, this instruction results a UD fault.</li>
+	<li>The values may be read from memory in any order Memory ordering with other instructions follows the Intel64 memory-ordering model.</li>
+	<li>Faults are delivered in a right-to-left manner That is, if a fault is triggered by an element and delivered, all elements closer to the LSB of the destination will be completed (and non-faulting). Individual elements closer to the MSB may or may not be completed. If a given element triggers multiple faults, they are delivered in the conventional order.</li>
+	<li>Elements may be gathered in any order, but faults must be delivered in a right-to-left order; thus, elements to the left of a faulting one may be gathered before the fault is delivered. A given implementation of this instruction is repeatable - given the same input values and architectural state, the same set of elements to the left of the faulting one will be gathered.</li>
+	<li>This instruction does not perform AC checks, and so will never deliver an AC fault.</li>
+	<li>This instruction will cause a #UD if the address size attribute is 16-bit.</li>
+	<li>This instruction will cause a #UD if the memory operand is encoded without the SIB byte.</li>
+	<li>This instruction should not be used to access memory mapped I/O as the ordering of the individual loads it does is implementation specific, and some implementations may use loads larger than the data element size or load elements an indeterminate number of times.</li>
+	<li>The scaled index may require more bits to represent than the address bits used by the processor (e.g., in 32bit mode, if the scale is greater than one). In this case, the most significant bits beyond the number of address bits are ignored.</li>
 </ul>
-<table>
-<tr>
-	<td>••••••••</td>
-	<td>The values may be read from memory in any order 64 memory-ordering model. Faults are delivered in a right-to-left manner elements closer to the LSB of the destination will be completed (and non-faulting). to the MSB may or may not be completed. conventional order. Elements may be gathered in any order, but faults must be delivered in a right-to-left order; thus, elements to the left of a faulting one may be gathered before the fault is delivered. instruction is repeatable - given the same input values and architectural state, the same set of elements to the left of the faulting one will be gathered. This instruction does not perform AC checks, and so will never deliver an AC fault. This instruction will cause a #UD if the address size attribute is 16-bit. This instruction will cause a #UD if the memory operand is encoded without the SIB byte. This instruction should not be used to access memory mapped I/O as the ordering of the individual loads it does is implementation specific, and some implementations may use loads larger than the data element size or load elements an indeterminate number of times. The scaled index may require more bits to represent than the address bits used by the processor (e.g., in 32bit mode, if the scale is greater than one). bits are ignored.</td>
-	<td>Memory ordering with other instructions follows the IntelThat is, if a fault is triggered by an element and delivered, all Individual elements closer If a given element triggers multiple faults, they are delivered in the A given implementation of this In this case, the most significant bits beyond the number of address</td>
-</tr>
-</table>
 <h2 id="operation">Operation</h2>
 <pre>DEST ← SRC1;
 BASE_ADDR: base register encoded in VSIB addressing;

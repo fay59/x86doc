@@ -58,22 +58,8 @@
 <ul>
 	<li>External interrupts. The OS can prevent an external interrupt from being delivered by clearing EFLAGS.IF before loading the user stack pointer.</li>
 	<li>Nonmaskable interrupts (NMIs). The OS can ensure that the NMI handler is invoked with the correct stack by using the interrupt stack table (IST) mechanism for gate 2 (NMI) in the IDT (see Section 6.14.5, “Interrupt Stack Table,” in Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A).</li>
-	<li>General-protection exceptions (#GP). The SYSRET instruction generates #GP(0) if the value of RCX is not canonical. The OS can address this possibility using one or more of the following approaches:</li>
+	<li>General-protection exceptions (#GP). The SYSRET instruction generates #GP(0) if the value of RCX is not canonical. The OS can address this possibility using one or more of the following approaches: —Confirming that the value of RCX is canonical before executing SYSRET. —Using paging to ensure that the SYSCALL instruction will never save a non-canonical value into RCX. —Using the IST mechanism for gate 13 (#GP) in the IDT.</li>
 </ul>
-<table>
-<tr>
-	<td>—</td>
-	<td>Confirming that the value of RCX is canonical before executing SYSRET.</td>
-</tr>
-<tr>
-	<td>—</td>
-	<td>Using paging to ensure that the SYSCALL instruction will never save a non-canonical value into RCX.</td>
-</tr>
-<tr>
-	<td>—</td>
-	<td>Using the IST mechanism for gate 13 (#GP) in the IDT.</td>
-</tr>
-</table>
 <h2 id="operation">Operation</h2>
 <pre>IF (CS.L ≠ 1 ) or (IA32_EFER.LMA ≠ 1) or (IA32_EFER.SCE ≠ 1)
 (* Not in 64-Bit Mode or SYSCALL/SYSRET not enabled in IA32_EFER *)

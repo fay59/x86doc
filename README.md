@@ -20,6 +20,9 @@ Even then, this is significantly more useful, so I'm publishing it in case
 anyone needs it. Most of what's missing will probably have to be dealt with
 manually.
 
+The files can be viewed at [felixcloutier.com/x86][4].
+
   [1]: http://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-2a-manual.pdf
   [2]: http://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-2b-manual.pdf
   [3]: http://www.crummy.com/software/BeautifulSoup/
+  [4]: http://www.felixcloutier.com/x86/

@@ -141,147 +141,245 @@
 <p>Enhanced Comparison Predicate for VEX-Encoded VCMPPD VEX.128 encoded version: The first source operand (second operand) is an XMM register. The second source operand (third operand) can be an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the destination YMM register are zeroed. Two comparisons are performed with results written to bits 127:0 of the destination operand.</p>
 <p>VEX.256 encoded version: The first source operand (second operand) is a YMM register. The second source operand (third operand) can be a YMM register or a 256-bit memory location. The destination operand (first operand) is a YMM register. Four comparisons are performed with results written to the destination operand. The comparison predicate operand is an 8-bit immediate:</p>
 <ul>
-	<li>For instructions encoded using the VEX prefix, bits 4:0 define the type of comparison to be performed (see Table 3-9). Bits 5 through 7 of the immediate are reserved.</li>
+	<li>For instructions encoded using the VEX prefix, bits 4:0 define the type of comparison to be performed (see Table 3-9). Bits 5 through 7 of the immediate are reserved. Table 3-9. Comparison Predicate for VCMPPD and VCMPPS Instructions</li>
 </ul>
 <table>
 <tr>
-	<td>Table 3-9.</td>
-	<td>Comparison Predicate for VCMPPD and VCMPPS Instructions</td>
-</tr>
-<tr>
+	<td>Predicate</td>
+	<td>imm8Value</td>
 	<td>Description</td>
+	<td>Result: A Is 1st Operand, B Is 2nd Operand A = B</td>
 	<td>Signals #IA on QNAN Unordered1</td>
 </tr>
 <tr>
+	<td>EQ_OQ (EQ)</td>
+	<td>0H</td>
 	<td>Equal (ordered, non-signaling)</td>
+	<td>True</td>
 	<td>No</td>
 </tr>
 <tr>
+	<td>LT_OS (LT)</td>
+	<td>1H</td>
 	<td>Less-than (ordered, signaling)</td>
+	<td>False</td>
 	<td>Yes</td>
 </tr>
 <tr>
+	<td>LE_OS (LE)</td>
+	<td>2H</td>
 	<td>Less-than-or-equal (ordered, signaling)</td>
+	<td>True</td>
 	<td>Yes</td>
 </tr>
 <tr>
+	<td>UNORD_Q (UNORD)</td>
+	<td>3H</td>
 	<td>Unordered (non-signaling)</td>
-	<td>No (UNORD)</td>
+	<td>False</td>
+	<td>No</td>
 </tr>
 <tr>
+	<td>NEQ_UQ (NEQ)</td>
+	<td>4H</td>
 	<td>Not-equal (unordered, nonsignaling)</td>
+	<td>False</td>
 	<td>No</td>
 </tr>
 <tr>
+	<td>NLT_US (NLT)</td>
+	<td>5H</td>
 	<td>Not-less-than (unordered, signaling)</td>
+	<td>True</td>
 	<td>Yes</td>
 </tr>
 <tr>
+	<td>NLE_US (NLE)</td>
+	<td>6H</td>
 	<td>Not-less-than-or-equal (unordered, signaling)</td>
+	<td>False</td>
 	<td>Yes</td>
 </tr>
 <tr>
+	<td>ORD_Q (ORD)</td>
+	<td>7H</td>
 	<td>Ordered (non-signaling)</td>
+	<td>True</td>
 	<td>No</td>
 </tr>
 <tr>
+	<td>EQ_UQ</td>
+	<td>8H</td>
 	<td>Equal (unordered, non-signaling)</td>
+	<td>True</td>
 	<td>No</td>
 </tr>
 <tr>
+	<td>NGE_US (NGE)</td>
+	<td>9H</td>
 	<td>Not-greater-than-or-equal (unordered, signaling)</td>
+	<td>False</td>
 	<td>Yes</td>
 </tr>
 <tr>
+	<td>NGT_US (NGT)</td>
+	<td>AH</td>
 	<td>Not-greater-than (unordered, signaling)</td>
+	<td>True</td>
 	<td>Yes</td>
 </tr>
 <tr>
+	<td>FALSE_OQ(FALSE)</td>
+	<td>BH</td>
 	<td>False (ordered, non-signaling)</td>
+	<td>False</td>
 	<td>No</td>
 </tr>
 <tr>
+	<td>NEQ_OQ</td>
+	<td>CH</td>
 	<td>Not-equal (ordered, non-signaling)</td>
+	<td>False</td>
 	<td>No</td>
 </tr>
 <tr>
+	<td>GE_OS (GE)</td>
+	<td>DH</td>
 	<td>Greater-than-or-equal (ordered, signaling)</td>
+	<td>True</td>
 	<td>Yes</td>
 </tr>
 <tr>
+	<td>GT_OS (GT)</td>
+	<td>EH</td>
 	<td>Greater-than (ordered, signaling)</td>
+	<td>False</td>
 	<td>Yes</td>
 </tr>
 <tr>
+	<td>TRUE_UQ(TRUE)</td>
+	<td>FH</td>
 	<td>True (unordered, non-signaling)</td>
+	<td>True</td>
 	<td>No</td>
 </tr>
 <tr>
+	<td>EQ_OS</td>
+	<td>10H</td>
 	<td>Equal (ordered, signaling)</td>
+	<td>True</td>
 	<td>Yes</td>
 </tr>
 <tr>
+	<td>LT_OQ</td>
+	<td>11H</td>
 	<td>Less-than (ordered, nonsignaling)</td>
+	<td>False</td>
 	<td>No</td>
 </tr>
 <tr>
+	<td>LE_OQ</td>
+	<td>12H</td>
 	<td>Less-than-or-equal (ordered, nonsignaling)</td>
+	<td>True</td>
 	<td>No</td>
 </tr>
 <tr>
+	<td>UNORD_S</td>
+	<td>13H</td>
 	<td>Unordered (signaling)</td>
+	<td>False</td>
 	<td>Yes</td>
 </tr>
 <tr>
+	<td>NEQ_US</td>
+	<td>14H</td>
 	<td>Not-equal (unordered, signaling)</td>
+	<td>False</td>
 	<td>Yes</td>
 </tr>
 <tr>
+	<td>NLT_UQ</td>
+	<td>15H</td>
 	<td>Not-less-than (unordered, nonsignaling)</td>
+	<td>True</td>
 	<td>No</td>
 </tr>
 <tr>
+	<td>NLE_UQ</td>
+	<td>16H</td>
 	<td>Not-less-than-or-equal (unordered, nonsignaling)</td>
+	<td>False</td>
 	<td>No</td>
 </tr>
 <tr>
+	<td>ORD_S</td>
+	<td>17H</td>
 	<td>Ordered (signaling)</td>
+	<td>True</td>
 	<td>Yes</td>
 </tr>
 <tr>
-	<td>Equal (unordered, signaling)</td>
-	<td>Yes (Contd.)</td>
+	<td>EQ_US</td>
+	<td>18H Table 3-9.</td>
+	<td>Equal (unordered, signaling) Comparison Predicate for VCMPPD and VCMPPS In</td>
+	<td>True (Contd.)</td>
+	<td>Yes</td>
 </tr>
 <tr>
+	<td>Predicate</td>
+	<td>imm8Value</td>
 	<td>Description</td>
+	<td>Result: A Is 1st Operand, B Is 2nd Operand A = B</td>
 	<td>Signals #IA on QNAN Unordered1</td>
 </tr>
 <tr>
+	<td>NGE_UQ</td>
+	<td>19H</td>
 	<td>Not-greater-than-or-equal (unordered, nonsignaling)</td>
+	<td>False</td>
 	<td>No</td>
 </tr>
 <tr>
+	<td>NGT_UQ</td>
+	<td>1AH</td>
 	<td>Not-greater-than (unordered, nonsignaling)</td>
+	<td>True</td>
 	<td>No</td>
 </tr>
 <tr>
+	<td>FALSE_OS</td>
+	<td>1BH</td>
 	<td>False (ordered, signaling)</td>
+	<td>False</td>
 	<td>Yes</td>
 </tr>
 <tr>
+	<td>NEQ_OS</td>
+	<td>1CH</td>
 	<td>Not-equal (ordered, signaling)</td>
+	<td>False</td>
 	<td>Yes</td>
 </tr>
 <tr>
+	<td>GE_OQ</td>
+	<td>1DH</td>
 	<td>Greater-than-or-equal (ordered, nonsignaling)</td>
+	<td>True</td>
 	<td>No</td>
 </tr>
 <tr>
+	<td>GT_OQ</td>
+	<td>1EH</td>
 	<td>Greater-than (ordered, nonsignaling)</td>
+	<td>False</td>
 	<td>No</td>
 </tr>
 <tr>
+	<td>TRUE_US</td>
+	<td>1FH</td>
 	<td>True (unordered, signaling)</td>
+	<td>True</td>
 	<td>Yes</td>
 </tr>
 </table>

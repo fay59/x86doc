@@ -125,9 +125,10 @@ class DocumentWriter(object):
 		self.__output_mode = None # could be one of None, "p", "list", "code", "table"
 		self.__output_mode_data = {}
 		self.__output = StringIO()
-		self.__spaced_chars = set(['.', ',', ';', ':'])
+		self.__spaced_chars = set([c for c in ".,;:)"])
 	
 	def write(self, row):
+		print self.__output_mode, row
 		if self.__output_mode == "p":
 			if self.__break_p(row):
 				text = self.__output_mode_data["contents"]
@@ -173,11 +174,13 @@ class DocumentWriter(object):
 				self.__output_mode = None
 				return self.write(row)
 			
-			if len(row) == 2 and len(self.__output_mode_data["contents"]) != 0:
+			if row[0].contents == u"•" and len(self.__output_mode_data["contents"]) != 0:
 				self.__output.write("\t<li>%s</li>\n" % self.__output_mode_data["contents"])
 				self.__output_mode_data["contents"] = ""
 			
-			self.__output_mode_data["contents"] = self.__append(self.__output_mode_data["contents"], row[-1].contents)
+			for cell in row:
+				if cell.contents == u"•": continue
+				self.__output_mode_data["contents"] = self.__append(self.__output_mode_data["contents"], cell.contents)
 			return True
 			
 		elif self.__output_mode == "table":
@@ -240,10 +243,11 @@ class DocumentWriter(object):
 						self.__output.write("<pre>")
 						return True
 			else:
-				if len(row) == 2 and row[0].contents == u"•":
+				print len(row), row[0].contents
+				if row[0].contents == u"•":
 					self.__output.write("<ul>\n")
 					self.__output_mode = "list"
-					self.__output_mode_data = {"left": row[0].x, "contents": ""}
+					self.__output_mode_data = {"indent": row[1].x, "contents": ""}
 					return self.write(row)
 				
 				# pretty much a table if it's not a list
@@ -295,11 +299,9 @@ class DocumentWriter(object):
 	
 	def __break_list(self, row):
 		length = len(row)
-		if length == 0 or length > 2: return True
-		if length == 1:
-			if abs(row[0].x - self.__output_mode_data["left"]) < 3:
-				return True
-		elif row[0].contents != u"•": return True
+		if length == 0: return True
+		if row[0].contents != u"•" and row[0].x < self.__output_mode_data["indent"] - 5:
+			return True
 		return False
 	
 	def __break_table(self, row):
