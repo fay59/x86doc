@@ -73,7 +73,7 @@
        SEL ← 1:
        SEL ← 2:
        SEL ← 3:
-  DEST ← (DEST AND NOT MASK) OR (((SRC << (SEL ∗ 16)) AND MASK);
+  DEST ← (DEST AND NOT MASK) OR (((SRC &lt;&lt; (SEL ∗ 16)) AND MASK);
 PINSRW (with 128-bit source operand)
   SEL ← COUNT AND 7H;
      CASE (Determine word position) OF
@@ -85,7 +85,7 @@ PINSRW (with 128-bit source operand)
        SEL ← 5:
        SEL ← 6:
        SEL ← 7:
-  DEST ← (DEST AND NOT MASK) OR (((SRC << (SEL ∗ 16)) AND MASK);
+  DEST ← (DEST AND NOT MASK) OR (((SRC &lt;&lt; (SEL ∗ 16)) AND MASK);
 VPINSRW (VEX.128 encoded version)
 SEL ← imm8[2:0]
 DEST[127:0] ← write_w_element(SEL, SRC2, SRC1)

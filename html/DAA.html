@@ -53,7 +53,7 @@
      old_AL ← AL;
      old_CF ← CF;
      CF ← 0;
-     IF (((AL AND 0FH) > 9) or AF = 1)
+     IF (((AL AND 0FH) &gt; 9) or AF = 1)
         THEN
           AL ← AL + 6;
           CF ← old_CF or (Carry from AL ← AL + 6);
@@ -61,7 +61,7 @@
         ELSE
           AF ← 0;
      FI;
-     IF ((old_AL > 99H) or (old_CF = 1))
+     IF ((old_AL &gt; 99H) or (old_CF = 1))
        THEN
           AL ← AL + 60H;
           CF ← 1;

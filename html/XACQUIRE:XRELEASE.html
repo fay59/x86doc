@@ -58,7 +58,7 @@
 <pre>XACQUIRE
 IF XACQUIRE-enabled instruction
   THEN
-     IF (HLE_NEST_COUNT < MAX_HLE_NEST_COUNT) THEN
+     IF (HLE_NEST_COUNT &lt; MAX_HLE_NEST_COUNT) THEN
        HLE_NEST_COUNT++
        IF (HLE_NEST_COUNT = 1) THEN
           HLE_ACTIVE ← 1
@@ -87,7 +87,7 @@ FI;
 XRELEASE
 IF XRELEASE-enabled instruction
   THEN
-     IF (HLE_NEST_COUNT > 0)
+     IF (HLE_NEST_COUNT &gt; 0)
        THEN
           HLE_NEST_COUNT--
           IF lock address matches in elision buffer THEN
@@ -112,7 +112,7 @@ IF XRELEASE-enabled instruction
                      GOTO HLE_ABORT_PROCESSING
                FI;
           FI;
-     FI; (* HLE_NEST_COUNT > 0 *)
+     FI; (* HLE_NEST_COUNT &gt; 0 *)
   ELSE
      Treat instruction as non-XRELEASE F3H prefixed legacy instruction
 FI;

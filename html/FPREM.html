@@ -43,7 +43,7 @@
 <p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
 <h2 id="operation">Operation</h2>
 <pre>D ← exponent(ST(0)) - exponent(ST(1));
-IF D < 64
+IF D &lt; 64
   THEN
      Q ← Integer(TruncateTowardZero(ST(0) / ST(1)));
      ST(0) ← ST(0) - (ST(1) ∗ Q);

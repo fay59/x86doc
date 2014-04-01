@@ -82,7 +82,7 @@ FI;
 IF NestingLevel = 0
   THEN GOTO CONTINUE;
 FI;
-IF (NestingLevel > 1)
+IF (NestingLevel &gt; 1)
   THEN FOR i ← 1 to (NestingLevel - 1)
      DO
        IF 64-Bit Mode (StackSize = 64)

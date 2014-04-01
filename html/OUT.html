@@ -99,8 +99,8 @@
 <h2 id="ia-32-architecture-compatibility">IA-32 Architecture Compatibility</h2>
 <p>After executing an OUT instruction, the Pentium® processor ensures that the EWBE# pin has been sampled active before it begins to execute the next instruction. (Note that the instruction can be prefetched if EWBE# is not active, but it will not be executed until the EWBE# pin is sampled active.) Only the Pentium processor family has the EWBE# pin.</p>
 <h2 id="operation">Operation</h2>
-<pre>IF ((PE = 1) and ((CPL > IOPL) or (VM = 1)))
-  THEN (* Protected mode with CPL > IOPL or virtual-8086 mode *)
+<pre>IF ((PE = 1) and ((CPL &gt; IOPL) or (VM = 1)))
+  THEN (* Protected mode with CPL &gt; IOPL or virtual-8086 mode *)
      IF (Any I/O Permission Bit for I/O port being accessed = 1)
        THEN (* I/O operation is not allowed *)
           #GP(0);

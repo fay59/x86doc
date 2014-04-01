@@ -45,10 +45,10 @@
 <p>The source operand can be an MMX technology register or a 64-bit memory location. The destination operand is an MMX technology register. The order operand is an 8-bit immediate. Note that this instruction permits a word in the source operand to be copied to more than one word location in the destination operand.</p>
 <p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15).</p>
 <h2 id="operation">Operation</h2>
-<pre>DEST[15:0] ← (SRC >> (ORDER[1:0] * 16))[15:0];
-DEST[31:16] ← (SRC >> (ORDER[3:2] * 16))[15:0];
-DEST[47:32] ← (SRC >> (ORDER[5:4] * 16))[15:0];
-DEST[63:48] ← (SRC >> (ORDER[7:6] * 16))[15:0];
+<pre>DEST[15:0] ← (SRC &gt;&gt; (ORDER[1:0] * 16))[15:0];
+DEST[31:16] ← (SRC &gt;&gt; (ORDER[3:2] * 16))[15:0];
+DEST[47:32] ← (SRC &gt;&gt; (ORDER[5:4] * 16))[15:0];
+DEST[63:48] ← (SRC &gt;&gt; (ORDER[7:6] * 16))[15:0];
 </pre>
 <h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>

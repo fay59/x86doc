@@ -54,7 +54,7 @@
 <p>The EFLAGS register is not updated if an unmasked SIMD floating-point exception is generated.</p>
 <p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15). Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise instructions will #UD.</p>
 <h2 id="operation">Operation</h2>
-<pre>RESULT ← UnorderedCompare(SRC1[63:0] < > SRC2[63:0]) {
+<pre>RESULT ← UnorderedCompare(SRC1[63:0] &lt; &gt; SRC2[63:0]) {
 (* Set EFLAGS *)
 CASE (RESULT) OF
   UNORDERED:

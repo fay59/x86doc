@@ -105,39 +105,39 @@
 <p>VEX.128 encoded version: The first source operand is an XMM register. The second source operand is an XMM register or 128-bit memory location. The destination operand is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed. VEX.256 encoded version: The first source operand is a YMM register. The second source operand is a YMM register or a 256-bit memory location. The destination operand is a YMM register.</p>
 <h2 id="operation">Operation</h2>
 <pre>PAVGB (with 64-bit operands)
-  DEST[7:0] ← (SRC[7:0] + DEST[7:0] + 1) >> 1; (* Temp sum before shifting is 9 bits *)
+  DEST[7:0] ← (SRC[7:0] + DEST[7:0] + 1) &gt;&gt; 1; (* Temp sum before shifting is 9 bits *)
   (* Repeat operation performed for bytes 2 through 6 *)
-  DEST[63:56] ← (SRC[63:56] + DEST[63:56] + 1) >> 1;
+  DEST[63:56] ← (SRC[63:56] + DEST[63:56] + 1) &gt;&gt; 1;
 PAVGW (with 64-bit operands)
-  DEST[15:0] ← (SRC[15:0] + DEST[15:0] + 1) >> 1; (* Temp sum before shifting is 17 bits *)
+  DEST[15:0] ← (SRC[15:0] + DEST[15:0] + 1) &gt;&gt; 1; (* Temp sum before shifting is 17 bits *)
   (* Repeat operation performed for words 2 and 3 *)
-  DEST[63:48] ← (SRC[63:48] + DEST[63:48] + 1) >> 1;
+  DEST[63:48] ← (SRC[63:48] + DEST[63:48] + 1) &gt;&gt; 1;
 PAVGB (with 128-bit operands)
-  DEST[7:0] ← (SRC[7:0] + DEST[7:0] + 1) >> 1; (* Temp sum before shifting is 9 bits *)
+  DEST[7:0] ← (SRC[7:0] + DEST[7:0] + 1) &gt;&gt; 1; (* Temp sum before shifting is 9 bits *)
   (* Repeat operation performed for bytes 2 through 14 *)
-  DEST[127:120] ← (SRC[127:120] + DEST[127:120] + 1) >> 1;
+  DEST[127:120] ← (SRC[127:120] + DEST[127:120] + 1) &gt;&gt; 1;
 PAVGW (with 128-bit operands)
-  DEST[15:0] ← (SRC[15:0] + DEST[15:0] + 1) >> 1; (* Temp sum before shifting is 17 bits *)
+  DEST[15:0] ← (SRC[15:0] + DEST[15:0] + 1) &gt;&gt; 1; (* Temp sum before shifting is 17 bits *)
   (* Repeat operation performed for words 2 through 6 *)
-  DEST[127:112] ← (SRC[127:112] + DEST[127:112] + 1) >> 1;
+  DEST[127:112] ← (SRC[127:112] + DEST[127:112] + 1) &gt;&gt; 1;
 VPAVGB (VEX.128 encoded version)
-  DEST[7:0] ← (SRC1[7:0] + SRC2[7:0] + 1) >> 1;
+  DEST[7:0] ← (SRC1[7:0] + SRC2[7:0] + 1) &gt;&gt; 1;
   (* Repeat operation performed for bytes 2 through 15 *)
-  DEST[127:120] ← (SRC1[127:120] + SRC2[127:120] + 1) >> 1
+  DEST[127:120] ← (SRC1[127:120] + SRC2[127:120] + 1) &gt;&gt; 1
   DEST[VLMAX-1:128] ← 0
 VPAVGW (VEX.128 encoded version)
-  DEST[15:0] ← (SRC1[15:0] + SRC2[15:0] + 1) >> 1;
+  DEST[15:0] ← (SRC1[15:0] + SRC2[15:0] + 1) &gt;&gt; 1;
   (* Repeat operation performed for 16-bit words 2 through 7 *)
-  DEST[127:112] ← (SRC1[127:112] + SRC2[127:112] + 1) >> 1
+  DEST[127:112] ← (SRC1[127:112] + SRC2[127:112] + 1) &gt;&gt; 1
   DEST[VLMAX-1:128] ← 0
 VPAVGB (VEX.256 encoded instruction)
-  DEST[7:0] ← (SRC1[7:0] + SRC2[7:0] + 1) >> 1; (* Temp sum before shifting is 9 bits *)
+  DEST[7:0] ← (SRC1[7:0] + SRC2[7:0] + 1) &gt;&gt; 1; (* Temp sum before shifting is 9 bits *)
   (* Repeat operation performed for bytes 2 through 31)
-  DEST[255:248] ← (SRC1[255:248] + SRC2[255:248] + 1) >> 1;
+  DEST[255:248] ← (SRC1[255:248] + SRC2[255:248] + 1) &gt;&gt; 1;
 VPAVGW (VEX.256 encoded instruction)
-  DEST[15:0] ← (SRC1[15:0] + SRC2[15:0] + 1) >> 1; (* Temp sum before shifting is 17 bits *)
+  DEST[15:0] ← (SRC1[15:0] + SRC2[15:0] + 1) &gt;&gt; 1; (* Temp sum before shifting is 17 bits *)
   (* Repeat operation performed for words 2 through 15)
-  DEST[255:14]) ← (SRC1[255:240] + SRC2[255:240] + 1) >> 1;
+  DEST[255:14]) ← (SRC1[255:240] + SRC2[255:240] + 1) &gt;&gt; 1;
 </pre>
 <h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>

@@ -49,7 +49,7 @@
 <p>The LLDT instruction is provided for use in operating-system software; it should not be used in application programs. This instruction can only be executed in protected mode or 64-bit mode.</p>
 <p>In 64-bit mode, the operand size is fixed at 16 bits.</p>
 <h2 id="operation">Operation</h2>
-<pre>IF SRC(Offset) > descriptor table limit
+<pre>IF SRC(Offset) &gt; descriptor table limit
   THEN #GP(segment selector); FI;
 IF segment selector is valid
   Read segment descriptor;

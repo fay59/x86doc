@@ -102,7 +102,7 @@ IF BranchCond = 1
           FI;
      FI;
      IF OperandSize = (32 or 64)
-       THEN IF (R/E)IP < CS.Base or (R/E)IP > CS.Limit
+       THEN IF (R/E)IP &lt; CS.Base or (R/E)IP &gt; CS.Limit
           #GP; FI;
           FI;
      FI;

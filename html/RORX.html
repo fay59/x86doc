@@ -52,10 +52,10 @@
 <h2 id="operation">Operation</h2>
 <pre>IF (OperandSize = 32)
   y ← imm8 AND 1FH;
-  DEST ← (SRC >> y) | (SRC << (32-y));
+  DEST ← (SRC &gt;&gt; y) | (SRC &lt;&lt; (32-y));
 ELSEIF (OperandSize = 64 )
   y ← imm8 AND 3FH;
-  DEST ← (SRC >> y) | (SRC << (64-y));
+  DEST ← (SRC &gt;&gt; y) | (SRC &lt;&lt; (64-y));
 ENDIF
 </pre>
 <h2 id="flags-affected">Flags Affected</h2>

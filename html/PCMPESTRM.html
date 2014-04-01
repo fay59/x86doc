@@ -53,7 +53,7 @@
 <p>The length of each input is interpreted as being the absolute-value of the value in the length register. The absolutevalue computation saturates to 16 (for bytes) and 8 (for words), based on the value of imm8[bit3] when the value in the length register is greater than 16 (8) or less than -16 (-8).</p>
 <p>The comparison and aggregation operations are performed according to the encoded value of Imm8 bit fields (see Section 4.1). As defined by imm8[6], IntRes2 is then either stored to the least significant bits of XMM0 (zero extended to 128 bits) or expanded into a byte/word-mask and then stored to XMM0.</p>
 <p>Note that the Arithmetic Flags are written in a non-standard manner in order to supply the most relevant information:</p>
-<p>CFlag - Reset if IntRes2 is equal to zero, set otherwise ZFlag - Set if absolute-value of EDX is < 16 (8), reset otherwise SFlag - Set if absolute-value of EAX is < 16 (8), reset otherwise OFlag -IntRes2[0]AFlag - Reset PFlag - Reset</p>
+<p>CFlag - Reset if IntRes2 is equal to zero, set otherwise ZFlag - Set if absolute-value of EDX is &lt; 16 (8), reset otherwise SFlag - Set if absolute-value of EAX is &lt; 16 (8), reset otherwise OFlag -IntRes2[0]AFlag - Reset PFlag - Reset</p>
 <p>Note: In VEX.128 encoded versions, bits (VLMAX-1:128) of XMM0 are zeroed. VEX.vvvv is reserved and must be 1111b, VEX.L must be 0, otherwise the instruction will #UD.</p>
 <h2 id="effective-operand-size">Effective Operand Size</h2>
 <table>

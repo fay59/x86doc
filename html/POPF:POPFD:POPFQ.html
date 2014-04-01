@@ -84,10 +84,10 @@
              EFLAGS[15:0] ← Pop(); (* 16-bit pop *)
              (* All non-reserved flags can be modified. *)
        FI;
-     ELSE (* CPL > 0 *)
+     ELSE (* CPL &gt; 0 *)
        IF OperandSize = 32
           THEN
-             IF CPL > IOPL
+             IF CPL &gt; IOPL
                THEN
                   EFLAGS ← Pop(); (* 32-bit pop *)
                   (* All non-reserved bits except IF, IOPL, RF, VIP, and
@@ -100,7 +100,7 @@
                   unaffected; VIP and VIF are cleared. *)
              FI;
           ELSE IF (Operandsize = 64)
-             IF CPL > IOPL
+             IF CPL &gt; IOPL
                THEN
                   RFLAGS ← Pop(); (* 64-bit pop *)
                   (* All non-reserved bits except IF, IOPL, RF, VIP, and
@@ -129,7 +129,7 @@
              EFLAGS[15:0] ← Pop(); FI;
              (* All non-reserved bits except IOPL can be modified;
              IOPL and all reserved bits are unaffected. *)
-     ELSE (* IOPL < 3 *)
+     ELSE (* IOPL &lt; 3 *)
        #GP(0);
      FI;
   FI;

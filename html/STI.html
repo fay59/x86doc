@@ -70,7 +70,7 @@
 	<td>VIF = 1</td>
 </tr>
 <tr>
-	<td>< 3</td>
+	<td>&lt; 3</td>
 	<td>GP Fault</td>
 </tr>
 <tr>
@@ -116,7 +116,7 @@
              THEN
                IF ← 1;
           ELSE
-             IF (IOPL < CPL) and (CPL = 3) and (VIP = 0)
+             IF (IOPL &lt; CPL) and (CPL = 3) and (VIP = 0)
                THEN
                   VIF ← 1;
                ELSE
@@ -128,7 +128,7 @@
              THEN
                IF ← 1;
           ELSE
-             IF ((IOPL < 3) and (VIP = 0) and (VME = 1))
+             IF ((IOPL &lt; 3) and (VIP = 0) and (VME = 1))
                THEN
                   VIF ← 1;
              ELSE

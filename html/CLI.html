@@ -56,7 +56,7 @@
 	<td>CLI Result IF = 0IF = 0VIF = 0</td>
 </tr>
 <tr>
-	<td>< 3</td>
+	<td>&lt; 3</td>
 	<td>GP Fault GP Fault IF = 0VIF = 0GP Fault</td>
 </tr>
 </table>
@@ -72,7 +72,7 @@
              THEN
                IF ← 0; (* Reset Interrupt Flag *)
           ELSE
-             IF ((IOPL < CPL) and (CPL = 3) and (PVI = 1))
+             IF ((IOPL &lt; CPL) and (CPL = 3) and (PVI = 1))
                THEN
                   VIF ← 0; (* Reset Virtual Interrupt Flag *)
                ELSE
@@ -84,7 +84,7 @@
              THEN
                IF ← 0; (* Reset Interrupt Flag *)
              ELSE
-               IF (IOPL < 3) AND (VME = 1)
+               IF (IOPL &lt; 3) AND (VME = 1)
                   THEN
                      VIF ← 0; (* Reset Virtual Interrupt Flag *)
                   ELSE

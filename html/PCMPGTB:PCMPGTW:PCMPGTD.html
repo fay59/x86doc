@@ -133,19 +133,19 @@
 <p>Note: VEX.L must be 0, otherwise the instruction will #UD.</p>
 <h2 id="operation">Operation</h2>
 <pre>PCMPGTB (with 64-bit operands)
-  IF DEST[7:0] > SRC[7:0]
+  IF DEST[7:0] &gt; SRC[7:0]
      THEN DEST[7:0) ← FFH;
      ELSE DEST[7:0] ← 0; FI;
   (* Continue comparison of 2nd through 7th bytes in DEST and SRC *)
-  IF DEST[63:56] > SRC[63:56]
+  IF DEST[63:56] &gt; SRC[63:56]
      THEN DEST[63:56] ← FFH;
      ELSE DEST[63:56] ← 0; FI;
 PCMPGTB (with 128-bit operands)
-  IF DEST[7:0] > SRC[7:0]
+  IF DEST[7:0] &gt; SRC[7:0]
      THEN DEST[7:0) ← FFH;
      ELSE DEST[7:0] ← 0; FI;
   (* Continue comparison of 2nd through 15th bytes in DEST and SRC *)
-  IF DEST[127:120] > SRC[127:120]
+  IF DEST[127:120] &gt; SRC[127:120]
      THEN DEST[127:120] ← FFH;
      ELSE DEST[127:120] ← 0; FI;
 VPCMPGTB (VEX.128 encoded version)
@@ -155,19 +155,19 @@ VPCMPGTB (VEX.256 encoded version)
 DEST[127:0] ←COMPARE_BYTES_GREATER(SRC1[127:0],SRC2[127:0])
 DEST[255:128] ←COMPARE_BYTES_GREATER(SRC1[255:128],SRC2[255:128])
 PCMPGTW (with 64-bit operands)
-  IF DEST[15:0] > SRC[15:0]
+  IF DEST[15:0] &gt; SRC[15:0]
      THEN DEST[15:0] ← FFFFH;
      ELSE DEST[15:0] ← 0; FI;
   (* Continue comparison of 2nd and 3rd words in DEST and SRC *)
-  IF DEST[63:48] > SRC[63:48]
+  IF DEST[63:48] &gt; SRC[63:48]
      THEN DEST[63:48] ← FFFFH;
      ELSE DEST[63:48] ← 0; FI;
 PCMPGTW (with 128-bit operands)
-  IF DEST[15:0] > SRC[15:0]
+  IF DEST[15:0] &gt; SRC[15:0]
      THEN DEST[15:0] ← FFFFH;
      ELSE DEST[15:0] ← 0; FI;
   (* Continue comparison of 2nd through 7th words in DEST and SRC *)
-  IF DEST[63:48] > SRC[127:112]
+  IF DEST[63:48] &gt; SRC[127:112]
      THEN DEST[127:112] ← FFFFH;
      ELSE DEST[127:112] ← 0; FI;
 VPCMPGTW (VEX.128 encoded version)
@@ -177,18 +177,18 @@ VPCMPGTW (VEX.256 encoded version)
 DEST[127:0] ←COMPARE_WORDS_GREATER(SRC1[127:0],SRC2[127:0])
 DEST[255:128] ←COMPARE_WORDS_GREATER(SRC1[255:128],SRC2[255:128])
 PCMPGTD (with 64-bit operands)
-  IF DEST[31:0] > SRC[31:0]
+  IF DEST[31:0] &gt; SRC[31:0]
      THEN DEST[31:0] ← FFFFFFFFH;
      ELSE DEST[31:0] ← 0; FI;
-  IF DEST[63:32] > SRC[63:32]
+  IF DEST[63:32] &gt; SRC[63:32]
      THEN DEST[63:32] ← FFFFFFFFH;
      ELSE DEST[63:32] ← 0; FI;
 PCMPGTD (with 128-bit operands)
-  IF DEST[31:0] > SRC[31:0]
+  IF DEST[31:0] &gt; SRC[31:0]
      THEN DEST[31:0] ← FFFFFFFFH;
      ELSE DEST[31:0] ← 0; FI;
   (* Continue comparison of 2nd and 3rd doublewords in DEST and SRC *)
-  IF DEST[127:96] > SRC[127:96]
+  IF DEST[127:96] &gt; SRC[127:96]
      THEN DEST[127:96] ← FFFFFFFFH;
      ELSE DEST[127:96] ← 0; FI;
 VPCMPGTD (VEX.128 encoded version)

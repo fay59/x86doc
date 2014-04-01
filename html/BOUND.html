@@ -18,19 +18,19 @@
 </tr>
 <tr>
 	<td>62 /r</td>
-	<td>BOUND r16, m16&16</td>
+	<td>BOUND r16, m16&amp;16</td>
 	<td>RM</td>
 	<td>Invalid</td>
 	<td>Valid</td>
-	<td>Check if r16 (array index) is within bounds specified by m16&16.</td>
+	<td>Check if r16 (array index) is within bounds specified by m16&amp;16.</td>
 </tr>
 <tr>
 	<td>62 /r</td>
-	<td>BOUND r32, m32&32</td>
+	<td>BOUND r32, m32&amp;32</td>
 	<td>RM</td>
 	<td>Invalid</td>
 	<td>Valid</td>
-	<td>Check if r32 (array index) is within bounds specified by m16&16.</td>
+	<td>Check if r32 (array index) is within bounds specified by m16&amp;16.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -59,7 +59,7 @@
   THEN
      #UD;
   ELSE
-     IF (ArrayIndex < LowerBound OR ArrayIndex > UpperBound)
+     IF (ArrayIndex &lt; LowerBound OR ArrayIndex &gt; UpperBound)
      (* Below lower bound or above upper bound *)
        THEN #BR; FI;
 FI;

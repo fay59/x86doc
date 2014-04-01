@@ -285,7 +285,7 @@ FI;
 CONFORMING-CODE-SEGMENT:
   IF L bit = 1 and D bit = 1 and IA32_EFER.LMA = 1
      THEN GP(new code segment selector); FI;
-  IF DPL > CPL
+  IF DPL &gt; CPL
      THEN #GP(new code segment selector); FI;
   IF segment not present
      THEN #NP(new code segment selector); FI;
@@ -330,7 +330,7 @@ END;
 NONCONFORMING-CODE-SEGMENT:
   IF L-Bit = 1 and D-BIT = 1 and IA32_EFER.LMA = 1
      THEN GP(new code segment selector); FI;
-  IF (RPL > CPL) or (DPL ≠ CPL)
+  IF (RPL &gt; CPL) or (DPL ≠ CPL)
      THEN #GP(new code segment selector); FI;
   IF segment not present
      THEN #NP(new code segment selector); FI;
@@ -372,7 +372,7 @@ NONCONFORMING-CODE-SEGMENT:
   FI;
 END;
 CALL-GATE:
-  IF call gate (DPL < CPL) or (RPL > DPL)
+  IF call gate (DPL &lt; CPL) or (RPL &gt; DPL)
      THEN #GP(call-gate selector); FI;
   IF call gate not present
      THEN #NP(call-gate selector); FI;
@@ -382,14 +382,14 @@ CALL-GATE:
      THEN #GP(call-gate code-segment selector); FI;
   Read call-gate code-segment descriptor;
   IF call-gate code-segment descriptor does not indicate a code segment
-  or call-gate code-segment descriptor DPL > CPL
+  or call-gate code-segment descriptor DPL &gt; CPL
      THEN #GP(call-gate code-segment selector); FI;
   IF IA32_EFER.LMA = 1 AND (call-gate code-segment descriptor is
   not a 64-bit code segment or call-gate code-segment descriptor has both L-bit and D-bit set)
      THEN #GP(call-gate code-segment selector); FI;
   IF call-gate code segment not present
      THEN #NP(call-gate code-segment selector); FI;
-  IF call-gate code segment is non-conforming and DPL < CPL
+  IF call-gate code segment is non-conforming and DPL &lt; CPL
      THEN go to MORE-PRIVILEGE;
      ELSE go to SAME-PRIVILEGE;
   FI;
@@ -398,7 +398,7 @@ MORE-PRIVILEGE:
   IF current TSS is 32-bit
      THEN
        TSSstackAddress ← (new code-segment DPL ∗ 8) + 4;
-       IF (TSSstackAddress + 5) > current TSS limit
+       IF (TSSstackAddress + 5) &gt; current TSS limit
           THEN #TS(current TSS selector); FI;
        NewSS ← 2 bytes loaded from (TSS base + TSSstackAddress + 4);
        NewESP ← 4 bytes loaded from (TSS base + TSSstackAddress);
@@ -406,13 +406,13 @@ MORE-PRIVILEGE:
        IF current TSS is 16-bit
           THEN
              TSSstackAddress ← (new code-segment DPL ∗ 4) + 2
-             IF (TSSstackAddress + 3) > current TSS limit
+             IF (TSSstackAddress + 3) &gt; current TSS limit
                THEN #TS(current TSS selector); FI;
              NewSS ← 2 bytes loaded from (TSS base + TSSstackAddress + 2);
              NewESP ← 2 bytes loaded from (TSS base + TSSstackAddress);
           ELSE (* current TSS is 64-bit *)
              TSSstackAddress ← (new code-segment DPL ∗ 8) + 4;
-             IF (TSSstackAddress + 7) > current TSS limit
+             IF (TSSstackAddress + 7) &gt; current TSS limit
                THEN #TS(current TSS selector); FI;
              NewSS ← new code-segment DPL; (* NULL selector with RPL = new CPL *)
              NewRSP ← 8 bytes loaded from (current TSS base + TSSstackAddress);
@@ -504,7 +504,7 @@ SAME-PRIVILEGE:
   CS(RPL) ← CPL
 END;
 TASK-GATE:
-  IF task gate DPL < CPL or RPL
+  IF task gate DPL &lt; CPL or RPL
      THEN #GP(task gate selector); FI;
   IF task gate not present
      THEN #NP(task gate selector); FI;
@@ -522,7 +522,7 @@ TASK-GATE:
      THEN #GP(0); FI;
 END;
 TASK-STATE-SEGMENT:
-  IF TSS DPL < CPL or RPL
+  IF TSS DPL &lt; CPL or RPL
   or TSS descriptor indicates TSS not available
      THEN #GP(TSS selector); FI;
   IF TSS is not present

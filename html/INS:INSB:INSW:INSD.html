@@ -92,8 +92,8 @@
 <p>These instructions are only useful for accessing I/O ports located in the processor’s I/O address space. See Chapter 16, “Input/Output,” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, for more information on accessing I/O ports in the I/O address space.</p>
 <p>In 64-bit mode, default address size is 64 bits, 32 bit address size is supported using the prefix 67H. The address of the memory destination is specified by RDI or EDI. 16-bit address size is not supported in 64-bit mode. The operand size is not promoted.</p>
 <h2 id="operation">Operation</h2>
-<pre>IF ((PE = 1) and ((CPL > IOPL) or (VM = 1)))
-  THEN (* Protected mode with CPL > IOPL or virtual-8086 mode *)
+<pre>IF ((PE = 1) and ((CPL &gt; IOPL) or (VM = 1)))
+  THEN (* Protected mode with CPL &gt; IOPL or virtual-8086 mode *)
      IF (Any I/O Permission Bit for I/O port being accessed = 1)
        THEN (* I/O operation is not allowed *)
           #GP(0);

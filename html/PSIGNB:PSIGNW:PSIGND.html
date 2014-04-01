@@ -131,32 +131,32 @@
 <p>Legacy SSE instructions: Both operands can be MMX registers. In 64-bit mode, use the REX prefix to access additional registers. 128-bit Legacy SSE version: The first source and destination operands are XMM registers. The second source operand is an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: The first source and destination operands are XMM registers. The second source operand is an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the destination YMM register are zeroed. VEX.L must be 0, otherwise instructions will #UD. VEX.256 encoded version: The first source and destination operands are YMM registers. The second source operand is an YMM register or a 256-bit memory location.</p>
 <h2 id="operation">Operation</h2>
 <pre>PSIGNB (with 64 bit operands)
-  IF (SRC[7:0] < 0 )
+  IF (SRC[7:0] &lt; 0 )
      DEST[7:0] ← Neg(DEST[7:0])
   ELSEIF (SRC[7:0] = 0 )
      DEST[7:0] ← 0
-  ELSEIF (SRC[7:0] > 0 )
+  ELSEIF (SRC[7:0] &gt; 0 )
      DEST[7:0] ← DEST[7:0]
   Repeat operation for 2nd through 7th bytes
-  IF (SRC[63:56] < 0 )
+  IF (SRC[63:56] &lt; 0 )
      DEST[63:56] ← Neg(DEST[63:56])
   ELSEIF (SRC[63:56] = 0 )
      DEST[63:56] ← 0
-  ELSEIF (SRC[63:56] > 0 )
+  ELSEIF (SRC[63:56] &gt; 0 )
      DEST[63:56] ← DEST[63:56]
 PSIGNB (with 128 bit operands)
-  IF (SRC[7:0] < 0 )
+  IF (SRC[7:0] &lt; 0 )
      DEST[7:0] ← Neg(DEST[7:0])
   ELSEIF (SRC[7:0] = 0 )
      DEST[7:0] ← 0
-  ELSEIF (SRC[7:0] > 0 )
+  ELSEIF (SRC[7:0] &gt; 0 )
      DEST[7:0] ← DEST[7:0]
   Repeat operation for 2nd through 15th bytes
-  IF (SRC[127:120] < 0 )
+  IF (SRC[127:120] &lt; 0 )
      DEST[127:120] ← Neg(DEST[127:120])
   ELSEIF (SRC[127:120] = 0 )
      DEST[127:120] ← 0
-  ELSEIF (SRC[127:120] > 0 )
+  ELSEIF (SRC[127:120] &gt; 0 )
      DEST[127:120] ← DEST[127:120]
 VPSIGNB (VEX.128 encoded version)
 DEST[127:0] ←BYTE_SIGN(SRC1, SRC2)
@@ -164,32 +164,32 @@ DEST[VLMAX-1:128] ← 0
 VPSIGNB (VEX.256 encoded version)
 DEST[255:0] ←BYTE_SIGN_256b(SRC1, SRC2)
 PSIGNW (with 64 bit operands)
-  IF (SRC[15:0] < 0 )
+  IF (SRC[15:0] &lt; 0 )
      DEST[15:0] ← Neg(DEST[15:0])
   ELSEIF (SRC[15:0] = 0 )
      DEST[15:0] ← 0
-  ELSEIF (SRC[15:0] > 0 )
+  ELSEIF (SRC[15:0] &gt; 0 )
      DEST[15:0] ← DEST[15:0]
 Repeat operation for 2nd through 3rd words
-  IF (SRC[63:48] < 0 )
+  IF (SRC[63:48] &lt; 0 )
      DEST[63:48] ← Neg(DEST[63:48])
   ELSEIF (SRC[63:48] = 0 )
      DEST[63:48] ← 0
-  ELSEIF (SRC[63:48] > 0 )
+  ELSEIF (SRC[63:48] &gt; 0 )
      DEST[63:48] ← DEST[63:48]
 PSIGNW (with 128 bit operands)
-  IF (SRC[15:0] < 0 )
+  IF (SRC[15:0] &lt; 0 )
      DEST[15:0] ← Neg(DEST[15:0])
   ELSEIF (SRC[15:0] = 0 )
      DEST[15:0] ← 0
-  ELSEIF (SRC[15:0] > 0 )
+  ELSEIF (SRC[15:0] &gt; 0 )
      DEST[15:0] ← DEST[15:0]
   Repeat operation for 2nd through 7th words
-  IF (SRC[127:112] < 0 )
+  IF (SRC[127:112] &lt; 0 )
      DEST[127:112] ← Neg(DEST[127:112])
   ELSEIF (SRC[127:112] = 0 )
      DEST[127:112] ← 0
-  ELSEIF (SRC[127:112] > 0 )
+  ELSEIF (SRC[127:112] &gt; 0 )
      DEST[127:112] ← DEST[127:112]
 VPSIGNW (VEX.128 encoded version)
 DEST[127:0] ←WORD_SIGN(SRC1, SRC2)
@@ -197,31 +197,31 @@ DEST[VLMAX-1:128] ← 0
 VPSIGNW (VEX.256 encoded version)
 DEST[255:0] ←WORD_SIGN(SRC1, SRC2)
 PSIGND (with 64 bit operands)
-  IF (SRC[31:0] < 0 )
+  IF (SRC[31:0] &lt; 0 )
      DEST[31:0] ← Neg(DEST[31:0])
   ELSEIF (SRC[31:0] = 0 )
      DEST[31:0] ← 0
-  ELSEIF (SRC[31:0] > 0 )
+  ELSEIF (SRC[31:0] &gt; 0 )
      DEST[31:0] ← DEST[31:0]
-  IF (SRC[63:32] < 0 )
+  IF (SRC[63:32] &lt; 0 )
      DEST[63:32] ← Neg(DEST[63:32])
   ELSEIF (SRC[63:32] = 0 )
      DEST[63:32] ← 0
-  ELSEIF (SRC[63:32] > 0 )
+  ELSEIF (SRC[63:32] &gt; 0 )
      DEST[63:32] ← DEST[63:32]
 PSIGND (with 128 bit operands)
-  IF (SRC[31:0] < 0 )
+  IF (SRC[31:0] &lt; 0 )
      DEST[31:0] ← Neg(DEST[31:0])
   ELSEIF (SRC[31:0] = 0 )
      DEST[31:0] ← 0
-  ELSEIF (SRC[31:0] > 0 )
+  ELSEIF (SRC[31:0] &gt; 0 )
      DEST[31:0] ← DEST[31:0]
   Repeat operation for 2nd through 3rd double words
-  IF (SRC[127:96] < 0 )
+  IF (SRC[127:96] &lt; 0 )
      DEST[127:96] ← Neg(DEST[127:96])
   ELSEIF (SRC[127:96] = 0 )
      DEST[127:96] ← 0
-  ELSEIF (SRC[127:96] > 0 )
+  ELSEIF (SRC[127:96] &gt; 0 )
      DEST[127:96] ← DEST[127:96]
 VPSIGND (VEX.128 encoded version)
 DEST[127:0] ←DWORD_SIGN(SRC1, SRC2)

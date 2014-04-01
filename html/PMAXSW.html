@@ -76,43 +76,43 @@
 <p>Note: VEX.L must be 0, otherwise the instruction will #UD.</p>
 <h2 id="operation">Operation</h2>
 <pre>PMAXSW (64-bit operands)
-  IF DEST[15:0] > SRC[15:0]) THEN
+  IF DEST[15:0] &gt; SRC[15:0]) THEN
      DEST[15:0] ← DEST[15:0];
   ELSE
      DEST[15:0] ← SRC[15:0]; FI;
   (* Repeat operation for 2nd and 3rd words in source and destination operands *)
-  IF DEST[63:48] > SRC[63:48]) THEN
+  IF DEST[63:48] &gt; SRC[63:48]) THEN
      DEST[63:48] ← DEST[63:48];
   ELSE
      DEST[63:48] ← SRC[63:48]; FI;
 PMAXSW (128-bit operands)
-  IF DEST[15:0] > SRC[15:0]) THEN
+  IF DEST[15:0] &gt; SRC[15:0]) THEN
      DEST[15:0] ← DEST[15:0];
   ELSE
      DEST[15:0] ← SRC[15:0]; FI;
   (* Repeat operation for 2nd through 7th words in source and destination operands *)
-  IF DEST[127:112] > SRC[127:112]) THEN
+  IF DEST[127:112] &gt; SRC[127:112]) THEN
      DEST[127:112] ← DEST[127:112];
   ELSE
      DEST[127:112] ← SRC[127:112]; FI;
 VPMAXSW (VEX.128 encoded version)
-  IF SRC1[15:0] > SRC2[15:0] THEN
+  IF SRC1[15:0] &gt; SRC2[15:0] THEN
      DEST[15:0] ← SRC1[15:0];
   ELSE
      DEST[15:0] ← SRC2[15:0]; FI;
   (* Repeat operation for 2nd through 7th words in source and destination operands *)
-  IF SRC1[127:112] >SRC2[127:112] THEN
+  IF SRC1[127:112] &gt;SRC2[127:112] THEN
      DEST[127:112] ← SRC1[127:112];
   ELSE
      DEST[127:112] ← SRC2[127:112]; FI;
 DEST[VLMAX-1:128] ← 0
 VPMAXSW (VEX.256 encoded version)
-  IF SRC1[15:0] > SRC2[15:0] THEN
+  IF SRC1[15:0] &gt; SRC2[15:0] THEN
      DEST[15:0] ← SRC1[15:0];
   ELSE
      DEST[15:0] ← SRC2[15:0]; FI;
   (* Repeat operation for 2nd through 15th words in source and destination operands *)
-  IF SRC1[255:240] >SRC2[255:240] THEN
+  IF SRC1[255:240] &gt;SRC2[255:240] THEN
      DEST[255:240] ← SRC1[255:240];
   ELSE
      DEST[255:240] ← SRC2[255:240]; FI;
@@ -177,43 +177,43 @@ VPMAXSW (VEX.256 encoded version)
 <p>Note: VEX.L must be 0, otherwise the instruction will #UD.</p>
 <h2 id="operation">Operation</h2>
 <pre>PMAXUB (64-bit operands)
-  IF DEST[7:0] > SRC[17:0]) THEN
+  IF DEST[7:0] &gt; SRC[17:0]) THEN
      DEST[7:0] ← DEST[7:0];
   ELSE
      DEST[7:0] ← SRC[7:0]; FI;
   (* Repeat operation for 2nd through 7th bytes in source and destination operands *)
-  IF DEST[63:56] > SRC[63:56]) THEN
+  IF DEST[63:56] &gt; SRC[63:56]) THEN
      DEST[63:56] ← DEST[63:56];
   ELSE
      DEST[63:56] ← SRC[63:56]; FI;
 PMAXUB (128-bit operands)
-  IF DEST[7:0] > SRC[17:0]) THEN
+  IF DEST[7:0] &gt; SRC[17:0]) THEN
      DEST[7:0] ← DEST[7:0];
   ELSE
      DEST[7:0] ← SRC[7:0]; FI;
   (* Repeat operation for 2nd through 15th bytes in source and destination operands *)
-  IF DEST[127:120] > SRC[127:120]) THEN
+  IF DEST[127:120] &gt; SRC[127:120]) THEN
      DEST[127:120] ← DEST[127:120];
   ELSE
      DEST[127:120] ← SRC[127:120]; FI;
 VPMAXUB (VEX.128 encoded version)
-  IF SRC1[7:0] >SRC2[7:0] THEN
+  IF SRC1[7:0] &gt;SRC2[7:0] THEN
      DEST[7:0] ← SRC1[7:0];
   ELSE
      DEST[7:0] ← SRC2[7:0]; FI;
   (* Repeat operation for 2nd through 15th bytes in source and destination operands *)
-  IF SRC1[127:120] >SRC2[127:120] THEN
+  IF SRC1[127:120] &gt;SRC2[127:120] THEN
      DEST[127:120] ← SRC1[127:120];
   ELSE
      DEST[127:120] ← SRC2[127:120]; FI;
 DEST[VLMAX-1:128] ← 0
 VPMAXUB (VEX.256 encoded version)
-  IF SRC1[7:0] >SRC2[7:0] THEN
+  IF SRC1[7:0] &gt;SRC2[7:0] THEN
      DEST[7:0] ← SRC1[7:0];
   ELSE
      DEST[15:0] ← SRC2[7:0]; FI;
   (* Repeat operation for 2nd through 31st bytes in source and destination operands *)
-  IF SRC1[255:248] >SRC2[255:248] THEN
+  IF SRC1[255:248] &gt;SRC2[255:248] THEN
      DEST[255:248] ← SRC1[255:248];
   ELSE
      DEST[255:248] ← SRC2[255:248]; FI;

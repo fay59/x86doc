@@ -108,7 +108,7 @@
 IF OperandSize = 8 (* Word/Byte Operation *)
   THEN
      temp ← AX / SRC;
-     IF temp > FFH
+     IF temp &gt; FFH
        THEN #DE; (* Divide error *)
        ELSE
           AL ← temp;
@@ -117,7 +117,7 @@ IF OperandSize = 8 (* Word/Byte Operation *)
   ELSE IF OperandSize = 16 (* Doubleword/word operation *)
      THEN
        temp ← DX:AX / SRC;
-       IF temp > FFFFH
+       IF temp &gt; FFFFH
           THEN #DE; (* Divide error *)
        ELSE
           AX ← temp;
@@ -127,7 +127,7 @@ IF OperandSize = 8 (* Word/Byte Operation *)
   ELSE IF Operandsize = 32 (* Quadword/doubleword operation *)
      THEN
        temp ← EDX:EAX / SRC;
-       IF temp > FFFFFFFFH
+       IF temp &gt; FFFFFFFFH
           THEN #DE; (* Divide error *)
        ELSE
           EAX ← temp;
@@ -137,7 +137,7 @@ IF OperandSize = 8 (* Word/Byte Operation *)
   ELSE IF 64-Bit Mode and Operandsize = 64 (* Doublequadword/quadword operation *)
      THEN
        temp ← RDX:RAX / SRC;
-       IF temp > FFFFFFFFFFFFFFFFH
+       IF temp &gt; FFFFFFFFFFFFFFFFH
           THEN #DE; (* Divide error *)
        ELSE
           RAX ← temp;

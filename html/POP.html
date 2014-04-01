@@ -231,7 +231,7 @@ IF FS, or GS is loaded with non-NULL selector;
      IF segment selector index is outside descriptor table limits
        OR segment is not a data or readable code segment
        OR ((segment is a data or nonconforming code segment)
-          AND (both RPL and CPL > DPL))
+          AND (both RPL and CPL &gt; DPL))
              THEN #GP(selector);
        IF segment not marked present
           THEN #NP(selector);
@@ -269,7 +269,7 @@ IF DS, ES, FS, or GS is loaded with non-NULL selector;
      IF segment selector index is outside descriptor table limits
        or segment is not a data or readable code segment
        or ((segment is a data or nonconforming code segment)
-       and (both RPL and CPL > DPL))
+       and (both RPL and CPL &gt; DPL))
           THEN #GP(selector);
      FI;
      IF segment not marked present

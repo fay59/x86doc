@@ -173,9 +173,9 @@
 <table>
 <tr>
 	<td>X3</td>
-	<td>X2X2 >> COUNT</td>
-	<td>X1X1 >> COUNT</td>
-	<td>X0DEST Shift Right with Sign Extension X0 >> COUNT DEST PSRAW and PSRAD Instruction Operation Using a 64-bit Operand</td>
+	<td>X2X2 &gt;&gt; COUNT</td>
+	<td>X1X1 &gt;&gt; COUNT</td>
+	<td>X0DEST Shift Right with Sign Extension X0 &gt;&gt; COUNT DEST PSRAW and PSRAD Instruction Operation Using a 64-bit Operand</td>
 </tr>
 </table>
 <p>Note that only the first 64-bits of a 128-bit count operand are checked to compute the count. If the second source operand is a memory address, 128 bits are loaded.</p>
@@ -185,34 +185,34 @@
 <p>Note: For shifts with an immediate count (VEX.128.66.0F 71-73 /4), VEX.vvvv encodes the destination register, and VEX.B + ModRM.r/m encodes the source register. VEX.L must be 0, otherwise instructions will #UD.</p>
 <h2 id="operation">Operation</h2>
 <pre>PSRAW (with 64-bit operand)
-  IF (COUNT > 15)
+  IF (COUNT &gt; 15)
      THEN COUNT ← 16;
   FI;
-  DEST[15:0] ← SignExtend(DEST[15:0] >> COUNT);
+  DEST[15:0] ← SignExtend(DEST[15:0] &gt;&gt; COUNT);
   (* Repeat shift operation for 2nd and 3rd words *)
-  DEST[63:48] ← SignExtend(DEST[63:48] >> COUNT);
+  DEST[63:48] ← SignExtend(DEST[63:48] &gt;&gt; COUNT);
 PSRAD (with 64-bit operand)
-  IF (COUNT > 31)
+  IF (COUNT &gt; 31)
      THEN COUNT ← 32;
   FI;
-  DEST[31:0] ← SignExtend(DEST[31:0] >> COUNT);
-  DEST[63:32] ← SignExtend(DEST[63:32] >> COUNT);
+  DEST[31:0] ← SignExtend(DEST[31:0] &gt;&gt; COUNT);
+  DEST[63:32] ← SignExtend(DEST[63:32] &gt;&gt; COUNT);
 PSRAW (with 128-bit operand)
   COUNT ← COUNT_SOURCE[63:0];
-  IF (COUNT > 15)
+  IF (COUNT &gt; 15)
      THEN COUNT ← 16;
   FI;
   DEST[15:0]
   (* Repeat shift operation for 2nd through 7th words *)
-  DEST[127:112] ← SignExtend(DEST[127:112] >> COUNT);
+  DEST[127:112] ← SignExtend(DEST[127:112] &gt;&gt; COUNT);
 PSRAD (with 128-bit operand)
   COUNT ← COUNT_SOURCE[63:0];
-  IF (COUNT > 31)
+  IF (COUNT &gt; 31)
      THEN COUNT ← 32;
   FI;
   DEST[31:0]
   (* Repeat shift operation for 2nd and 3rd doublewords *)
-  DEST[127:96] ← SignExtend(DEST[127:96] >>COUNT);
+  DEST[127:96] ← SignExtend(DEST[127:96] &gt;&gt;COUNT);
 PSRAW (xmm, xmm, xmm/m128)
 DEST[127:0] ← ARITHMETIC_RIGHT_SHIFT_WORDS(DEST, SRC)
 DEST[VLMAX-1:128] (Unmodified)

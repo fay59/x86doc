@@ -66,10 +66,10 @@
 <p>128-bit Legacy SSE version: The second source operand can be an XMM register or a 128-bit memory location. The first source operand and destination operand are XMM registers. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: The second source operand can be an XMM register or a 128-bit memory location. The first source operand and destination operand are XMM registers. Bits (VLMAX-1:128) of the corresponding YMM register are zeroed. VEX.256 encoded version: The first source operand is a YMM register. The second source operand is a YMM register or a 256-bit memory location. The destination operand is a YMM register.</p>
 <p>Note: VEX.L must be 0, otherwise the instruction will #UD.</p>
 <h2 id="operation">Operation</h2>
-<pre>IF (DEST[63-0] > SRC[63-0])
+<pre>IF (DEST[63-0] &gt; SRC[63-0])
   THEN DEST[63-0] ← FFFFFFFFFFFFFFFFH;
   ELSE DEST[63-0] ← 0; FI
-IF (DEST[127-64] > SRC[127-64])
+IF (DEST[127-64] &gt; SRC[127-64])
   THEN DEST[127-64] ← FFFFFFFFFFFFFFFFH;
   ELSE DEST[127-64] ← 0; FI
 VPCMPGTQ (VEX.128 encoded version)

@@ -80,7 +80,7 @@
 </table>
 <p class="notes">Notes: Processor serial number (PSN) is not supported in the Pentium 4 processor or later. On all models, use the PSN flag (returned using CPUID) to check for PSN support before accessing the feature.</p>
 <p>See AP-485, Intel Processor Identification and the CPUID Instruction (Order Number 241618) for more information on PSN.</p>
-<p>CPUID leaves > 3 < 80000000 are visible only when IA32_MISC_ENABLE.BOOT_NT4[bit 22] = 0 (default).</p>
+<p>CPUID leaves &gt; 3 &lt; 80000000 are visible only when IA32_MISC_ENABLE.BOOT_NT4[bit 22] = 0 (default).</p>
 <p>Deterministic Cache Parameters Leaf</p>
 <table>
 <tr>
@@ -104,7 +104,7 @@
 	<td>Bit 0: Write-Back Invalidate/Invalidate 0 = WBINVD/INVD from threads sharing this cache acts upon lower level caches for threads sharing this cache. 1 = WBINVD/INVD is not guaranteed to act upon lower level caches of non-originating threads sharing this cache. Bit 1: Cache Inclusiveness 0 = Cache is not inclusive of lower cache levels. 1 = Cache is inclusive of lower cache levels. Bit 2: Complex Cache Indexing 0 = Direct mapped cache. 1 = A complex function is used to index the cache, potentially using all address bits. Bits 31-03: Reserved = 0</td>
 </tr>
 </table>
-<p class="notes">Notes: * If ECX contains an invalid sub leaf index, EAX/EBX/ECX/EDX return 0. Invalid sub-leaves of EAX = 04H: ECX = n, n > 3. ** Add one to the return value to get the result. ***The nearest power-of-2 integer that is not smaller than (1 + EAX[25:14]) is the number of unique initial APIC IDs reserved for addressing different logical processors sharing this cache **** The nearest power-of-2 integer that is not smaller than (1 + EAX[31:26]) is the number of unique Core_IDs reserved for addressing different processor cores in a physical package. Core ID is a subset of bits of the initial APIC ID. ***** The returned value is constant for valid initial values in ECX. Valid ECX values start from 0.</p>
+<p class="notes">Notes: * If ECX contains an invalid sub leaf index, EAX/EBX/ECX/EDX return 0. Invalid sub-leaves of EAX = 04H: ECX = n, n &gt; 3. ** Add one to the return value to get the result. ***The nearest power-of-2 integer that is not smaller than (1 + EAX[25:14]) is the number of unique initial APIC IDs reserved for addressing different logical processors sharing this cache **** The nearest power-of-2 integer that is not smaller than (1 + EAX[31:26]) is the number of unique Core_IDs reserved for addressing different processor cores in a physical package. Core ID is a subset of bits of the initial APIC ID. ***** The returned value is constant for valid initial values in ECX. Valid ECX values start from 0.</p>
 <p>MONITOR/MWAIT Leaf</p>
 <table>
 <tr>
@@ -153,7 +153,7 @@
 </tr>
 </table>
 <h2 id="note-">NOTE:</h2>
-<p>* If ECX contains an invalid sub-leaf index, EAX/EBX/ECX/EDX return 0. Invalid sub-leaves of EAX = 07H: ECX = n, n > 0.</p>
+<p>* If ECX contains an invalid sub-leaf index, EAX/EBX/ECX/EDX return 0. Invalid sub-leaves of EAX = 07H: ECX = n, n &gt; 0.</p>
 <p>Direct Cache Access Information Leaf</p>
 <table>
 <tr>
@@ -164,7 +164,7 @@
 <tr>
 	<td>0AH 0BH</td>
 	<td>EAX EBX ECX EDX Extended Topology Enumeration Leaf EAX EBX ECX EDX</td>
-	<td>Bits 07 - 00: Version ID of architectural performance monitoring Bits 15- 08: Number of general-purpose performance monitoring counter per logical processor Bits 23 - 16: Bit width of general-purpose, performance monitoring counter Bits 31 - 24: Length of EBX bit vector to enumerate architectural performance monitoring events Bit 00: Core cycle event not available if 1Bit 01: Instruction retired event not available if 1Bit 02: Reference cycles event not available if 1Bit 03: Last-level cache reference event not available if 1Bit 04: Last-level cache misses event not available if 1Bit 05: Branch instruction retired event not available if 1Bit 06: Branch mispredict retired event not available if 1Bits 31- 07: Reserved = 0Reserved = 0Bits 04 - 00: Number of fixed-function performance counters (if Version ID > 1)Bits 12- 05: Bit width of fixed-function performance counters (if Version ID > 1)Reserved = 0Information Returned by CPUID Instruction (Contd.)Initial EAX Information Provided about the Processor NOTES: Most of Leaf 0BH output depends on the initial value in ECX. The EDX output of leaf 0BH is always valid and does not vary with input value in ECX. Output value in ECX[7:0] always equals input value in ECX[7:0]. For sub-leaves that return an invalid level-type of 0 in ECX[15:8]; EAX and EBX will return 0. If an input value n in ECX returns the invalid level-type of 0 in ECX[15:8], other input values with ECX >n also return 0 in ECX[15:8]. Bits 04-00: Number of bits to shift right on x2APIC ID to get a unique topology ID of the next level type*. All logical processors with the same next level ID share current level. Bits 31-05: Reserved. Bits 15 - 00: Number of logical processors at this level type. The number reflects configuration as shipped by Intel**. Bits 31- 16: Reserved. Bits 07 - 00: Level number. Same value in ECX input Bits 15 - 08: Level type***. Bits 31 - 16:: Reserved. Bits 31- 00: x2APIC ID the current logical processor.</td>
+	<td>Bits 07 - 00: Version ID of architectural performance monitoring Bits 15- 08: Number of general-purpose performance monitoring counter per logical processor Bits 23 - 16: Bit width of general-purpose, performance monitoring counter Bits 31 - 24: Length of EBX bit vector to enumerate architectural performance monitoring events Bit 00: Core cycle event not available if 1Bit 01: Instruction retired event not available if 1Bit 02: Reference cycles event not available if 1Bit 03: Last-level cache reference event not available if 1Bit 04: Last-level cache misses event not available if 1Bit 05: Branch instruction retired event not available if 1Bit 06: Branch mispredict retired event not available if 1Bits 31- 07: Reserved = 0Reserved = 0Bits 04 - 00: Number of fixed-function performance counters (if Version ID &gt; 1)Bits 12- 05: Bit width of fixed-function performance counters (if Version ID &gt; 1)Reserved = 0Information Returned by CPUID Instruction (Contd.)Initial EAX Information Provided about the Processor NOTES: Most of Leaf 0BH output depends on the initial value in ECX. The EDX output of leaf 0BH is always valid and does not vary with input value in ECX. Output value in ECX[7:0] always equals input value in ECX[7:0]. For sub-leaves that return an invalid level-type of 0 in ECX[15:8]; EAX and EBX will return 0. If an input value n in ECX returns the invalid level-type of 0 in ECX[15:8], other input values with ECX &gt; n also return 0 in ECX[15:8]. Bits 04-00: Number of bits to shift right on x2APIC ID to get a unique topology ID of the next level type*. All logical processors with the same next level ID share current level. Bits 31-05: Reserved. Bits 15 - 00: Number of logical processors at this level type. The number reflects configuration as shipped by Intel**. Bits 31- 16: Reserved. Bits 07 - 00: Level number. Same value in ECX input Bits 15 - 08: Level type***. Bits 31 - 16:: Reserved. Bits 31- 00: x2APIC ID the current logical processor.</td>
 </tr>
 </table>
 <p class="notes">Notes: * Software should use this field (EAX[4:0]) to enumerate processor topology of the system.</p>
@@ -205,12 +205,12 @@
 	<td>Bits 31-00: Reports the valid bit fields of the lower 32 bits of IA32_XSS. If a bit is 0, the corresponding bit field in IA32_XSS is reserved. Bits 07-00: Reserved Bit 08: IA32_XSS[bit 8] is supported if 1Bits 31-09: Reserved</td>
 </tr>
 <tr>
-	<td>EDX Processor Extended State Enumeration Sub-leaves (EAX = 0DH, ECX = n, n > 1)</td>
+	<td>EDX Processor Extended State Enumeration Sub-leaves (EAX = 0DH, ECX = n, n &gt; 1)</td>
 	<td>Bits 31-00: Reports the valid bit fields of the upper 32 bits of IA32_XSS. If a bit is 0, the corresponding bit field in IA32_XSS is reserved. Bits 31-00: Reserved</td>
 </tr>
 <tr>
 	<td>0DH</td>
-	<td>NOTES: Leaf 0DH output depends on the initial value in ECX. Each valid sub-leaf index maps to a valid bit in either the XCR0 register or the IA32_XSS MSR starting at bit position 2. * If ECX contains an invalid sub-leaf index, EAX/EBX/ECX/EDX return 0. Invalid sub-leaves of EAX = 0DH: ECX = n, n > 2.</td>
+	<td>NOTES: Leaf 0DH output depends on the initial value in ECX. Each valid sub-leaf index maps to a valid bit in either the XCR0 register or the IA32_XSS MSR starting at bit position 2. * If ECX contains an invalid sub-leaf index, EAX/EBX/ECX/EDX return 0. Invalid sub-leaves of EAX = 0DH: ECX = n, n &gt; 2.</td>
 </tr>
 <tr>
 	<td>EAX</td>
@@ -518,24 +518,24 @@
 <p>When CPUID executes with EAX set to 06H, the processor returns information about thermal and power management features. See Table 3-17.</p>
 <h2 id="input-eax---07h--returns-structured-extended-feature-enumeration-information">INPUT EAX = 07H: Returns Structured Extended Feature Enumeration Information</h2>
 <p>When CPUID executes with EAX set to 07H and ECX = 0, the processor returns information about the maximum input value for sub-leaves that contain extended feature flags. See Table 3-17.</p>
-<p>When CPUID executes with EAX set to 07H and the input value of ECX is invalid (see leaf 07H entry in Table 3-17), the processor returns 0 in EAX/EBX/ECX/EDX. In subleaf 0, EAX returns the maximum input value of the highest leaf 7 sub-leaf, and EBX, ECX & EDX contain information of extended feature flags.</p>
+<p>When CPUID executes with EAX set to 07H and the input value of ECX is invalid (see leaf 07H entry in Table 3-17), the processor returns 0 in EAX/EBX/ECX/EDX. In subleaf 0, EAX returns the maximum input value of the highest leaf 7 sub-leaf, and EBX, ECX &amp; EDX contain information of extended feature flags.</p>
 <h2 id="input-eax---09h--returns-direct-cache-access-information">INPUT EAX = 09H: Returns Direct Cache Access Information</h2>
 <p>When CPUID executes with EAX set to 09H, the processor returns information about Direct Cache Access capabilities. See Table 3-17.</p>
 <h2 id="input-eax---0ah--returns-architectural-performance-monitoring-features">INPUT EAX = 0AH: Returns Architectural Performance Monitoring Features</h2>
 <p>When CPUID executes with EAX set to 0AH, the processor returns information about support for architectural performance monitoring capabilities. Architectural performance monitoring is supported if the version ID (see Table 3-17) is greater than Pn 0. See Table 3-17.</p>
 <p>For each version of architectural performance monitoring capability, software must enumerate this leaf to discover the programming facilities and the architectural performance events available in the processor. The details are described in Chapter 23, “Introduction to Virtual-Machine Extensions,” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3C.</p>
 <h2 id="input-eax---0bh--returns-extended-topology-information">INPUT EAX = 0BH: Returns Extended Topology Information</h2>
-<p>When CPUID executes with EAX set to 0BH, the processor returns information about extended topology enumeration data. Software must detect the presence of CPUID leaf 0BH by verifying (a) the highest leaf index supported by CPUID is >= 0BH, and (b) CPUID.0BH:EBX[15:0] reports a non-zero value. See Table 3-17.</p>
+<p>When CPUID executes with EAX set to 0BH, the processor returns information about extended topology enumeration data. Software must detect the presence of CPUID leaf 0BH by verifying (a) the highest leaf index supported by CPUID is &gt;= 0BH, and (b) CPUID.0BH:EBX[15:0] reports a non-zero value. See Table 3-17.</p>
 <h2 id="input-eax---0dh--returns-processor-extended-states-enumeration-information">INPUT EAX = 0DH: Returns Processor Extended States Enumeration Information</h2>
 <p>When CPUID executes with EAX set to 0DH and ECX = 0, the processor returns information about the bit-vector representation of all processor state extensions that are supported in the processor and storage size requirements of the XSAVE/XRSTOR area. See Table 3-17.</p>
-<p>When CPUID executes with EAX set to 0DH and ECX = n (n > 1, and is a valid sub-leaf index), the processor returns information about the size and offset of each processor extended state save area within the XSAVE/XRSTOR area. See Table 3-17. Software can use the forward-extendable technique depicted below to query the valid sub-leaves and obtain size and offset information for each processor extended state save area:</p>
+<p>When CPUID executes with EAX set to 0DH and ECX = n (n &gt; 1, and is a valid sub-leaf index), the processor returns information about the size and offset of each processor extended state save area within the XSAVE/XRSTOR area. See Table 3-17. Software can use the forward-extendable technique depicted below to query the valid sub-leaves and obtain size and offset information for each processor extended state save area:</p>
 <p>For i = 2 to 62 // sub-leaf 1 is reserved IF (CPUID.(EAX=0DH, ECX=0):VECTOR[i] = 1 ) // VECTOR is the 64-bit value of EDX:EAX Execute CPUID.(EAX=0DH, ECX = i) to examine size and offset for sub-leaf i; FI;</p>
 <h2 id="input-eax---0fh--returns-platform-quality-of-service--pqos--monitoring-enumeration-information">INPUT EAX = 0FH: Returns Platform Quality of Service (PQoS) Monitoring Enumeration Information</h2>
 <p>When CPUID executes with EAX set to 0FH and ECX = 0, the processor returns information about the bit-vector representation of QoS monitoring resource types that are supported in the processor and maximum range of RMID values the processor can use to monitor of any supported resource types. Each bit, starting from bit 1, corresponds to a specific resource type if the bit is set. The bit position corresponds to the sub-leaf index (or ResID) that software must use to query QoS monitoring capability available for that type. See Table 3-17.</p>
-<p>When CPUID executes with EAX set to 0FH and ECX = n (n >= 1, and is a valid ResID), the processor returns information software can use to program IA32_PQR_ASSOC, IA32_QM_EVTSEL MSRs before reading QoS data from the IA32_QM_CTR MSR.</p>
+<p>When CPUID executes with EAX set to 0FH and ECX = n (n &gt;= 1, and is a valid ResID), the processor returns information software can use to program IA32_PQR_ASSOC, IA32_QM_EVTSEL MSRs before reading QoS data from the IA32_QM_CTR MSR.</p>
 <h2 id="input-eax---10h--returns-platform-quality-of-service--pqos--enforcement-enumeration-information">INPUT EAX = 10H: Returns Platform Quality of Service (PQoS) Enforcement Enumeration Information</h2>
 <p>When CPUID executes with EAX set to 10H and ECX = 0, the processor returns information about the bit-vector representation of QoS Enforcement resource types that are supported in the processor. Each bit, starting from bit 1, corresponds to a specific resource type if the bit is set. The bit position corresponds to the sub-leaf index (or ResID) that software must use to query QoS enforcement capability available for that type. See Table 3-17.</p>
-<p>When CPUID executes with EAX set to 10H and ECX = n (n >= 1, and is a valid ResID), the processor returns information about available classes of service and range of QoS mask MSRs that software can use to configure each class of services using capability bit masks in the QoS Mask registers, IA32_resourceType_Mask_n.</p>
+<p>When CPUID executes with EAX set to 10H and ECX = n (n &gt;= 1, and is a valid ResID), the processor returns information about available classes of service and range of QoS mask MSRs that software can use to configure each class of services using capability bit masks in the QoS Mask registers, IA32_resourceType_Mask_n.</p>
 <h2 id="methods-for-returning-branding-information">METHODS FOR RETURNING BRANDING INFORMATION</h2>
 <p>Use the following techniques to access branding information:</p>
 <table>
@@ -871,7 +871,7 @@ BREAK;
      ECX ← Reserved = 0;
      EDX ← Reserved = 0;
   BREAK;
-  EAX >= 40000000H and EAX <= 4FFFFFFFH:
+  EAX &gt;= 40000000H and EAX &lt;= 4FFFFFFFH:
   DEFAULT: (* EAX = Value outside of recognized range for CPUID. *)
      (* If the highest basic information leaf data depend on ECX input value, ECX is honored.*)
      EAX ← Reserved; (* Information returned for highest basic information leaf. *)

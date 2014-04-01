@@ -51,7 +51,7 @@
   THEN
      #UD;
   ELSE
-     IF ((AL AND 0FH) > 9) or (AF = 1)
+     IF ((AL AND 0FH) &gt; 9) or (AF = 1)
        THEN
           AX ← AX - 6;
           AH ← AH - 1;

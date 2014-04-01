@@ -87,7 +87,7 @@ IF (operand size is 64-bit)
   ELSE (* Return to Compatibility Mode *)
      RIP ← ECX;
 FI;
-RFLAGS ← (R11 & 3C7FD7H) | 2;
+RFLAGS ← (R11 &amp; 3C7FD7H) | 2;
 IF (operand size is 64-bit)
   THEN CS.Selector ← IA32_STAR[63:48]+16;
   ELSE CS.Selector ← IA32_STAR[63:48];

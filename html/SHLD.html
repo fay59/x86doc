@@ -105,7 +105,7 @@ IF COUNT = 0
   THEN
      No operation;
   ELSE
-     IF COUNT > SIZE
+     IF COUNT &gt; SIZE
        THEN (* Bad parameters *)
           DEST is undefined;
           CF, OF, SF, ZF, AF, PF are undefined;

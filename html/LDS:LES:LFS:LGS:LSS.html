@@ -168,7 +168,7 @@
      THEN IF Segment selector index is not within descriptor table limits
        or access rights indicate segment neither data nor readable code segment
        or segment is data or nonconforming-code segment
-       and ( RPL > DPL or CPL > DPL)
+       and ( RPL &gt; DPL or CPL &gt; DPL)
           THEN #GP(selector); FI;
        ELSE IF Segment marked not present
           THEN #NP(selector); FI;
@@ -202,7 +202,7 @@ PREOTECTED MODE OR COMPATIBILITY MODE;
      THEN IF Segment selector index is not within descriptor table limits
        or access rights indicate segment neither data nor readable code segment
        or segment is data or nonconforming-code segment
-       and (RPL > DPL or CPL > DPL)
+       and (RPL &gt; DPL or CPL &gt; DPL)
           THEN #GP(selector); FI;
        ELSE IF Segment marked not present
           THEN #NP(selector); FI;

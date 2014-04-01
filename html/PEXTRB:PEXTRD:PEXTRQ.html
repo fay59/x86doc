@@ -81,7 +81,7 @@
 <h2 id="operation">Operation</h2>
 <pre>CASE of
   PEXTRB: SEL ← COUNT[3:0];
-       TEMP ← (Src >> SEL*8) AND FFH;
+       TEMP ← (Src &gt;&gt; SEL*8) AND FFH;
        IF (DEST = Mem8)
           THEN
           Mem8 ← TEMP[7:0];
@@ -94,33 +94,33 @@
              r32[31:8] ← ZERO_FILL; };
        FI;
   PEXTRD:SEL ← COUNT[1:0];
-       TEMP ← (Src >> SEL*32) AND FFFF_FFFFH;
+       TEMP ← (Src &gt;&gt; SEL*32) AND FFFF_FFFFH;
        DEST ← TEMP;
   PEXTRQ: SEL ← COUNT[0];
-       TEMP ← (Src >> SEL*64);
+       TEMP ← (Src &gt;&gt; SEL*64);
        DEST ← TEMP;
 EASC:
 (V)PEXTRTD/(V)PEXTRQ
 IF (64-Bit Mode and 64-bit dest operand)
 THEN
   Src_Offset ← Imm8[0]
-  r64/m64 ←(Src >> Src_Offset * 64)
+  r64/m64 ←(Src &gt;&gt; Src_Offset * 64)
 ELSE
   Src_Offset ← Imm8[1:0]
-  r32/m32 ← ((Src >> Src_Offset *32) AND 0FFFFFFFFh);
+  r32/m32 ← ((Src &gt;&gt; Src_Offset *32) AND 0FFFFFFFFh);
 FI
 (V)PEXTRB ( dest=m8)
 SRC_Offset ← Imm8[3:0]
-Mem8 ← (Src >> Src_Offset*8)
+Mem8 ← (Src &gt;&gt; Src_Offset*8)
 (V)PEXTRB ( dest=reg)
 IF (64-Bit Mode )
 THEN
   SRC_Offset ← Imm8[3:0]
-  DEST[7:0] ← ((Src >> Src_Offset*8) AND 0FFh)
+  DEST[7:0] ← ((Src &gt;&gt; Src_Offset*8) AND 0FFh)
   DEST[63:8] ←ZERO_FILL;
 ELSE
   SRC_Offset ←. Imm8[3:0];
-  DEST[7:0] ← ((Src >> Src_Offset*8) AND 0FFh);
+  DEST[7:0] ← ((Src &gt;&gt; Src_Offset*8) AND 0FFh);
   DEST[31:8] ←ZERO_FILL;
 FI
 </pre>

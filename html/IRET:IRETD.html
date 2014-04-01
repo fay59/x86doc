@@ -191,7 +191,7 @@ RETURN-FROM-VIRTUAL-8086-MODE:
           EFLAGS[15:0] ← Pop(); (* IOPL in EFLAGS not modified by pop *)
        FI;
      ELSE
-       #GP(0); (* Trap to virtual-8086 monitor: PE = 1, VM = 1, IOPL < 3 *)
+       #GP(0); (* Trap to virtual-8086 monitor: PE = 1, VM = 1, IOPL &lt; 3 *)
   FI;
 END;
 RETURN-TO-VIRTUAL-8086-MODE:
@@ -201,7 +201,7 @@ RETURN-TO-VIRTUAL-8086-MODE:
   IF instruction pointer not within code segment limits
      THEN #GP(0); FI;
   CS ← tempCS;
-  EIP ← tempEIP & FFFFH;
+  EIP ← tempEIP &amp; FFFFH;
   EFLAGS ← tempEFLAGS;
   TempESP ← Pop();
   TempSS ← Pop();
@@ -236,14 +236,14 @@ PROTECTED-MODE-RETURN: (* PE = 1 *)
   Read segment descriptor pointed to by the return code segment selector;
   IF return code segment descriptor is not a code segment
      THEN #GP(selector); FI;
-  IF return code segment selector RPL < CPL
+  IF return code segment selector RPL &lt; CPL
      THEN #GP(selector); FI;
   IF return code segment descriptor is conforming
-  and return code segment DPL > return code segment selector RPL
+  and return code segment DPL &gt; return code segment selector RPL
      THEN #GP(selector); FI;
   IF return code segment descriptor is not present
      THEN #NP(selector); FI;
-  IF return code segment selector RPL > CPL
+  IF return code segment selector RPL &gt; CPL
      THEN GOTO RETURN-OUTER-PRIVILEGE-LEVEL;
      ELSE GOTO RETURN-TO-SAME-PRIVILEGE-LEVEL; FI;
 END;
@@ -320,7 +320,7 @@ RETURN-TO-OUTER-PRIVILEGE-LEVEL:
   FOR each of segment register (ES, FS, GS, and DS)
      DO
        IF segment register points to data or non-conforming code segment
-       and CPL > segment descriptor DPL (* Stored in hidden part of segment register *)
+       and CPL &gt; segment descriptor DPL (* Stored in hidden part of segment register *)
           THEN (* Segment register invalid *)
              SegmentSelector ← 0; (* NULL segment selector *)
        FI;
@@ -330,21 +330,21 @@ IA-32e-MODE-RETURN: (* IA32_EFER.LMA = 1, PE = 1 *)
   IF ( (return code segment selector is NULL) or (return RIP is non-canonical) or
        (SS selector is NULL going back to compatibility mode) or
        (SS selector is NULL going back to CPL3 64-bit mode) or
-       (RPL <> CPL going back to non-CPL3 64-bit mode for a NULL SS selector) )
+       (RPL &lt;&gt; CPL going back to non-CPL3 64-bit mode for a NULL SS selector) )
      THEN GP(0); FI;
   IF return code segment selector addresses descriptor beyond descriptor table limit
      THEN GP(selector); FI;
   Read segment descriptor pointed to by the return code segment selector;
   IF return code segment descriptor is not a code segment
      THEN #GP(selector); FI;
-  IF return code segment selector RPL < CPL
+  IF return code segment selector RPL &lt; CPL
      THEN #GP(selector); FI;
   IF return code segment descriptor is conforming
-  and return code segment DPL > return code segment selector RPL
+  and return code segment DPL &gt; return code segment selector RPL
      THEN #GP(selector); FI;
   IF return code segment descriptor is not present
      THEN #NP(selector); FI;
-  IF return code segment selector RPL > CPL
+  IF return code segment selector RPL &gt; CPL
      THEN GOTO RETURN-OUTER-PRIVILEGE-LEVEL;
      ELSE GOTO RETURN-TO-SAME-PRIVILEGE-LEVEL; FI;
 END;

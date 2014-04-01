@@ -88,14 +88,14 @@
 <h2 id="operation">Operation</h2>
 <pre>CASE OF
   PINSRB: SEL ← COUNT[3:0];
-       MASK ← (0FFH << (SEL * 8));
-       TEMP ← (((SRC[7:0] << (SEL *8)) AND MASK);
+       MASK ← (0FFH &lt;&lt; (SEL * 8));
+       TEMP ← (((SRC[7:0] &lt;&lt; (SEL *8)) AND MASK);
   PINSRD: SEL ← COUNT[1:0];
-       MASK ← (0FFFFFFFFH << (SEL * 32));
-       TEMP ← (((SRC << (SEL *32)) AND MASK)
+       MASK ← (0FFFFFFFFH &lt;&lt; (SEL * 32));
+       TEMP ← (((SRC &lt;&lt; (SEL *32)) AND MASK)
   PINSRQ: SEL ← COUNT[0]
-       MASK ← (0FFFFFFFFFFFFFFFFH << (SEL * 64));
-       TEMP ← (((SRC << (SEL *32)) AND MASK)
+       MASK ← (0FFFFFFFFFFFFFFFFH &lt;&lt; (SEL * 64));
+       TEMP ← (((SRC &lt;&lt; (SEL *32)) AND MASK)
 ESAC;
      DEST ← ((DEST AND NOT MASK) OR TEMP);
 VPINSRB (VEX.128 encoded version)

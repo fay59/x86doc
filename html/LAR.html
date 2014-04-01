@@ -101,13 +101,13 @@
 </tr>
 </table>
 <h2 id="operation">Operation</h2>
-<pre>IF Offset(SRC) > descriptor table limit
+<pre>IF Offset(SRC) &gt; descriptor table limit
   THEN
      ZF ← 0;
   ELSE
      SegmentDescriptor ← descriptor referenced by SRC;
      IF SegmentDescriptor(Type) ≠ conforming code segment
-     and (CPL > DPL) or (RPL > DPL)
+     and (CPL &gt; DPL) or (RPL &gt; DPL)
      or SegmentDescriptor(Type) is not valid for instruction
        THEN
           ZF ← 0;

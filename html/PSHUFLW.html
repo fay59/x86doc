@@ -60,29 +60,29 @@
 <p>Note: VEX.vvvv is reserved and must be 1111b, VEX.L must be 0, otherwise instructions will #UD.</p>
 <h2 id="operation">Operation</h2>
 <pre>PSHUFLW (128-bit Legacy SSE version)
-DEST[15:0] ← (SRC >> (imm[1:0] *16))[15:0]
-DEST[31:16] ← (SRC >> (imm[3:2] * 16))[15:0]
-DEST[47:32] ← (SRC >> (imm[5:4] * 16))[15:0]
-DEST[63:48] ← (SRC >> (imm[7:6] * 16))[15:0]
+DEST[15:0] ← (SRC &gt;&gt; (imm[1:0] *16))[15:0]
+DEST[31:16] ← (SRC &gt;&gt; (imm[3:2] * 16))[15:0]
+DEST[47:32] ← (SRC &gt;&gt; (imm[5:4] * 16))[15:0]
+DEST[63:48] ← (SRC &gt;&gt; (imm[7:6] * 16))[15:0]
 DEST[127:64] ← SRC[127:64]
 DEST[VLMAX-1:128] (Unmodified)
 VPSHUFLW (VEX.128 encoded version)
-DEST[15:0] ← (SRC1 >> (imm[1:0] *16))[15:0]
-DEST[31:16] ← (SRC1 >> (imm[3:2] * 16))[15:0]
-DEST[47:32] ← (SRC1 >> (imm[5:4] * 16))[15:0]
-DEST[63:48] ← (SRC1 >> (imm[7:6] * 16))[15:0]
+DEST[15:0] ← (SRC1 &gt;&gt; (imm[1:0] *16))[15:0]
+DEST[31:16] ← (SRC1 &gt;&gt; (imm[3:2] * 16))[15:0]
+DEST[47:32] ← (SRC1 &gt;&gt; (imm[5:4] * 16))[15:0]
+DEST[63:48] ← (SRC1 &gt;&gt; (imm[7:6] * 16))[15:0]
 DEST[127:64] ← SRC[127:64]
 DEST[VLMAX-1:128] ← 0
 VPSHUFLW (VEX.256 encoded version)
-DEST[15:0] ← (SRC1 >> (imm[1:0] *16))[15:0]
-DEST[31:16] ← (SRC1 >> (imm[3:2] * 16))[15:0]
-DEST[47:32] ← (SRC1 >> (imm[5:4] * 16))[15:0]
-DEST[63:48] ← (SRC1 >> (imm[7:6] * 16))[15:0]
+DEST[15:0] ← (SRC1 &gt;&gt; (imm[1:0] *16))[15:0]
+DEST[31:16] ← (SRC1 &gt;&gt; (imm[3:2] * 16))[15:0]
+DEST[47:32] ← (SRC1 &gt;&gt; (imm[5:4] * 16))[15:0]
+DEST[63:48] ← (SRC1 &gt;&gt; (imm[7:6] * 16))[15:0]
 DEST[127:64] ← SRC1[127:64]
-DEST[143:128] ← (SRC1 >> (imm[1:0] *16))[143:128]
-DEST[159:144] ← (SRC1 >> (imm[3:2] * 16))[143:128]
-DEST[175:160] ← (SRC1 >> (imm[5:4] * 16))[143:128]
-DEST[191:176] ← (SRC1 >> (imm[7:6] * 16))[143:128]
+DEST[143:128] ← (SRC1 &gt;&gt; (imm[1:0] *16))[143:128]
+DEST[159:144] ← (SRC1 &gt;&gt; (imm[3:2] * 16))[143:128]
+DEST[175:160] ← (SRC1 &gt;&gt; (imm[5:4] * 16))[143:128]
+DEST[191:176] ← (SRC1 &gt;&gt; (imm[7:6] * 16))[143:128]
 DEST[255:192] ← SRC1[255:192]
 </pre>
 <h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>

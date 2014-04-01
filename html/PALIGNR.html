@@ -101,20 +101,20 @@
 </table>
 <h2 id="operation">Operation</h2>
 <pre>PALIGNR (with 64-bit operands)
-  temp1[127:0] = CONCATENATE(DEST,SRC)>>(imm8*8)
+  temp1[127:0] = CONCATENATE(DEST,SRC)&gt;&gt;(imm8*8)
   DEST[63:0] = temp1[63:0]
 PALIGNR (with 128-bit operands)
-temp1[255:0] ← ((DEST[127:0] << 128) OR SRC[127:0])>>(imm8*8);
+temp1[255:0] ← ((DEST[127:0] &lt;&lt; 128) OR SRC[127:0])&gt;&gt;(imm8*8);
 DEST[127:0] ← temp1[127:0]
 DEST[VLMAX-1:128] (Unmodified)
 VPALIGNR (VEX.128 encoded version)
-temp1[255:0] ← ((SRC1[127:0] << 128) OR SRC2[127:0])>>(imm8*8);
+temp1[255:0] ← ((SRC1[127:0] &lt;&lt; 128) OR SRC2[127:0])&gt;&gt;(imm8*8);
 DEST[127:0] ← temp1[127:0]
 DEST[VLMAX-1:128] ← 0
 VPALIGNR (VEX.256 encoded version)
-temp1[255:0] ← ((SRC1[127:0] << 128) OR SRC2[127:0])>>(imm8[7:0]*8);
+temp1[255:0] ← ((SRC1[127:0] &lt;&lt; 128) OR SRC2[127:0])&gt;&gt;(imm8[7:0]*8);
 DEST[127:0] ← temp1[127:0]
-temp1[255:0] ← ((SRC1[255:128] << 128) OR SRC2[255:128])>>(imm8[7:0]*8);
+temp1[255:0] ← ((SRC1[255:128] &lt;&lt; 128) OR SRC2[255:128])&gt;&gt;(imm8[7:0]*8);
 DEST[255:128] ← temp1[127:0]
 </pre>
 <h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>

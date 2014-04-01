@@ -229,9 +229,9 @@
 <table>
 <tr>
 	<td>X3</td>
-	<td>X2X2 << COUNT</td>
-	<td>X1X1 << COUNT</td>
-	<td>X0DEST Shift Left with Zero Extension X0 << COUNT DEST PSLLW, PSLLD, and PSLLQ Instruction Operation Using 64-bit Operand</td>
+	<td>X2X2 &lt;&lt; COUNT</td>
+	<td>X1X1 &lt;&lt; COUNT</td>
+	<td>X0DEST Shift Left with Zero Extension X0 &lt;&lt; COUNT DEST PSLLW, PSLLD, and PSLLQ Instruction Operation Using 64-bit Operand</td>
 </tr>
 </table>
 <p>The (V)PSLLW instruction shifts each of the words in the destination operand to the left by the number of bits specified in the count operand; the (V)PSLLD instruction shifts each of the doublewords in the destination operand; and the (V)PSLLQ instruction shifts the quadword (or quadwords) in the destination operand.</p>
@@ -241,57 +241,57 @@
 <p>Note: For shifts with an immediate count (VEX.128.66.0F 71-73 /6), VEX.vvvv encodes the destination register, and VEX.B + ModRM.r/m encodes the source register. VEX.L must be 0, otherwise instructions will #UD.</p>
 <h2 id="operation">Operation</h2>
 <pre>PSLLW (with 64-bit operand)
-  IF (COUNT > 15)
+  IF (COUNT &gt; 15)
   THEN
      DEST[64:0] ← 0000000000000000H;
   ELSE
-     DEST[15:0] ← ZeroExtend(DEST[15:0] << COUNT);
+     DEST[15:0] ← ZeroExtend(DEST[15:0] &lt;&lt; COUNT);
      (* Repeat shift operation for 2nd and 3rd words *)
-     DEST[63:48] ← ZeroExtend(DEST[63:48] << COUNT);
+     DEST[63:48] ← ZeroExtend(DEST[63:48] &lt;&lt; COUNT);
   FI;
 PSLLD (with 64-bit operand)
-  IF (COUNT > 31)
+  IF (COUNT &gt; 31)
   THEN
      DEST[64:0] ← 0000000000000000H;
   ELSE
-     DEST[31:0] ← ZeroExtend(DEST[31:0] << COUNT);
-     DEST[63:32] ← ZeroExtend(DEST[63:32] << COUNT);
+     DEST[31:0] ← ZeroExtend(DEST[31:0] &lt;&lt; COUNT);
+     DEST[63:32] ← ZeroExtend(DEST[63:32] &lt;&lt; COUNT);
   FI;
 PSLLQ (with 64-bit operand)
-  IF (COUNT > 63)
+  IF (COUNT &gt; 63)
   THEN
      DEST[64:0] ← 0000000000000000H;
   ELSE
-     DEST ← ZeroExtend(DEST << COUNT);
+     DEST ← ZeroExtend(DEST &lt;&lt; COUNT);
   FI;
 PSLLW (with 128-bit operand)
   COUNT ← COUNT_SOURCE[63:0];
-  IF (COUNT > 15)
+  IF (COUNT &gt; 15)
   THEN
      DEST[128:0] ← 00000000000000000000000000000000H;
   ELSE
      DEST[15:0]
      (* Repeat shift operation for 2nd through 7th words *)
-     DEST[127:112] ← ZeroExtend(DEST[127:112] << COUNT);
+     DEST[127:112] ← ZeroExtend(DEST[127:112] &lt;&lt; COUNT);
   FI;
 PSLLD (with 128-bit operand)
   COUNT ← COUNT_SOURCE[63:0];
-  IF (COUNT > 31)
+  IF (COUNT &gt; 31)
   THEN
      DEST[128:0] ← 00000000000000000000000000000000H;
   ELSE
      DEST[31:0]
      (* Repeat shift operation for 2nd and 3rd doublewords *)
-     DEST[127:96] ← ZeroExtend(DEST[127:96] << COUNT);
+     DEST[127:96] ← ZeroExtend(DEST[127:96] &lt;&lt; COUNT);
   FI;
 PSLLQ (with 128-bit operand)
   COUNT ← COUNT_SOURCE[63:0];
-  IF (COUNT > 63)
+  IF (COUNT &gt; 63)
   THEN
      DEST[128:0] ← 00000000000000000000000000000000H;
   ELSE
      DEST[63:0]
-     DEST[127:64] ← ZeroExtend(DEST[127:64] << COUNT);
+     DEST[127:64] ← ZeroExtend(DEST[127:64] &lt;&lt; COUNT);
   FI;
 PSLLW (xmm, xmm, xmm/m128)
 DEST[127:0] ← LOGICAL_LEFT_SHIFT_WORDS(DEST, SRC)

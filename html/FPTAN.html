@@ -36,7 +36,7 @@
 <p>The value 1.0 is pushed onto the register stack after the tangent has been computed to maintain compatibility with the Intel 8087 and Intel287 math coprocessors. This operation also simplifies the calculation of other trigonometric functions. For instance, the cotangent (which is the reciprocal of the tangent) can be computed by executing a FDIVR instruction after the FPTAN instruction.</p>
 <p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
 <h2 id="operation">Operation</h2>
-<pre>IF ST(0) < 263
+<pre>IF ST(0) &lt; 263
   THEN
      C2 ← 0;
      ST(0) ← tan(ST(0));
@@ -54,7 +54,7 @@ FI;
 </tr>
 <tr>
 	<td>C2</td>
-	<td>Set to 1 if outside range (−263 < source operand < +263); otherwise, set to 0.</td>
+	<td>Set to 1 if outside range (−263 &lt; source operand &lt; +263); otherwise, set to 0.</td>
 </tr>
 <tr>
 	<td>C0, C3</td>

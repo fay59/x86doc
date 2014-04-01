@@ -170,17 +170,17 @@ IF (PE = 1 and VM = 0 and IA32_EFER.LMA = 0) and instruction = far return
   Obtain descriptor to which return code segment selector points from descriptor table;
   IF return code segment descriptor is not a code segment
      THEN #GP(selector); FI;
-  IF return code segment selector RPL < CPL
+  IF return code segment selector RPL &lt; CPL
      THEN #GP(selector); FI;
   IF return code segment descriptor is conforming
-  and return code segment DPL > return code segment selector RPL
+  and return code segment DPL &gt; return code segment selector RPL
      THEN #GP(selector); FI;
   IF return code segment descriptor is non-conforming and return code
   segment DPL ≠ return code segment selector RPL
      THEN #GP(selector); FI;
   IF return code segment descriptor is not present
      THEN #NP(selector); FI:
-  IF return code segment selector RPL > CPL
+  IF return code segment selector RPL &gt; CPL
      THEN GOTO RETURN-OUTER-PRIVILEGE-LEVEL;
      ELSE GOTO RETURN-TO-SAME-PRIVILEGE-LEVEL;
   FI;
@@ -265,7 +265,7 @@ RETURN-OUTER-PRIVILEGE-LEVEL:
   FOR each of segment register (ES, FS, GS, and DS)
      DO
        IF segment register points to data or non-conforming code segment
-       and CPL > segment descriptor DPL (* DPL in hidden part of segment register *)
+       and CPL &gt; segment descriptor DPL (* DPL in hidden part of segment register *)
           THEN SegmentSelector ← 0; (* Segment selector invalid *)
        FI;
      OD;
@@ -310,17 +310,17 @@ RETURN-OUTER-PRIVILEGE-LEVEL:
        THEN #GP(selector); FI;
      IF return code segment descriptor has L-bit = 1 and D-bit = 1
        THEN #GP(selector); FI;
-     IF return code segment selector RPL < CPL
+     IF return code segment selector RPL &lt; CPL
        THEN #GP(selector); FI;
      IF return code segment descriptor is conforming
-     and return code segment DPL > return code segment selector RPL
+     and return code segment DPL &gt; return code segment selector RPL
        THEN #GP(selector); FI;
      IF return code segment descriptor is non-conforming
      and return code segment DPL ≠ return code segment selector RPL
        THEN #GP(selector); FI;
      IF return code segment descriptor is not present
        THEN #NP(selector); FI:
-     IF return code segment selector RPL > CPL
+     IF return code segment selector RPL &gt; CPL
        THEN GOTO IA-32E-MODE-RETURN-OUTER-PRIVILEGE-LEVEL;
        ELSE GOTO IA-32E-MODE-RETURN-SAME-PRIVILEGE-LEVEL;
      FI;
@@ -456,7 +456,7 @@ FI;
 FOR each of segment register (ES, FS, GS, and DS)
   DO
      IF segment register points to data or non-conforming code segment
-     and CPL > segment descriptor DPL; (* DPL in hidden part of segment register *)
+     and CPL &gt; segment descriptor DPL; (* DPL in hidden part of segment register *)
        THEN SegmentSelector ← 0; (* SegmentSelector invalid *)
      FI;
   OD;

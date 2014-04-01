@@ -585,7 +585,7 @@ IF OperandSize = 64
   ELSE COUNTMASK = 1FH;
 FI;
 (* ROL instruction operation *)
-tempCOUNT ← (COUNT & COUNTMASK) MOD SIZE
+tempCOUNT ← (COUNT &amp; COUNTMASK) MOD SIZE
 WHILE (tempCOUNT ≠ 0)
   DO
      tempCF ← MSB(DEST);
@@ -594,12 +594,12 @@ WHILE (tempCOUNT ≠ 0)
   OD;
 ELIHW;
 CF ← LSB(DEST);
-IF (COUNT & COUNTMASK) = 1
+IF (COUNT &amp; COUNTMASK) = 1
   THEN OF ← MSB(DEST) XOR CF;
   ELSE OF is undefined;
 FI;
 (* ROR instruction operation *)
-tempCOUNT ← (COUNT & COUNTMASK) MOD SIZE
+tempCOUNT ← (COUNT &amp; COUNTMASK) MOD SIZE
 WHILE (tempCOUNT ≠ 0)
   DO
      tempCF ← LSB(SRC);
@@ -608,7 +608,7 @@ WHILE (tempCOUNT ≠ 0)
   OD;
 ELIHW;
 CF ← MSB(DEST);
-IF (COUNT & COUNTMASK) = 1
+IF (COUNT &amp; COUNTMASK) = 1
   THEN OF ← MSB(DEST) XOR MSB − 1(DEST);
   ELSE OF is undefined;
 FI;

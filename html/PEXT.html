@@ -98,7 +98,7 @@
 MASK ← SRC2;
 DEST ← 0 ;
 m← 0, k← 0;
-DO WHILE m< OperandSize
+DO WHILE m&lt; OperandSize
      IF MASK[ m] = 1 THEN
        DEST[ k] ← TEMP[ m];
        k ← k+ 1;

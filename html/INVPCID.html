@@ -102,7 +102,7 @@ ESAC;
 <table>
 <tr>
 	<td>#GP(0)</td>
-	<td>If the current privilege level is not 0. If the memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit. If the DS, ES, FS, or GS register contains an unusable segment. If the source operand is located in an execute-only code segment. If an invalid type is specified in the register operand, i.e., INVPCID_TYPE > 3. If bits 63:12 of INVPCID_DESC are not all zero. If INVPCID_TYPE is either 0 or 1 and INVPCID_DESC[11:0] is not zero. If INVPCID_TYPE is 0 and the linear address in INVPCID_DESC[127:64] is not canonical.</td>
+	<td>If the current privilege level is not 0. If the memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit. If the DS, ES, FS, or GS register contains an unusable segment. If the source operand is located in an execute-only code segment. If an invalid type is specified in the register operand, i.e., INVPCID_TYPE &gt; 3. If bits 63:12 of INVPCID_DESC are not all zero. If INVPCID_TYPE is either 0 or 1 and INVPCID_DESC[11:0] is not zero. If INVPCID_TYPE is 0 and the linear address in INVPCID_DESC[127:64] is not canonical.</td>
 </tr>
 <tr>
 	<td>#PF(fault-code)</td>
@@ -121,7 +121,7 @@ ESAC;
 <table>
 <tr>
 	<td>#GP</td>
-	<td>If an invalid type is specified in the register operand, i.e., INVPCID_TYPE > 3. If bits 63:12 of INVPCID_DESC are not all zero.</td>
+	<td>If an invalid type is specified in the register operand, i.e., INVPCID_TYPE &gt; 3. If bits 63:12 of INVPCID_DESC are not all zero.</td>
 </tr>
 </table>
 <p>If INVPCID_TYPE is either 0 or 1 and INVPCID_DESC[11:0] is not zero. If INVPCID_TYPE is 0 and the linear address in INVPCID_DESC[127:64] is not canonical.</p>
@@ -144,7 +144,7 @@ ESAC;
 <table>
 <tr>
 	<td>#GP(0)</td>
-	<td>If the current privilege level is not 0. If the memory operand is in the CS, DS, ES, FS, or GS segments and the memory address is in a non-canonical form. If an invalid type is specified in the register operand, i.e., INVPCID_TYPE > 3. If bits 63:12 of INVPCID_DESC are not all zero. If CR4.PCIDE=0, INVPCID_TYPE is either 0 or 1, and INVPCID_DESC[11:0] is not zero. If INVPCID_TYPE is 0 and the linear address in INVPCID_DESC[127:64] is not canonical.</td>
+	<td>If the current privilege level is not 0. If the memory operand is in the CS, DS, ES, FS, or GS segments and the memory address is in a non-canonical form. If an invalid type is specified in the register operand, i.e., INVPCID_TYPE &gt; 3. If bits 63:12 of INVPCID_DESC are not all zero. If CR4.PCIDE=0, INVPCID_TYPE is either 0 or 1, and INVPCID_DESC[11:0] is not zero. If INVPCID_TYPE is 0 and the linear address in INVPCID_DESC[127:64] is not canonical.</td>
 </tr>
 <tr>
 	<td>#PF(fault-code)</td>

@@ -65,50 +65,50 @@
 <p>Compares packed unsigned word integers in the destination operand (first operand) and the source operand (second operand), and returns the minimum for each packed value in the destination operand. 128-bit Legacy SSE version: The first source and destination operands are XMM registers. The second source operand is an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: The first source and destination operands are XMM registers. The second source operand is an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the destination YMM register are zeroed. VEX.256 encoded version: The second source operand can be an YMM register or a 256-bit memory location. The first source and destination operands are YMM registers.</p>
 <p>Note: VEX.L must be 0, otherwise the instruction will #UD.</p>
 <h2 id="operation">Operation</h2>
-<pre>IF (DEST[15:0] < SRC[15:0])
+<pre>IF (DEST[15:0] &lt; SRC[15:0])
   THEN DEST[15:0] ← DEST[15:0];
   ELSE DEST[15:0] ← SRC[15:0]; FI;
-IF (DEST[31:16] < SRC[31:16])
+IF (DEST[31:16] &lt; SRC[31:16])
   THEN DEST[31:16] ← DEST[31:16];
   ELSE DEST[31:16] ← SRC[31:16]; FI;
-IF (DEST[47:32] < SRC[47:32])
+IF (DEST[47:32] &lt; SRC[47:32])
   THEN DEST[47:32] ← DEST[47:32];
   ELSE DEST[47:32] ← SRC[47:32]; FI;
-IF (DEST[63:48] < SRC[63:48])
+IF (DEST[63:48] &lt; SRC[63:48])
   THEN DEST[63:48] ← DEST[63:48];
   ELSE DEST[63:48] ← SRC[63:48]; FI;
-IF (DEST[79:64] < SRC[79:64])
+IF (DEST[79:64] &lt; SRC[79:64])
   THEN DEST[79:64] ← DEST[79:64];
   ELSE DEST[79:64] ← SRC[79:64]; FI;
-IF (DEST[95:80] < SRC[95:80])
+IF (DEST[95:80] &lt; SRC[95:80])
   THEN DEST[95:80] ← DEST[95:80];
   ELSE DEST[95:80] ← SRC[95:80]; FI;
-IF (DEST[111:96] < SRC[111:96])
+IF (DEST[111:96] &lt; SRC[111:96])
   THEN DEST[111:96] ← DEST[111:96];
   ELSE DEST[111:96] ← SRC[111:96]; FI;
-IF (DEST[127:112] < SRC[127:112])
+IF (DEST[127:112] &lt; SRC[127:112])
   THEN DEST[127:112] ← DEST[127:112];
   ELSE DEST[127:112] ← SRC[127:112]; FI;
 VPMINUW (VEX.128 encoded version)
 VPMINUW instruction for 128-bit operands:
-  IF SRC1[15:0] < SRC2[15:0] THEN
+  IF SRC1[15:0] &lt; SRC2[15:0] THEN
      DEST[15:0] ← SRC1[15:0];
   ELSE
      DEST[15:0] ← SRC2[15:0]; FI;
   (* Repeat operation for 2nd through 7th words in source and destination operands *)
-  IF SRC1[127:112] < SRC2[127:112] THEN
+  IF SRC1[127:112] &lt; SRC2[127:112] THEN
      DEST[127:112] ← SRC1[127:112];
   ELSE
      DEST[127:112] ← SRC2[127:112]; FI;
 DEST[VLMAX-1:128] ← 0
 VPMINUW (VEX.256 encoded version)
 VPMINUW instruction for 128-bit operands:
-  IF SRC1[15:0] < SRC2[15:0] THEN
+  IF SRC1[15:0] &lt; SRC2[15:0] THEN
      DEST[15:0] ← SRC1[15:0];
   ELSE
      DEST[15:0] ← SRC2[15:0]; FI;
   (* Repeat operation for 2nd through 15th words in source and destination operands *)
-  IF SRC1[255:240] < SRC2[255:240] THEN
+  IF SRC1[255:240] &lt; SRC2[255:240] THEN
      DEST[255:240] ← SRC1[255:240];
   ELSE
      DEST[255:240] ← SRC2[255:240]; FI;

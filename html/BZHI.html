@@ -46,10 +46,10 @@
 <h2 id="operation">Operation</h2>
 <pre>N ← SRC2[7:0]
 DEST ← SRC1
-IF (N < OperandSize)
+IF (N &lt; OperandSize)
   DEST[OperandSize-1:N] ← 0
 FI
-IF (N > OperandSize - 1)
+IF (N &gt; OperandSize - 1)
   CF ← 1
 ELSE
   CF ← 0

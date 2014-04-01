@@ -113,7 +113,7 @@ FI;
 IF OperandSize = 8 (* Word/byte operation *)
   THEN
      temp ← AX / SRC; (* Signed division *)
-     IF (temp > 7FH) or (temp < 80H)
+     IF (temp &gt; 7FH) or (temp &lt; 80H)
      (* If a positive result is greater than 7FH or a negative result is less than 80H *)
        THEN #DE; (* Divide error *)
        ELSE
@@ -123,7 +123,7 @@ IF OperandSize = 8 (* Word/byte operation *)
   ELSE IF OperandSize = 16 (* Doubleword/word operation *)
      THEN
        temp ← DX:AX / SRC; (* Signed division *)
-       IF (temp > 7FFFH) or (temp < 8000H)
+       IF (temp &gt; 7FFFH) or (temp &lt; 8000H)
        (* If a positive result is greater than 7FFFH
        or a negative result is less than 8000H *)
           THEN
@@ -135,7 +135,7 @@ IF OperandSize = 8 (* Word/byte operation *)
      FI;
   ELSE IF OperandSize = 32 (* Quadword/doubleword operation *)
        temp ← EDX:EAX / SRC; (* Signed division *)
-       IF (temp > 7FFFFFFFH) or (temp < 80000000H)
+       IF (temp &gt; 7FFFFFFFH) or (temp &lt; 80000000H)
        (* If a positive result is greater than 7FFFFFFFH
        or a negative result is less than 80000000H *)
           THEN
@@ -147,7 +147,7 @@ IF OperandSize = 8 (* Word/byte operation *)
      FI;
   ELSE IF OperandSize = 64 (* Doublequadword/quadword operation *)
        temp ← RDX:RAX / SRC; (* Signed division *)
-       IF (temp > 7FFFFFFFFFFFFFFFH) or (temp < 8000000000000000H)
+       IF (temp &gt; 7FFFFFFFFFFFFFFFH) or (temp &lt; 8000000000000000H)
        (* If a positive result is greater than 7FFFFFFFFFFFFFFFH
        or a negative result is less than 8000000000000000H *)
           THEN

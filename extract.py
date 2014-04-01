@@ -94,7 +94,7 @@ class UglyDocument(object):
 			
 			# TODO change <span> tags into <em>, <strong> somewhere around this place
 			
-			text = div.text.strip()
+			text = div.text.strip().replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 			text_parts = []
 			last_offset = 0
 			match = re.search(" {2,}", text)
