@@ -20,14 +20,14 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Divide low double-precision floating-point DIVSD xmm1, xmm2/m64floating-point value in xmm2/mem64.</td>
+	<td>Divide low double-precision floating-point DIVSD xmm1, xmm2/m64 floating-point value in xmm2/mem64.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.LIG.F2.0F.WIG 5E /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Divide low double-precision floating point VDIVSD xmm1, xmm2, xmm3/m64floating-point value in xmm3/mem64.</td>
+	<td>Divide low double-precision floating point VDIVSD xmm1, xmm2, xmm3/m64 floating-point value in xmm3/mem64.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -66,7 +66,7 @@ DEST[63:0] ← SRC1[63:0] / SRC2[63:0]
 DEST[127:64] ← SRC1[127:64]
 DEST[VLMAX-1:128] ← 0
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>DIVSD:</td>

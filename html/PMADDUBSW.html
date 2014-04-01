@@ -6,7 +6,7 @@
 	<title>PMADDUBSW — Multiply and Add Packed Signed and Unsigned Bytes</title>
 </head>
 <body>
-<h1 id="pmaddubsw---multiply-and-add-packed-signed-and-unsigned-bytes">PMADDUBSW — Multiply and Add Packed Signed and Unsigned Bytes</h1>
+<h1 id="pmaddubsw-multiply-and-add-packed-signed-and-unsigned-bytes">PMADDUBSW — Multiply and Add Packed Signed and Unsigned Bytes</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -20,28 +20,28 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSSE3</td>
-	<td>Multiply signed and unsigned bytes, add PMADDUBSW mm1, mm2/m64saturated signed-words to mm1.</td>
+	<td>Multiply signed and unsigned bytes, add PMADDUBSW mm1, mm2/m64 saturated signed-words to mm1.</td>
 </tr>
 <tr>
 	<td>66 0F 38 04 /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSSE3</td>
-	<td>Multiply signed and unsigned bytes, add PMADDUBSW xmm1, xmm2/m128saturated signed-words to xmm1.</td>
+	<td>Multiply signed and unsigned bytes, add PMADDUBSW xmm1, xmm2/m128 saturated signed-words to xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F38.WIG 04 /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Multiply signed and unsigned bytes, add VPMADDUBSW xmm1, xmm2, xmm3/m128saturated signed-words to xmm1.</td>
+	<td>Multiply signed and unsigned bytes, add VPMADDUBSW xmm1, xmm2, xmm3/m128 saturated signed-words to xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F38.WIG 04 /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Multiply signed and unsigned bytes, add VPMADDUBSW ymm1, ymm2, ymm3/m256saturated signed-words to ymm1.</td>
+	<td>Multiply signed and unsigned bytes, add VPMADDUBSW ymm1, ymm2, ymm3/m256 saturated signed-words to ymm1.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
@@ -93,7 +93,7 @@ DEST[15:0] ← SaturateToSignedWord(SRC2[15:8]* SRC1[15:8]+SRC2[7:0]*SRC1[7:0])
 // Repeat operation for 2nd through 15th word
 DEST[255:240] ← SaturateToSignedWord(SRC2[255:248]*SRC1[255:248]+ SRC2[247:240]* SRC1[247:240])
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
 <table>
 <tr>
 	<td>PMADDUBSW:</td>

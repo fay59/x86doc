@@ -46,10 +46,37 @@
 </table>
 <h2 id="description">Description</h2>
 <p>Performs an unordered comparison of the contents of registers ST(0) and ST(i) and sets the status flags ZF, PF, and CF in the EFLAGS register according to the results (see the table below). The sign of zero is ignored for comparisons, so that -0.0 is equal to +0.0.</p>
+<h3 id="table-3-32-fcomi-fcomip-fucomi-fucomip-results">Table 3-32. FCOMI/FCOMIP/ FUCOMI/FUCOMIP Results</h3>
 <table>
 <tr>
-	<td>Table 3-32.</td>
-	<td>FCOMI/FCOMIP/ FUCOMI/FUCOMIP Results CF 0101</td>
+	<td>Comparison Results*</td>
+	<td>ZF</td>
+	<td>PF</td>
+	<td>CF</td>
+</tr>
+<tr>
+	<td>ST0 &gt; ST(i)</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>ST0 &lt; ST(i)</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>ST0 = ST(i)</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>Unordered**</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
 </tr>
 </table>
 <p class="notes">Notes: * See the IA-32 Architecture Compatibility section below. ** Flags not set if unmasked invalid-arithmetic-operand (#IA) exception is generated.</p>

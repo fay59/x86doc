@@ -26,10 +26,31 @@
 <h2 id="description">Description</h2>
 <p>Computes the square root of the source value in the ST(0) register and stores the result in ST(0).</p>
 <p>The following table shows the results obtained when taking the square root of various classes of numbers, assuming that neither overflow nor underflow occurs.</p>
+<h3 id="table-3-47-fsqrt-results">Table 3-47. FSQRT Results</h3>
 <table>
 <tr>
-	<td>Table 3-47.</td>
-	<td>FSQRT Results DEST (ST(0)) − ∞− F −0+0+F +∞NaN</td>
+	<td>SRC (ST(0)) − ∞− F</td>
+	<td>DEST (ST(0))</td>
+</tr>
+<tr>
+	<td>− 0</td>
+	<td>−0</td>
+</tr>
+<tr>
+	<td>+ 0</td>
+	<td>+0</td>
+</tr>
+<tr>
+	<td>+ F</td>
+	<td>+F</td>
+</tr>
+<tr>
+	<td>+ ∞</td>
+	<td>+∞</td>
+</tr>
+<tr>
+	<td>NaN</td>
+	<td>NaN</td>
 </tr>
 </table>
 <p class="notes">Notes: F Means finite floating-point value. * Indicates floating-point invalid-arithmetic-operand (#IA) exception.</p>

@@ -16,7 +16,7 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 63 /r1PACKSSWB mm1, mm2/m64</td>
+	<td>0F 63 /r1 PACKSSWB mm1, mm2/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
@@ -27,49 +27,49 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Converts 8 packed signed word integers from PACKSSWB xmm1, xmm2/m128signed byte integers in xxm1 using signed saturation.</td>
+	<td>Converts 8 packed signed word integers from PACKSSWB xmm1, xmm2/m128 signed byte integers in xxm1 using signed saturation.</td>
 </tr>
 <tr>
 	<td>0F 6B /r1</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Converts 2 packed signed doubleword PACKSSDW mm1, mm2/m64packed signed word integers in mm1 using signed saturation.</td>
+	<td>Converts 2 packed signed doubleword PACKSSDW mm1, mm2/m64 packed signed word integers in mm1 using signed saturation.</td>
 </tr>
 <tr>
 	<td>66 0F 6B /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Converts 4 packed signed doubleword PACKSSDW xmm1, xmm2/m128into 8 packed signed word integers in xxm1using signed saturation.</td>
+	<td>Converts 4 packed signed doubleword PACKSSDW xmm1, xmm2/m128 into 8 packed signed word integers in xxm1 using signed saturation.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG 63 /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Converts 8 packed signed word integers from VPACKSSWB xmm1,xmm2, xmm3/m128signed byte integers in xmm1 using signed saturation.</td>
+	<td>Converts 8 packed signed word integers from VPACKSSWB xmm1,xmm2, xmm3/m128 signed byte integers in xmm1 using signed saturation.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG 6B /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Converts 4 packed signed doubleword VPACKSSDW xmm1,xmm2, xmm3/m128into 8 packed signed word integers in xmm1using signed saturation.</td>
+	<td>Converts 4 packed signed doubleword VPACKSSDW xmm1,xmm2, xmm3/m128 into 8 packed signed word integers in xmm1 using signed saturation.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG 63 /r VPACKSSWB ymm1, ymm2, ymm3/m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Converts 16 packed signed word integers from ymm2 and from ymm3/m256 into 32packed signed byte integers in ymm1 using signed saturation.</td>
+	<td>Converts 16 packed signed word integers from ymm2 and from ymm3/m256 into 32 packed signed byte integers in ymm1 using signed saturation.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG 6B /r VPACKSSDW ymm1, ymm2, ymm3/m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Converts 8 packed signed doubleword integers from ymm2 and from ymm3/m256into 16 packed signed word integers in ymm1using signed saturation.</td>
+	<td>Converts 8 packed signed doubleword integers from ymm2 and from ymm3/m256 into 16 packed signed word integers in ymm1using signed saturation.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
@@ -238,7 +238,7 @@ VPACKSSDW instruction (VEX.256 encoded version)
   DEST[239:224] ← SaturateSignedDwordToSignedWord (SRC2[223:192]);
   DEST[255:240] ← SaturateSignedDwordToSignedWord (SRC2[255:224]);
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
 <table>
 <tr>
 	<td>PACKSSWB:</td>

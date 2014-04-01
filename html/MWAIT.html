@@ -57,14 +57,31 @@
 <p>MWAIT accepts a hint and optional extension to the processor that it can enter a specified target C state while waiting for an event or a store operation to the address range armed by MONITOR. Support for MWAIT extensions for power management is indicated by CPUID.05H:ECX[bit 0] reporting 1.</p>
 <p>EAX and ECX are used to communicate the additional information to the MWAIT instruction, such as the kind of optimized state the processor should enter. ECX specifies optional extensions for the MWAIT instruction. EAX may contain hints such as the preferred optimized state the processor should enter. Implementation-specific conditions may cause a processor to ignore the hint and enter a different optimized state. Future processor implementations may implement several optimized “waiting” states and will select among those states based on the hint argument.</p>
 <p>Table 3-67 describes the meaning of ECX and EAX registers for MWAIT extensions.</p>
+<h3 id="table-3-67-mwait-extension-register-ecx-">Table 3-67. MWAIT Extension Register (ECX)</h3>
 <table>
 <tr>
-	<td>Table 3-67.</td>
-	<td>MWAIT Extension Register (ECX) Description Treat interrupts as break events even if masked (e.g., even if EFLAGS.IF=0). May be set only if CPUID.05H:ECX[bit 1] = 1. Reserved</td>
+	<td>Bits</td>
+	<td>Description</td>
 </tr>
 <tr>
-	<td>Table 3-68.</td>
-	<td>MWAIT Hints Register (EAX) Description Sub C-state within a C-state, indicated by bits [7:4]Target C-state*Value of 0 means C1; 1 means C2 and so on Value of 01111B means C0</td>
+	<td>Treat interrupts as break events even if masked (e.g., even if EFLAGS.IF=0). May be set only if CPUID.05H:ECX[bit 1] = 1.</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>Reserved</td>
+	<td>31: 1 MWAIT Hints Register (EAX)</td>
+</tr>
+<tr>
+	<td>Bits</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>Sub C-state within a C-state, indicated by bits [7:4]</td>
+	<td>3 : 0</td>
+</tr>
+<tr>
+	<td>Target C-state*Value of 0 means C1; 1 means C2 and so on Value of 01111B means C0</td>
+	<td>7 : 4</td>
 </tr>
 </table>
 <p>Note: Target C states for MWAIT extensions are processor-specific C-states, not ACPI C-states</p>
@@ -85,7 +102,7 @@ WHILE ( (“Monitor Hardware is in armed state”)) {
 Set the state of Monitor Hardware as triggered;
 }
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>MWAIT:</td>

@@ -16,7 +16,7 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F D4 /r1PADDQ mm1, mm2/m64</td>
+	<td>0F D4 /r1 PADDQ mm1, mm2/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
@@ -27,14 +27,14 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Add packed quadword integers xmm2/m128PADDQ xmm1, xmm2/m128</td>
+	<td>Add packed quadword integers xmm2/m128 PADDQ xmm1, xmm2/m128</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG D4 /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Add packed quadword integers xmm3/m128VPADDQ xmm1, xmm2, xmm3/m128</td>
+	<td>Add packed quadword integers xmm3/m128 VPADDQ xmm1, xmm2, xmm3/m128</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG D4 /r</td>
@@ -90,7 +90,7 @@ VPADDQ (VEX.256 encoded instruction)
   DEST[191:128]← SRC1[191:128]
   DEST[255:192] ← SRC1[255:192] + SRC2[255:192];
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
 <table>
 <tr>
 	<td>PADDQ:</td>

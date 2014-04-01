@@ -6,7 +6,7 @@
 	<title>PCMPESTRI — Packed Compare Explicit Length Strings, Return Index</title>
 </head>
 <body>
-<h1 id="pcmpestri---packed-compare-explicit-length-strings--return-index">PCMPESTRI — Packed Compare Explicit Length Strings, Return Index</h1>
+<h1 id="pcmpestri-packed-compare-explicit-length-strings-return-index">PCMPESTRI — Packed Compare Explicit Length Strings, Return Index</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -16,7 +16,7 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 3A 61 /r imm8PCMPESTRI xmm1, xmm2/m128, imm8</td>
+	<td>66 0F 3A 61 /r imm8 PCMPESTRI xmm1, xmm2/m128, imm8</td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE4_2</td>
@@ -48,7 +48,7 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>The instruction compares and processes data from two string fragments based on the encoded value in the Imm8Control Byte (see Section 4.1, “Imm8 Control Byte Operation for PCMPESTRI / PCMPESTRM / PCMPISTRI / PCMPISTRM”), and generates an index stored to the count register (ECX/RCX).</p>
+<p>The instruction compares and processes data from two string fragments based on the encoded value in the Imm8 Control Byte (see Section 4.1, “Imm8 Control Byte Operation for PCMPESTRI / PCMPESTRM / PCMPISTRI / PCMPISTRM”), and generates an index stored to the count register (ECX/RCX).</p>
 <p>Each string fragment is represented by two values. The first value is an xmm (or possibly m128 for the second</p>
 <table>
 <tr>
@@ -100,14 +100,14 @@
 	<td>RCX</td>
 </tr>
 </table>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent-for-returning-index">Intel C/C++ Compiler Intrinsic Equivalent For Returning Index</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent-for-returning-index">Intel C/C++ Compiler Intrinsic Equivalent For Returning Index</h2>
 <table>
 <tr>
 	<td>int</td>
 	<td>_mm_cmpestri (__m128i a, int la, __m128i b, int lb, const int mode);</td>
 </tr>
 </table>
-<h2 id="intel-c-c---compiler-intrinsics-for-reading-eflag-results">Intel C/C++ Compiler Intrinsics For Reading EFlag Results</h2>
+<h2 id="intel-c-c-compiler-intrinsics-for-reading-eflag-results">Intel C/C++ Compiler Intrinsics For Reading EFlag Results</h2>
 <table>
 <tr>
 	<td>int</td>
@@ -133,7 +133,7 @@
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
 <p>None.</p>
 <h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 4; additionally, this instruction does not cause #GP if the memory operand is not aligned to 16Byte boundary, and</p>
+<p>See Exceptions Type 4; additionally, this instruction does not cause #GP if the memory operand is not aligned to 16 Byte boundary, and</p>
 <table>
 <tr>
 	<td>#UD</td>

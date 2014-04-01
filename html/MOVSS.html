@@ -27,7 +27,7 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Merge scalar single-precision floating-point VMOVSS xmm1, xmm2, xmm3register.</td>
+	<td>Merge scalar single-precision floating-point VMOVSS xmm1, xmm2, xmm3 register.</td>
 </tr>
 <tr>
 	<td>VEX.LIG.F3.0F.WIG 10 /r</td>
@@ -48,7 +48,7 @@
 	<td>MVR</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Move scalar single-precision floating-point VMOVSS xmm1, xmm2, xmm3ter.</td>
+	<td>Move scalar single-precision floating-point VMOVSS xmm1, xmm2, xmm3 ter.</td>
 </tr>
 <tr>
 	<td>VEX.LIG.F3.0F.WIG 11 /r</td>
@@ -105,7 +105,7 @@
 </table>
 <h2 id="description">Description</h2>
 <p>Moves a scalar single-precision floating-point value from the source operand (second operand) to the destination operand (first operand). The source and destination operands can be XMM registers or 32-bit memory locations. This instruction can be used to move a single-precision floating-point value to and from the low doubleword of an XMM register and a 32-bit memory location, or to move a single-precision floating-point value between the low doublewords of two XMM registers. The instruction cannot be used to transfer data between memory locations. For non-VEX encoded syntax and when the source and destination operands are XMM registers, the high doublewords of the destination operand remains unchanged. When the source operand is a memory location and destination operand is an XMM registers, the high doublewords of the destination operand is cleared to all 0s.</p>
-<p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). VEX encoded instruction syntax supports two source operands and a destination operand if ModR/M.mod field is 11B. VEX.vvvv is used to encode the first source operand (the second operand). The low 128 bits of the destination operand stores the result of merging the low dword of the second source operand with three dwords in bits 127:32of the first source operand. The upper bits of the destination operand are cleared. Note: For the “VMOVSS m32, xmm1” (memory store form) instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD. Note: For the “VMOVSS xmm1, m32” (memory load form) instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD.</p>
+<p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). VEX encoded instruction syntax supports two source operands and a destination operand if ModR/M.mod field is 11B. VEX.vvvv is used to encode the first source operand (the second operand). The low 128 bits of the destination operand stores the result of merging the low dword of the second source operand with three dwords in bits 127:32 of the first source operand. The upper bits of the destination operand are cleared. Note: For the “VMOVSS m32, xmm1” (memory store form) instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD. Note: For the “VMOVSS xmm1, m32” (memory load form) instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD.</p>
 <h2 id="operation">Operation</h2>
 <pre>MOVSS (Legacy SSE version when the source and destination operands are both XMM registers)
 DEST[31:0] ← SRC[31:0]
@@ -128,7 +128,7 @@ VMOVSS (VEX.NDS.128.F3.0F 10 /r when the source operand is memory and the destin
 DEST[31:0] ← SRC[31:0]
 DEST[VLMAX-1:32] ← 0
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>MOVSS:</td>

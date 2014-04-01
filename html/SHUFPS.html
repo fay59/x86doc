@@ -20,21 +20,21 @@
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Shuffle packed single-precision floating-point SHUFPS xmm1, xmm2/m128, imm8xmm1/m128 to xmm1.</td>
+	<td>Shuffle packed single-precision floating-point SHUFPS xmm1, xmm2/m128, imm8 xmm1/m128 to xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.0F.WIG C6 /r ib</td>
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Shuffle Packed single-precision floating-point VSHUFPS xmm1, xmm2, xmm3/m128, imm8xmm3/mem.</td>
+	<td>Shuffle Packed single-precision floating-point VSHUFPS xmm1, xmm2, xmm3/m128, imm8 xmm3/mem.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.0F.WIG C6 /r ib</td>
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Shuffle Packed single-precision floating-point VSHUFPS ymm1, ymm2, ymm3/m256, imm8ymm3/mem.</td>
+	<td>Shuffle Packed single-precision floating-point VSHUFPS ymm1, ymm2, ymm3/m256, imm8 ymm3/mem.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -82,8 +82,8 @@
 </tr>
 <tr>
 	<td>DEST</td>
-	<td>Y3 ... Y0Figure 4-22.</td>
-	<td>Y3 ... Y0SHUFPS Shuffle Operation</td>
+	<td>Y3 ... Y0 Figure 4-22.</td>
+	<td>Y3 ... Y0 SHUFPS Shuffle Operation</td>
 	<td>X3 ... X0</td>
 	<td>X3 ... X0</td>
 </tr>
@@ -136,7 +136,7 @@ DEST[191:160] ← Select4(SRC1[255:128], imm8[3:2]);
 DEST[223:192] ← Select4(SRC2[255:128], imm8[5:4]);
 DEST[255:224] ← Select4(SRC2[255:128], imm8[7:6]);
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>SHUFPS:</td>

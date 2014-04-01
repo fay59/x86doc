@@ -60,50 +60,22 @@
 </table>
 <h2 id="description">Description</h2>
 <p>Computes the effective address of the second operand (the source operand) and stores it in the first operand (destination operand). The source operand is a memory address (offset part) specified with one of the processors addressing modes; the destination operand is a general-purpose register. The address-size and operand-size attributes affect the action performed by this instruction, as shown in the following table. The operand-size attribute of the instruction is determined by the chosen register; the address-size attribute is determined by the attribute of the code segment.</p>
+<h3 id="table-3-63-non-64-bit-mode-lea-operation-with-address-and-operand-size-attributes">Table 3-63. Non-64-bit Mode LEA Operation with Address and Operand Size Attributes</h3>
 <table>
 <tr>
-	<td>Table 3-63.</td>
-	<td>Non-64-bit Mode LEA Operation with Address and Operand Size Attributes</td>
-</tr>
-<tr>
-	<td>Address Size</td>
-	<td>Action Performed 16-bit effective address is calculated and stored in requested 16-bit register destination. 32-bit effective address is calculated. The lower 16 bits of the address are stored in the requested 16-bit register destination. 16-bit effective address is calculated. The 16-bit address is zero-extended and stored in the requested 32-bit register destination. 32-bit effective address is calculated and stored in the requested 32-bit register destination.</td>
+	<td>Operand Size 16 16 32 32</td>
+	<td>Address Size 16-bit effective address is calculated and stored in requested 16-bit register destination. 32-bit effective address is calculated. The lower 16 bits of the address are stored in the requested 16-bit register destination. 16-bit effective address is calculated. The 16-bit address is zero-extended and stored in the requested 32-bit register destination. 32-bit effective address is calculated and stored in the requested 32-bit register destination.</td>
+	<td>Action Performed</td>
 </tr>
 </table>
 <p>Different assemblers may use different algorithms based on the size attribute and symbolic reference of the source operand.</p>
 <p>In 64-bit mode, the instruction’s destination operand is governed by operand size attribute, the default operand size is 32 bits. Address calculation is governed by address size attribute, the default address size is 64-bits. In 64bit mode, address size of 16 bits is not encodable. See Table 3-64.</p>
+<h3 id="table-3-64-64-bit-mode-lea-operation-with-address-and-operand-size-attributes">Table 3-64. 64-bit Mode LEA Operation with Address and Operand Size Attributes</h3>
 <table>
 <tr>
-	<td>Table 3-64.</td>
-	<td>64-bit Mode LEA Operation with Address and Operand Size Attributes</td>
-</tr>
-<tr>
-	<td>Address Size</td>
+	<td>Operand Size 16 16 32 32 64 64</td>
+	<td>Address Size 32-bit effective address is calculated (using 67H prefix). The lower 16 bits of the address are stored in the requested 16-bit register destination (using 66H prefix). 64-bit effective address is calculated (default address size). The lower 16 bits of the address are stored in the requested 16-bit register destination (using 66H prefix). 32-bit effective address is calculated (using 67H prefix) and stored in the requested 32-bit register destination. 64-bit effective address is calculated (default address size) and the lower 32 bits of the address are stored in the requested 32-bit register destination. 32-bit effective address is calculated (using 67H prefix), zero-extended to 64-bits, and stored in the requested 64-bit register destination (using REX.W). 64-bit effective address is calculated (default address size) and all 64-bits of the address are stored in the requested 64-bit register destination (using REX.W).</td>
 	<td>Action Performed</td>
-</tr>
-<tr>
-	<td>32</td>
-	<td>32-bit effective address is calculated (using 67H prefix). The lower 16 bits of the address are stored in the requested 16-bit register destination (using 66H prefix).</td>
-</tr>
-<tr>
-	<td>64</td>
-	<td>64-bit effective address is calculated (default address size). The lower 16 bits of the address are stored in the requested 16-bit register destination (using 66H prefix).</td>
-</tr>
-<tr>
-	<td>32</td>
-	<td>32-bit effective address is calculated (using 67H prefix) and stored in the requested 32-bit register destination.</td>
-</tr>
-<tr>
-	<td>64</td>
-	<td>64-bit effective address is calculated (default address size) and the lower 32 bits of the address are stored in the requested 32-bit register destination.</td>
-</tr>
-<tr>
-	<td>32</td>
-	<td>32-bit effective address is calculated (using 67H prefix), zero-extended to 64-bits, and stored in the requested 64-bit register destination (using REX.W).</td>
-</tr>
-<tr>
-	<td>64</td>
-	<td>64-bit effective address is calculated (default address size) and all 64-bits of the address are stored in the requested 64-bit register destination (using REX.W).</td>
 </tr>
 </table>
 <h2 id="operation">Operation</h2>

@@ -20,21 +20,21 @@
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Shuffle the low words in xmm2/m128 based PSHUFLW xmm1, xmm2/m128, imm8in xmm1.</td>
+	<td>Shuffle the low words in xmm2/m128 based PSHUFLW xmm1, xmm2/m128, imm8 in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.128.F2.0F.WIG 70 /r ib</td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Shuffle the low words in xmm2/m128 based VPSHUFLW xmm1, xmm2/m128, imm8in xmm1.</td>
+	<td>Shuffle the low words in xmm2/m128 based VPSHUFLW xmm1, xmm2/m128, imm8 in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.256.F2.0F.WIG 70 /r ib</td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Shuffle the low words in ymm2/m256 based VPSHUFLW ymm1, ymm2/m256, imm8in ymm1.</td>
+	<td>Shuffle the low words in ymm2/m256 based VPSHUFLW ymm1, ymm2/m256, imm8 in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -85,7 +85,7 @@ DEST[175:160] ← (SRC1 &gt;&gt; (imm[5:4] * 16))[143:128]
 DEST[191:176] ← (SRC1 &gt;&gt; (imm[7:6] * 16))[143:128]
 DEST[255:192] ← SRC1[255:192]
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>(V)PSHUFLW:</td>

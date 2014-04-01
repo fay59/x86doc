@@ -6,7 +6,7 @@
 	<title>PCMPISTRI — Packed Compare Implicit Length Strings, Return Index</title>
 </head>
 <body>
-<h1 id="pcmpistri---packed-compare-implicit-length-strings--return-index">PCMPISTRI — Packed Compare Implicit Length Strings, Return Index</h1>
+<h1 id="pcmpistri-packed-compare-implicit-length-strings-return-index">PCMPISTRI — Packed Compare Implicit Length Strings, Return Index</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -16,7 +16,7 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 3A 63 /r imm8PCMPISTRI xmm1, xmm2/m128, imm8</td>
+	<td>66 0F 3A 63 /r imm8 PCMPISTRI xmm1, xmm2/m128, imm8</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE4_2</td>
@@ -89,14 +89,14 @@
 	<td>RCX</td>
 </tr>
 </table>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent-for-returning-index">Intel C/C++ Compiler Intrinsic Equivalent For Returning Index</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent-for-returning-index">Intel C/C++ Compiler Intrinsic Equivalent For Returning Index</h2>
 <table>
 <tr>
 	<td>int</td>
 	<td>_mm_cmpistri (__m128i a, __m128i b, const int mode);</td>
 </tr>
 </table>
-<h2 id="intel-c-c---compiler-intrinsics-for-reading-eflag-results">Intel C/C++ Compiler Intrinsics For Reading EFlag Results</h2>
+<h2 id="intel-c-c-compiler-intrinsics-for-reading-eflag-results">Intel C/C++ Compiler Intrinsics For Reading EFlag Results</h2>
 <table>
 <tr>
 	<td>int</td>
@@ -122,7 +122,7 @@
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
 <p>None.</p>
 <h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 4; additionally, this instruction does not cause #GP if the memory operand is not aligned to 16Byte boundary, and</p>
+<p>See Exceptions Type 4; additionally, this instruction does not cause #GP if the memory operand is not aligned to 16 Byte boundary, and</p>
 <table>
 <tr>
 	<td>#UD</td>

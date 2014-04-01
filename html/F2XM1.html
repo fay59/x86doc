@@ -26,10 +26,27 @@
 <h2 id="description">Description</h2>
 <p>Computes the exponential value of 2 to the power of the source operand minus 1. The source operand is located in register ST(0) and the result is also stored in ST(0). The value of the source operand must lie in the range -1.0 to +1.0. If the source value is outside this range, the result is undefined.</p>
 <p>The following table shows the results obtained when computing the exponential value of various classes of numbers, assuming that neither overflow nor underflow occurs.</p>
+<h3 id="table-3-26-results-obtained-from-f2xm1">Table 3-26. Results Obtained from F2XM1</h3>
 <table>
 <tr>
-	<td>Table 3-26.</td>
-	<td>Results Obtained from F2XM1ST(0) DEST − 0.5 to − 0− 0+ 0+ 0 to 1.0</td>
+	<td>ST(0) SRC</td>
+	<td>ST(0) DEST</td>
+</tr>
+<tr>
+	<td>− 1.0 to −0</td>
+	<td>− 0.5 to − 0</td>
+</tr>
+<tr>
+	<td>− 0</td>
+	<td>− 0</td>
+</tr>
+<tr>
+	<td>+ 0</td>
+	<td>+ 0</td>
+</tr>
+<tr>
+	<td>+ 0 to +1.0</td>
+	<td>+ 0 to 1.0</td>
 </tr>
 </table>
 <p>Values other than 2 can be exponentiated using the following formula:</p>

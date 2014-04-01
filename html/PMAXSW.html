@@ -20,28 +20,28 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Compare signed word integers in mm2/m64PMAXSW mm1, mm2/m64</td>
+	<td>Compare signed word integers in mm2/m64 PMAXSW mm1, mm2/m64</td>
 </tr>
 <tr>
 	<td>66 0F EE /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Compare signed word integers in xmm2/m128PMAXSW xmm1, xmm2/m128</td>
+	<td>Compare signed word integers in xmm2/m128 PMAXSW xmm1, xmm2/m128</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG EE /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Compare packed signed word integers in VPMAXSW xmm1, xmm2, xmm3/m128maximum values in xmm1.</td>
+	<td>Compare packed signed word integers in VPMAXSW xmm1, xmm2, xmm3/m128 maximum values in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG EE /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Compare packed signed word integers in VPMAXSW ymm1, ymm2, ymm3/m256maximum values in ymm1.</td>
+	<td>Compare packed signed word integers in VPMAXSW ymm1, ymm2, ymm3/m256 maximum values in ymm1.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
@@ -117,7 +117,7 @@ VPMAXSW (VEX.256 encoded version)
   ELSE
      DEST[255:240] ← SRC2[255:240]; FI;
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>PMAXSW:</td>
@@ -140,9 +140,9 @@ VPMAXSW (VEX.256 encoded version)
 <p>See Exceptions Type 4; additionally</p>
 <table>
 <tr>
-	<td>#UD Opcode/Instruction 0F DE /r166 0F DE /r VEX.NDS.128.66.0F.WIG DE /r VEX.NDS.256.66.0F.WIG DE /r</td>
+	<td>#UD Opcode/Instruction 0F DE /r1 66 0F DE /r VEX.NDS.128.66.0F.WIG DE /r VEX.NDS.256.66.0F.WIG DE /r</td>
 	<td>None</td>
-	<td>PMAXUB—Maximum of Packed Unsigned Byte Integers Description Feature Flag Compare unsigned byte integers in mm2/m64PMAXUB mm1, mm2/m64Compare unsigned byte integers in PMAXUB xmm1, xmm2/m128maximum values. Compare packed unsigned byte integers in VPMAXUB xmm1, xmm2, xmm3/m128maximum values in xmm1. Compare packed unsigned byte integers in VPMAXUB ymm1, ymm2, ymm3/m256maximum values in ymm1.</td>
+	<td>PMAXUB—Maximum of Packed Unsigned Byte Integers Description Feature Flag Compare unsigned byte integers in mm2/m64 PMAXUB mm1, mm2/m64 Compare unsigned byte integers in PMAXUB xmm1, xmm2/m128 maximum values. Compare packed unsigned byte integers in VPMAXUB xmm1, xmm2, xmm3/m128 maximum values in xmm1. Compare packed unsigned byte integers in VPMAXUB ymm1, ymm2, ymm3/m256 maximum values in ymm1.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
@@ -218,7 +218,7 @@ VPMAXUB (VEX.256 encoded version)
   ELSE
      DEST[255:248] ← SRC2[255:248]; FI;
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>PMAXUB:</td>

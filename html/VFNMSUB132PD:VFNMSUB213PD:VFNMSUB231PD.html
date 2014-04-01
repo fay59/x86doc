@@ -6,12 +6,12 @@
 	<title>VFNMSUB132PD/VFNMSUB213PD/VFNMSUB231PD — Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values</title>
 </head>
 <body>
-<h1 id="vfnmsub132pd-vfnmsub213pd-vfnmsub231pd---fused-negative-multiply-subtract-of-packed-double-precision-floating-point-values">VFNMSUB132PD/VFNMSUB213PD/VFNMSUB231PD — Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values</h1>
+<h1 id="vfnmsub132pd-vfnmsub213pd-vfnmsub231pd-fused-negative-multiply-subtract-of-packed-double-precision-floating-point-values">VFNMSUB132PD/VFNMSUB213PD/VFNMSUB231PD — Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
 	<td>Op/En</td>
-	<td>64/32-bit Mode</td>
+	<td>64/32 -bit Mode</td>
 	<td>CPUID Feature Flag</td>
 	<td>Description</td>
 </tr>
@@ -27,7 +27,7 @@
 	<td>A</td>
 	<td>V/V</td>
 	<td>FMA</td>
-	<td>Multiply packed double-precision floating-point valVFNMSUB213PD xmm0, xmm1, xmm2/m128tion result and subtract xmm2/mem and put result in xmm0.</td>
+	<td>Multiply packed double-precision floating-point valVFNMSUB213PD xmm0, xmm1, xmm2/m128 tion result and subtract xmm2/mem and put result in xmm0.</td>
 </tr>
 <tr>
 	<td>VEX.DDS.128.66.0F38.W1 BE /r VFNMSUB231PD xmm0, xmm1, xmm2/m128</td>
@@ -123,7 +123,7 @@ IF (VEX.128) THEN
 DEST[VLMAX-1:128] ← 0
 FI
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>VFNMSUB132PD: __m128d _mm_fnmsub_pd (__m128d a, __m128d b, __m128d c);</p>
 <p>VFNMSUB213PD: __m128d _mm_fnmsub_pd (__m128d a, __m128d b, __m128d c);</p>
 <p>VFNMSUB231PD: __m128d _mm_fnmsub_pd (__m128d a, __m128d b, __m128d c);</p>

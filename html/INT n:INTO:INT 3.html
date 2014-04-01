@@ -78,10 +78,73 @@
 <p>The interrupt vector number specifies an interrupt descriptor in the interrupt descriptor table (IDT); that is, it provides index into the IDT. The selected interrupt descriptor in turn contains a pointer to an interrupt or exception handler procedure. In protected mode, the IDT contains an array of 8-byte descriptors, each of which is an interrupt gate, trap gate, or task gate. In real-address mode, the IDT is an array of 4-byte far pointers (2-byte code segment selector and a 2-byte instruction pointer), each of which point directly to a procedure in the selected segment. (Note that in real-address mode, the IDT is called the interrupt vector table, and its pointers are called interrupt vectors.)</p>
 <p>The following decision table indicates which action in the lower portion of the table is taken given the conditions in the upper portion of the table. Each Y in the lower section of the decision table represents a procedure defined in</p>
 <p>the “Operation” section for this instruction (except #GP).</p>
+<h3 id="table-3-61-decision-table">Table 3-61. Decision Table</h3>
 <table>
 <tr>
-	<td>Table 3-61.</td>
-	<td>Decision Table 11=3CPL &amp; NC Trap or Interrupt Y Y Y GATE Y INTERRUPT Y INTERRUPT Y VIRTUAL-8086-MODE Y Y</td>
+	<td>PE</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>VM</td>
+	<td>-</td>
+	<td>-</td>
+	<td>-</td>
+	<td>-</td>
+	<td>-</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>IOPL</td>
+	<td>-</td>
+	<td>-</td>
+	<td>-</td>
+	<td>-</td>
+	<td>-</td>
+	<td>-</td>
+	<td>&lt;3</td>
+	<td>=3</td>
+</tr>
+<tr>
+	<td>DPL/CPL RELATIONSHIP</td>
+	<td>-</td>
+	<td>DPL&lt; CPL</td>
+	<td>-</td>
+	<td>DPL&gt; CPL</td>
+	<td>DPL=CPL or C</td>
+	<td>DPL&lt; CPL &amp; NC</td>
+	<td>-</td>
+	<td>-</td>
+</tr>
+<tr>
+	<td>INTERRUPT TYPE</td>
+	<td>-</td>
+	<td>S/W</td>
+	<td>-</td>
+	<td>-</td>
+	<td>-</td>
+	<td>-</td>
+	<td>-</td>
+	<td>-</td>
+</tr>
+<tr>
+	<td>GATE TYPE REAL-ADDRESS-MODE PROTECTED-MODE TRAP-OR-INTERRUPTGATE INTER-PRIVILEGE-LEVELINTERRUPT INTRA-PRIVILEGE-LEVELINTERRUPT INTERRUPT-FROMVIRTUAL-8086-MODE TASK-GATE #GP</td>
+	<td>Y</td>
+	<td>Y Y</td>
+	<td>Task Y Y</td>
+	<td>Trap or Interrupt Y Y Y</td>
+	<td>Trap or Interrupt Y Y Y</td>
+	<td>Trap or Interrupt Y Y Y</td>
+	<td>Trap or Interrupt Y Y Y</td>
+	<td>Trap or Interrupt Y Y Y</td>
 </tr>
 </table>
 <p class="notes">Notes: </p>

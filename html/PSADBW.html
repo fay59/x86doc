@@ -20,28 +20,28 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Computes the absolute differences of the PSADBW mm1, mm2/m64/m64 and mm1; differences are then summed to produce an unsigned word integer result.</td>
+	<td>Computes the absolute differences of the PSADBW mm1, mm2/m64 /m64 and mm1; differences are then summed to produce an unsigned word integer result.</td>
 </tr>
 <tr>
 	<td>66 0F F6 /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Computes the absolute differences of the PSADBW xmm1, xmm2/m128/m128 and xmm1; the 8 low differences and 8high differences are then summed separately to produce two unsigned word integer results.</td>
+	<td>Computes the absolute differences of the PSADBW xmm1, xmm2/m128 /m128 and xmm1; the 8 low differences and 8 high differences are then summed separately to produce two unsigned word integer results.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG F6 /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Computes the absolute differences of the VPSADBW xmm1, xmm2, xmm3/m128/m128 and xmm2; the 8 low differences and 8high differences are then summed separately to produce two unsigned word integer results.</td>
+	<td>Computes the absolute differences of the VPSADBW xmm1, xmm2, xmm3/m128 /m128 and xmm2; the 8 low differences and 8 high differences are then summed separately to produce two unsigned word integer results.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG F6 /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Computes the absolute differences of the VPSADBW ymm1, ymm2, ymm3/m256/m256 and ymm2; then each consecutive 8differences are summed separately to produce four unsigned word integer results.</td>
+	<td>Computes the absolute differences of the VPSADBW ymm1, ymm2, ymm3/m256 /m256 and ymm2; then each consecutive 8 differences are summed separately to produce four unsigned word integer results.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
@@ -72,7 +72,7 @@
 <h2 id="description">Description</h2>
 <p>Computes the absolute value of the difference of 8 unsigned byte integers from the source operand (second operand) and from the destination operand (first operand). These 8 differences are then summed to produce an unsigned word integer result that is stored in the destination operand. Figure 4-10 shows the operation of the PSADBW instruction when using 64-bit operands.</p>
 <p>When operating on 64-bit operands, the word integer result is stored in the low word of the destination operand, and the remaining bytes in the destination operand are cleared to all 0s.</p>
-<p>When operating on 128-bit operands, two packed results are computed. Here, the 8 low-order bytes of the source and destination operands are operated on to produce a word result that is stored in the low word of the destination operand, and the 8 high-order bytes are operated on to produce a word result that is stored in bits 64 through 79of the destination operand. The remaining bytes of the destination operand are cleared.</p>
+<p>When operating on 128-bit operands, two packed results are computed. Here, the 8 low-order bytes of the source and destination operands are operated on to produce a word result that is stored in the low word of the destination operand, and the 8 high-order bytes are operated on to produce a word result that is stored in bits 64 through 79 of the destination operand. The remaining bytes of the destination operand are cleared.</p>
 <p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15). Legacy SSE version: The source operand can be an MMX technology register or a 64-bit memory location. The destination operand is an MMX technology register.</p>
 <p>128-bit Legacy SSE version: The first source operand and destination register are XMM registers. The second source operand is an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged.</p>
 <p>VEX.128 encoded version: The first source operand and destination register are XMM registers. The second source operand is an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the destination YMM register are zeroed. VEX.256 encoded version: The first source operand and destination register are YMM registers. The second source operand is an YMM register or a 256-bit memory location.</p>
@@ -80,14 +80,14 @@
 <table>
 <tr>
 	<td>SRC Figure 4-10.</td>
-	<td>X7Y7ABS(X7:Y7) 00H</td>
-	<td>X6Y6ABS(X6:Y6) 00H PSADBW Instruction Operation Using 64-bit Operands</td>
-	<td>X5Y5ABS(X5:Y5) 00H</td>
-	<td>X4Y4ABS(X4:Y4) 00H</td>
-	<td>X3Y3ABS(X3:Y3) 00H</td>
-	<td>X2Y2ABS(X2:Y2) 00H</td>
-	<td>X1Y1ABS(X1:Y1) SUM(TEMP7...TEMP0)</td>
-	<td>X0Y0ABS(X0:Y0) DEST</td>
+	<td>X7 Y7 ABS(X7:Y7) 00H</td>
+	<td>X6 Y6 ABS(X6:Y6) 00H PSADBW Instruction Operation Using 64-bit Operands</td>
+	<td>X5 Y5 ABS(X5:Y5) 00H</td>
+	<td>X4 Y4 ABS(X4:Y4) 00H</td>
+	<td>X3 Y3 ABS(X3:Y3) 00H</td>
+	<td>X2 Y2 ABS(X2:Y2) 00H</td>
+	<td>X1 Y1 ABS(X1:Y1) SUM(TEMP7...TEMP0)</td>
+	<td>X0 Y0 ABS(X0:Y0) DEST</td>
 </tr>
 </table>
 <h2 id="operation">Operation</h2>
@@ -128,7 +128,7 @@ DEST[191:144] ← 000000000000H
 DEST[207:192] ← SUM(TEMP24:TEMP31)
 DEST[223:208] ← 00000000000H
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>PSADBW:</td>

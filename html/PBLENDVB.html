@@ -6,7 +6,7 @@
 	<title>PBLENDVB — Variable Blend Packed Bytes</title>
 </head>
 <body>
-<h1 id="pblendvb---variable-blend-packed-bytes">PBLENDVB — Variable Blend Packed Bytes</h1>
+<h1 id="pblendvb-variable-blend-packed-bytes">PBLENDVB — Variable Blend Packed Bytes</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -23,14 +23,14 @@
 	<td>Select byte values from xmm1 and xmm2/m128 from mask specified in the high bit of each byte in XMM0 and store the values into xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F3A.W0 4C /r /is4VPBLENDVB xmm1, xmm2, xmm3/m128, xmm4</td>
+	<td>VEX.NDS.128.66.0F3A.W0 4C /r /is4 VPBLENDVB xmm1, xmm2, xmm3/m128, xmm4</td>
 	<td>RVMR</td>
 	<td>V/V</td>
 	<td>AVX</td>
 	<td>Select byte values from xmm2 and xmm3/m128 using mask bits in the specified mask register, xmm4, and store the values into xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F3A.W0 4C /r /is4VPBLENDVB ymm1, ymm2, ymm3/m256, ymm4</td>
+	<td>VEX.NDS.256.66.0F3A.W0 4C /r /is4 VPBLENDVB ymm1, ymm2, ymm3/m256, ymm4</td>
 	<td>RVMR</td>
 	<td>V/V</td>
 	<td>AVX2</td>
@@ -201,7 +201,7 @@ ELSE DEST[247:240] ← SRC1[247:240];
 IF (MASK[255] == 1) THEN DEST[255:248] ← SRC2[255:248]
 ELSE DEST[255:248] ← SRC1[255:248]
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>(V)PBLENDVB:</td>

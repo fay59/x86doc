@@ -6,12 +6,12 @@
 	<title>MULX — Unsigned Multiply Without Affecting Flags</title>
 </head>
 <body>
-<h1 id="mulx---unsigned-multiply-without-affecting-flags">MULX — Unsigned Multiply Without Affecting Flags</h1>
+<h1 id="mulx-unsigned-multiply-without-affecting-flags">MULX — Unsigned Multiply Without Affecting Flags</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
 	<td>Op/En</td>
-	<td>64/32-bit Mode</td>
+	<td>64/32 -bit Mode</td>
 	<td>CPUID Feature Flag</td>
 	<td>Description</td>
 </tr>
@@ -34,10 +34,10 @@
 <table>
 <tr>
 	<td>Op/En RVM</td>
-	<td>Operand 1ModRM:reg (w)</td>
-	<td>Operand 2VEX.vvvv (w)</td>
-	<td>Operand 3ModRM:r/m (r)</td>
-	<td>Operand 4RDX/EDX is implied 64/32 bits source</td>
+	<td>Operand 1 ModRM:reg (w)</td>
+	<td>Operand 2 VEX.vvvv (w)</td>
+	<td>Operand 3 ModRM:r/m (r)</td>
+	<td>Operand 4 RDX/EDX is implied 64/32 bits source</td>
 </tr>
 </table>
 <h2 id="description">Description</h2>
@@ -57,7 +57,7 @@ FI
 </pre>
 <h2 id="flags-affected">Flags Affected</h2>
 <p>None</p>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>Auto-generated from high-level language when possible.</p>
 <p>unsigned int mulx_u32(unsigned int a, unsigned int b, unsigned int * hi);</p>
 <p>unsigned __int64 mulx_u64(unsigned __int64 a, unsigned __int64 b, unsigned __int64 * hi);</p>

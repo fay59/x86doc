@@ -6,12 +6,12 @@
 	<title>VPSRAVD — Variable Bit Shift Right Arithmetic</title>
 </head>
 <body>
-<h1 id="vpsravd---variable-bit-shift-right-arithmetic">VPSRAVD — Variable Bit Shift Right Arithmetic</h1>
+<h1 id="vpsravd-variable-bit-shift-right-arithmetic">VPSRAVD — Variable Bit Shift Right Arithmetic</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
 	<td>Op/En</td>
-	<td>64/32-bit Mode</td>
+	<td>64/32 -bit Mode</td>
 	<td>CPUID Feature Flag</td>
 	<td>Description</td>
 </tr>
@@ -20,7 +20,7 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Shift bits in doublewords in xmm2 right by amount speciVPSRAVD xmm1, xmm2, xmm3/m128shifting in the sign bits.</td>
+	<td>Shift bits in doublewords in xmm2 right by amount speciVPSRAVD xmm1, xmm2, xmm3/m128 shifting in the sign bits.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F38.W0 46 /r VPSRAVD ymm1, ymm2, ymm3/m256</td>
@@ -82,7 +82,7 @@ ELSE
   For (i = 0 to 31) DEST[i + 224] ← (SRC1[255] );
 FI;
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>VPSRAVD: __m256i _mm256_srav_epi32 (__m256i m, __m256i count)</p>
 <p>VPSRAVD: __m128i _mm_srav_epi32 (__m128i m, __m128i count)</p>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>

@@ -48,53 +48,116 @@
 <p>When protected-mode virtual interrupts are enabled, CPL is 3, and IOPL is less than 3; STI sets the VIF flag in the EFLAGS register, leaving IF unaffected.</p>
 <p>Table 4-15 indicates the action of the STI instruction depending on the processor’s mode of operation and the CPL/IOPL settings of the running program or procedure.</p>
 <p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
+<h3 id="table-4-15-decision-table-for-sti-results">Table 4-15. Decision Table for STI Results</h3>
 <table>
 <tr>
-	<td>Table 4-15.</td>
-	<td>Decision Table for STI Results</td>
-</tr>
-<tr>
+	<td>PE</td>
+	<td>VM</td>
+	<td>IOPL</td>
 	<td>CPL</td>
+	<td>PVI</td>
+	<td>VIP</td>
+	<td>VME</td>
 	<td>STI Result</td>
 </tr>
 <tr>
+	<td>0</td>
+	<td>X</td>
+	<td>X</td>
+	<td>X</td>
+	<td>X</td>
+	<td>X</td>
 	<td>X</td>
 	<td>IF = 1</td>
 </tr>
 <tr>
+	<td>1</td>
+	<td>0</td>
+	<td>≥ CPL</td>
+	<td>X</td>
+	<td>X</td>
+	<td>X</td>
 	<td>X</td>
 	<td>IF = 1</td>
 </tr>
 <tr>
+	<td>1</td>
+	<td>0</td>
+	<td>&lt; CPL</td>
 	<td>3</td>
+	<td>1</td>
+	<td>0</td>
+	<td>X</td>
 	<td>VIF = 1</td>
 </tr>
 <tr>
+	<td>1</td>
+	<td>0</td>
+	<td>&lt; CPL</td>
 	<td>&lt; 3</td>
-	<td>GP Fault</td>
-</tr>
-<tr>
+	<td>X</td>
+	<td>X</td>
 	<td>X</td>
 	<td>GP Fault</td>
 </tr>
 <tr>
+	<td>1</td>
+	<td>0</td>
+	<td>&lt; CPL</td>
+	<td>X</td>
+	<td>0</td>
+	<td>X</td>
 	<td>X</td>
 	<td>GP Fault</td>
 </tr>
 <tr>
+	<td>1</td>
+	<td>0</td>
+	<td>&lt; CPL</td>
+	<td>X</td>
+	<td>X</td>
+	<td>1</td>
+	<td>X</td>
+	<td>GP Fault</td>
+</tr>
+<tr>
+	<td>1</td>
+	<td>1</td>
+	<td>3</td>
+	<td>X</td>
+	<td>X</td>
+	<td>X</td>
 	<td>X</td>
 	<td>IF = 1</td>
 </tr>
 <tr>
+	<td>1</td>
+	<td>1</td>
+	<td>&lt; 3</td>
 	<td>X</td>
+	<td>X</td>
+	<td>0</td>
+	<td>1</td>
 	<td>VIF = 1</td>
 </tr>
 <tr>
+	<td>1</td>
+	<td>1</td>
+	<td>&lt; 3</td>
+	<td>X</td>
+	<td>X</td>
+	<td>1</td>
 	<td>X</td>
 	<td>GP Fault</td>
 </tr>
 <tr>
+	<td>1</td>
+	<td>1</td>
+	<td>&lt; 3</td>
 	<td>X</td>
+	<td>X</td>
+	<td>X</td>
+	<td>0</td>
 	<td>GP Fault</td>
 </tr>
 </table>

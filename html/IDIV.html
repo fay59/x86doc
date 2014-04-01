@@ -80,30 +80,15 @@
 <p>Non-integral results are truncated (chopped) towards 0. The remainder is always less than the divisor in magnitude. Overflow is indicated with the #DE (divide error) exception rather than with the CF flag.</p>
 <p>In 64-bit mode, the instruction’s default operation size is 32 bits. Use of the REX.R prefix permits access to additional registers (R8-R15). Use of the REX.W prefix promotes operation to 64 bits. In 64-bit mode when REX.W is applied, the instruction divides the signed value in RDX:RAX by the source operand. RAX contains a 64-bit quotient; RDX contains a 64-bit remainder.</p>
 <p>See the summary chart at the beginning of this section for encoding data and limits. See Table 3-60.</p>
+<h3 id="table-3-60-idiv-results">Table 3-60. IDIV Results</h3>
 <table>
 <tr>
-	<td>Table 3-60.</td>
-	<td>IDIV Results</td>
-</tr>
-<tr>
-	<td>Divisor</td>
-	<td>Quotient Range</td>
-</tr>
-<tr>
-	<td>r/m8</td>
-	<td>−128 to +127</td>
-</tr>
-<tr>
-	<td>r/m16</td>
-	<td>−32,768 to +32,767</td>
-</tr>
-<tr>
-	<td>r/m32</td>
-	<td>−231 to 232 − 1</td>
-</tr>
-<tr>
-	<td>r/m64</td>
-	<td>−263 to 264 − 1</td>
+	<td>Operand Size</td>
+	<td>Dividend AX DX:AX EDX:EAX RDX:RAX</td>
+	<td>Divisor r/m8 r/m16 r/m32 r/m64</td>
+	<td>Quotient AL AX EAX RAX</td>
+	<td>Remainder AH DX EDX RDX</td>
+	<td>Quotient Range −128 to +127 −32,768 to +32,767 −231 to 232 − 1 −263 to 264 − 1</td>
 </tr>
 </table>
 <h2 id="operation">Operation</h2>
@@ -254,7 +239,7 @@ FI;
 </tr>
 <tr>
 	<td>#DE</td>
-	<td>If the source operand (divisor) is 0If the quotient is too large for the designated register.</td>
+	<td>If the source operand (divisor) is 0 If the quotient is too large for the designated register.</td>
 </tr>
 <tr>
 	<td>#PF(fault-code)</td>

@@ -6,7 +6,7 @@
 	<title>PCMPEQQ — Compare Packed Qword Data for Equal</title>
 </head>
 <body>
-<h1 id="pcmpeqq---compare-packed-qword-data-for-equal">PCMPEQQ — Compare Packed Qword Data for Equal</h1>
+<h1 id="pcmpeqq-compare-packed-qword-data-for-equal">PCMPEQQ — Compare Packed Qword Data for Equal</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -27,14 +27,14 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Compare packed quadwords in xmm3/m128and xmm2 for equality.</td>
+	<td>Compare packed quadwords in xmm3/m128 and xmm2 for equality.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F38.WIG 29 /r VPCMPEQQ ymm1, ymm2, ymm3 /m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Compare packed quadwords in ymm3/m256and ymm2 for equality.</td>
+	<td>Compare packed quadwords in ymm3/m256 and ymm2 for equality.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -83,7 +83,7 @@ VPCMPEQQ (VEX.256 encoded version)
 DEST[127:0] ←COMPARE_QWORDS_EQUAL(SRC1[127:0],SRC2[127:0])
 DEST[255:128] ←COMPARE_QWORDS_EQUAL(SRC1[255:128],SRC2[255:128])
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>(V)PCMPEQQ:</td>

@@ -6,12 +6,12 @@
 	<title>VPERM2I128 — Permute Integer Values</title>
 </head>
 <body>
-<h1 id="vperm2i128---permute-integer-values">VPERM2I128 — Permute Integer Values</h1>
+<h1 id="vperm2i128-permute-integer-values">VPERM2I128 — Permute Integer Values</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
 	<td>Op/En</td>
-	<td>64/32-bit Mode</td>
+	<td>64/32 -bit Mode</td>
 	<td>CPUID Feature Flag</td>
 	<td>Description</td>
 </tr>
@@ -20,7 +20,7 @@
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Permute 128-bit integer data in ymm2 and VPERM2I128 ymm1, ymm2, ymm3/m256, imm8store result in ymm1.</td>
+	<td>Permute 128-bit integer data in ymm2 and VPERM2I128 ymm1, ymm2, ymm3/m256, imm8 store result in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -55,7 +55,7 @@
 </tr>
 <tr>
 	<td>DEST</td>
-	<td>X0, X1, Y0, or Y1VPERM2I128 Operation</td>
+	<td>X0, X1, Y0, or Y1 VPERM2I128 Operation</td>
 	<td>X0, X1, Y0, or Y1</td>
 </tr>
 </table>
@@ -81,7 +81,7 @@ IF (imm8[7])
 DEST[255:128] ← 0
 FI
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>VPERM2I128: __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, int control)</p>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
 <p>None</p>

@@ -16,14 +16,14 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F,AE,/2LDMXCSR m32</td>
+	<td>0F,AE,/2 LDMXCSR m32</td>
 	<td>M</td>
 	<td>V/V</td>
 	<td>SSE</td>
 	<td>Load MXCSR register from m32.</td>
 </tr>
 <tr>
-	<td>VEX.LZ.0F.WIG AE /2VLDMXCSR m32</td>
+	<td>VEX.LZ.0F.WIG AE /2 VLDMXCSR m32</td>
 	<td>M</td>
 	<td>V/V</td>
 	<td>AVX</td>
@@ -61,7 +61,7 @@
 <h2 id="operation">Operation</h2>
 <pre>MXCSR ← m32;
 </pre>
-<h2 id="c-c---compiler-intrinsic-equivalent">C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="c-c-compiler-intrinsic-equivalent">C/C++ Compiler Intrinsic Equivalent</h2>
 <p>_mm_setcsr(unsigned int i)</p>
 <h2 id="numeric-exceptions">Numeric Exceptions</h2>
 <p>None.</p>

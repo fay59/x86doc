@@ -20,14 +20,14 @@
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>AES</td>
-	<td>Assist in AES round key generation using an 8bits Round Constant (RCON) specified in the immediate byte, operating on 128 bits of data specified in xmm2/m128 and stores the result in xmm1.</td>
+	<td>Assist in AES round key generation using an 8 bits Round Constant (RCON) specified in the immediate byte, operating on 128 bits of data specified in xmm2/m128 and stores the result in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.128.66.0F3A.WIG DF /r ib VAESKEYGENASSIST xmm1, xmm2/m128, imm8</td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>Both AES and AVX flags</td>
-	<td>Assist in AES round key generation using 8bits Round Constant (RCON) specified in the immediate byte, operating on 128 bits of data specified in xmm2/m128 and stores the result in xmm1.</td>
+	<td>Assist in AES round key generation using 8 bits Round Constant (RCON) specified in the immediate byte, operating on 128 bits of data specified in xmm2/m128 and stores the result in xmm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -75,7 +75,7 @@ DEST[95:64] ← SubWord(X3);
 DEST[127:96] ← RotWord( SubWord(X3) ) XOR RCON;
 DEST[VLMAX-1:128] ← 0;
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>(V)AESKEYGENASSIST:</td>

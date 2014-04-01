@@ -6,7 +6,7 @@
 	<title>VINSERTF128 — Insert Packed Floating-Point Values</title>
 </head>
 <body>
-<h1 id="vinsertf128---insert-packed-floating-point-values">VINSERTF128 — Insert Packed Floating-Point Values</h1>
+<h1 id="vinsertf128-insert-packed-floating-point-values">VINSERTF128 — Insert Packed Floating-Point Values</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -20,7 +20,7 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Insert a single precision floating-point value VINSERTF128 ymm1, ymm2, xmm3/m128, imm8ymm2 at the specified destination element specified by imm8 and zero out destination elements in ymm1 as indicated in imm8.</td>
+	<td>Insert a single precision floating-point value VINSERTF128 ymm1, ymm2, xmm3/m128, imm8 ymm2 at the specified destination element specified by imm8 and zero out destination elements in ymm1 as indicated in imm8.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -50,7 +50,7 @@ CASE (imm8[0]) OF
 ESAC
 DEST ←TEMP
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>INSERTF128:</td>

@@ -6,12 +6,12 @@
 	<title>VPMASKMOV — Conditional SIMD Integer Packed Loads and Stores</title>
 </head>
 <body>
-<h1 id="vpmaskmov---conditional-simd-integer-packed-loads-and-stores">VPMASKMOV — Conditional SIMD Integer Packed Loads and Stores</h1>
+<h1 id="vpmaskmov-conditional-simd-integer-packed-loads-and-stores">VPMASKMOV — Conditional SIMD Integer Packed Loads and Stores</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
 	<td>Op/En</td>
-	<td>64/32-bit Mode</td>
+	<td>64/32 -bit Mode</td>
 	<td>CPUID Feature Flag</td>
 	<td>Description</td>
 </tr>
@@ -147,7 +147,7 @@ VPMASKMOVQ - 128-bit store
 IF (SRC1[63]) DEST[63:0] ← SRC2[63:0]
 IF (SRC1[127]) DEST[127:64] ←SRC2[127:64]
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>VPMASKMOVD: __m256i _mm256_maskload_epi32(int const *a, __m256i mask)</p>
 <table>
 <tr>

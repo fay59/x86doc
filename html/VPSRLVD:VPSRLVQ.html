@@ -6,12 +6,12 @@
 	<title>VPSRLVD/VPSRLVQ — Variable Bit Shift Right Logical</title>
 </head>
 <body>
-<h1 id="vpsrlvd-vpsrlvq---variable-bit-shift-right-logical">VPSRLVD/VPSRLVQ — Variable Bit Shift Right Logical</h1>
+<h1 id="vpsrlvd-vpsrlvq-variable-bit-shift-right-logical">VPSRLVD/VPSRLVQ — Variable Bit Shift Right Logical</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
 	<td>Op/EN</td>
-	<td>64/32-bit Mode</td>
+	<td>64/32 -bit Mode</td>
 	<td>CPUID Feature Flag</td>
 	<td>Description</td>
 </tr>
@@ -20,7 +20,7 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Shift bits in doublewords in xmm2 right by amount specVPSRLVD xmm1, xmm2, xmm3/m128shifting in 0s.</td>
+	<td>Shift bits in doublewords in xmm2 right by amount specVPSRLVD xmm1, xmm2, xmm3/m128 shifting in 0s.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F38.W1 45 /r VPSRLVQ xmm1, xmm2, xmm3/m128</td>
@@ -41,7 +41,7 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Shift bits in quadwords in ymm2 right by amount speciVPSRLVQ ymm1, ymm2, ymm3/m256shifting in 0s.</td>
+	<td>Shift bits in quadwords in ymm2 right by amount speciVPSRLVQ ymm1, ymm2, ymm3/m256 shifting in 0s.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -117,7 +117,7 @@ DEST[255:192] ← ZeroExtend(SRC1[255:192] &gt;&gt; COUNT_3);
 ELSE
 DEST[255:192] ← 0;
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>VPSRLVD: __m256i _mm256_srlv_epi32 (__m256i m, __m256i count);</p>
 <p>VPSRLVD: __m128i _mm_srlv_epi32 (__m128i m, __m128i count);</p>
 <p>VPSRLVQ: __m256i _mm256_srlv_epi64 (__m256i m, __m256i count);</p>

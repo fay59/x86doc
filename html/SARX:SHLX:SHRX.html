@@ -6,20 +6,20 @@
 	<title>SARX/SHLX/SHRX — Shift Without Affecting Flags</title>
 </head>
 <body>
-<h1 id="sarx-shlx-shrx---shift-without-affecting-flags">SARX/SHLX/SHRX — Shift Without Affecting Flags</h1>
+<h1 id="sarx-shlx-shrx-shift-without-affecting-flags">SARX/SHLX/SHRX — Shift Without Affecting Flags</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction SARX r32a, r/m32, r32b</td>
 	<td>Op/En RMV</td>
-	<td>64/32-bit Mode V/V</td>
+	<td>64/32 -bit Mode V/V</td>
 	<td>CPUID Feature Flag BMI2</td>
 	<td>Description VEX.NDS1.LZ.F3.0F38.W0 F7 /r</td>
 </tr>
 <tr>
 	<td>VEX.NDS1.LZ.66.0F38.W0 F7 /r SHLX r32a, r/m32, r32b SHRX r32a, r/m32, r32b VEX.NDS1.LZ.F3.0F38.W1 F7 /r SARX r64a, r/m64, r64b SHLX r64a, r/m64, r64b VEX.NDS1.LZ.F2.0F38.W1 F7 /r SHRX r64a, r/m64, r64b</td>
 	<td>RMV RMV RMV RMV RMV</td>
-	<td>V/V V/V BMI2BMI2BMI2</td>
-	<td>BMI2BMI2</td>
+	<td>V/V V/V BMI2 BMI2 BMI2</td>
+	<td>BMI2 BMI2</td>
 	<td>Shift r/m32 logically left with count specified in r32b. VEX.NDS1.LZ.F2.0F38.W0 F7 /r Shift r/m64 arithmetically right with count specified in r64b. VEX.NDS1.LZ.66.0F38.W1 F7 /r Shift r/m64 logically right with count specified in r64b.</td>
 </tr>
 </table>
@@ -68,7 +68,7 @@ OD
 </pre>
 <h2 id="flags-affected">Flags Affected</h2>
 <p>None.</p>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>Auto-generated from high-level language.</p>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
 <p>None</p>

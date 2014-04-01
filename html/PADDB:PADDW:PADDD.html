@@ -27,7 +27,7 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Add packed byte integers from xmm2/m128PADDB xmm1, xmm2/m128</td>
+	<td>Add packed byte integers from xmm2/m128 PADDB xmm1, xmm2/m128</td>
 </tr>
 <tr>
 	<td>0F FD /r1</td>
@@ -41,7 +41,7 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Add packed word integers from xmm2/m128PADDW xmm1, xmm2/m128</td>
+	<td>Add packed word integers from xmm2/m128 PADDW xmm1, xmm2/m128</td>
 </tr>
 <tr>
 	<td>0F FE /r1</td>
@@ -62,14 +62,14 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Add packed byte integers from xmm3/m128VPADDB xmm1, xmm2, xmm3/m128</td>
+	<td>Add packed byte integers from xmm3/m128 VPADDB xmm1, xmm2, xmm3/m128</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG FD /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Add packed word integers from xmm3/m128VPADDW xmm1, xmm2, xmm3/m128</td>
+	<td>Add packed word integers from xmm3/m128 VPADDW xmm1, xmm2, xmm3/m128</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG FE /r</td>
@@ -203,7 +203,7 @@ VPADDD (VEX.256 encoded instruction)
   (* Repeat add operation for 2nd and 7th doubleword *)
   DEST[255:224] ← SRC1[255:224] + SRC2[255:224];
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
 <table>
 <tr>
 	<td>PADDB:</td>

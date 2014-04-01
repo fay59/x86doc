@@ -72,10 +72,92 @@
 </ul>
 <p>If the segment descriptor cannot be accessed or is an invalid type for the instruction, the ZF flag is cleared and no access rights are loaded in the destination operand.</p>
 <p>The LAR instruction can only be executed in protected mode and IA-32e mode.</p>
+<h3 id="table-3-62-segment-and-gate-types">Table 3-62. Segment and Gate Types</h3>
 <table>
 <tr>
-	<td>Table 3-62.</td>
-	<td>Segment and Gate Types IA-32e Mode Valid No No No No No No No No No Yes No Yes Yes No No No</td>
+	<td>Type</td>
+	<td>Protected Mode Valid</td>
+	<td>IA-32e Mode Valid</td>
+</tr>
+<tr>
+	<td>Reserved</td>
+	<td>No</td>
+	<td>No</td>
+</tr>
+<tr>
+	<td>Available 16-bit TSS</td>
+	<td>Yes</td>
+	<td>No</td>
+</tr>
+<tr>
+	<td>LDT</td>
+	<td>Yes</td>
+	<td>No</td>
+</tr>
+<tr>
+	<td>Busy 16-bit TSS</td>
+	<td>Yes</td>
+	<td>No</td>
+</tr>
+<tr>
+	<td>16-bit call gate</td>
+	<td>Yes</td>
+	<td>No</td>
+</tr>
+<tr>
+	<td>16-bit/32-bit task gate</td>
+	<td>Yes</td>
+	<td>No</td>
+</tr>
+<tr>
+	<td>16-bit interrupt gate</td>
+	<td>No</td>
+	<td>No</td>
+</tr>
+<tr>
+	<td>16-bit trap gate</td>
+	<td>No</td>
+	<td>No</td>
+</tr>
+<tr>
+	<td>Reserved</td>
+	<td>No</td>
+	<td>No</td>
+</tr>
+<tr>
+	<td>Available 32-bit TSS</td>
+	<td>Yes</td>
+	<td>Yes</td>
+</tr>
+<tr>
+	<td>Reserved</td>
+	<td>No</td>
+	<td>No</td>
+</tr>
+<tr>
+	<td>Busy 32-bit TSS</td>
+	<td>Yes</td>
+	<td>Yes</td>
+</tr>
+<tr>
+	<td>32-bit call gate</td>
+	<td>Yes</td>
+	<td>Yes</td>
+</tr>
+<tr>
+	<td>Reserved</td>
+	<td>No</td>
+	<td>No</td>
+</tr>
+<tr>
+	<td>32-bit interrupt gate</td>
+	<td>No</td>
+	<td>No</td>
+</tr>
+<tr>
+	<td>32-bit trap gate</td>
+	<td>No</td>
+	<td>No</td>
 </tr>
 </table>
 <h2 id="operation">Operation</h2>

@@ -80,10 +80,13 @@
 <p>The result is stored in register AX, register pair DX:AX, or register pair EDX:EAX (depending on the operand size), with the high-order bits of the product contained in register AH, DX, or EDX, respectively. If the high-order bits of the product are 0, the CF and OF flags are cleared; otherwise, the flags are set.</p>
 <p>In 64-bit mode, the instruction’s default operation size is 32 bits. Use of the REX.R prefix permits access to additional registers (R8-R15). Use of the REX.W prefix promotes operation to 64 bits.</p>
 <p>See the summary chart at the beginning of this section for encoding data and limits.</p>
+<h3 id="table-3-66-mul-results">Table 3-66. MUL Results</h3>
 <table>
 <tr>
-	<td>Table 3-66.</td>
-	<td>MUL Results Destination AX DX:AX EDX:EAX RDX:RAX</td>
+	<td>Operand Size</td>
+	<td>Source 1 AL AX EAX RAX</td>
+	<td>Source 2 r/m8 r/m16 r/m32 r/m64</td>
+	<td>Destination AX DX:AX EDX:EAX RDX:RAX</td>
 </tr>
 </table>
 <h2 id="operation">Operation</h2>

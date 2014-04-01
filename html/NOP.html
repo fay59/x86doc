@@ -80,15 +80,57 @@ The memory operand form of the instruction allows software to create a byte sequ
 instruction. For situations where multiple-byte NOPs are needed, the recommended operations (32-bit mode and
 64-bit mode) are:
 </pre>
+<h3 id="table-4-9-recommended-multi-byte-sequence-of-nop-instruction">Table 4-9. Recommended Multi-Byte Sequence of NOP Instruction</h3>
 <table>
 <tr>
-	<td>Table 4-9.</td>
-	<td>Recommended Multi-Byte Sequence of NOP Instruction Byte Sequence 66 90H 0F 1F 00H 0F 1F 40 00H 0F 1F 44 00 00H 66 0F 1F 44 00 00H 0F 1F 80 00 00 00 00H 0F 1F 84 00 00 00 00 00H 66 0F 1F 84 00 00 00 00 00H</td>
+	<td>Length</td>
+	<td>Assembly</td>
+	<td>Byte Sequence</td>
+</tr>
+<tr>
+	<td>2 bytes</td>
+	<td>66 NOP</td>
+	<td>66 90H</td>
+</tr>
+<tr>
+	<td>3 bytes</td>
+	<td>NOP DWORD ptr [EAX]</td>
+	<td>0F 1F 00H</td>
+</tr>
+<tr>
+	<td>4 bytes</td>
+	<td>NOP DWORD ptr [EAX + 00H]</td>
+	<td>0F 1F 40 00H</td>
+</tr>
+<tr>
+	<td>5 bytes</td>
+	<td>NOP DWORD ptr [EAX + EAX*1 + 00H]</td>
+	<td>0F 1F 44 00 00H</td>
+</tr>
+<tr>
+	<td>6 bytes</td>
+	<td>66 NOP DWORD ptr [EAX + EAX*1 + 00H]</td>
+	<td>66 0F 1F 44 00 00H</td>
+</tr>
+<tr>
+	<td>7 bytes</td>
+	<td>NOP DWORD ptr [EAX + 00000000H]</td>
+	<td>0F 1F 80 00 00 00 00H</td>
+</tr>
+<tr>
+	<td>8 bytes</td>
+	<td>NOP DWORD ptr [EAX + EAX*1 + 00000000H]</td>
+	<td>0F 1F 84 00 00 00 00 00H</td>
+</tr>
+<tr>
+	<td>9 bytes</td>
+	<td>66 NOP DWORD ptr [EAX + EAX*1 + 00000000H]</td>
+	<td>66 0F 1F 84 00 00 00 00 00H</td>
 </tr>
 </table>
 <h2 id="flags-affected">Flags Affected</h2>
 <p>None.</p>
-<h2 id="exceptions--all-operating-modes-">Exceptions (All Operating Modes)</h2>
+<h2 id="exceptions-all-operating-modes-">Exceptions (All Operating Modes)</h2>
 <table>
 <tr>
 	<td>#UD</td>

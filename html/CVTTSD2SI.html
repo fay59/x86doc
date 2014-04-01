@@ -20,28 +20,28 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Convert one double-precision floating-point CVTTSD2SI r32, xmm/m64doubleword integer in r32 using truncation.</td>
+	<td>Convert one double-precision floating-point CVTTSD2SI r32, xmm/m64 doubleword integer in r32 using truncation.</td>
 </tr>
 <tr>
 	<td>F2 REX.W 0F 2C /r</td>
 	<td>RM</td>
 	<td>V/N.E.</td>
 	<td>SSE2</td>
-	<td>Convert one double precision floating-point CVTTSD2SI r64, xmm/m64integer in r64 using truncation.</td>
+	<td>Convert one double precision floating-point CVTTSD2SI r64, xmm/m64 integer in r64 using truncation.</td>
 </tr>
 <tr>
 	<td>VEX.LIG.F2.0F.W0 2C /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Convert one double-precision floating-point VCVTTSD2SI r32, xmm1/m64doubleword integer in r32 using truncation.</td>
+	<td>Convert one double-precision floating-point VCVTTSD2SI r32, xmm1/m64 doubleword integer in r32 using truncation.</td>
 </tr>
 <tr>
 	<td>VEX.LIG.F2.0F.W1 2C /r</td>
 	<td>RM</td>
 	<td>V/N.E.1</td>
 	<td>AVX</td>
-	<td>Convert one double precision floating-point VCVTTSD2SI r64, xmm1/m64quadword integer in r64 using truncation.</td>
+	<td>Convert one double precision floating-point VCVTTSD2SI r64, xmm1/m64 quadword integer in r64 using truncation.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. Encoding the VEX prefix with VEX.W=1 in non-64-bit mode is ignored.</p>
@@ -74,7 +74,7 @@
              Integer32_Truncate(SRC[63:0]);
 FI;
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>int _mm_cvttsd_si32(__m128d a) __int64 _mm_cvttsd_si64(__m128d a)</p>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
 <p>Invalid, Precision.</p>

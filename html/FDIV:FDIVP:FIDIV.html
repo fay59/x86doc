@@ -79,48 +79,60 @@
 <p>The FIDIV instructions convert an integer source operand to double extended-precision floating-point format before performing the division. When the source operand is an integer 0, it is treated as a +0.</p>
 <p>If an unmasked divide-by-zero exception (#Z) is generated, no result is stored; if the exception is masked, an ∞ of the appropriate sign is stored in the destination operand.</p>
 <p>The following table shows the results obtained when dividing various classes of numbers, assuming that neither overflow nor underflow occurs.</p>
+<h3 id="table-3-34-fdiv-fdivp-fidiv-results">Table 3-34. FDIV/FDIVP/FIDIV Results</h3>
+<p>DEST</p>
 <table>
 <tr>
-	<td>Table 3-34.</td>
-	<td>FDIV/FDIVP/FIDIV Results DEST</td>
+	<td>− ∞</td>
+	<td>− F + 0</td>
+	<td>− 0 + 0</td>
+	<td>+ 0 − 0</td>
+	<td>+ F − 0</td>
+	<td>+ ∞</td>
+	<td>NaN NaN</td>
 </tr>
 <tr>
-	<td>− F</td>
-	<td>NaN</td>
-</tr>
-<tr>
+	<td>+ ∞</td>
+	<td>+ F</td>
 	<td>+ 0</td>
-	<td>NaN</td>
-</tr>
-<tr>
-	<td>+ F</td>
-	<td>NaN</td>
-</tr>
-<tr>
-	<td>+ F</td>
-	<td>NaN</td>
-</tr>
-<tr>
-	<td>**</td>
-	<td>NaN</td>
-</tr>
-<tr>
-	<td>**</td>
-	<td>NaN</td>
-</tr>
-<tr>
-	<td>− F</td>
-	<td>NaN</td>
-</tr>
-<tr>
-	<td>− F</td>
-	<td>NaN</td>
-</tr>
-<tr>
 	<td>− 0</td>
+	<td>− F</td>
+	<td>− ∞</td>
 	<td>NaN</td>
 </tr>
 <tr>
+	<td>+ ∞+ ∞− ∞</td>
+	<td>+ F ****</td>
+	<td>+ 0</td>
+	<td>− 0</td>
+	<td>− F ****</td>
+	<td>− ∞− ∞+ ∞</td>
+	<td>NaN NaN NaN</td>
+</tr>
+<tr>
+	<td>− ∞</td>
+	<td>− F</td>
+	<td>− 0</td>
+	<td>+ 0</td>
+	<td>+ F</td>
+	<td>+ ∞</td>
+	<td>NaN</td>
+</tr>
+<tr>
+	<td>− ∞</td>
+	<td>− F − 0</td>
+	<td>− 0 − 0</td>
+	<td>+ 0 + 0</td>
+	<td>+ F + 0</td>
+	<td>+ ∞</td>
+	<td>NaN NaN</td>
+</tr>
+<tr>
+	<td>NaN</td>
+	<td>NaN</td>
+	<td>NaN</td>
+	<td>NaN</td>
+	<td>NaN</td>
 	<td>NaN</td>
 	<td>NaN</td>
 </tr>

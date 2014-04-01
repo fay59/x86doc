@@ -20,14 +20,14 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Move two packed single-precision floatingMOVLHPS xmm1, xmm2high quadword of xmm1.</td>
+	<td>Move two packed single-precision floatingMOVLHPS xmm1, xmm2 high quadword of xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.0F.WIG 16 /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Merge two packed single-precision floatingVMOVLHPS xmm1, xmm2, xmm3low quadword of xmm2.</td>
+	<td>Merge two packed single-precision floatingVMOVLHPS xmm1, xmm2, xmm3 low quadword of xmm2.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -67,7 +67,7 @@ DEST[63:0] ← SRC1[63:0]
 DEST[127:64] ← SRC2[63:0]
 DEST[VLMAX-1:128] ← 0
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>MOVHLPS:</td>

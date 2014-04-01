@@ -20,14 +20,14 @@
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Compare low double-precision floating-point CMPSD xmm1, xmm2/m64, imm8comparison predicate.</td>
+	<td>Compare low double-precision floating-point CMPSD xmm1, xmm2/m64, imm8 comparison predicate.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.LIG.F2.0F.WIG C2 /r ib</td>
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Compare low double precision floating-point VCMPSD xmm1, xmm2, xmm3/m64, imm8of imm8 as comparison predicate.</td>
+	<td>Compare low double precision floating-point VCMPSD xmm1, xmm2, xmm3/m64, imm8 of imm8 as comparison predicate.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -60,10 +60,43 @@
 <p>A subsequent computational instruction that uses the mask result in the destination operand as an input operand will not generate a fault, because a mask of all 0s corresponds to a floating-point value of +0.0 and a mask of all 1s corresponds to a QNaN.</p>
 <p>Note that processors with “CPUID.1H:ECX.AVX =0” do not implement the “greater-than”, “greater-than-or-equal”, “not-greater than”, and “not-greater-than-or-equal relations” predicates. These comparisons can be made either by using the inverse relationship (that is, use the “not-less-than-or-equal” to make a “greater-than” comparison) or by using software emulation. When using software emulation, the program must swap the operands (copying registers when necessary to protect the data that will now be in the destination operand), and then perform the compare using a different predicate. The predicate to be used for these emulations is listed in Table 3-7 under the heading Emulation.</p>
 <p>Compilers and assemblers may implement the following two-operand pseudo-ops in addition to the three-operand CMPSD instruction, for processors with “CPUID.1H:ECX.AVX =0”. See Table 3-13. Compiler should treat reserved Imm8 values as illegal syntax.</p>
+<h3 id="table-3-13-pseudo-ops-and-cmpsd">Table 3-13. Pseudo-Ops and CMPSD</h3>
 <table>
 <tr>
-	<td>Table 3-13.</td>
-	<td>Pseudo-Ops and CMPSD Implementation CMPSD xmm1,xmm2, 0CMPSD xmm1,xmm2, 1CMPSD xmm1,xmm2, 2CMPSD xmm1,xmm2, 3CMPSD xmm1,xmm2, 4CMPSD xmm1,xmm2, 5CMPSD xmm1,xmm2, 6CMPSD xmm1,xmm2, 7</td>
+	<td>Pseudo-Op</td>
+	<td>Implementation</td>
+</tr>
+<tr>
+	<td>CMPEQSD xmm1, xmm2</td>
+	<td>CMPSD xmm1,xmm2, 0</td>
+</tr>
+<tr>
+	<td>CMPLTSD xmm1, xmm2</td>
+	<td>CMPSD xmm1,xmm2, 1</td>
+</tr>
+<tr>
+	<td>CMPLESD xmm1, xmm2</td>
+	<td>CMPSD xmm1,xmm2, 2</td>
+</tr>
+<tr>
+	<td>CMPUNORDSD xmm1, xmm2</td>
+	<td>CMPSD xmm1,xmm2, 3</td>
+</tr>
+<tr>
+	<td>CMPNEQSD xmm1, xmm2</td>
+	<td>CMPSD xmm1,xmm2, 4</td>
+</tr>
+<tr>
+	<td>CMPNLTSD xmm1, xmm2</td>
+	<td>CMPSD xmm1,xmm2, 5</td>
+</tr>
+<tr>
+	<td>CMPNLESD xmm1, xmm2</td>
+	<td>CMPSD xmm1,xmm2, 6</td>
+</tr>
+<tr>
+	<td>CMPORDSD xmm1, xmm2</td>
+	<td>CMPSD xmm1,xmm2, 7</td>
 </tr>
 </table>
 <p>The greater-than relations not implemented in the processor require more than one instruction to emulate in software and therefore should not be implemented as pseudo-ops. (For these, the programmer should reverse the operands of the corresponding less than relations and use move instructions to ensure that the mask is moved to the correct destination register and that the source operand is left intact.)</p>
@@ -75,9 +108,9 @@
 <p>Processors with “CPUID.1H:ECX.AVX =1” implement the full complement of 32 predicates shown in Table 3-9, software emulation is no longer needed. Compilers and assemblers may implement the following three-operand pseudo-ops in addition to the four-operand VCMPSD instruction. See Table 3-14, where the notations of reg1 reg2, and reg3 represent either XMM registers or YMM registers. Compiler should treat reserved Imm8 values as illegal syntax. Alternately, intrinsics can map the pseudo-ops to pre-defined constants to support a simpler intrinsic interface.</p>
 <table>
 <tr>
-	<td>: Pseudo-Op VCMPEQSD reg1, reg2, reg3VCMPLTSD reg1, reg2, reg3VCMPLESD reg1, reg2, reg3VCMPUNORDSD reg1, reg2, reg3VCMPNEQSD reg1, reg2, reg3VCMPNLTSD reg1, reg2, reg3VCMPNLESD reg1, reg2, reg3VCMPORDSD reg1, reg2, reg3VCMPEQ_UQSD reg1, reg2, reg3VCMPNGESD reg1, reg2, reg3VCMPNGTSD reg1, reg2, reg3VCMPFALSESD reg1, reg2, reg3VCMPNEQ_OQSD reg1, reg2, reg3VCMPGESD reg1, reg2, reg3VCMPGTSD reg1, reg2, reg3Pseudo-Op VCMPTRUESD reg1, reg2, reg3VCMPEQ_OSSD reg1, reg2, reg3VCMPLT_OQSD reg1, reg2, reg3VCMPLE_OQSD reg1, reg2, reg3VCMPUNORD_SSD reg1, reg2, reg3VCMPNEQ_USSD reg1, reg2, reg3VCMPNLT_UQSD reg1, reg2, reg3VCMPNLE_UQSD reg1, reg2, reg3VCMPORD_SSD reg1, reg2, reg3VCMPEQ_USSD reg1, reg2, reg3VCMPNGE_UQSD reg1, reg2, reg3VCMPNGT_UQSD reg1, reg2, reg3VCMPFALSE_OSSD reg1, reg2, reg3VCMPNEQ_OSSD reg1, reg2, reg3VCMPGE_OQSD reg1, reg2, reg3VCMPGT_OQSD reg1, reg2, reg3VCMPTRUE_USSD reg1, reg2, reg3</td>
+	<td>: Pseudo-Op VCMPEQSD reg1, reg2, reg3 VCMPLTSD reg1, reg2, reg3 VCMPLESD reg1, reg2, reg3 VCMPUNORDSD reg1, reg2, reg3 VCMPNEQSD reg1, reg2, reg3 VCMPNLTSD reg1, reg2, reg3 VCMPNLESD reg1, reg2, reg3 VCMPORDSD reg1, reg2, reg3 VCMPEQ_UQSD reg1, reg2, reg3 VCMPNGESD reg1, reg2, reg3 VCMPNGTSD reg1, reg2, reg3 VCMPFALSESD reg1, reg2, reg3 VCMPNEQ_OQSD reg1, reg2, reg3 VCMPGESD reg1, reg2, reg3 VCMPGTSD reg1, reg2, reg3 Pseudo-Op VCMPTRUESD reg1, reg2, reg3 VCMPEQ_OSSD reg1, reg2, reg3 VCMPLT_OQSD reg1, reg2, reg3 VCMPLE_OQSD reg1, reg2, reg3 VCMPUNORD_SSD reg1, reg2, reg3 VCMPNEQ_USSD reg1, reg2, reg3 VCMPNLT_UQSD reg1, reg2, reg3 VCMPNLE_UQSD reg1, reg2, reg3 VCMPORD_SSD reg1, reg2, reg3 VCMPEQ_USSD reg1, reg2, reg3 VCMPNGE_UQSD reg1, reg2, reg3 VCMPNGT_UQSD reg1, reg2, reg3 VCMPFALSE_OSSD reg1, reg2, reg3 VCMPNEQ_OSSD reg1, reg2, reg3 VCMPGE_OQSD reg1, reg2, reg3 VCMPGT_OQSD reg1, reg2, reg3 VCMPTRUE_USSD reg1, reg2, reg3</td>
 	<td>Table 3-14. Table 3-14.</td>
-	<td>Pseudo-Op and VCMPSD Implementation CMPSD Implementation VCMPSD reg1, reg2, reg3, 0VCMPSD reg1, reg2, reg3, 1VCMPSD reg1, reg2, reg3, 2VCMPSD reg1, reg2, reg3, 3VCMPSD reg1, reg2, reg3, 4VCMPSD reg1, reg2, reg3, 5VCMPSD reg1, reg2, reg3, 6VCMPSD reg1, reg2, reg3, 7VCMPSD reg1, reg2, reg3, 8VCMPSD reg1, reg2, reg3, 9VCMPSD reg1, reg2, reg3, 0AH VCMPSD reg1, reg2, reg3, 0BH VCMPSD reg1, reg2, reg3, 0CH VCMPSD reg1, reg2, reg3, 0DH VCMPSD reg1, reg2, reg3, 0EH Pseudo-Op and VCMPSD Implementation (Contd.) CMPSD Implementation VCMPSD reg1, reg2, reg3, 0FH VCMPSD reg1, reg2, reg3, 10H VCMPSD reg1, reg2, reg3, 11H VCMPSD reg1, reg2, reg3, 12H VCMPSD reg1, reg2, reg3, 13H VCMPSD reg1, reg2, reg3, 14H VCMPSD reg1, reg2, reg3, 15H VCMPSD reg1, reg2, reg3, 16H VCMPSD reg1, reg2, reg3, 17H VCMPSD reg1, reg2, reg3, 18H VCMPSD reg1, reg2, reg3, 19H VCMPSD reg1, reg2, reg3, 1AH VCMPSD reg1, reg2, reg3, 1BH VCMPSD reg1, reg2, reg3, 1CH VCMPSD reg1, reg2, reg3, 1DH VCMPSD reg1, reg2, reg3, 1EH VCMPSD reg1, reg2, reg3, 1FH</td>
+	<td>Pseudo-Op and VCMPSD Implementation CMPSD Implementation VCMPSD reg1, reg2, reg3, 0 VCMPSD reg1, reg2, reg3, 1 VCMPSD reg1, reg2, reg3, 2 VCMPSD reg1, reg2, reg3, 3 VCMPSD reg1, reg2, reg3, 4 VCMPSD reg1, reg2, reg3, 5 VCMPSD reg1, reg2, reg3, 6 VCMPSD reg1, reg2, reg3, 7 VCMPSD reg1, reg2, reg3, 8 VCMPSD reg1, reg2, reg3, 9 VCMPSD reg1, reg2, reg3, 0AH VCMPSD reg1, reg2, reg3, 0BH VCMPSD reg1, reg2, reg3, 0CH VCMPSD reg1, reg2, reg3, 0DH VCMPSD reg1, reg2, reg3, 0EH Pseudo-Op and VCMPSD Implementation (Contd.) CMPSD Implementation VCMPSD reg1, reg2, reg3, 0FH VCMPSD reg1, reg2, reg3, 10H VCMPSD reg1, reg2, reg3, 11H VCMPSD reg1, reg2, reg3, 12H VCMPSD reg1, reg2, reg3, 13H VCMPSD reg1, reg2, reg3, 14H VCMPSD reg1, reg2, reg3, 15H VCMPSD reg1, reg2, reg3, 16H VCMPSD reg1, reg2, reg3, 17H VCMPSD reg1, reg2, reg3, 18H VCMPSD reg1, reg2, reg3, 19H VCMPSD reg1, reg2, reg3, 1AH VCMPSD reg1, reg2, reg3, 1BH VCMPSD reg1, reg2, reg3, 1CH VCMPSD reg1, reg2, reg3, 1DH VCMPSD reg1, reg2, reg3, 1EH VCMPSD reg1, reg2, reg3, 1FH</td>
 </tr>
 </table>
 <h2 id="operation">Operation</h2>
@@ -130,7 +163,7 @@ ELSE DEST[63:0] ← 0000000000000000H; FI;
 DEST[127:64] ← SRC1[127:64]
 DEST[VLMAX-1:128] ← 0
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
 <table>
 <tr>
 	<td>CMPSD for equality:</td>

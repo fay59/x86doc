@@ -6,7 +6,7 @@
 	<title>PHADDW/PHADDD — Packed Horizontal Add</title>
 </head>
 <body>
-<h1 id="phaddw-phaddd---packed-horizontal-add">PHADDW/PHADDD — Packed Horizontal Add</h1>
+<h1 id="phaddw-phaddd-packed-horizontal-add">PHADDW/PHADDD — Packed Horizontal Add</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -16,7 +16,7 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 38 01 /r1PHADDW mm1, mm2/m64</td>
+	<td>0F 38 01 /r1 PHADDW mm1, mm2/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSSE3</td>
@@ -108,21 +108,21 @@
 <tr>
 	<td>SRC2</td>
 	<td>Y7</td>
-	<td>Y6S7</td>
-	<td>Y5Figure 4-6.</td>
-	<td>Y4S3</td>
-	<td>Y3Dest</td>
-	<td>Y2S3255256-bit VPHADDD Instruction Operation</td>
+	<td>Y6 S7</td>
+	<td>Y5 Figure 4-6.</td>
+	<td>Y4 S3</td>
+	<td>Y3 Dest</td>
+	<td>Y2 S3 255 256-bit VPHADDD Instruction Operation</td>
 	<td>Y1</td>
-	<td>Y0S4</td>
-	<td>X7S3</td>
+	<td>Y0 S4</td>
+	<td>X7 S3</td>
 	<td>X6</td>
 	<td>X5</td>
-	<td>X4S2</td>
-	<td>X3S1</td>
-	<td>X20</td>
+	<td>X4 S2</td>
+	<td>X3 S1</td>
+	<td>X2 0</td>
 	<td>X1</td>
-	<td>X0S0</td>
+	<td>X0 S0</td>
 	<td>SRC1</td>
 </tr>
 </table>
@@ -192,7 +192,7 @@ DEST[191-160] ← SRC1[255-224] + SRC1[223-192]
 DEST[223-192] ← SRC2[191-160] + SRC2[159-128]
 DEST[255-224] ← SRC2[255-224] + SRC2[223-192]
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
 <table>
 <tr>
 	<td>PHADDW:</td>

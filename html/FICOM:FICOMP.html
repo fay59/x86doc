@@ -46,10 +46,19 @@
 </table>
 <h2 id="description">Description</h2>
 <p>Compares the value in ST(0) with an integer source operand and sets the condition code flags C0, C2, and C3 in the FPU status word according to the results (see table below). The integer value is converted to double extendedprecision floating-point format before the comparison is made.</p>
+<h3 id="table-3-36-ficom-ficomp-results">Table 3-36. FICOM/FICOMP Results</h3>
 <table>
 <tr>
-	<td>Table 3-36.</td>
-	<td>FICOM/FICOMP Results C00101</td>
+	<td>Condition</td>
+	<td>C3 0 0 1</td>
+	<td>C2 0 0 0</td>
+	<td>C0 0 1 0</td>
+</tr>
+<tr>
+	<td>Unordered</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
 </tr>
 </table>
 <p>These instructions perform an “unordered comparison.” An unordered comparison also checks the class of the numbers being compared (see “FXAM—Examine ModR/M” in this chapter). If either operand is a NaN or is in an undefined format, the condition flags are set to “unordered.”</p>

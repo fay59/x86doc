@@ -20,21 +20,21 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Convert two packed double-precision floatingCVTTPD2DQ xmm1, xmm2/m128signed doubleword integers in xmm1 using truncation.</td>
+	<td>Convert two packed double-precision floatingCVTTPD2DQ xmm1, xmm2/m128 signed doubleword integers in xmm1 using truncation.</td>
 </tr>
 <tr>
 	<td>VEX.128.66.0F.WIG E6 /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Convert two packed double-precision floatingVCVTTPD2DQ xmm1, xmm2/m128doubleword integers in xmm1 using truncation.</td>
+	<td>Convert two packed double-precision floatingVCVTTPD2DQ xmm1, xmm2/m128 doubleword integers in xmm1 using truncation.</td>
 </tr>
 <tr>
 	<td>VEX.256.66.0F.WIG E6 /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Convert four packed double-precision floatingVCVTTPD2DQ xmm1, ymm2/m256doubleword integers in xmm1 using truncation.</td>
+	<td>Convert four packed double-precision floatingVCVTTPD2DQ xmm1, ymm2/m256 doubleword integers in xmm1 using truncation.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -60,10 +60,10 @@
 <table>
 <tr>
 	<td>SRC DEST</td>
-	<td>X3Figure 3-14.</td>
-	<td>X20VCVTTPD2DQ (VEX.256 encoded version)</td>
-	<td>X1X2</td>
-	<td>X0X0</td>
+	<td>X3 Figure 3-14.</td>
+	<td>X2 0 VCVTTPD2DQ (VEX.256 encoded version)</td>
+	<td>X1 X2</td>
+	<td>X0 X0</td>
 </tr>
 </table>
 <h2 id="operation">Operation</h2>
@@ -83,7 +83,7 @@ DEST[95:64] ← Convert_Double_Precision_Floating_Point_To_Integer_Truncate(SRC[
 DEST[127:96] ← Convert_Double_Precision_Floating_Point_To_Integer_Truncate(SRC[255:192)
 DEST[255:128]← 0
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>CVTTPD2DQ:</td>

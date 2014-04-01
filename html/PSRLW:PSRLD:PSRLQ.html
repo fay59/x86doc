@@ -16,7 +16,7 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F D1 /r1PSRLW mm, mm/m64</td>
+	<td>0F D1 /r1 PSRLW mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
@@ -44,7 +44,7 @@
 	<td>Shift words in xmm1 right by imm8 while PSRLW xmm1, imm8</td>
 </tr>
 <tr>
-	<td>0F D2 /r1PSRLD mm, mm/m64</td>
+	<td>0F D2 /r1 PSRLD mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
@@ -69,7 +69,7 @@
 	<td>MI</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Shift doublewords in xmm1 right by imm8PSRLD xmm1, imm8</td>
+	<td>Shift doublewords in xmm1 right by imm8 PSRLD xmm1, imm8</td>
 </tr>
 <tr>
 	<td>0F D3 /r1</td>
@@ -86,7 +86,7 @@
 	<td>Shift quadwords in xmm1 right by amount PSRLQ xmm1, xmm2/m128</td>
 </tr>
 <tr>
-	<td>0F 73 /2 ib1PSRLQ mm, imm8</td>
+	<td>0F 73 /2 ib1 PSRLQ mm, imm8</td>
 	<td>MI</td>
 	<td>V/V</td>
 	<td>MMX</td>
@@ -125,7 +125,7 @@
 	<td>VMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Shift doublewords in xmm2 right by imm8VPSRLD xmm1, xmm2, imm8</td>
+	<td>Shift doublewords in xmm2 right by imm8 VPSRLD xmm1, xmm2, imm8</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG D3 /r</td>
@@ -167,7 +167,7 @@
 	<td>VMI</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Shift doublewords in ymm2 right by imm8VPSRLD ymm1, ymm2, imm8</td>
+	<td>Shift doublewords in ymm2 right by imm8 VPSRLD ymm1, ymm2, imm8</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG D3 /r</td>
@@ -230,9 +230,9 @@
 <table>
 <tr>
 	<td>X3</td>
-	<td>X2X2 &gt;&gt; COUNT</td>
-	<td>X1X1 &gt;&gt; COUNT</td>
-	<td>X0DEST Shift Right with Zero Extension X0 &gt;&gt; COUNT DEST PSRLW, PSRLD, and PSRLQ Instruction Operation Using 64-bit Operand</td>
+	<td>X2 X2 &gt;&gt; COUNT</td>
+	<td>X1 X1 &gt;&gt; COUNT</td>
+	<td>X0 DEST Shift Right with Zero Extension X0 &gt;&gt; COUNT DEST PSRLW, PSRLD, and PSRLQ Instruction Operation Using 64-bit Operand</td>
 </tr>
 </table>
 <p>The (V)PSRLW instruction shifts each of the words in the destination operand to the right by the number of bits specified in the count operand; the (V)PSRLD instruction shifts each of the doublewords in the destination operand; and the PSRLQ instruction shifts the quadword (or quadwords) in the destination operand.</p>
@@ -344,7 +344,7 @@ DEST[255:0] ← LOGICAL_RIGHT_SHIFT_QWORDS_256b(SRC1, SRC2)
 VPSRLQ (ymm, imm8)
 DEST[255:0] ← LOGICAL_RIGHT_SHIFT_QWORDS_256b(SRC1, imm8)
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
 <table>
 <tr>
 	<td>PSRLW: PSRLW: (V)PSRLW: (V)PSRLW: VPSRLW: VPSRLW:</td>

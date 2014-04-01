@@ -6,7 +6,7 @@
 	<title>BLENDVPS — Variable Blend Packed Single Precision Floating-Point Values</title>
 </head>
 <body>
-<h1 id="blendvps---variable-blend-packed-single-precision-floating-point-values">BLENDVPS — Variable Blend Packed Single Precision Floating-Point Values</h1>
+<h1 id="blendvps-variable-blend-packed-single-precision-floating-point-values">BLENDVPS — Variable Blend Packed Single Precision Floating-Point Values</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -27,14 +27,14 @@
 	<td>RVMR</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Conditionally copy single-precision floatingVBLENDVPS xmm1, xmm2, xmm3/m128, xmm4xmm1, based on mask bits in the specified mask operand, xmm4.</td>
+	<td>Conditionally copy single-precision floatingVBLENDVPS xmm1, xmm2, xmm3/m128, xmm4 xmm1, based on mask bits in the specified mask operand, xmm4.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F3A.W0 4A /r /is4</td>
 	<td>RVMR</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Conditionally copy single-precision floatingVBLENDVPS ymm1, ymm2, ymm3/m256, ymm4ymm1, based on mask bits in the specified mask register, ymm4.</td>
+	<td>Conditionally copy single-precision floatingVBLENDVPS ymm1, ymm2, ymm3/m256, ymm4 ymm1, based on mask bits in the specified mask register, ymm4.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -110,7 +110,7 @@ IF (MASK[223] = 0) THEN DEST[223:192] ← SRC1[223:192]
 IF (MASK[255] = 0) THEN DEST[255:224] ← SRC1[255:224]
      ELSE DEST [255:224] ← SRC2[255:224] FI
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>BLENDVPS:</td>

@@ -6,7 +6,7 @@
 	<title>VFMADD132PD/VFMADD213PD/VFMADD231PD — Fused Multiply-Add of Packed DoublePrecision Floating-Point Values</title>
 </head>
 <body>
-<h1 id="vfmadd132pd-vfmadd213pd-vfmadd231pd---fused-multiply-add-of-packed-doubleprecision-floating-point-values">VFMADD132PD/VFMADD213PD/VFMADD231PD — Fused Multiply-Add of Packed DoublePrecision Floating-Point Values</h1>
+<h1 id="vfmadd132pd-vfmadd213pd-vfmadd231pd-fused-multiply-add-of-packed-doubleprecision-floating-point-values">VFMADD132PD/VFMADD213PD/VFMADD231PD — Fused Multiply-Add of Packed DoublePrecision Floating-Point Values</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -34,7 +34,7 @@
 	<td>A</td>
 	<td>V/V</td>
 	<td>FMA</td>
-	<td>Multiply packed double-precision floating-point valVFMADD231PD xmm0, xmm1, xmm2/m128put result in xmm0.</td>
+	<td>Multiply packed double-precision floating-point valVFMADD231PD xmm0, xmm1, xmm2/m128 put result in xmm0.</td>
 </tr>
 <tr>
 	<td>VEX.DDS.256.66.0F38.W1 98 /r VFMADD132PD ymm0, ymm1, ymm2/m256</td>
@@ -121,7 +121,7 @@ IF (VEX.128) THEN
 DEST[VLMAX-1:128] ← 0
 FI
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>VFMADD132PD: __m128d _mm_fmadd_pd (__m128d a, __m128d b, __m128d c);</p>
 <p>VFMADD213PD: __m128d _mm_fmadd_pd (__m128d a, __m128d b, __m128d c);</p>
 <p>VFMADD231PD: __m128d _mm_fmadd_pd (__m128d a, __m128d b, __m128d c);</p>

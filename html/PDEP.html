@@ -6,14 +6,14 @@
 	<title>PDEP — Parallel Bits Deposit</title>
 </head>
 <body>
-<h1 id="pdep---parallel-bits-deposit">PDEP — Parallel Bits Deposit</h1>
+<h1 id="pdep-parallel-bits-deposit">PDEP — Parallel Bits Deposit</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction VEX.NDS.LZ.F2.0F38.W0 F5 /r VEX.NDS.LZ.F2.0F38.W1 F5 /r PDEP r64a, r64b, r/m64</td>
 	<td>Op/En V/V V/N.E.</td>
-	<td>64/32-bit Mode</td>
-	<td>CPUID Feature Flag BMI2BMI2</td>
-	<td>Description Parallel deposit of bits from r32b using mask in r/m32, result is writPDEP r32a, r32b, r/m32Parallel deposit of bits from r64b using mask in r/m64, result is written to r64a.</td>
+	<td>64/32 -bit Mode</td>
+	<td>CPUID Feature Flag BMI2 BMI2</td>
+	<td>Description Parallel deposit of bits from r32b using mask in r/m32, result is writPDEP r32a, r32b, r/m32 Parallel deposit of bits from r64b using mask in r/m64, result is written to r64a.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -67,22 +67,22 @@
 	<td>0</td>
 	<td>1</td>
 	<td>0</td>
-	<td>0(mask)</td>
+	<td>0 (mask)</td>
 </tr>
 <tr>
 	<td>0</td>
 	<td>0</td>
 	<td>0</td>
 	<td>S3</td>
-	<td>0Figure 4-4.</td>
-	<td>S2PDEP Example</td>
+	<td>0 Figure 4-4.</td>
+	<td>S2 PDEP Example</td>
 	<td>0</td>
 	<td>S1</td>
 	<td>0</td>
 	<td>0</td>
 	<td>S0</td>
 	<td>0</td>
-	<td>0bit 31</td>
+	<td>0 bit 31</td>
 </tr>
 </table>
 <p>This instruction is not supported in real mode and virtual-8086 mode. The operand size is always 32 bits if not in 64-bit mode. In 64-bit mode operand size 64 requires VEX.W1. VEX.W1 is ignored in non-64-bit modes. An attempt to execute this instruction with VEX.L not equal to 0 will cause #UD.</p>
@@ -101,7 +101,7 @@ OD
 </pre>
 <h2 id="flags-affected">Flags Affected</h2>
 <p>None.</p>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>PDEP:</td>

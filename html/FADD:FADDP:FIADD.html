@@ -81,40 +81,60 @@
 <p>The table on the following page shows the results obtained when adding various classes of numbers, assuming that neither overflow nor underflow occurs.</p>
 <p>When the sum of two operands with opposite signs is 0, the result is +0, except for the round toward −∞ mode, in which case the result is −0. When the source operand is an integer 0, it is treated as a +0.</p>
 <p>When both operand are infinities of the same sign, the result is ∞ of the expected sign. If both operands are infinities of opposite signs, an invalid-operation exception is generated. See Table 3-28.</p>
+<h3 id="table-3-28-fadd-faddp-fiadd-results">Table 3-28. FADD/FADDP/FIADD Results</h3>
+<p>DEST</p>
 <table>
 <tr>
-	<td>Table 3-28.</td>
-	<td>FADD/FADDP/FIADD Results DEST</td>
-</tr>
-<tr>
-	<td>− F</td>
-	<td>NaN</td>
+	<td>− ∞− ∞</td>
+	<td>− F − ∞</td>
+	<td>− 0 − ∞</td>
+	<td>+ 0 − ∞</td>
+	<td>+ F − ∞</td>
+	<td>+ ∞</td>
+	<td>NaN NaN</td>
 </tr>
 <tr>
 	<td>− ∞</td>
-	<td>NaN</td>
-</tr>
-<tr>
 	<td>− F</td>
-	<td>NaN</td>
-</tr>
-<tr>
-	<td>DEST</td>
-	<td>NaN</td>
-</tr>
-<tr>
-	<td>DEST</td>
-	<td>NaN</td>
-</tr>
-<tr>
+	<td>SRC</td>
+	<td>SRC</td>
 	<td>± F or ± 0</td>
-	<td>NaN</td>
-</tr>
-<tr>
 	<td>+ ∞</td>
 	<td>NaN</td>
 </tr>
 <tr>
+	<td>− ∞</td>
+	<td>DEST</td>
+	<td>− 0</td>
+	<td>± 0</td>
+	<td>DEST</td>
+	<td>+ ∞</td>
+	<td>NaN</td>
+</tr>
+<tr>
+	<td>− ∞</td>
+	<td>DEST</td>
+	<td>± 0</td>
+	<td>+ 0</td>
+	<td>DEST</td>
+	<td>+ ∞</td>
+	<td>NaN</td>
+</tr>
+<tr>
+	<td>− ∞</td>
+	<td>± F or ± 0 + ∞</td>
+	<td>SRC + ∞</td>
+	<td>SRC + ∞</td>
+	<td>+ F + ∞</td>
+	<td>+ ∞+ ∞</td>
+	<td>NaN NaN</td>
+</tr>
+<tr>
+	<td>NaN</td>
+	<td>NaN</td>
+	<td>NaN</td>
+	<td>NaN</td>
+	<td>NaN</td>
 	<td>NaN</td>
 	<td>NaN</td>
 </tr>

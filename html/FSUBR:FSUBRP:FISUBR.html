@@ -81,40 +81,60 @@
 <p>The following table shows the results obtained when subtracting various classes of numbers from one another, assuming that neither overflow nor underflow occurs. Here, the DEST value is subtracted from the SRC value (SRC − DEST = result).</p>
 <p>When the difference between two operands of like sign is 0, the result is +0, except for the round toward −∞ mode, in which case the result is −0. This instruction also guarantees that +0 − (−0) = +0, and that −0 − (+0) = −0. When the source operand is an integer 0, it is treated as a +0.</p>
 <p>When one operand is ∞, the result is ∞ of the expected sign. If both operands are ∞ of the same sign, an invalidoperation exception is generated.</p>
+<h3 id="table-3-49-fsubr-fsubrp-fisubr-results">Table 3-49. FSUBR/FSUBRP/FISUBR Results</h3>
+<p>SRC</p>
 <table>
 <tr>
-	<td>Table 3-49.</td>
-	<td>FSUBR/FSUBRP/FISUBR Results SRC</td>
+	<td>− ∞</td>
+	<td>−F or −I + ∞</td>
+	<td>−0 + ∞</td>
+	<td>+0 + ∞</td>
+	<td>+F or +I + ∞</td>
+	<td>+ ∞+ ∞</td>
+	<td>NaN NaN</td>
 </tr>
 <tr>
-	<td>−F or −I</td>
-	<td>NaN</td>
-</tr>
-<tr>
+	<td>−∞</td>
+	<td>±F or ±0</td>
+	<td>−DEST</td>
+	<td>−DEST</td>
+	<td>+ F</td>
 	<td>+ ∞</td>
 	<td>NaN</td>
 </tr>
 <tr>
-	<td>±F or ±0</td>
-	<td>NaN</td>
-</tr>
-<tr>
+	<td>−∞</td>
 	<td>SRC</td>
-	<td>NaN</td>
-</tr>
-<tr>
+	<td>±0</td>
+	<td>+ 0</td>
 	<td>SRC</td>
+	<td>+ ∞</td>
 	<td>NaN</td>
 </tr>
 <tr>
-	<td>− F</td>
+	<td>−∞</td>
+	<td>SRC</td>
+	<td>− 0</td>
+	<td>±0</td>
+	<td>SRC</td>
+	<td>+ ∞</td>
 	<td>NaN</td>
 </tr>
 <tr>
-	<td>− ∞</td>
-	<td>NaN</td>
+	<td>−∞−∞</td>
+	<td>− F − ∞</td>
+	<td>−DEST − ∞</td>
+	<td>−DEST − ∞</td>
+	<td>±F or ±0 − ∞</td>
+	<td>+ ∞</td>
+	<td>NaN NaN</td>
 </tr>
 <tr>
+	<td>NaN</td>
+	<td>NaN</td>
+	<td>NaN</td>
+	<td>NaN</td>
+	<td>NaN</td>
 	<td>NaN</td>
 	<td>NaN</td>
 </tr>

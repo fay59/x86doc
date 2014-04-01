@@ -79,48 +79,60 @@
 <p>The FIMUL instructions convert an integer source operand to double extendedprecision floating-point format before performing the multiplication.</p>
 <p>The sign of the result is always the exclusive-OR of the source signs, even if one or more of the values being multiplied is 0 or ∞. When the source operand is an integer 0, it is treated as a +0.</p>
 <p>The following table shows the results obtained when multiplying various classes of numbers, assuming that neither overflow nor underflow occurs.</p>
+<h3 id="table-3-39-fmul-fmulp-fimul-results">Table 3-39. FMUL/FMULP/FIMUL Results</h3>
+<p>DEST</p>
 <table>
 <tr>
-	<td>Table 3-39.</td>
-	<td>FMUL/FMULP/FIMUL Results DEST</td>
-</tr>
-<tr>
-	<td>− F</td>
-	<td>NaN</td>
+	<td>− ∞+ ∞</td>
+	<td>− F + ∞</td>
+	<td>− 0</td>
+	<td>+ 0</td>
+	<td>+ F − ∞</td>
+	<td>+ ∞− ∞</td>
+	<td>NaN NaN</td>
 </tr>
 <tr>
 	<td>+ ∞</td>
-	<td>NaN</td>
-</tr>
-<tr>
 	<td>+ F</td>
-	<td>NaN</td>
-</tr>
-<tr>
-	<td>+ F</td>
-	<td>NaN</td>
-</tr>
-<tr>
-	<td>+ 0</td>
-	<td>NaN</td>
-</tr>
-<tr>
-	<td>− 0</td>
-	<td>NaN</td>
-</tr>
-<tr>
+	<td>+0</td>
+	<td>−0</td>
 	<td>− F</td>
-	<td>NaN</td>
-</tr>
-<tr>
-	<td>− F</td>
-	<td>NaN</td>
-</tr>
-<tr>
 	<td>− ∞</td>
 	<td>NaN</td>
 </tr>
 <tr>
+	<td>+ ∞</td>
+	<td>+ F + 0 − 0</td>
+	<td>+0 +0 −0</td>
+	<td>−0 −0 +0</td>
+	<td>− F − 0 + 0</td>
+	<td>− ∞</td>
+	<td>NaN NaN NaN</td>
+</tr>
+<tr>
+	<td>−∞</td>
+	<td>− F</td>
+	<td>−0</td>
+	<td>+0</td>
+	<td>+ F</td>
+	<td>+∞</td>
+	<td>NaN</td>
+</tr>
+<tr>
+	<td>−∞−∞</td>
+	<td>− F − ∞</td>
+	<td>−0</td>
+	<td>+0</td>
+	<td>+ F + ∞</td>
+	<td>+∞+∞</td>
+	<td>NaN NaN</td>
+</tr>
+<tr>
+	<td>NaN</td>
+	<td>NaN</td>
+	<td>NaN</td>
+	<td>NaN</td>
+	<td>NaN</td>
 	<td>NaN</td>
 	<td>NaN</td>
 </tr>

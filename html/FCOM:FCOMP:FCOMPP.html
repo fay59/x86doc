@@ -81,10 +81,13 @@
 </table>
 <h2 id="description">Description</h2>
 <p>Compares the contents of register ST(0) and source value and sets condition code flags C0, C2, and C3 in the FPU status word according to the results (see the table below). The source operand can be a data register or a memory location. If no source operand is given, the value in ST(0) is compared with the value in ST(1). The sign of zero is ignored, so that -0.0 is equal to +0.0.</p>
+<h3 id="table-3-31-fcom-fcomp-fcompp-results">Table 3-31. FCOM/FCOMP/FCOMPP Results</h3>
 <table>
 <tr>
-	<td>Table 3-31.</td>
-	<td>FCOM/FCOMP/FCOMPP Results C00101</td>
+	<td>Condition</td>
+	<td>C3 0 0 1 1</td>
+	<td>C2 0 0 0 1</td>
+	<td>C0 0 1 0 1</td>
 </tr>
 </table>
 <p class="notes">Notes: * Flags not set if unmasked invalid-arithmetic-operand (#IA) exception is generated.</p>

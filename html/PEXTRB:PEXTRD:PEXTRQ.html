@@ -6,7 +6,7 @@
 	<title>PEXTRB/PEXTRD/PEXTRQ — Extract Byte/Dword/Qword</title>
 </head>
 <body>
-<h1 id="pextrb-pextrd-pextrq---extract-byte-dword-qword">PEXTRB/PEXTRD/PEXTRQ — Extract Byte/Dword/Qword</h1>
+<h1 id="pextrb-pextrd-pextrq-extract-byte-dword-qword">PEXTRB/PEXTRD/PEXTRQ — Extract Byte/Dword/Qword</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 3A 14/r ib PEXTRB reg/m8, xmm2, imm8</td>
+	<td>66 0F 3A 14 /r ib PEXTRB reg/m8, xmm2, imm8</td>
 	<td>MRI</td>
 	<td>V/V</td>
 	<td>SSE4_1</td>
 	<td>Extract a byte integer value from xmm2 at the source byte offset specified by imm8 into reg or m8. The upper bits of r32 or r64 are zeroed.</td>
 </tr>
 <tr>
-	<td>66 0F 3A 16/r ib PEXTRD r/m32, xmm2, imm8</td>
+	<td>66 0F 3A 16 /r ib PEXTRD r/m32, xmm2, imm8</td>
 	<td>MRI</td>
 	<td>V/V</td>
 	<td>SSE4_1</td>
-	<td>Extract a dword integer value from xmm2 at the source dword offset specified by imm8into r/m32.</td>
+	<td>Extract a dword integer value from xmm2 at the source dword offset specified by imm8 into r/m32.</td>
 </tr>
 <tr>
-	<td>66 REX.W 0F 3A 16/r ib PEXTRQ r/m64, xmm2, imm8</td>
+	<td>66 REX.W 0F 3A 16 /r ib PEXTRQ r/m64, xmm2, imm8</td>
 	<td>MRI</td>
 	<td>V/N.E.</td>
 	<td>SSE4_1</td>
-	<td>Extract a qword integer value from xmm2 at the source qword offset specified by imm8into r/m64.</td>
+	<td>Extract a qword integer value from xmm2 at the source qword offset specified by imm8 into r/m64.</td>
 </tr>
 <tr>
 	<td>VEX.128.66.0F3A.W0 14 /r ib VPEXTRB reg/m8, xmm2, imm8</td>
@@ -48,14 +48,14 @@
 	<td>MRI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Extract a dword integer value from xmm2 at the source dword offset specified by imm8into r32/m32.</td>
+	<td>Extract a dword integer value from xmm2 at the source dword offset specified by imm8 into r32/m32.</td>
 </tr>
 <tr>
 	<td>VEX.128.66.0F3A.W1 16 /r ib VPEXTRQ r64/m64, xmm2, imm8</td>
 	<td>MRI</td>
 	<td>V/i</td>
 	<td>AVX</td>
-	<td>Extract a qword integer value from xmm2 at the source dword offset specified by imm8into r64/m64.</td>
+	<td>Extract a qword integer value from xmm2 at the source dword offset specified by imm8 into r64/m64.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. In 64-bit mode, VEX.W1 is ignored for VPEXTRB (similar to legacy REX.W=1 prefix in PEXTRB).</p>
@@ -124,7 +124,7 @@ ELSE
   DEST[31:8] ←ZERO_FILL;
 FI
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>PEXTRB:</td>

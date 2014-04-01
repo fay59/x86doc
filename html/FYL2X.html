@@ -6,7 +6,7 @@
 	<title>FYL2X—Compute y ∗ log2x</title>
 </head>
 <body>
-<h1 id="fyl2x-compute-y---log2x">FYL2X—Compute y ∗ log2x</h1>
+<h1 id="fyl2x-compute-y-log2x">FYL2X—Compute y ∗ log2x</h1>
 <table>
 <tr>
 	<td>Opcode</td>
@@ -26,32 +26,26 @@
 <h2 id="description">Description</h2>
 <p>Computes (ST(1) ∗ log2 (ST(0))), stores the result in resister ST(1), and pops the FPU register stack. The source operand in ST(0) must be a non-zero positive number.</p>
 <p>The following table shows the results obtained when taking the log of various classes of numbers, assuming that neither overflow nor underflow occurs.</p>
+<h3 id="table-3-58-fyl2x-results">Table 3-58. FYL2X Results</h3>
+<p>ST(0)</p>
 <table>
 <tr>
-	<td>Table 3-58.</td>
-	<td>FYL2X Results ST(0)</td>
-</tr>
-<tr>
-	<td>±0</td>
-	<td>NaN</td>
-</tr>
-<tr>
-	<td>+ ∞</td>
-	<td>NaN</td>
-</tr>
-<tr>
-	<td>**</td>
-	<td>NaN NaN NaN</td>
-</tr>
-<tr>
-	<td>**</td>
-	<td>NaN</td>
-</tr>
-<tr>
 	<td>− ∞</td>
-	<td>NaN</td>
+	<td>− F</td>
+	<td>±0 + ∞****− ∞</td>
+	<td>+0&lt;+F&lt;+1 + ∞+ F + 0 − 0 − F − ∞</td>
+	<td>+ 1 −0 −0 +0 +0</td>
+	<td>+ F &gt; + 1 − ∞− F − 0 + 0 + F + ∞</td>
+	<td>+ ∞− ∞− ∞+∞+∞</td>
+	<td>NaN NaN NaN NaN NaN NaN NaN</td>
 </tr>
 <tr>
+	<td>NaN</td>
+	<td>NaN</td>
+	<td>NaN</td>
+	<td>NaN</td>
+	<td>NaN</td>
+	<td>NaN</td>
 	<td>NaN</td>
 	<td>NaN</td>
 </tr>

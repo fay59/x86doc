@@ -62,7 +62,7 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Average packed unsigned byte integers from VPAVGB ymm1, ymm2, ymm3/m256store to ymm1.</td>
+	<td>Average packed unsigned byte integers from VPAVGB ymm1, ymm2, ymm3/m256 store to ymm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG E3 /r VPAVGW ymm1, ymm2, ymm3/m256</td>
@@ -139,7 +139,7 @@ VPAVGW (VEX.256 encoded instruction)
   (* Repeat operation performed for words 2 through 15)
   DEST[255:14]) ← (SRC1[255:240] + SRC2[255:240] + 1) &gt;&gt; 1;
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>PAVGB:</td>

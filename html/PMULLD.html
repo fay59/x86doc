@@ -6,7 +6,7 @@
 	<title>PMULLD — Multiply Packed Signed Dword Integers and Store Low Result</title>
 </head>
 <body>
-<h1 id="pmulld---multiply-packed-signed-dword-integers-and-store-low-result">PMULLD — Multiply Packed Signed Dword Integers and Store Low Result</h1>
+<h1 id="pmulld-multiply-packed-signed-dword-integers-and-store-low-result">PMULLD — Multiply Packed Signed Dword Integers and Store Low Result</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -20,21 +20,21 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE4_1</td>
-	<td>Multiply the packed dword signed integers in xmm1 and xmm2/m128 and store the low 32bits of each product in xmm1.</td>
+	<td>Multiply the packed dword signed integers in xmm1 and xmm2/m128 and store the low 32 bits of each product in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F38.WIG 40 /r VPMULLD xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Multiply the packed dword signed integers in xmm2 and xmm3/m128 and store the low 32bits of each product in xmm1.</td>
+	<td>Multiply the packed dword signed integers in xmm2 and xmm3/m128 and store the low 32 bits of each product in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F38.WIG 40 /r VPMULLD ymm1, ymm2, ymm3/m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Multiply the packed dword signed integers in ymm2 and ymm3/m256 and store the low 32bits of each product in ymm1.</td>
+	<td>Multiply the packed dword signed integers in ymm2 and ymm3/m256 and store the low 32 bits of each product in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -93,7 +93,7 @@ Temp5[63:0] ← SRC1[191:160] * SRC2[191:160]
 Temp6[63:0] ← SRC1[223:192] * SRC2[223:192]
 Temp7[63:0] ← SRC1[255:224] * SRC2[255:224]
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>(V)PMULLUD:</td>

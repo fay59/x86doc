@@ -6,17 +6,17 @@
 	<title>BLSI — Extract Lowest Set Isolated Bit</title>
 </head>
 <body>
-<h1 id="blsi---extract-lowest-set-isolated-bit">BLSI — Extract Lowest Set Isolated Bit</h1>
+<h1 id="blsi-extract-lowest-set-isolated-bit">BLSI — Extract Lowest Set Isolated Bit</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
 	<td>Op/En</td>
-	<td>64/32-bit Mode</td>
+	<td>64/32 -bit Mode</td>
 	<td>CPUID Feature Flag</td>
 	<td>Description</td>
 </tr>
 <tr>
-	<td>VEX.NDD.LZ.0F38.W0 F3 /3BLSI r32, r/m32VEX.NDD.LZ.0F38.W1 F3 /3BLSI r64, r/m64</td>
+	<td>VEX.NDD.LZ.0F38.W0 F3 /3 BLSI r32, r/m32 VEX.NDD.LZ.0F38.W1 F3 /3 BLSI r64, r/m64</td>
 	<td>VM VM</td>
 	<td>V/V BMI1</td>
 	<td>BMI1</td>
@@ -55,7 +55,7 @@ DEST ← temp;
 </pre>
 <h2 id="flags-affected">Flags Affected</h2>
 <p>ZF and SF are updated based on the result. CF is set if the source is not zero. OF flags are cleared. AF and PF flags are undefined.</p>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>BLSI:</td>

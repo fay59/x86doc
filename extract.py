@@ -128,7 +128,6 @@ class DocumentWriter(object):
 		self.__spaced_chars = set([c for c in ".,;:)"])
 	
 	def write(self, row):
-		print self.__output_mode, row
 		if self.__output_mode == "p":
 			if self.__break_p(row):
 				text = self.__output_mode_data["contents"]
@@ -141,17 +140,19 @@ class DocumentWriter(object):
 						if self.__output_mode_data["size"] > 12:
 							self.title = text
 							tag = "h1"
+						elif re.search("^Table [0-9]+-[0-9]+\.", text):
+							tag = "h3"
 						else:
 							tag = "h2"
-						id = re.sub("[^a-z0-9]", "-", lowered)
+						id = re.sub("[^a-z0-9]+", "-", lowered)
 						self.__output.write('<%s id="%s">%s</%s>\n' % (tag, id, text, tag))
 				
 				self.__output_mode = None
 				return self.write(row)
 			
-			cell = row[0]
-			self.__output_mode_data["contents"] = self.__append(self.__output_mode_data["contents"], cell.contents)
-			self.__output_mode_data["top"] = cell.y
+			for cell in row:
+				self.__output_mode_data["contents"] = self.__append(self.__output_mode_data["contents"], cell.contents)
+			self.__output_mode_data["top"] = row[-1].y
 			return True
 			
 		elif self.__output_mode == "code":
@@ -211,7 +212,7 @@ class DocumentWriter(object):
 			# figure out output mode
 			length = len(row)
 			if length == 0: return False
-			elif length == 1:
+			elif length == 1 or re.match(r"Table [0-9]+-[0-9]+\.", row[0].contents):
 				cell = row[0]
 				self.__output_mode = "p"
 				self.__output_mode_data = {
@@ -243,7 +244,6 @@ class DocumentWriter(object):
 						self.__output.write("<pre>")
 						return True
 			else:
-				print len(row), row[0].contents
 				if row[0].contents == u"•":
 					self.__output.write("<ul>\n")
 					self.__output_mode = "list"
@@ -290,7 +290,7 @@ class DocumentWriter(object):
 		self.__output.write("</table>\n")
 	
 	def __break_p(self, row):
-		if len(row) != 1: return True
+		if len(row) != 1 and not re.match(r"Table [0-9]+-[0-9]+\.", row[0].contents): return True
 		
 		cell = row[0]
 		if cell.style["color"] != self.__output_mode_data["color"]: return True
@@ -317,7 +317,7 @@ class DocumentWriter(object):
 	
 	def __append(self, a, b):
 		if len(a) == 0: return b
-		if a[-1].isalpha() or a[-1] in self.__spaced_chars: return a + " " + b
+		if a[-1].isalnum() or a[-1] in self.__spaced_chars: return a + " " + b
 		if a[-1] == u"-": return a[:-1] + b
 		return a + b
 	

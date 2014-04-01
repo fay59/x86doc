@@ -20,21 +20,21 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Computes square roots of the packed doubleSQRTPD xmm1, xmm2/m128and stores the results in xmm1.</td>
+	<td>Computes square roots of the packed doubleSQRTPD xmm1, xmm2/m128 and stores the results in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.128.66.0F.WIG 51 /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Computes Square Roots of the packed doubleVSQRTPD xmm1, xmm2/m128and stores the result in xmm1.</td>
+	<td>Computes Square Roots of the packed doubleVSQRTPD xmm1, xmm2/m128 and stores the result in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.256.66.0F.WIG 51/r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Computes Square Roots of the packed doubleVSQRTPD ymm1, ymm2/m256and stores the result in ymm1.</td>
+	<td>Computes Square Roots of the packed doubleVSQRTPD ymm1, ymm2/m256 and stores the result in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -72,7 +72,7 @@ DEST[127:64] ← SQRT(SRC[127:64])
 DEST[191:128] ← SQRT(SRC[191:128])
 DEST[255:192] ← SQRT(SRC[255:192])
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>SQRTPD:</td>

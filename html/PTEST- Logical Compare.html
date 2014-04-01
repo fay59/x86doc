@@ -6,7 +6,7 @@
 	<title>PTEST- Logical Compare</title>
 </head>
 <body>
-<h1 id="ptest--logical-compare">PTEST- Logical Compare</h1>
+<h1 id="ptest-logical-compare">PTEST- Logical Compare</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -20,7 +20,7 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE4_1</td>
-	<td>Set ZF if xmm2/m128 AND xmm1 result is all 0s. Set CF if xmm2/m128 AND NOT xmm1result is all 0s.</td>
+	<td>Set ZF if xmm2/m128 AND xmm1 result is all 0s. Set CF if xmm2/m128 AND NOT xmm1 result is all 0s.</td>
 </tr>
 <tr>
 	<td>VEX.128.66.0F38.WIG 17 /r VPTEST xmm1, xmm2/m128</td>
@@ -74,7 +74,7 @@ IF (SRC[255:0] BITWISE AND NOT DEST[255:0] = 0) THEN CF ← 1;
 DEST (unmodified)
 AF ← OF ← PF ← SF ← 0;
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>PTEST</p>
 <p>int _mm_testz_si128 (__m128i s1, __m128i s2);</p>
 <p>int _mm_testc_si128 (__m128i s1, __m128i s2);</p>

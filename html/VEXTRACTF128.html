@@ -6,7 +6,7 @@
 	<title>VEXTRACTF128 — Extract Packed Floating-Point Values</title>
 </head>
 <body>
-<h1 id="vextractf128---extract-packed-floating-point-values">VEXTRACTF128 — Extract Packed Floating-Point Values</h1>
+<h1 id="vextractf128-extract-packed-floating-point-values">VEXTRACTF128 — Extract Packed Floating-Point Values</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -20,7 +20,7 @@
 	<td>MR</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Extract 128 bits of packed floating-point VEXTRACTF128 xmm1/m128, ymm2, imm8xmm1/mem.</td>
+	<td>Extract 128 bits of packed floating-point VEXTRACTF128 xmm1/m128, ymm2, imm8 xmm1/mem.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -55,7 +55,7 @@ CASE (imm8[0]) OF
 ESAC.
 DEST[VLMAX-1:128] ← 0
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>VEXTRACTF128:</td>
@@ -77,7 +77,7 @@ DEST[VLMAX-1:128] ← 0
 <table>
 <tr>
 	<td>#UD</td>
-	<td>If VEX.L= 0If VEX.W=1.</td>
+	<td>If VEX.L= 0 If VEX.W=1.</td>
 </tr>
 </table>
 </body>

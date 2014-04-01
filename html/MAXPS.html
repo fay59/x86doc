@@ -20,7 +20,7 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Return the maximum single-precision floatingMAXPS xmm1, xmm2/m128xmm1.</td>
+	<td>Return the maximum single-precision floatingMAXPS xmm1, xmm2/m128 xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.0F.WIG 5F /r</td>
@@ -34,7 +34,7 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Return the maximum single double-precision VMAXPS ymm1, ymm2, ymm3/m256ymm3/mem.</td>
+	<td>Return the maximum single double-precision VMAXPS ymm1, ymm2, ymm3/m256 ymm3/mem.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -96,7 +96,7 @@ DEST[191:160] ← MAX(SRC1[191:160], SRC2[191:160])
 DEST[223:192] ← MAX(SRC1[223:192], SRC2[223:192])
 DEST[255:224] ← MAX(SRC1[255:224], SRC2[255:224])
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>MAXPS:</td>

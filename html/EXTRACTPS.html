@@ -6,7 +6,7 @@
 	<title>EXTRACTPS — Extract Packed Single Precision Floating-Point Value</title>
 </head>
 <body>
-<h1 id="extractps---extract-packed-single-precision-floating-point-value">EXTRACTPS — Extract Packed Single Precision Floating-Point Value</h1>
+<h1 id="extractps-extract-packed-single-precision-floating-point-value">EXTRACTPS — Extract Packed Single Precision Floating-Point Value</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -16,7 +16,7 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 3A 17EXTRACTPS reg/m32, xmm2, imm8</td>
+	<td>66 0F 3A 17 EXTRACTPS reg/m32, xmm2, imm8</td>
 	<td>MRI</td>
 	<td>V/V</td>
 	<td>SSE4_1</td>
@@ -27,7 +27,7 @@
 	<td>MRI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Extract one single-precision floating-point VEXTRACTPS r/m32, xmm1, imm8imm8 and store the result in reg or m32. Zero extend the results in 64-bit register if applicable.</td>
+	<td>Extract one single-precision floating-point VEXTRACTPS r/m32, xmm1, imm8 imm8 and store the result in reg or m32. Zero extend the results in 64-bit register if applicable.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -67,7 +67,7 @@ ELSE
   DEST[31:0] ← (SRC[127:0] » (SRC_OFFET*32)) AND 0FFFFFFFFh
 FI
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>EXTRACTPS:</td>

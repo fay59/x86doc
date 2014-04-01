@@ -6,12 +6,12 @@
 	<title>VFMSUB132PD/VFMSUB213PD/VFMSUB231PD — Fused Multiply-Subtract of Packed DoublePrecision Floating-Point Values</title>
 </head>
 <body>
-<h1 id="vfmsub132pd-vfmsub213pd-vfmsub231pd---fused-multiply-subtract-of-packed-doubleprecision-floating-point-values">VFMSUB132PD/VFMSUB213PD/VFMSUB231PD — Fused Multiply-Subtract of Packed DoublePrecision Floating-Point Values</h1>
+<h1 id="vfmsub132pd-vfmsub213pd-vfmsub231pd-fused-multiply-subtract-of-packed-doubleprecision-floating-point-values">VFMSUB132PD/VFMSUB213PD/VFMSUB231PD — Fused Multiply-Subtract of Packed DoublePrecision Floating-Point Values</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
 	<td>Op/En</td>
-	<td>64/32-bit Mode</td>
+	<td>64/32 -bit Mode</td>
 	<td>CPUID Feature Flag</td>
 	<td>Description</td>
 </tr>
@@ -20,28 +20,28 @@
 	<td>A</td>
 	<td>V/V</td>
 	<td>FMA</td>
-	<td>Multiply packed double-precision floating-point values from xmm0 and xmm2/mem, subtract xmm1and put result in xmm0.</td>
+	<td>Multiply packed double-precision floating-point values from xmm0 and xmm2/mem, subtract xmm1 and put result in xmm0.</td>
 </tr>
 <tr>
 	<td>VEX.DDS.128.66.0F38.W1 AA /r</td>
 	<td>A</td>
 	<td>V/V</td>
 	<td>FMA</td>
-	<td>Multiply packed double-precision floating-point valVFMSUB213PD xmm0, xmm1, xmm2/m128and put result in xmm0.</td>
+	<td>Multiply packed double-precision floating-point valVFMSUB213PD xmm0, xmm1, xmm2/m128 and put result in xmm0.</td>
 </tr>
 <tr>
 	<td>VEX.DDS.128.66.0F38.W1 BA /r VFMSUB231PD xmm0, xmm1, xmm2/m128</td>
 	<td>A</td>
 	<td>V/V</td>
 	<td>FMA</td>
-	<td>Multiply packed double-precision floating-point values from xmm1 and xmm2/mem, subtract xmm0and put result in xmm0.</td>
+	<td>Multiply packed double-precision floating-point values from xmm1 and xmm2/mem, subtract xmm0 and put result in xmm0.</td>
 </tr>
 <tr>
 	<td>VEX.DDS.256.66.0F38.W1 9A /r VFMSUB132PD ymm0, ymm1, ymm2/m256</td>
 	<td>A</td>
 	<td>V/V</td>
 	<td>FMA</td>
-	<td>Multiply packed double-precision floating-point values from ymm0 and ymm2/mem, subtract ymm1and put result in ymm0.</td>
+	<td>Multiply packed double-precision floating-point values from ymm0 and ymm2/mem, subtract ymm1 and put result in ymm0.</td>
 </tr>
 <tr>
 	<td>VEX.DDS.256.66.0F38.W1 AA /r VFMSUB213PD ymm0, ymm1, ymm2/m256</td>
@@ -55,7 +55,7 @@
 	<td>A</td>
 	<td>V/V</td>
 	<td>FMA</td>
-	<td>Multiply packed double-precision floating-point values from ymm1 and ymm2/mem, subtract ymm0and put result in ymm0.</td>
+	<td>Multiply packed double-precision floating-point values from ymm1 and ymm2/mem, subtract ymm0 and put result in ymm0.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -122,7 +122,7 @@ IF (VEX.128) THEN
 DEST[VLMAX-1:128] ← 0
 FI
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>VFMSUB132PD: __m128d _mm_fmsub_pd (__m128d a, __m128d b, __m128d c);</p>
 <p>VFMSUB213PD: __m128d _mm_fmsub_pd (__m128d a, __m128d b, __m128d c);</p>
 <p>VFMSUB231PD: __m128d _mm_fmsub_pd (__m128d a, __m128d b, __m128d c);</p>

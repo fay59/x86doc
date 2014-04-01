@@ -6,7 +6,7 @@
 	<title>CLI — Clear Interrupt Flag</title>
 </head>
 <body>
-<h1 id="cli---clear-interrupt-flag">CLI — Clear Interrupt Flag</h1>
+<h1 id="cli-clear-interrupt-flag">CLI — Clear Interrupt Flag</h1>
 <table>
 <tr>
 	<td>Opcode</td>
@@ -46,18 +46,97 @@
 <p>If protected-mode virtual interrupts are not enabled, CLI clears the IF flag in the EFLAGS register. No other flags are affected. Clearing the IF flag causes the processor to ignore maskable external interrupts. The IF flag and the CLI and STI instruction have no affect on the generation of exceptions and NMI interrupts.</p>
 <p>When protected-mode virtual interrupts are enabled, CPL is 3, and IOPL is less than 3; CLI clears the VIF flag in the EFLAGS register, leaving IF unaffected. Table 3-6 indicates the action of the CLI instruction depending on the processor operating mode and the CPL/IOPL of the running program or procedure.</p>
 <p>CLI operation is the same in non-64-bit modes and 64-bit mode.</p>
+<h3 id="table-3-6-decision-table-for-cli-results">Table 3-6. Decision Table for CLI Results</h3>
 <table>
 <tr>
-	<td>Table 3-6.</td>
-	<td>Decision Table for CLI Results</td>
-</tr>
-<tr>
+	<td>PE</td>
+	<td>VM</td>
+	<td>IOPL</td>
 	<td>CPL</td>
-	<td>CLI Result IF = 0IF = 0VIF = 0</td>
+	<td>PVI</td>
+	<td>VIP</td>
+	<td>VME</td>
+	<td>CLI Result</td>
 </tr>
 <tr>
+	<td>0</td>
+	<td>X</td>
+	<td>X</td>
+	<td>X</td>
+	<td>X</td>
+	<td>X</td>
+	<td>X</td>
+	<td>IF = 0</td>
+</tr>
+<tr>
+	<td>1</td>
+	<td>0</td>
+	<td>≥ CPL</td>
+	<td>X</td>
+	<td>X</td>
+	<td>X</td>
+	<td>X</td>
+	<td>IF = 0</td>
+</tr>
+<tr>
+	<td>1</td>
+	<td>0</td>
+	<td>&lt; CPL</td>
+	<td>3</td>
+	<td>1</td>
+	<td>X</td>
+	<td>X</td>
+	<td>VIF = 0</td>
+</tr>
+<tr>
+	<td>1</td>
+	<td>0</td>
+	<td>&lt; CPL</td>
 	<td>&lt; 3</td>
-	<td>GP Fault GP Fault IF = 0VIF = 0GP Fault</td>
+	<td>X</td>
+	<td>X</td>
+	<td>X</td>
+	<td>GP Fault</td>
+</tr>
+<tr>
+	<td>1</td>
+	<td>0</td>
+	<td>&lt; CPL</td>
+	<td>X</td>
+	<td>0</td>
+	<td>X</td>
+	<td>X</td>
+	<td>GP Fault</td>
+</tr>
+<tr>
+	<td>1</td>
+	<td>1</td>
+	<td>3</td>
+	<td>X</td>
+	<td>X</td>
+	<td>X</td>
+	<td>X</td>
+	<td>IF = 0</td>
+</tr>
+<tr>
+	<td>1</td>
+	<td>1</td>
+	<td>&lt; 3</td>
+	<td>X</td>
+	<td>X</td>
+	<td>X</td>
+	<td>1</td>
+	<td>VIF = 0</td>
+</tr>
+<tr>
+	<td>1</td>
+	<td>1</td>
+	<td>&lt; 3</td>
+	<td>X</td>
+	<td>X</td>
+	<td>X</td>
+	<td>0</td>
+	<td>GP Fault</td>
 </tr>
 </table>
 <p class="notes">Notes: * X = This setting has no impact.</p>

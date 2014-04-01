@@ -6,7 +6,7 @@
 	<title>DPPS — Dot Product of Packed Single Precision Floating-Point Values</title>
 </head>
 <body>
-<h1 id="dpps---dot-product-of-packed-single-precision-floating-point-values">DPPS — Dot Product of Packed Single Precision Floating-Point Values</h1>
+<h1 id="dpps-dot-product-of-packed-single-precision-floating-point-values">DPPS — Dot Product of Packed Single Precision Floating-Point Values</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -20,21 +20,21 @@
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE4_1</td>
-	<td>Selectively multiply packed SP floating-point DPPS xmm1, xmm2/m128, imm8point values from xmm2, add and selectively store the packed SP floating-point values or zero values to xmm1.</td>
+	<td>Selectively multiply packed SP floating-point DPPS xmm1, xmm2/m128, imm8 point values from xmm2, add and selectively store the packed SP floating-point values or zero values to xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F3A.WIG 40 /r ib</td>
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Multiply packed SP floating point values from VDPPS xmm1,xmm2, xmm3/m128, imm8from xmm2/mem selectively add and store to xmm1.</td>
+	<td>Multiply packed SP floating point values from VDPPS xmm1,xmm2, xmm3/m128, imm8 from xmm2/mem selectively add and store to xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F3A.WIG 40 /r ib</td>
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Multiply packed single-precision floating-point VDPPS ymm1, ymm2, ymm3/m256, imm8point values from ymm3/mem, selectively add pairs of elements and store to ymm1.</td>
+	<td>Multiply packed single-precision floating-point VDPPS ymm1, ymm2, ymm3/m256, imm8 point values from ymm3/mem, selectively add pairs of elements and store to ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -110,7 +110,7 @@ DEST[255:128]←DP_Primitive(SRC1[255:128], SRC2[255:128]);
 </pre>
 <h2 id="flags-affected">Flags Affected</h2>
 <p>None</p>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>(V)DPPS:</td>

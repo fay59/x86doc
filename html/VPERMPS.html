@@ -6,12 +6,12 @@
 	<title>VPERMPS — Permute Single-Precision Floating-Point Elements</title>
 </head>
 <body>
-<h1 id="vpermps---permute-single-precision-floating-point-elements">VPERMPS — Permute Single-Precision Floating-Point Elements</h1>
+<h1 id="vpermps-permute-single-precision-floating-point-elements">VPERMPS — Permute Single-Precision Floating-Point Elements</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
 	<td>Op/En</td>
-	<td>64/32-bit Mode</td>
+	<td>64/32 -bit Mode</td>
 	<td>CPUID Feature Flag</td>
 	<td>Description</td>
 </tr>
@@ -20,7 +20,7 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Permute single-precision floating-point elements in VPERMPS ymm1, ymm2, ymm3/m256result in ymm1.</td>
+	<td>Permute single-precision floating-point elements in VPERMPS ymm1, ymm2, ymm3/m256 result in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -53,7 +53,7 @@ DEST[191:160] ← (SRC2[255:0] &gt;&gt; (SRC1[162:160] * 32))[31:0];
 DEST[223:192] ← (SRC2[255:0] &gt;&gt; (SRC1[194:192] * 32))[31:0];
 DEST[255:224] ← (SRC2[255:0] &gt;&gt; (SRC1[226:224] * 32))[31:0];
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>VPERMPS: __m256i _mm256_permutevar8x32_ps(__m256 a, __m256i offsets)</p>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
 <p>None</p>

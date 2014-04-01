@@ -16,53 +16,53 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F F8 /r1PSUBB mm, mm/m64</td>
+	<td>0F F8 /r1 PSUBB mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Subtract packed byte integers in mm/m64from packed byte integers in mm.</td>
+	<td>Subtract packed byte integers in mm/m64 from packed byte integers in mm.</td>
 </tr>
 <tr>
 	<td>66 0F F8 /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Subtract packed byte integers in xmm2/m128PSUBB xmm1, xmm2/m128</td>
+	<td>Subtract packed byte integers in xmm2/m128 PSUBB xmm1, xmm2/m128</td>
 </tr>
 <tr>
 	<td>0F F9 /r1</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Subtract packed word integers in mm/m64PSUBW mm, mm/m64</td>
+	<td>Subtract packed word integers in mm/m64 PSUBW mm, mm/m64</td>
 </tr>
 <tr>
 	<td>66 0F F9 /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Subtract packed word integers in PSUBW xmm1, xmm2/m128xmm1.</td>
+	<td>Subtract packed word integers in PSUBW xmm1, xmm2/m128 xmm1.</td>
 </tr>
 <tr>
 	<td>0F FA /r1</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Subtract packed doubleword integers in PSUBD mm, mm/m64mm.</td>
+	<td>Subtract packed doubleword integers in PSUBD mm, mm/m64 mm.</td>
 </tr>
 <tr>
 	<td>66 0F FA /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Subtract packed doubleword integers in PSUBD xmm1, xmm2/m128integers in xmm1.</td>
+	<td>Subtract packed doubleword integers in PSUBD xmm1, xmm2/m128 integers in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG F8 /r VPSUBB xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Subtract packed byte integers in xmm3/m128from xmm2.</td>
+	<td>Subtract packed byte integers in xmm3/m128 from xmm2.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG F9 /r</td>
@@ -83,7 +83,7 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Subtract packed byte integers in ymm3/m256from ymm2.</td>
+	<td>Subtract packed byte integers in ymm3/m256 from ymm2.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG F9 /r VPSUBW ymm1, ymm2, ymm3/m256</td>
@@ -252,7 +252,7 @@ DEST[191:160] ← SRC1[191:160]-SRC2[191:160]
 DEST[223:192] ← SRC1[223:192]-SRC2[223:192]
 DEST[255:224] ← SRC1[255:224]-SRC2[255:224]
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
 <table>
 <tr>
 	<td>PSUBB:</td>

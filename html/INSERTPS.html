@@ -6,7 +6,7 @@
 	<title>INSERTPS — Insert Packed Single Precision Floating-Point Value</title>
 </head>
 <body>
-<h1 id="insertps---insert-packed-single-precision-floating-point-value">INSERTPS — Insert Packed Single Precision Floating-Point Value</h1>
+<h1 id="insertps-insert-packed-single-precision-floating-point-value">INSERTPS — Insert Packed Single Precision Floating-Point Value</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -20,14 +20,14 @@
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE4_1</td>
-	<td>Insert a single precision floating-point value INSERTPS xmm1, xmm2/m32, imm8xmm1 at the specified destination element specified by imm8 and zero out destination elements in xmm1 as indicated in imm8.</td>
+	<td>Insert a single precision floating-point value INSERTPS xmm1, xmm2/m32, imm8 xmm1 at the specified destination element specified by imm8 and zero out destination elements in xmm1 as indicated in imm8.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F3A.WIG 21 /r ib</td>
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Insert a single precision floating point value VINSERTPS xmm1, xmm2, xmm3/m32, imm8into xmm2 at the specified destination element specified by imm8 and zero out destination elements in xmm1 as indicated in imm8.</td>
+	<td>Insert a single precision floating point value VINSERTPS xmm1, xmm2, xmm3/m32, imm8 into xmm2 at the specified destination element specified by imm8 and zero out destination elements in xmm1 as indicated in imm8.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -124,7 +124,7 @@ IF (ZMASK[3] = 1) THEN DEST[127:96] ← 00000000H
   ELSE DEST[127:96] ← TMP2[127:96]
 DEST[VLMAX-1:128] ← 0
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>INSERTPS:</td>

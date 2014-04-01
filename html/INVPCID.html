@@ -60,14 +60,14 @@
 <p>The INVPCID descriptor comprises 128 bits and consists of a PCID and a linear address as shown in Figure 3-23. For INVPCID type 0, the processor uses the full 64 bits of the linear address even outside 64-bit mode; the linear address is not used for other INVPCID types.</p>
 <table>
 <tr>
-	<td>127Linear Address</td>
-	<td>6463Reserved (must be zero) INVPCID Descriptor</td>
-	<td>1211PCID</td>
+	<td>127 Linear Address</td>
+	<td>6463 Reserved (must be zero) INVPCID Descriptor</td>
+	<td>1211 PCID</td>
 	<td>0</td>
 </tr>
 </table>
 <p>If CR4.PCIDE = 0, a logical processor does not cache information for any PCID other than 000H. In this case, executions with INVPCID types 0 and 1 are allowed only if the PCID specified in the INVPCID descriptor is 000H;</p>
-<p>executions with INVPCID types 2 and 3 invalidate mappings only for PCID 000H. Note that CR4.PCIDE must be 0outside 64-bit mode (see Chapter 4.10.1, “Process-Context Identifiers (PCIDs)‚” of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A).</p>
+<p>executions with INVPCID types 2 and 3 invalidate mappings only for PCID 000H. Note that CR4.PCIDE must be 0 outside 64-bit mode (see Chapter 4.10.1, “Process-Context Identifiers (PCIDs)‚” of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A).</p>
 <h2 id="operation">Operation</h2>
 <pre>INVPCID_TYPE ← value of register operand;
 INVPCID_DESC ← value of memory operand;
@@ -89,7 +89,7 @@ CASE INVPCID_TYPE OF
      BREAK;
 ESAC;
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>INVPCID:</td>

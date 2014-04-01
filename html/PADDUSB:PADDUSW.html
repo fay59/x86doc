@@ -41,21 +41,21 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Add packed unsigned word integers from PADDUSW xmm1, xmm2/m128results.</td>
+	<td>Add packed unsigned word integers from PADDUSW xmm1, xmm2/m128 results.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.660F.WIG DC /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Add packed unsigned byte integers from VPADDUSB xmm1, xmm2, xmm3/m128results.</td>
+	<td>Add packed unsigned byte integers from VPADDUSB xmm1, xmm2, xmm3/m128 results.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG DD /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Add packed unsigned word integers from VPADDUSW xmm1, xmm2, xmm3/m128results.</td>
+	<td>Add packed unsigned word integers from VPADDUSW xmm1, xmm2, xmm3/m128 results.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG DC /r VPADDUSB ymm1, ymm2, ymm3/m256</td>
@@ -140,7 +140,7 @@ VPADDUSW (VEX.256 encoded version)
   (* Repeat add operation for 2nd through 15th words *)
   DEST[255:240] ← SaturateToUnsignedWord (SRC1[255:240] + SRC2[255:240])
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
 <table>
 <tr>
 	<td>PADDUSB:</td>

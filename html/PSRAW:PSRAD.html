@@ -16,7 +16,7 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F E1 /r1PSRAW mm, mm/m64</td>
+	<td>0F E1 /r1 PSRAW mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
@@ -27,7 +27,7 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Shift words in xmm1 right by xmm2/m128PSRAW xmm1, xmm2/m128</td>
+	<td>Shift words in xmm1 right by xmm2/m128 PSRAW xmm1, xmm2/m128</td>
 </tr>
 <tr>
 	<td>0F 71 /4 ib1</td>
@@ -44,18 +44,18 @@
 	<td>Shift words in xmm1 right by imm8 while PSRAW xmm1, imm8</td>
 </tr>
 <tr>
-	<td>0F E2 /r1PSRAD mm, mm/m64</td>
+	<td>0F E2 /r1 PSRAD mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Shift doublewords in mm right by mm/m64while shifting in sign bits.</td>
+	<td>Shift doublewords in mm right by mm/m64 while shifting in sign bits.</td>
 </tr>
 <tr>
 	<td>66 0F E2 /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Shift doubleword in xmm1 right by xmm2PSRAD xmm1, xmm2/m128</td>
+	<td>Shift doubleword in xmm1 right by xmm2 PSRAD xmm1, xmm2/m128</td>
 </tr>
 <tr>
 	<td>0F 72 /4 ib1</td>
@@ -69,7 +69,7 @@
 	<td>MI</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Shift doublewords in xmm1 right by imm8PSRAD xmm1, imm8</td>
+	<td>Shift doublewords in xmm1 right by imm8 PSRAD xmm1, imm8</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG E1 /r</td>
@@ -90,14 +90,14 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Shift doublewords in xmm2 right by amount VPSRAD xmm1, xmm2, xmm3/m128bits.</td>
+	<td>Shift doublewords in xmm2 right by amount VPSRAD xmm1, xmm2, xmm3/m128 bits.</td>
 </tr>
 <tr>
 	<td>VEX.NDD.128.66.0F.WIG 72 /4 ib</td>
 	<td>VMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Shift doublewords in xmm2 right by imm8VPSRAD xmm1, xmm2, imm8</td>
+	<td>Shift doublewords in xmm2 right by imm8 VPSRAD xmm1, xmm2, imm8</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG E1 /r</td>
@@ -118,14 +118,14 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Shift doublewords in ymm2 right by amount VPSRAD ymm1, ymm2, xmm3/m128bits.</td>
+	<td>Shift doublewords in ymm2 right by amount VPSRAD ymm1, ymm2, xmm3/m128 bits.</td>
 </tr>
 <tr>
 	<td>VEX.NDD.256.66.0F.WIG 72 /4 ib</td>
 	<td>VMI</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Shift doublewords in ymm2 right by imm8VPSRAD ymm1, ymm2, imm8</td>
+	<td>Shift doublewords in ymm2 right by imm8 VPSRAD ymm1, ymm2, imm8</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
@@ -173,9 +173,9 @@
 <table>
 <tr>
 	<td>X3</td>
-	<td>X2X2 &gt;&gt; COUNT</td>
-	<td>X1X1 &gt;&gt; COUNT</td>
-	<td>X0DEST Shift Right with Sign Extension X0 &gt;&gt; COUNT DEST PSRAW and PSRAD Instruction Operation Using a 64-bit Operand</td>
+	<td>X2 X2 &gt;&gt; COUNT</td>
+	<td>X1 X1 &gt;&gt; COUNT</td>
+	<td>X0 DEST Shift Right with Sign Extension X0 &gt;&gt; COUNT DEST PSRAW and PSRAD Instruction Operation Using a 64-bit Operand</td>
 </tr>
 </table>
 <p>Note that only the first 64-bits of a 128-bit count operand are checked to compute the count. If the second source operand is a memory address, 128 bits are loaded.</p>
@@ -246,7 +246,7 @@ DEST[255:0] ← ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1, SRC2)
 VPSRAD (ymm, imm8)
 DEST[255:0] ← ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1, imm8)
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
 <table>
 <tr>
 	<td>PSRAW:</td>

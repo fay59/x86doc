@@ -25,10 +25,13 @@
 </table>
 <h2 id="description">Description</h2>
 <p>Examines the contents of the ST(0) register and sets the condition code flags C0, C2, and C3 in the FPU status word to indicate the class of value or number in the register (see the table below).</p>
+<h3 id="table-3-52-fxam-results">Table 3-52. FXAM Results</h3>
 <table>
 <tr>
-	<td>Table 3-52.</td>
-	<td>FXAM Results C00101010</td>
+	<td>Class</td>
+	<td>C3 0 0 0 0 1 1 1</td>
+	<td>C2 0 0 1 1 0 0 1</td>
+	<td>C0 0 1 0 1 0 1 0</td>
 </tr>
 </table>
 <p>The C1 flag is set to the sign of the value in ST(0), regardless of whether the register is empty or full.</p>

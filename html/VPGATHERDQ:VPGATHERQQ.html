@@ -6,12 +6,12 @@
 	<title>VPGATHERDQ/VPGATHERQQ — Gather Packed Qword Values Using Signed Dword/Qword Indices</title>
 </head>
 <body>
-<h1 id="vpgatherdq-vpgatherqq---gather-packed-qword-values-using-signed-dword-qword-indices">VPGATHERDQ/VPGATHERQQ — Gather Packed Qword Values Using Signed Dword/Qword Indices</h1>
+<h1 id="vpgatherdq-vpgatherqq-gather-packed-qword-values-using-signed-dword-qword-indices">VPGATHERDQ/VPGATHERQQ — Gather Packed Qword Values Using Signed Dword/Qword Indices</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
 	<td>Op/En</td>
-	<td>64/32-bit Mode</td>
+	<td>64/32 -bit Mode</td>
 	<td>CPUID Feature Flag</td>
 	<td>Description</td>
 </tr>
@@ -27,7 +27,7 @@
 	<td>RMV</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Using qword indices specified in vm64x, gather qword valVPGATHERQQ xmm1, vm64x, xmm2xmm2. Conditionally gathered elements are merged into xmm1.</td>
+	<td>Using qword indices specified in vm64x, gather qword valVPGATHERQQ xmm1, vm64x, xmm2 xmm2. Conditionally gathered elements are merged into xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.DDS.256.66.0F38.W1 90 /r VPGATHERDQ ymm1, vm32x, ymm2</td>
@@ -175,7 +175,7 @@ FOR j← 0 to 3
 ENDFOR
 (non-masked elements of the mask register have the content of respective element
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>VPGATHERDQ: __m128i _mm_i32gather_epi64 (int64 const * base, __m128i index, const int scale);</p>
 <p>VPGATHERDQ: __m128i _mm_mask_i32gather_epi64 (__m128i src, int64 const * base, __m128i index, __m128i mask, const int scale);</p>
 <p>VPGATHERDQ: __m256i _mm256_i32gather_epi64 ( int64 const * base, __m128i index, const int scale);</p>

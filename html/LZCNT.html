@@ -6,12 +6,12 @@
 	<title>LZCNT— Count the Number of Leading Zero Bits</title>
 </head>
 <body>
-<h1 id="lzcnt--count-the-number-of-leading-zero-bits">LZCNT— Count the Number of Leading Zero Bits</h1>
+<h1 id="lzcnt-count-the-number-of-leading-zero-bits">LZCNT— Count the Number of Leading Zero Bits</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
 	<td>Op/En</td>
-	<td>64/32-bit Mode</td>
+	<td>64/32 -bit Mode</td>
 	<td>CPUID Feature Flag</td>
 	<td>Description</td>
 </tr>
@@ -23,7 +23,7 @@
 	<td>Count the number of leading zero bits in r/m16, return result in r16.</td>
 </tr>
 <tr>
-	<td>F3 0F BD /r LZCNT r32, r/m32REX.W + F3 0F BD /r LZCNT r64, r/m64</td>
+	<td>F3 0F BD /r LZCNT r32, r/m32 REX.W + F3 0F BD /r LZCNT r64, r/m64</td>
 	<td>RM RM</td>
 	<td>V/V LZCNT</td>
 	<td>LZCNT</td>
@@ -70,7 +70,7 @@ FI
 </pre>
 <h2 id="flags-affected">Flags Affected</h2>
 <p>ZF flag is set to 1 in case of zero output (most significant bit of the source is set), and to 0 otherwise, CF flag is set to 1 if input was zero and cleared otherwise. OF, SF, PF and AF flags are undefined.</p>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>LZCNT:</td>

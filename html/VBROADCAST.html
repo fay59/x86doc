@@ -48,21 +48,21 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Broadcast the low single-precision floatingVBROADCASTSS xmm1, xmm2locations in xmm1.</td>
+	<td>Broadcast the low single-precision floatingVBROADCASTSS xmm1, xmm2 locations in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.256.66.0F38.W0 18 /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Broadcast low single-precision floating-point VBROADCASTSS ymm1, xmm2locations in ymm1.</td>
+	<td>Broadcast low single-precision floating-point VBROADCASTSS ymm1, xmm2 locations in ymm1.</td>
 </tr>
 <tr>
 	<td>VEX.256.66.0F38.W0 19 /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Broadcast low double-precision floating-point VBROADCASTSD ymm1, xmm2locations in ymm1.</td>
+	<td>Broadcast low double-precision floating-point VBROADCASTSD ymm1, xmm2 locations in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -96,11 +96,11 @@
 </tr>
 <tr>
 	<td>X0</td>
-	<td>X0VBROADCASTSS Operation (VEX.256 encoded version) X0</td>
+	<td>X0 VBROADCASTSS Operation (VEX.256 encoded version) X0</td>
 </tr>
 <tr>
 	<td>X0</td>
-	<td>X0VBROADCASTSS Operation (128-bit version)</td>
+	<td>X0 VBROADCASTSS Operation (128-bit version)</td>
 </tr>
 <tr>
 	<td>X0</td>
@@ -108,7 +108,7 @@
 </tr>
 <tr>
 	<td>X0</td>
-	<td>X0VBROADCASTSD Operation X0X0VBROADCASTF128 Operation</td>
+	<td>X0 VBROADCASTSD Operation X0 X0 VBROADCASTF128 Operation</td>
 </tr>
 </table>
 <h2 id="operation">Operation</h2>
@@ -140,7 +140,7 @@ temp ← SRC[127:0]
 DEST[127:0] ← temp
 DEST[VLMAX-1:128] ← temp
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>VBROADCASTSS:</td>

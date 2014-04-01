@@ -20,7 +20,7 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE3</td>
-	<td>Move one double-precision floating-point MOVDDUP xmm1, xmm2/m64xmm2/m64 to xmm1 and duplicate.</td>
+	<td>Move one double-precision floating-point MOVDDUP xmm1, xmm2/m64 xmm2/m64 to xmm1 and duplicate.</td>
 </tr>
 <tr>
 	<td>VEX.128.F2.0F.WIG 12 /r</td>
@@ -34,7 +34,7 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Move even index double-precision floatingVMOVDDUP ymm1, ymm2/m256each element into ymm1.</td>
+	<td>Move even index double-precision floatingVMOVDDUP ymm1, ymm2/m256 each element into ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -69,7 +69,7 @@
 	<td>xmm1[127:64]</td>
 	<td>xmm2/m64[63:0][127:64]</td>
 	<td>xmm1[63:0]</td>
-	<td>xmm2/m64[63:0]xmm1[63:0]</td>
+	<td>xmm2/m64[63:0]xmm1 [63:0]</td>
 </tr>
 </table>
 <p>OM15997</p>
@@ -105,7 +105,7 @@ DEST[127:64] ← SRC[63:0]
 DEST[191:128] ← SRC[191:128]
 DEST[255:192] ← SRC[191:128]
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>MOVDDUP:</td>

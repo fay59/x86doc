@@ -16,7 +16,7 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F F1 /r1PSLLW mm, mm/m64</td>
+	<td>0F F1 /r1 PSLLW mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
@@ -27,7 +27,7 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Shift words in xmm1 left by xmm2/m128PSLLW xmm1, xmm2/m128</td>
+	<td>Shift words in xmm1 left by xmm2/m128 PSLLW xmm1, xmm2/m128</td>
 </tr>
 <tr>
 	<td>0F 71 /6 ib</td>
@@ -44,11 +44,11 @@
 	<td>Shift words in xmm1 left by imm8 while PSLLW xmm1, imm8</td>
 </tr>
 <tr>
-	<td>0F F2 /r1PSLLD mm, mm/m64</td>
+	<td>0F F2 /r1 PSLLD mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Shift doublewords in mm left by mm/m64while shifting in 0s.</td>
+	<td>Shift doublewords in mm left by mm/m64 while shifting in 0s.</td>
 </tr>
 <tr>
 	<td>66 0F F2 /r</td>
@@ -83,7 +83,7 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Shift quadwords in xmm1 left by xmm2/m128PSLLQ xmm1, xmm2/m128</td>
+	<td>Shift quadwords in xmm1 left by xmm2/m128 PSLLQ xmm1, xmm2/m128</td>
 </tr>
 <tr>
 	<td>0F 73 /6 ib1</td>
@@ -125,7 +125,7 @@
 	<td>VMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Shift doublewords in xmm2 left by imm8VPSLLD xmm1, xmm2, imm8</td>
+	<td>Shift doublewords in xmm2 left by imm8 VPSLLD xmm1, xmm2, imm8</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG F3 /r</td>
@@ -229,9 +229,9 @@
 <table>
 <tr>
 	<td>X3</td>
-	<td>X2X2 &lt;&lt; COUNT</td>
-	<td>X1X1 &lt;&lt; COUNT</td>
-	<td>X0DEST Shift Left with Zero Extension X0 &lt;&lt; COUNT DEST PSLLW, PSLLD, and PSLLQ Instruction Operation Using 64-bit Operand</td>
+	<td>X2 X2 &lt;&lt; COUNT</td>
+	<td>X1 X1 &lt;&lt; COUNT</td>
+	<td>X0 DEST Shift Left with Zero Extension X0 &lt;&lt; COUNT DEST PSLLW, PSLLD, and PSLLQ Instruction Operation Using 64-bit Operand</td>
 </tr>
 </table>
 <p>The (V)PSLLW instruction shifts each of the words in the destination operand to the left by the number of bits specified in the count operand; the (V)PSLLD instruction shifts each of the doublewords in the destination operand; and the (V)PSLLQ instruction shifts the quadword (or quadwords) in the destination operand.</p>
@@ -354,7 +354,7 @@ DEST[255:0] ← LOGICAL_LEFT_SHIFT_QWORDS_256b(SRC1, SRC2)
 VPSLLQ (ymm, imm8)
 DEST[255:0] ← LOGICAL_LEFT_SHIFT_QWORDS_256b(SRC1, imm8)
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
 <table>
 <tr>
 	<td>PSLLW:</td>

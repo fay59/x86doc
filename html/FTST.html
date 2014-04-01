@@ -25,10 +25,13 @@
 </table>
 <h2 id="description">Description</h2>
 <p>Compares the value in the ST(0) register with 0.0 and sets the condition code flags C0, C2, and C3 in the FPU status word according to the results (see table below).</p>
+<h3 id="table-3-50-ftst-results">Table 3-50. FTST Results</h3>
 <table>
 <tr>
-	<td>Table 3-50.</td>
-	<td>FTST Results C00101</td>
+	<td>Condition</td>
+	<td>C3 0 0 1 1</td>
+	<td>C2 0 0 0 1</td>
+	<td>C0 0 1 0 1</td>
 </tr>
 </table>
 <p>This instruction performs an “unordered comparison.” An unordered comparison also checks the class of the numbers being compared (see “FXAM—Examine ModR/M” in this chapter). If the value in register ST(0) is a NaN or is in an undefined format, the condition flags are set to “unordered” and the invalid operation exception is generated.</p>

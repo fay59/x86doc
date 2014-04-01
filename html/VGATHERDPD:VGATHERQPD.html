@@ -6,12 +6,12 @@
 	<title>VGATHERDPD/VGATHERQPD — Gather Packed DP FP Values Using Signed Dword/Qword Indices</title>
 </head>
 <body>
-<h1 id="vgatherdpd-vgatherqpd---gather-packed-dp-fp-values-using-signed-dword-qword-indices">VGATHERDPD/VGATHERQPD — Gather Packed DP FP Values Using Signed Dword/Qword Indices</h1>
+<h1 id="vgatherdpd-vgatherqpd-gather-packed-dp-fp-values-using-signed-dword-qword-indices">VGATHERDPD/VGATHERQPD — Gather Packed DP FP Values Using Signed Dword/Qword Indices</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
 	<td>Op/En</td>
-	<td>64/32-bit Mode</td>
+	<td>64/3 2-bit Mode</td>
 	<td>CPUID Feature Flag</td>
 	<td>Description</td>
 </tr>
@@ -20,21 +20,21 @@
 	<td>RMV</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Using dword indices specified in vm32x, gather double-preVGATHERDPD xmm1, vm32x, xmm2fied by xmm2. Conditionally gathered elements are merged into xmm1.</td>
+	<td>Using dword indices specified in vm32x, gather double-preVGATHERDPD xmm1, vm32x, xmm2 fied by xmm2. Conditionally gathered elements are merged into xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.DDS.128.66.0F38.W1 93 /r</td>
 	<td>RMV</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Using qword indices specified in vm64x, gather double-preVGATHERQPD xmm1, vm64x, xmm2fied by xmm2. Conditionally gathered elements are merged into xmm1.</td>
+	<td>Using qword indices specified in vm64x, gather double-preVGATHERQPD xmm1, vm64x, xmm2 fied by xmm2. Conditionally gathered elements are merged into xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.DDS.256.66.0F38.W1 92 /r</td>
 	<td>RMV</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Using dword indices specified in vm32x, gather double-preVGATHERDPD ymm1, vm32x, ymm2fied by ymm2. Conditionally gathered elements are merged into ymm1.</td>
+	<td>Using dword indices specified in vm32x, gather double-preVGATHERDPD ymm1, vm32x, ymm2 fied by ymm2. Conditionally gathered elements are merged into ymm1.</td>
 </tr>
 <tr>
 	<td>VEX.DDS.256.66.0F38.W1 93 /r VGATHERQPD ymm1, vm64y, ymm2</td>
@@ -182,7 +182,7 @@ FOR j← 0 to 3
 ENDFOR
 (non-masked elements of the mask register have the content of respective element
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>VGATHERDPD: __m128d _mm_i32gather_pd (double const * base, __m128i index, const int scale);</p>
 <p>VGATHERDPD: __m128d _mm_mask_i32gather_pd (__m128d src, double const * base, __m128i index, __m128d mask, const int scale);</p>
 <p>VGATHERDPD: __m256d _mm256_i32gather_pd (double const * base, __m128i index, const int scale);</p>

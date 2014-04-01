@@ -20,21 +20,21 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Convert four packed signed doubleword CVTDQ2PS xmm1, xmm2/m128single-precision floating-point values in xmm1.</td>
+	<td>Convert four packed signed doubleword CVTDQ2PS xmm1, xmm2/m128 single-precision floating-point values in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.128.0F.WIG 5B /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Convert four packed signed doubleword VCVTDQ2PS xmm1, xmm2/m128single-precision floating-point values in xmm1.</td>
+	<td>Convert four packed signed doubleword VCVTDQ2PS xmm1, xmm2/m128 single-precision floating-point values in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.256.0F.WIG 5B /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Convert eight packed signed doubleword VCVTDQ2PS ymm1, ymm2/m256single-precision floating-point values in ymm1.</td>
+	<td>Convert eight packed signed doubleword VCVTDQ2PS ymm1, ymm2/m256 single-precision floating-point values in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -80,7 +80,7 @@ DEST[191:160] ← Convert_Integer_To_Single_Precision_Floating_Point(SRC[191:160
 DEST[223:192] ← Convert_Integer_To_Single_Precision_Floating_Point(SRC[223:192])
 DEST[255:224] ← Convert_Integer_To_Single_Precision_Floating_Point(SRC[255:224)
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>CVTDQ2PS:</td>

@@ -27,14 +27,14 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Return the bitwise logical AND NOT of packed VANDNPS xmm1, xmm2, xmm3/m128and xmm3/mem.</td>
+	<td>Return the bitwise logical AND NOT of packed VANDNPS xmm1, xmm2, xmm3/m128 and xmm3/mem.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.0F.WIG 55 /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Return the bitwise logical AND NOT of packed VANDNPS ymm1, ymm2, ymm3/m256and ymm3/mem.</td>
+	<td>Return the bitwise logical AND NOT of packed VANDNPS ymm1, ymm2, ymm3/m256 and ymm3/mem.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -87,7 +87,7 @@ DEST[191:160]← (NOT(SRC1[191:160])) BITWISE AND SRC2[191:160]
 DEST[223:192] ← (NOT(SRC1[223:192])) BITWISE AND SRC2[223:192]
 DEST[255:224] ← (NOT(SRC1[255:224])) BITWISE AND SRC2[255:224].
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>ANDNPS:</td>

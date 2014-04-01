@@ -25,10 +25,39 @@
 </table>
 <h2 id="description">Description</h2>
 <p>Clears the sign bit of ST(0) to create the absolute value of the operand. The following table shows the results obtained when creating the absolute value of various classes of numbers.</p>
+<h3 id="table-3-27-results-obtained-from-fabs">Table 3-27. Results Obtained from FABS</h3>
 <table>
 <tr>
-	<td>Table 3-27.</td>
-	<td>Results Obtained from FABS ST(0) DEST + ∞+ F + 0+ 0+ F + ∞NaN</td>
+	<td>ST(0) SRC</td>
+	<td>ST(0) DEST</td>
+</tr>
+<tr>
+	<td>− ∞</td>
+	<td>+ ∞</td>
+</tr>
+<tr>
+	<td>− F</td>
+	<td>+ F</td>
+</tr>
+<tr>
+	<td>− 0</td>
+	<td>+ 0</td>
+</tr>
+<tr>
+	<td>+ 0</td>
+	<td>+ 0</td>
+</tr>
+<tr>
+	<td>+ F</td>
+	<td>+ F</td>
+</tr>
+<tr>
+	<td>+ ∞</td>
+	<td>+ ∞</td>
+</tr>
+<tr>
+	<td>NaN</td>
+	<td>NaN</td>
 </tr>
 </table>
 <p class="notes">Notes: F Means finite floating-point value.</p>

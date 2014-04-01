@@ -20,21 +20,21 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Unpacks and Interleaves single-precision UNPCKHPS xmm1, xmm2/m128xmm1 and xmm2/mem into xmm1.</td>
+	<td>Unpacks and Interleaves single-precision UNPCKHPS xmm1, xmm2/m128 xmm1 and xmm2/mem into xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.0F.WIG 15 /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Unpacks and Interleaves single-precision VUNPCKHPS xmm1,xmm2, xmm3/m128xmm2 and xmm3/m128.</td>
+	<td>Unpacks and Interleaves single-precision VUNPCKHPS xmm1,xmm2, xmm3/m128 xmm2 and xmm3/m128.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.0F.WIG 15 /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Unpacks and Interleaves single-precision VUNPCKHPS ymm1,ymm2,ymm3/m256ymm2 and ymm3/m256.</td>
+	<td>Unpacks and Interleaves single-precision VUNPCKHPS ymm1,ymm2,ymm3/m256 ymm2 and ymm3/m256.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -80,10 +80,10 @@
 </tr>
 <tr>
 	<td>DEST</td>
-	<td>Y3UNPCKHPS Instruction High Unpack and Interleave Operation</td>
+	<td>Y3 UNPCKHPS Instruction High Unpack and Interleave Operation</td>
 	<td>X3</td>
 	<td>Y2</td>
-	<td>X2Figure 4-24.</td>
+	<td>X2 Figure 4-24.</td>
 </tr>
 </table>
 <p>When unpacking from a memory operand, an implementation may fetch only the appropriate 64 bits; however, alignment to 16-byte boundary and normal segment checking will still be enforced.</p>
@@ -111,7 +111,7 @@ DEST[191:160] ← SRC2[223:192]
 DEST[223:192] ← SRC1[255:224]
 DEST[255:224] ← SRC2[255:224]
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>UNPCKHPS:</td>

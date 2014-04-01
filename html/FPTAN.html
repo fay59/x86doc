@@ -25,14 +25,35 @@
 </table>
 <h2 id="description">Description</h2>
 <p>Computes the tangent of the source operand in register ST(0), stores the result in ST(0), and pushes a 1.0 onto the FPU register stack. The source operand must be given in radians and must be less than ±263. The following table shows the unmasked results obtained when computing the partial tangent of various classes of numbers, assuming that underflow does not occur.</p>
+<h3 id="table-3-43-fptan-results">Table 3-43. FPTAN Results</h3>
 <table>
 <tr>
-	<td>Table 3-43.</td>
-	<td>FPTAN Results ST(0) DEST − ∞− F to + F -0+0− F to + F + ∞NaN</td>
+	<td>ST(0) SRC − ∞</td>
+	<td>ST(0) DEST</td>
+</tr>
+<tr>
+	<td>− F</td>
+	<td>− F to + F</td>
+</tr>
+<tr>
+	<td>− 0</td>
+	<td>-0</td>
+</tr>
+<tr>
+	<td>+ 0</td>
+	<td>+0</td>
+</tr>
+<tr>
+	<td>+ F + ∞</td>
+	<td>− F to + F</td>
+</tr>
+<tr>
+	<td>NaN</td>
+	<td>NaN</td>
 </tr>
 </table>
 <p class="notes">Notes: F Means finite floating-point value. * Indicates floating-point invalid-arithmetic-operand (#IA) exception.</p>
-<p>If the source operand is outside the acceptable range, the C2 flag in the FPU status word is set, and the value in register ST(0) remains unchanged. The instruction does not raise an exception when the source operand is out of range. It is up to the program to check the C2 flag for out-of-range conditions. Source values outside the range −263 to +263 can be reduced to the range of the instruction by subtracting an appropriate integer multiple of 2π or by using the FPREM instruction with a divisor of 2π. See the section titled “Pi” in Chapter 8 of the Intel® 64 and IA-32Architectures Software Developer’s Manual, Volume 1, for a discussion of the proper value to use for π in performing such reductions.</p>
+<p>If the source operand is outside the acceptable range, the C2 flag in the FPU status word is set, and the value in register ST(0) remains unchanged. The instruction does not raise an exception when the source operand is out of range. It is up to the program to check the C2 flag for out-of-range conditions. Source values outside the range −263 to +263 can be reduced to the range of the instruction by subtracting an appropriate integer multiple of 2π or by using the FPREM instruction with a divisor of 2π. See the section titled “Pi” in Chapter 8 of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, for a discussion of the proper value to use for π in performing such reductions.</p>
 <p>The value 1.0 is pushed onto the register stack after the tangent has been computed to maintain compatibility with the Intel 8087 and Intel287 math coprocessors. This operation also simplifies the calculation of other trigonometric functions. For instance, the cotangent (which is the reciprocal of the tangent) can be computed by executing a FDIVR instruction after the FPTAN instruction.</p>
 <p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
 <h2 id="operation">Operation</h2>

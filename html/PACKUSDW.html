@@ -6,7 +6,7 @@
 	<title>PACKUSDW — Pack with Unsigned Saturation</title>
 </head>
 <body>
-<h1 id="packusdw---pack-with-unsigned-saturation">PACKUSDW — Pack with Unsigned Saturation</h1>
+<h1 id="packusdw-pack-with-unsigned-saturation">PACKUSDW — Pack with Unsigned Saturation</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -139,7 +139,7 @@ DEST[239:224] ← (SRC2[223:192] &gt; FFFFH) ? FFFFH : TMP[239:224] ;
 TMP[255:240] ← (SRC2[255:224] &lt; 0) ? 0 : SRC2[239:224];
 DEST[255:240] ← (SRC2[255:224] &gt; FFFFH) ? FFFFH : TMP[255:240] ;
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>(V)PACKUSDW: __m128i _mm_packus_epi32(__m128i m1, __m128i m2);</p>
 <table>
 <tr>

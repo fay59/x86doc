@@ -20,28 +20,28 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Multiply the packed unsigned word integers in PMULHUW mm1, mm2/m64high 16 bits of the results in mm1.</td>
+	<td>Multiply the packed unsigned word integers in PMULHUW mm1, mm2/m64 high 16 bits of the results in mm1.</td>
 </tr>
 <tr>
 	<td>66 0F E4 /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Multiply the packed unsigned word integers in PMULHUW xmm1, xmm2/m12816 bits of the results in xmm1.</td>
+	<td>Multiply the packed unsigned word integers in PMULHUW xmm1, xmm2/m128 16 bits of the results in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG E4 /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Multiply the packed unsigned word integers in VPMULHUW xmm1, xmm2, xmm3/m12816 bits of the results in xmm1.</td>
+	<td>Multiply the packed unsigned word integers in VPMULHUW xmm1, xmm2, xmm3/m128 16 bits of the results in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG E4 /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Multiply the packed unsigned word integers in VPMULHUW ymm1, ymm2, ymm3/m25616 bits of the results in ymm1.</td>
+	<td>Multiply the packed unsigned word integers in VPMULHUW ymm1, ymm2, ymm3/m256 16 bits of the results in ymm1.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
@@ -83,10 +83,10 @@
 </tr>
 <tr>
 	<td>DEST</td>
-	<td>Y3Z2 = X2 ∗ Y2</td>
+	<td>Y3 Z2 = X2 ∗ Y2</td>
 	<td>Y2</td>
-	<td>Y1Z1 = X1 ∗ Y1</td>
-	<td>Y0Z0 = X0 ∗ Y0</td>
+	<td>Y1 Z1 = X1 ∗ Y1</td>
+	<td>Y0 Z0 = X0 ∗ Y0</td>
 </tr>
 </table>
 <p>DEST</p>
@@ -177,7 +177,7 @@ DEST[223:208] ← TEMP13[31:16]
 DEST[239:224] ← TEMP14[31:16]
 DEST[255:240] ← TEMP15[31:16]
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>PMULHUW:</td>

@@ -6,7 +6,7 @@
 	<title>ROUNDPS — Round Packed Single Precision Floating-Point Values</title>
 </head>
 <body>
-<h1 id="roundps---round-packed-single-precision-floating-point-values">ROUNDPS — Round Packed Single Precision Floating-Point Values</h1>
+<h1 id="roundps-round-packed-single-precision-floating-point-values">ROUNDPS — Round Packed Single Precision Floating-Point Values</h1>
 <table>
 <tr>
 	<td>Opcode*/Instruction</td>
@@ -16,7 +16,7 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 3A 08/r ib ROUNDPS xmm1, xmm2/m128, imm8</td>
+	<td>66 0F 3A 08 /r ib ROUNDPS xmm1, xmm2/m128, imm8</td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE4_1</td>
@@ -93,7 +93,7 @@ DEST[191:160] ← RoundToInteger(SRC[191:160]], ROUND_CONTROL)
 DEST[223:192] ← RoundToInteger(SRC[223:192] ], ROUND_CONTROL)
 DEST[255:224] ← RoundToInteger(SRC[255:224] ], ROUND_CONTROL)
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>__m128 _mm_round_ps(__m128 s1, int iRoundMode);</p>
 <p>__m128 _mm_floor_ps(__m128 s1);</p>
 <p>__m128 _mm_ceil_ps(__m128 s1)</p>

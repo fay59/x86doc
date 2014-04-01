@@ -53,10 +53,37 @@
 </table>
 <h2 id="description">Description</h2>
 <p>Performs an unordered comparison of the contents of register ST(0) and ST(i) and sets condition code flags C0, C2, and C3 in the FPU status word according to the results (see the table below). If no operand is specified, the contents of registers ST(0) and ST(1) are compared. The sign of zero is ignored, so that -0.0 is equal to +0.0.</p>
+<h3 id="table-3-51-fucom-fucomp-fucompp-results">Table 3-51. FUCOM/FUCOMP/FUCOMPP Results</h3>
 <table>
 <tr>
-	<td>Table 3-51.</td>
-	<td>FUCOM/FUCOMP/FUCOMPP Results C00101</td>
+	<td>Comparison Results*</td>
+	<td>C3</td>
+	<td>C2</td>
+	<td>C0</td>
+</tr>
+<tr>
+	<td>ST0 &gt; ST(i)</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>ST0 &lt; ST(i)</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>ST0 = ST(i)</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>Unordered</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
 </tr>
 </table>
 <p class="notes">Notes: * Flags not set if unmasked invalid-arithmetic-operand (#IA) exception is generated.</p>

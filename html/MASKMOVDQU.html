@@ -20,14 +20,14 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Selectively write bytes from xmm1 to MASKMOVDQU xmm1, xmm2xmm2. The default memory location is specified by DS:DI/EDI/RDI.</td>
+	<td>Selectively write bytes from xmm1 to MASKMOVDQU xmm1, xmm2 xmm2. The default memory location is specified by DS:DI/EDI/RDI.</td>
 </tr>
 <tr>
 	<td>VEX.128.66.0F.WIG F7 /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Selectively write bytes from xmm1 to VMASKMOVDQU xmm1, xmm2xmm2. The default memory location is specified by DS:DI/EDI/RDI.</td>
+	<td>Selectively write bytes from xmm1 to VMASKMOVDQU xmm1, xmm2 xmm2. The default memory location is specified by DS:DI/EDI/RDI.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding1">Instruction Operand Encoding1</h2>
@@ -70,14 +70,14 @@ IF (MASK[15] = 1)
 IF (MASK[127] = 1)
   THEN DEST[DI/EDI +15] ← SRC[127:120] ELSE (* Memory location unchanged *); FI;
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>void _mm_maskmoveu_si128(__m128i d, __m128i n, char * p)</p>
 <h2 id="other-exceptions">Other Exceptions</h2>
 <p>See Exceptions Type 4; additionally</p>
 <table>
 <tr>
 	<td>#UD</td>
-	<td>If VEX.L= 1If VEX.vvvv != 1111B.</td>
+	<td>If VEX.L= 1 If VEX.vvvv != 1111B.</td>
 </tr>
 </table>
 </body>

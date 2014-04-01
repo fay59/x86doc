@@ -6,7 +6,7 @@
 	<title>VPERMILPS — Permute Single-Precision Floating-Point Values</title>
 </head>
 <body>
-<h1 id="vpermilps---permute-single-precision-floating-point-values">VPERMILPS — Permute Single-Precision Floating-Point Values</h1>
+<h1 id="vpermilps-permute-single-precision-floating-point-values">VPERMILPS — Permute Single-Precision Floating-Point Values</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -86,9 +86,9 @@
 	<td>DEST</td>
 	<td>X7 .. X4</td>
 	<td>X7 .. X4</td>
-	<td>X7 .. X4Figure 4-40.</td>
+	<td>X7 .. X4 Figure 4-40.</td>
 	<td>X7 .. X4</td>
-	<td>X3 ..X0VPERMILPS Operation</td>
+	<td>X3 ..X0 VPERMILPS Operation</td>
 	<td>X3 ..X0</td>
 	<td>X3 .. X0</td>
 	<td>X3 .. X0</td>
@@ -98,14 +98,14 @@
 <p>Bit</p>
 <table>
 <tr>
-	<td>255ignored</td>
-	<td>226Control Field 7</td>
-	<td>225 224sel Figure 4-41.</td>
-	<td>63ignored VPERMILPS Shuffle Control</td>
-	<td>34Control Field 2</td>
-	<td>33 32sel</td>
-	<td>31ignored Control Field 1</td>
-	<td>1sel</td>
+	<td>255 ignored</td>
+	<td>226 Control Field 7</td>
+	<td>225 224 sel Figure 4-41.</td>
+	<td>63 ignored VPERMILPS Shuffle Control</td>
+	<td>34 Control Field 2</td>
+	<td>33 32 sel</td>
+	<td>31 ignored Control Field 1</td>
+	<td>1 sel</td>
 	<td>0</td>
 </tr>
 </table>
@@ -151,7 +151,7 @@ DEST[95:64] ← Select4(SRC1[127:0], SRC2[65:64]);
 DEST[127:96] ← Select4(SRC1[127:0], SRC2[97:96]);
 DEST[VLMAX-1:128] ← 0
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>VPERM1LPS:</td>

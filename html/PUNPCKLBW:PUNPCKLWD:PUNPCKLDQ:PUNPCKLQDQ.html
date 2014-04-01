@@ -55,14 +55,14 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Interleave low-order doublewords from xmm1PUNPCKLDQ xmm1, xmm2/m128</td>
+	<td>Interleave low-order doublewords from xmm1 PUNPCKLDQ xmm1, xmm2/m128</td>
 </tr>
 <tr>
 	<td>66 0F 6C /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Interleave low-order quadword from xmm1PUNPCKLQDQ xmm1, xmm2/m128</td>
+	<td>Interleave low-order quadword from xmm1 PUNPCKLQDQ xmm1, xmm2/m128</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG 60/r</td>
@@ -83,14 +83,14 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Interleave low-order doublewords from xmm2VPUNPCKLDQ xmm1, xmm2, xmm3/m128</td>
+	<td>Interleave low-order doublewords from xmm2 VPUNPCKLDQ xmm1, xmm2, xmm3/m128</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG 6C/r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Interleave low-order quadword from xmm2VPUNPCKLQDQ xmm1, xmm2, xmm3/m128</td>
+	<td>Interleave low-order quadword from xmm2 VPUNPCKLQDQ xmm1, xmm2, xmm3/m128</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG 60 /r</td>
@@ -111,14 +111,14 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Interleave low-order doublewords from ymm2VPUNPCKLDQ ymm1, ymm2, ymm3/m256</td>
+	<td>Interleave low-order doublewords from ymm2 VPUNPCKLDQ ymm1, ymm2, ymm3/m256</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG 6C /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Interleave low-order quadword from ymm2VPUNPCKLQDQ ymm1, ymm2, ymm3/m256</td>
+	<td>Interleave low-order quadword from ymm2 VPUNPCKLQDQ ymm1, ymm2, ymm3/m256</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
@@ -147,26 +147,26 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Unpacks and interleaves the low-order data elements (bytes, words, doublewords, and quadwords) of the destination operand (first operand) and source operand (second operand) into the destination operand. (Figure 4-18shows the unpack operation for bytes in 64-bit operands.). The high-order data elements are ignored.</p>
+<p>Unpacks and interleaves the low-order data elements (bytes, words, doublewords, and quadwords) of the destination operand (first operand) and source operand (second operand) into the destination operand. (Figure 4-18 shows the unpack operation for bytes in 64-bit operands.). The high-order data elements are ignored.</p>
 <table>
 <tr>
 	<td>SRC SRC</td>
-	<td>Y7Figure 4-18. 255Y7</td>
-	<td>Y6Y6Figure 4-19.</td>
-	<td>Y5Y5</td>
-	<td>Y4PUNPCKLBW Instruction Operation Using 64-bit Operands Y4</td>
-	<td>Y3Y3</td>
-	<td>Y2Y2256-bit VPUNPCKLDQ Instruction Operation</td>
-	<td>Y1DEST Y1DEST</td>
-	<td>Y0Y30Y0255Y5</td>
-	<td>X7Y2255X7Y4</td>
-	<td>X6X2X6X4</td>
-	<td>X5Y1X5Y1</td>
-	<td>X4X1X4X1</td>
-	<td>X3Y0X3Y0</td>
-	<td>X2X0X2X0</td>
-	<td>X1X10</td>
-	<td>X031X0</td>
+	<td>Y7 Figure 4-18. 255 Y7</td>
+	<td>Y6 Y6 Figure 4-19.</td>
+	<td>Y5 Y5</td>
+	<td>Y4 PUNPCKLBW Instruction Operation Using 64-bit Operands Y4</td>
+	<td>Y3 Y3</td>
+	<td>Y2 Y2 256-bit VPUNPCKLDQ Instruction Operation</td>
+	<td>Y1 DEST Y1 DEST</td>
+	<td>Y0 Y3 0 Y0 255 Y5</td>
+	<td>X7 Y2 255 X7 Y4</td>
+	<td>X6 X2 X6 X4</td>
+	<td>X5 Y1 X5 Y1</td>
+	<td>X4 X1 X4 X1</td>
+	<td>X3 Y0 X3 Y0</td>
+	<td>X2 X0 X2 X0</td>
+	<td>X1 X1 0</td>
+	<td>X0 31 X0</td>
 	<td>DEST 0</td>
 </tr>
 </table>
@@ -360,7 +360,7 @@ DEST[VLMAX-1:128] ← 0
 VPUNPCKLQDQ (VEX.256 encoded instruction)
 DEST[255:0] ← INTERLEAVE_QWORDS(SRC1, SRC2)
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
 <table>
 <tr>
 	<td>PUNPCKLBW:</td>

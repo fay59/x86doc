@@ -6,7 +6,7 @@
 	<title>VPERM2F128 — Permute Floating-Point Values</title>
 </head>
 <body>
-<h1 id="vperm2f128---permute-floating-point-values">VPERM2F128 — Permute Floating-Point Values</h1>
+<h1 id="vperm2f128-permute-floating-point-values">VPERM2F128 — Permute Floating-Point Values</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -20,7 +20,7 @@
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Permute 128-bit floating-point fields in ymm2and ymm3/mem using controls from imm8 and store result in ymm1.</td>
+	<td>Permute 128-bit floating-point fields in ymm2 and ymm3/mem using controls from imm8 and store result in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -55,7 +55,7 @@
 </tr>
 <tr>
 	<td>DEST</td>
-	<td>X0, X1, Y0, or Y1VPERM2F128 Operation</td>
+	<td>X0, X1, Y0, or Y1 VPERM2F128 Operation</td>
 	<td>X0, X1, Y0, or Y1</td>
 </tr>
 </table>
@@ -81,7 +81,7 @@ IF (imm8[7])
 DEST[VLMAX-1:128] ← 0
 FI
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>VPERM2F128:</td>
@@ -103,7 +103,7 @@ FI
 <table>
 <tr>
 	<td>#UD</td>
-	<td>If VEX.L = 0If VEX.W = 1.</td>
+	<td>If VEX.L = 0 If VEX.W = 1.</td>
 </tr>
 </table>
 </body>

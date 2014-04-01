@@ -27,7 +27,7 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Compare packed signed byte integers in xmm1PCMPGTB xmm1, xmm2/m128</td>
+	<td>Compare packed signed byte integers in xmm1 PCMPGTB xmm1, xmm2/m128</td>
 </tr>
 <tr>
 	<td>0F 65 /r1</td>
@@ -62,7 +62,7 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Compare packed signed byte integers in xmm2VPCMPGTB xmm1, xmm2, xmm3/m128</td>
+	<td>Compare packed signed byte integers in xmm2 VPCMPGTB xmm1, xmm2, xmm3/m128</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG 65 /r</td>
@@ -83,14 +83,14 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Compare packed signed byte integers in ymm2VPCMPGTB ymm1, ymm2, ymm3/m256</td>
+	<td>Compare packed signed byte integers in ymm2 VPCMPGTB ymm1, ymm2, ymm3/m256</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG 65 /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Compare packed signed word integers in ymm2VPCMPGTW ymm1, ymm2, ymm3/m256</td>
+	<td>Compare packed signed word integers in ymm2 VPCMPGTW ymm1, ymm2, ymm3/m256</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG 66 /r</td>
@@ -198,7 +198,7 @@ VPCMPGTD (VEX.256 encoded version)
 DEST[127:0] ←COMPARE_DWORDS_GREATER(SRC1[127:0],SRC2[127:0])
 DEST[255:128] ←COMPARE_DWORDS_GREATER(SRC1[255:128],SRC2[255:128])
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
 <table>
 <tr>
 	<td>PCMPGTB:</td>

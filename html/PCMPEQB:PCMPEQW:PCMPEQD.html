@@ -6,7 +6,7 @@
 	<title>PCMPEQB/PCMPEQW/PCMPEQD— Compare Packed Data for Equal</title>
 </head>
 <body>
-<h1 id="pcmpeqb-pcmpeqw-pcmpeqd--compare-packed-data-for-equal">PCMPEQB/PCMPEQW/PCMPEQD— Compare Packed Data for Equal</h1>
+<h1 id="pcmpeqb-pcmpeqw-pcmpeqd-compare-packed-data-for-equal">PCMPEQB/PCMPEQW/PCMPEQD— Compare Packed Data for Equal</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -55,7 +55,7 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Compare packed doublewords in xmm2/m128PCMPEQD xmm1, xmm2/m128</td>
+	<td>Compare packed doublewords in xmm2/m128 PCMPEQD xmm1, xmm2/m128</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG 74 /r</td>
@@ -76,7 +76,7 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Compare packed doublewords in xmm3/m128VPCMPEQD xmm1, xmm2, xmm3/m128</td>
+	<td>Compare packed doublewords in xmm3/m128 VPCMPEQD xmm1, xmm2, xmm3/m128</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG 75 /r</td>
@@ -90,14 +90,14 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Compare packed doublewords in ymm3/m256VPCMPEQD ymm1, ymm2, ymm3 /m256</td>
+	<td>Compare packed doublewords in ymm3/m256 VPCMPEQD ymm1, ymm2, ymm3 /m256</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F38.WIG 29 /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Compare packed quadwords in ymm3/m256VPCMPEQQ ymm1, ymm2, ymm3 /m256</td>
+	<td>Compare packed quadwords in ymm3/m256 VPCMPEQQ ymm1, ymm2, ymm3 /m256</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
@@ -197,7 +197,7 @@ VPCMPEQD (VEX.256 encoded version)
 DEST[127:0] ←COMPARE_DWORDS_EQUAL(SRC1[127:0],SRC2[127:0])
 DEST[255:128] ←COMPARE_DWORDS_EQUAL(SRC1[255:128],SRC2[255:128])
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
 <table>
 <tr>
 	<td>PCMPEQB:</td>

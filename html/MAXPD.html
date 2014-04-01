@@ -20,14 +20,14 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Return the maximum double-precision MAXPD xmm1, xmm2/m128and xmm1.</td>
+	<td>Return the maximum double-precision MAXPD xmm1, xmm2/m128 and xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG 5F /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Return the maximum double-precision VMAXPD xmm1,xmm2, xmm3/m128xmm3/mem.</td>
+	<td>Return the maximum double-precision VMAXPD xmm1,xmm2, xmm3/m128 xmm3/mem.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG 5F /r VMAXPD ymm1, ymm2, ymm3/m256</td>
@@ -88,7 +88,7 @@ DEST[127:64] ← MAX(SRC1[127:64], SRC2[127:64])
 DEST[191:128] ← MAX(SRC1[191:128], SRC2[191:128])
 DEST[255:192] ← MAX(SRC1[255:192], SRC2[255:192])
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>MAXPD:</td>

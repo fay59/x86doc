@@ -20,7 +20,7 @@
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Selectively write bytes from mm1 to memory MASKMOVQ mm1, mm2default memory location is specified by DS:DI/EDI/RDI.</td>
+	<td>Selectively write bytes from mm1 to memory MASKMOVQ mm1, mm2 default memory location is specified by DS:DI/EDI/RDI.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -63,9 +63,9 @@ IF (MASK[15] = 1)
 IF (MASK[63] = 1)
   THEN DEST[DI/EDI +15] ← SRC[63:56] ELSE (* Memory location unchanged *); FI;
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>void _mm_maskmove_si64(__m64d, __m64n, char * p)</p>
 <h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Table 22-8, “Exception Conditions for Legacy SIMD/MMX Instructions without FP Exception,” in the Intel® 64and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
+<p>See Table 22-8, “Exception Conditions for Legacy SIMD/MMX Instructions without FP Exception,” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
 </body>
 </html>

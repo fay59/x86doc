@@ -20,21 +20,21 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Unpacks and Interleaves double-precision UNPCKLPD xmm1, xmm2/m128xmm1 and xmm2/m128.</td>
+	<td>Unpacks and Interleaves double-precision UNPCKLPD xmm1, xmm2/m128 xmm1 and xmm2/m128.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG 14 /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Unpacks and Interleaves double precision VUNPCKLPD xmm1,xmm2, xmm3/m128xmm2 and xmm3/m128.</td>
+	<td>Unpacks and Interleaves double precision VUNPCKLPD xmm1,xmm2, xmm3/m128 xmm2 and xmm3/m128.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG 14 /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Unpacks and Interleaves double precision VUNPCKLPD ymm1,ymm2, ymm3/m256ymm2 and ymm3/m256.</td>
+	<td>Unpacks and Interleaves double precision VUNPCKLPD ymm1,ymm2, ymm3/m256 ymm2 and ymm3/m256.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -76,8 +76,8 @@
 </tr>
 <tr>
 	<td>DEST</td>
-	<td>Y0UNPCKLPD Instruction Low Unpack and Interleave Operation</td>
-	<td>X0Figure 4-25.</td>
+	<td>Y0 UNPCKLPD Instruction Low Unpack and Interleave Operation</td>
+	<td>X0 Figure 4-25.</td>
 </tr>
 </table>
 <p>When unpacking from a memory operand, an implementation may fetch only the appropriate 64 bits; however, alignment to 16-byte boundary and normal segment checking will still be enforced.</p>
@@ -97,7 +97,7 @@ DEST[127:64] ← SRC2[63:0]
 DEST[191:128] ← SRC1[191:128]
 DEST[255:192] ← SRC2[191:128]
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>UNPCKHPD:</td>

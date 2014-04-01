@@ -27,14 +27,14 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Add/subtract single-precision floating-point VADDSUBPS xmm1, xmm2, xmm3/m128result in xmm1.</td>
+	<td>Add/subtract single-precision floating-point VADDSUBPS xmm1, xmm2, xmm3/m128 result in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.F2.0F.WIG D0 /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Add / subtract single-precision floating-point VADDSUBPS ymm1, ymm2, ymm3/m256result in ymm1.</td>
+	<td>Add / subtract single-precision floating-point VADDSUBPS ymm1, ymm2, ymm3/m256 result in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -71,7 +71,7 @@
 	<td>[127:96]</td>
 	<td>[95:64]xmm1[95:64] - xmm2/m128[95:64]</td>
 	<td>[63:32]xmm1[63:32] +xmm2/m128[63:32]</td>
-	<td>[31:0]m128RESULT: xmm1</td>
+	<td>[31:0]m128 RESULT: xmm1</td>
 </tr>
 <tr>
 	<td>[127:96]</td>
@@ -110,7 +110,7 @@ DEST[191:160]← SRC1[191:160] + SRC2[191:160]
 DEST[223:192] ← SRC1[223:192] - SRC2[223:192]
 DEST[255:224] ← SRC1[255:224] + SRC2[255:224].
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>ADDSUBPS:</td>

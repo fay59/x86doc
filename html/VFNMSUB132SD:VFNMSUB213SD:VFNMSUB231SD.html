@@ -6,7 +6,7 @@
 	<title>VFNMSUB132SD/VFNMSUB213SD/VFNMSUB231SD — Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values</title>
 </head>
 <body>
-<h1 id="vfnmsub132sd-vfnmsub213sd-vfnmsub231sd---fused-negative-multiply-subtract-of-scalar-double-precision-floating-point-values">VFNMSUB132SD/VFNMSUB213SD/VFNMSUB231SD — Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values</h1>
+<h1 id="vfnmsub132sd-vfnmsub213sd-vfnmsub231sd-fused-negative-multiply-subtract-of-scalar-double-precision-floating-point-values">VFNMSUB132SD/VFNMSUB213SD/VFNMSUB231SD — Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -27,7 +27,7 @@
 	<td>A</td>
 	<td>V/V</td>
 	<td>FMA</td>
-	<td>Multiply scalar double-precision floating-point value VFNMSUB213SD xmm0, xmm1, xmm2/m64result and subtract xmm2/mem and put result in xmm0.</td>
+	<td>Multiply scalar double-precision floating-point value VFNMSUB213SD xmm0, xmm1, xmm2/m64 result and subtract xmm2/mem and put result in xmm0.</td>
 </tr>
 <tr>
 	<td>VEX.DDS.LIG.128.66.0F38.W1 BF /r VFNMSUB231SD xmm0, xmm1, xmm2/m64</td>
@@ -72,7 +72,7 @@ DEST[63:0] ← RoundFPControl_MXCSR(- (SRC2[63:0]*SRC3[63:0]) - DEST[63:0])
 DEST[127:64] ← DEST[127:64]
 DEST[VLMAX-1:128] ← 0
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>VFNMSUB132SD: __m128d _mm_fnmsub_sd (__m128d a, __m128d b, __m128d c);</p>
 <p>VFNMSUB213SD: __m128d _mm_fnmsub_sd (__m128d a, __m128d b, __m128d c);</p>
 <p>VFNMSUB231SD: __m128d _mm_fnmsub_sd (__m128d a, __m128d b, __m128d c);</p>

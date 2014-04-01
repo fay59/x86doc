@@ -6,7 +6,7 @@
 	<title>PALIGNR — Packed Align Right</title>
 </head>
 <body>
-<h1 id="palignr---packed-align-right">PALIGNR — Packed Align Right</h1>
+<h1 id="palignr-packed-align-right">PALIGNR — Packed Align Right</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -20,28 +20,28 @@
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSSE3</td>
-	<td>Concatenate destination and source PALIGNR mm1, mm2/m64, imm8to the right by constant value in imm8 into mm1.</td>
+	<td>Concatenate destination and source PALIGNR mm1, mm2/m64, imm8 to the right by constant value in imm8 into mm1.</td>
 </tr>
 <tr>
 	<td>66 0F 3A 0F /r ib</td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSSE3</td>
-	<td>Concatenate destination and source PALIGNR xmm1, xmm2/m128, imm8to the right by constant value in imm8 into xmm1.</td>
+	<td>Concatenate destination and source PALIGNR xmm1, xmm2/m128, imm8 to the right by constant value in imm8 into xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F3A.WIG 0F /r ib</td>
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Concatenate xmm2 and xmm3/m128, extract VPALIGNR xmm1, xmm2, xmm3/m128, imm8constant value in imm8 and result is stored in xmm1.</td>
+	<td>Concatenate xmm2 and xmm3/m128, extract VPALIGNR xmm1, xmm2, xmm3/m128, imm8 constant value in imm8 and result is stored in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F3A.WIG 0F /r ib</td>
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Concatenate pairs of 16 bytes in ymm2 and VPALIGNR ymm1, ymm2, ymm3/m256, imm8result, extract byte-aligned, 16-byte result shifted to the right by constant values in imm8 from each intermediate result, and two 16-byte results are stored in ymm1.</td>
+	<td>Concatenate pairs of 16 bytes in ymm2 and VPALIGNR ymm1, ymm2, ymm3/m256, imm8 result, extract byte-aligned, 16-byte result shifted to the right by constant values in imm8 from each intermediate result, and two 16-byte results are stored in ymm1.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
@@ -78,7 +78,7 @@
 	<td>127</td>
 	<td>0</td>
 	<td>127</td>
-	<td>0SRC2</td>
+	<td>0 SRC2</td>
 </tr>
 </table>
 <p>Imm8[7:0]*8</p>
@@ -87,16 +87,16 @@
 	<td>255</td>
 	<td>128</td>
 	<td>255</td>
-	<td>128SRC2</td>
+	<td>128 SRC2</td>
 </tr>
 </table>
 <p>Imm8[7:0]*8</p>
 <table>
 <tr>
-	<td>255Figure 4-3.</td>
-	<td>128256-bit VPALIGN Instruction Operation</td>
+	<td>255 Figure 4-3.</td>
+	<td>128 256-bit VPALIGN Instruction Operation</td>
 	<td>127</td>
-	<td>0DEST</td>
+	<td>0 DEST</td>
 </tr>
 </table>
 <h2 id="operation">Operation</h2>
@@ -117,7 +117,7 @@ DEST[127:0] ← temp1[127:0]
 temp1[255:0] ← ((SRC1[255:128] &lt;&lt; 128) OR SRC2[255:128])&gt;&gt;(imm8[7:0]*8);
 DEST[255:128] ← temp1[127:0]
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalents">Intel C/C++ Compiler Intrinsic Equivalents</h2>
 <table>
 <tr>
 	<td>PALIGNR:</td>

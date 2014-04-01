@@ -6,7 +6,7 @@
 	<title>BLENDPS — Blend Packed Single Precision Floating-Point Values</title>
 </head>
 <body>
-<h1 id="blendps---blend-packed-single-precision-floating-point-values">BLENDPS — Blend Packed Single Precision Floating-Point Values</h1>
+<h1 id="blendps-blend-packed-single-precision-floating-point-values">BLENDPS — Blend Packed Single Precision Floating-Point Values</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -20,21 +20,21 @@
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE4_1</td>
-	<td>Select packed single precision floating-point BLENDPS xmm1, xmm2/m128, imm8mask specified in imm8 and store the values into xmm1.</td>
+	<td>Select packed single precision floating-point BLENDPS xmm1, xmm2/m128, imm8 mask specified in imm8 and store the values into xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F3A.WIG 0C /r ib</td>
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Select packed single-precision floating-point VBLENDPS xmm1, xmm2, xmm3/m128, imm8mask in imm8 and store the values in xmm1.</td>
+	<td>Select packed single-precision floating-point VBLENDPS xmm1, xmm2, xmm3/m128, imm8 mask in imm8 and store the values in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F3A.WIG 0C /r ib</td>
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Select packed single-precision floating-point VBLENDPS ymm1, ymm2, ymm3/m256, imm8mask in imm8 and store the values in ymm1.</td>
+	<td>Select packed single-precision floating-point VBLENDPS ymm1, ymm2, ymm3/m256, imm8 mask in imm8 and store the values in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -102,7 +102,7 @@ IF (IMM8[6] = 0) THEN DEST[223:192] ← SRC1[223:192]
 IF (IMM8[7] = 0) THEN DEST[255:224] ← SRC1[255:224]
      ELSE DEST [255:224] ← SRC2[255:224] FI.
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>BLENDPS:</td>

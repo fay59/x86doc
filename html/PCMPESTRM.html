@@ -6,7 +6,7 @@
 	<title>PCMPESTRM — Packed Compare Explicit Length Strings, Return Mask</title>
 </head>
 <body>
-<h1 id="pcmpestrm---packed-compare-explicit-length-strings--return-mask">PCMPESTRM — Packed Compare Explicit Length Strings, Return Mask</h1>
+<h1 id="pcmpestrm-packed-compare-explicit-length-strings-return-mask">PCMPESTRM — Packed Compare Explicit Length Strings, Return Mask</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -16,7 +16,7 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 3A 60 /r imm8PCMPESTRM xmm1, xmm2/m128, imm8</td>
+	<td>66 0F 3A 60 /r imm8 PCMPESTRM xmm1, xmm2/m128, imm8</td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE4_2</td>
@@ -98,9 +98,9 @@
 	<td>XMM0</td>
 </tr>
 </table>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent-for-returning-mask">Intel C/C++ Compiler Intrinsic Equivalent For Returning Mask</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent-for-returning-mask">Intel C/C++ Compiler Intrinsic Equivalent For Returning Mask</h2>
 <p>__m128i _mm_cmpestrm (__m128i a, int la, __m128i b, int lb, const int mode);</p>
-<h2 id="intel-c-c---compiler-intrinsics-for-reading-eflag-results">Intel C/C++ Compiler Intrinsics For Reading EFlag Results</h2>
+<h2 id="intel-c-c-compiler-intrinsics-for-reading-eflag-results">Intel C/C++ Compiler Intrinsics For Reading EFlag Results</h2>
 <table>
 <tr>
 	<td>int</td>
@@ -126,7 +126,7 @@
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
 <p>None.</p>
 <h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Exceptions Type 4; additionally, this instruction does not cause #GP if the memory operand is not aligned to 16Byte boundary, and</p>
+<p>See Exceptions Type 4; additionally, this instruction does not cause #GP if the memory operand is not aligned to 16 Byte boundary, and</p>
 <table>
 <tr>
 	<td>#UD</td>

@@ -20,21 +20,21 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Convert two packed double-precision floatingCVTPD2PS xmm1, xmm2/m128single-precision floating-point values in xmm1.</td>
+	<td>Convert two packed double-precision floatingCVTPD2PS xmm1, xmm2/m128 single-precision floating-point values in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.128.66.0F.WIG 5A /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Convert two packed double-precision floatingVCVTPD2PS xmm1, xmm2/m128precision floating-point values in xmm1.</td>
+	<td>Convert two packed double-precision floatingVCVTPD2PS xmm1, xmm2/m128 precision floating-point values in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.256.66.0F.WIG 5A /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Convert four packed double-precision floatingVCVTPD2PS xmm1, ymm2/m256precision floating-point values in xmm1.</td>
+	<td>Convert four packed double-precision floatingVCVTPD2PS xmm1, ymm2/m256 precision floating-point values in xmm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -60,10 +60,10 @@
 <table>
 <tr>
 	<td>SRC DEST</td>
-	<td>X3Figure 3-12.</td>
-	<td>X20VCVTPD2PS (VEX.256 encoded version)</td>
-	<td>X1X2</td>
-	<td>X0X0</td>
+	<td>X3 Figure 3-12.</td>
+	<td>X2 0 VCVTPD2PS (VEX.256 encoded version)</td>
+	<td>X1 X2</td>
+	<td>X0 X0</td>
 </tr>
 </table>
 <h2 id="operation">Operation</h2>
@@ -83,7 +83,7 @@ DEST[95:64] ← Convert_Double_Precision_To_Single_Precision_Floating_Point(SRC[
 DEST[127:96] ← Convert_Double_Precision_To_Single_Precision_Floating_Point(SRC[255:192)
 DEST[255:128]← 0
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>CVTPD2PS:</td>

@@ -6,7 +6,7 @@
 	<title>VFMADD132SD/VFMADD213SD/VFMADD231SD — Fused Multiply-Add of Scalar DoublePrecision Floating-Point Values</title>
 </head>
 <body>
-<h1 id="vfmadd132sd-vfmadd213sd-vfmadd231sd---fused-multiply-add-of-scalar-doubleprecision-floating-point-values">VFMADD132SD/VFMADD213SD/VFMADD231SD — Fused Multiply-Add of Scalar DoublePrecision Floating-Point Values</h1>
+<h1 id="vfmadd132sd-vfmadd213sd-vfmadd231sd-fused-multiply-add-of-scalar-doubleprecision-floating-point-values">VFMADD132SD/VFMADD213SD/VFMADD231SD — Fused Multiply-Add of Scalar DoublePrecision Floating-Point Values</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -34,7 +34,7 @@
 	<td>A</td>
 	<td>V/V</td>
 	<td>FMA</td>
-	<td>Multiply scalar double-precision floating-point value VFMADD231SD xmm0, xmm1, xmm2/m64result in xmm0.</td>
+	<td>Multiply scalar double-precision floating-point value VFMADD231SD xmm0, xmm1, xmm2/m64 result in xmm0.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -72,7 +72,7 @@ DEST[63:0] ← RoundFPControl_MXCSR(SRC2[63:0]*SRC3[63:0] + DEST[63:0])
 DEST[127:64] ← DEST[127:64]
 DEST[VLMAX-1:128] ← 0
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>VFMADD132SD: __m128d _mm_fmadd_sd (__m128d a, __m128d b, __m128d c);</p>
 <p>VFMADD213SD: __m128d _mm_fmadd_sd (__m128d a, __m128d b, __m128d c);</p>
 <p>VFMADD231SD: __m128d _mm_fmadd_sd (__m128d a, __m128d b, __m128d c);</p>

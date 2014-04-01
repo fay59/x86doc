@@ -6,7 +6,7 @@
 	<title>VPERMILPD — Permute Double-Precision Floating-Point Values</title>
 </head>
 <body>
-<h1 id="vpermilpd---permute-double-precision-floating-point-values">VPERMILPD — Permute Double-Precision Floating-Point Values</h1>
+<h1 id="vpermilpd-permute-double-precision-floating-point-values">VPERMILPD — Permute Double-Precision Floating-Point Values</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
@@ -80,8 +80,8 @@
 </tr>
 <tr>
 	<td>DEST</td>
-	<td>X2..X3Figure 4-38.</td>
-	<td>X2..X3VPERMILPD operation</td>
+	<td>X2..X3 Figure 4-38.</td>
+	<td>X2..X3 VPERMILPD operation</td>
 	<td>X0..X1</td>
 	<td>X0..X1</td>
 </tr>
@@ -91,13 +91,13 @@
 <table>
 <tr>
 	<td>255</td>
-	<td>194 193sel Control Field 4Figure 4-39.</td>
-	<td>127VPERMILPD Shuffle Control</td>
-	<td>66ignored Control Field 2</td>
-	<td>65sel</td>
+	<td>194 193 sel Control Field 4 Figure 4-39.</td>
+	<td>127 VPERMILPD Shuffle Control</td>
+	<td>66 ignored Control Field 2</td>
+	<td>65 sel</td>
 	<td>63</td>
-	<td>2ignored Control Field1</td>
-	<td>1sel</td>
+	<td>2 ignored Control Field1</td>
+	<td>1 sel</td>
 </tr>
 </table>
 <p>(immediate control version) Permute double-precision floating-point values in the first source operand (second operand) using two, 1-bit control fields in the low 2 bits of the 8-bit immediate and store results in the destination operand (first operand). The source operand is a YMM register or 256-bit memory location and the destination operand is a YMM register. Note: For the VEX.128.66.0F3A 05 instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD. Note: For the VEX.256.66.0F3A 05 instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD.</p>
@@ -133,7 +133,7 @@ IF (SRC2[65] = 0) THEN DEST[127:64]←SRC1[63:0]
 IF (SRC2[65] = 1) THEN DEST[127:64]←SRC1[127:64]
 DEST[VLMAX-1:128] ← 0
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>VPERMILPD:</td>

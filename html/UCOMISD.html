@@ -20,14 +20,14 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Compares (unordered) the low doubleUCOMISD xmm1, xmm2/m64xmm2/m64 and set the EFLAGS accordingly.</td>
+	<td>Compares (unordered) the low doubleUCOMISD xmm1, xmm2/m64 xmm2/m64 and set the EFLAGS accordingly.</td>
 </tr>
 <tr>
 	<td>VEX.LIG.66.0F.WIG 2E /r</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Compare low double precision floating-point VUCOMISD xmm1, xmm2/m64the EFLAGS flags accordingly.</td>
+	<td>Compare low double precision floating-point VUCOMISD xmm1, xmm2/m64 the EFLAGS flags accordingly.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -64,7 +64,7 @@ CASE (RESULT) OF
 ESAC;
 OF, AF, SF ← 0;
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>int _mm_ucomieq_sd(__m128d a, __m128d b) int _mm_ucomilt_sd(__m128d a, __m128d b) int _mm_ucomile_sd(__m128d a, __m128d b) int _mm_ucomigt_sd(__m128d a, __m128d b) int _mm_ucomige_sd(__m128d a, __m128d b) int _mm_ucomineq_sd(__m128d a, __m128d b)</p>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
 <p>Invalid (if SNaN operands), Denormal.</p>

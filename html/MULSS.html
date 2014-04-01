@@ -20,14 +20,14 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Multiply the low single-precision floating-point MULSS xmm1, xmm2/m32precision floating-point value in xmm1.</td>
+	<td>Multiply the low single-precision floating-point MULSS xmm1, xmm2/m32 precision floating-point value in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.LIG.F3.0F.WIG 59 /r</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Multiply the low single-precision floating-point VMULSS xmm1,xmm2, xmm3/m32precision floating-point value in xmm2.</td>
+	<td>Multiply the low single-precision floating-point VMULSS xmm1,xmm2, xmm3/m32 precision floating-point value in xmm2.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -66,7 +66,7 @@ DEST[31:0] ← SRC1[31:0] * SRC2[31:0]
 DEST[127:32] ← SRC1[127:32]
 DEST[VLMAX-1:128] ← 0
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <table>
 <tr>
 	<td>MULSS:</td>

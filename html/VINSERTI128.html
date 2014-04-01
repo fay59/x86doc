@@ -6,12 +6,12 @@
 	<title>VINSERTI128 — Insert Packed Integer Values</title>
 </head>
 <body>
-<h1 id="vinserti128---insert-packed-integer-values">VINSERTI128 — Insert Packed Integer Values</h1>
+<h1 id="vinserti128-insert-packed-integer-values">VINSERTI128 — Insert Packed Integer Values</h1>
 <table>
 <tr>
 	<td>Opcode/Instruction</td>
 	<td>Op/En</td>
-	<td>64/32-bit Mode</td>
+	<td>64/32 -bit Mode</td>
 	<td>CPUID Feature Flag</td>
 	<td>Description</td>
 </tr>
@@ -20,7 +20,7 @@
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Insert 128-bits of integer data from xmm3/mem VINSERTI128 ymm1, ymm2, xmm3/m128, imm8ymm1.</td>
+	<td>Insert 128-bits of integer data from xmm3/mem VINSERTI128 ymm1, ymm2, xmm3/m128, imm8 ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -51,7 +51,7 @@ CASE (imm8[0]) OF
 ESAC
 DEST ←TEMP
 </pre>
-<h2 id="intel-c-c---compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
+<h2 id="intel-c-c-compiler-intrinsic-equivalent">Intel C/C++ Compiler Intrinsic Equivalent</h2>
 <p>VINSERTI128: __m256i _mm256_inserti128_si256 (__m256i a, __m128i b, int offset);</p>
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
 <p>None</p>

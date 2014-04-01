@@ -6,7 +6,7 @@
 	<title>RCL/RCR/ROL/ROR-—Rotate</title>
 </head>
 <body>
-<h1 id="rcl-rcr-rol-ror--rotate">RCL/RCR/ROL/ROR-—Rotate</h1>
+<h1 id="rcl-rcr-rol-ror-rotate">RCL/RCR/ROL/ROR-—Rotate</h1>
 <table>
 <tr>
 	<td>Opcode**</td>
@@ -102,7 +102,7 @@
 	<td>M1</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 65 bits (CF, r/m64) left once. Uses a 6bit count.</td>
+	<td>Rotate 65 bits (CF, r/m64) left once. Uses a 6 bit count.</td>
 </tr>
 <tr>
 	<td>D3 /2</td>
@@ -214,7 +214,7 @@
 	<td>M1</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 33 bits (CF, r/m32) right once. Uses a 6bit count.</td>
+	<td>Rotate 33 bits (CF, r/m32) right once. Uses a 6 bit count.</td>
 </tr>
 <tr>
 	<td>REX.W + D1 /3</td>
@@ -222,7 +222,7 @@
 	<td>M1</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 65 bits (CF, r/m64) right once. Uses a 6bit count.</td>
+	<td>Rotate 65 bits (CF, r/m64) right once. Uses a 6 bit count.</td>
 </tr>
 <tr>
 	<td>D3 /3</td>
@@ -366,7 +366,7 @@
 	<td>MC</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 64 bits r/m64 left CL times. Uses a 6bit count.</td>
+	<td>Rotate 64 bits r/m64 left CL times. Uses a 6 bit count.</td>
 </tr>
 <tr>
 	<td>C1 /0 ib</td>
@@ -486,7 +486,7 @@
 	<td>MC</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 64 bits r/m64 right CL times. Uses a 6bit count.</td>
+	<td>Rotate 64 bits r/m64 right CL times. Uses a 6 bit count.</td>
 </tr>
 <tr>
 	<td>C1 /1 ib</td>
@@ -538,13 +538,13 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Shifts (rotates) the bits of the first operand (destination operand) the number of bit positions specified in the second operand (count operand) and stores the result in the destination operand. The destination operand can be a register or a memory location; the count operand is an unsigned integer that can be an immediate or a value in the CL register. In legacy and compatibility mode, the processor restricts the count to a number between 0 and 31by masking all the bits in the count operand except the 5 least-significant bits.</p>
+<p>Shifts (rotates) the bits of the first operand (destination operand) the number of bit positions specified in the second operand (count operand) and stores the result in the destination operand. The destination operand can be a register or a memory location; the count operand is an unsigned integer that can be an immediate or a value in the CL register. In legacy and compatibility mode, the processor restricts the count to a number between 0 and 31 by masking all the bits in the count operand except the 5 least-significant bits.</p>
 <p>The rotate left (ROL) and rotate through carry left (RCL) instructions shift all the bits toward more-significant bit positions, except for the most-significant bit, which is rotated to the least-significant bit location. The rotate right (ROR) and rotate through carry right (RCR) instructions shift all the bits toward less significant bit positions, except for the least-significant bit, which is rotated to the most-significant bit location.</p>
 <p>The RCL and RCR instructions include the CF flag in the rotation. The RCL instruction shifts the CF flag into the least-significant bit and shifts the most-significant bit into the CF flag. The RCR instruction shifts the CF flag into the most-significant bit and shifts the least-significant bit into the CF flag. For the ROL and ROR instructions, the original value of the CF flag is not a part of the result, but the CF flag receives a copy of the bit that was shifted from one end to the other.</p>
 <p>The OF flag is defined only for the 1-bit rotates; it is undefined in all other cases (except RCL and RCR instructions only: a zero-bit rotate does nothing, that is affects no flags). For left rotates, the OF flag is set to the exclusive OR of the CF bit (after the rotate) and the most-significant bit of the result. For right rotates, the OF flag is set to the exclusive OR of the two most-significant bits of the result.</p>
 <p>In 64-bit mode, using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). Use of REX.W promotes the first operand to 64 bits and causes the count operand to become a 6-bit counter.</p>
 <h2 id="ia-32-architecture-compatibility">IA-32 Architecture Compatibility</h2>
-<p>The 8086 does not mask the rotation count. However, all other IA-32 processors (starting with the Intel 286processor) do mask the rotation count to 5 bits, resulting in a maximum count of 31. This masking is done in all operating modes (including the virtual-8086 mode) to reduce the maximum execution time of the instructions.</p>
+<p>The 8086 does not mask the rotation count. However, all other IA-32 processors (starting with the Intel 286 processor) do mask the rotation count to 5 bits, resulting in a maximum count of 31. This masking is done in all operating modes (including the virtual-8086 mode) to reduce the maximum execution time of the instructions.</p>
 <h2 id="operation">Operation</h2>
 <pre>(* RCL and RCR instructions *)
 SIZE ← OperandSize;
