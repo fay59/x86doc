@@ -63,16 +63,10 @@
 </table>
 <h2 id="description">Description</h2>
 <p>Conditionally copy each dword data element of single-precision floating-point value from the second source operand and the first source operand depending on mask bits defined in the mask register operand. The mask bits are the most significant bit in each dword element of the mask register. Each quadword element of the destination operand is copied from:</p>
-<table>
-<tr>
-	<td>•</td>
-	<td>the corresponding dword element in the second source operand, If a mask bit is “1"; or</td>
-</tr>
-<tr>
-	<td>•</td>
-	<td>the corresponding dword element in the first source operand, If a mask bit is “0"</td>
-</tr>
-</table>
+<ul>
+	<li>the corresponding dword element in the second source operand, If a mask bit is “1"; or</li>
+	<li>the corresponding dword element in the first source operand, If a mask bit is “0"</li>
+</ul>
 <p>The register assignment of the implicit mask operand for BLENDVPS is defined to be the architectural register XMM0. 128-bit Legacy SSE version: The first source operand and the destination operand is the same. Bits (VLMAX-1:128)of the corresponding YMM destination register remain unchanged. The mask register operand is implicitly defined to be the architectural register XMM0. An attempt to execute BLENDVPS with a VEX prefix will cause #UD. VEX.128 encoded version: The first source operand and the destination operand are XMM registers. The second source operand is an XMM register or 128-bit memory location. The mask operand is the third source register, and encoded in bits[7:4] of the immediate byte(imm8). The bits[3:0] of imm8 are ignored. In 32-bit mode, imm8[7] is ignored. The upper bits (VLMAX-1:128) of the corresponding YMM register (destination register) are zeroed. VEX.W must be 0, otherwise, the instruction will #UD. VEX.256 encoded version: The first source operand and destination operand are YMM registers. The second source operand can be a YMM register or a 256-bit memory location. The mask operand is the third source register, and encoded in bits[7:4] of the immediate byte(imm8). The bits[3:0] of imm8 are ignored. In 32-bit mode, imm8[7] is ignored. VEX.W must be 0, otherwise, the instruction will #UD. VBLENDVPS permits the mask to be any XMM or YMM register. In contrast, BLENDVPS treats XMM0 implicitly as the mask and do not support non-destructive destination operation.</p>
 <h2 id="operation">Operation</h2>
 <pre>BLENDVPS (128-bit Legacy SSE version)

@@ -63,28 +63,13 @@
 <p>IRET and IRETD are mnemonics for the same opcode. The IRETD mnemonic (interrupt return double) is intended for use when returning from an interrupt when using the 32-bit operand size; however, most assemblers use the IRET mnemonic interchangeably for both operand sizes.</p>
 <p>In Real-Address Mode, the IRET instruction preforms a far return to the interrupted program or procedure. During this operation, the processor pops the return instruction pointer, return code segment selector, and EFLAGS image from the stack to the EIP, CS, and EFLAGS registers, respectively, and then resumes execution of the interrupted program or procedure.</p>
 <p>In Protected Mode, the action of the IRET instruction depends on the settings of the NT (nested task) and VM flags in the EFLAGS register and the VM flag in the EFLAGS image stored on the current stack. Depending on the setting of these flags, the processor performs the following types of interrupt returns:</p>
-<table>
-<tr>
-	<td>•</td>
-	<td>Return from virtual-8086 mode.</td>
-</tr>
-<tr>
-	<td>•</td>
-	<td>Return to virtual-8086 mode.</td>
-</tr>
-<tr>
-	<td>•</td>
-	<td>Intra-privilege level return.</td>
-</tr>
-<tr>
-	<td>•</td>
-	<td>Inter-privilege level return.</td>
-</tr>
-<tr>
-	<td>•</td>
-	<td>Return from nested task (task switch).</td>
-</tr>
-</table>
+<ul>
+	<li>Return from virtual-8086 mode.</li>
+	<li>Return to virtual-8086 mode.</li>
+	<li>Intra-privilege level return.</li>
+	<li>Inter-privilege level return.</li>
+	<li>Return from nested task (task switch).</li>
+</ul>
 <p>If the NT flag (EFLAGS register) is cleared, the IRET instruction performs a far return from the interrupt procedure,without a task switch. The code segment being returned to must be equally or less privileged than the interrupt handler routine (as indicated by the RPL field of the code segment selector popped from the stack).</p>
 <p>As with a real-address mode interrupt return, the IRET instruction pops the return instruction pointer, return code segment selector, and EFLAGS image from the stack to the EIP, CS, and EFLAGS registers, respectively, and then resumes execution of the interrupted program or procedure. If the return is to another privilege level, the IRET instruction also pops the stack pointer and SS from the stack, before resuming program execution. If the return is to virtual-8086 mode, the processor also pops the data segment registers from the stack.</p>
 <p>If the NT flag is set, the IRET instruction performs a task switch (return) from a nested task (a task called with a CALL instruction, an interrupt, or an exception) back to the calling or interrupted task. The updated state of the task executing the IRET instruction is saved in its TSS. If the task is re-entered later, the code that follows the IRET instruction is executed.</p>

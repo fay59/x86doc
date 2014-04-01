@@ -52,16 +52,10 @@
 <p>The LDMXCSR instruction is typically used in conjunction with the (V)STMXCSR instruction, which stores the contents of the MXCSR register in memory.</p>
 <p>The default MXCSR value at reset is 1F80H.</p>
 <p>If a (V)LDMXCSR instruction clears a SIMD floating-point exception mask bit and sets the corresponding exception flag bit, a SIMD floating-point exception will not be immediately generated. The exception will be generated only upon the execution of the next instruction that meets both conditions below:</p>
-<table>
-<tr>
-	<td>•</td>
-	<td>the instruction must operate on an XMM or YMM register operand,</td>
-</tr>
-<tr>
-	<td>•</td>
-	<td>the instruction causes that particular SIMD floating-point exception to be reported.</td>
-</tr>
-</table>
+<ul>
+	<li>the instruction must operate on an XMM or YMM register operand,</li>
+	<li>the instruction causes that particular SIMD floating-point exception to be reported.</li>
+</ul>
 <p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode. If VLDMXCSR is encoded with VEX.L= 1, an attempt to execute the instruction encoded with VEX.L= 1 will cause an #UD exception.</p>
 <p>Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise instructions will #UD.</p>
 <h2 id="operation">Operation</h2>

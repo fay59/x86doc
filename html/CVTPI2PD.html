@@ -44,12 +44,11 @@
 <h2 id="description">Description</h2>
 <p>Converts two packed signed doubleword integers in the source operand (second operand) to two packed doubleprecision floating-point values in the destination operand (first operand).</p>
 <p>The source operand can be an MMX technology register or a 64-bit memory location. The destination operand is an XMM register. In addition, depending on the operand configuration:</p>
-<table>
-<tr>
-	<td>••In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15).</td>
-	<td>For operands xmm, mm: the instruction causes a transition from x87 FPU to MMX technology operation (that is, the x87 FPU top-of-stack pointer is set to 0 and the x87 FPU tag word is set to all 0s [valid]). If this instruction is executed while an x87 FPU floating-point exception is pending, the exception is handled before the CVTPI2PD instruction is executed. For operands xmm, m64: the instruction does not cause a transition to MMX technology and does not take x87 FPU exceptions.</td>
-</tr>
-</table>
+<ul>
+	<li>For operands xmm, mm: the instruction causes a transition from x87 FPU to MMX technology operation (that is, the x87 FPU top-of-stack pointer is set to 0 and the x87 FPU tag word is set to all 0s [valid]). If this instruction is executed while an x87 FPU floating-point exception is pending, the exception is handled before the CVTPI2PD instruction is executed.</li>
+	<li>For operands xmm, m64: the instruction does not cause a transition to MMX technology and does not take x87 FPU exceptions.</li>
+</ul>
+<p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15).</p>
 <h2 id="operation">Operation</h2>
 <pre>DEST[63:0] ← Convert_Integer_To_Double_Precision_Floating_Point(SRC[31:0]);
 DEST[127:64] ← Convert_Integer_To_Double_Precision_Floating_Point(SRC[63:32]);

@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 import re
 import bs4
+import sys
 from StringIO import StringIO
 
 class BetterIter(object):
@@ -91,11 +92,11 @@ class UglyDocument(object):
 			x = style["left"]
 			y = style["top"]
 			
-			# TODO change <span> tags into <em>, <strong> here
+			text = ""
+			# TODO change <span> tags into <em>, <strong> somewhere around this place
 			
 			text_parts = []
 			last_offset = 0
-			text = div.text
 			match = re.search(" {2,}", text)
 			while match != None:
 				text_parts.append(text[last_offset:match.end()])
@@ -158,11 +159,11 @@ class DocumentWriter(object):
 				self.__output_mode = None
 				return self.write(row)
 			
-			if len(row) == 2 and self.__output_mode_data["in_li"] == True:
+			if len(row) == 2 and len(self.__output_mode_data["contents"]) != 0:
 				self.__output.write("\t<li>%s</li>\n" % self.__output_mode_data["contents"])
 				self.__output_mode_data["contents"] = ""
 			
-			self.output.write(row[-1].contents)
+			self.__output_mode_data["contents"] = self.__append(self.__output_mode_data["contents"], row[-1].contents)
 			return True
 			
 		elif self.__output_mode == "table":
@@ -202,8 +203,8 @@ class DocumentWriter(object):
 				self.__output_mode = "p"
 				self.__output_mode_data = {"top": cell.y, "contents": ""}
 			else:
-				if len(row) == 2 and row[0] == u"•":
-					self.output.write("<ul>\n")
+				if len(row) == 2 and row[0].contents == u"•":
+					self.__output.write("<ul>\n")
 					self.__output_mode = "list"
 					self.__output_mode_data = {"left": row[0].x, "contents": ""}
 					return self.write(row)
@@ -279,8 +280,10 @@ class DocumentWriter(object):
 	def __break_list(self, row):
 		length = len(row)
 		if length == 0 or length > 2: return True
-		if length == 1 and abs(row[0].x - self.__output_mode_data["left"]) < 3: return True
-		if row[0] != u"•": return True
+		if length == 1:
+			if abs(row[0].x - self.__output_mode_data["left"]) < 3:
+				return True
+		elif row[0].contents != u"•": return True
 		return False
 	
 	def __break_table(self, row):
@@ -317,13 +320,18 @@ class DocumentWriter(object):
 			fd.write(self.__output.getvalue().encode("UTF-8"))
 			fd.write("</body>\n</html>\n")
 
-soup = bs4.BeautifulSoup(open("vol2b.html"))
-input = UglyDocument(soup)
-output = DocumentWriter()
-for row in input.all_rows():
-	if not output.write(row):
-		output.save()
+if __name__ == "__main__":
+	if len(sys.argv) < 2:
+		print "usage: %s file [file...]" % sys.argv[0]
+	
+	for i in xrange(1, len(sys.argv)):
+		soup = bs4.BeautifulSoup(open(sys.argv[1]))
+		input = UglyDocument(soup)
 		output = DocumentWriter()
-		output.write(row)
+		for row in input.all_rows():
+			if not output.write(row):
+				output.save()
+				output = DocumentWriter()
+				output.write(row)
 
-output.save()
+		output.save()

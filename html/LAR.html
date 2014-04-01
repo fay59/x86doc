@@ -55,34 +55,42 @@
 <p>Loads the access rights from the segment descriptor specified by the second operand (source operand) into the first operand (destination operand) and sets the ZF flag in the flag register. The source operand (which can be a register or a memory location) contains the segment selector for the segment descriptor being accessed. If the source operand is a memory address, only 16 bits of data are accessed. The destination operand is a generalpurpose register.</p>
 <p>The processor performs access checks as part of the loading process. Once loaded in the destination register, software can perform additional checks on the access rights information.</p>
 <p>The access rights for a segment descriptor include fields located in the second doubleword (bytes 4-7) of the segment descriptor. The following fields are loaded by the LAR instruction:</p>
+<ul>
+	<li>Bits 7:0 are returned as 0</li>
+	<li>Bits 11:8 return the segment type.</li>
+	<li>Bit 12 returns the S flag.</li>
+	<li>Bits 14:13 return the DPL.</li>
+	<li>Bit 15 returns the P flag.</li>
+	<li>The following fields are returned only if the operand size is greater than 16 bits:</li>
+</ul>
 <table>
 <tr>
-	<td>•</td>
-	<td>Bits 7:0 are returned as 0</td>
+	<td>—</td>
+	<td>Bits 19:16 are undefined.</td>
 </tr>
 <tr>
-	<td>•</td>
-	<td>Bits 11:8 return the segment type.</td>
+	<td>—</td>
+	<td>Bit 20 returns the software-available bit in the descriptor.</td>
 </tr>
 <tr>
-	<td>•</td>
-	<td>Bit 12 returns the S flag.</td>
+	<td>—</td>
+	<td>Bit 21 returns the L flag.</td>
 </tr>
 <tr>
-	<td>•</td>
-	<td>Bits 14:13 return the DPL.</td>
+	<td>—</td>
+	<td>Bit 22 returns the D/B flag.</td>
 </tr>
 <tr>
-	<td>•</td>
-	<td>Bit 15 returns the P flag.</td>
+	<td>—</td>
+	<td>Bit 23 returns the G flag.</td>
 </tr>
 <tr>
-	<td>•This instruction performs the following checks before it loads the access rights in the destination register:•</td>
-	<td>The following fields are returned only if the operand size is greater than 16 bits:Bits 19:16 are undefined. Bit 20 returns the software-available bit in the descriptor. Bit 21 returns the L flag. Bit 22 returns the D/B flag. Bit 23 returns the G flag. Bits 31:24 are returned as 0. Checks that the segment selector is not NULL.</td>
+	<td>—Checks that the segment selector is not NULL.</td>
+	<td>Bits 31:24 are returned as 0. This instruction performs the following checks before it loads the access rights in the destination register:•</td>
 </tr>
 <tr>
-	<td>•••If the segment descriptor cannot be accessed or is an invalid type for the instruction, the ZF flag is cleared and no access rights are loaded in the destination operand.</td>
 	<td>Checks that the segment selector points to a descriptor that is within the limits of the GDT or LDT being accessed Checks that the descriptor type is valid for this instruction. All code and data segment descriptors are valid for (can be accessed with) the LAR instruction. The valid system segment and gate descriptor types are given in Table 3-62. If the segment is not a conforming code segment, it checks that the specified segment descriptor is visible at the CPL (that is, if the CPL and the RPL of the segment selector are less than or equal to the DPL of the segment selector).</td>
+	<td>•••If the segment descriptor cannot be accessed or is an invalid type for the instruction, the ZF flag is cleared and no access rights are loaded in the destination operand.</td>
 </tr>
 </table>
 <p>The LAR instruction can only be executed in protected mode and IA-32e mode.</p>

@@ -140,145 +140,148 @@
 <p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15).</p>
 <p>Enhanced Comparison Predicate for VEX-Encoded VCMPPD VEX.128 encoded version: The first source operand (second operand) is an XMM register. The second source operand (third operand) can be an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the destination YMM register are zeroed. Two comparisons are performed with results written to bits 127:0 of the destination operand.</p>
 <p>VEX.256 encoded version: The first source operand (second operand) is a YMM register. The second source operand (third operand) can be a YMM register or a 256-bit memory location. The destination operand (first operand) is a YMM register. Four comparisons are performed with results written to the destination operand. The comparison predicate operand is an 8-bit immediate:</p>
+<ul>
+	<li>For instructions encoded using the VEX prefix, bits 4:0 define the type of comparison to be performed (see Table 3-9). Bits 5 through 7 of the immediate are reserved.</li>
+</ul>
 <table>
 <tr>
-	<td>•</td>
-	<td>For instructions encoded using the VEX prefix, bits 4:0 define the type of comparison to be performed (see Table 3-9). Bits 5 through 7 of the immediate are reserved. Comparison Predicate for VCMPPD and VCMPPS Instructions</td>
+	<td>Table 3-9.</td>
+	<td>Comparison Predicate for VCMPPD and VCMPPS Instructions</td>
 </tr>
 <tr>
-	<td>Predicate</td>
+	<td>Description</td>
 	<td>Signals #IA on QNAN Unordered1</td>
 </tr>
 <tr>
-	<td>EQ_OQ (EQ)</td>
+	<td>Equal (ordered, non-signaling)</td>
 	<td>No</td>
 </tr>
 <tr>
-	<td>LT_OS (LT)</td>
+	<td>Less-than (ordered, signaling)</td>
 	<td>Yes</td>
 </tr>
 <tr>
-	<td>LE_OS (LE)</td>
-	<td>Yes signaling)</td>
-</tr>
-<tr>
-	<td>UNORD_Q (UNORD)</td>
-	<td>No</td>
-</tr>
-<tr>
-	<td>NEQ_UQ (NEQ)</td>
-	<td>No signaling)</td>
-</tr>
-<tr>
-	<td>NLT_US (NLT)</td>
+	<td>Less-than-or-equal (ordered,signaling)</td>
 	<td>Yes</td>
 </tr>
 <tr>
-	<td>NLE_US (NLE)</td>
-	<td>Yes signaling)</td>
+	<td>Unordered (non-signaling)</td>
+	<td>No (UNORD)</td>
 </tr>
 <tr>
-	<td>ORD_Q (ORD)</td>
+	<td>Not-equal (unordered, nonsignaling)</td>
 	<td>No</td>
 </tr>
 <tr>
-	<td>EQ_UQ</td>
-	<td>No</td>
-</tr>
-<tr>
-	<td>NGE_US (NGE)</td>
-	<td>Yes (unordered, signaling)</td>
-</tr>
-<tr>
-	<td>NGT_US (NGT)</td>
-	<td>Yes naling)</td>
-</tr>
-<tr>
-	<td>FALSE_OQ(FALSE)</td>
-	<td>No</td>
-</tr>
-<tr>
-	<td>NEQ_OQ</td>
-	<td>No</td>
-</tr>
-<tr>
-	<td>GE_OS (GE)</td>
-	<td>Yes naling)</td>
-</tr>
-<tr>
-	<td>GT_OS (GT)</td>
+	<td>Not-less-than (unordered, signaling)</td>
 	<td>Yes</td>
 </tr>
 <tr>
-	<td>TRUE_UQ(TRUE)</td>
+	<td>Not-less-than-or-equal (unordered,signaling)</td>
+	<td>Yes</td>
+</tr>
+<tr>
+	<td>Ordered (non-signaling)</td>
 	<td>No</td>
 </tr>
 <tr>
-	<td>EQ_OS</td>
-	<td>Yes</td>
-</tr>
-<tr>
-	<td>LT_OQ</td>
+	<td>Equal (unordered, non-signaling)</td>
 	<td>No</td>
 </tr>
 <tr>
-	<td>LE_OQ</td>
-	<td>No signaling)</td>
-</tr>
-<tr>
-	<td>UNORD_S</td>
+	<td>Not-greater-than-or-equal (unordered, signaling)</td>
 	<td>Yes</td>
 </tr>
 <tr>
-	<td>NEQ_US</td>
+	<td>Not-greater-than (unordered, signaling)</td>
 	<td>Yes</td>
 </tr>
 <tr>
-	<td>NLT_UQ</td>
-	<td>No naling)</td>
+	<td>False (ordered, non-signaling)</td>
+	<td>No</td>
 </tr>
 <tr>
-	<td>NLE_UQ</td>
-	<td>No nonsignaling)</td>
+	<td>Not-equal (ordered, non-signaling)</td>
+	<td>No</td>
 </tr>
 <tr>
-	<td>ORD_S</td>
+	<td>Greater-than-or-equal (ordered, signaling)</td>
 	<td>Yes</td>
 </tr>
 <tr>
-	<td>EQ_US</td>
+	<td>Greater-than (ordered, signaling)</td>
+	<td>Yes</td>
+</tr>
+<tr>
+	<td>True (unordered, non-signaling)</td>
+	<td>No</td>
+</tr>
+<tr>
+	<td>Equal (ordered, signaling)</td>
+	<td>Yes</td>
+</tr>
+<tr>
+	<td>Less-than (ordered, nonsignaling)</td>
+	<td>No</td>
+</tr>
+<tr>
+	<td>Less-than-or-equal (ordered, nonsignaling)</td>
+	<td>No</td>
+</tr>
+<tr>
+	<td>Unordered (signaling)</td>
+	<td>Yes</td>
+</tr>
+<tr>
+	<td>Not-equal (unordered, signaling)</td>
+	<td>Yes</td>
+</tr>
+<tr>
+	<td>Not-less-than (unordered, nonsignaling)</td>
+	<td>No</td>
+</tr>
+<tr>
+	<td>Not-less-than-or-equal (unordered,nonsignaling)</td>
+	<td>No</td>
+</tr>
+<tr>
+	<td>Ordered (signaling)</td>
+	<td>Yes</td>
+</tr>
+<tr>
+	<td>Equal (unordered, signaling)</td>
 	<td>Yes (Contd.)</td>
 </tr>
 <tr>
-	<td>Predicate</td>
+	<td>Description</td>
 	<td>Signals #IA on QNAN Unordered1</td>
 </tr>
 <tr>
-	<td>NGE_UQ</td>
-	<td>No dered, nonsignaling)</td>
+	<td>Not-greater-than-or-equal (unordered, nonsignaling)</td>
+	<td>No</td>
 </tr>
 <tr>
-	<td>NGT_UQ</td>
-	<td>No signaling)</td>
+	<td>Not-greater-than (unordered, nonsignaling)</td>
+	<td>No</td>
 </tr>
 <tr>
-	<td>FALSE_OS</td>
+	<td>False (ordered, signaling)</td>
 	<td>Yes</td>
 </tr>
 <tr>
-	<td>NEQ_OS</td>
+	<td>Not-equal (ordered, signaling)</td>
 	<td>Yes</td>
 </tr>
 <tr>
-	<td>GE_OQ</td>
-	<td>No nonsignaling)</td>
+	<td>Greater-than-or-equal (ordered,nonsignaling)</td>
+	<td>No</td>
 </tr>
 <tr>
-	<td>GT_OQ</td>
-	<td>No ing)</td>
+	<td>Greater-than (ordered, nonsignaling)</td>
+	<td>No</td>
 </tr>
 <tr>
-	<td>TRUE_US</td>
+	<td>True (unordered, signaling)</td>
 	<td>Yes</td>
 </tr>
 </table>

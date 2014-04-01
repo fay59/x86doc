@@ -69,150 +69,15 @@
 <p>The greater-than relations not implemented in the processor require more than one instruction to emulate in software and therefore should not be implemented as pseudo-ops. (For these, the programmer should reverse the operands of the corresponding less than relations and use move instructions to ensure that the mask is moved to the correct destination register and that the source operand is left intact.)</p>
 <p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15).</p>
 <p>Enhanced Comparison Predicate for VEX-Encoded VCMPSD VEX.128 encoded version: The first source operand (second operand) is an XMM register. The second source operand (third operand) can be an XMM register or a 32-bit memory location. Bits (VLMAX-1:128) of the destination YMM register are zeroed. The comparison predicate operand is an 8-bit immediate:</p>
+<ul>
+	<li>For instructions encoded using the VEX prefix, bits 4:0 define the type of comparison to be performed (see Table 3-9). Bits 5 through 7 of the immediate are reserved.</li>
+</ul>
+<p>Processors with “CPUID.1H:ECX.AVX =1” implement the full complement of 32 predicates shown in Table 3-9, software emulation is no longer needed. Compilers and assemblers may implement the following three-operand pseudo-ops in addition to the four-operand VCMPSS instruction. See Table 3-16, where the notations of reg1 reg2,and reg3 represent either XMM registers or YMM registers. Compiler should treat reserved Imm8 values as illegal syntax. Alternately, intrinsics can map the pseudo-ops to pre-defined constants to support a simpler intrinsic interface.</p>
 <table>
 <tr>
-	<td>•Processors with “CPUID.1H:ECX.AVX =1” implement the full complement of 32 predicates shown in Table 3-9, software emulation is no longer needed. Compilers and assemblers may implement the following three-operand pseudo-ops in addition to the four-operand VCMPSS instruction. See Table 3-16, where the notations of reg1 reg2,and reg3 represent either XMM registers or YMM registers. Compiler should treat reserved Imm8 values as illegal syntax. Alternately, intrinsics can map the pseudo-ops to pre-defined constants to support a simpler intrinsic interface.</td>
-	<td>For instructions encoded using the VEX prefix, bits 4:0 define the type of comparison to be performed (see Table 3-9). Bits 5 through 7 of the immediate are reserved.</td>
-</tr>
-<tr>
-	<td>:</td>
-	<td>Pseudo-Op and VCMPSS Implementation</td>
-</tr>
-<tr>
-	<td>Pseudo-Op</td>
-	<td>CMPSS Implementation</td>
-</tr>
-<tr>
-	<td>VCMPEQSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 0</td>
-</tr>
-<tr>
-	<td>VCMPLTSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 1</td>
-</tr>
-<tr>
-	<td>VCMPLESS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 2</td>
-</tr>
-<tr>
-	<td>VCMPUNORDSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 3</td>
-</tr>
-<tr>
-	<td>VCMPNEQSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 4</td>
-</tr>
-<tr>
-	<td>VCMPNLTSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 5</td>
-</tr>
-<tr>
-	<td>VCMPNLESS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 6</td>
-</tr>
-<tr>
-	<td>VCMPORDSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 7</td>
-</tr>
-<tr>
-	<td>VCMPEQ_UQSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 8</td>
-</tr>
-<tr>
-	<td>VCMPNGESS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 9</td>
-</tr>
-<tr>
-	<td>VCMPNGTSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 0AH</td>
-</tr>
-<tr>
-	<td>VCMPFALSESS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 0BH</td>
-</tr>
-<tr>
-	<td>VCMPNEQ_OQSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 0CH</td>
-</tr>
-<tr>
-	<td>VCMPGESS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 0DH</td>
-</tr>
-<tr>
-	<td>VCMPGTSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 0EH Pseudo-Op and VCMPSS Implementation (Contd.)</td>
-</tr>
-<tr>
-	<td>Pseudo-Op</td>
-	<td>CMPSS Implementation</td>
-</tr>
-<tr>
-	<td>VCMPTRUESS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 0FH</td>
-</tr>
-<tr>
-	<td>VCMPEQ_OSSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 10H</td>
-</tr>
-<tr>
-	<td>VCMPLT_OQSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 11H</td>
-</tr>
-<tr>
-	<td>VCMPLE_OQSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 12H</td>
-</tr>
-<tr>
-	<td>VCMPUNORD_SSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 13H</td>
-</tr>
-<tr>
-	<td>VCMPNEQ_USSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 14H</td>
-</tr>
-<tr>
-	<td>VCMPNLT_UQSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 15H</td>
-</tr>
-<tr>
-	<td>VCMPNLE_UQSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 16H</td>
-</tr>
-<tr>
-	<td>VCMPORD_SSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 17H</td>
-</tr>
-<tr>
-	<td>VCMPEQ_USSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 18H</td>
-</tr>
-<tr>
-	<td>VCMPNGE_UQSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 19H</td>
-</tr>
-<tr>
-	<td>VCMPNGT_UQSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 1AH</td>
-</tr>
-<tr>
-	<td>VCMPFALSE_OSSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 1BH</td>
-</tr>
-<tr>
-	<td>VCMPNEQ_OSSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 1CH</td>
-</tr>
-<tr>
-	<td>VCMPGE_OQSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 1DH</td>
-</tr>
-<tr>
-	<td>VCMPGT_OQSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 1EH</td>
-</tr>
-<tr>
-	<td>VCMPTRUE_USSS reg1, reg2, reg3</td>
-	<td>VCMPSS reg1, reg2, reg3, 1FH</td>
+	<td>:Pseudo-Op VCMPEQSS reg1, reg2, reg3VCMPLTSS reg1, reg2, reg3VCMPLESS reg1, reg2, reg3VCMPUNORDSS reg1, reg2, reg3VCMPNEQSS reg1, reg2, reg3VCMPNLTSS reg1, reg2, reg3VCMPNLESS reg1, reg2, reg3VCMPORDSS reg1, reg2, reg3VCMPEQ_UQSS reg1, reg2, reg3VCMPNGESS reg1, reg2, reg3VCMPNGTSS reg1, reg2, reg3VCMPFALSESS reg1, reg2, reg3VCMPNEQ_OQSS reg1, reg2, reg3VCMPGESS reg1, reg2, reg3VCMPGTSS reg1, reg2, reg3Pseudo-Op VCMPTRUESS reg1, reg2, reg3VCMPEQ_OSSS reg1, reg2, reg3VCMPLT_OQSS reg1, reg2, reg3VCMPLE_OQSS reg1, reg2, reg3VCMPUNORD_SSS reg1, reg2, reg3VCMPNEQ_USSS reg1, reg2, reg3VCMPNLT_UQSS reg1, reg2, reg3VCMPNLE_UQSS reg1, reg2, reg3VCMPORD_SSS reg1, reg2, reg3VCMPEQ_USSS reg1, reg2, reg3VCMPNGE_UQSS reg1, reg2, reg3VCMPNGT_UQSS reg1, reg2, reg3VCMPFALSE_OSSS reg1, reg2, reg3VCMPNEQ_OSSS reg1, reg2, reg3VCMPGE_OQSS reg1, reg2, reg3VCMPGT_OQSS reg1, reg2, reg3VCMPTRUE_USSS reg1, reg2, reg3</td>
+	<td>Table 3-16. Table 3-16.</td>
+	<td>Pseudo-Op and VCMPSS Implementation CMPSS Implementation VCMPSS reg1, reg2, reg3, 0VCMPSS reg1, reg2, reg3, 1VCMPSS reg1, reg2, reg3, 2VCMPSS reg1, reg2, reg3, 3VCMPSS reg1, reg2, reg3, 4VCMPSS reg1, reg2, reg3, 5VCMPSS reg1, reg2, reg3, 6VCMPSS reg1, reg2, reg3, 7VCMPSS reg1, reg2, reg3, 8VCMPSS reg1, reg2, reg3, 9VCMPSS reg1, reg2, reg3, 0AH VCMPSS reg1, reg2, reg3, 0BH VCMPSS reg1, reg2, reg3, 0CH VCMPSS reg1, reg2, reg3, 0DH VCMPSS reg1, reg2, reg3, 0EH Pseudo-Op and VCMPSS Implementation (Contd.)CMPSS Implementation VCMPSS reg1, reg2, reg3, 0FH VCMPSS reg1, reg2, reg3, 10H VCMPSS reg1, reg2, reg3, 11H VCMPSS reg1, reg2, reg3, 12H VCMPSS reg1, reg2, reg3, 13H VCMPSS reg1, reg2, reg3, 14H VCMPSS reg1, reg2, reg3, 15H VCMPSS reg1, reg2, reg3, 16H VCMPSS reg1, reg2, reg3, 17H VCMPSS reg1, reg2, reg3, 18H VCMPSS reg1, reg2, reg3, 19H VCMPSS reg1, reg2, reg3, 1AH VCMPSS reg1, reg2, reg3, 1BH VCMPSS reg1, reg2, reg3, 1CH VCMPSS reg1, reg2, reg3, 1DH VCMPSS reg1, reg2, reg3, 1EH VCMPSS reg1, reg2, reg3, 1FH</td>
 </tr>
 </table>
 <h2 id="operation">Operation</h2>
