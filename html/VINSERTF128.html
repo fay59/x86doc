@@ -16,11 +16,11 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F3A.W0 18 /r ib</td>
+	<td>VEX.NDS.256.66.0F3A.W0 18 /r ib VINSERTF128 ymm1, ymm2, xmm3/m128, imm8</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Insert a single precision floating-point value VINSERTF128 ymm1, ymm2, xmm3/m128, imm8 ymm2 at the specified destination element specified by imm8 and zero out destination elements in ymm1 as indicated in imm8.</td>
+	<td>Insert a single precision floating-point value selected by imm8 from xmm3/m128 into ymm2 at the specified destination element specified by imm8 and zero out destination elements in ymm1 as indicated in imm8.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

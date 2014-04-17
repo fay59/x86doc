@@ -16,18 +16,18 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 16 /r</td>
+	<td>0F 16 /r MOVLHPS xmm1, xmm2</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Move two packed single-precision floatingMOVLHPS xmm1, xmm2 high quadword of xmm1.</td>
+	<td>Move two packed single-precision floatingpoint values from low quadword of xmm2 to high quadword of xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.0F.WIG 16 /r</td>
+	<td>VEX.NDS.128.0F.WIG 16 /r VMOVLHPS xmm1, xmm2, xmm3</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Merge two packed single-precision floatingVMOVLHPS xmm1, xmm2, xmm3 low quadword of xmm2.</td>
+	<td>Merge two packed single-precision floatingpoint values from low quadword of xmm3 and low quadword of xmm2.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

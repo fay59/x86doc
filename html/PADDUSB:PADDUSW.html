@@ -16,46 +16,46 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F DC /r1</td>
+	<td>0F DC /r1 PADDUSB mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Add packed unsigned byte integers from PADDUSB mm, mm/m64</td>
+	<td>Add packed unsigned byte integers from mm/m64 and mm and saturate the results.</td>
 </tr>
 <tr>
-	<td>66 0F DC /r</td>
+	<td>66 0F DC /r PADDUSB xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Add packed unsigned byte integers from PADDUSB xmm1, xmm2/m128</td>
+	<td>Add packed unsigned byte integers from xmm2/m128 and xmm1 saturate the results.</td>
 </tr>
 <tr>
-	<td>0F DD /r1</td>
+	<td>0F DD /r1 PADDUSW mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Add packed unsigned word integers from PADDUSW mm, mm/m64</td>
+	<td>Add packed unsigned word integers from mm/m64 and mm and saturate the results.</td>
 </tr>
 <tr>
-	<td>66 0F DD /r</td>
+	<td>66 0F DD /r PADDUSW xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Add packed unsigned word integers from PADDUSW xmm1, xmm2/m128 results.</td>
+	<td>Add packed unsigned word integers from xmm2/m128 to xmm1 and saturate the results.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.660F.WIG DC /r</td>
+	<td>VEX.NDS.128.660F.WIG DC /r VPADDUSB xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Add packed unsigned byte integers from VPADDUSB xmm1, xmm2, xmm3/m128 results.</td>
+	<td>Add packed unsigned byte integers from xmm3/m128 to xmm2 and saturate the results.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG DD /r</td>
+	<td>VEX.NDS.128.66.0F.WIG DD /r VPADDUSW xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Add packed unsigned word integers from VPADDUSW xmm1, xmm2, xmm3/m128 results.</td>
+	<td>Add packed unsigned word integers from xmm3/m128 to xmm2 and saturate the results.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG DC /r VPADDUSB ymm1, ymm2, ymm3/m256</td>

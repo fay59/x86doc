@@ -16,74 +16,74 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 68 /r1</td>
+	<td>0F 68 /r1 PUNPCKHBW mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Unpack and interleave high-order bytes from PUNPCKHBW mm, mm/m64</td>
+	<td>Unpack and interleave high-order bytes from mm and mm/m64 into mm.</td>
 </tr>
 <tr>
-	<td>66 0F 68 /r</td>
+	<td>66 0F 68 /r PUNPCKHBW xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Unpack and interleave high-order bytes from PUNPCKHBW xmm1, xmm2/m128</td>
+	<td>Unpack and interleave high-order bytes from xmm1 and xmm2/m128 into xmm1.</td>
 </tr>
 <tr>
-	<td>0F 69 /r1</td>
+	<td>0F 69 /r1 PUNPCKHWD mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Unpack and interleave high-order words from PUNPCKHWD mm, mm/m64</td>
+	<td>Unpack and interleave high-order words from mm and mm/m64 into mm.</td>
 </tr>
 <tr>
-	<td>66 0F 69 /r</td>
+	<td>66 0F 69 /r PUNPCKHWD xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Unpack and interleave high-order words from PUNPCKHWD xmm1, xmm2/m128</td>
+	<td>Unpack and interleave high-order words from xmm1 and xmm2/m128 into xmm1.</td>
 </tr>
 <tr>
-	<td>0F 6A /r1</td>
+	<td>0F 6A /r1 PUNPCKHDQ mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Unpack and interleave high-order PUNPCKHDQ mm, mm/m64</td>
+	<td>Unpack and interleave high-order doublewords from mm and mm/m64 into mm.</td>
 </tr>
 <tr>
-	<td>66 0F 6A /r</td>
+	<td>66 0F 6A /r PUNPCKHDQ xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Unpack and interleave high-order PUNPCKHDQ xmm1, xmm2/m128 into xmm1.</td>
+	<td>Unpack and interleave high-order doublewords from xmm1 and xmm2/m128 into xmm1.</td>
 </tr>
 <tr>
-	<td>66 0F 6D /r</td>
+	<td>66 0F 6D /r PUNPCKHQDQ xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Unpack and interleave high-order quadwords PUNPCKHQDQ xmm1, xmm2/m128</td>
+	<td>Unpack and interleave high-order quadwords from xmm1 and xmm2/m128 into xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG 68/r</td>
+	<td>VEX.NDS.128.66.0F.WIG 68/r VPUNPCKHBW xmm1,xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Interleave high-order bytes from xmm2 and VPUNPCKHBW xmm1,xmm2, xmm3/m128</td>
+	<td>Interleave high-order bytes from xmm2 and xmm3/m128 into xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG 69/r</td>
+	<td>VEX.NDS.128.66.0F.WIG 69/r VPUNPCKHWD xmm1,xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Interleave high-order words from xmm2 and VPUNPCKHWD xmm1,xmm2, xmm3/m128</td>
+	<td>Interleave high-order words from xmm2 and xmm3/m128 into xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG 6A/r</td>
+	<td>VEX.NDS.128.66.0F.WIG 6A/r VPUNPCKHDQ xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Interleave high-order doublewords from VPUNPCKHDQ xmm1, xmm2, xmm3/m128</td>
+	<td>Interleave high-order doublewords from xmm2 and xmm3/m128 into xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG 6D/r VPUNPCKHQDQ xmm1, xmm2, xmm3/m128</td>

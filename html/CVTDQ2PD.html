@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>F3 0F E6</td>
+	<td>F3 0F E6 CVTDQ2PD xmm1, xmm2/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Convert two packed signed doubleword CVTDQ2PD xmm1, xmm2/m64 double-precision floating-point values in xmm1.</td>
+	<td>Convert two packed signed doubleword integers from xmm2/m128 to two packed double-precision floating-point values in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.128.F3.0F.WIG E6 /r</td>
+	<td>VEX.128.F3.0F.WIG E6 /r VCVTDQ2PD xmm1, xmm2/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Convert two packed signed doubleword VCVTDQ2PD xmm1, xmm2/m64 double-precision floating-point values in xmm1.</td>
+	<td>Convert two packed signed doubleword integers from xmm2/mem to two packed double-precision floating-point values in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.256.F3.0F.WIG E6 /r</td>
+	<td>VEX.256.F3.0F.WIG E6 /r VCVTDQ2PD ymm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Convert four packed signed doubleword VCVTDQ2PD ymm1, xmm2/m128 double-precision floating-point values in ymm1.</td>
+	<td>Convert four packed signed doubleword integers from xmm2/mem to four packed double-precision floating-point values in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

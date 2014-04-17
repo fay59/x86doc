@@ -16,32 +16,32 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>F2 0F 2C /r</td>
+	<td>F2 0F 2C /r CVTTSD2SI r32, xmm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Convert one double-precision floating-point CVTTSD2SI r32, xmm/m64 doubleword integer in r32 using truncation.</td>
+	<td>Convert one double-precision floating-point value from xmm/m64 to one signed doubleword integer in r32 using truncation.</td>
 </tr>
 <tr>
-	<td>F2 REX.W 0F 2C /r</td>
+	<td>F2 REX.W 0F 2C /r CVTTSD2SI r64, xmm/m64</td>
 	<td>RM</td>
 	<td>V/N.E.</td>
 	<td>SSE2</td>
-	<td>Convert one double precision floating-point CVTTSD2SI r64, xmm/m64 integer in r64 using truncation.</td>
+	<td>Convert one double precision floating-point value from xmm/m64 to one signedquadword integer in r64 using truncation.</td>
 </tr>
 <tr>
-	<td>VEX.LIG.F2.0F.W0 2C /r</td>
+	<td>VEX.LIG.F2.0F.W0 2C /r VCVTTSD2SI r32, xmm1/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Convert one double-precision floating-point VCVTTSD2SI r32, xmm1/m64 doubleword integer in r32 using truncation.</td>
+	<td>Convert one double-precision floating-point value from xmm1/m64 to one signed doubleword integer in r32 using truncation.</td>
 </tr>
 <tr>
-	<td>VEX.LIG.F2.0F.W1 2C /r</td>
+	<td>VEX.LIG.F2.0F.W1 2C /r VCVTTSD2SI r64, xmm1/m64</td>
 	<td>RM</td>
 	<td>V/N.E.1</td>
 	<td>AVX</td>
-	<td>Convert one double precision floating-point VCVTTSD2SI r64, xmm1/m64 quadword integer in r64 using truncation.</td>
+	<td>Convert one double precision floating-point value from xmm1/m64 to one signed quadword integer in r64 using truncation.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. Encoding the VEX prefix with VEX.W=1 in non-64-bit mode is ignored.</p>

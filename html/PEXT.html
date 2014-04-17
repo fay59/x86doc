@@ -16,11 +16,11 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>VEX.NDS.LZ.F3.0F38.W0 F5 /r</td>
+	<td>VEX.NDS.LZ.F3.0F38.W0 F5 /r PEXT r32a, r32b, r/m32</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>BMI2</td>
-	<td>Parallel extract of bits from r32b using mask in r/m32, result is writPEXT r32a, r32b, r/m32</td>
+	<td>Parallel extract of bits from r32b using mask in r/m32, result is written to r32a.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.LZ.F3.0F38.W1 F5 /r PEXT r64a, r64b, r/m64</td>
@@ -96,7 +96,7 @@
 	<td>S28</td>
 	<td>S7</td>
 	<td>S5</td>
-	<td>S2 bit 31</td>
+	<td>S2 bit 0</td>
 </tr>
 </table>
 <p>This instruction is not supported in real mode and virtual-8086 mode. The operand size is always 32 bits if not in 64-bit mode. In 64-bit mode operand size 64 requires VEX.W1. VEX.W1 is ignored in non-64-bit modes. An attempt to execute this instruction with VEX.L not equal to 0 will cause #UD.</p>

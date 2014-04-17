@@ -16,32 +16,32 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 16 /r</td>
+	<td>0F 16 /r MOVHPS xmm, m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Move two packed single-precision floatingMOVHPS xmm, m64 xmm.</td>
+	<td>Move two packed single-precision floatingpoint values from m64 to high quadword of xmm.</td>
 </tr>
 <tr>
-	<td>0F 17 /r</td>
+	<td>0F 17 /r MOVHPS m64, xmm</td>
 	<td>MR</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Move two packed single-precision floatingMOVHPS m64, xmm m64.</td>
+	<td>Move two packed single-precision floatingpoint values from high quadword of xmm to m64.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.0F.WIG 16 /r</td>
+	<td>VEX.NDS.128.0F.WIG 16 /r VMOVHPS xmm2, xmm1, m64</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Merge two packed single-precision floatingVMOVHPS xmm2, xmm1, m64 of xmm1.</td>
+	<td>Merge two packed single-precision floatingpoint values from m64 and the low quadword of xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.128.0F.WIG 17/r</td>
+	<td>VEX.128.0F.WIG 17/r VMOVHPS m64, xmm1</td>
 	<td>MR</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Move two packed single-precision floatingVMOVHPS m64, xmm1 m64.</td>
+	<td>Move two packed single-precision floatingpoint values from high quadword of xmm1to m64.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

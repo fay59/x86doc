@@ -16,11 +16,11 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F38.W0 78 /r</td>
+	<td>VEX.128.66.0F38.W0 78 /r VPBROADCASTB xmm1, xmm2/m8</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Broadcast a byte integer in the source operand to sixVPBROADCASTB xmm1, xmm2/m8</td>
+	<td>Broadcast a byte integer in the source operand to sixteen locations in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.256.66.0F38.W0 78 /r VPBROADCASTB ymm1, xmm2/m8</td>
@@ -37,11 +37,11 @@
 	<td>Broadcast a word integer in the source operand to eight locations in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.256.66.0F38.W0 79 /r</td>
+	<td>VEX.256.66.0F38.W0 79 /r VPBROADCASTW ymm1, xmm2/m16</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Broadcast a word integer in the source operand to sixVPBROADCASTW ymm1, xmm2/m16</td>
+	<td>Broadcast a word integer in the source operand to sixteen locations in ymm1.</td>
 </tr>
 <tr>
 	<td>VEX.128.66.0F38.W0 58 /r VPBROADCASTD xmm1, xmm2/m32</td>
@@ -72,11 +72,11 @@
 	<td>Broadcast a qword element in mem to four locations in ymm1.</td>
 </tr>
 <tr>
-	<td>VEX.256.66.0F38.W0 5A /r</td>
+	<td>VEX.256.66.0F38.W0 5A /r VBROADCASTI128 ymm1, m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Broadcast 128 bits of integer data in mem to low and VBROADCASTI128 ymm1, m128</td>
+	<td>Broadcast 128 bits of integer data in mem to low and high 128-bits in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

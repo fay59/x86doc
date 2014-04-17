@@ -16,32 +16,32 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F EC /r1</td>
+	<td>0F EC /r1 PADDSB mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Add packed signed byte integers from PADDSB mm, mm/m64</td>
+	<td>Add packed signed byte integers from mm/m64 and mm and saturate the results.</td>
 </tr>
 <tr>
-	<td>66 0F EC /r</td>
+	<td>66 0F EC /r PADDSB xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Add packed signed byte integers from PADDSB xmm1, xmm2/m128</td>
+	<td>Add packed signed byte integers from xmm2/m128 and xmm1 saturate the results.</td>
 </tr>
 <tr>
-	<td>0F ED /r1</td>
+	<td>0F ED /r1 PADDSW mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Add packed signed word integers from PADDSW mm, mm/m64</td>
+	<td>Add packed signed word integers from mm/m64 and mm and saturate the results.</td>
 </tr>
 <tr>
-	<td>66 0F ED /r</td>
+	<td>66 0F ED /r PADDSW xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Add packed signed word integers from PADDSW xmm1, xmm2/m128 results.</td>
+	<td>Add packed signed word integers from xmm2/m128 and xmm1 and saturate the results.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG EC /r VPADDSB xmm1, xmm2, xmm3/m128</td>
@@ -51,11 +51,11 @@
 	<td>Add packed signed byte integers from xmm3/m128 and xmm2 saturate the results.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG ED /r</td>
+	<td>VEX.NDS.128.66.0F.WIG ED /r VPADDSW xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Add packed signed word integers from VPADDSW xmm1, xmm2, xmm3/m128 results.</td>
+	<td>Add packed signed word integers from xmm3/m128 and xmm2 and saturate the results.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG EC /r VPADDSB ymm1, ymm2, ymm3/m256</td>
@@ -65,11 +65,11 @@
 	<td>Add packed signed byte integers from ymm2, and ymm3/m256 and store the saturated results in ymm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG ED /r</td>
+	<td>VEX.NDS.256.66.0F.WIG ED /r VPADDSW ymm1, ymm2, ymm3/m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Add packed signed word integers from ymm2, VPADDSW ymm1, ymm2, ymm3/m256 results in ymm1.</td>
+	<td>Add packed signed word integers from ymm2, and ymm3/m256 and store the saturated results in ymm1.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>

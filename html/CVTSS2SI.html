@@ -16,32 +16,32 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>F3 0F 2D /r</td>
+	<td>F3 0F 2D /r CVTSS2SI r32, xmm/m32</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Convert one single-precision floating-point CVTSS2SI r32, xmm/m32 doubleword integer in r32.</td>
+	<td>Convert one single-precision floating-point value from xmm/m32 to one signed doubleword integer in r32.</td>
 </tr>
 <tr>
-	<td>F3 REX.W 0F 2D /r</td>
+	<td>F3 REX.W 0F 2D /r CVTSS2SI r64, xmm/m32</td>
 	<td>RM</td>
 	<td>V/N.E.</td>
 	<td>SSE</td>
-	<td>Convert one single-precision floating-point CVTSS2SI r64, xmm/m32 quadword integer in r64.</td>
+	<td>Convert one single-precision floating-point value from xmm/m32 to one signed quadword integer in r64.</td>
 </tr>
 <tr>
-	<td>VEX.LIG.F3.0F.W0 2D /r</td>
+	<td>VEX.LIG.F3.0F.W0 2D /r VCVTSS2SI r32, xmm1/m32</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Convert one single-precision floating-point VCVTSS2SI r32, xmm1/m32 doubleword integer in r32.</td>
+	<td>Convert one single-precision floating-point value from xmm1/m32 to one signed doubleword integer in r32.</td>
 </tr>
 <tr>
-	<td>VEX.LIG.F3.0F.W1 2D /r</td>
+	<td>VEX.LIG.F3.0F.W1 2D /r VCVTSS2SI r64, xmm1/m32</td>
 	<td>RM</td>
 	<td>V/N.E.1</td>
 	<td>AVX</td>
-	<td>Convert one single-precision floating-point VCVTSS2SI r64, xmm1/m32 quadword integer in r64.</td>
+	<td>Convert one single-precision floating-point value from xmm1/m32 to one signed quadword integer in r64.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. Encoding the VEX prefix with VEX.W=1 in non-64-bit mode is ignored.</p>

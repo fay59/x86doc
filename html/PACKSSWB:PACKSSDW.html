@@ -23,39 +23,39 @@
 	<td>Converts 4 packed signed word integers from mm1 and from mm2/m64 into 8 packed signed byte integers in mm1 using signed saturation.</td>
 </tr>
 <tr>
-	<td>66 0F 63 /r</td>
+	<td>66 0F 63 /r PACKSSWB xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Converts 8 packed signed word integers from PACKSSWB xmm1, xmm2/m128 signed byte integers in xxm1 using signed saturation.</td>
+	<td>Converts 8 packed signed word integers from xmm1 and from xxm2/m128 into 16 packed signed byte integers in xxm1 using signed saturation.</td>
 </tr>
 <tr>
-	<td>0F 6B /r1</td>
+	<td>0F 6B /r1 PACKSSDW mm1, mm2/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Converts 2 packed signed doubleword PACKSSDW mm1, mm2/m64 packed signed word integers in mm1 using signed saturation.</td>
+	<td>Converts 2 packed signed doubleword integers from mm1 and from mm2/m64 into 4 packed signed word integers in mm1 using signed saturation.</td>
 </tr>
 <tr>
-	<td>66 0F 6B /r</td>
+	<td>66 0F 6B /r PACKSSDW xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Converts 4 packed signed doubleword PACKSSDW xmm1, xmm2/m128 into 8 packed signed word integers in xxm1 using signed saturation.</td>
+	<td>Converts 4 packed signed doubleword integers from xmm1 and from xxm2/m128 into 8 packed signed word integers in xxm1 using signed saturation.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG 63 /r</td>
+	<td>VEX.NDS.128.66.0F.WIG 63 /r VPACKSSWB xmm1,xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Converts 8 packed signed word integers from VPACKSSWB xmm1,xmm2, xmm3/m128 signed byte integers in xmm1 using signed saturation.</td>
+	<td>Converts 8 packed signed word integers from xmm2 and from xmm3/m128 into 16 packed signed byte integers in xmm1 using signed saturation.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG 6B /r</td>
+	<td>VEX.NDS.128.66.0F.WIG 6B /r VPACKSSDW xmm1,xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Converts 4 packed signed doubleword VPACKSSDW xmm1,xmm2, xmm3/m128 into 8 packed signed word integers in xmm1 using signed saturation.</td>
+	<td>Converts 4 packed signed doubleword integers from xmm2 and from xmm3/m128 into 8 packed signed word integers in xmm1 using signed saturation.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG 63 /r VPACKSSWB ymm1, ymm2, ymm3/m256</td>

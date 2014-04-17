@@ -16,18 +16,18 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>F3 0F 58 /r</td>
+	<td>F3 0F 58 /r ADDSS xmm1, xmm2/m32</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Add the low single-precision floating-point ADDSS xmm1, xmm2/m32</td>
+	<td>Add the low single-precision floating-point value from xmm2/m32 to xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.LIG.F3.0F.WIG 58 /r</td>
+	<td>VEX.NDS.LIG.F3.0F.WIG 58 /r VADDSS xmm1,xmm2, xmm3/m32</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Add the low single-precision floating-point VADDSS xmm1,xmm2, xmm3/m32 the result in xmm1.</td>
+	<td>Add the low single-precision floating-point value from xmm3/mem to xmm2 and store the result in xmm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

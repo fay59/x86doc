@@ -9,25 +9,46 @@
 <h1 id="sarx-shlx-shrx-shift-without-affecting-flags">SARX/SHLX/SHRX — Shift Without Affecting Flags</h1>
 <table>
 <tr>
-	<td>Opcode/Instruction SARX r32a, r/m32, r32b</td>
-	<td>Op/En RMV</td>
-	<td>64/32 -bit Mode V/V</td>
-	<td>CPUID Feature Flag BMI2</td>
-	<td>Description VEX.NDS1.LZ.F3.0F38.W0 F7 /r</td>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
+	<td>64/32 -bit Mode</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
 </tr>
 <tr>
-	<td>VEX.NDS1.LZ.66.0F38.W0 F7 /r SHLX r32a, r/m32, r32b SHRX r32a, r/m32, r32b</td>
-	<td>RMV RMV</td>
-	<td>V/V V/V</td>
-	<td>BMI2 BMI2</td>
-	<td>Shift r/m32 logically left with count specified in r32b. VEX.NDS1.LZ.F2.0F38.W0 F7 /r</td>
+	<td>VEX.NDS1.LZ.F3.0F38.W0 F7 /r SARX r32a, r/m32, r32b</td>
+	<td>RMV</td>
+	<td>V/V</td>
+	<td>BMI2</td>
+	<td>Shift r/m32 arithmetically right with count specified in r32b.</td>
 </tr>
 <tr>
-	<td>VEX.NDS1.LZ.F3.0F38.W1 F7 /r SARX r64a, r/m64, r64b SHLX r64a, r/m64, r64b</td>
-	<td>RMV RMV</td>
-	<td>V/N V/N</td>
-	<td>BMI2 BMI2</td>
-	<td>Shift r/m64 arithmetically right with count specified in r64b. VEX.NDS1.LZ.66.0F38.W1 F7 /r</td>
+	<td>VEX.NDS1.LZ.66.0F38.W0 F7 /r SHLX r32a, r/m32, r32b</td>
+	<td>RMV</td>
+	<td>V/V</td>
+	<td>BMI2</td>
+	<td>Shift r/m32 logically left with count specified in r32b.</td>
+</tr>
+<tr>
+	<td>VEX.NDS1.LZ.F2.0F38.W0 F7 /r SHRX r32a, r/m32, r32b</td>
+	<td>RMV</td>
+	<td>V/V</td>
+	<td>BMI2</td>
+	<td>Shift r/m32 logically right with count specified in r32b.</td>
+</tr>
+<tr>
+	<td>VEX.NDS1.LZ.F3.0F38.W1 F7 /r SARX r64a, r/m64, r64b</td>
+	<td>RMV</td>
+	<td>V/N</td>
+	<td>BMI2</td>
+	<td>Shift r/m64 arithmetically right with count specified in r64b.</td>
+</tr>
+<tr>
+	<td>VEX.NDS1.LZ.66.0F38.W1 F7 /r SHLX r64a, r/m64, r64b</td>
+	<td>RMV</td>
+	<td>V/N</td>
+	<td>BMI2</td>
+	<td>Shift r/m64 logically left with count specified in r64b.</td>
 </tr>
 <tr>
 	<td>VEX.NDS1.LZ.F2.0F38.W1 F7 /r SHRX r64a, r/m64, r64b</td>

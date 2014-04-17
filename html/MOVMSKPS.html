@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 50 /r</td>
+	<td>0F 50 /r MOVMSKPS reg, xmm</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Extract 4-bit sign mask from xmm and store in MOVMSKPS reg, xmm with zeros.</td>
+	<td>Extract 4-bit sign mask from xmm and store in reg. The upper bits of r32 or r64 are filled with zeros.</td>
 </tr>
 <tr>
-	<td>VEX.128.0F.WIG 50 /r</td>
+	<td>VEX.128.0F.WIG 50 /r VMOVMSKPS reg, xmm2</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Extract 4-bit sign mask from xmm2 and store VMOVMSKPS reg, xmm2</td>
+	<td>Extract 4-bit sign mask from xmm2 and store in reg. The upper bits of r32 or r64 are zeroed.</td>
 </tr>
 <tr>
-	<td>VEX.256.0F.WIG 50 /r</td>
+	<td>VEX.256.0F.WIG 50 /r VMOVMSKPS reg, ymm2</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Extract 8-bit sign mask from ymm2 and store VMOVMSKPS reg, ymm2</td>
+	<td>Extract 8-bit sign mask from ymm2 and store in reg. The upper bits of r32 or r64 are zeroed.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding1">Instruction Operand Encoding1</h2>

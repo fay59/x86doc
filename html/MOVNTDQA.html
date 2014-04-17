@@ -16,18 +16,18 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 38 2A /r</td>
+	<td>66 0F 38 2A /r MOVNTDQA xmm1, m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE4_1</td>
-	<td>Move double quadword from m128 to xmm MOVNTDQA xmm1, m128</td>
+	<td>Move double quadword from m128 to xmm using non-temporal hint if WC memory type.</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F38.WIG 2A /r</td>
+	<td>VEX.128.66.0F38.WIG 2A /r VMOVNTDQA xmm1, m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Move double quadword from m128 to xmm VMOVNTDQA xmm1, m128</td>
+	<td>Move double quadword from m128 to xmm using non-temporal hint if WC memory type.</td>
 </tr>
 <tr>
 	<td>VEX.256.66.0F38.WIG 2A /r VMOVNTDQA ymm1, m256</td>

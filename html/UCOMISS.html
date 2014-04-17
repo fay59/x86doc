@@ -16,18 +16,18 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 2E /r</td>
+	<td>0F 2E /r UCOMISS xmm1, xmm2/m32</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Compare lower single-precision floating-point UCOMISS xmm1, xmm2/m32 precision floating-point value in xmm2/mem and set the status flags accordingly.</td>
+	<td>Compare lower single-precision floating-point value in xmm1 register with lower singleprecision floating-point value in xmm2/mem and set the status flags accordingly.</td>
 </tr>
 <tr>
-	<td>VEX.LIG.0F.WIG 2E /r</td>
+	<td>VEX.LIG.0F.WIG 2E /r VUCOMISS xmm1, xmm2/m32</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Compare low single precision floating-point VUCOMISS xmm1, xmm2/m32 the EFLAGS flags accordingly.</td>
+	<td>Compare low single precision floating-point values in xmm1 and xmm2/mem32 and set the EFLAGS flags accordingly.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

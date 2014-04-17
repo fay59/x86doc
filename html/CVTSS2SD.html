@@ -16,18 +16,18 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>F3 0F 5A /r</td>
+	<td>F3 0F 5A /r CVTSS2SD xmm1, xmm2/m32</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Convert one single-precision floating-point CVTSS2SD xmm1, xmm2/m32 floating-point value in xmm1.</td>
+	<td>Convert one single-precision floating-point value in xmm2/m32 to one double-precision floating-point value in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.LIG.F3.0F.WIG 5A /r</td>
+	<td>VEX.NDS.LIG.F3.0F.WIG 5A /r VCVTSS2SD xmm1, xmm2, xmm3/m32</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Convert one single-precision floating-point VCVTSS2SD xmm1, xmm2, xmm3/m32 floating-point value and merge with high bits of xmm2.</td>
+	<td>Convert one single-precision floating-point value in xmm3/m32 to one double-precision floating-point value and merge with high bits of xmm2.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

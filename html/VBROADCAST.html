@@ -16,53 +16,53 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F38.W0 18 /r</td>
+	<td>VEX.128.66.0F38.W0 18 /r VBROADCASTSS xmm1, m32</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Broadcast single-precision floating-point VBROADCASTSS xmm1, m32</td>
+	<td>Broadcast single-precision floating-point element in mem to four locations in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.256.66.0F38.W0 18 /r</td>
+	<td>VEX.256.66.0F38.W0 18 /r VBROADCASTSS ymm1, m32</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Broadcast single-precision floating-point VBROADCASTSS ymm1, m32</td>
+	<td>Broadcast single-precision floating-point element in mem to eight locations in ymm1.</td>
 </tr>
 <tr>
-	<td>VEX.256.66.0F38.W0 19 /r</td>
+	<td>VEX.256.66.0F38.W0 19 /r VBROADCASTSD ymm1, m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Broadcast double-precision floating-point VBROADCASTSD ymm1, m64</td>
+	<td>Broadcast double-precision floating-point element in mem to four locations in ymm1.</td>
 </tr>
 <tr>
-	<td>VEX.256.66.0F38.W0 1A /r</td>
+	<td>VEX.256.66.0F38.W0 1A /r VBROADCASTF128 ymm1, m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Broadcast 128 bits of floating-point data in VBROADCASTF128 ymm1, m128</td>
+	<td>Broadcast 128 bits of floating-point data in mem to low and high 128-bits in ymm1.</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F38.W0 18/r</td>
+	<td>VEX.128.66.0F38.W0 18/r VBROADCASTSS xmm1, xmm2</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Broadcast the low single-precision floatingVBROADCASTSS xmm1, xmm2 locations in xmm1.</td>
+	<td>Broadcast the low single-precision floatingpoint element in the source operand to four locations in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.256.66.0F38.W0 18 /r</td>
+	<td>VEX.256.66.0F38.W0 18 /r VBROADCASTSS ymm1, xmm2</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Broadcast low single-precision floating-point VBROADCASTSS ymm1, xmm2 locations in ymm1.</td>
+	<td>Broadcast low single-precision floating-point element in the source operand to eight locations in ymm1.</td>
 </tr>
 <tr>
-	<td>VEX.256.66.0F38.W0 19 /r</td>
+	<td>VEX.256.66.0F38.W0 19 /r VBROADCASTSD ymm1, xmm2</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Broadcast low double-precision floating-point VBROADCASTSD ymm1, xmm2 locations in ymm1.</td>
+	<td>Broadcast low double-precision floating-point element in the source operand to four locations in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

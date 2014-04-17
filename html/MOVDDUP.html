@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>F2 0F 12 /r</td>
+	<td>F2 0F 12 /r MOVDDUP xmm1, xmm2/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE3</td>
-	<td>Move one double-precision floating-point MOVDDUP xmm1, xmm2/m64 xmm2/m64 to xmm1 and duplicate.</td>
+	<td>Move one double-precision floating-point value from the lower 64-bit operand in xmm2/m64 to xmm1 and duplicate.</td>
 </tr>
 <tr>
-	<td>VEX.128.F2.0F.WIG 12 /r</td>
+	<td>VEX.128.F2.0F.WIG 12 /r VMOVDDUP xmm1, xmm2/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Move double-precision floating-point values VMOVDDUP xmm1, xmm2/m64</td>
+	<td>Move double-precision floating-point values from xmm2/mem and duplicate into xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.256.F2.0F.WIG 12 /r</td>
+	<td>VEX.256.F2.0F.WIG 12 /r VMOVDDUP ymm1, ymm2/m256</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Move even index double-precision floatingVMOVDDUP ymm1, ymm2/m256 each element into ymm1.</td>
+	<td>Move even index double-precision floatingpoint values from ymm2/mem and duplicate each element into ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

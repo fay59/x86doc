@@ -16,11 +16,11 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F38.W0 8C /r</td>
+	<td>VEX.NDS.128.66.0F38.W0 8C /r VPMASKMOVD xmm1, xmm2, m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Conditionally load dword values from m128 using mask VPMASKMOVD xmm1, xmm2, m128</td>
+	<td>Conditionally load dword values from m128 using mask in xmm2 and store in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F38.W0 8C /r VPMASKMOVD ymm1, ymm2, m256</td>
@@ -37,11 +37,11 @@
 	<td>Conditionally load qword values from m128 using mask in xmm2 and store in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F38.W1 8C /r</td>
+	<td>VEX.NDS.256.66.0F38.W1 8C /r VPMASKMOVQ ymm1, ymm2, m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Conditionally load qword values from m256 using mask VPMASKMOVQ ymm1, ymm2, m256</td>
+	<td>Conditionally load qword values from m256 using mask in ymm2 and store in ymm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F38.W0 8E /r VPMASKMOVD m128, xmm1, xmm2</td>

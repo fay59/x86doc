@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 3A 0D /r ib</td>
+	<td>66 0F 3A 0D /r ib BLENDPD xmm1, xmm2/m128, imm8</td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE4_1</td>
-	<td>Select packed DP-FP values from xmm1 and BLENDPD xmm1, xmm2/m128, imm8 and store the values into xmm1.</td>
+	<td>Select packed DP-FP values from xmm1 and xmm2/m128 from mask specified in imm8 and store the values into xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F3A.WIG 0D /r ib</td>
+	<td>VEX.NDS.128.66.0F3A.WIG 0D /r ib VBLENDPD xmm1, xmm2, xmm3/m128, imm8</td>
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Select packed double-precision floating-point VBLENDPD xmm1, xmm2, xmm3/m128, imm8 mask in imm8 and store the values in xmm1.</td>
+	<td>Select packed double-precision floating-point Values from xmm2 and xmm3/m128 from mask in imm8 and store the values in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F3A.WIG 0D /r ib</td>
+	<td>VEX.NDS.256.66.0F3A.WIG 0D /r ib VBLENDPD ymm1, ymm2, ymm3/m256, imm8</td>
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Select packed double-precision floating-point VBLENDPD ymm1, ymm2, ymm3/m256, imm8 mask in imm8 and store the values in ymm1.</td>
+	<td>Select packed double-precision floating-point Values from ymm2 and ymm3/m256 from mask in imm8 and store the values in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

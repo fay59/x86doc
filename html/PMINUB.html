@@ -16,32 +16,32 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F DA /r1</td>
+	<td>0F DA /r1 PMINUB mm1, mm2/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Compare unsigned byte integers in mm2/m64 PMINUB mm1, mm2/m64</td>
+	<td>Compare unsigned byte integers in mm2/m64 and mm1 and returns minimum values.</td>
 </tr>
 <tr>
-	<td>66 0F DA /r</td>
+	<td>66 0F DA /r PMINUB xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Compare unsigned byte integers in PMINUB xmm1, xmm2/m128 values.</td>
+	<td>Compare unsigned byte integers in xmm2/m128 and xmm1 and returns minimum values.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG DA /r</td>
+	<td>VEX.NDS.128.66.0F.WIG DA /r VPMINUB xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Compare packed unsigned byte integers in VPMINUB xmm1, xmm2, xmm3/m128 minimum values in xmm1.</td>
+	<td>Compare packed unsigned byte integers in xmm2 and xmm3/m128 and store packed minimum values in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG DA /r</td>
+	<td>VEX.NDS.256.66.0F.WIG DA /r VPMINUB ymm1, ymm2, ymm3/m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Compare packed unsigned byte integers in VPMINUB ymm1, ymm2, ymm3/m256 minimum values in ymm1.</td>
+	<td>Compare packed unsigned byte integers in ymm2 and ymm3/m256 and store packed minimum values in ymm1.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>

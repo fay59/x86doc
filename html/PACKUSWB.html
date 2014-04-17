@@ -16,32 +16,32 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 67 /r1</td>
+	<td>0F 67 /r1 PACKUSWB mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Converts 4 signed word integers from mm and PACKUSWB mm, mm/m64 unsigned byte integers in mm using unsigned saturation.</td>
+	<td>Converts 4 signed word integers from mm and 4 signed word integers from mm/m64 into 8 unsigned byte integers in mm using unsigned saturation.</td>
 </tr>
 <tr>
-	<td>66 0F 67 /r</td>
+	<td>66 0F 67 /r PACKUSWB xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Converts 8 signed word integers from xmm1 PACKUSWB xmm1, xmm2/m128 into 16 unsigned byte integers in xmm1 using unsigned saturation.</td>
+	<td>Converts 8 signed word integers from xmm1 and 8 signed word integers from xmm2/m128 into 16 unsigned byte integers in xmm1 using unsigned saturation.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG 67 /r</td>
+	<td>VEX.NDS.128.66.0F.WIG 67 /r VPACKUSWB xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Converts 8 signed word integers from xmm2 VPACKUSWB xmm1, xmm2, xmm3/m128 into 16 unsigned byte integers in xmm1 using unsigned saturation.</td>
+	<td>Converts 8 signed word integers from xmm2 and 8 signed word integers from xmm3/m128 into 16 unsigned byte integers in xmm1 using unsigned saturation.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG 67 /r</td>
+	<td>VEX.NDS.256.66.0F.WIG 67 /r VPACKUSWB ymm1, ymm2, ymm3/m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Converts 16 signed word integers from ymm2 VPACKUSWB ymm1, ymm2, ymm3/m256 ymm3/m256 into 32 unsigned byte integers in ymm1 using unsigned saturation.</td>
+	<td>Converts 16 signed word integers from ymm2 and 16signed word integers from ymm3/m256 into 32 unsigned byte integers in ymm1 using unsigned saturation.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>

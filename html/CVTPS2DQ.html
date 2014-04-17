@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 5B /r</td>
+	<td>66 0F 5B /r CVTPS2DQ xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Convert four packed single-precision floatingCVTPS2DQ xmm1, xmm2/m128 signed doubleword integers in xmm1.</td>
+	<td>Convert four packed single-precision floatingpoint values from xmm2/m128 to four packed signed doubleword integers in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F.WIG 5B /r</td>
+	<td>VEX.128.66.0F.WIG 5B /r VCVTPS2DQ xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Convert four packed single precision floatingVCVTPS2DQ xmm1, xmm2/m128 signed doubleword values in xmm1.</td>
+	<td>Convert four packed single precision floatingpoint values from xmm2/mem to four packed signed doubleword values in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.256.66.0F.WIG 5B /r</td>
+	<td>VEX.256.66.0F.WIG 5B /r VCVTPS2DQ ymm1, ymm2/m256</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Convert eight packed single precision floatingVCVTPS2DQ ymm1, ymm2/m256 signed doubleword values in ymm1.</td>
+	<td>Convert eight packed single precision floatingpoint values from ymm2/mem to eight packed signed doubleword values in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

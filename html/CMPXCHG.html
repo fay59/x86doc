@@ -16,39 +16,39 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F B0/r</td>
+	<td>0F B0/r CMPXCHG r/m8, r8</td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid*</td>
-	<td>Compare AL with r/m8. If equal, ZF is set and CMPXCHG r/m8, r8 r/m8 into AL.</td>
+	<td>Compare AL with r/m8. If equal, ZF is set and r8 is loaded into r/m8. Else, clear ZF and load r/m8 into AL.</td>
 </tr>
 <tr>
-	<td>REX + 0F B0/r</td>
+	<td>REX + 0F B0/r CMPXCHG r/m8**,r8</td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Compare AL with r/m8. If equal, ZF is set and CMPXCHG r/m8**,r8 r/m8 into AL.</td>
+	<td>Compare AL with r/m8. If equal, ZF is set and r8 is loaded into r/m8. Else, clear ZF and load r/m8 into AL.</td>
 </tr>
 <tr>
-	<td>0F B1/r</td>
+	<td>0F B1/r CMPXCHG r/m16, r16</td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid*</td>
-	<td>Compare AX with r/m16. If equal, ZF is set and CMPXCHG r/m16, r16 load r/m16 into AX.</td>
+	<td>Compare AX with r/m16. If equal, ZF is set and r16 is loaded into r/m16. Else, clear ZF and load r/m16 into AX.</td>
 </tr>
 <tr>
-	<td>0F B1/r</td>
+	<td>0F B1/r CMPXCHG r/m32, r32</td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid*</td>
-	<td>Compare EAX with r/m32. If equal, ZF is set CMPXCHG r/m32, r32 and load r/m32 into EAX.</td>
+	<td>Compare EAX with r/m32. If equal, ZF is set and r32 is loaded into r/m32. Else, clear ZF and load r/m32 into EAX.</td>
 </tr>
 <tr>
-	<td>REX.W + 0F B1/r</td>
+	<td>REX.W + 0F B1/r CMPXCHG r/m64, r64</td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Compare RAX with r/m64. If equal, ZF is set CMPXCHG r/m64, r64 and load r/m64 into RAX.</td>
+	<td>Compare RAX with r/m64. If equal, ZF is set and r64 is loaded into r/m64. Else, clear ZF and load r/m64 into RAX.</td>
 </tr>
 </table>
 <p class="notes">Notes: * See the IA-32 Architecture Compatibility section below. ** In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.</p>

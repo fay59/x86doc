@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 53 /r</td>
+	<td>0F 53 /r RCPPS xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Computes the approximate reciprocals of the RCPPS xmm1, xmm2/m128 in xmm2/m128 and stores the results in xmm1.</td>
+	<td>Computes the approximate reciprocals of the packed single-precision floating-point values in xmm2/m128 and stores the results in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.128.0F.WIG 53 /r</td>
+	<td>VEX.128.0F.WIG 53 /r VRCPPS xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Computes the approximate reciprocals of VRCPPS xmm1, xmm2/m128 and stores the results in xmm1.</td>
+	<td>Computes the approximate reciprocals of packed single-precision values in xmm2/mem and stores the results in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.256.0F.WIG 53 /r</td>
+	<td>VEX.256.0F.WIG 53 /r VRCPPS ymm1, ymm2/m256</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Computes the approximate reciprocals of VRCPPS ymm1, ymm2/m256 and stores the results in ymm1.</td>
+	<td>Computes the approximate reciprocals of packed single-precision values in ymm2/mem and stores the results in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

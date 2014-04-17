@@ -16,32 +16,32 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>F3 0F 2A /r</td>
+	<td>F3 0F 2A /r CVTSI2SS xmm, r/m32</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Convert one signed doubleword integer from CVTSI2SS xmm, r/m32 value in xmm.</td>
+	<td>Convert one signed doubleword integer from r/m32 to one single-precision floating-point value in xmm.</td>
 </tr>
 <tr>
-	<td>F3 REX.W 0F 2A /r</td>
+	<td>F3 REX.W 0F 2A /r CVTSI2SS xmm, r/m64</td>
 	<td>RM</td>
 	<td>V/N.E.</td>
 	<td>SSE</td>
-	<td>Convert one signed quadword integer from CVTSI2SS xmm, r/m64 value in xmm.</td>
+	<td>Convert one signed quadword integer from r/m64 to one single-precision floating-point value in xmm.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.LIG.F3.0F.W0 2A /r</td>
+	<td>VEX.NDS.LIG.F3.0F.W0 2A /r VCVTSI2SS xmm1, xmm2, r/m32</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Convert one signed doubleword integer from VCVTSI2SS xmm1, xmm2, r/m32 value in xmm1.</td>
+	<td>Convert one signed doubleword integer from r/m32 to one single-precision floating-point value in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.LIG.F3.0F.W1 2A /r</td>
+	<td>VEX.NDS.LIG.F3.0F.W1 2A /r VCVTSI2SS xmm1, xmm2, r/m64</td>
 	<td>RVM</td>
 	<td>V/N.E.1</td>
 	<td>AVX</td>
-	<td>Convert one signed quadword integer from VCVTSI2SS xmm1, xmm2, r/m64 value in xmm1.</td>
+	<td>Convert one signed quadword integer from r/m64 to one single-precision floating-point value in xmm1.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. Encoding the VEX prefix with VEX.W=1 in non-64-bit mode is ignored.</p>

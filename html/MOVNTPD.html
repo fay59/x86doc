@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 2B /r</td>
+	<td>66 0F 2B /r MOVNTPD m128, xmm</td>
 	<td>MR</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Move packed double-precision floating-point MOVNTPD m128, xmm temporal hint.</td>
+	<td>Move packed double-precision floating-point values from xmm to m128 using nontemporal hint.</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F.WIG 2B /r</td>
+	<td>VEX.128.66.0F.WIG 2B /r VMOVNTPD m128, xmm1</td>
 	<td>MR</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Move packed double-precision values in xmm1 VMOVNTPD m128, xmm1</td>
+	<td>Move packed double-precision values in xmm1 to m128 using non-temporal hint.</td>
 </tr>
 <tr>
-	<td>VEX.256.66.0F.WIG 2B /r</td>
+	<td>VEX.256.66.0F.WIG 2B /r VMOVNTPD m256, ymm1</td>
 	<td>MR</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Move packed double-precision values in ymm1 VMOVNTPD m256, ymm1</td>
+	<td>Move packed double-precision values in ymm1 to m256 using non-temporal hint.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding1">Instruction Operand Encoding1</h2>

@@ -23,25 +23,25 @@
 	<td>Shift words in mm right by mm/m64 while shifting in sign bits.</td>
 </tr>
 <tr>
-	<td>66 0F E1 /r</td>
+	<td>66 0F E1 /r PSRAW xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Shift words in xmm1 right by xmm2/m128 PSRAW xmm1, xmm2/m128</td>
+	<td>Shift words in xmm1 right by xmm2/m128 while shifting in sign bits.</td>
 </tr>
 <tr>
-	<td>0F 71 /4 ib1</td>
+	<td>0F 71 /4 ib1 PSRAW mm, imm8</td>
 	<td>MI</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Shift words in mm right by imm8 while shifting PSRAW mm, imm8</td>
+	<td>Shift words in mm right by imm8 while shifting in sign bits</td>
 </tr>
 <tr>
-	<td>66 0F 71 /4 ib</td>
+	<td>66 0F 71 /4 ib PSRAW xmm1, imm8</td>
 	<td>MI</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Shift words in xmm1 right by imm8 while PSRAW xmm1, imm8</td>
+	<td>Shift words in xmm1 right by imm8 while shifting in sign bits</td>
 </tr>
 <tr>
 	<td>0F E2 /r1 PSRAD mm, mm/m64</td>
@@ -51,81 +51,81 @@
 	<td>Shift doublewords in mm right by mm/m64 while shifting in sign bits.</td>
 </tr>
 <tr>
-	<td>66 0F E2 /r</td>
+	<td>66 0F E2 /r PSRAD xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Shift doubleword in xmm1 right by xmm2 PSRAD xmm1, xmm2/m128</td>
+	<td>Shift doubleword in xmm1 right by xmm2 /m128 while shifting in sign bits.</td>
 </tr>
 <tr>
-	<td>0F 72 /4 ib1</td>
+	<td>0F 72 /4 ib1 PSRAD mm, imm8</td>
 	<td>MI</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Shift doublewords in mm right by imm8 while PSRAD mm, imm8</td>
+	<td>Shift doublewords in mm right by imm8 while shifting in sign bits.</td>
 </tr>
 <tr>
-	<td>66 0F 72 /4 ib</td>
+	<td>66 0F 72 /4 ib PSRAD xmm1, imm8</td>
 	<td>MI</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Shift doublewords in xmm1 right by imm8 PSRAD xmm1, imm8</td>
+	<td>Shift doublewords in xmm1 right by imm8 while shifting in sign bits.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG E1 /r</td>
+	<td>VEX.NDS.128.66.0F.WIG E1 /r VPSRAW xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Shift words in xmm2 right by amount specified VPSRAW xmm1, xmm2, xmm3/m128</td>
+	<td>Shift words in xmm2 right by amount specified in xmm3/m128 while shifting in sign bits.</td>
 </tr>
 <tr>
-	<td>VEX.NDD.128.66.0F.WIG 71 /4 ib</td>
+	<td>VEX.NDD.128.66.0F.WIG 71 /4 ib VPSRAW xmm1, xmm2, imm8</td>
 	<td>VMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Shift words in xmm2 right by imm8 while VPSRAW xmm1, xmm2, imm8</td>
+	<td>Shift words in xmm2 right by imm8 while shifting in sign bits.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG E2 /r</td>
+	<td>VEX.NDS.128.66.0F.WIG E2 /r VPSRAD xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Shift doublewords in xmm2 right by amount VPSRAD xmm1, xmm2, xmm3/m128 bits.</td>
+	<td>Shift doublewords in xmm2 right by amount specified in xmm3/m128 while shifting in sign bits.</td>
 </tr>
 <tr>
-	<td>VEX.NDD.128.66.0F.WIG 72 /4 ib</td>
+	<td>VEX.NDD.128.66.0F.WIG 72 /4 ib VPSRAD xmm1, xmm2, imm8</td>
 	<td>VMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Shift doublewords in xmm2 right by imm8 VPSRAD xmm1, xmm2, imm8</td>
+	<td>Shift doublewords in xmm2 right by imm8 while shifting in sign bits.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG E1 /r</td>
+	<td>VEX.NDS.256.66.0F.WIG E1 /r VPSRAW ymm1, ymm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Shift words in ymm2 right by amount specified VPSRAW ymm1, ymm2, xmm3/m128</td>
+	<td>Shift words in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits.</td>
 </tr>
 <tr>
-	<td>VEX.NDD.256.66.0F.WIG 71 /4 ib</td>
+	<td>VEX.NDD.256.66.0F.WIG 71 /4 ib VPSRAW ymm1, ymm2, imm8</td>
 	<td>VMI</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Shift words in ymm2 right by imm8 while VPSRAW ymm1, ymm2, imm8</td>
+	<td>Shift words in ymm2 right by imm8 while shifting in sign bits.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG E2 /r</td>
+	<td>VEX.NDS.256.66.0F.WIG E2 /r VPSRAD ymm1, ymm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Shift doublewords in ymm2 right by amount VPSRAD ymm1, ymm2, xmm3/m128 bits.</td>
+	<td>Shift doublewords in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits.</td>
 </tr>
 <tr>
-	<td>VEX.NDD.256.66.0F.WIG 72 /4 ib</td>
+	<td>VEX.NDD.256.66.0F.WIG 72 /4 ib VPSRAD ymm1, ymm2, imm8</td>
 	<td>VMI</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Shift doublewords in ymm2 right by imm8 VPSRAD ymm1, ymm2, imm8</td>
+	<td>Shift doublewords in ymm2 right by imm8 while shifting in sign bits.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>

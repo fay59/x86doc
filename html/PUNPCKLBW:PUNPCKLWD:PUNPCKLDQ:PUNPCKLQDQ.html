@@ -16,109 +16,109 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 60 /r1</td>
+	<td>0F 60 /r1 PUNPCKLBW mm, mm/m32</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Interleave low-order bytes from mm and PUNPCKLBW mm, mm/m32</td>
+	<td>Interleave low-order bytes from mm and mm/m32 into mm.</td>
 </tr>
 <tr>
-	<td>66 0F 60 /r</td>
+	<td>66 0F 60 /r PUNPCKLBW xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Interleave low-order bytes from xmm1 and PUNPCKLBW xmm1, xmm2/m128</td>
+	<td>Interleave low-order bytes from xmm1 and xmm2/m128 into xmm1.</td>
 </tr>
 <tr>
-	<td>0F 61 /r1</td>
+	<td>0F 61 /r1 PUNPCKLWD mm, mm/m32</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Interleave low-order words from mm and PUNPCKLWD mm, mm/m32</td>
+	<td>Interleave low-order words from mm and mm/m32 into mm.</td>
 </tr>
 <tr>
-	<td>66 0F 61 /r</td>
+	<td>66 0F 61 /r PUNPCKLWD xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Interleave low-order words from xmm1 and PUNPCKLWD xmm1, xmm2/m128</td>
+	<td>Interleave low-order words from xmm1 and xmm2/m128 into xmm1.</td>
 </tr>
 <tr>
-	<td>0F 62 /r1</td>
+	<td>0F 62 /r1 PUNPCKLDQ mm, mm/m32</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Interleave low-order doublewords from mm PUNPCKLDQ mm, mm/m32</td>
+	<td>Interleave low-order doublewords from mm and mm/m32 into mm.</td>
 </tr>
 <tr>
-	<td>66 0F 62 /r</td>
+	<td>66 0F 62 /r PUNPCKLDQ xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Interleave low-order doublewords from xmm1 PUNPCKLDQ xmm1, xmm2/m128</td>
+	<td>Interleave low-order doublewords from xmm1 and xmm2/m128 into xmm1.</td>
 </tr>
 <tr>
-	<td>66 0F 6C /r</td>
+	<td>66 0F 6C /r PUNPCKLQDQ xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Interleave low-order quadword from xmm1 PUNPCKLQDQ xmm1, xmm2/m128</td>
+	<td>Interleave low-order quadword from xmm1 and xmm2/m128 into xmm1 register.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG 60/r</td>
+	<td>VEX.NDS.128.66.0F.WIG 60/r VPUNPCKLBW xmm1,xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Interleave low-order bytes from xmm2 and VPUNPCKLBW xmm1,xmm2, xmm3/m128</td>
+	<td>Interleave low-order bytes from xmm2 and xmm3/m128 into xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG 61/r</td>
+	<td>VEX.NDS.128.66.0F.WIG 61/r VPUNPCKLWD xmm1,xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Interleave low-order words from xmm2 and VPUNPCKLWD xmm1,xmm2, xmm3/m128</td>
+	<td>Interleave low-order words from xmm2 and xmm3/m128 into xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG 62/r</td>
+	<td>VEX.NDS.128.66.0F.WIG 62/r VPUNPCKLDQ xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Interleave low-order doublewords from xmm2 VPUNPCKLDQ xmm1, xmm2, xmm3/m128</td>
+	<td>Interleave low-order doublewords from xmm2 and xmm3/m128 into xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG 6C/r</td>
+	<td>VEX.NDS.128.66.0F.WIG 6C/r VPUNPCKLQDQ xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Interleave low-order quadword from xmm2 VPUNPCKLQDQ xmm1, xmm2, xmm3/m128</td>
+	<td>Interleave low-order quadword from xmm2 and xmm3/m128 into xmm1 register.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG 60 /r</td>
+	<td>VEX.NDS.256.66.0F.WIG 60 /r VPUNPCKLBW ymm1, ymm2, ymm3/m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Interleave low-order bytes from ymm2 and VPUNPCKLBW ymm1, ymm2, ymm3/m256</td>
+	<td>Interleave low-order bytes from ymm2 and ymm3/m256 into ymm1 register.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG 61 /r</td>
+	<td>VEX.NDS.256.66.0F.WIG 61 /r VPUNPCKLWD ymm1, ymm2, ymm3/m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Interleave low-order words from ymm2 and VPUNPCKLWD ymm1, ymm2, ymm3/m256</td>
+	<td>Interleave low-order words from ymm2 and ymm3/m256 into ymm1 register.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG 62 /r</td>
+	<td>VEX.NDS.256.66.0F.WIG 62 /r VPUNPCKLDQ ymm1, ymm2, ymm3/m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Interleave low-order doublewords from ymm2 VPUNPCKLDQ ymm1, ymm2, ymm3/m256</td>
+	<td>Interleave low-order doublewords from ymm2 and ymm3/m256 into ymm1 register.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG 6C /r</td>
+	<td>VEX.NDS.256.66.0F.WIG 6C /r VPUNPCKLQDQ ymm1, ymm2, ymm3/m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Interleave low-order quadword from ymm2 VPUNPCKLQDQ ymm1, ymm2, ymm3/m256</td>
+	<td>Interleave low-order quadword from ymm2 and ymm3/m256 into ymm1 register.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>

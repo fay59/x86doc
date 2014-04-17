@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 73 /7 ib</td>
+	<td>66 0F 73 /7 ib PSLLDQ xmm1, imm8</td>
 	<td>MI</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Shift xmm1 left by imm8 bytes while shifting PSLLDQ xmm1, imm8</td>
+	<td>Shift xmm1 left by imm8 bytes while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>VEX.NDD.128.66.0F.WIG 73 /7 ib</td>
+	<td>VEX.NDD.128.66.0F.WIG 73 /7 ib VPSLLDQ xmm1, xmm2, imm8</td>
 	<td>VMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Shift xmm2 left by imm8 bytes while shifting VPSLLDQ xmm1, xmm2, imm8</td>
+	<td>Shift xmm2 left by imm8 bytes while shifting in 0s and store result in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDD.256.66.0F.WIG 73 /7 ib</td>
+	<td>VEX.NDD.256.66.0F.WIG 73 /7 ib VPSLLDQ ymm1, ymm2, imm8</td>
 	<td>VMI</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Shift ymm2 left by imm8 bytes while shifting VPSLLDQ ymm1, ymm2, imm8</td>
+	<td>Shift ymm2 left by imm8 bytes while shifting in 0s and store result in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

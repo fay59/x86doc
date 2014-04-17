@@ -23,25 +23,25 @@
 	<td>Add quadword integer mm2/m64 to mm1.</td>
 </tr>
 <tr>
-	<td>66 0F D4 /r</td>
+	<td>66 0F D4 /r PADDQ xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Add packed quadword integers xmm2/m128 PADDQ xmm1, xmm2/m128</td>
+	<td>Add packed quadword integers xmm2/m128 to xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG D4 /r</td>
+	<td>VEX.NDS.128.66.0F.WIG D4 /r VPADDQ xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Add packed quadword integers xmm3/m128 VPADDQ xmm1, xmm2, xmm3/m128</td>
+	<td>Add packed quadword integers xmm3/m128 and xmm2.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG D4 /r</td>
+	<td>VEX.NDS.256.66.0F.WIG D4 /r VPADDQ ymm1, ymm2, ymm3/m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Add packed quadword integers from ymm2, VPADDQ ymm1, ymm2, ymm3/m256</td>
+	<td>Add packed quadword integers from ymm2, ymm3/m256 and store in ymm1.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>

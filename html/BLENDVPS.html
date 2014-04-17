@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 38 14 /r</td>
+	<td>66 0F 38 14 /r BLENDVPS xmm1, xmm2/m128, &lt;XMM0&gt;</td>
 	<td>RM0</td>
 	<td>V/V</td>
 	<td>SSE4_1</td>
-	<td>Select packed single precision floating-point BLENDVPS xmm1, xmm2/m128, &lt;XMM0&gt; mask specified in XMM0 and store the values into xmm1.</td>
+	<td>Select packed single precision floating-point values from xmm1 and xmm2/m128 from mask specified in XMM0 and store the values into xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F3A.W0 4A /r /is4</td>
+	<td>VEX.NDS.128.66.0F3A.W0 4A /r /is4 VBLENDVPS xmm1, xmm2, xmm3/m128, xmm4</td>
 	<td>RVMR</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Conditionally copy single-precision floatingVBLENDVPS xmm1, xmm2, xmm3/m128, xmm4 xmm1, based on mask bits in the specified mask operand, xmm4.</td>
+	<td>Conditionally copy single-precision floatingpoint values from xmm2 or xmm3/m128 to xmm1, based on mask bits in the specified mask operand, xmm4.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F3A.W0 4A /r /is4</td>
+	<td>VEX.NDS.256.66.0F3A.W0 4A /r /is4 VBLENDVPS ymm1, ymm2, ymm3/m256, ymm4</td>
 	<td>RVMR</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Conditionally copy single-precision floatingVBLENDVPS ymm1, ymm2, ymm3/m256, ymm4 ymm1, based on mask bits in the specified mask register, ymm4.</td>
+	<td>Conditionally copy single-precision floatingpoint values from ymm2 or ymm3/m256 to ymm1, based on mask bits in the specified mask register, ymm4.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

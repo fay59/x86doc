@@ -16,88 +16,88 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F FC /r1</td>
+	<td>0F FC /r1 PADDB mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Add packed byte integers from mm/m64 and PADDB mm, mm/m64</td>
+	<td>Add packed byte integers from mm/m64 and mm.</td>
 </tr>
 <tr>
-	<td>66 0F FC /r</td>
+	<td>66 0F FC /r PADDB xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Add packed byte integers from xmm2/m128 PADDB xmm1, xmm2/m128</td>
+	<td>Add packed byte integers from xmm2/m128 and xmm1.</td>
 </tr>
 <tr>
-	<td>0F FD /r1</td>
+	<td>0F FD /r1 PADDW mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Add packed word integers from mm/m64 and PADDW mm, mm/m64</td>
+	<td>Add packed word integers from mm/m64 and mm.</td>
 </tr>
 <tr>
-	<td>66 0F FD /r</td>
+	<td>66 0F FD /r PADDW xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Add packed word integers from xmm2/m128 PADDW xmm1, xmm2/m128</td>
+	<td>Add packed word integers from xmm2/m128 and xmm1.</td>
 </tr>
 <tr>
-	<td>0F FE /r1</td>
+	<td>0F FE /r1 PADDD mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Add packed doubleword integers from PADDD mm, mm/m64</td>
+	<td>Add packed doubleword integers from mm/m64 and mm.</td>
 </tr>
 <tr>
-	<td>66 0F FE /r</td>
+	<td>66 0F FE /r PADDD xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Add packed doubleword integers from PADDD xmm1, xmm2/m128</td>
+	<td>Add packed doubleword integers from xmm2/m128 and xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG FC /r</td>
+	<td>VEX.NDS.128.66.0F.WIG FC /r VPADDB xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Add packed byte integers from xmm3/m128 VPADDB xmm1, xmm2, xmm3/m128</td>
+	<td>Add packed byte integers from xmm3/m128 and xmm2.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG FD /r</td>
+	<td>VEX.NDS.128.66.0F.WIG FD /r VPADDW xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Add packed word integers from xmm3/m128 VPADDW xmm1, xmm2, xmm3/m128</td>
+	<td>Add packed word integers from xmm3/m128 and xmm2.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG FE /r</td>
+	<td>VEX.NDS.128.66.0F.WIG FE /r VPADDD xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Add packed doubleword integers from VPADDD xmm1, xmm2, xmm3/m128</td>
+	<td>Add packed doubleword integers from xmm3/m128 and xmm2.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG FC /r</td>
+	<td>VEX.NDS.256.66.0F.WIG FC /r VPADDB ymm1, ymm2, ymm3/m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Add packed byte integers from ymm2, and VPADDB ymm1, ymm2, ymm3/m256</td>
+	<td>Add packed byte integers from ymm2, and ymm3/m256 and store in ymm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG FD /r</td>
+	<td>VEX.NDS.256.66.0F.WIG FD /r VPADDW ymm1, ymm2, ymm3/m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Add packed word integers from ymm2, VPADDW ymm1, ymm2, ymm3/m256</td>
+	<td>Add packed word integers from ymm2, ymm3/m256 and store in ymm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG FE /r</td>
+	<td>VEX.NDS.256.66.0F.WIG FE /r VPADDD ymm1, ymm2, ymm3/m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Add packed doubleword integers from ymm2, VPADDD ymm1, ymm2, ymm3/m256</td>
+	<td>Add packed doubleword integers from ymm2, ymm3/m256 and store in ymm1.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>

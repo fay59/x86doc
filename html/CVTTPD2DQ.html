@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F E6 /r</td>
+	<td>66 0F E6 /r CVTTPD2DQ xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Convert two packed double-precision floatingCVTTPD2DQ xmm1, xmm2/m128 signed doubleword integers in xmm1 using truncation.</td>
+	<td>Convert two packed double-precision floatingpoint values from xmm2/m128 to two packed signed doubleword integers in xmm1 using truncation.</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F.WIG E6 /r</td>
+	<td>VEX.128.66.0F.WIG E6 /r VCVTTPD2DQ xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Convert two packed double-precision floatingVCVTTPD2DQ xmm1, xmm2/m128 doubleword integers in xmm1 using truncation.</td>
+	<td>Convert two packed double-precision floatingpoint values in xmm2/mem to two signed doubleword integers in xmm1 using truncation.</td>
 </tr>
 <tr>
-	<td>VEX.256.66.0F.WIG E6 /r</td>
+	<td>VEX.256.66.0F.WIG E6 /r VCVTTPD2DQ xmm1, ymm2/m256</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Convert four packed double-precision floatingVCVTTPD2DQ xmm1, ymm2/m256 doubleword integers in xmm1 using truncation.</td>
+	<td>Convert four packed double-precision floatingpoint values in ymm2/mem to four signed doubleword integers in xmm1 using truncation.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

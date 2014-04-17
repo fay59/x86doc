@@ -16,53 +16,53 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F E0 /r1</td>
+	<td>0F E0 /r1 PAVGB mm1, mm2/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Average packed unsigned byte integers from PAVGB mm1, mm2/m64</td>
+	<td>Average packed unsigned byte integers from mm2/m64 and mm1 with rounding.</td>
 </tr>
 <tr>
-	<td>66 0F E0, /r</td>
+	<td>66 0F E0, /r PAVGB xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Average packed unsigned byte integers from PAVGB xmm1, xmm2/m128</td>
+	<td>Average packed unsigned byte integers from xmm2/m128 and xmm1 with rounding.</td>
 </tr>
 <tr>
-	<td>0F E3 /r1</td>
+	<td>0F E3 /r1 PAVGW mm1, mm2/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Average packed unsigned word integers from PAVGW mm1, mm2/m64</td>
+	<td>Average packed unsigned word integers from mm2/m64 and mm1 with rounding.</td>
 </tr>
 <tr>
-	<td>66 0F E3 /r</td>
+	<td>66 0F E3 /r PAVGW xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Average packed unsigned word integers from PAVGW xmm1, xmm2/m128</td>
+	<td>Average packed unsigned word integers from xmm2/m128 and xmm1 with rounding.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG E0 /r</td>
+	<td>VEX.NDS.128.66.0F.WIG E0 /r VPAVGB xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Average packed unsigned byte integers from VPAVGB xmm1, xmm2, xmm3/m128</td>
+	<td>Average packed unsigned byte integers from xmm3/m128 and xmm2 with rounding.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG E3 /r</td>
+	<td>VEX.NDS.128.66.0F.WIG E3 /r VPAVGW xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Average packed unsigned word integers from VPAVGW xmm1, xmm2, xmm3/m128</td>
+	<td>Average packed unsigned word integers from xmm3/m128 and xmm2 with rounding.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG E0 /r</td>
+	<td>VEX.NDS.256.66.0F.WIG E0 /r VPAVGB ymm1, ymm2, ymm3/m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Average packed unsigned byte integers from VPAVGB ymm1, ymm2, ymm3/m256 store to ymm1.</td>
+	<td>Average packed unsigned byte integers from ymm2, and ymm3/m256 with rounding and store to ymm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG E3 /r VPAVGW ymm1, ymm2, ymm3/m256</td>

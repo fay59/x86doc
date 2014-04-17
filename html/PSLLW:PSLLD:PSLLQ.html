@@ -23,25 +23,25 @@
 	<td>Shift words in mm left mm/m64 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>66 0F F1 /r</td>
+	<td>66 0F F1 /r PSLLW xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Shift words in xmm1 left by xmm2/m128 PSLLW xmm1, xmm2/m128</td>
+	<td>Shift words in xmm1 left by xmm2/m128 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>0F 71 /6 ib</td>
+	<td>0F 71 /6 ib PSLLW mm1, imm8</td>
 	<td>MI</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Shift words in mm left by imm8 while shifting PSLLW mm1, imm8</td>
+	<td>Shift words in mm left by imm8 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>66 0F 71 /6 ib</td>
+	<td>66 0F 71 /6 ib PSLLW xmm1, imm8</td>
 	<td>MI</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Shift words in xmm1 left by imm8 while PSLLW xmm1, imm8</td>
+	<td>Shift words in xmm1 left by imm8 while shifting in 0s.</td>
 </tr>
 <tr>
 	<td>0F F2 /r1 PSLLD mm, mm/m64</td>
@@ -51,137 +51,137 @@
 	<td>Shift doublewords in mm left by mm/m64 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>66 0F F2 /r</td>
+	<td>66 0F F2 /r PSLLD xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Shift doublewords in xmm1 left by PSLLD xmm1, xmm2/m128</td>
+	<td>Shift doublewords in xmm1 left by xmm2/m128 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>0F 72 /6 ib1</td>
+	<td>0F 72 /6 ib1 PSLLD mm, imm8</td>
 	<td>MI</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Shift doublewords in mm left by imm8 while PSLLD mm, imm8</td>
+	<td>Shift doublewords in mm left by imm8 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>66 0F 72 /6 ib</td>
+	<td>66 0F 72 /6 ib PSLLD xmm1, imm8</td>
 	<td>MI</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Shift doublewords in xmm1 left by imm8 while PSLLD xmm1, imm8</td>
+	<td>Shift doublewords in xmm1 left by imm8 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>0F F3 /r1</td>
+	<td>0F F3 /r1 PSLLQ mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Shift quadword in mm left by mm/m64 while PSLLQ mm, mm/m64</td>
+	<td>Shift quadword in mm left by mm/m64 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>66 0F F3 /r</td>
+	<td>66 0F F3 /r PSLLQ xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Shift quadwords in xmm1 left by xmm2/m128 PSLLQ xmm1, xmm2/m128</td>
+	<td>Shift quadwords in xmm1 left by xmm2/m128 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>0F 73 /6 ib1</td>
+	<td>0F 73 /6 ib1 PSLLQ mm, imm8</td>
 	<td>MI</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Shift quadword in mm left by imm8 while PSLLQ mm, imm8</td>
+	<td>Shift quadword in mm left by imm8 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>66 0F 73 /6 ib</td>
+	<td>66 0F 73 /6 ib PSLLQ xmm1, imm8</td>
 	<td>MI</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Shift quadwords in xmm1 left by imm8 while PSLLQ xmm1, imm8</td>
+	<td>Shift quadwords in xmm1 left by imm8 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG F1 /r</td>
+	<td>VEX.NDS.128.66.0F.WIG F1 /r VPSLLW xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Shift words in xmm2 left by amount specified VPSLLW xmm1, xmm2, xmm3/m128</td>
+	<td>Shift words in xmm2 left by amount specified in xmm3/m128 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>VEX.NDD.128.66.0F.WIG 71 /6 ib</td>
+	<td>VEX.NDD.128.66.0F.WIG 71 /6 ib VPSLLW xmm1, xmm2, imm8</td>
 	<td>VMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Shift words in xmm2 left by imm8 while VPSLLW xmm1, xmm2, imm8</td>
+	<td>Shift words in xmm2 left by imm8 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG F2 /r</td>
+	<td>VEX.NDS.128.66.0F.WIG F2 /r VPSLLD xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Shift doublewords in xmm2 left by amount VPSLLD xmm1, xmm2, xmm3/m128</td>
+	<td>Shift doublewords in xmm2 left by amount specified in xmm3/m128 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>VEX.NDD.128.66.0F.WIG 72 /6 ib</td>
+	<td>VEX.NDD.128.66.0F.WIG 72 /6 ib VPSLLD xmm1, xmm2, imm8</td>
 	<td>VMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Shift doublewords in xmm2 left by imm8 VPSLLD xmm1, xmm2, imm8</td>
+	<td>Shift doublewords in xmm2 left by imm8 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG F3 /r</td>
+	<td>VEX.NDS.128.66.0F.WIG F3 /r VPSLLQ xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Shift quadwords in xmm2 left by amount VPSLLQ xmm1, xmm2, xmm3/m128</td>
+	<td>Shift quadwords in xmm2 left by amount specified in xmm3/m128 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>VEX.NDD.128.66.0F.WIG 73 /6 ib</td>
+	<td>VEX.NDD.128.66.0F.WIG 73 /6 ib VPSLLQ xmm1, xmm2, imm8</td>
 	<td>VMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Shift quadwords in xmm2 left by imm8 while VPSLLQ xmm1, xmm2, imm8</td>
+	<td>Shift quadwords in xmm2 left by imm8 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG F1 /r</td>
+	<td>VEX.NDS.256.66.0F.WIG F1 /r VPSLLW ymm1, ymm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Shift words in ymm2 left by amount specified VPSLLW ymm1, ymm2, xmm3/m128</td>
+	<td>Shift words in ymm2 left by amount specified in xmm3/m128 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>VEX.NDD.256.66.0F.WIG 71 /6 ib</td>
+	<td>VEX.NDD.256.66.0F.WIG 71 /6 ib VPSLLW ymm1, ymm2, imm8</td>
 	<td>VMI</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Shift words in ymm2 left by imm8 while VPSLLW ymm1, ymm2, imm8</td>
+	<td>Shift words in ymm2 left by imm8 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG F2 /r</td>
+	<td>VEX.NDS.256.66.0F.WIG F2 /r VPSLLD ymm1, ymm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Shift doublewords in ymm2 left by amount VPSLLD ymm1, ymm2, xmm3/m128</td>
+	<td>Shift doublewords in ymm2 left by amount specified in xmm3/m128 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>VEX.NDD.256.66.0F.WIG 72 /6 ib</td>
+	<td>VEX.NDD.256.66.0F.WIG 72 /6 ib VPSLLD ymm1, ymm2, imm8</td>
 	<td>VMI</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Shift doublewords in ymm2 left by imm8 while VPSLLD ymm1, ymm2, imm8</td>
+	<td>Shift doublewords in ymm2 left by imm8 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG F3 /r</td>
+	<td>VEX.NDS.256.66.0F.WIG F3 /r VPSLLQ ymm1, ymm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Shift quadwords in ymm2 left by amount VPSLLQ ymm1, ymm2, xmm3/m128</td>
+	<td>Shift quadwords in ymm2 left by amount specified in xmm3/m128 while shifting in 0s.</td>
 </tr>
 <tr>
-	<td>VEX.NDD.256.66.0F.WIG 73 /6 ib</td>
+	<td>VEX.NDD.256.66.0F.WIG 73 /6 ib VPSLLQ ymm1, ymm2, imm8</td>
 	<td>VMI</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Shift quadwords in ymm2 left by imm8 while VPSLLQ ymm1, ymm2, imm8</td>
+	<td>Shift quadwords in ymm2 left by imm8 while shifting in 0s.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>

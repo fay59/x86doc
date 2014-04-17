@@ -16,11 +16,11 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>VEX.NDS.LZ.F2.0F38.W0 F5 /r</td>
+	<td>VEX.NDS.LZ.F2.0F38.W0 F5 /r PDEP r32a, r32b, r/m32</td>
 	<td></td>
 	<td>V/V</td>
 	<td>BMI2</td>
-	<td>Parallel deposit of bits from r32b using mask in r/m32, result is writPDEP r32a, r32b, r/m32</td>
+	<td>Parallel deposit of bits from r32b using mask in r/m32, result is written to r32a.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.LZ.F2.0F38.W1 F5 /r PDEP r64a, r64b, r/m64</td>
@@ -96,7 +96,7 @@
 	<td>0</td>
 	<td>S0</td>
 	<td>0</td>
-	<td>0 bit 31</td>
+	<td>0 bit 0</td>
 </tr>
 </table>
 <p>This instruction is not supported in real mode and virtual-8086 mode. The operand size is always 32 bits if not in 64-bit mode. In 64-bit mode operand size 64 requires VEX.W1. VEX.W1 is ignored in non-64-bit modes. An attempt to execute this instruction with VEX.L not equal to 0 will cause #UD.</p>

@@ -16,60 +16,60 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F38.W0 2C /r</td>
+	<td>VEX.NDS.128.66.0F38.W0 2C /r VMASKMOVPS xmm1, xmm2, m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Conditionally load packed single-precision values from VMASKMOVPS xmm1, xmm2, m128</td>
+	<td>Conditionally load packed single-precision values from m128 using mask in xmm2 and store in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F38.W0 2C /r</td>
+	<td>VEX.NDS.256.66.0F38.W0 2C /r VMASKMOVPS ymm1, ymm2, m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Conditionally load packed single-precision values from VMASKMOVPS ymm1, ymm2, m256</td>
+	<td>Conditionally load packed single-precision values from m256 using mask in ymm2 and store in ymm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F38.W0 2D /r</td>
+	<td>VEX.NDS.128.66.0F38.W0 2D /r VMASKMOVPD xmm1, xmm2, m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Conditionally load packed double-precision values from VMASKMOVPD xmm1, xmm2, m128</td>
+	<td>Conditionally load packed double-precision values from m128 using mask in xmm2 and store in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F38.W0 2D /r</td>
+	<td>VEX.NDS.256.66.0F38.W0 2D /r VMASKMOVPD ymm1, ymm2, m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Conditionally load packed double-precision values from VMASKMOVPD ymm1, ymm2, m256</td>
+	<td>Conditionally load packed double-precision values from m256 using mask in ymm2 and store in ymm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F38.W0 2E /r</td>
+	<td>VEX.NDS.128.66.0F38.W0 2E /r VMASKMOVPS m128, xmm1, xmm2</td>
 	<td>MVR</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Conditionally store packed single-precision values from VMASKMOVPS m128, xmm1, xmm2</td>
+	<td>Conditionally store packed single-precision values from xmm2 using mask in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F38.W0 2E /r</td>
+	<td>VEX.NDS.256.66.0F38.W0 2E /r VMASKMOVPS m256, ymm1, ymm2</td>
 	<td>MVR</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Conditionally store packed single-precision values from VMASKMOVPS m256, ymm1, ymm2</td>
+	<td>Conditionally store packed single-precision values from ymm2 using mask in ymm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F38.W0 2F /r</td>
+	<td>VEX.NDS.128.66.0F38.W0 2F /r VMASKMOVPD m128, xmm1, xmm2</td>
 	<td>MVR</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Conditionally store packed double-precision values from VMASKMOVPD m128, xmm1, xmm2</td>
+	<td>Conditionally store packed double-precision values from xmm2 using mask in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F38.W0 2F /r</td>
+	<td>VEX.NDS.256.66.0F38.W0 2F /r VMASKMOVPD m256, ymm1, ymm2</td>
 	<td>MVR</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Conditionally store packed double-precision values from VMASKMOVPD m256, ymm1, ymm2</td>
+	<td>Conditionally store packed double-precision values from ymm2 using mask in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

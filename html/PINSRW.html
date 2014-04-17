@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F C4 /r ib1</td>
+	<td>0F C4 /r ib1 PINSRW mm, r32/m16, imm8</td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Insert the low word from r32 or from m16 PINSRW mm, r32/m16, imm8 imm8.</td>
+	<td>Insert the low word from r32 or from m16 into mm at the word position specified by imm8.</td>
 </tr>
 <tr>
-	<td>66 0F C4 /r ib</td>
+	<td>66 0F C4 /r ib PINSRW xmm, r32/m16, imm8</td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Move the low word of r32 or from m16 into PINSRW xmm, r32/m16, imm8</td>
+	<td>Move the low word of r32 or from m16 into xmm at the word position specified by imm8.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.W0 C4 /r ib</td>
+	<td>VEX.NDS.128.66.0F.W0 C4 /r ib VPINSRW xmm1, xmm2, r32/m16, imm8</td>
 	<td>RVMI</td>
 	<td>V2/V</td>
 	<td>AVX</td>
-	<td>Insert a word integer value from r32/m16 VPINSRW xmm1, xmm2, r32/m16, imm8 offset in imm8.</td>
+	<td>Insert a word integer value from r32/m16 and rest from xmm2 into xmm1 at the word offset in imm8.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A. 2. In 64-bit mode, VEX.W1 is ignored for VPINSRW (similar to legacy REX.W=1 prefix in PINSRW).</p>

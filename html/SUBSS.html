@@ -16,18 +16,18 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>F3 0F 5C /r</td>
+	<td>F3 0F 5C /r SUBSS xmm1, xmm2/m32</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Subtract the lower single-precision floatingSUBSS xmm1, xmm2/m32</td>
+	<td>Subtract the lower single-precision floatingpoint values in xmm2/m32 from xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.LIG.F3.0F.WIG 5C /r</td>
+	<td>VEX.NDS.LIG.F3.0F.WIG 5C /r VSUBSS xmm1,xmm2, xmm3/m32</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Subtract the low single-precision floatingVSUBSS xmm1,xmm2, xmm3/m32 store the result in xmm1.</td>
+	<td>Subtract the low single-precision floatingpoint value in xmm3/mem from xmm2 and store the result in xmm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

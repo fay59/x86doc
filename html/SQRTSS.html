@@ -16,18 +16,18 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>F3 0F 51 /r</td>
+	<td>F3 0F 51 /r SQRTSS xmm1, xmm2/m32</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Computes square root of the low singleSQRTSS xmm1, xmm2/m32 and stores the results in xmm1.</td>
+	<td>Computes square root of the low singleprecision floating-point value in xmm2/m32 and stores the results in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.LIG.F3.0F.WIG 51/r</td>
+	<td>VEX.NDS.LIG.F3.0F.WIG 51/r VSQRTSS xmm1, xmm2, xmm3/m32</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Computes square root of the low singleVSQRTSS xmm1, xmm2, xmm3/m32 and stores the results in xmm1. Also, upper single precision floating-point values (bits[127:32]) from xmm2 are copied to xmm1[127:32].</td>
+	<td>Computes square root of the low singleprecision floating-point value in xmm3/m32 and stores the results in xmm1. Also, upper single precision floating-point values (bits[127:32]) from xmm2 are copied to xmm1[127:32].</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

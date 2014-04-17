@@ -16,18 +16,18 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>C7 F8</td>
+	<td>C7 F8 XBEGIN rel16</td>
 	<td>A</td>
 	<td>V/V</td>
 	<td>RTM</td>
-	<td>Specifies the start of an RTM region. Provides a 16-bit relative XBEGIN rel16 which execution resumes following an RTM abort.</td>
+	<td>Specifies the start of an RTM region. Provides a 16-bit relative offset to compute the address of the fallback instruction address at which execution resumes following an RTM abort.</td>
 </tr>
 <tr>
-	<td>C7 F8</td>
+	<td>C7 F8 XBEGIN rel32</td>
 	<td>A</td>
 	<td>V/V</td>
 	<td>RTM</td>
-	<td>Specifies the start of an RTM region. Provides a 32-bit relative XBEGIN rel32 which execution resumes following an RTM abort.</td>
+	<td>Specifies the start of an RTM region. Provides a 32-bit relative offset to compute the address of the fallback instruction address at which execution resumes following an RTM abort.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -145,8 +145,8 @@ END
 	<td>CPUID.(EAX=7, ECX=0):RTM[bit 11] = 0. If LOCK prefix is used.</td>
 </tr>
 <tr>
-	<td>#GP(0)</td>
 	<td>XCHG—Exchange Register/Memory with Register</td>
+	<td>If the fallback address is non-canonical.</td>
 </tr>
 <tr>
 	<td>Opcode</td>

@@ -16,32 +16,32 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F F6 /r1</td>
+	<td>0F F6 /r1 PSADBW mm1, mm2/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Computes the absolute differences of the PSADBW mm1, mm2/m64 /m64 and mm1; differences are then summed to produce an unsigned word integer result.</td>
+	<td>Computes the absolute differences of the packed unsigned byte integers from mm2 /m64 and mm1; differences are then summed to produce an unsigned word integer result.</td>
 </tr>
 <tr>
-	<td>66 0F F6 /r</td>
+	<td>66 0F F6 /r PSADBW xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Computes the absolute differences of the PSADBW xmm1, xmm2/m128 /m128 and xmm1; the 8 low differences and 8 high differences are then summed separately to produce two unsigned word integer results.</td>
+	<td>Computes the absolute differences of the packed unsigned byte integers from xmm2 /m128 and xmm1; the 8 low differences and 8 high differences are then summed separately to produce two unsigned word integer results.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG F6 /r</td>
+	<td>VEX.NDS.128.66.0F.WIG F6 /r VPSADBW xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Computes the absolute differences of the VPSADBW xmm1, xmm2, xmm3/m128 /m128 and xmm2; the 8 low differences and 8 high differences are then summed separately to produce two unsigned word integer results.</td>
+	<td>Computes the absolute differences of the packed unsigned byte integers from xmm3 /m128 and xmm2; the 8 low differences and 8 high differences are then summed separately to produce two unsigned word integer results.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG F6 /r</td>
+	<td>VEX.NDS.256.66.0F.WIG F6 /r VPSADBW ymm1, ymm2, ymm3/m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Computes the absolute differences of the VPSADBW ymm1, ymm2, ymm3/m256 /m256 and ymm2; then each consecutive 8 differences are summed separately to produce four unsigned word integer results.</td>
+	<td>Computes the absolute differences of the packed unsigned byte integers from ymm3 /m256 and ymm2; then each consecutive 8 differences are summed separately to produce four unsigned word integer results.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>

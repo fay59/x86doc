@@ -23,60 +23,60 @@
 	<td>Compute the absolute value of bytes in mm2/m64 and store UNSIGNED result in mm1.</td>
 </tr>
 <tr>
-	<td>66 0F 38 1C /r</td>
+	<td>66 0F 38 1C /r PABSB xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSSE3</td>
-	<td>Compute the absolute value of bytes in PABSB xmm1, xmm2/m128 xmm1.</td>
+	<td>Compute the absolute value of bytes in xmm2/m128 and store UNSIGNED result in xmm1.</td>
 </tr>
 <tr>
-	<td>0F 38 1D /r1</td>
+	<td>0F 38 1D /r1 PABSW mm1, mm2/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSSE3</td>
-	<td>Compute the absolute value of 16-bit integers PABSW mm1, mm2/m64 mm1.</td>
+	<td>Compute the absolute value of 16-bit integers in mm2/m64 and store UNSIGNED result in mm1.</td>
 </tr>
 <tr>
-	<td>66 0F 38 1D /r</td>
+	<td>66 0F 38 1D /r PABSW xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSSE3</td>
-	<td>Compute the absolute value of 16-bit integers PABSW xmm1, xmm2/m128 xmm1.</td>
+	<td>Compute the absolute value of 16-bit integers in xmm2/m128 and store UNSIGNED result in xmm1.</td>
 </tr>
 <tr>
-	<td>0F 38 1E /r1</td>
+	<td>0F 38 1E /r1 PABSD mm1, mm2/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSSE3</td>
-	<td>Compute the absolute value of 32-bit integers PABSD mm1, mm2/m64 mm1.</td>
+	<td>Compute the absolute value of 32-bit integers in mm2/m64 and store UNSIGNED result in mm1.</td>
 </tr>
 <tr>
-	<td>66 0F 38 1E /r</td>
+	<td>66 0F 38 1E /r PABSD xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSSE3</td>
-	<td>Compute the absolute value of 32-bit integers PABSD xmm1, xmm2/m128 xmm1.</td>
+	<td>Compute the absolute value of 32-bit integers in xmm2/m128 and store UNSIGNED result in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F38.WIG 1C /r</td>
+	<td>VEX.128.66.0F38.WIG 1C /r VPABSB xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Compute the absolute value of bytes in VPABSB xmm1, xmm2/m128 xmm1.</td>
+	<td>Compute the absolute value of bytes in xmm2/m128 and store UNSIGNED result in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F38.WIG 1D /r</td>
+	<td>VEX.128.66.0F38.WIG 1D /r VPABSW xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Compute the absolute value of 16- bit VPABSW xmm1, xmm2/m128 result in xmm1.</td>
+	<td>Compute the absolute value of 16- bit integers in xmm2/m128 and store UNSIGNED result in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F38.WIG 1E /r</td>
+	<td>VEX.128.66.0F38.WIG 1E /r VPABSD xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Compute the absolute value of 32- bit VPABSD xmm1, xmm2/m128 result in xmm1.</td>
+	<td>Compute the absolute value of 32- bit integers in xmm2/m128 and store UNSIGNED result in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.256.66.0F38.WIG 1C /r VPABSB ymm1, ymm2/m256</td>
@@ -86,18 +86,18 @@
 	<td>Compute the absolute value of bytes in ymm2/m256 and store UNSIGNED result in ymm1.</td>
 </tr>
 <tr>
-	<td>VEX.256.66.0F38.WIG 1D /r</td>
+	<td>VEX.256.66.0F38.WIG 1D /r VPABSW ymm1, ymm2/m256</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Compute the absolute value of 16-bit integers VPABSW ymm1, ymm2/m256 ymm1.</td>
+	<td>Compute the absolute value of 16-bit integers in ymm2/m256 and store UNSIGNED result in ymm1.</td>
 </tr>
 <tr>
-	<td>VEX.256.66.0F38.WIG 1E /r</td>
+	<td>VEX.256.66.0F38.WIG 1E /r VPABSD ymm1, ymm2/m256</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Compute the absolute value of 32-bit integers VPABSD ymm1, ymm2/m256 ymm1.</td>
+	<td>Compute the absolute value of 32-bit integers in ymm2/m256 and store UNSIGNED result in ymm1.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>

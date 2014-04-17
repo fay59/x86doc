@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 58 /r</td>
+	<td>66 0F 58 /r ADDPD xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Add packed double-precision floating-point ADDPD xmm1, xmm2/m128</td>
+	<td>Add packed double-precision floating-point values from xmm2/m128 to xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG 58 /r</td>
+	<td>VEX.NDS.128.66.0F.WIG 58 /r VADDPD xmm1,xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Add packed double-precision floating-point VADDPD xmm1,xmm2, xmm3/m128 result in xmm1.</td>
+	<td>Add packed double-precision floating-point values from xmm3/mem to xmm2 and stores result in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG 58 /r</td>
+	<td>VEX.NDS.256.66.0F.WIG 58 /r VADDPD ymm1, ymm2, ymm3/m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Add packed double-precision floating-point VADDPD ymm1, ymm2, ymm3/m256 result in ymm1.</td>
+	<td>Add packed double-precision floating-point values from ymm3/mem to ymm2 and stores result in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

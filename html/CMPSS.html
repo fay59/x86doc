@@ -16,18 +16,18 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>F3 0F C2 /r ib</td>
+	<td>F3 0F C2 /r ib CMPSS xmm1, xmm2/m32, imm8</td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Compare low single-precision floating-point CMPSS xmm1, xmm2/m32, imm8 comparison predicate.</td>
+	<td>Compare low single-precision floating-point value in xmm2/m32 and xmm1 using imm8 as comparison predicate.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.LIG.F3.0F.WIG C2 /r ib</td>
+	<td>VEX.NDS.LIG.F3.0F.WIG C2 /r ib VCMPSS xmm1, xmm2, xmm3/m32, imm8</td>
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Compare low single precision floating-point VCMPSS xmm1, xmm2, xmm3/m32, imm8 of imm8 as comparison predicate.</td>
+	<td>Compare low single precision floating-point value in xmm3/m32 and xmm2 using bits 4:0 of imm8 as comparison predicate.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

@@ -16,18 +16,18 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 3A 21 /r ib</td>
+	<td>66 0F 3A 21 /r ib INSERTPS xmm1, xmm2/m32, imm8</td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE4_1</td>
-	<td>Insert a single precision floating-point value INSERTPS xmm1, xmm2/m32, imm8 xmm1 at the specified destination element specified by imm8 and zero out destination elements in xmm1 as indicated in imm8.</td>
+	<td>Insert a single precision floating-point value selected by imm8 from xmm2/m32 into xmm1 at the specified destination element specified by imm8 and zero out destination elements in xmm1 as indicated in imm8.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F3A.WIG 21 /r ib</td>
+	<td>VEX.NDS.128.66.0F3A.WIG 21 /r ib VINSERTPS xmm1, xmm2, xmm3/m32, imm8</td>
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Insert a single precision floating point value VINSERTPS xmm1, xmm2, xmm3/m32, imm8 into xmm2 at the specified destination element specified by imm8 and zero out destination elements in xmm1 as indicated in imm8.</td>
+	<td>Insert a single precision floating point value selected by imm8 from xmm3/m32 and merge into xmm2 at the specified destination element specified by imm8 and zero out destination elements in xmm1 as indicated in imm8.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

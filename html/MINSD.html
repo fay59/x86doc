@@ -16,18 +16,18 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>F2 0F 5D /r</td>
+	<td>F2 0F 5D /r MINSD xmm1, xmm2/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Return the minimum scalar double-precision MINSD xmm1, xmm2/m64 and xmm1.</td>
+	<td>Return the minimum scalar double-precision floating-point value between xmm2/mem64 and xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.LIG.F2.0F.WIG 5D /r</td>
+	<td>VEX.NDS.LIG.F2.0F.WIG 5D /r VMINSD xmm1, xmm2, xmm3/m64</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Return the minimum scalar double precision VMINSD xmm1, xmm2, xmm3/m64 and xmm2.</td>
+	<td>Return the minimum scalar double precision floating-point value between xmm3/mem64 and xmm2.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

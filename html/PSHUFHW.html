@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>F3 0F 70 /r ib</td>
+	<td>F3 0F 70 /r ib PSHUFHW xmm1, xmm2/m128, imm8</td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Shuffle the high words in xmm2/m128 based PSHUFHW xmm1, xmm2/m128, imm8 in xmm1.</td>
+	<td>Shuffle the high words in xmm2/m128 based on the encoding in imm8 and store the result in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.128.F3.0F.WIG 70 /r ib</td>
+	<td>VEX.128.F3.0F.WIG 70 /r ib VPSHUFHW xmm1, xmm2/m128, imm8</td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Shuffle the high words in xmm2/m128 based VPSHUFHW xmm1, xmm2/m128, imm8 in xmm1.</td>
+	<td>Shuffle the high words in xmm2/m128 based on the encoding in imm8 and store the result in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.256.F3.0F.WIG 70 /r ib</td>
+	<td>VEX.256.F3.0F.WIG 70 /r ib VPSHUFHW ymm1, ymm2/m256, imm8</td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Shuffle the high words in ymm2/m256 based VPSHUFHW ymm1, ymm2/m256, imm8 in ymm1.</td>
+	<td>Shuffle the high words in ymm2/m256 based on the encoding in imm8 and store the result in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

@@ -23,39 +23,39 @@
 	<td>Subtract packed byte integers in mm/m64 from packed byte integers in mm.</td>
 </tr>
 <tr>
-	<td>66 0F F8 /r</td>
+	<td>66 0F F8 /r PSUBB xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Subtract packed byte integers in xmm2/m128 PSUBB xmm1, xmm2/m128</td>
+	<td>Subtract packed byte integers in xmm2/m128 from packed byte integers in xmm1.</td>
 </tr>
 <tr>
-	<td>0F F9 /r1</td>
+	<td>0F F9 /r1 PSUBW mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Subtract packed word integers in mm/m64 PSUBW mm, mm/m64</td>
+	<td>Subtract packed word integers in mm/m64 from packed word integers in mm.</td>
 </tr>
 <tr>
-	<td>66 0F F9 /r</td>
+	<td>66 0F F9 /r PSUBW xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Subtract packed word integers in PSUBW xmm1, xmm2/m128 xmm1.</td>
+	<td>Subtract packed word integers in xmm2/m128 from packed word integers in xmm1.</td>
 </tr>
 <tr>
-	<td>0F FA /r1</td>
+	<td>0F FA /r1 PSUBD mm, mm/m64</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Subtract packed doubleword integers in PSUBD mm, mm/m64 mm.</td>
+	<td>Subtract packed doubleword integers in mm/m64 from packed doubleword integers in mm.</td>
 </tr>
 <tr>
-	<td>66 0F FA /r</td>
+	<td>66 0F FA /r PSUBD xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Subtract packed doubleword integers in PSUBD xmm1, xmm2/m128 integers in xmm1.</td>
+	<td>Subtract packed doubleword integers in xmm2/mem128 from packed doubleword integers in xmm1.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG F8 /r VPSUBB xmm1, xmm2, xmm3/m128</td>
@@ -65,11 +65,11 @@
 	<td>Subtract packed byte integers in xmm3/m128 from xmm2.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG F9 /r</td>
+	<td>VEX.NDS.128.66.0F.WIG F9 /r VPSUBW xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Subtract packed word integers in VPSUBW xmm1, xmm2, xmm3/m128</td>
+	<td>Subtract packed word integers in xmm3/m128 from xmm2.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG FA /r VPSUBD xmm1, xmm2, xmm3/m128</td>

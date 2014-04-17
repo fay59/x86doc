@@ -16,18 +16,18 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 5F /r</td>
+	<td>66 0F 5F /r MAXPD xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Return the maximum double-precision MAXPD xmm1, xmm2/m128 and xmm1.</td>
+	<td>Return the maximum double-precision floating-point values between xmm2/m128 and xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG 5F /r</td>
+	<td>VEX.NDS.128.66.0F.WIG 5F /r VMAXPD xmm1,xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Return the maximum double-precision VMAXPD xmm1,xmm2, xmm3/m128 xmm3/mem.</td>
+	<td>Return the maximum double-precision floating-point values between xmm2 and xmm3/mem.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG 5F /r VMAXPD ymm1, ymm2, ymm3/m256</td>

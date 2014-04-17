@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 5A /r</td>
+	<td>66 0F 5A /r CVTPD2PS xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Convert two packed double-precision floatingCVTPD2PS xmm1, xmm2/m128 single-precision floating-point values in xmm1.</td>
+	<td>Convert two packed double-precision floatingpoint values in xmm2/m128 to two packed single-precision floating-point values in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F.WIG 5A /r</td>
+	<td>VEX.128.66.0F.WIG 5A /r VCVTPD2PS xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Convert two packed double-precision floatingVCVTPD2PS xmm1, xmm2/m128 precision floating-point values in xmm1.</td>
+	<td>Convert two packed double-precision floatingpoint values in xmm2/mem to two singleprecision floating-point values in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.256.66.0F.WIG 5A /r</td>
+	<td>VEX.256.66.0F.WIG 5A /r VCVTPD2PS xmm1, ymm2/m256</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Convert four packed double-precision floatingVCVTPD2PS xmm1, ymm2/m256 precision floating-point values in xmm1.</td>
+	<td>Convert four packed double-precision floatingpoint values in ymm2/mem to four singleprecision floating-point values in xmm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>F2 0F 7C /r</td>
+	<td>F2 0F 7C /r HADDPS xmm1, xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE3</td>
-	<td>Horizontal add packed single-precision HADDPS xmm1, xmm2/m128 xmm1.</td>
+	<td>Horizontal add packed single-precision floating-point values from xmm2/m128 to xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.F2.0F.WIG 7C /r</td>
+	<td>VEX.NDS.128.F2.0F.WIG 7C /r VHADDPS xmm1, xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Horizontal add packed single-precision VHADDPS xmm1, xmm2, xmm3/m128 xmm3/mem.</td>
+	<td>Horizontal add packed single-precision floating-point values from xmm2 and xmm3/mem.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.F2.0F.WIG 7C /r</td>
+	<td>VEX.NDS.256.F2.0F.WIG 7C /r VHADDPS ymm1, ymm2, ymm3/m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Horizontal add packed single-precision VHADDPS ymm1, ymm2, ymm3/m256 ymm3/mem.</td>
+	<td>Horizontal add packed single-precision floating-point values from ymm2 and ymm3/mem.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 5C /r</td>
+	<td>0F 5C /r SUBPS xmm1 xmm2/m128</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Subtract packed single-precision floating-point SUBPS xmm1 xmm2/m128</td>
+	<td>Subtract packed single-precision floating-point values in xmm2/mem from xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.0F.WIG 5C /r</td>
+	<td>VEX.NDS.128.0F.WIG 5C /r VSUBPS xmm1,xmm2, xmm3/m128</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Subtract packed single-precision floating-point VSUBPS xmm1,xmm2, xmm3/m128 result in xmm1.</td>
+	<td>Subtract packed single-precision floating-point values in xmm3/mem from xmm2 and stores result in xmm1.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.0F.WIG 5C /r</td>
+	<td>VEX.NDS.256.0F.WIG 5C /r VSUBPS ymm1, ymm2, ymm3/m256</td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Subtract packed single-precision floating-point VSUBPS ymm1, ymm2, ymm3/m256 result in ymm1.</td>
+	<td>Subtract packed single-precision floating-point values in ymm3/mem from ymm2 and stores result in ymm1.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

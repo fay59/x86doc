@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F C2 /r ib</td>
+	<td>0F C2 /r ib CMPPS xmm1, xmm2/m128, imm8</td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Compare packed single-precision floatingCMPPS xmm1, xmm2/m128, imm8 imm8 as comparison predicate.</td>
+	<td>Compare packed single-precision floatingpoint values in xmm2/mem and xmm1 using imm8 as comparison predicate.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.0F.WIG C2 /r ib</td>
+	<td>VEX.NDS.128.0F.WIG C2 /r ib VCMPPS xmm1, xmm2, xmm3/m128, imm8</td>
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Compare packed single-precision floatingVCMPPS xmm1, xmm2, xmm3/m128, imm8 bits 4:0 of imm8 as a comparison predicate.</td>
+	<td>Compare packed single-precision floatingpoint values in xmm3/m128 and xmm2 using bits 4:0 of imm8 as a comparison predicate.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.0F.WIG C2 /r ib</td>
+	<td>VEX.NDS.256.0F.WIG C2 /r ib VCMPPS ymm1, ymm2, ymm3/m256, imm8</td>
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Compare packed single-precision floatingVCMPPS ymm1, ymm2, ymm3/m256, imm8 bits 4:0 of imm8 as a comparison predicate.</td>
+	<td>Compare packed single-precision floatingpoint values in ymm3/m256 and ymm2 using bits 4:0 of imm8 as a comparison predicate.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

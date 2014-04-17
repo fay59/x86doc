@@ -100,6 +100,7 @@ class UglyDocument(object):
 		last_y = 0
 		for cell in self.all_cells():
 			if abs(last_y - cell.y) > 3 and len(row) != 0:
+				row.sort(lambda a, b: cmp(a.x - b.x, 0))
 				yield row
 				row = []
 			row.append(cell)
@@ -271,7 +272,7 @@ class DocumentWriter(object):
 				del row_tops[i]
 			else:
 				i += 1
-				
+		
 		self.__output.write("<table>\n")
 		for row in row_data: 
 			self.__output.write("<tr>\n")

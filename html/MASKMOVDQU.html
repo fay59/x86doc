@@ -16,18 +16,18 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F F7 /r</td>
+	<td>66 0F F7 /r MASKMOVDQU xmm1, xmm2</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Selectively write bytes from xmm1 to MASKMOVDQU xmm1, xmm2 xmm2. The default memory location is specified by DS:DI/EDI/RDI.</td>
+	<td>Selectively write bytes from xmm1 to memory location using the byte mask in xmm2. The default memory location is specified by DS:DI/EDI/RDI.</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F.WIG F7 /r</td>
+	<td>VEX.128.66.0F.WIG F7 /r VMASKMOVDQU xmm1, xmm2</td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Selectively write bytes from xmm1 to VMASKMOVDQU xmm1, xmm2 xmm2. The default memory location is specified by DS:DI/EDI/RDI.</td>
+	<td>Selectively write bytes from xmm1 to memory location using the byte mask in xmm2. The default memory location is specified by DS:DI/EDI/RDI.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding1">Instruction Operand Encoding1</h2>
