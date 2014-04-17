@@ -9,11 +9,25 @@
 <h1 id="pdep-parallel-bits-deposit">PDEP — Parallel Bits Deposit</h1>
 <table>
 <tr>
-	<td>Opcode/Instruction VEX.NDS.LZ.F2.0F38.W0 F5 /r VEX.NDS.LZ.F2.0F38.W1 F5 /r PDEP r64a, r64b, r/m64</td>
-	<td>Op/En V/V V/N.E.</td>
+	<td>Opcode/Instruction</td>
+	<td>Op/En</td>
 	<td>64/32 -bit Mode</td>
-	<td>CPUID Feature Flag BMI2 BMI2</td>
-	<td>Description Parallel deposit of bits from r32b using mask in r/m32, result is writPDEP r32a, r32b, r/m32 Parallel deposit of bits from r64b using mask in r/m64, result is written to r64a.</td>
+	<td>CPUID Feature Flag</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>VEX.NDS.LZ.F2.0F38.W0 F5 /r</td>
+	<td></td>
+	<td>V/V</td>
+	<td>BMI2</td>
+	<td>Parallel deposit of bits from r32b using mask in r/m32, result is writPDEP r32a, r32b, r/m32</td>
+</tr>
+<tr>
+	<td>VEX.NDS.LZ.F2.0F38.W1 F5 /r PDEP r64a, r64b, r/m64</td>
+	<td></td>
+	<td>V/N.E.</td>
+	<td>BMI2</td>
+	<td>Parallel deposit of bits from r64b using mask in r/m64, result is written to r64a.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

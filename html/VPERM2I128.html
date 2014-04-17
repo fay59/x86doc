@@ -55,8 +55,8 @@
 </tr>
 <tr>
 	<td>DEST</td>
+	<td>X0, X1, Y0, or Y1 Figure 4-37.</td>
 	<td>X0, X1, Y0, or Y1 VPERM2I128 Operation</td>
-	<td>X0, X1, Y0, or Y1</td>
 </tr>
 </table>
 <p>Imm8[1:0] select the source for the first destination 128-bit field, imm8[5:4] select the source for the second destination field. If imm8[3] is set, the low 128-bit field is zeroed. If imm8[7] is set, the high 128-bit field is zeroed. VEX.L must be 1, otherwise the instruction will #UD.</p>

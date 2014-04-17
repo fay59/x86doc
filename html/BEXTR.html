@@ -16,11 +16,18 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>VEX.NDS1.LZ.0F38.W0 F7 /r BEXTR r32a, r/m32, r32b VEX.NDS1.LZ.0F38.W1 F7 /r BEXTR r64a, r/m64, r64b</td>
-	<td>RMV RMV</td>
-	<td>V/V BMI1</td>
+	<td>VEX.NDS1.LZ.0F38.W0 F7 /r BEXTR r32a, r/m32, r32b</td>
+	<td>RMV</td>
+	<td>V/V</td>
 	<td>BMI1</td>
-	<td>Contiguous bitwise extract from r/m32 using r32b as control; store result in r32a. Contiguous bitwise extract from r/m64 using r64b as control; store result in r64a</td>
+	<td>Contiguous bitwise extract from r/m32 using r32b as control; store result in r32a.</td>
+</tr>
+<tr>
+	<td>VEX.NDS1.LZ.0F38.W1 F7 /r BEXTR r64a, r/m64, r64b</td>
+	<td>RMV</td>
+	<td>V/N.</td>
+	<td>BMI1</td>
+	<td>Contiguous bitwise extract from r/m64 using r64b as control; store result in r64a</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. ModRM:r/m is used to encode the first source operand (second operand) and VEX.vvvv encodes the second source operand (third operand).</p>

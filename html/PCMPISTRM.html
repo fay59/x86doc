@@ -52,8 +52,8 @@
 <p>Each string is represented by a single value. The value is an xmm (or possibly m128 for the second operand) which</p>
 <table>
 <tr>
-	<td>contains the data elements of the string (byte or word data). A byte/word is considered valid only if it has a lower index than the least significant null (The least significant null byte/word is also considered invalid.) The comparison and aggregation operation are performed according to the encoded value of Imm8 bit fields (see Section 4.1). As defined by imm8[6], IntRes2 is then either stored to the least significant bits of XMM0 (zero extended to 128 bits) or expanded into a byte/word-mask and then stored to XMM0. Note that the Arithmetic Flags are written in a non-standard manner in order to supply the most relevant information:</td>
-	<td>Each input byte/word is augmented with a</td>
+	<td>contains the data elements of the string (byte or word data). valid/invalid tag. byte/word. The comparison and aggregation operation are performed according to the encoded value of Imm8 bit fields (see Section 4.1). As defined by imm8[6], IntRes2 is then either stored to the least significant bits of XMM0 (zero extended to 128 bits) or expanded into a byte/word-mask and then stored to XMM0. Note that the Arithmetic Flags are written in a non-standard manner in order to supply the most relevant information:</td>
+	<td>Each input byte/word is augmented with a A byte/word is considered valid only if it has a lower index than the least significant null (The least significant null byte/word is also considered invalid.)</td>
 </tr>
 </table>
 <p>CFlag - Reset if IntRes2 is equal to zero, set otherwise ZFlag - Set if any byte/word of xmm2/mem128 is null, reset otherwise SFlag - Set if any byte/word of xmm1 is null, reset otherwise OFlag - IntRes2[0]AFlag - Reset PFlag - Reset Note: In VEX.128 encoded versions, bits (VLMAX-1:128) of XMM0 are zeroed. VEX.vvvv is reserved and must be 1111b, VEX.L must be 0, otherwise the instruction will #UD.</p>

@@ -16,11 +16,25 @@
 	<td>Description VEX.NDS1.LZ.F3.0F38.W0 F7 /r</td>
 </tr>
 <tr>
-	<td>VEX.NDS1.LZ.66.0F38.W0 F7 /r SHLX r32a, r/m32, r32b SHRX r32a, r/m32, r32b VEX.NDS1.LZ.F3.0F38.W1 F7 /r SARX r64a, r/m64, r64b SHLX r64a, r/m64, r64b VEX.NDS1.LZ.F2.0F38.W1 F7 /r SHRX r64a, r/m64, r64b</td>
-	<td>RMV RMV RMV RMV RMV</td>
-	<td>V/V V/V BMI2 BMI2 BMI2</td>
+	<td>VEX.NDS1.LZ.66.0F38.W0 F7 /r SHLX r32a, r/m32, r32b SHRX r32a, r/m32, r32b</td>
+	<td>RMV RMV</td>
+	<td>V/V V/V</td>
 	<td>BMI2 BMI2</td>
-	<td>Shift r/m32 logically left with count specified in r32b. VEX.NDS1.LZ.F2.0F38.W0 F7 /r Shift r/m64 arithmetically right with count specified in r64b. VEX.NDS1.LZ.66.0F38.W1 F7 /r Shift r/m64 logically right with count specified in r64b.</td>
+	<td>Shift r/m32 logically left with count specified in r32b. VEX.NDS1.LZ.F2.0F38.W0 F7 /r</td>
+</tr>
+<tr>
+	<td>VEX.NDS1.LZ.F3.0F38.W1 F7 /r SARX r64a, r/m64, r64b SHLX r64a, r/m64, r64b</td>
+	<td>RMV RMV</td>
+	<td>V/N V/N</td>
+	<td>BMI2 BMI2</td>
+	<td>Shift r/m64 arithmetically right with count specified in r64b. VEX.NDS1.LZ.66.0F38.W1 F7 /r</td>
+</tr>
+<tr>
+	<td>VEX.NDS1.LZ.F2.0F38.W1 F7 /r SHRX r64a, r/m64, r64b</td>
+	<td>RMV</td>
+	<td>V/N</td>
+	<td>BMI2</td>
+	<td>Shift r/m64 logically right with count specified in r64b.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. ModRM:r/m is used to encode the first source operand (second operand) and VEX.vvvv encodes the second source operand (third operand).</p>

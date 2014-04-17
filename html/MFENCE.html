@@ -55,8 +55,12 @@
 <h2 id="exceptions-all-modes-of-operation-">Exceptions (All Modes of Operation)</h2>
 <table>
 <tr>
-	<td>#UD A load instruction is considered to become globally visible when the value to be loaded into its destination register is determined.</td>
+	<td>#UD</td>
 	<td>If CPUID.01H:EDX.SSE2[bit 26] = 0. If the LOCK prefix is used.</td>
+</tr>
+<tr>
+	<td>1.</td>
+	<td>A load instruction is considered to become globally visible when the value to be loaded into its destination register is determined.</td>
 </tr>
 </table>
 </body>

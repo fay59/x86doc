@@ -4,26 +4,11 @@ import bs4
 import sys
 from StringIO import StringIO
 
-class BetterIter(object):
-	def __init__(self, iter):
-		self.__iter = iter
-		self.__current = iter.next()
-	
-	def next(self):
-		try:
-			self.__current = self.__iter.next()
-			return True
-		except StopIteration:
-			self.__current = None
-			return False
-	
-	def current(self):
-		return self.__current
-
 class TextCell(object):
-	def __init__(self, x, y, style, contents):
+	def __init__(self, x, y, style, contents, x_approx = False):
 		self.style = style
 		self.x = x
+		self.x_approx = x_approx
 		self.y = y
 		self.contents = contents
 	
@@ -104,9 +89,11 @@ class UglyDocument(object):
 				match = re.search(" {2,}", text[last_offset:])
 			text_parts.append(text[last_offset:])
 			
+			x_approx = False
 			for part in text_parts:
-				yield TextCell(x, y, style, part.strip())
+				yield TextCell(x, y, style, part.strip(), x_approx)
 				x += len(part) * style["font-size"] / 2 # approximation
+				x_approx = True
 	
 	def all_rows(self):
 		row = []
@@ -202,6 +189,10 @@ class DocumentWriter(object):
 						break
 				else:
 					last_column = len(columns) - 1
+				
+				if cell.x_approx and table_row[last_column] != None and last_column != len(table_row) - 1:
+					last_column += 1
+				
 				table_row[last_column] = cell.contents
 			
 			self.__output_mode_data["row_data"].append(table_row)

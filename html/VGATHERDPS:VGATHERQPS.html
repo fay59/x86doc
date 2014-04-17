@@ -76,20 +76,36 @@
 <p>qword indices, the instruction will gather two values and zeroes the upper 64 bits of the destination.</p>
 <table>
 <tr>
-	<td>VEX.256 version: For dword indices, the instruction will gather eight single-precision floating-point values. qword indices, the instruction will gather four values and zeroes the upper 128 bits of the destination. Note that: If any pair of the index, mask, or destination registers are the same, this instruction results a UD fault.</td>
-	<td>For</td>
+	<td>VEX.256 version: For dword indices, the instruction will gather eight single-precision floating-point values. qword indices, the instruction will gather four values and zeroes the upper 128 bits of the destination. Note that: •</td>
+	<td>For If any pair of the index, mask, or destination registers are the same, this instruction results a UD fault.</td>
 </tr>
 <tr>
-	<td>The values may be read from memory in any order 64 memory-ordering model. Faults are delivered in a right-to-left manner</td>
+	<td>•64 memory-ordering model. •</td>
 	<td>Memory ordering with other instructions follows the IntelThat is, if a fault is triggered by an element and delivered, all</td>
 </tr>
 <tr>
-	<td>elements closer to the LSB of the destination will be completed (and non-faulting). If a given element triggers multiple faults, they are delivered in the conventional order. Elements may be gathered in any order, but faults must be delivered in a right-to-left order; thus, elements to</td>
-	<td>Individual elements closer</td>
+	<td>elements closer to the LSB of the destination will be completed (and non-faulting). to the MSB may or may not be completed. conventional order. •</td>
+	<td>Individual elements closer If a given element triggers multiple faults, they are delivered in the Elements may be gathered in any order, but faults must be delivered in a right-to-left order; thus, elements to</td>
 </tr>
 <tr>
-	<td>the left of a faulting one may be gathered before the fault is delivered. instruction is repeatable - given the same input values and architectural state, the same set of elements to the left of the faulting one will be gathered. This instruction does not perform AC checks, and so will never deliver an AC fault. This instruction will cause a #UD if the address size attribute is 16-bit. This instruction will cause a #UD if the memory operand is encoded without the SIB byte. This instruction should not be used to access memory mapped I/O as the ordering of the individual loads it does is implementation specific, and some implementations may use loads larger than the data element size or load elements an indeterminate number of times. The scaled index may require more bits to represent than the address bits used by the processor (e.g., in 32In this case, the most significant bits beyond the number of address bits are ignored.</td>
-	<td>A given implementation of this</td>
+	<td>the left of a faulting one may be gathered before the fault is delivered. instruction is repeatable - given the same input values and architectural state, the same set of elements to the left of the faulting one will be gathered. •</td>
+	<td>A given implementation of this This instruction does not perform AC checks, and so will never deliver an AC fault.</td>
+</tr>
+<tr>
+	<td>•</td>
+	<td>This instruction will cause a #UD if the address size attribute is 16-bit.</td>
+</tr>
+<tr>
+	<td>•</td>
+	<td>This instruction will cause a #UD if the memory operand is encoded without the SIB byte.</td>
+</tr>
+<tr>
+	<td>•is implementation specific, and some implementations may use loads larger than the data element size or load elements an indeterminate number of times. •</td>
+	<td>This instruction should not be used to access memory mapped I/O as the ordering of the individual loads it does The scaled index may require more bits to represent than the address bits used by the processor (e.g., in 32-</td>
+</tr>
+<tr>
+	<td>bit mode, if the scale is greater than one). bits are ignored.</td>
+	<td>In this case, the most significant bits beyond the number of address</td>
 </tr>
 </table>
 <h2 id="operation">Operation</h2>

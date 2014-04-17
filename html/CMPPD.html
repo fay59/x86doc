@@ -11,8 +11,8 @@
 <tr>
 	<td>Opcode/Instruction</td>
 	<td>Op/En</td>
-	<td>64/32Feature</td>
-	<td>CPUID Flag</td>
+	<td>64/32bit</td>
+	<td>CPUID Feature Flag</td>
 	<td>Description</td>
 </tr>
 <tr>
@@ -68,8 +68,8 @@
 <tr>
 	<td>Predicate EQ LT LE UNORD NEQ NLT</td>
 	<td>imm8 Encoding 000B 001B 010B 011B 100B 101B</td>
-	<td>Description Equal Less-than Less-than-or-equal Greater than Greater-than-or-equal Unordered Not-equal Not-less-than Comparison Predicate for CMPPD and CMPPS In</td>
-	<td>Relation where: A Is 1st Operand B Is 2nd Operand A = B A &lt; B A ≤ B A &gt; B A ≥ B A, B = Unordered A ≠ B NOT(A &lt; B)</td>
+	<td>Description Equal Less-than Less-than-or-equal Greater than Greater-than-or-equal Unordered Not-equal Not-less-than Table 3-7.</td>
+	<td>Relation where: A Is 1st Operand B Is 2nd Operand A = B A &lt; B A ≤ B A &gt; B A ≥ B A, B = Unordered A ≠ B NOT(A &lt; B) Comparison Predicate for CMPPD and CMPPS In</td>
 	<td>Emulation Swap Operands, Use LT Swap Operands, Use LE</td>
 	<td>Result if NaN Operand False False False False False True True True (Contd.)</td>
 	<td>QNaN Oper-and Signals Invalid No Yes Yes Yes Yes No No Yes</td>

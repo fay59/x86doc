@@ -23,11 +23,18 @@
 	<td>Count the number of trailing zero bits in r/m16, return result in r16.</td>
 </tr>
 <tr>
-	<td>F3 0F BC /r TZCNT r32, r/m32 REX.W + F3 0F BC /r TZCNT r64, r/m64</td>
-	<td>RM RM</td>
-	<td>V/V BMI1</td>
+	<td>F3 0F BC /r TZCNT r32, r/m32</td>
+	<td>RM</td>
+	<td>V/V</td>
 	<td>BMI1</td>
-	<td>Count the number of trailing zero bits in r/m32, return result in r32. Count the number of trailing zero bits in r/m64, return result in r64.</td>
+	<td>Count the number of trailing zero bits in r/m32, return result in r32.</td>
+</tr>
+<tr>
+	<td>REX.W + F3 0F BC /r TZCNT r64, r/m64</td>
+	<td>RM</td>
+	<td>V/N.</td>
+	<td>BMI1</td>
+	<td>Count the number of trailing zero bits in r/m64, return result in r64.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
