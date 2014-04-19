@@ -313,10 +313,10 @@ class DocumentWriter(object):
 		if a[-1] == u"-": return a[:-1] + b
 		return a + b
 	
-	def save(self):
+	def save(self, name_func):
 		self.write([])
 		filename = self.title.split(u"—")[0].replace("/", ":").strip()
-		path = "html/" + filename + ".html"
+		path = "html/" + name_func(filename)
 		print "Saving to", path
 		with open(path, "wb") as fd:
 			fd.write("<!DOCTYPE html>\n")
@@ -334,14 +334,24 @@ if __name__ == "__main__":
 	if len(sys.argv) < 2:
 		print "usage: %s file [file...]" % sys.argv[0]
 	
+	names = set()
+	def namer(filename):
+		i = 1
+		result = filename + ".html"
+		while result in names:
+			result = "%s-%i.html" % (filename, i)
+			i += 1
+		names.add(result)
+		return result
+	
 	for i in xrange(1, len(sys.argv)):
 		soup = bs4.BeautifulSoup(open(sys.argv[i]))
 		input = UglyDocument(soup)
 		output = DocumentWriter()
 		for row in input.all_rows():
 			if not output.write(row):
-				output.save()
+				output.save(namer)
 				output = DocumentWriter()
 				output.write(row)
 
-		output.save()
+		output.save(namer)
