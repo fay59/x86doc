@@ -45,8 +45,8 @@
 <p>Converts two packed signed doubleword integers in the source operand (second operand) to two packed doubleprecision floating-point values in the destination operand (first operand).</p>
 <p>The source operand can be an MMX technology register or a 64-bit memory location. The destination operand is an XMM register. In addition, depending on the operand configuration:</p>
 <ul>
-	<li><strong>For operands </strong><em><strong>xmm</strong></em><strong><strong>,</strong><em><strong> mm</strong></em><strong><strong>:</strong> the instruction causes a transition from x87 FPU to MMX technology operation (that is, the x87 FPU top-of-stack pointer is set to 0 and the x87 FPU tag word is set to all 0s [valid]). If this instruction is executed while an x87 FPU floating-point exception is pending, the exception is handled before the CVTPI2PD instruction is executed.</li>
-	<li><strong>For operands </strong><em><strong>xmm</strong></em><strong><strong>,</strong><em><strong> m64</strong></em><strong><strong>:</strong> the instruction does not cause a transition to MMX technology and does not take x87 FPU exceptions.</li>
+	<li><strong>For operands <em>xmm</em>,<em> mm</em>:</strong> the instruction causes a transition from x87 FPU to MMX technology operation (that is, the x87 FPU top-of-stack pointer is set to 0 and the x87 FPU tag word is set to all 0s [valid]). If this instruction is executed while an x87 FPU floating-point exception is pending, the exception is handled before the CVTPI2PD instruction is executed.</li>
+	<li><strong>For operands <em>xmm</em>,<em> m64</em>:</strong> the instruction does not cause a transition to MMX technology and does not take x87 FPU exceptions.</li>
 </ul>
 <p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15).</p>
 <h2 id="operation">Operation</h2>

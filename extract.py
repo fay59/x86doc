@@ -45,7 +45,20 @@ class AttributedString(object):
 	
 	def append(self, that):
 		currentLength = len(self.value)
-		for begin in that.attributes:
+		that_attributes = dict(that.attributes)
+		if 0 in that_attributes:
+			for begin in self.attributes:
+				for i in xrange(0, len(self.attributes[begin])):
+					attribute, end = self.attributes[begin][i]
+					if end != currentLength: continue
+					for j in xrange(0, len(that_attributes[0])):
+						other_attribute, other_end = that_attributes[0][j]
+						if other_attribute == attribute:
+							self.attributes[begin][i] = (attribute, other_end + currentLength)
+							del that_attributes[0][j]
+							break
+		
+		for begin in that_attributes:
 			key = begin + currentLength
 			if key not in self.attributes: self.attributes[key] = []
 			for attribute, end in that.attributes[begin]:
