@@ -18,27 +18,27 @@
 </tr>
 <tr>
 	<td>0F 01 /4</td>
-	<td>SMSW r/m16</td>
+	<td>SMSW <em>r/m16</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Store machine status word to r/m16.</td>
+	<td>Store machine status word to <em>r/m16</em>.</td>
 </tr>
 <tr>
 	<td>0F 01 /4</td>
-	<td>SMSW r32/m16</td>
+	<td>SMSW <em>r32/m16</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Store machine status word in low-order 16 bits of r32/m16; high-order 16 bits of r32 are undefined.</td>
+	<td>Store machine status word in low-order 16 bits of <em>r32/m16</em>; high-order 16 bits of <em>r32</em> are undefined.</td>
 </tr>
 <tr>
 	<td>REX.W + 0F 01 /4</td>
-	<td>SMSW r64/m16</td>
+	<td>SMSW <em>r64/m16</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Store machine status word in low-order 16 bits of r64/m16; high-order 16 bits of r32 are undefined.</td>
+	<td>Store machine status word in low-order 16 bits of <em>r64/m16</em>; high-order 16 bits of <em>r32</em> are undefined.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -71,7 +71,7 @@
 	<li>SMSW m16 operands size 64, store CR0[15:0] in m16 (not m64)</li>
 </ul>
 <p>SMSW is only useful in operating-system software. However, it is not a privileged instruction and can be used in application programs. The is provided for compatibility with the Intel 286 processor. Programs and procedures intended to run on the Pentium 4, Intel Xeon, P6 family, Pentium, Intel486, and Intel386 processors should use the MOV (control registers) instruction to load the machine status word.</p>
-<p>See “Changes to Instruction Behavior in VMX Non-Root Operation” in Chapter 25 of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3C, for more information about the behavior of this instruction in VMX non-root operation.</p>
+<p>See “Changes to Instruction Behavior in VMX Non-Root Operation” in Chapter 25 of the <em>Intel® 64 and IA-32 Archi<em>t</em>ectures Software Developer’s Manual, Volume 3C, for more information about the behavior of this instruction in</em> VMX non-root operation.</p>
 <h2 id="operation">Operation</h2>
 <pre>DEST ← CR0[15:0];
 (* Machine status word *)

@@ -16,35 +16,35 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F F5 /r1 PMADDWD mm, mm/m64</td>
+	<td>0F F5 /<em>r</em><sup>1</sup> PMADDWD <em>mm, mm/m64</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Multiply the packed words in mm by the packed words in mm/m64, add adjacent doubleword results, and store in mm.</td>
+	<td>Multiply the packed words in <em>mm</em> by the packed words in <em>mm/m64</em>, add adjacent doubleword results, and store in <em>mm</em>.</td>
 </tr>
 <tr>
-	<td>66 0F F5 /r PMADDWD xmm1, xmm2/m128</td>
+	<td>66 0F F5 /<em>r</em> PMADDWD <em>xmm1</em>, <em>xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Multiply the packed word integers in xmm1 by the packed word integers in xmm2/m128, add adjacent doubleword results, and store in xmm1.</td>
+	<td>Multiply the packed word integers in <em>xmm1</em> by the packed word integers in <em>xmm2/m128</em>, add adjacent doubleword results, and store in <em>xmm1.</em></td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG F5 /r VPMADDWD xmm1, xmm2, xmm3/m128</td>
+	<td>VEX.NDS.128.66.0F.WIG F5 /r VPMADDWD <em>xmm1, xmm2, xmm3/m128</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Multiply the packed word integers in xmm2 by the packed word integers in xmm3/m128, add adjacent doubleword results, and store in xmm1.</td>
+	<td>Multiply the packed word integers in <em>xmm2</em> by the packed word integers in <em>xmm3/m128</em>, add adjacent doubleword results, and store in <em>xmm1.</em></td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG F5 /r VPMADDWD ymm1, ymm2, ymm3/m256</td>
+	<td>VEX.NDS.256.66.0F.WIG F5 /r VPMADDWD <em>ymm1, ymm2, ymm3/m256</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Multiply the packed word integers in ymm2 by the packed word integers in ymm3/m256, add adjacent doubleword results, and store in ymm1.</td>
+	<td>Multiply the packed word integers in <em>ymm2</em> by the packed word integers in <em>ymm3/m256</em>, add adjacent doubleword results, and store in <em>ymm1.</em></td>
 </tr>
 </table>
-<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual,</em> <em><em>Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and</em></em> <em>IA-32 Architectures Software Developer’s Manual, Volume 3A.</em></p>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>

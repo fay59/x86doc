@@ -107,7 +107,7 @@
 <p>In this example, the FXTRACT instruction extracts the significand and exponent from the value in ST(0) and stores them in ST(0) and ST(1) respectively. The FSCALE then scales the significand in ST(0) by the exponent in ST(1), recreating the original value before the FXTRACT operation was performed. The FSTP ST(1) instruction overwrites the exponent (extracted by the FXTRACT instruction) with the recreated value, which returns the stack to its original state with only one register [ST(0)] occupied.</p>
 <p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
 <h2 id="operation">Operation</h2>
-<pre>ST(0) ← ST(0) ∗ 2RoundTowardZero(ST(1));
+<pre>ST(0) ← ST(0) ∗ 2<sup>RoundTowardZero(ST(1))</sup>;
 </pre>
 <h2 id="fpu-flags-affected">FPU Flags Affected</h2>
 <table>

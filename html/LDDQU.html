@@ -16,11 +16,11 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>F2 0F F0 /r LDDQU xmm1, mem</td>
+	<td>F2 0F F0 /<em>r</em> LDDQU <em>xmm1</em>, <em>mem</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE3</td>
-	<td>Load unaligned data from mem and return double quadword in xmm1.</td>
+	<td>Load unaligned data from <em>mem</em> and return double quadword in <em>xmm1</em>.</td>
 </tr>
 <tr>
 	<td>VEX.128.F2.0F.WIG F0 /r VLDDQU xmm1, m128</td>
@@ -55,7 +55,7 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>The instruction is functionally similar to (V)MOVDQU ymm/xmm, m256/m128 for loading from memory. That is: 32/16 bytes of data starting at an address specified by the source memory operand (second operand) are fetched from memory and placed in a destination register (first operand). The source operand need not be aligned on a 32/16-byte boundary. Up to 64/32 bytes may be loaded from memory; this is implementation dependent.</p>
+<p>The instruction is <em>functionally similar </em>to (V)MOVDQU ymm/xmm, m256/m128 for loading from memory. That is: 32/16 bytes of data starting at an address specified by the source memory operand (second operand) are fetched from memory and placed in a destination register (first operand). The source operand need not be aligned on a 32/16-byte boundary. Up to 64/32 bytes may be loaded from memory; this is implementation dependent.</p>
 <p>This instruction may improve performance relative to (V)MOVDQU if the source operand crosses a cache line boundary. In situations that require the data loaded by (V)LDDQU be modified and stored to the same location, use (V)MOVDQU or (V)MOVDQA instead of (V)LDDQU. To move a double quadword to or from memory locations that are known to be aligned on 16-byte boundaries, use the (V)MOVDQA instruction.</p>
 <h2 id="implementation-notes">Implementation Notes</h2>
 <ul>

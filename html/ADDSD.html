@@ -16,11 +16,11 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>F2 0F 58 /r ADDSD xmm1, xmm2/m64</td>
+	<td>F2 0F 58 /r ADDSD <em>xmm1</em>, <em>xmm2/m64</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Add the low double-precision floating-point value from xmm2/m64 to xmm1.</td>
+	<td>Add the low double-precision floating-point value from<em> xmm2/m64</em> to <em>xmm1</em>.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.LIG.F2.0F.WIG 58 /r VADDSD xmm1, xmm2, xmm3/m64</td>
@@ -56,7 +56,7 @@
 </table>
 <h2 id="description">Description</h2>
 <p>Adds the low double-precision floating-point values from the source operand (second operand) and the destination operand (first operand), and stores the double-precision floating-point result in the destination operand.</p>
-<p>The source operand can be an XMM register or a 64-bit memory location. The destination operand is an XMM register. See Chapter 11 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, for an overview of a scalar double-precision floating-point operation.</p>
+<p>The source operand can be an XMM register or a 64-bit memory location. The destination operand is an XMM register. See Chapter 11 in the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1</em>, for an overview of a scalar double-precision floating-point operation.</p>
 <p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: Bits (VLMAX-1:64) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: Bits (127:64) of the XMM register destination are copied from corresponding bits in the first source operand. Bits (VLMAX-1:128) of the destination YMM register are zeroed.</p>
 <h2 id="operation">Operation</h2>
 <pre>ADDSD (128-bit Legacy SSE version)

@@ -16,11 +16,11 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>F2 0F 5E /r DIVSD xmm1, xmm2/m64</td>
+	<td>F2 0F 5E /<em>r</em> DIVSD <em>xmm1</em>, <em>xmm2/m64</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Divide low double-precision floating-point value in xmm1 by low double-precision floating-point value in xmm2/mem64.</td>
+	<td>Divide low double-precision floating-point value in <em>xmm1</em> by low double-precision floating-point value in <em>xmm2/mem64.</em></td>
 </tr>
 <tr>
 	<td>VEX.NDS.LIG.F2.0F.WIG 5E /r VDIVSD xmm1, xmm2, xmm3/m64</td>
@@ -55,7 +55,7 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Divides the low double-precision floating-point value in the first source operand by the low double-precision floating-point value in the second source operand, and stores the double-precision floating-point result in the destination operand. The second source operand can be an XMM register or a 64-bit memory location. The first source and destination hyperons are XMM registers. The high quadword of the destination operand is copied from the high quadword of the first source operand. See Chapter 11 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, for an overview of a scalar double-precision floating-point operation.</p>
+<p>Divides the low double-precision floating-point value in the first source operand by the low double-precision floating-point value in the second source operand, and stores the double-precision floating-point result in the destination operand. The second source operand can be an XMM register or a 64-bit memory location. The first source and destination hyperons are XMM registers. The high quadword of the destination operand is copied from the high quadword of the first source operand. See Chapter 11 in the <em>Intel® 64 and IA-32 Architectures Software Devel<em>o</em>per’s Manual, Volume 1, for an overview of a scalar double-precision floating-point operation.</em></p>
 <p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: The first source operand and the destination operand are the same. Bits (VLMAX1:64) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: Bits (VLMAX-1:128) of the destination YMM register are zeroed.</p>
 <h2 id="operation">Operation</h2>
 <pre>DIVSD (128-bit Legacy SSE version)

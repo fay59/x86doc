@@ -17,7 +17,7 @@
 <tr>
 	<td>F2 XACQUIRE</td>
 	<td>V/V</td>
-	<td>HLE1</td>
+	<td>HLE<sup>1</sup></td>
 	<td>A hint used with an “XACQUIRE-enabled“ instruction to start lock elision on the instruction memory operand address.</td>
 </tr>
 <tr>
@@ -40,7 +40,7 @@
 	<li>The XCHG instruction either with or without the presence of the LOCK prefix.</li>
 	<li>The "MOV mem, reg" (Opcode 88H/89H) and "MOV mem, imm" (Opcode C6H/C7H) instructions. In these cases, the XRELEASE is recognized without the presence of the LOCK prefix.</li>
 </ul>
-<p>The lock variables must satisfy the guidelines described in Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, Section 15.3.3, for elision to be successful, otherwise an HLE abort may be signaled. If an encoded byte sequence that meets XACQUIRE/XRELEASE requirements includes both prefixes, then the HLE semantic is determined by the prefix byte that is placed closest to the instruction opcode. For example, an F3F2C6 will not be treated as a XRELEASE-enabled instruction since the F2H (XACQUIRE) is closest to the instruction opcode C6. Similarly, an F2F3F0 prefixed instruction will be treated as a XRELEASE-enabled instruction since F3H (XRELEASE) is closest to the instruction opcode. Intel 64 and IA-32 Compatibility The effect of the XACQUIRE/XRELEASE prefix hint is the same in non-64-bit modes and in 64-bit mode.</p>
+<p>The lock variables must satisfy the guidelines described in <em>Intel® 64 and IA-32 Architectures Software Developer’s</em> <em>Manual, Volume 1, Section 15.3.3, for elision to be successful, otherwise an HLE abort may be signaled.</em> If an encoded byte sequence that meets XACQUIRE/XRELEASE requirements includes both prefixes, then the HLE semantic is determined by the prefix byte that is placed closest to the instruction opcode. For example, an F3F2C6 will not be treated as a XRELEASE-enabled instruction since the F2H (XACQUIRE) is closest to the instruction opcode C6. Similarly, an F2F3F0 prefixed instruction will be treated as a XRELEASE-enabled instruction since F3H (XRELEASE) is closest to the instruction opcode. <strong>Intel 64 and IA-32 Compatibility</strong> The effect of the XACQUIRE/XRELEASE prefix hint is the same in non-64-bit modes and in 64-bit mode.</p>
 <table>
 <tr>
 	<td>For instructions that do not support the XACQUIRE hint, the presence of the F2H prior hardware, according to •</td>

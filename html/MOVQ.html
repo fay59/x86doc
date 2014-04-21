@@ -16,53 +16,53 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 6F /r MOVQ mm, mm/m64</td>
+	<td>0F 6F /<em>r</em> MOVQ <em>mm, mm/m64</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Move quadword from mm/m64 to mm.</td>
+	<td>Move quadword from <em>mm/m64</em> to <em>mm</em>.</td>
 </tr>
 <tr>
-	<td>0F 7F /r MOVQ mm/m64, mm</td>
+	<td>0F 7F /<em>r</em> MOVQ <em>mm/m64, mm</em></td>
 	<td>MR</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Move quadword from mm to mm/m64.</td>
+	<td>Move quadword from <em>mm</em> to <em>mm/m64</em>.</td>
 </tr>
 <tr>
-	<td>F3 0F 7E /r MOVQ xmm1, xmm2/m64</td>
+	<td>F3 0F 7E /r MOVQ <em>xmm1</em>, <em>xmm2/m64</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Move quadword from xmm2/mem64 to xmm1.</td>
+	<td>Move quadword from <em>xmm2/mem64</em> to <em>xmm1.</em></td>
 </tr>
 <tr>
-	<td>VEX.128.F3.0F.WIG 7E /r VMOVQ xmm1, xmm2</td>
+	<td>VEX.128.F3.0F.WIG 7E /r VMOVQ <em>xmm1, xmm2</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Move quadword from xmm2 to xmm1.</td>
+	<td>Move quadword from <em>xmm2</em> to <em>xmm1</em>.</td>
 </tr>
 <tr>
-	<td>VEX.128.F3.0F.WIG 7E /r VMOVQ xmm1, m64</td>
+	<td>VEX.128.F3.0F.WIG 7E /r VMOVQ <em>xmm1, m64</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Load quadword from m64 to xmm1.</td>
+	<td>Load quadword from <em>m64</em> to <em>xmm1</em>.</td>
 </tr>
 <tr>
-	<td>66 0F D6 /r MOVQ xmm2/m64, xmm1</td>
+	<td>66 0F D6 /r MOVQ <em>xmm2/m64</em>, <em>xmm1</em></td>
 	<td>MR</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Move quadword from xmm1 to xmm2/mem64.</td>
+	<td>Move quadword from <em>xmm1</em> to <em>xmm2/mem64.</em></td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F.WIG D6 /r VMOVQ xmm1/m64, xmm2</td>
+	<td>VEX.128.66.0F.WIG D6 /r VMOVQ <em>xmm1/m64, xmm2</em></td>
 	<td>MR</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Move quadword from xmm2 register to xmm1/m64.</td>
+	<td>Move quadword from <em>xmm2</em> register to <em>xmm1/m64.</em></td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -130,6 +130,6 @@ DEST[63:0] ← SRC2[63:0]
 <h2 id="simd-floating-point-exceptions">SIMD Floating-Point Exceptions</h2>
 <p>None.</p>
 <h2 id="other-exceptions">Other Exceptions</h2>
-<p>See Table 22-8, “Exception Conditions for Legacy SIMD/MMX Instructions without FP Exception,” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3B.</p>
+<p>See Table 22-8, “Exception Conditions for Legacy SIMD/MMX Instructions without FP Exception,” in the <em>Intel® 64</em> <em>and IA-32 Architectures Software Developer’s Manual, Volume 3B.</em></p>
 </body>
 </html>

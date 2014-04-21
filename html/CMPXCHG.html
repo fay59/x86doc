@@ -16,42 +16,42 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F B0/r CMPXCHG r/m8, r8</td>
+	<td>0F B0/<em>r</em> CMPXCHG <em>r/m8, r8</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid*</td>
-	<td>Compare AL with r/m8. If equal, ZF is set and r8 is loaded into r/m8. Else, clear ZF and load r/m8 into AL.</td>
+	<td>Compare AL with <em>r/m8</em>. If equal, ZF is set and <em><em>r8 is loaded into r/m8. Else, clear ZF and load</em></em> <em>r/m8 into AL.</em></td>
 </tr>
 <tr>
-	<td>REX + 0F B0/r CMPXCHG r/m8**,r8</td>
+	<td>REX + 0F B0/<em>r</em> CMPXCHG <em>r/m8**,r8</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Compare AL with r/m8. If equal, ZF is set and r8 is loaded into r/m8. Else, clear ZF and load r/m8 into AL.</td>
+	<td>Compare AL with <em>r/m8</em>. If equal, ZF is set and <em><em>r8 is loaded into r/m8. Else, clear ZF and load</em></em> <em>r/m8 into AL.</em></td>
 </tr>
 <tr>
-	<td>0F B1/r CMPXCHG r/m16, r16</td>
+	<td>0F B1/<em>r</em> CMPXCHG <em>r/m16, r16</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid*</td>
-	<td>Compare AX with r/m16. If equal, ZF is set and r16 is loaded into r/m16. Else, clear ZF and load r/m16 into AX.</td>
+	<td>Compare AX with <em>r/m16</em>. If equal, ZF is set and <em><em>r16 is loaded into r/m16. Else, clear ZF and</em></em> load <em>r/m16</em> into AX.</td>
 </tr>
 <tr>
-	<td>0F B1/r CMPXCHG r/m32, r32</td>
+	<td>0F B1/<em>r</em> CMPXCHG <em>r/m32, r32</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid*</td>
-	<td>Compare EAX with r/m32. If equal, ZF is set and r32 is loaded into r/m32. Else, clear ZF and load r/m32 into EAX.</td>
+	<td>Compare EAX with <em>r/m32</em>. If equal, ZF is set and <em>r32</em> is loaded into <em>r/m32</em>. Else, clear ZF and load <em>r/m32</em> into EAX.</td>
 </tr>
 <tr>
-	<td>REX.W + 0F B1/r CMPXCHG r/m64, r64</td>
+	<td>REX.W + 0F B1/<em>r</em> CMPXCHG <em>r/m64, r64</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Compare RAX with r/m64. If equal, ZF is set and r64 is loaded into r/m64. Else, clear ZF and load r/m64 into RAX.</td>
+	<td>Compare RAX with <em>r/m64</em>. If equal, ZF is set and <em>r64</em> is loaded into <em>r/m64</em>. Else, clear ZF and load <em>r/m64</em> into RAX.</td>
 </tr>
 </table>
-<p class="notes">Notes: * See the IA-32 Architecture Compatibility section below. ** In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.</p>
+<p class="notes">Notes: * See the IA-32 Architecture Compatibility section below. ** In 64-bit mode,<em> r/m8</em> can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.</p>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>

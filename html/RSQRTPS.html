@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 52 /r RSQRTPS xmm1, xmm2/m128</td>
+	<td>0F 52 /<em>r</em> RSQRTPS <em>xmm1</em>,<em> xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Computes the approximate reciprocals of the square roots of the packed single-precision floating-point values in xmm2/m128 and stores the results in xmm1.</td>
+	<td>Computes the approximate reciprocals of the square roots of the packed single-precision floating-point values in <em>xmm2/m128</em> and stores the results in <em>xmm1</em>.</td>
 </tr>
 <tr>
-	<td>VEX.128.0F.WIG 52 /r VRSQRTPS xmm1, xmm2/m128</td>
+	<td>VEX.128.0F.WIG 52 /r VRSQRTPS <em>xmm1, xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Computes the approximate reciprocals of the square roots of packed single-precision values in xmm2/mem and stores the results in xmm1.</td>
+	<td>Computes the approximate reciprocals of the square roots of packed single-precision values in <em>xmm2/mem</em> and stores the results in <em>xmm1</em>.</td>
 </tr>
 <tr>
-	<td>VEX.256.0F.WIG 52 /r VRSQRTPS ymm1, ymm2/m256</td>
+	<td>VEX.256.0F.WIG 52 /r VRSQRTPS <em>ymm1, ymm2/m256</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Computes the approximate reciprocals of the square roots of packed single-precision values in ymm2/mem and stores the results in ymm1.</td>
+	<td>Computes the approximate reciprocals of the square roots of packed single-precision values in <em>ymm2/mem</em> and stores the results in <em>ymm1</em>.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -55,7 +55,7 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Performs a SIMD computation of the approximate reciprocals of the square roots of the four packed single-precision floating-point values in the source operand (second operand) and stores the packed single-precision floatingpoint results in the destination operand. The source operand can be an XMM register or a 128-bit memory location. The destination operand is an XMM register. See Figure 10-5 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, for an illustration of a SIMD single-precision floating-point operation.</p>
+<p>Performs a SIMD computation of the approximate reciprocals of the square roots of the four packed single-precision floating-point values in the source operand (second operand) and stores the packed single-precision floatingpoint results in the destination operand. The source operand can be an XMM register or a 128-bit memory location. The destination operand is an XMM register. See Figure 10-5 in the <em>Intel® 64 and IA-32 Architectures Software</em> <em>Developer’s Manual, Volume 1, for an illustration of a SIMD single-precision floating-point operation.</em></p>
 <p>The relative error for this approximation is:</p>
 <p>|Relative Error| ≤ 1.5 ∗ 2−12</p>
 <p>The RSQRTPS instruction is not affected by the rounding control bits in the MXCSR register. When a source value is a 0.0, an ∞ of the sign of the source value is returned. A denormal source value is treated as a 0.0 (of the same sign). When a source value is a negative value (other than −0.0), a floating-point indefinite is returned. When a source value is an SNaN or QNaN, the SNaN is converted to a QNaN or the source QNaN is returned.</p>

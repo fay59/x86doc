@@ -17,48 +17,48 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F BE /r</td>
-	<td>MOVSX r16, r/m8</td>
+	<td>0F BE /<em>r</em></td>
+	<td>MOVSX <em>r16, r/m8</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
 	<td>Move byte to word with sign-extension.</td>
 </tr>
 <tr>
-	<td>0F BE /r</td>
-	<td>MOVSX r32, r/m8</td>
+	<td>0F BE /<em>r</em></td>
+	<td>MOVSX <em>r32, r/m8</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
 	<td>Move byte to doubleword with signextension.</td>
 </tr>
 <tr>
-	<td>REX + 0F BE /r</td>
-	<td>MOVSX r64, r/m8*</td>
+	<td>REX + 0F BE /<em>r</em></td>
+	<td>MOVSX <em>r64, r/m8*</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>N.E.</td>
 	<td>Move byte to quadword with sign-extension.</td>
 </tr>
 <tr>
-	<td>0F BF /r</td>
-	<td>MOVSX r32, r/m16</td>
+	<td>0F BF /<em>r</em></td>
+	<td>MOVSX <em>r32, r/m16</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
 	<td>Move word to doubleword, with signextension.</td>
 </tr>
 <tr>
-	<td>REX.W + 0F BF /r</td>
-	<td>MOVSX r64, r/m16</td>
+	<td>REX.W + 0F BF /<em>r</em></td>
+	<td>MOVSX <em>r64, r/m16</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>N.E.</td>
 	<td>Move word to quadword with sign-extension.</td>
 </tr>
 <tr>
-	<td>REX.W** + 63 /r</td>
-	<td>MOVSXD r64, r/m32</td>
+	<td>REX.W** + 63 /<em>r</em></td>
+	<td>MOVSXD <em>r64, r/m32</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>N.E.</td>
@@ -84,7 +84,7 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Copies the contents of the source operand (register or memory location) to the destination operand (register) and sign extends the value to 16 or 32 bits (see Figure 7-6 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1). The size of the converted value depends on the operand-size attribute.</p>
+<p>Copies the contents of the source operand (register or memory location) to the destination operand (register) and sign extends the value to 16 or 32 bits (see Figure 7-6 in the <em>Intel® 64 and IA-32 Architectures Software Devel<em>o</em>per’s Manual, Volume 1). The size of the converted value depends on the operand-size attribute.</em></p>
 <p>In 64-bit mode, the instruction’s default operation size is 32 bits. Use of the REX.R prefix permits access to additional registers (R8-R15). Use of the REX.W prefix promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.</p>
 <h2 id="operation">Operation</h2>
 <pre>DEST ← SignExtend(SRC);

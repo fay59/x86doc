@@ -16,46 +16,46 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 3A 20 /r ib PINSRB xmm1, r32/m8, imm8</td>
+	<td>66 0F 3A 20 /r ib PINSRB <em>xmm1, r32/m8, imm8</em></td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE4_1</td>
-	<td>Insert a byte integer value from r32/m8 into xmm1 at the destination element in xmm1 specified by imm8.</td>
+	<td>Insert a byte integer value from <em>r32/m8</em> into <em><em>xmm1 at the destination element in xmm1</em></em> specified by<em> imm8.</em></td>
 </tr>
 <tr>
-	<td>66 0F 3A 22 /r ib PINSRD xmm1, r/m32, imm8</td>
+	<td>66 0F 3A 22 /r ib PINSRD <em>xmm1, r/m32, imm8</em></td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE4_1</td>
-	<td>Insert a dword integer value from r/m32 into the xmm1 at the destination element specified by imm8.</td>
+	<td>Insert a dword integer value from <em>r/m32</em> into the <em>xmm1</em> at the destination element specified by<em> imm8.</em></td>
 </tr>
 <tr>
-	<td>66 REX.W 0F 3A 22 /r ib PINSRQ xmm1, r/m64, imm8</td>
+	<td>66 REX.W 0F 3A 22 /r ib PINSRQ <em>xmm1, r/m64, imm8</em></td>
 	<td>RMI</td>
 	<td>V/N. E.</td>
 	<td>SSE4_1</td>
-	<td>Insert a qword integer value from r/m64 into the xmm1 at the destination element specified by imm8.</td>
+	<td>Insert a qword integer value from <em>r/m64 i</em>nto the <em>xmm1 </em>at the destination element specified by<em> imm8.</em></td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F3A.W0 20 /r ib VPINSRB xmm1, xmm2, r32/m8, imm8</td>
+	<td>VEX.NDS.128.66.0F3A.W0 20 /r ib VPINSRB <em>xmm1, xmm2, r32/m8, imm8</em></td>
 	<td>RVMI</td>
-	<td>V1/V</td>
+	<td>V<sup>1</sup>/V</td>
 	<td>AVX</td>
-	<td>Merge a byte integer value from r32/m8 and rest from xmm2 into xmm1 at the byte offset in imm8.</td>
+	<td>Merge a byte integer value from <em>r32/m8</em> and rest from <em>xmm2</em> into <em>xmm1</em> at the byte offset in <em>imm8</em>.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F3A.W0 22 /r ib VPINSRD xmm1, xmm2, r/m32, imm8</td>
+	<td>VEX.NDS.128.66.0F3A.W0 22 /r ib VPINSRD <em>xmm1, xmm2, r/m32, imm8</em></td>
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Insert a dword integer value from r32/m32 and rest from xmm2 into xmm1 at the dword offset in imm8.</td>
+	<td>Insert a dword integer value from <em>r32/m32</em> and rest from <em>xmm2</em> into <em>xmm1</em> at the dword offset in<em> imm8</em>.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F3A.W1 22 /r ib VPINSRQ xmm1, xmm2, r/m64, imm8</td>
+	<td>VEX.NDS.128.66.0F3A.W1 22 /r ib VPINSRQ <em>xmm1, xmm2, r/m64, imm8</em></td>
 	<td>RVMI</td>
 	<td>V/I</td>
 	<td>AVX</td>
-	<td>Insert a qword integer value from r64/m64 and rest from xmm2 into xmm1 at the qword offset in imm8.</td>
+	<td>Insert a qword integer value from <em>r64/m64</em> and rest from <em>xmm2</em> into <em>xmm1</em> at the qword offset in <em>imm8</em>.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. In 64-bit mode, VEX.W1 is ignored for VPINSRB (similar to legacy REX.W=1 prefix with PINSRB).</p>

@@ -20,12 +20,12 @@
 	<td>FLDCW m2byte</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Load FPU control word from m2byte.</td>
+	<td>Load FPU control word from <em>m2byte.</em></td>
 </tr>
 </table>
 <h2 id="description">Description</h2>
 <p>Loads the 16-bit source operand into the FPU control word. The source operand is a memory location. This instruction is typically used to establish or change the FPU’s mode of operation.</p>
-<p>If one or more exception flags are set in the FPU status word prior to loading a new FPU control word and the new control word unmasks one or more of those exceptions, a floating-point exception will be generated upon execution of the next floating-point instruction (except for the no-wait floating-point instructions, see the section titled “Software Exception Handling” in Chapter 8 of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1). To avoid raising exceptions when changing FPU operating modes, clear any pending exceptions (using the FCLEX or FNCLEX instruction) before loading the new control word.</p>
+<p>If one or more exception flags are set in the FPU status word prior to loading a new FPU control word and the new control word unmasks one or more of those exceptions, a floating-point exception will be generated upon execution of the next floating-point instruction (except for the no-wait floating-point instructions, see the section titled “Software Exception Handling” in Chapter 8 of the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual,</em> <em>Volume 1). To avoid raising exceptions when changing FPU operating modes, clear any pending exceptions (using</em> the FCLEX or FNCLEX instruction) before loading the new control word.</p>
 <p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
 <h2 id="operation">Operation</h2>
 <pre>FPUControlWord ← SRC;

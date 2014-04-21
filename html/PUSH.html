@@ -18,75 +18,75 @@
 </tr>
 <tr>
 	<td>FF /6</td>
-	<td>PUSH r/m16</td>
+	<td>PUSH <em>r/m16</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Push r/m16.</td>
+	<td>Push <em>r/m16.</em></td>
 </tr>
 <tr>
 	<td>FF /6</td>
-	<td>PUSH r/m32</td>
+	<td>PUSH <em>r/m32</em></td>
 	<td>M</td>
 	<td>N.E.</td>
 	<td>Valid</td>
-	<td>Push r/m32.</td>
+	<td>Push <em>r/m32.</em></td>
 </tr>
 <tr>
 	<td>FF /6</td>
-	<td>PUSH r/m64</td>
+	<td>PUSH <em>r/m64</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Push r/m64.</td>
+	<td>Push <em>r/m64.</em></td>
 </tr>
 <tr>
-	<td>50+rw</td>
-	<td>PUSH r16</td>
+	<td>50+<em>rw</em></td>
+	<td>PUSH <em>r16</em></td>
 	<td>O</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Push r16.</td>
+	<td>Push <em>r16.</em></td>
 </tr>
 <tr>
-	<td>50+rd</td>
-	<td>PUSH r32</td>
+	<td>50+<em>rd</em></td>
+	<td>PUSH <em>r32</em></td>
 	<td>O</td>
 	<td>N.E.</td>
 	<td>Valid</td>
-	<td>Push r32.</td>
+	<td>Push <em>r32.</em></td>
 </tr>
 <tr>
-	<td>50+rd</td>
-	<td>PUSH r64</td>
+	<td>50+<em>rd</em></td>
+	<td>PUSH <em>r64</em></td>
 	<td>O</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Push r64.</td>
+	<td>Push <em>r64.</em></td>
 </tr>
 <tr>
 	<td>6A ib</td>
-	<td>PUSH imm8</td>
+	<td>PUSH <em>imm8</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Push imm8.</td>
+	<td>Push <em>imm8.</em></td>
 </tr>
 <tr>
 	<td>68 iw</td>
-	<td>PUSH imm16</td>
+	<td>PUSH <em>imm16</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Push imm16.</td>
+	<td>Push <em>imm16.</em></td>
 </tr>
 <tr>
 	<td>68 id</td>
-	<td>PUSH imm32</td>
+	<td>PUSH <em>imm32</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Push imm32.</td>
+	<td>Push <em>imm32.</em></td>
 </tr>
 <tr>
 	<td>0E</td>
@@ -181,12 +181,12 @@
 <ul>
 	<li>Address size. The D flag in the current code-segment descriptor determines the default address size; it may be overridden by an instruction prefix (67H). The address size is used only when referencing a source operand in memory.</li>
 	<li>Operand size. The D flag in the current code-segment descriptor determines the default operand size; it may be overridden by instruction prefixes (66H or REX.W). The operand size (16, 32, or 64 bits) determines the amount by which the stack pointer is decremented (2, 4 or 8). If the source operand is an immediate of size less than the operand size, a sign-extended value is pushed on the stack. If the source operand is a segment register (16 bits) and the operand size is 64-bits, a zeroextended value is pushed on the stack; if the operand size is 32-bits, either a zero-extended value is pushed on the stack or the segment selector is written on the stack using a 16-bit move. For the last case, all recent Core and Atom processors perform a 16-bit move, leaving the upper portion of the stack location unmodified.</li>
-	<li>Stack-address size. Outside of 64-bit mode, the B flag in the current stack-segment descriptor determines the size of the stack pointer (16 or 32 bits); in 64-bit mode, the size of the stack pointer is always 64 bits. The stack-address size determines the width of the stack pointer when writing to the stack in memory and when decremen pointer. (As sta is decremented is determined by the operand size.) If the operand size is less than the stack-address size, the PUSH instruction may result in a misaligned stack pointer (a stack pointer that is not aligned on a doubleword or quadword boundary).</li>
+	<li>Stack-address size. Outside of 64-bit mode, the B flag in the current stack-segment descriptor determines the size of the stack pointer (16 or 32 bits); in 64-bit mode, the size of the stack pointer is always 64 bits. The stack-address size determines the width of the stack pointer when writing to the stack in memory and when decrementing the stack pointer. (As stated above, the amount by which the stack pointer is decremented is determined by the operand size.) If the operand size is less than the stack-address size, the PUSH instruction may result in a misaligned stack pointer (a stack pointer that is not aligned on a doubleword or quadword boundary).</li>
 </ul>
 <p>The PUSH ESP instruction pushes the value of the ESP register as it existed before the instruction was executed. If a PUSH instruction uses a memory operand in which the ESP register is used for computing the operand address, the address of the operand is computed before the ESP register is decremented.</p>
-<p>If the ESP or SP register is 1 when the PUSH instruction is executed in real-address mode, a stack-fault exception (#SS) is generated (because the limit of the stack segment is violated). Its delivery encounters a second stackfault exception (for the same reason), causing generation of a double-fault exception (#DF). Delivery of the double-fault exception encounters a third stack-fault exception, and the logical processor enters shutdown mode. See the discussion of the double-fault exception in Chapter 6 of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
+<p>If the ESP or SP register is 1 when the PUSH instruction is executed in real-address mode, a stack-fault exception (#SS) is generated (because the limit of the stack segment is violated). Its delivery encounters a second stackfault exception (for the same reason), causing generation of a double-fault exception (#DF). Delivery of the double-fault exception encounters a third stack-fault exception, and the logical processor enters shutdown mode. See the discussion of the double-fault exception in Chapter 6 of the <em>Intel® 64 and IA-32 Architectures Software</em> <em>Developer’s Manual, Volume 3A.</em></p>
 <h2 id="ia-32-architecture-compatibility">IA-32 Architecture Compatibility</h2>
-<p>For IA-32 processors from the Intel 286 on, the PUSH ESP instruction pushes the value of the ESP register as it existed before the instruction was executed. (This is also true for Intel 64 architecture, real-address and virtual8086 modes of IA-32 architecture.) For the Intel® 8086 processor, the PUSH SP instruction pushes the new value of the SP register (that is the value after it has been decremented by 2).</p>
+<p>For IA-32 processors from the Intel 286 on, the PUSH ESP instruction pushes the value of the ESP register as it existed before the instruction was executed. (This is also true for Intel 64 architecture, real-address and virtual8086 modes of IA-32 architecture.) For the Intel<em><sup>®</sup></em> 8086 processor, the PUSH SP instruction pushes the new value of the SP register (that is the value after it has been decremented by 2).</p>
 <h2 id="operation">Operation</h2>
 <pre>(* See Description section for possible sign-extension or zero-extension of source operand and for *)
 (* a case in which the size of the memory store may be smaller than the instruction’s operand size *)

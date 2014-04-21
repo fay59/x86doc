@@ -18,43 +18,43 @@
 </tr>
 <tr>
 	<td>F6 /7</td>
-	<td>IDIV r/m8</td>
+	<td>IDIV <em>r/m8</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Signed divide AX by r/m8, with result stored in: AL ← Quotient, AH ← Remainder.</td>
+	<td>Signed divide AX by <em>r/m</em>8, with result stored in: AL ← Quotient, AH ← Remainder.</td>
 </tr>
 <tr>
 	<td>REX + F6 /7</td>
-	<td>IDIV r/m8*</td>
+	<td>IDIV <em>r/m8*</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Signed divide AX by r/m8, with result stored in AL ← Quotient, AH ← Remainder.</td>
+	<td>Signed divide AX by <em>r/m</em>8, with result stored in AL ← Quotient, AH ← Remainder.</td>
 </tr>
 <tr>
 	<td>F7 /7</td>
-	<td>IDIV r/m16</td>
+	<td>IDIV <em>r/m16</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Signed divide DX:AX by r/m16, with result stored in AX ← Quotient, DX ← Remainder.</td>
+	<td>Signed divide DX:AX by <em>r/m16</em>, with result stored in AX ← Quotient, DX ← Remainder.</td>
 </tr>
 <tr>
 	<td>F7 /7</td>
-	<td>IDIV r/m32</td>
+	<td>IDIV <em>r/m32</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Signed divide EDX:EAX by r/m32, with result stored in EAX ← Quotient, EDX ← Remainder.</td>
+	<td>Signed divide EDX:EAX by <em>r/m32</em>, with result stored in EAX ← Quotient, EDX ← Remainder.</td>
 </tr>
 <tr>
 	<td>REX.W + F7 /7</td>
-	<td>IDIV r/m64</td>
+	<td>IDIV <em>r/m64</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Signed divide RDX:RAX by r/m64, with result stored in RAX ← Quotient, RDX ← Remainder.</td>
+	<td>Signed divide RDX:RAX by <em>r/m64</em>, with result stored in RAX ← Quotient, RDX ← Remainder.</td>
 </tr>
 </table>
 <p class="notes">Notes: * In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.</p>
@@ -88,7 +88,7 @@
 	<td>Divisor r/m8 r/m16 r/m32 r/m64</td>
 	<td>Quotient AL AX EAX RAX</td>
 	<td>Remainder AH DX EDX RDX</td>
-	<td>Quotient Range −128 to +127 −32,768 to +32,767 −231 to 232 − 1 −263 to 264 − 1</td>
+	<td>Quotient Range −128 to +127 −32,768 to +32,767 −2<sup>31</sup> to 2<sup>32</sup> − 1 −2<sup>63</sup> to 2<sup>64</sup> − 1</td>
 </tr>
 </table>
 <h2 id="operation">Operation</h2>

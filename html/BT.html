@@ -18,7 +18,7 @@
 </tr>
 <tr>
 	<td>0F A3 /r</td>
-	<td>BT r/m16, r16</td>
+	<td>BT <em>r/m16, r16</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
@@ -26,7 +26,7 @@
 </tr>
 <tr>
 	<td>0F A3 /r</td>
-	<td>BT r/m32, r32</td>
+	<td>BT <em>r/m32, r32</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
@@ -34,31 +34,31 @@
 </tr>
 <tr>
 	<td>REX.W + 0F A3 /r</td>
-	<td>BT r/m64, r64</td>
+	<td>BT <em>r/m64, r64</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>N.E.</td>
 	<td>Store selected bit in CF flag.</td>
 </tr>
 <tr>
-	<td>0F BA /4 ib</td>
-	<td>BT r/m16, imm8</td>
+	<td>0F BA /4 <em>ib</em></td>
+	<td>BT <em>r/m16, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
 	<td>Store selected bit in CF flag.</td>
 </tr>
 <tr>
-	<td>0F BA /4 ib</td>
-	<td>BT r/m32, imm8</td>
+	<td>0F BA /4 <em>ib</em></td>
+	<td>BT <em>r/m32, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
 	<td>Store selected bit in CF flag.</td>
 </tr>
 <tr>
-	<td>REX.W + 0F BA /4 ib</td>
-	<td>BT r/m64, imm8</td>
+	<td>REX.W + 0F BA /4 <em>ib</em></td>
+	<td>BT <em>r/m64, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
@@ -95,7 +95,7 @@
 	<li>If the bit base operand specifies a register, the instruction takes the modulo 16, 32, or 64 of the bit offset operand (modulo size depends on the mode and register size; 64-bit operands are available only in 64-bit mode).</li>
 	<li>If the bit base operand specifies a memory location, the operand represents the address of the byte in memory that contains the bit base (bit 0 of the specified byte) of the bit string. The range of the bit position that can be referenced by the offset operand depends on the operand size.</li>
 </ul>
-<p>See also: Bit(BitBase, BitOffset) on page 3-10.</p>
+<p>See also: <strong>Bit(BitBase, BitOffset) </strong>on page 3-10.</p>
 <p>Some assemblers support immediate bit offsets larger than 31 by using the immediate bit offset field in combination with the displacement field of the memory operand. In this case, the low-order 3 or 5 bits (3 for 16-bit operands, 5 for 32-bit operands) of the immediate bit offset are stored in the immediate bit offset field, and the highorder bits are shifted and combined with the byte displacement in the addressing mode by the assembler. The processor will ignore the high order bits if they are not zero.</p>
 <p>When accessing a bit in memory, the processor may access 4 bytes starting from the memory address for a 32-bit operand size, using by the following relationship:</p>
 <p>Effective Address + (4 ∗ (BitOffset DIV 32))</p>

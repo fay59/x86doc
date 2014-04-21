@@ -18,35 +18,35 @@
 </tr>
 <tr>
 	<td>0F 18 /1</td>
-	<td>PREFETCHT0 m8</td>
+	<td>PREFETCHT0 <em>m8</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Move data from m8 closer to the processor using T0 hint.</td>
+	<td>Move data from <em>m8</em> closer to the processor using T0 hint.</td>
 </tr>
 <tr>
 	<td>0F 18 /2</td>
-	<td>PREFETCHT1 m8</td>
+	<td>PREFETCHT1 <em>m8</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Move data from m8 closer to the processor using T1 hint.</td>
+	<td>Move data from <em>m8</em> closer to the processor using T1 hint.</td>
 </tr>
 <tr>
 	<td>0F 18 /3</td>
-	<td>PREFETCHT2 m8</td>
+	<td>PREFETCHT2 <em>m8</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Move data from m8 closer to the processor using T2 hint.</td>
+	<td>Move data from <em>m8</em> closer to the processor using T2 hint.</td>
 </tr>
 <tr>
 	<td>0F 18 /0</td>
-	<td>PREFETCHNTA m8</td>
+	<td>PREFETCHNTA <em>m8</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Move data from m8 closer to the processor using NTA hint.</td>
+	<td>Move data from <em>m8</em> closer to the processor using NTA hint.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -76,10 +76,10 @@
 </ul>
 <p>The source operand is a byte memory location. (The locality hints are encoded into the machine level instruction using bits 3 through 5 of the ModR/M byte.)</p>
 <p>If the line selected is already present in the cache hierarchy at a level closer to the processor, no data movement occurs. Prefetches from uncacheable or WC memory are ignored.</p>
-<p>The PREFETCHh instruction is merely a hint and does not affect program behavior. If executed, this instruction moves data closer to the processor in anticipation of future use.</p>
+<p>The PREFETCH<em>h</em> instruction is merely a hint and does not affect program behavior. If executed, this instruction moves data closer to the processor in anticipation of future use.</p>
 <p>The implementation of prefetch locality hints is implementation-dependent, and can be overloaded or ignored by a processor implementation. The amount of data prefetched is also processor implementation-dependent. It will, however, be a minimum of 32 bytes.</p>
-<p>It should be noted that processors are free to speculatively fetch and cache data from system memory regions that are assigned a memory-type that permits speculative reads (that is, the WB, WC, and WT memory types). A PREFETCHh instruction is considered a hint to this speculative behavior. Because this speculative fetching can occur at any time and is not tied to instruction execution, a PREFETCHh instruction is not ordered with respect to the fence instructions (MFENCE, SFENCE, and LFENCE) or locked memory references. A PREFETCHh instruction is also</p>
-<p>unordered with respect to CLFLUSH instructions, other PREFETCHh instructions, or any other general instruction. It is ordered with respect to serializing instructions such as CPUID, WRMSR, OUT, and MOV CR.</p>
+<p>It should be noted that processors are free to speculatively fetch and cache data from system memory regions that are assigned a memory-type that permits speculative reads (that is, the WB, WC, and WT memory types). A PREFETCH<em>h</em> instruction is considered a hint to this speculative behavior. Because this speculative fetching can occur at any time and is not tied to instruction execution, a PREFETCH<em>h</em> instruction is not ordered with respect to the fence instructions (MFENCE, SFENCE, and LFENCE) or locked memory references. A PREFETCH<em>h</em> instruction is also</p>
+<p>unordered with respect to CLFLUSH instructions, other PREFETCH<em>h </em>instructions, or any other general instruction. It is ordered with respect to serializing instructions such as CPUID, WRMSR, OUT, and MOV CR.</p>
 <p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
 <h2 id="operation">Operation</h2>
 <pre>FETCH (m8);

@@ -17,180 +17,180 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>34 ib</td>
-	<td>XOR AL, imm8</td>
+	<td>34 <em>ib</em></td>
+	<td>XOR AL, i<em>mm8</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>AL XOR imm8.</td>
+	<td>AL XOR <em>imm8.</em></td>
 </tr>
 <tr>
-	<td>35 iw</td>
-	<td>XOR AX, imm16</td>
+	<td>35 <em>iw</em></td>
+	<td>XOR AX, i<em>mm16</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>AX XOR imm16.</td>
+	<td>AX XOR <em>imm16.</em></td>
 </tr>
 <tr>
-	<td>35 id</td>
-	<td>XOR EAX, imm32</td>
+	<td>35 <em>id</em></td>
+	<td>XOR EAX, i<em>mm32</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>EAX XOR imm32.</td>
+	<td>EAX XOR <em>imm32.</em></td>
 </tr>
 <tr>
-	<td>REX.W + 35 id</td>
-	<td>XOR RAX, imm32</td>
+	<td>REX.W + 35 <em>id</em></td>
+	<td>XOR RAX, i<em>mm32</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>RAX XOR imm32 (sign-extended).</td>
+	<td>RAX XOR <em>imm32 (sign-extended).</em></td>
 </tr>
 <tr>
-	<td>80 /6 ib</td>
-	<td>XOR r/m8, imm8</td>
+	<td>80 /6 <em>ib</em></td>
+	<td>XOR <em>r/m8, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>r/m8 XOR imm8.</td>
+	<td><em><em>r/m8 XOR imm8.</em></em></td>
 </tr>
 <tr>
-	<td>REX + 80 /6 ib</td>
-	<td>XOR r/m8*, imm8</td>
-	<td>MI</td>
-	<td>Valid</td>
-	<td>N.E.</td>
-	<td>r/m8 XOR imm8.</td>
-</tr>
-<tr>
-	<td>81 /6 iw</td>
-	<td>XOR r/m16, imm16</td>
-	<td>MI</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>r/m16 XOR imm16.</td>
-</tr>
-<tr>
-	<td>81 /6 id</td>
-	<td>XOR r/m32, imm32</td>
-	<td>MI</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>r/m32 XOR imm32.</td>
-</tr>
-<tr>
-	<td>REX.W + 81 /6 id</td>
-	<td>XOR r/m64, imm32</td>
+	<td>REX + 80 /6 <em>ib</em></td>
+	<td>XOR <em>r/m8*, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>r/m64 XOR imm32 (sign-extended).</td>
+	<td><em><em>r/m8 XOR imm8.</em></em></td>
 </tr>
 <tr>
-	<td>83 /6 ib</td>
-	<td>XOR r/m16, imm8</td>
+	<td>81 /6 <em>iw</em></td>
+	<td>XOR <em>r/m16, imm16</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>r/m16 XOR imm8 (sign-extended).</td>
+	<td><em><em>r/m16 XOR imm16.</em></em></td>
 </tr>
 <tr>
-	<td>83 /6 ib</td>
-	<td>XOR r/m32, imm8</td>
+	<td>81 /6 <em>id</em></td>
+	<td>XOR <em>r/m32, imm32</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>r/m32 XOR imm8 (sign-extended).</td>
+	<td><em><em>r/m32 XOR imm32.</em></em></td>
 </tr>
 <tr>
-	<td>REX.W + 83 /6 ib</td>
-	<td>XOR r/m64, imm8</td>
+	<td>REX.W + 81 /6 <em>id</em></td>
+	<td>XOR <em>r/m64, imm32</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>r/m64 XOR imm8 (sign-extended).</td>
+	<td><em><em>r/m64 XOR imm32 (sign-extended).</em></em></td>
 </tr>
 <tr>
-	<td>30 /r</td>
-	<td>XOR r/m8, r8</td>
+	<td>83 /6 <em>ib</em></td>
+	<td>XOR <em>r/m16, imm8</em></td>
+	<td>MI</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td><em><em>r/m16 XOR imm8 (sign-extended).</em></em></td>
+</tr>
+<tr>
+	<td>83 /6 <em>ib</em></td>
+	<td>XOR <em>r/m32, imm8</em></td>
+	<td>MI</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td><em><em>r/m32 XOR imm8 (sign-extended).</em></em></td>
+</tr>
+<tr>
+	<td>REX.W + 83 /6 <em>ib</em></td>
+	<td>XOR <em>r/m64, imm8</em></td>
+	<td>MI</td>
+	<td>Valid</td>
+	<td>N.E.</td>
+	<td><em><em>r/m64 XOR imm8 (sign-extended).</em></em></td>
+</tr>
+<tr>
+	<td>30 /<em>r</em></td>
+	<td>XOR <em>r/m8, r8</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>r/m8 XOR r8.</td>
+	<td><em><em>r/m8 XOR r8.</em></em></td>
 </tr>
 <tr>
-	<td>REX + 30 /r</td>
-	<td>XOR r/m8*, r8*</td>
+	<td>REX + 30 /<em>r</em></td>
+	<td>XOR <em>r/m8*, r8*</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>r/m8 XOR r8.</td>
+	<td><em><em>r/m8 XOR r8.</em></em></td>
 </tr>
 <tr>
-	<td>31 /r</td>
-	<td>XOR r/m16, r16</td>
+	<td>31 /<em>r</em></td>
+	<td>XOR <em>r/m16, r16</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>r/m16 XOR r16.</td>
+	<td><em><em>r/m16 XOR r16.</em></em></td>
 </tr>
 <tr>
-	<td>31 /r</td>
-	<td>XOR r/m32, r32</td>
+	<td>31 /<em>r</em></td>
+	<td>XOR <em>r/m32, r32</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>r/m32 XOR r32.</td>
+	<td><em><em>r/m32 XOR r32.</em></em></td>
 </tr>
 <tr>
-	<td>REX.W + 31 /r</td>
-	<td>XOR r/m64, r64</td>
+	<td>REX.W + 31 /<em>r</em></td>
+	<td>XOR <em>r/m64, r64</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>r/m64 XOR r64.</td>
+	<td><em><em>r/m64 XOR r64.</em></em></td>
 </tr>
 <tr>
-	<td>32 /r</td>
-	<td>XOR r8, r/m8</td>
+	<td>32 /<em>r</em></td>
+	<td>XOR <em>r8, r/m8</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>r8 XOR r/m8.</td>
+	<td><em><em>r8 XOR r/m8.</em></em></td>
 </tr>
 <tr>
-	<td>REX + 32 /r</td>
-	<td>XOR r8*, r/m8*</td>
-	<td>RM</td>
-	<td>Valid</td>
-	<td>N.E.</td>
-	<td>r8 XOR r/m8.</td>
-</tr>
-<tr>
-	<td>33 /r</td>
-	<td>XOR r16, r/m16</td>
-	<td>RM</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>r16 XOR r/m16.</td>
-</tr>
-<tr>
-	<td>33 /r</td>
-	<td>XOR r32, r/m32</td>
-	<td>RM</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>r32 XOR r/m32.</td>
-</tr>
-<tr>
-	<td>REX.W + 33 /r</td>
-	<td>XOR r64, r/m64</td>
+	<td>REX + 32 /<em>r</em></td>
+	<td>XOR <em>r8*, r/m8*</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>r64 XOR r/m64.</td>
+	<td><em><em>r8 XOR r/m8.</em></em></td>
+</tr>
+<tr>
+	<td>33 /<em>r</em></td>
+	<td>XOR <em>r16, r/m16</em></td>
+	<td>RM</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td><em><em>r16 XOR r/m16.</em></em></td>
+</tr>
+<tr>
+	<td>33 /<em>r</em></td>
+	<td>XOR <em>r32, r/m32</em></td>
+	<td>RM</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td><em><em>r32 XOR r/m32.</em></em></td>
+</tr>
+<tr>
+	<td>REX.W + 33 /<em>r</em></td>
+	<td>XOR <em>r64, r/m64</em></td>
+	<td>RM</td>
+	<td>Valid</td>
+	<td>N.E.</td>
+	<td><em><em>r64 XOR r/m64.</em></em></td>
 </tr>
 </table>
 <p class="notes">Notes: * In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.</p>

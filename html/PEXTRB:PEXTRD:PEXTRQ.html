@@ -16,46 +16,46 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 3A 14 /r ib PEXTRB reg/m8, xmm2, imm8</td>
+	<td>66 0F 3A 14 /r ib PEXTRB<em> reg/m8, xmm2, imm8</em></td>
 	<td>MRI</td>
 	<td>V/V</td>
 	<td>SSE4_1</td>
-	<td>Extract a byte integer value from xmm2 at the source byte offset specified by imm8 into reg or m8. The upper bits of r32 or r64 are zeroed.</td>
+	<td>Extract a byte integer value from <em>xmm2</em> at the source byte offset specified by<em> imm8</em> into <em>reg</em> <em>or m8. The upper bits of r32 or r64 are zeroed.</em></td>
 </tr>
 <tr>
-	<td>66 0F 3A 16 /r ib PEXTRD r/m32, xmm2, imm8</td>
+	<td>66 0F 3A 16 /r ib PEXTRD <em>r/m32, xmm2, imm8</em></td>
 	<td>MRI</td>
 	<td>V/V</td>
 	<td>SSE4_1</td>
-	<td>Extract a dword integer value from xmm2 at the source dword offset specified by imm8 into r/m32.</td>
+	<td>Extract a dword integer value from <em>xmm2</em> at the source dword offset specified by<em> imm8</em> into <em>r/m32</em>.</td>
 </tr>
 <tr>
-	<td>66 REX.W 0F 3A 16 /r ib PEXTRQ r/m64, xmm2, imm8</td>
+	<td>66 REX.W 0F 3A 16 /r ib PEXTRQ <em>r/m64, xmm2, imm8</em></td>
 	<td>MRI</td>
 	<td>V/N.E.</td>
 	<td>SSE4_1</td>
-	<td>Extract a qword integer value from xmm2 at the source qword offset specified by imm8 into r/m64.</td>
+	<td>Extract a qword integer value from <em>xmm2 </em>at the source qword offset specified by<em> imm8</em> into <em>r/m64</em>.</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F3A.W0 14 /r ib VPEXTRB reg/m8, xmm2, imm8</td>
+	<td>VEX.128.66.0F3A.W0 14 /r ib VPEXTRB <em>reg/m8, xmm2, imm8</em></td>
 	<td>MRI</td>
-	<td>V1/V</td>
+	<td>V<sup>1</sup>/V</td>
 	<td>AVX</td>
-	<td>Extract a byte integer value from xmm2 at the source byte offset specified by imm8 into reg or m8. The upper bits of r64/r32 is filled with zeros.</td>
+	<td>Extract a byte integer value from <em>xmm2</em> at the source byte offset specified by <em>imm8</em> into <em>reg</em> or <em>m8</em>. The upper bits of r64/r32 is filled with zeros.</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F3A.W0 16 /r ib VPEXTRD r32/m32, xmm2, imm8</td>
+	<td>VEX.128.66.0F3A.W0 16 /r ib VPEXTRD <em>r32/m32, xmm2, imm8</em></td>
 	<td>MRI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Extract a dword integer value from xmm2 at the source dword offset specified by imm8 into r32/m32.</td>
+	<td>Extract a dword integer value from <em>xmm2</em> at the source dword offset specified by<em> imm8</em> into<em> r32/m32</em>.</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F3A.W1 16 /r ib VPEXTRQ r64/m64, xmm2, imm8</td>
+	<td>VEX.128.66.0F3A.W1 16 /r ib VPEXTRQ <em>r64/m64, xmm2, imm8</em></td>
 	<td>MRI</td>
 	<td>V/i</td>
 	<td>AVX</td>
-	<td>Extract a qword integer value from xmm2 at the source dword offset specified by imm8 into r64/m64.</td>
+	<td>Extract a qword integer value from<em> xmm2</em> at the source dword offset specified by<em> imm8</em> into <em>r64/m64</em>.</td>
 </tr>
 </table>
 <p class="notes">Notes: 1. In 64-bit mode, VEX.W1 is ignored for VPEXTRB (similar to legacy REX.W=1 prefix in PEXTRB).</p>

@@ -16,18 +16,18 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>VEX.256.66.0F38.W0 13 /r VCVTPH2PS ymm1, xmm2/m128</td>
+	<td>VEX.256.66.0F38.W0 13 /r VCVTPH2PS <em>ymm1, xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>F16C</td>
-	<td>Convert eight packed half precision (16-bit) floating-point values in xmm2/m128 to packed single-precision floating-point value in ymm1.</td>
+	<td>Convert eight packed half precision (16-bit) floating-point values in <em>xmm2/m128</em> to packed single-precision floating-point value in <em>ymm1</em>.</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F38.W0 13 /r VCVTPH2PS xmm1, xmm2/m64</td>
+	<td>VEX.128.66.0F38.W0 13 /r VCVTPH2PS <em>xmm1, xmm2/m64</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>F16C</td>
-	<td>Convert four packed half precision (16-bit) floating-point values in xmm2/m64 to packed single-precision floating-point value in xmm1.</td>
+	<td>Convert four packed half precision (16-bit) floating-point values in <em>xmm2/m64 </em>to packed single-precision floating-point value in <em>xmm1</em>.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -51,8 +51,8 @@
 <p>Converts four/eight packed half precision (16-bits) floating-point values in the low-order 64/128 bits of an XMM/YMM register or 64/128-bit memory location to four/eight packed single-precision floating-point values and writes the converted values into the destination XMM/YMM register. If case of a denormal operand, the correct normal result is returned. MXCSR.DAZ is ignored and is treated as if it 0. No denormal exception is reported on MXCSR. 128-bit version: The source operand is a XMM register or 64-bit memory location. The destination operand is a XMM register. The upper bits (VLMAX-1:128) of the corresponding destination YMM register are zeroed. 256-bit version: The source operand is a XMM register or 128-bit memory location. The destination operand is a YMM register. The diagram below illustrates how data is converted from four packed half precision (in 64 bits) to four single precision (in 128 bits) FP values. Note: VEX.vvvv is reserved (must be 1111b).</p>
 <table>
 <tr>
-	<td>VCVTPH2PS xmm1, xmm2/mem64, 95 convert</td>
-	<td>imm8 0 xmm2/mem64 convert convert</td>
+	<td>VCVTPH2PS <em>xmm1, xmm2/mem64,</em> 95 convert</td>
+	<td><em>imm8</em> 0 xmm2/mem64 convert convert</td>
 </tr>
 <tr>
 	<td>95 VS2</td>

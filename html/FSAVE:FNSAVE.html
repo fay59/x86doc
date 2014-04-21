@@ -17,16 +17,16 @@
 </tr>
 <tr>
 	<td>9B DD /6 DD /6</td>
-	<td>FSAVE m94/108byte FNSAVE* m94/108byte</td>
+	<td>FSAVE <em>m94/108byte</em> FNSAVE<sup>* </sup><em>m94/108byte</em></td>
 	<td>Valid Valid</td>
 	<td>Valid Valid</td>
-	<td>Store FPU state to m94byte or m108byte after checking for pending unmasked floating-point exceptions. Then re-initialize the FPU. Store FPU environment to m94byte or m108byte without checking for pending unmasked floatingpoint exceptions. Then re-initialize the FPU.</td>
+	<td>Store FPU state to <em>m94byte</em> or <em>m108byte</em> after checking for pending unmasked floating-point exceptions. Then re-initialize the FPU. Store FPU environment to <em>m94byte</em> or <em>m108byte</em> without checking for pending unmasked floatingpoint exceptions. Then re-initialize the FPU.</td>
 </tr>
 </table>
 <p class="notes">Notes: * See IA-32 Architecture Compatibility section below.</p>
 <h2 id="description">Description</h2>
 <p>Stores the current FPU state (operating environment and register stack) at the specified destination in memory, and then re-initializes the FPU. The FSAVE instruction checks for and handles pending unmasked floating-point exceptions before storing the FPU state; the FNSAVE instruction does not.</p>
-<p>The FPU operating environment consists of the FPU control word, status word, tag word, instruction pointer, data pointer, and last opcode. Figures 8-9 through 8-12 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, show the layout in memory of the stored environment, depending on the operating mode of the processor (protected or real) and the current operand-size attribute (16-bit or 32-bit). In virtual-8086 mode, the real mode layouts are used. The contents of the FPU register stack are stored in the 80 bytes immediately follow the operating environment image.</p>
+<p>The FPU operating environment consists of the FPU control word, status word, tag word, instruction pointer, data pointer, and last opcode. Figures 8-9 through 8-12 in the <em>Intel® 64 and IA-32 Architectures Software Developer’s</em> <em>Manual, Volume 1, show the layout in memory of the stored environment, depending on the operating mode of the</em> processor (protected or real) and the current operand-size attribute (16-bit or 32-bit). In virtual-8086 mode, the real mode layouts are used. The contents of the FPU register stack are stored in the 80 bytes immediately follow the operating environment image.</p>
 <p>The saved image reflects the state of the FPU after all floating-point instructions preceding the FSAVE/FNSAVE instruction in the instruction stream have been executed.</p>
 <p>After the FPU state has been saved, the FPU is reset to the same default values it is set to with the FINIT/FNINIT instructions (see “FINIT/FNINIT—Initialize Floating-Point Unit” in this chapter).</p>
 <p>The FSAVE/FNSAVE instructions are typically used when the operating system needs to perform a context switch, an exception handler needs to use the FPU, or an application program needs to pass a “clean” FPU to a procedure.</p>
@@ -34,7 +34,7 @@
 <p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
 <h2 id="ia-32-architecture-compatibility">IA-32 Architecture Compatibility</h2>
 <p>For Intel math coprocessors and FPUs prior to the Intel Pentium processor, an FWAIT instruction should be executed before attempting to read from the memory image stored with a prior FSAVE/FNSAVE instruction. This FWAIT instruction helps ensure that the storage operation has been completed.</p>
-<p>When operating a Pentium or Intel486 processor in MS-DOS compatibility mode, it is possible (under unusual circumstances) for an FNSAVE instruction to be interrupted prior to being executed to handle a pending FPU exception. See the section titled “No-Wait FPU Instructions Can Get FPU Interrupt in Window” in Appendix D of the Intel®64 and IA-32 Architectures Software Developer’s Manual, Volume 1, for a description of these circumstances. An FNSAVE instruction cannot be interrupted in this way on a Pentium 4, Intel Xeon, or P6 family processor.</p>
+<p>When operating a Pentium or Intel486 processor in MS-DOS compatibility mode, it is possible (under unusual circumstances) for an FNSAVE instruction to be interrupted prior to being executed to handle a pending FPU exception. See the section titled “No-Wait FPU Instructions Can Get FPU Interrupt in Window” in Appendix D of the <em>Intel®</em><em>64 and IA-32 Architectures Software Developer’s Manual, Volume 1, for a description of these circumstances. An</em> FNSAVE instruction cannot be interrupted in this way on a Pentium 4, Intel Xeon, or P6 family processor.</p>
 <h2 id="operation">Operation</h2>
 <pre>(* Save FPU State and Registers *)
 DEST[FPUControlWord] ← FPUControlWord;

@@ -16,42 +16,42 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F C5 /r ib1 PEXTRW reg, mm, imm8</td>
+	<td>0F C5 /<em>r</em> ib<sup>1</sup> PEXTRW <em>reg</em>, <em>mm</em>, <em>imm8</em></td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Extract the word specified by imm8 from mm and move it to reg, bits 15-0. The upper bits of r32 or r64 is zeroed.</td>
+	<td>Extract the word specified by <em>imm8</em> from <em>mm</em> and move it to <em>reg</em>, bits 15-0. The upper bits of r32 or r64 is zeroed.</td>
 </tr>
 <tr>
-	<td>66 0F C5 /r ib PEXTRW reg, xmm, imm8</td>
+	<td>66 0F C5 /<em>r</em> ib PEXTRW <em>reg</em>, <em>xmm</em>, <em>imm8</em></td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Extract the word specified by imm8 from xmm and move it to reg, bits 15-0. The upper bits of r32 or r64 is zeroed.</td>
+	<td>Extract the word specified by <em>imm8</em> from <em>xmm</em> and move it to <em>reg</em>, bits 15-0. The upper bits of r32 or r64 is zeroed.</td>
 </tr>
 <tr>
-	<td>66 0F 3A 15 /r ib PEXTRW reg/m16, xmm, imm8</td>
+	<td>66 0F 3A 15 /r ib PEXTRW <em>reg/m16, xmm, imm8</em></td>
 	<td>MRI</td>
 	<td>V/V</td>
 	<td>SSE4_1</td>
-	<td>Extract the word specified by imm8 from xmm and copy it to lowest 16 bits of reg or m16. Zero-extend the result in the destination, r32 or r64.</td>
+	<td>Extract the word specified by <em>imm8</em> from <em>xmm</em> and copy it to lowest 16 bits of <em>reg or m16</em>. Zero-extend the result in the destination, r32 or r64.</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F.W0 C5 /r ib VPEXTRW reg, xmm1, imm8</td>
+	<td>VEX.128.66.0F.W0 C5 /r ib VPEXTRW <em>reg, xmm1, imm8</em></td>
 	<td>RMI</td>
-	<td>V2/V</td>
+	<td>V<sup>2</sup>/V</td>
 	<td>AVX</td>
-	<td>Extract the word specified by imm8 from xmm1 and move it to reg, bits 15:0. Zeroextend the result. The upper bits of r64/r32 is filled with zeros.</td>
+	<td>Extract the word specified by <em>imm8</em> from <em>xmm1 and move it to reg, bits 15:0. Zeroe</em>xtend the result. The upper bits of r64/r32 is filled with zeros.</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F3A.W0 15 /r ib VPEXTRW reg/m16, xmm2, imm8</td>
+	<td>VEX.128.66.0F3A.W0 15 /r ib VPEXTRW <em>reg/m16, xmm2, imm8</em></td>
 	<td>MRI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Extract a word integer value from xmm2 at the source word offset specified by imm8 into reg or m16. The upper bits of r64/r32 is filled with zeros.</td>
+	<td>Extract a word integer value from<em> xmm2</em> at the source word offset specified by <em>imm8</em> into <em><em>reg or m16. The upper bits of r64/r32 is filled</em></em> with zeros.</td>
 </tr>
 </table>
-<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A. 2. In 64-bit mode, VEX.W1 is ignored for VPEXTRW (similar to legacy REX.W=1 prefix in PEXTRW).</p>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual,</em> <em><em>Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and</em></em> <em>IA-32 Architectures Software Developer’s Manual, Volume 3A.</em> 2. In 64-bit mode, VEX.W1 is ignored for VPEXTRW (similar to legacy REX.W=1 prefix in PEXTRW).</p>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>

@@ -17,28 +17,28 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>8D /r</td>
-	<td>LEA r16,m</td>
+	<td>8D /<em>r</em></td>
+	<td>LEA <em>r16,m</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Store effective address for m in register r16.</td>
+	<td>Store effective address for <em>m</em> in register <em>r16.</em></td>
 </tr>
 <tr>
-	<td>8D /r</td>
-	<td>LEA r32,m</td>
+	<td>8D /<em>r</em></td>
+	<td>LEA <em>r32,m</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Store effective address for m in register r32.</td>
+	<td>Store effective address for <em>m</em> in register <em>r32.</em></td>
 </tr>
 <tr>
-	<td>REX.W + 8D /r</td>
-	<td>LEA r64,m</td>
+	<td>REX.W + 8D /<em>r</em></td>
+	<td>LEA <em>r64,m</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Store effective address for m in register r64.</td>
+	<td>Store effective address for <em>m</em> in register <em>r64.</em></td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -81,7 +81,7 @@
 <h2 id="operation">Operation</h2>
 <pre>IF OperandSize = 16 and AddressSize = 16
   THEN
-     DEST ← EffectiveAddress(SRC); (* 16-bit address *)
+     DEST<em> </em>← EffectiveAddress(SRC); (* 16-bit address *)
   ELSE IF OperandSize = 16 and AddressSize = 32
      THEN
        temp ← EffectiveAddress(SRC); (* 32-bit address *)
@@ -94,7 +94,7 @@
      FI;
   ELSE IF OperandSize = 32 and AddressSize = 32
      THEN
-       DEST ← EffectiveAddress(SRC); (* 32-bit address *)
+       DEST<em> </em>← EffectiveAddress(SRC); (* 32-bit address *)
      FI;
   ELSE IF OperandSize = 16 and AddressSize = 64
      THEN
@@ -108,7 +108,7 @@
      FI;
   ELSE IF OperandSize = 64 and AddressSize = 64
      THEN
-       DEST ← EffectiveAddress(SRC); (* 64-bit address *)
+       DEST<em> </em>← EffectiveAddress(SRC); (* 64-bit address *)
      FI;
 FI;
 </pre>

@@ -48,7 +48,7 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Invalidates mappings in the translation lookaside buffers (TLBs) and paging-structure caches based on processcontext identifier (PCID). (See Section 4.10, “Caching Translation Information,” in Intel 64 and IA-32 Architecture Software Developer’s Manual, Volume 3A.) Invalidation is based on the INVPCID type specified in the register operand and the INVPCID descriptor specified in the memory operand.</p>
+<p>Invalidates mappings in the translation lookaside buffers (TLBs) and paging-structure caches based on processcontext identifier (PCID). (See Section 4.10, “Caching Translation Information,” in <em>Intel 64 and IA-32 Architecture</em> <em>Software Developer’s Manual, Volume 3A.) Invalidation is based on the INVPCID type specified in the register</em> operand and the INVPCID descriptor specified in the memory operand.</p>
 <p>Outside 64-bit mode, the register operand is always 32 bits, regardless of the value of CS.D. In 64-bit mode the register operand has 64 bits.</p>
 <p>There are four INVPCID types currently defined:</p>
 <ul>
@@ -67,7 +67,7 @@
 </tr>
 </table>
 <p>If CR4.PCIDE = 0, a logical processor does not cache information for any PCID other than 000H. In this case, executions with INVPCID types 0 and 1 are allowed only if the PCID specified in the INVPCID descriptor is 000H;</p>
-<p>executions with INVPCID types 2 and 3 invalidate mappings only for PCID 000H. Note that CR4.PCIDE must be 0 outside 64-bit mode (see Chapter 4.10.1, “Process-Context Identifiers (PCIDs)‚” of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A).</p>
+<p>executions with INVPCID types 2 and 3 invalidate mappings only for PCID 000H. Note that CR4.PCIDE must be 0 outside 64-bit mode (see Chapter 4.10.1, “Process-Context Identifiers (PCIDs)‚” of the <em>Intel® 64 and IA-32 Archi<em>t</em>ectures Software Developer’s Manual, Volume 3A).</em></p>
 <h2 id="operation">Operation</h2>
 <pre>INVPCID_TYPE ← value of register operand;
 INVPCID_DESC ← value of memory operand;

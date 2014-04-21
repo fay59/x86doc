@@ -19,7 +19,7 @@
 </tr>
 <tr>
 	<td>A4</td>
-	<td>MOVS m8, m8</td>
+	<td>MOVS <em>m8</em>, <em>m8</em></td>
 	<td>NP</td>
 	<td>Valid</td>
 	<td>Valid</td>
@@ -27,7 +27,7 @@
 </tr>
 <tr>
 	<td>A5</td>
-	<td>MOVS m16, m16</td>
+	<td>MOVS <em>m16</em>, <em>m16</em></td>
 	<td>NP</td>
 	<td>Valid</td>
 	<td>Valid</td>
@@ -35,7 +35,7 @@
 </tr>
 <tr>
 	<td>A5</td>
-	<td>MOVS m32, m32</td>
+	<td>MOVS <em>m32</em>, <em>m32</em></td>
 	<td>NP</td>
 	<td>Valid</td>
 	<td>Valid</td>
@@ -43,7 +43,7 @@
 </tr>
 <tr>
 	<td>REX.W + A5</td>
-	<td>MOVS m64, m64</td>
+	<td>MOVS <em>m64</em>, <em>m64</em></td>
 	<td>NP</td>
 	<td>Valid</td>
 	<td>N.E.</td>
@@ -101,13 +101,13 @@
 </table>
 <h2 id="description">Description</h2>
 <p>Moves the byte, word, or doubleword specified with the second operand (source operand) to the location specified with the first operand (destination operand). Both the source and destination operands are located in memory. The address of the source operand is read from the DS:ESI or the DS:SI registers (depending on the address-size attribute of the instruction, 32 or 16, respectively). The address of the destination operand is read from the ES:EDI or the ES:DI registers (again depending on the address-size attribute of the instruction). The DS segment may be overridden with a segment override prefix, but the ES segment cannot be overridden.</p>
-<p>At the assembly-code level, two forms of this instruction are allowed: the “explicit-operands” form and the “nooperands” form. The explicit-operands form (specified with the MOVS mnemonic) allows the source and destination operands to be specified explicitly. Here, the source and destination operands should be symbols that indicate the size and location of the source value and the destination, respectively. This explicit-operands form is provided to allow documentation; however, note that the documentation provided by this form can be misleading. That is, the source and destination operand symbols must specify the correct type (size) of the operands (bytes, words, or doublewords), but they do not have to specify the correct location. The locations of the source and destination operands are always specified by the DS:(E)SI and ES:(E)DI registers, which must be loaded correctly before the move string instruction is executed.</p>
+<p>At the assembly-code level, two forms of this instruction are allowed: the “explicit-operands” form and the “nooperands” form. The explicit-operands form (specified with the MOVS mnemonic) allows the source and destination operands to be specified explicitly. Here, the source and destination operands should be symbols that indicate the size and location of the source value and the destination, respectively. This explicit-operands form is provided to allow documentation; however, note that the documentation provided by this form can be misleading. That is, the source and destination operand symbols must specify the correct <strong>type</strong> (size) of the operands (bytes, words, or doublewords), but they do not have to specify the correct <strong>location</strong>. The locations of the source and destination operands are always specified by the DS:(E)SI and ES:(E)DI registers, which must be loaded correctly before the move string instruction is executed.</p>
 <p>The no-operands form provides “short forms” of the byte, word, and doubleword versions of the MOVS instructions. Here also DS:(E)SI and ES:(E)DI are assumed to be the source and destination operands, respectively. The size of the source and destination operands is selected with the mnemonic: MOVSB (byte move), MOVSW (word move), or MOVSD (doubleword move).</p>
 <p>After the move operation, the (E)SI and (E)DI registers are incremented or decremented automatically according to the setting of the DF flag in the EFLAGS register. (If the DF flag is 0, the (E)SI and (E)DI register are incre-</p>
 <p>mented; if the DF flag is 1, the (E)SI and (E)DI registers are decremented.) The registers are incremented or decremented by 1 for byte operations, by 2 for word operations, or by 4 for doubleword operations.</p>
 <h2 id="note">NOTE</h2>
-<p>To improve performance, more recent processors support modifications to the processor’s operation during the string store operations initiated with MOVS and MOVSB. See Section 7.3.9.3 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1 for additional information on fast-string operation.</p>
-<p>The MOVS, MOVSB, MOVSW, and MOVSD instructions can be preceded by the REP prefix (see “REP/REPE/REPZ /REPNE/REPNZ—Repeat String Operation Prefix” in Chapter 4 of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2B, for a description of the REP prefix) for block moves of ECX bytes, words, or doublewords.</p>
+<p>To improve performance, more recent processors support modifications to the processor’s operation during the string store operations initiated with MOVS and MOVSB. See Section 7.3.9.3 in the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1</em> for additional information on fast-string operation.</p>
+<p>The MOVS, MOVSB, MOVSW, and MOVSD instructions can be preceded by the REP prefix (see “REP/REPE/REPZ /REPNE/REPNZ—Repeat String Operation Prefix” in Chapter 4 of the <em>Intel® 64 and IA-32 Architectures Software</em> <em>Developer’s Manual, Volume 2B, for a description of the REP prefix) for block moves of ECX bytes, words, or</em> doublewords.</p>
 <p>In 64-bit mode, the instruction’s default address size is 64 bits, 32-bit address size is supported using the prefix 67H. The 64-bit addresses are specified by RSI and RDI; 32-bit address are specified by ESI and EDI. Use of the REX.W prefix promotes doubleword operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.</p>
 <h2 id="operation">Operation</h2>
 <pre>DEST ← SRC;

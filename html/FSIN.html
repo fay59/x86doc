@@ -24,7 +24,7 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Computes the sine of the source operand in register ST(0) and stores the result in ST(0). The source operand must be given in radians and must be within the range −263 to +263. The following table shows the results obtained when taking the sine of various classes of numbers, assuming that underflow does not occur.</p>
+<p>Computes the sine of the source operand in register ST(0) and stores the result in ST(0). The source operand must be given in radians and must be within the range −2<sup>63</sup> to +2<sup>63</sup>. The following table shows the results obtained when taking the sine of various classes of numbers, assuming that underflow does not occur.</p>
 <h3 id="table-3-45-fsin-results">Table 3-45. FSIN Results</h3>
 <table>
 <tr>
@@ -53,10 +53,10 @@
 </tr>
 </table>
 <p class="notes">Notes: F Means finite floating-point value. * Indicates floating-point invalid-arithmetic-operand (#IA) exception.</p>
-<p>If the source operand is outside the acceptable range, the C2 flag in the FPU status word is set, and the value in register ST(0) remains unchanged. The instruction does not raise an exception when the source operand is out of range. It is up to the program to check the C2 flag for out-of-range conditions. Source values outside the range −263 to +263 can be reduced to the range of the instruction by subtracting an appropriate integer multiple of 2π or by using the FPREM instruction with a divisor of 2π. See the section titled “Pi” in Chapter 8 of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, for a discussion of the proper value to use for π in performing such reductions.</p>
+<p>If the source operand is outside the acceptable range, the C2 flag in the FPU status word is set, and the value in register ST(0) remains unchanged. The instruction does not raise an exception when the source operand is out of range. It is up to the program to check the C2 flag for out-of-range conditions. Source values outside the range −2<sup>63</sup> to +2<sup>63</sup> can be reduced to the range of the instruction by subtracting an appropriate integer multiple of 2π or by using the FPREM instruction with a divisor of 2π. See the section titled “Pi” in Chapter 8 of the <em>Intel® 64 and IA-32</em> <em>Architectures Software Developer’s Manual, Volume 1, for a discussion of the proper value to use for π in</em> performing such reductions.</p>
 <p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
 <h2 id="operation">Operation</h2>
-<pre>IF -263 &lt; ST(0) &lt; 263
+<pre>IF -2<sup>63 </sup>&lt; ST(0) &lt; 2<sup>63</sup>
   THEN
      C2 ← 0;
      ST(0) ← sin(ST(0));
@@ -72,7 +72,7 @@ FI;
 </tr>
 <tr>
 	<td>C2</td>
-	<td>Set to 1 if outside range (−263 &lt; source operand &lt; +263); otherwise, set to 0.</td>
+	<td>Set to 1 if outside range (−2<sup>63</sup> &lt; source operand &lt; +2<sup>63</sup>); otherwise, set to 0.</td>
 </tr>
 <tr>
 	<td>C0, C3</td>

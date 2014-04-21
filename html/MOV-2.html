@@ -16,32 +16,32 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 21/r MOV r32, DR0-DR7</td>
+	<td>0F 21/<em>r</em> MOV <em>r32, </em>DR0-DR7</td>
 	<td>MR</td>
 	<td>N.E.</td>
 	<td>Valid</td>
-	<td>Move debug register to r32.</td>
+	<td>Move debug register to <em>r32</em>.</td>
 </tr>
 <tr>
-	<td>0F 21/r MOV r64, DR0-DR7</td>
+	<td>0F 21/<em>r</em> MOV <em>r64, </em>DR0-DR7</td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Move extended debug register to r64.</td>
+	<td>Move extended debug register to <em>r64</em>.</td>
 </tr>
 <tr>
-	<td>0F 23 /r MOV DR0-DR7, r32</td>
+	<td>0F 23 /<em>r</em> MOV DR0-DR7, <em>r32</em></td>
 	<td>RM</td>
 	<td>N.E.</td>
 	<td>Valid</td>
-	<td>Move r32 to debug register.</td>
+	<td>Move <em>r32</em> to debug register.</td>
 </tr>
 <tr>
-	<td>0F 23 /r MOV DR0-DR7, r64</td>
+	<td>0F 23 /<em>r</em> MOV DR0-DR7, <em>r64</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Move r64 to extended debug register.</td>
+	<td>Move <em>r64</em> to extended debug register.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -69,10 +69,10 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Moves the contents of a debug register (DR0, DR1, DR2, DR3, DR4, DR5, DR6, or DR7) to a general-purpose register or vice versa. The operand size for these instructions is always 32 bits in non-64-bit modes, regardless of the operand-size attribute. (See Section 17.2, “Debug Registers”, of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A, for a detailed description of the flags and fields in the debug registers.)</p>
+<p>Moves the contents of a debug register (DR0, DR1, DR2, DR3, DR4, DR5, DR6, or DR7) to a general-purpose register or vice versa. The operand size for these instructions is always 32 bits in non-64-bit modes, regardless of the operand-size attribute. (See Section 17.2, “Debug Registers”, of the <em>Intel® 64 and IA-32 Architectures Soft<em>w</em>are Developer’s Manual, Volume 3A, for a detailed description of the flags and fields in the debug registers.)</em></p>
 <p>The instructions must be executed at privilege level 0 or in real-address mode.</p>
 <p>When the debug extension (DE) flag in register CR4 is clear, these instructions operate on debug registers in a manner that is compatible with Intel386 and Intel486 processors. In this mode, references to DR4 and DR5 refer to DR6 and DR7, respectively. When the DE flag in CR4 is set, attempts to reference DR4 and DR5 result in an undefined opcode (#UD) exception. (The CR4 register was added to the IA-32 Architecture beginning with the Pentium processor.)</p>
-<p>At the opcode level, the reg field within the ModR/M byte specifies which of the debug registers is loaded or read. The two bits in the mod field are ignored. The r/m field specifies the general-purpose register loaded or read.</p>
+<p>At the opcode level, the <em>reg</em> field within the ModR/M byte specifies which of the debug registers is loaded or read. The two bits in the <em>mod </em>field are ignored. The <em>r/m</em> field specifies the general-purpose register loaded or read.</p>
 <p>In 64-bit mode, the instruction’s default operation size is 64 bits. Use of the REX.B prefix permits access to additional registers (R8-R15). Use of the REX.W or 66H prefix is ignored. Use of the REX.R prefix causes an invalidopcode exception. See the summary chart at the beginning of this section for encoding data and limits.</p>
 <h2 id="operation">Operation</h2>
 <pre>IF ((DE = 1) and (SRC or DEST = DR4 or DR5))

@@ -153,68 +153,68 @@ END
 	<td>Description Leg Mode</td>
 </tr>
 <tr>
-	<td>90+rw</td>
-	<td>Exchange r16 with AX.</td>
+	<td>90+<em>rw</em></td>
+	<td>Exchange <em>r16</em> with AX.</td>
 </tr>
 <tr>
-	<td>90+rw</td>
-	<td>Exchange AX with r16.</td>
+	<td>90+<em>rw</em></td>
+	<td>Exchange AX with <em>r16.</em></td>
 </tr>
 <tr>
-	<td>90+rd</td>
-	<td>Exchange r32 with EAX.</td>
+	<td>90+<em>rd</em></td>
+	<td>Exchange <em>r32</em> with EAX.</td>
 </tr>
 <tr>
-	<td>REX.W + 90+rd</td>
-	<td>Exchange r64 with RAX.</td>
+	<td>REX.W + 90+<em>rd</em></td>
+	<td>Exchange <em>r64</em> with RAX.</td>
 </tr>
 <tr>
-	<td>90+rd</td>
-	<td>Exchange EAX with r32.</td>
+	<td>90+<em>rd</em></td>
+	<td>Exchange EAX with <em>r32.</em></td>
 </tr>
 <tr>
-	<td>REX.W + 90+rd</td>
-	<td>Exchange RAX with r64.</td>
+	<td>REX.W + 90+<em>rd</em></td>
+	<td>Exchange RAX with <em>r64.</em></td>
 </tr>
 <tr>
-	<td>86 /r</td>
-	<td>Exchange r8 (byte register) with byte from r/m8.</td>
+	<td>86 /<em>r</em></td>
+	<td>Exchange <em>r8</em> (byte register) with byte from <em>r/m8.</em></td>
 </tr>
 <tr>
-	<td>REX + 86 /r</td>
-	<td>Exchange r8 (byte register) with byte from r/m8.</td>
+	<td>REX + 86 /<em>r</em></td>
+	<td>Exchange <em>r8</em> (byte register) with byte from <em>r/m8.</em></td>
 </tr>
 <tr>
-	<td>86 /r</td>
-	<td>Exchange byte from r/m8 with r8 (byte register).</td>
+	<td>86 /<em>r</em></td>
+	<td>Exchange byte from <em>r/m8</em> with <em>r8</em> (byte register).</td>
 </tr>
 <tr>
-	<td>REX + 86 /r</td>
-	<td>Exchange byte from r/m8 with r8 (byte register).</td>
+	<td>REX + 86 /<em>r</em></td>
+	<td>Exchange byte from <em>r/m8</em> with <em>r8</em> (byte register).</td>
 </tr>
 <tr>
-	<td>87 /r</td>
-	<td>Exchange r16 with word from r/m16.</td>
+	<td>87 /<em>r</em></td>
+	<td>Exchange <em>r16</em> with word from<em> r/m16.</em></td>
 </tr>
 <tr>
-	<td>87 /r</td>
-	<td>Exchange word from r/m16 with r16.</td>
+	<td>87 /<em>r</em></td>
+	<td>Exchange word from<em> r/m16 </em>with <em>r16.</em></td>
 </tr>
 <tr>
-	<td>87 /r</td>
-	<td>Exchange r32 with doubleword from r/m32.</td>
+	<td>87 /<em>r</em></td>
+	<td>Exchange <em>r32</em> with doubleword from <em>r/m32.</em></td>
 </tr>
 <tr>
-	<td>REX.W + 87 /r</td>
-	<td>Exchange r64 with quadword from r/m64.</td>
+	<td>REX.W + 87 /<em>r</em></td>
+	<td>Exchange <em>r64</em> with quadword from <em>r/m64.</em></td>
 </tr>
 <tr>
-	<td>87 /r</td>
-	<td>Exchange doubleword from r/m32 with r32.</td>
+	<td>87 /<em>r</em></td>
+	<td>Exchange doubleword from<em> r/m32</em> with <em>r32.</em></td>
 </tr>
 <tr>
-	<td>REX.W + 87 /r</td>
-	<td>Exchange quadword from r/m64 with r64.</td>
+	<td>REX.W + 87 /<em>r</em></td>
+	<td>Exchange quadword from<em> r/m64</em> with <em>r64.</em></td>
 </tr>
 </table>
 <p class="notes">Notes: * In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.</p>
@@ -258,7 +258,7 @@ END
 </table>
 <h2 id="description">Description</h2>
 <p>Exchanges the contents of the destination (first) and source (second) operands. The operands can be two generalpurpose registers or a register and a memory location. If a memory operand is referenced, the processor’s locking protocol is automatically implemented for the duration of the exchange operation, regardless of the presence or absence of the LOCK prefix or of the value of the IOPL. (See the LOCK prefix description in this chapter for more information on the locking protocol.)</p>
-<p>This instruction is useful for implementing semaphores or similar data structures for process synchronization. (See “Bus Locking” in Chapter 8 of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A, for more information on bus locking.)</p>
+<p>This instruction is useful for implementing semaphores or similar data structures for process synchronization. (See “Bus Locking” in Chapter 8 of the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A</em>, for more information on bus locking.)</p>
 <p>The XCHG instruction can also be used instead of the BSWAP instruction for 16-bit operands.</p>
 <p>In 64-bit mode, the instruction’s default operation size is 32 bits. Using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). Using a REX prefix in the form of REX.W promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.</p>
 <h2 id="operation">Operation</h2>

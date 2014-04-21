@@ -16,46 +16,46 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>F2 0F 38 F0 /r CRC32 r32, r/m8</td>
+	<td>F2 0F 38 F0 <em>/r</em> CRC32 <em>r32, r/m8</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Accumulate CRC32 on r/m8.</td>
+	<td>Accumulate CRC32 on <em>r/m8</em>.</td>
 </tr>
 <tr>
-	<td>F2 REX 0F 38 F0 /r CRC32 r32, r/m8*</td>
+	<td>F2 REX 0F 38 F0 <em>/r</em> CRC32 <em>r32, r/m8*</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Accumulate CRC32 on r/m8.</td>
+	<td>Accumulate CRC32 on <em>r/m8.</em></td>
 </tr>
 <tr>
-	<td>F2 0F 38 F1 /r CRC32 r32, r/m16</td>
+	<td>F2 0F 38 F1 <em>/r</em> CRC32 <em>r32, r/m16</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Accumulate CRC32 on r/m16.</td>
+	<td>Accumulate CRC32 on <em>r/m16</em>.</td>
 </tr>
 <tr>
-	<td>F2 0F 38 F1 /r CRC32 r32, r/m32</td>
+	<td>F2 0F 38 F1<em> /r</em> CRC32 <em>r32, r/m32</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Accumulate CRC32 on r/m32.</td>
+	<td>Accumulate CRC32 on <em>r/m32.</em></td>
 </tr>
 <tr>
-	<td>F2 REX.W 0F 38 F0 /r CRC32 r64, r/m8</td>
-	<td>RM</td>
-	<td>Valid</td>
-	<td>N.E.</td>
-	<td>Accumulate CRC32 on r/m8.</td>
-</tr>
-<tr>
-	<td>F2 REX.W 0F 38 F1 /r CRC32 r64, r/m64</td>
+	<td>F2 REX.W 0F 38 F0 <em>/r</em> CRC32 <em>r64, r/m8</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Accumulate CRC32 on r/m64.</td>
+	<td>Accumulate CRC32 on <em>r/m8.</em></td>
+</tr>
+<tr>
+	<td>F2 REX.W 0F 38 F1 <em>/r</em> CRC32 <em>r64, r/m64</em></td>
+	<td>RM</td>
+	<td>Valid</td>
+	<td>N.E.</td>
+	<td>Accumulate CRC32 on <em>r/m64.</em></td>
 </tr>
 </table>
 <p class="notes">Notes: *In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.</p>

@@ -17,28 +17,28 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 03 /r</td>
-	<td>LSL r16, r16/m16</td>
+	<td>0F 03 /<em>r</em></td>
+	<td>LSL <em>r16, r16/m16</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Load: r16 ← segment limit, selector r16/m16.</td>
+	<td>Load:<em> r16 </em>← segment limit, selector<em> r16/m16.</em></td>
 </tr>
 <tr>
-	<td>0F 03 /r</td>
-	<td>LSL r32, r32/m16*</td>
+	<td>0F 03 /<em>r</em></td>
+	<td>LSL<em> r32, r32/m16</em><sup>*</sup></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Load: r32 ← segment limit, selector r32/m16.</td>
+	<td>Load: <em>r32 </em>←<em> </em>segment limit, selector <em>r32/m16.</em></td>
 </tr>
 <tr>
-	<td>REX.W + 0F 03 /r</td>
-	<td>LSL r64, r32/m16*</td>
+	<td>REX.W + 0F 03 /<em>r</em></td>
+	<td>LSL<em> r64, r32/m16</em><sup>*</sup></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Load: r64 ← segment limit, selector r32/m16</td>
+	<td>Load: <em>r64 </em>←<em> </em>segment limit, selector <em>r32/m16</em></td>
 </tr>
 </table>
 <p class="notes">Notes: * For all loads (regardless of destination sizing), only bits 16-0 are used. Other bits are ignored.</p>

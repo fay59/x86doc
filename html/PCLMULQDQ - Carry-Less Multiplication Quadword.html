@@ -16,18 +16,18 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 3A 44 /r ib PCLMULQDQ xmm1, xmm2/m128, imm8</td>
+	<td>66 0F 3A 44 /r ib PCLMULQDQ <em>xmm1, xmm2/m128, imm8</em></td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>CLMUL</td>
-	<td>Carry-less multiplication of one quadword of xmm1 by one quadword of xmm2/m128, stores the 128-bit result in xmm1. The immediate is used to determine which quadwords of xmm1 and xmm2/m128 should be used.</td>
+	<td>Carry-less multiplication of one quadword of xmm1 by one quadword of <em>xmm2/m128</em>, stores the 128-bit result in <em>xmm1</em>. The immediate is used to determine which quadwords of <em>xmm1</em> and <em>xmm2/m128</em> should be used.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F3A.WIG 44 /r ib VPCLMULQDQ xmm1, xmm2, xmm3/m128, imm8</td>
+	<td>VEX.NDS.128.66.0F3A.WIG 44 /r ib VPCLMULQDQ <em>xmm1, xmm2, xmm3/m128, imm8</em></td>
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>Both CLMUL and AVX flags</td>
-	<td>Carry-less multiplication of one quadword of xmm2 by one quadword of xmm3/m128, stores the 128-bit result in xmm1. The immediate is used to determine which quadwords of xmm2 and xmm3/m128 should be used.</td>
+	<td>Carry-less multiplication of one quadword of <em><em>xmm2 by one quadword of xmm3/m128,</em></em> stores the 128-bit result in <em>xmm1</em>. The immediate is used to determine which quadwords of <em>xmm2</em> and <em>xmm3/m128</em> should be used.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -60,7 +60,7 @@
 <table>
 <tr>
 	<td>Imm[4]</td>
-	<td>Imm[0]CL_MUL( SRC21[63:0], SRC1[63:0] ) CL_MUL( SRC2[63:0], SRC1[127:64] ) CL_MUL( SRC2[127:64], SRC1[63:0] ) CL_MUL( SRC2[127:64], SRC1[127:64] )</td>
+	<td>Imm[0]CL_MUL( SRC2<sup>1</sup>[63:0], SRC1[63:0] ) CL_MUL( SRC2[63:0], SRC1[127:64] ) CL_MUL( SRC2[127:64], SRC1[63:0] ) CL_MUL( SRC2[127:64], SRC1[127:64] )</td>
 	<td>PCLMULQDQ Operation 0 0 1 1</td>
 </tr>
 </table>
@@ -74,19 +74,19 @@
 	<td>Imm8 Encoding</td>
 </tr>
 <tr>
-	<td>PCLMULLQLQDQ xmm1, xmm2</td>
+	<td>PCLMULLQLQDQ<em> xmm1, xmm2</em></td>
 	<td>0000_0000B</td>
 </tr>
 <tr>
-	<td>PCLMULHQLQDQ xmm1, xmm2</td>
+	<td>PCLMULHQLQDQ<em> xmm1, xmm2</em></td>
 	<td>0000_0001B</td>
 </tr>
 <tr>
-	<td>PCLMULLQHDQ xmm1, xmm2</td>
+	<td>PCLMULLQHDQ<em> xmm1, xmm2</em></td>
 	<td>0001_0000B</td>
 </tr>
 <tr>
-	<td>PCLMULHQHDQ xmm1, xmm2</td>
+	<td>PCLMULHQHDQ<em> xmm1, xmm2</em></td>
 	<td>0001_0001B</td>
 </tr>
 </table>

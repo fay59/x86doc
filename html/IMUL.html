@@ -18,107 +18,107 @@
 </tr>
 <tr>
 	<td>F6 /5</td>
-	<td>IMUL r/m8*</td>
+	<td>IMUL <em>r/m8*</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>AX← AL ∗ r/m byte.</td>
+	<td>AX← AL ∗ <em>r/m</em> byte.</td>
 </tr>
 <tr>
 	<td>F7 /5</td>
-	<td>IMUL r/m16</td>
+	<td>IMUL <em>r/m16</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>DX:AX ← AX ∗ r/m word.</td>
+	<td>DX:AX ← AX ∗ <em>r/m</em> word.</td>
 </tr>
 <tr>
 	<td>F7 /5</td>
-	<td>IMUL r/m32</td>
+	<td>IMUL <em>r/m32</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>EDX:EAX ← EAX ∗ r/m32.</td>
+	<td>EDX:EAX ← EAX ∗ <em>r/m</em>32.</td>
 </tr>
 <tr>
 	<td>REX.W + F7 /5</td>
-	<td>IMUL r/m64</td>
+	<td>IMUL <em>r/m64</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>RDX:RAX ← RAX ∗ r/m64.</td>
+	<td>RDX:RAX ← RAX ∗ <em>r/m</em>64.</td>
 </tr>
 <tr>
-	<td>0F AF /r</td>
-	<td>IMUL r16, r/m16</td>
+	<td>0F AF /<em>r</em></td>
+	<td>IMUL <em>r16, r/m16</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>word register ← word register ∗ r/m16.</td>
+	<td>word register ← word register ∗ <em>r/m</em>16.</td>
 </tr>
 <tr>
-	<td>0F AF /r</td>
-	<td>IMUL r32, r/m32</td>
+	<td>0F AF /<em>r</em></td>
+	<td>IMUL <em>r32, r/m32</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>doubleword register ← doubleword register ∗r/m32.</td>
+	<td>doubleword register ← doubleword register ∗<em>r/m32.</em></td>
 </tr>
 <tr>
-	<td>REX.W + 0F AF /r</td>
-	<td>IMUL r64, r/m64</td>
+	<td>REX.W + 0F AF /<em>r</em></td>
+	<td>IMUL <em>r64, r/m64</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Quadword register ← Quadword register ∗r/m64.</td>
+	<td>Quadword register ← Quadword register ∗<em>r/m64.</em></td>
 </tr>
 <tr>
-	<td>6B /r ib</td>
-	<td>IMUL r16, r/m16, imm8</td>
+	<td>6B /<em>r ib</em></td>
+	<td>IMUL <em>r16, r/m16, imm8</em></td>
 	<td>RMI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>word register ← r/m16 ∗ sign-extended immediate byte.</td>
+	<td>word register ← <em>r/m16</em> ∗ sign-extended immediate byte.</td>
 </tr>
 <tr>
-	<td>6B /r ib</td>
-	<td>IMUL r32, r/m32, imm8</td>
+	<td>6B /<em>r ib</em></td>
+	<td>IMUL <em>r32, r/m32, imm8</em></td>
 	<td>RMI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>doubleword register ← r/m32 ∗ signextended immediate byte.</td>
+	<td>doubleword register ← <em>r/m32</em> ∗ signextended immediate byte.</td>
 </tr>
 <tr>
-	<td>REX.W + 6B /r ib</td>
-	<td>IMUL r64, r/m64, imm8</td>
-	<td>RMI</td>
-	<td>Valid</td>
-	<td>N.E.</td>
-	<td>Quadword register ← r/m64 ∗ sign-extended immediate byte.</td>
-</tr>
-<tr>
-	<td>69 /r iw</td>
-	<td>IMUL r16, r/m16, imm16</td>
-	<td>RMI</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>word register ← r/m16 ∗ immediate word.</td>
-</tr>
-<tr>
-	<td>69 /r id</td>
-	<td>IMUL r32, r/m32, imm32</td>
-	<td>RMI</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>doubleword register ← r/m32 ∗ immediate doubleword.</td>
-</tr>
-<tr>
-	<td>REX.W + 69 /r id</td>
-	<td>IMUL r64, r/m64, imm32</td>
+	<td>REX.W + 6B /<em>r ib</em></td>
+	<td>IMUL <em>r64, r/m64, imm8</em></td>
 	<td>RMI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Quadword register ← r/m64 ∗ immediate doubleword.</td>
+	<td>Quadword register ← <em>r/m64</em> ∗ sign-extended immediate byte.</td>
+</tr>
+<tr>
+	<td>69 /<em>r iw</em></td>
+	<td>IMUL <em>r16, r/m16, imm16</em></td>
+	<td>RMI</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>word register ← <em>r/m16</em> ∗ immediate word.</td>
+</tr>
+<tr>
+	<td>69 /<em>r id</em></td>
+	<td>IMUL <em>r32, r/m32, imm32</em></td>
+	<td>RMI</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>doubleword register ← <em>r/m32</em> ∗ immediate doubleword.</td>
+</tr>
+<tr>
+	<td>REX.W + 69 /<em>r id</em></td>
+	<td>IMUL <em>r64, r/m64, imm32</em></td>
+	<td>RMI</td>
+	<td>Valid</td>
+	<td>N.E.</td>
+	<td>Quadword register ← <em>r/m64</em> ∗ immediate doubleword.</td>
 </tr>
 </table>
 <p class="notes">Notes: * In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.</p>
@@ -156,9 +156,9 @@
 <h2 id="description">Description</h2>
 <p>Performs a signed multiplication of two operands. This instruction has three forms, depending on the number of operands.</p>
 <ul>
-	<li>One-operand form — This form is identical to that used by the MUL instruction. Here, the source operand (in a general-purpose register or memory location) is multiplied by the value in the AL, AX, EAX, or RAX register (depending on the operand size) and the product is stored in the AX, DX:AX, EDX:EAX, or RDX:RAX registers, respectively.</li>
-	<li>Two-operand form — With this form the destination operand (the first operand) is multiplied by the source operand (second operand). The destination operand is a general-purpose register and the source operand is an immediate value, a general-purpose register, or a memory location. The product is then stored in the destination operand location.</li>
-	<li>Three-operand form — This form requires a destination operand (the first operand) and two source operands (the second and the third operands). Here, the first source operand (which can be a general-purpose register or a memory location) is multiplied by the second source operand (an immediate value). The product is then stored in the destination operand (a general-purpose register).</li>
+	<li><strong>One-operand form </strong>— This form is identical to that used by the MUL instruction. Here, the source operand (in a general-purpose register or memory location) is multiplied by the value in the AL, AX, EAX, or RAX register (depending on the operand size) and the product is stored in the AX, DX:AX, EDX:EAX, or RDX:RAX registers, respectively.</li>
+	<li><strong>Two-operand form </strong>— With this form the destination operand (the first operand) is multiplied by the source operand (second operand). The destination operand is a general-purpose register and the source operand is an immediate value, a general-purpose register, or a memory location. The product is then stored in the destination operand location.</li>
+	<li><strong>Three-operand form </strong>— This form requires a destination operand (the first operand) and two source operands (the second and the third operands). Here, the first source operand (which can be a general-purpose register or a memory location) is multiplied by the second source operand (an immediate value). The product is then stored in the destination operand (a general-purpose register).</li>
 </ul>
 <p>When an immediate value is used as an operand, it is sign-extended to the length of the destination operand format.</p>
 <p>The CF and OF flags are set when significant bit (including the sign bit) are carried into the upper half of the result. The CF and OF flags are cleared when the result (including the sign bit) fits exactly in the lower half of the result.</p>
@@ -167,8 +167,8 @@
 <p>In 64-bit mode, the instruction’s default operation size is 32 bits. Use of the REX.R prefix permits access to additional registers (R8-R15). Use of the REX.W prefix promotes operation to 64 bits. Use of REX.W modifies the three forms of the instruction as follows.</p>
 <ul>
 	<li>One-operand form —The source operand (in a 64-bit general-purpose register or memory location) is multiplied by the value in the RAX register and the product is stored in the RDX:RAX registers.</li>
-	<li>Two-operand form — The source operand is promoted to 64 bits if it is a register or a memory location. The destination operand is promoted to 64 bits.</li>
-	<li>Three-operand form — The first source operand (either a register or a memory location) and destination operand are promoted to 64 bits. If the source operand is an immediate, it is sign extended to 64 bits.</li>
+	<li><strong>Two-operand form </strong>— The source operand is promoted to 64 bits if it is a register or a memory location. The destination operand is promoted to 64 bits.</li>
+	<li><strong>Three-operand form </strong>— The first source operand (either a register or a memory location) and destination operand are promoted to 64 bits. If the source operand is an immediate, it is sign extended to 64 bits.</li>
 </ul>
 <h2 id="operation">Operation</h2>
 <pre>IF (NumberOfOperands = 1)

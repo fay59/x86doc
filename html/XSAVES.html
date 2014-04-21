@@ -18,19 +18,19 @@
 </tr>
 <tr>
 	<td>0F C7 /5</td>
-	<td>XSAVES mem</td>
+	<td>XSAVES <em>mem</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Save state components specified by EDX:EAX to mem with compaction, optimizing if possible.</td>
+	<td>Save state components specified by EDX:EAX to <em>mem</em> with compaction, optimizing if possible.</td>
 </tr>
 <tr>
 	<td>REX.W+ 0F C7 /5</td>
-	<td>XSAVES64 mem</td>
+	<td>XSAVES64 <em>mem</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Save state components specified by EDX:EAX to mem with compaction, optimizing if possible.</td>
+	<td>Save state components specified by EDX:EAX to <em>mem</em> with compaction, optimizing if possible.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -52,13 +52,13 @@
 </table>
 <h2 id="description">Description</h2>
 <p>Performs a full or partial save of processor state components to the XSAVE area located at the memory address specified by the destination operand. The implicit EDX:EAX register pair specifies a 64-bit instruction mask. The specific state components saved correspond to the bits set in the requested-feature bitmap (RFBM), the logicalAND of EDX:EAX and the logical-OR of XCR0 with the IA32_XSS MSR. XSAVES may be executed only if CPL = 0.</p>
-<p>The format of the XSAVE area is detailed in Section 13.4, “XSAVE Area,” of Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1.</p>
-<p>Section 13.10, “Operation of XSAVES,” of Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1 provides a detailed description of the operation of the XSAVES instruction. The following items provide a highlevel outline:</p>
+<p>The format of the XSAVE area is detailed in Section 13.4, “XSAVE Area,” of <em>Intel® 64 and IA-32 Architectures Soft<em>w</em>are Developer’s Manual, Volume 1.</em></p>
+<p>Section 13.10, “Operation of XSAVES,” of <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume</em> <em>1 provides a detailed description of the operation of the XSAVES instruction. The following items provide a highl</em>evel outline:</p>
 <ul>
 	<li>Execution of XSAVES is similar to that of XSAVEC. XSAVES differs from XSAVEC in that it can save state components corresponding to bits set in the IA32_XSS MSR and that it may use the modified optimization.</li>
-	<li>XSAVES saves state component i only if RFBM[i] = 1 and XINUSE[i] = 1.1 (XINUSE is a bitmap by which the processor tracks the status of various state components. See Section 13.5.4, “Processor Tracking of XSAVEManaged State.”) Even if both bits are 1, XSAVES may optimize and not save state component i if (1) state component i has not been modified since the last execution of XRTOR or XRSTORS; and (2) this execution of XSAVES correspond to that last execution of XRTOR or XRSTORS as determined by XRSTOR_INFO (see the Operation section below).</li>
+	<li>XSAVES saves state component <em>i</em> only if RFBM[<em>i</em>] = 1 and XINUSE[<em>i</em>] = 1.<sup>1</sup> (XINUSE is a bitmap by which the processor tracks the status of various state components. See Section 13.5.4, “Processor Tracking of XSAVEManaged State.”) Even if both bits are 1, XSAVES may optimize and not save state component <em>i</em> if (1) state component <em>i</em> has not been modified since the last execution of XRTOR or XRSTORS; and (2) this execution of XSAVES correspond to that last execution of XRTOR or XRSTORS as determined by XRSTOR_INFO (see the Operation section below).</li>
 	<li>XSAVES does not modify bytes 511:464 of the legacy region of the XSAVE area (see Section 13.4.1, “Legacy Region of an XSAVE Area”).</li>
-	<li>XSAVES writes the logical AND of RFBM and XINUSE to the XSTATE_BV field of the XSAVE header.2 (See Section 13.4.2, “XSAVE Header.”) XSAVES sets bit 63 of the XCOMP_BV field and sets bits 62:0 of that field to RFBM[62:0]. XSAVES does not write to any parts of the XSAVE header other than the XSTATE_BV and XCOMP_BV fields.</li>
+	<li>XSAVES writes the logical AND of RFBM and XINUSE to the XSTATE_BV field of the XSAVE header.<sup>2</sup> (See Section 13.4.2, “XSAVE Header.”) XSAVES sets bit 63 of the XCOMP_BV field and sets bits 62:0 of that field to RFBM[62:0]. XSAVES does not write to any parts of the XSAVE header other than the XSTATE_BV and XCOMP_BV fields.</li>
 	<li>XSAVES always uses the compacted format of the extended region of the XSAVE area (see Section 13.4.3, “Extended Region of an XSAVE Area”).</li>
 </ul>
 <p>Use of a destination operand not aligned to 64-byte boundary (in either 64-bit or 32-bit modes) results in a general-protection (#GP) exception. In 64-bit mode, the upper 32 bits of RDX and RAX are ignored.</p>

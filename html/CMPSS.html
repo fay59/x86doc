@@ -16,11 +16,11 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>F3 0F C2 /r ib CMPSS xmm1, xmm2/m32, imm8</td>
+	<td>F3 0F C2 /<em>r ib</em> CMPSS <em>xmm1, xmm2/m32, imm8</em></td>
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Compare low single-precision floating-point value in xmm2/m32 and xmm1 using imm8 as comparison predicate.</td>
+	<td>Compare low single-precision floating-point value in <em>xmm2/m32</em> and <em>xmm1</em> using <em>imm8</em> as comparison predicate.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.LIG.F3.0F.WIG C2 /r ib VCMPSS xmm1, xmm2, xmm3/m32, imm8</td>
@@ -67,50 +67,50 @@
 	<td>CMPSS Implementation</td>
 </tr>
 <tr>
-	<td>CMPEQSS xmm1, xmm2</td>
-	<td>CMPSS xmm1, xmm2, 0</td>
+	<td>CMPEQSS <em>xmm1, xmm2</em></td>
+	<td>CMPSS<em> xmm1, xmm2, 0</em></td>
 </tr>
 <tr>
-	<td>CMPLTSS xmm1, xmm2</td>
-	<td>CMPSS xmm1, xmm2, 1</td>
+	<td>CMPLTSS <em>xmm1, xmm2</em></td>
+	<td>CMPSS <em>xmm1, xmm2, 1</em></td>
 </tr>
 <tr>
-	<td>CMPLESS xmm1, xmm2</td>
-	<td>CMPSS xmm1, xmm2, 2</td>
+	<td>CMPLESS <em>xmm1, xmm2</em></td>
+	<td>CMPSS <em>xmm1, xmm2, 2</em></td>
 </tr>
 <tr>
-	<td>CMPUNORDSS xmm1, xmm2</td>
-	<td>CMPSS xmm1, xmm2, 3</td>
+	<td>CMPUNORDSS<em> xmm1, xmm2</em></td>
+	<td>CMPSS <em>xmm1, xmm2, 3</em></td>
 </tr>
 <tr>
-	<td>CMPNEQSS xmm1, xmm2</td>
-	<td>CMPSS xmm1, xmm2, 4</td>
+	<td>CMPNEQSS<em> xmm1, xmm2</em></td>
+	<td>CMPSS <em>xmm1, xmm2, 4</em></td>
 </tr>
 <tr>
-	<td>CMPNLTSS xmm1, xmm2</td>
-	<td>CMPSS xmm1, xmm2, 5</td>
+	<td>CMPNLTSS <em>xmm1, xmm2</em></td>
+	<td>CMPSS <em>xmm1, xmm2, 5</em></td>
 </tr>
 <tr>
-	<td>CMPNLESS xmm1, xmm2</td>
-	<td>CMPSS xmm1, xmm2, 6</td>
+	<td>CMPNLESS<em> xmm1, xmm2</em></td>
+	<td>CMPSS <em>xmm1, xmm2, 6</em></td>
 </tr>
 <tr>
-	<td>CMPORDSS xmm1, xmm2</td>
-	<td>CMPSS xmm1, xmm2, 7</td>
+	<td>CMPORDSS <em>xmm1, xmm2</em></td>
+	<td>CMPSS <em>xmm1, xmm2, 7</em></td>
 </tr>
 </table>
 <p>The greater-than relations not implemented in the processor require more than one instruction to emulate in software and therefore should not be implemented as pseudo-ops. (For these, the programmer should reverse the operands of the corresponding less than relations and use move instructions to ensure that the mask is moved to the correct destination register and that the source operand is left intact.)</p>
 <p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15).</p>
-<p>Enhanced Comparison Predicate for VEX-Encoded VCMPSD VEX.128 encoded version: The first source operand (second operand) is an XMM register. The second source operand (third operand) can be an XMM register or a 32-bit memory location. Bits (VLMAX-1:128) of the destination YMM register are zeroed. The comparison predicate operand is an 8-bit immediate:</p>
+<p><strong>Enhanced Comparison Predicate for VEX-Encoded VCMPSD</strong> VEX.128 encoded version: The first source operand (second operand) is an XMM register. The second source operand (third operand) can be an XMM register or a 32-bit memory location. Bits (VLMAX-1:128) of the destination YMM register are zeroed. The comparison predicate operand is an 8-bit immediate:</p>
 <ul>
 	<li>For instructions encoded using the VEX prefix, bits 4:0 define the type of comparison to be performed (see Table 3-9). Bits 5 through 7 of the immediate are reserved.</li>
 </ul>
 <p>Processors with “CPUID.1H:ECX.AVX =1” implement the full complement of 32 predicates shown in Table 3-9, software emulation is no longer needed. Compilers and assemblers may implement the following three-operand pseudo-ops in addition to the four-operand VCMPSS instruction. See Table 3-16, where the notations of reg1 reg2, and reg3 represent either XMM registers or YMM registers. Compiler should treat reserved Imm8 values as illegal syntax. Alternately, intrinsics can map the pseudo-ops to pre-defined constants to support a simpler intrinsic interface.</p>
 <table>
 <tr>
-	<td>: Pseudo-Op VCMPEQSS reg1, reg2, reg3 VCMPLTSS reg1, reg2, reg3 VCMPLESS reg1, reg2, reg3 VCMPUNORDSS reg1, reg2, reg3 VCMPNEQSS reg1, reg2, reg3 VCMPNLTSS reg1, reg2, reg3 VCMPNLESS reg1, reg2, reg3 VCMPORDSS reg1, reg2, reg3 VCMPEQ_UQSS reg1, reg2, reg3 VCMPNGESS reg1, reg2, reg3 VCMPNGTSS reg1, reg2, reg3 VCMPFALSESS reg1, reg2, reg3 VCMPNEQ_OQSS reg1, reg2, reg3 VCMPGESS reg1, reg2, reg3 VCMPGTSS reg1, reg2, reg3 Pseudo-Op VCMPTRUESS reg1, reg2, reg3 VCMPEQ_OSSS reg1, reg2, reg3 VCMPLT_OQSS reg1, reg2, reg3 VCMPLE_OQSS reg1, reg2, reg3 VCMPUNORD_SSS reg1, reg2, reg3 VCMPNEQ_USSS reg1, reg2, reg3 VCMPNLT_UQSS reg1, reg2, reg3 VCMPNLE_UQSS reg1, reg2, reg3 VCMPORD_SSS reg1, reg2, reg3 VCMPEQ_USSS reg1, reg2, reg3 VCMPNGE_UQSS reg1, reg2, reg3 VCMPNGT_UQSS reg1, reg2, reg3 VCMPFALSE_OSSS reg1, reg2, reg3 VCMPNEQ_OSSS reg1, reg2, reg3 VCMPGE_OQSS reg1, reg2, reg3 VCMPGT_OQSS reg1, reg2, reg3 VCMPTRUE_USSS reg1, reg2, reg3</td>
+	<td>: Pseudo-Op VCMPEQSS r<em>eg1, reg2, reg3</em> VCMPLTSS r<em>eg1, reg2, reg3</em> VCMPLESS r<em>eg1, reg2, reg3</em> VCMPUNORDSS r<em>eg1, reg2, reg3</em> VCMPNEQSS r<em>eg1, reg2, reg3</em> VCMPNLTSS r<em>eg1, reg2, reg3</em> VCMPNLESS r<em>eg1, reg2, reg3</em> VCMPORDSS r<em>eg1, reg2, reg3</em> VCMPEQ_UQSS r<em>eg1, reg2, reg3</em> VCMPNGESS r<em>eg1, reg2, reg3</em> VCMPNGTSS r<em>eg1, reg2, reg3</em> VCMPFALSESS r<em>eg1, reg2, reg3</em> VCMPNEQ_OQSS r<em>eg1, reg2, reg3</em> VCMPGESS r<em>eg1, reg2, reg3</em> VCMPGTSS r<em>eg1, reg2, reg3</em> Pseudo-Op VCMPTRUESS r<em>eg1, reg2, reg3</em> VCMPEQ_OSSS r<em>eg1, reg2, reg3</em> VCMPLT_OQSS r<em>eg1, reg2, reg3</em> VCMPLE_OQSS r<em>eg1, reg2, reg3</em> VCMPUNORD_SSS r<em>eg1, reg2, reg3</em> VCMPNEQ_USSS r<em>eg1, reg2, reg3</em> VCMPNLT_UQSS r<em>eg1, reg2, reg3</em> VCMPNLE_UQSS r<em>eg1, reg2, reg3</em> VCMPORD_SSS r<em>eg1, reg2, reg3</em> VCMPEQ_USSS r<em>eg1, reg2, reg3</em> VCMPNGE_UQSS r<em>eg1, reg2, reg3</em> VCMPNGT_UQSS r<em>eg1, reg2, reg3</em> VCMPFALSE_OSSS r<em>eg1, reg2, reg3</em> VCMPNEQ_OSSS r<em>eg1, reg2, reg3</em> VCMPGE_OQSS r<em>eg1, reg2, reg3</em> VCMPGT_OQSS r<em>eg1, reg2, reg3</em> VCMPTRUE_USSS r<em>eg1, reg2, reg3</em></td>
 	<td>Table 3-16. Table 3-16.</td>
-	<td>Pseudo-Op and VCMPSS Implementation CMPSS Implementation VCMPSS reg1, reg2, reg3, 0 VCMPSS reg1, reg2, reg3, 1 VCMPSS reg1, reg2, reg3, 2 VCMPSS reg1, reg2, reg3, 3 VCMPSS reg1, reg2, reg3, 4 VCMPSS reg1, reg2, reg3, 5 VCMPSS reg1, reg2, reg3, 6 VCMPSS reg1, reg2, reg3, 7 VCMPSS reg1, reg2, reg3, 8 VCMPSS reg1, reg2, reg3, 9 VCMPSS reg1, reg2, reg3, 0AH VCMPSS reg1, reg2, reg3, 0BH VCMPSS reg1, reg2, reg3, 0CH VCMPSS reg1, reg2, reg3, 0DH VCMPSS reg1, reg2, reg3, 0EH Pseudo-Op and VCMPSS Implementation (Contd.) CMPSS Implementation VCMPSS reg1, reg2, reg3, 0FH VCMPSS reg1, reg2, reg3, 10H VCMPSS reg1, reg2, reg3, 11H VCMPSS reg1, reg2, reg3, 12H VCMPSS reg1, reg2, reg3, 13H VCMPSS reg1, reg2, reg3, 14H VCMPSS reg1, reg2, reg3, 15H VCMPSS reg1, reg2, reg3, 16H VCMPSS reg1, reg2, reg3, 17H VCMPSS reg1, reg2, reg3, 18H VCMPSS reg1, reg2, reg3, 19H VCMPSS reg1, reg2, reg3, 1AH VCMPSS reg1, reg2, reg3, 1BH VCMPSS reg1, reg2, reg3, 1CH VCMPSS reg1, reg2, reg3, 1DH VCMPSS reg1, reg2, reg3, 1EH VCMPSS reg1, reg2, reg3, 1FH</td>
+	<td>Pseudo-Op and VCMPSS Implementation CMPSS Implementation VCMPSS r<em>eg1, reg2, reg3, 0</em> VCMPSS r<em>eg1, reg2, reg3, 1</em> VCMPSS r<em>eg1, reg2, reg3, 2</em> VCMPSS r<em>eg1, reg2, reg3, 3</em> VCMPSS r<em>eg1, reg2, reg3, 4</em> VCMPSS r<em>eg1, reg2, reg3, 5</em> VCMPSS r<em>eg1, reg2, reg3, 6</em> VCMPSS r<em>eg1, reg2, reg3, 7</em> VCMPSS r<em>eg1, reg2, reg3, 8</em> VCMPSS r<em>eg1, reg2, reg3, 9</em> VCMPSS r<em>eg1, reg2, reg3, 0AH</em> VCMPSS r<em>eg1, reg2, reg3, 0BH</em> VCMPSS r<em>eg1, reg2, reg3, 0CH</em> VCMPSS r<em>eg1, reg2, reg3, 0DH</em> VCMPSS r<em>eg1, reg2, reg3, 0EH</em> Pseudo-Op and VCMPSS Implementation (Contd.) CMPSS Implementation VCMPSS r<em>eg1, reg2, reg3, 0FH</em> VCMPSS r<em>eg1, reg2, reg3, 10H</em> VCMPSS r<em>eg1, reg2, reg3, 11H</em> VCMPSS r<em>eg1, reg2, reg3, 12H</em> VCMPSS r<em>eg1, reg2, reg3, 13H</em> VCMPSS r<em>eg1, reg2, reg3, 14H</em> VCMPSS r<em>eg1, reg2, reg3, 15H</em> VCMPSS r<em>eg1, reg2, reg3, 16H</em> VCMPSS r<em>eg1, reg2, reg3, 17H</em> VCMPSS r<em>eg1, reg2, reg3, 18H</em> VCMPSS r<em>eg1, reg2, reg3, 19H</em> VCMPSS r<em>eg1, reg2, reg3, 1AH</em> VCMPSS r<em>eg1, reg2, reg3, 1BH</em> VCMPSS r<em>eg1, reg2, reg3, 1CH</em> VCMPSS r<em>eg1, reg2, reg3, 1DH</em> VCMPSS r<em>eg1, reg2, reg3, 1EH</em> VCMPSS r<em>eg1, reg2, reg3, 1FH</em></td>
 </tr>
 </table>
 <h2 id="operation">Operation</h2>

@@ -17,180 +17,180 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>2C ib</td>
-	<td>SUB AL, imm8</td>
+	<td>2C <em>ib</em></td>
+	<td>SUB AL, i<em>mm8</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Subtract imm8 from AL.</td>
+	<td>Subtract <em>imm8</em> from AL.</td>
 </tr>
 <tr>
-	<td>2D iw</td>
-	<td>SUB AX, imm16</td>
+	<td>2D <em>iw</em></td>
+	<td>SUB AX, i<em>mm16</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Subtract imm16 from AX.</td>
+	<td>Subtract <em>imm16</em> from AX.</td>
 </tr>
 <tr>
-	<td>2D id</td>
-	<td>SUB EAX, imm32</td>
+	<td>2D <em>id</em></td>
+	<td>SUB EAX, i<em>mm32</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Subtract imm32 from EAX.</td>
+	<td>Subtract <em>imm32</em> from EAX.</td>
 </tr>
 <tr>
-	<td>REX.W + 2D id</td>
-	<td>SUB RAX, imm32</td>
+	<td>REX.W + 2D <em>id</em></td>
+	<td>SUB RAX, i<em>mm32</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Subtract imm32 sign-extended to 64-bits from RAX.</td>
+	<td>Subtract <em>imm32 </em>sign-extended to 64-bits from RAX.</td>
 </tr>
 <tr>
-	<td>80 /5 ib</td>
-	<td>SUB r/m8, imm8</td>
+	<td>80 /5 <em>ib</em></td>
+	<td>SUB <em>r/m8, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Subtract imm8 from r/m8.</td>
+	<td>Subtract <em>imm8</em> from <em>r/m8.</em></td>
 </tr>
 <tr>
-	<td>REX + 80 /5 ib</td>
-	<td>SUB r/m8*, imm8</td>
-	<td>MI</td>
-	<td>Valid</td>
-	<td>N.E.</td>
-	<td>Subtract imm8 from r/m8.</td>
-</tr>
-<tr>
-	<td>81 /5 iw</td>
-	<td>SUB r/m16, imm16</td>
-	<td>MI</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>Subtract imm16 from r/m16.</td>
-</tr>
-<tr>
-	<td>81 /5 id</td>
-	<td>SUB r/m32, imm32</td>
-	<td>MI</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>Subtract imm32 from r/m32.</td>
-</tr>
-<tr>
-	<td>REX.W + 81 /5 id</td>
-	<td>SUB r/m64, imm32</td>
+	<td>REX + 80 /5 <em>ib</em></td>
+	<td>SUB <em>r/m8*, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Subtract imm32 sign-extended to 64-bits from r/m64.</td>
+	<td>Subtract <em>imm8</em> from <em>r/m8.</em></td>
 </tr>
 <tr>
-	<td>83 /5 ib</td>
-	<td>SUB r/m16, imm8</td>
+	<td>81 /5 <em>iw</em></td>
+	<td>SUB <em>r/m16, imm16</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Subtract sign-extended imm8 from r/m16.</td>
+	<td>Subtract <em>imm16</em> from <em>r/m16.</em></td>
 </tr>
 <tr>
-	<td>83 /5 ib</td>
-	<td>SUB r/m32, imm8</td>
+	<td>81 /5 <em>id</em></td>
+	<td>SUB <em>r/m32, imm32</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Subtract sign-extended imm8 from r/m32.</td>
+	<td>Subtract <em>imm32</em> from <em>r/m32.</em></td>
 </tr>
 <tr>
-	<td>REX.W + 83 /5 ib</td>
-	<td>SUB r/m64, imm8</td>
+	<td>REX.W + 81 /5 <em>id</em></td>
+	<td>SUB <em>r/m64, imm32</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Subtract sign-extended imm8 from r/m64.</td>
+	<td>Subtract <em>imm32 </em>sign-extended to 64-bits from <em>r/m64.</em></td>
 </tr>
 <tr>
-	<td>28 /r</td>
-	<td>SUB r/m8, r8</td>
+	<td>83 /5 <em>ib</em></td>
+	<td>SUB <em>r/m16, imm8</em></td>
+	<td>MI</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Subtract sign-extended <em>imm8</em> from <em>r/m16.</em></td>
+</tr>
+<tr>
+	<td>83 /5 <em>ib</em></td>
+	<td>SUB <em>r/m32, imm8</em></td>
+	<td>MI</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Subtract sign-extended <em>imm8</em> from <em>r/m32.</em></td>
+</tr>
+<tr>
+	<td>REX.W + 83 /5 <em>ib</em></td>
+	<td>SUB <em>r/m64, imm8</em></td>
+	<td>MI</td>
+	<td>Valid</td>
+	<td>N.E.</td>
+	<td>Subtract sign-extended <em>imm8</em> from <em>r/m64.</em></td>
+</tr>
+<tr>
+	<td>28 /<em>r</em></td>
+	<td>SUB <em>r/m8, r8</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Subtract r8 from r/m8.</td>
+	<td>Subtract <em>r8</em> from <em>r/m8.</em></td>
 </tr>
 <tr>
-	<td>REX + 28 /r</td>
-	<td>SUB r/m8*, r8*</td>
+	<td>REX + 28 /<em>r</em></td>
+	<td>SUB <em>r/m8*, r8*</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Subtract r8 from r/m8.</td>
+	<td>Subtract <em>r8</em> from <em>r/m8.</em></td>
 </tr>
 <tr>
-	<td>29 /r</td>
-	<td>SUB r/m16, r16</td>
+	<td>29 /<em>r</em></td>
+	<td>SUB <em>r/m16, r16</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Subtract r16 from r/m16.</td>
+	<td>Subtract <em>r16</em> from <em>r/m16.</em></td>
 </tr>
 <tr>
-	<td>29 /r</td>
-	<td>SUB r/m32, r32</td>
+	<td>29 /<em>r</em></td>
+	<td>SUB <em>r/m32, r32</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Subtract r32 from r/m32.</td>
+	<td>Subtract <em>r32</em> from <em>r/m32.</em></td>
 </tr>
 <tr>
-	<td>REX.W + 29 /r</td>
-	<td>SUB r/m64, r64</td>
+	<td>REX.W + 29 /<em>r</em></td>
+	<td>SUB <em>r/m64, r64</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Subtract r64 from r/m64.</td>
+	<td>Subtract <em>r64</em> from <em>r/m64.</em></td>
 </tr>
 <tr>
-	<td>2A /r</td>
-	<td>SUB r8, r/m8</td>
+	<td>2A /<em>r</em></td>
+	<td>SUB <em>r8, r/m8</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Subtract r/m8 from r8.</td>
+	<td>Subtract <em>r/m8</em> from <em>r8.</em></td>
 </tr>
 <tr>
-	<td>REX + 2A /r</td>
-	<td>SUB r8*, r/m8*</td>
-	<td>RM</td>
-	<td>Valid</td>
-	<td>N.E.</td>
-	<td>Subtract r/m8 from r8.</td>
-</tr>
-<tr>
-	<td>2B /r</td>
-	<td>SUB r16, r/m16</td>
-	<td>RM</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>Subtract r/m16 from r16.</td>
-</tr>
-<tr>
-	<td>2B /r</td>
-	<td>SUB r32, r/m32</td>
-	<td>RM</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>Subtract r/m32 from r32.</td>
-</tr>
-<tr>
-	<td>REX.W + 2B /r</td>
-	<td>SUB r64, r/m64</td>
+	<td>REX + 2A /<em>r</em></td>
+	<td>SUB <em>r8*, r/m8*</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Subtract r/m64 from r64.</td>
+	<td>Subtract <em>r/m8</em> from <em>r8.</em></td>
+</tr>
+<tr>
+	<td>2B /<em>r</em></td>
+	<td>SUB <em>r16, r/m16</em></td>
+	<td>RM</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Subtract <em>r/m16</em> from <em>r16.</em></td>
+</tr>
+<tr>
+	<td>2B /<em>r</em></td>
+	<td>SUB <em>r32, r/m32</em></td>
+	<td>RM</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Subtract <em>r/m32</em> from <em>r32.</em></td>
+</tr>
+<tr>
+	<td>REX.W + 2B /<em>r</em></td>
+	<td>SUB <em>r64, r/m64</em></td>
+	<td>RM</td>
+	<td>Valid</td>
+	<td>N.E.</td>
+	<td>Subtract <em>r/m64</em> from <em>r64.</em></td>
 </tr>
 </table>
 <p class="notes">Notes: * In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.</p>

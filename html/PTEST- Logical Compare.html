@@ -16,21 +16,21 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 38 17 /r PTEST xmm1, xmm2/m128</td>
+	<td>66 0F 38 17 /r PTEST <em>xmm1, xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE4_1</td>
-	<td>Set ZF if xmm2/m128 AND xmm1 result is all 0s. Set CF if xmm2/m128 AND NOT xmm1 result is all 0s.</td>
+	<td>Set ZF if <em>xmm2/m128</em> AND <em>xmm1 </em>result is all 0s. Set CF if <em>xmm2/m128</em> AND NOT <em>xmm1</em> result is all 0s.</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F38.WIG 17 /r VPTEST xmm1, xmm2/m128</td>
+	<td>VEX.128.66.0F38.WIG 17 /r VPTEST <em>xmm1, xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
 	<td>Set ZF and CF depending on bitwise AND and ANDN of sources.</td>
 </tr>
 <tr>
-	<td>VEX.256.66.0F38.WIG 17 /r VPTEST ymm1, ymm2/m256</td>
+	<td>VEX.256.66.0F38.WIG 17 /r VPTEST <em>ymm1, ymm2/m256</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
@@ -55,7 +55,7 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>PTEST and VPTEST set the ZF flag if all bits in the result are 0 of the bitwise AND of the first source operand (first operand) and the second source operand (second operand). VPTEST sets the CF flag if all bits in the result are 0 of the bitwise AND of the second source operand (second operand) and the logical NOT of the destination operand. The first source register is specified by the ModR/M reg field. 128-bit versions: The first source register is an XMM register. The second source register can be an XMM register or a 128-bit memory location. The destination register is not modified. VEX.256 encoded version: The first source register is a YMM register. The second source register can be a YMM register or a 256-bit memory location. The destination register is not modified. Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise instructions will #UD.</p>
+<p>PTEST and VPTEST set the ZF flag if all bits in the result are 0 of the bitwise AND of the first source operand (first operand) and the second source operand (second operand). VPTEST sets the CF flag if all bits in the result are 0 of the bitwise AND of the second source operand (second operand) and the logical NOT of the destination operand. The first source register is specified by the ModR/M <em>reg</em> field. 128-bit versions: The first source register is an XMM register. The second source register can be an XMM register or a 128-bit memory location. The destination register is not modified. VEX.256 encoded version: The first source register is a YMM register. The second source register can be a YMM register or a 256-bit memory location. The destination register is not modified. Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise instructions will #UD.</p>
 <h2 id="operation">Operation</h2>
 <pre>(V)PTEST (128-bit version)
 IF (SRC[127:0] BITWISE AND DEST[127:0] = 0)

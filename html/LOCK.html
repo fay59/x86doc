@@ -51,7 +51,7 @@
 <p>The integrity of the LOCK prefix is not affected by the alignment of the memory field. Memory locking is observed for arbitrarily misaligned fields.</p>
 <p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
 <h2 id="ia-32-architecture-compatibility">IA-32 Architecture Compatibility</h2>
-<p>Beginning with the P6 family processors, when the LOCK prefix is prefixed to an instruction and the memory area being accessed is cached internally in the processor, the LOCK# signal is generally not asserted. Instead, only the processor’s cache is locked. Here, the processor’s cache coherency mechanism ensures that the operation is carried out atomically with regards to memory. See “Effects of a Locked Operation on Internal Processor Caches”in Chapter 8 of Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A, the for more information on locking of caches.</p>
+<p>Beginning with the P6 family processors, when the LOCK prefix is prefixed to an instruction and the memory area being accessed is cached internally in the processor, the LOCK# signal is generally not asserted. Instead, only the processor’s cache is locked. Here, the processor’s cache coherency mechanism ensures that the operation is carried out atomically with regards to memory. See “Effects of a Locked Operation on Internal Processor Caches”in Chapter 8 of <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A</em>, the for more information on locking of caches.</p>
 <h2 id="operation">Operation</h2>
 <pre>AssertLOCK#(DurationOfAccompaningInstruction);
 </pre>

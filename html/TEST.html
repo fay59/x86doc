@@ -17,116 +17,116 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>A8 ib</td>
-	<td>TEST AL, imm8</td>
+	<td>A8<em> ib</em></td>
+	<td>TEST AL, i<em>mm8</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>AND imm8 with AL; set SF, ZF, PF according to result.</td>
+	<td>AND <em>imm8</em> with AL; set SF, ZF, PF according to result.</td>
 </tr>
 <tr>
-	<td>A9 iw</td>
-	<td>TEST AX, imm16</td>
+	<td>A9 <em>iw</em></td>
+	<td>TEST AX, i<em>mm16</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>AND imm16 with AX; set SF, ZF, PF according to result.</td>
+	<td>AND <em>imm16</em> with AX; set SF, ZF, PF according to result.</td>
 </tr>
 <tr>
-	<td>A9 id</td>
-	<td>TEST EAX, imm32</td>
+	<td>A9 <em>id</em></td>
+	<td>TEST EAX, i<em>mm32</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>AND imm32 with EAX; set SF, ZF, PF according to result.</td>
+	<td>AND <em>imm32</em> with EAX; set SF, ZF, PF according to result.</td>
 </tr>
 <tr>
-	<td>REX.W + A9 id</td>
-	<td>TEST RAX, imm32</td>
+	<td>REX.W + A9 <em>id</em></td>
+	<td>TEST RAX, i<em>mm32</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>AND imm32 sign-extended to 64-bits with RAX; set SF, ZF, PF according to result.</td>
+	<td>AND <em>imm32 </em>sign-extended to 64-bits with RAX; set SF, ZF, PF according to result.</td>
 </tr>
 <tr>
-	<td>F6 /0 ib</td>
-	<td>TEST r/m8, imm8</td>
+	<td>F6 /0 <em>ib</em></td>
+	<td>TEST <em>r/m8, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>AND imm8 with r/m8; set SF, ZF, PF according to result.</td>
+	<td>AND <em>imm8</em> with <em>r/m8</em>; set SF, ZF, PF according to result.</td>
 </tr>
 <tr>
-	<td>REX + F6 /0 ib</td>
-	<td>TEST r/m8*, imm8</td>
-	<td>MI</td>
-	<td>Valid</td>
-	<td>N.E.</td>
-	<td>AND imm8 with r/m8; set SF, ZF, PF according to result.</td>
-</tr>
-<tr>
-	<td>F7 /0 iw</td>
-	<td>TEST r/m16, imm16</td>
-	<td>MI</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>AND imm16 with r/m16; set SF, ZF, PF according to result.</td>
-</tr>
-<tr>
-	<td>F7 /0 id</td>
-	<td>TEST r/m32, imm32</td>
-	<td>MI</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>AND imm32 with r/m32; set SF, ZF, PF according to result.</td>
-</tr>
-<tr>
-	<td>REX.W + F7 /0 id</td>
-	<td>TEST r/m64, imm32</td>
+	<td>REX + F6 /0 <em>ib</em></td>
+	<td>TEST <em>r/m8*, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>AND imm32 sign-extended to 64-bits with r/m64; set SF, ZF, PF according to result.</td>
+	<td>AND <em>imm8</em> with <em>r/m8</em>; set SF, ZF, PF according to result.</td>
 </tr>
 <tr>
-	<td>84 /r</td>
-	<td>TEST r/m8, r8</td>
+	<td>F7 /0 <em>iw</em></td>
+	<td>TEST <em>r/m16, imm16</em></td>
+	<td>MI</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>AND <em>imm16</em> with <em>r/m16</em>; set SF, ZF, PF according to result.</td>
+</tr>
+<tr>
+	<td>F7 /0 <em>id</em></td>
+	<td>TEST <em>r/m32, imm32</em></td>
+	<td>MI</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>AND <em>imm32</em> with <em>r/m32</em>; set SF, ZF, PF according to result.</td>
+</tr>
+<tr>
+	<td>REX.W + F7 /0 <em>id</em></td>
+	<td>TEST <em>r/m64, imm32</em></td>
+	<td>MI</td>
+	<td>Valid</td>
+	<td>N.E.</td>
+	<td>AND <em>imm32 </em>sign-extended to 64-bits with <em>r/m64; set SF, ZF, PF according to result.</em></td>
+</tr>
+<tr>
+	<td>84 /<em>r</em></td>
+	<td>TEST <em>r/m8, r8</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>AND r8 with r/m8; set SF, ZF, PF according to result.</td>
+	<td>AND <em>r8</em> with <em>r/m8</em>; set SF, ZF, PF according to result.</td>
 </tr>
 <tr>
-	<td>REX + 84 /r</td>
-	<td>TEST r/m8*, r8*</td>
+	<td>REX + 84 /<em>r</em></td>
+	<td>TEST <em>r/m8*, r8*</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>AND r8 with r/m8; set SF, ZF, PF according to result.</td>
+	<td>AND <em>r8</em> with <em>r/m8</em>; set SF, ZF, PF according to result.</td>
 </tr>
 <tr>
-	<td>85 /r</td>
-	<td>TEST r/m16, r16</td>
+	<td>85 /<em>r</em></td>
+	<td>TEST <em>r/m16, r16</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>AND r16 with r/m16; set SF, ZF, PF according to result.</td>
+	<td>AND <em>r16</em> with <em>r/m16</em>; set SF, ZF, PF according to result.</td>
 </tr>
 <tr>
-	<td>85 /r</td>
-	<td>TEST r/m32, r32</td>
+	<td>85 /<em>r</em></td>
+	<td>TEST <em>r/m32, r32</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>AND r32 with r/m32; set SF, ZF, PF according to result.</td>
+	<td>AND <em>r32</em> with <em>r/m32</em>; set SF, ZF, PF according to result.</td>
 </tr>
 <tr>
-	<td>REX.W + 85 /r</td>
-	<td>TEST r/m64, r64</td>
+	<td>REX.W + 85 /<em>r</em></td>
+	<td>TEST <em>r/m64, r64</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>AND r64 with r/m64; set SF, ZF, PF according to result.</td>
+	<td>AND <em>r64</em> with <em>r/m64</em>; set SF, ZF, PF according to result.</td>
 </tr>
 </table>
 <p class="notes">Notes: * In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.</p>

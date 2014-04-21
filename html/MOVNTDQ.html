@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F E7 /r MOVNTDQ m128, xmm</td>
+	<td>66 0F E7 /<em>r</em> MOVNTDQ <em>m128</em>, <em>xmm</em></td>
 	<td>MR</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Move double quadword from xmm to m128 using non-temporal hint.</td>
+	<td>Move double quadword from <em>xmm</em> to <em>m128</em> using non-temporal hint.</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F.WIG E7 /r VMOVNTDQ m128, xmm1</td>
+	<td>VEX.128.66.0F.WIG E7 /r VMOVNTDQ <em>m128, xmm1</em></td>
 	<td>MR</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Move packed integer values in xmm1 to m128 using non-temporal hint.</td>
+	<td>Move packed integer values in <em>xmm1</em> to <em>m128</em> using non-temporal hint.</td>
 </tr>
 <tr>
-	<td>VEX.256.66.0F.WIG E7 /r VMOVNTDQ m256, ymm1</td>
+	<td>VEX.256.66.0F.WIG E7 /r VMOVNTDQ <em>m256, ymm1</em></td>
 	<td>MR</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Move packed integer values in ymm1 to m256 using non-temporal hint.</td>
+	<td>Move packed integer values in <em>ymm1</em> to <em>m256</em> using non-temporal hint.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding1">Instruction Operand Encoding1</h2>
@@ -56,7 +56,7 @@
 </table>
 <h2 id="description">Description</h2>
 <p>Moves the packed integers in the source operand (second operand) to the destination operand (first operand) using a non-temporal hint to prevent caching of the data during the write to memory. The source operand is an XMM register or YMM register, which is assumed to contain integer data (packed bytes, words, doublewords, or quadwords). The destination operand is a 128-bit or 256-bit memory location. The memory operand must be aligned on a 16-byte (128-bit version) or 32-byte (VEX.256 encoded version) boundary otherwise a general-protection exception (#GP) will be generated.</p>
-<p>The non-temporal hint is implemented by using a write combining (WC) memory type protocol when writing the data to memory. Using this protocol, the processor does not write the data into the cache hierarchy, nor does it fetch the corresponding cache line from memory into the cache hierarchy. The memory type of the region being written to can override the non-temporal hint, if the memory address specified for the non-temporal store is in an uncacheable (UC) or write protected (WP) memory region. For more information on non-temporal stores, see “Caching of Temporal vs. Non-Temporal Data” in Chapter 10 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1.</p>
+<p>The non-temporal hint is implemented by using a write combining (WC) memory type protocol when writing the data to memory. Using this protocol, the processor does not write the data into the cache hierarchy, nor does it fetch the corresponding cache line from memory into the cache hierarchy. The memory type of the region being written to can override the non-temporal hint, if the memory address specified for the non-temporal store is in an uncacheable (UC) or write protected (WP) memory region. For more information on non-temporal stores, see “Caching of Temporal vs. Non-Temporal Data” in Chapter 10 in the <em>Intel® 64 and IA-32 Architectures Software</em> <em>Developer’s Manual, Volume 1.</em></p>
 <p>Because the WC protocol uses a weakly-ordered memory consistency model, a fencing operation implemented with the SFENCE or MFENCE instruction should be used in conjunction with MOVNTDQ instructions if multiple processors might use different memory types to read/write the destination memory locations.</p>
 <p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). Note: In VEX-128 encoded versions, VEX.vvvv is reserved and must be 1111b, VEX.L must be 0; otherwise instructions will #UD.</p>
 <h2 id="operation">Operation</h2>

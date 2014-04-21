@@ -17,180 +17,180 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>1C ib</td>
-	<td>SBB AL, imm8</td>
+	<td>1C <em>ib</em></td>
+	<td>SBB AL, <em>imm8</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Subtract with borrow imm8 from AL.</td>
+	<td>Subtract with borrow <em>imm8</em> from AL.</td>
 </tr>
 <tr>
-	<td>1D iw</td>
-	<td>SBB AX, imm16</td>
+	<td>1D <em>iw</em></td>
+	<td>SBB AX,<em> imm16</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Subtract with borrow imm16 from AX.</td>
+	<td>Subtract with borrow <em>imm16</em> from AX.</td>
 </tr>
 <tr>
-	<td>1D id</td>
-	<td>SBB EAX, imm32</td>
+	<td>1D <em>id</em></td>
+	<td>SBB EAX, <em>imm32</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Subtract with borrow imm32 from EAX.</td>
+	<td>Subtract with borrow <em>imm32</em> from EAX.</td>
 </tr>
 <tr>
-	<td>REX.W + 1D id</td>
-	<td>SBB RAX, imm32</td>
+	<td>REX.W + 1D <em>id</em></td>
+	<td>SBB RAX, <em>imm32</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Subtract with borrow sign-extended imm.32 to 64-bits from RAX.</td>
+	<td>Subtract with borrow sign-extended <em>imm.32</em> <em>to 64-bits from RAX.</em></td>
 </tr>
 <tr>
-	<td>80 /3 ib</td>
-	<td>SBB r/m8, imm8</td>
+	<td>80 /3 <em>ib</em></td>
+	<td>SBB <em>r/m8, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Subtract with borrow imm8 from r/m8.</td>
+	<td>Subtract with borrow <em>imm8</em> from <em>r/m8.</em></td>
 </tr>
 <tr>
-	<td>REX + 80 /3 ib</td>
-	<td>SBB r/m8*, imm8</td>
-	<td>MI</td>
-	<td>Valid</td>
-	<td>N.E.</td>
-	<td>Subtract with borrow imm8 from r/m8.</td>
-</tr>
-<tr>
-	<td>81 /3 iw</td>
-	<td>SBB r/m16, imm16</td>
-	<td>MI</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>Subtract with borrow imm16 from r/m16.</td>
-</tr>
-<tr>
-	<td>81 /3 id</td>
-	<td>SBB r/m32, imm32</td>
-	<td>MI</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>Subtract with borrow imm32 from r/m32.</td>
-</tr>
-<tr>
-	<td>REX.W + 81 /3 id</td>
-	<td>SBB r/m64, imm32</td>
+	<td>REX + 80 /3 <em>ib</em></td>
+	<td>SBB <em>r/m8*, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Subtract with borrow sign-extended imm32 to 64-bits from r/m64.</td>
+	<td>Subtract with borrow <em>imm8</em> from <em>r/m8.</em></td>
 </tr>
 <tr>
-	<td>83 /3 ib</td>
-	<td>SBB r/m16, imm8</td>
+	<td>81 /3 <em>iw</em></td>
+	<td>SBB <em>r/m16, imm16</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Subtract with borrow sign-extended imm8 from r/m16.</td>
+	<td>Subtract with borrow <em>imm16</em> from <em>r/m16.</em></td>
 </tr>
 <tr>
-	<td>83 /3 ib</td>
-	<td>SBB r/m32, imm8</td>
+	<td>81 /3 <em>id</em></td>
+	<td>SBB <em>r/m32, imm32</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Subtract with borrow sign-extended imm8 from r/m32.</td>
+	<td>Subtract with borrow <em>imm32</em> from <em>r/m32.</em></td>
 </tr>
 <tr>
-	<td>REX.W + 83 /3 ib</td>
-	<td>SBB r/m64, imm8</td>
+	<td>REX.W + 81 /3 <em>id</em></td>
+	<td>SBB <em>r/m64, imm32</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Subtract with borrow sign-extended imm8 from r/m64.</td>
+	<td>Subtract with borrow sign-extended <em>imm32 to</em> <em><em>64-bits from r/m64.</em></em></td>
 </tr>
 <tr>
-	<td>18 /r</td>
-	<td>SBB r/m8, r8</td>
+	<td>83 /3 <em>ib</em></td>
+	<td>SBB <em>r/m16, imm8</em></td>
+	<td>MI</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Subtract with borrow sign-extended <em>imm8</em> from <em>r/m16.</em></td>
+</tr>
+<tr>
+	<td>83 /3 <em>ib</em></td>
+	<td>SBB <em>r/m32, imm8</em></td>
+	<td>MI</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Subtract with borrow sign-extended <em>imm8</em> from <em>r/m32.</em></td>
+</tr>
+<tr>
+	<td>REX.W + 83 /3 <em>ib</em></td>
+	<td>SBB <em>r/m64, imm8</em></td>
+	<td>MI</td>
+	<td>Valid</td>
+	<td>N.E.</td>
+	<td>Subtract with borrow sign-extended <em>imm8</em> from <em>r/m64.</em></td>
+</tr>
+<tr>
+	<td>18 /<em>r</em></td>
+	<td>SBB <em>r/m8, r8</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Subtract with borrow r8 from r/m8.</td>
+	<td>Subtract with borrow <em>r8</em> from <em>r/m8.</em></td>
 </tr>
 <tr>
-	<td>REX + 18 /r</td>
-	<td>SBB r/m8*, r8</td>
+	<td>REX + 18 /<em>r</em></td>
+	<td>SBB <em>r/m8*, r8</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Subtract with borrow r8 from r/m8.</td>
+	<td>Subtract with borrow <em>r8</em> from <em>r/m8.</em></td>
 </tr>
 <tr>
-	<td>19 /r</td>
-	<td>SBB r/m16, r16</td>
+	<td>19 /<em>r</em></td>
+	<td>SBB <em>r/m16, r16</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Subtract with borrow r16 from r/m16.</td>
+	<td>Subtract with borrow <em>r16</em> from <em>r/m16.</em></td>
 </tr>
 <tr>
-	<td>19 /r</td>
-	<td>SBB r/m32, r32</td>
+	<td>19 /<em>r</em></td>
+	<td>SBB <em>r/m32, r32</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Subtract with borrow r32 from r/m32.</td>
+	<td>Subtract with borrow <em>r32</em> from <em>r/m32.</em></td>
 </tr>
 <tr>
-	<td>REX.W + 19 /r</td>
-	<td>SBB r/m64, r64</td>
+	<td>REX.W + 19 /<em>r</em></td>
+	<td>SBB <em>r/m64, r64</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Subtract with borrow r64 from r/m64.</td>
+	<td>Subtract with borrow <em>r64</em> from <em>r/m64.</em></td>
 </tr>
 <tr>
-	<td>1A /r</td>
-	<td>SBB r8, r/m8</td>
+	<td>1A /<em>r</em></td>
+	<td>SBB<em> r8, r/m8</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Subtract with borrow r/m8 from r8.</td>
+	<td>Subtract with borrow<em> r/m8</em> from <em>r8.</em></td>
 </tr>
 <tr>
-	<td>REX + 1A /r</td>
-	<td>SBB r8*, r/m8*</td>
-	<td>RM</td>
-	<td>Valid</td>
-	<td>N.E.</td>
-	<td>Subtract with borrow r/m8 from r8.</td>
-</tr>
-<tr>
-	<td>1B /r</td>
-	<td>SBB r16, r/m16</td>
-	<td>RM</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>Subtract with borrow r/m16 from r16.</td>
-</tr>
-<tr>
-	<td>1B /r</td>
-	<td>SBB r32, r/m32</td>
-	<td>RM</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>Subtract with borrow r/m32 from r32.</td>
-</tr>
-<tr>
-	<td>REX.W + 1B /r</td>
-	<td>SBB r64, r/m64</td>
+	<td>REX + 1A /<em>r</em></td>
+	<td>SBB<em> r8*, r/m8*</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Subtract with borrow r/m64 from r64.</td>
+	<td>Subtract with borrow<em> r/m8</em> from <em>r8.</em></td>
+</tr>
+<tr>
+	<td>1B /<em>r</em></td>
+	<td>SBB <em>r16, r/m16</em></td>
+	<td>RM</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Subtract with borrow<em> r/m16</em> from <em>r16.</em></td>
+</tr>
+<tr>
+	<td>1B /<em>r</em></td>
+	<td>SBB<em> r32, r/m32</em></td>
+	<td>RM</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Subtract with borrow <em>r/m32</em> from <em>r32.</em></td>
+</tr>
+<tr>
+	<td>REX.W + 1B /<em>r</em></td>
+	<td>SBB<em> r64, r/m64</em></td>
+	<td>RM</td>
+	<td>Valid</td>
+	<td>N.E.</td>
+	<td>Subtract with borrow <em>r/m64</em> from <em>r64.</em></td>
 </tr>
 </table>
 <p class="notes">Notes: </p>

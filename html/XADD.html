@@ -17,44 +17,44 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F C0 /r</td>
-	<td>XADD r/m8, r8</td>
+	<td>0F C0 /<em>r</em></td>
+	<td>XADD <em>r/m8, r8</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Exchange r8 and r/m8; load sum into r/m8.</td>
+	<td>Exchange <em>r8</em> and <em>r/m8</em>; load sum into <em>r/m8</em>.</td>
 </tr>
 <tr>
-	<td>REX + 0F C0 /r</td>
-	<td>XADD r/m8*, r8*</td>
+	<td>REX + 0F C0 /<em>r</em></td>
+	<td>XADD <em>r/m8*, r8*</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Exchange r8 and r/m8; load sum into r/m8.</td>
+	<td>Exchange <em>r8</em> and <em>r/m8</em>; load sum into <em>r/m8</em>.</td>
 </tr>
 <tr>
-	<td>0F C1 /r</td>
-	<td>XADD r/m16, r16</td>
+	<td>0F C1 /<em>r</em></td>
+	<td>XADD <em>r/m16, r16</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Exchange r16 and r/m16; load sum into r/m16.</td>
+	<td>Exchange <em>r16</em> and <em>r/m16</em>; load sum into <em>r/m16</em>.</td>
 </tr>
 <tr>
-	<td>0F C1 /r</td>
-	<td>XADD r/m32, r32</td>
+	<td>0F C1 /<em>r</em></td>
+	<td>XADD <em>r/m32, r32</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Exchange r32 and r/m32; load sum into r/m32.</td>
+	<td>Exchange <em>r32</em> and <em>r/m32</em>; load sum into <em>r/m32</em>.</td>
 </tr>
 <tr>
-	<td>REX.W + 0F C1 /r</td>
-	<td>XADD r/m64, r64</td>
+	<td>REX.W + 0F C1 /<em>r</em></td>
+	<td>XADD <em>r/m64, r64</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Exchange r64 and r/m64; load sum into r/m64.</td>
+	<td>Exchange <em>r64</em> and <em>r/m64</em>; load sum into <em>r/m64</em>.</td>
 </tr>
 </table>
 <p class="notes">Notes: * In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.</p>

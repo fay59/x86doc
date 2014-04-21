@@ -16,11 +16,11 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 58 /r ADDPD xmm1, xmm2/m128</td>
+	<td>66 0F 58 /r ADDPD <em>xmm1,</em> <em>xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Add packed double-precision floating-point values from xmm2/m128 to xmm1.</td>
+	<td>Add packed double-precision floating-point values from <em>xmm2/m128</em> to <em>xmm1</em>.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG 58 /r VADDPD xmm1,xmm2, xmm3/m128</td>
@@ -64,7 +64,7 @@
 <h2 id="description">Description</h2>
 <p>Performs a SIMD add of the two packed double-precision floating-point values from the source operand (second operand) and the destination operand (first operand), and stores the packed double-precision floating-point results in the destination operand.</p>
 <p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15).</p>
-<p>128-bit Legacy SSE version: The second source can be an XMM register or an 128-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. See Chapter 11 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, for an overview of SIMD double-precision floating-point operation.</p>
+<p>128-bit Legacy SSE version: The second source can be an XMM register or an 128-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified. See Chapter 11 in the <em>Intel® 64 and IA-32 Architectures Software Devel<em>o</em>per’s Manual, Volume 1, for an overview of SIMD double-precision floating-point operation.</em></p>
 <p>VEX.128 encoded version: the first source operand is an XMM register or 128-bit memory location. The destination operand is an XMM register. The upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed.</p>
 <p>VEX.256 encoded version: The first source operand is a YMM register. The second source operand can be a YMM register or a 256-bit memory location. The destination operand is a YMM register.</p>
 <h2 id="operation">Operation</h2>

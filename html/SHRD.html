@@ -18,51 +18,51 @@
 </tr>
 <tr>
 	<td>0F AC /r ib</td>
-	<td>SHRD r/m16, r16, imm8</td>
+	<td>SHRD <em>r/m16, r16, imm8</em></td>
 	<td>MRI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Shift r/m16 to right imm8 places while shifting bits from r16 in from the left.</td>
+	<td>Shift<em> r/m16</em> to right <em>imm8</em> places while shifting bits from <em>r16</em> in from the left.</td>
 </tr>
 <tr>
 	<td>0F AD /r</td>
-	<td>SHRD r/m16, r16, CL</td>
+	<td>SHRD <em>r/m16, r16</em>, CL</td>
 	<td>MRC</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Shift r/m16 to right CL places while shifting bits from r16 in from the left.</td>
+	<td>Shift<em> r/m16</em> to right CL places while shifting bits from <em>r16</em> in from the left.</td>
 </tr>
 <tr>
 	<td>0F AC /r ib</td>
-	<td>SHRD r/m32, r32, imm8</td>
+	<td>SHRD <em>r/m32, r32, imm8</em></td>
 	<td>MRI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Shift r/m32 to right imm8 places while shifting bits from r32 in from the left.</td>
+	<td>Shift<em> r/m32</em> to right <em>imm8</em> places while shifting bits from <em>r32</em> in from the left.</td>
 </tr>
 <tr>
 	<td>REX.W + 0F AC /r ib</td>
-	<td>SHRD r/m64, r64, imm8</td>
+	<td>SHRD <em>r/m64, r64, imm8</em></td>
 	<td>MRI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Shift r/m64 to right imm8 places while shifting bits from r64 in from the left.</td>
+	<td>Shift<em> r/m64</em> to right <em>imm8</em> places while shifting bits from <em>r64</em> in from the left.</td>
 </tr>
 <tr>
 	<td>0F AD /r</td>
-	<td>SHRD r/m32, r32, CL</td>
+	<td>SHRD <em>r/m32, r32</em>, CL</td>
 	<td>MRC</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Shift r/m32 to right CL places while shifting bits from r32 in from the left.</td>
+	<td>Shift<em> r/m32</em> to right CL places while shifting bits from <em>r32</em> in from the left.</td>
 </tr>
 <tr>
 	<td>REX.W + 0F AD /r</td>
-	<td>SHRD r/m64, r64, CL</td>
+	<td>SHRD <em>r/m64, r64</em>, CL</td>
 	<td>MRC</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Shift r/m64 to right CL places while shifting bits from r64 in from the left.</td>
+	<td>Shift<em> r/m64</em> to right CL places while shifting bits from <em>r64</em> in from the left.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -113,11 +113,11 @@ IF COUNT = 0
           CF ← BIT[DEST, COUNT - 1]; (* Last bit shifted out on exit *)
           FOR i ← 0 TO SIZE - 1 - COUNT
              DO
-               BIT[DEST, i] ← BIT[DEST, i + COUNT];
+               BIT[DEST, i] ← BIT[DEST<em>,</em> i + COUNT];
              OD;
           FOR i ← SIZE - COUNT TO SIZE - 1
              DO
-               BIT[DEST,i] ← BIT[SRC, i + COUNT - SIZE];
+               BIT[DEST<em>,</em>i] ← BIT[SRC, i + COUNT - SIZE];
              OD;
      FI;
 FI;

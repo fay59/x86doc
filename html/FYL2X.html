@@ -20,11 +20,11 @@
 	<td>FYL2X</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Replace ST(1) with (ST(1) ∗ log2ST(0)) and pop the register stack.</td>
+	<td>Replace ST(1) with (ST(1) ∗ log<sub>2</sub>ST(0)) and pop the register stack.</td>
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Computes (ST(1) ∗ log2 (ST(0))), stores the result in resister ST(1), and pops the FPU register stack. The source operand in ST(0) must be a non-zero positive number.</p>
+<p>Computes (ST(1) ∗ log<sub>2</sub> (ST(0))), stores the result in resister ST(1), and pops the FPU register stack. The source operand in ST(0) must be a non-zero positive number.</p>
 <p>The following table shows the results obtained when taking the log of various classes of numbers, assuming that neither overflow nor underflow occurs.</p>
 <h3 id="table-3-58-fyl2x-results">Table 3-58. FYL2X Results</h3>
 <p>ST(0)</p>
@@ -53,10 +53,10 @@
 <p class="notes">Notes: F Means finite floating-point value. * Indicates floating-point invalid-operation (#IA) exception. ** Indicates floating-point zero-divide (#Z) exception.</p>
 <p>If the divide-by-zero exception is masked and register ST(0) contains ±0, the instruction returns ∞ with a sign that is the opposite of the sign of the source operand in register ST(1).</p>
 <p>The FYL2X instruction is designed with a built-in multiplication to optimize the calculation of logarithms with an arbitrary positive base (b):</p>
-<p>logbx ← (log2b)-1 ∗ log2x</p>
+<p>log<sub>b</sub>x ← (log<sub>2</sub>b)<sup>-1</sup> ∗ log<sub>2</sub>x</p>
 <p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>
 <h2 id="operation">Operation</h2>
-<pre>ST(1) ← ST(1) ∗ log2ST(0);
+<pre>ST(1) ← ST(1) ∗ log<sub>2</sub>ST(0);
 PopRegisterStack;
 </pre>
 <h2 id="fpu-flags-affected">FPU Flags Affected</h2>

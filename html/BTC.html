@@ -18,7 +18,7 @@
 </tr>
 <tr>
 	<td>0F BB /r</td>
-	<td>BTC r/m16, r16</td>
+	<td>BTC <em>r/m16, r16</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
@@ -26,7 +26,7 @@
 </tr>
 <tr>
 	<td>0F BB /r</td>
-	<td>BTC r/m32, r32</td>
+	<td>BTC <em>r/m32, r32</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
@@ -34,31 +34,31 @@
 </tr>
 <tr>
 	<td>REX.W + 0F BB /r</td>
-	<td>BTC r/m64, r64</td>
+	<td>BTC <em>r/m64, r64</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>N.E.</td>
 	<td>Store selected bit in CF flag and complement.</td>
 </tr>
 <tr>
-	<td>0F BA /7 ib</td>
-	<td>BTC r/m16, imm8</td>
+	<td>0F BA /7 <em>ib</em></td>
+	<td>BTC <em>r/m16, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
 	<td>Store selected bit in CF flag and complement.</td>
 </tr>
 <tr>
-	<td>0F BA /7 ib</td>
-	<td>BTC r/m32, imm8</td>
+	<td>0F BA /7 <em>ib</em></td>
+	<td>BTC <em>r/m32, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
 	<td>Store selected bit in CF flag and complement.</td>
 </tr>
 <tr>
-	<td>REX.W + 0F BA /7 ib</td>
-	<td>BTC r/m64, imm8</td>
+	<td>REX.W + 0F BA /7 <em>ib</em></td>
+	<td>BTC <em>r/m64, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
@@ -95,7 +95,7 @@
 	<li>If the bit base operand specifies a register, the instruction takes the modulo 16, 32, or 64 of the bit offset operand (modulo size depends on the mode and register size; 64-bit operands are available only in 64-bit mode). This allows any bit position to be selected.</li>
 	<li>If the bit base operand specifies a memory location, the operand represents the address of the byte in memory that contains the bit base (bit 0 of the specified byte) of the bit string. The range of the bit position that can be referenced by the offset operand depends on the operand size.</li>
 </ul>
-<p>See also: Bit(BitBase, BitOffset) on page 3-10.</p>
+<p>See also: <strong>Bit(BitBase, BitOffset) </strong>on page 3-10.</p>
 <p>Some assemblers support immediate bit offsets larger than 31 by using the immediate bit offset field in combination with the displacement field of the memory operand. See “BT—Bit Test” in this chapter for more information on this addressing mechanism.</p>
 <p>This instruction can be used with a LOCK prefix to allow the instruction to be executed atomically.</p>
 <p>In 64-bit mode, the instruction’s default operation size is 32 bits. Using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). Using a REX prefix in the form of REX.W promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.</p>

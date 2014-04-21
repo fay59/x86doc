@@ -18,51 +18,51 @@
 </tr>
 <tr>
 	<td>FE /1 REX + FE /1</td>
-	<td>DEC r/m8 DEC r/m8*</td>
+	<td>DEC <em>r/m8</em> DEC <em>r/m8</em><sup>*</sup></td>
 	<td>M M</td>
 	<td>Valid Valid</td>
 	<td>Valid N.E.</td>
-	<td>Decrement r/m8 by 1. Decrement r/m8 by 1.</td>
+	<td>Decrement <em>r/m8</em> by 1. Decrement <em>r/m8</em> by 1.</td>
 </tr>
 <tr>
 	<td>FF /1</td>
-	<td>DEC r/m16</td>
+	<td>DEC <em>r/m16</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Decrement r/m16 by 1.</td>
+	<td>Decrement <em>r/m16</em> by 1.</td>
 </tr>
 <tr>
 	<td>FF /1</td>
-	<td>DEC r/m32</td>
+	<td>DEC <em>r/m32</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Decrement r/m32 by 1.</td>
+	<td>Decrement <em>r/m32</em> by 1.</td>
 </tr>
 <tr>
 	<td>REX.W + FF /1</td>
-	<td>DEC r/m64</td>
+	<td>DEC <em>r/m64</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Decrement r/m64 by 1.</td>
+	<td>Decrement <em>r/m64</em> by 1.</td>
 </tr>
 <tr>
 	<td>48+rw</td>
-	<td>DEC r16</td>
+	<td>DEC <em>r16</em></td>
 	<td>O</td>
 	<td>N.E.</td>
 	<td>Valid</td>
-	<td>Decrement r16 by 1.</td>
+	<td>Decrement <em>r16</em> by 1.</td>
 </tr>
 <tr>
 	<td>48+rd</td>
-	<td>DEC r32</td>
+	<td>DEC <em>r32</em></td>
 	<td>O</td>
 	<td>N.E.</td>
 	<td>Valid</td>
-	<td>Decrement r32 by 1.</td>
+	<td>Decrement <em>r32</em> by 1.</td>
 </tr>
 </table>
 <p class="notes">Notes: * In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.</p>

@@ -44,12 +44,12 @@
 </table>
 <h2 id="description">Description</h2>
 <p>Loads the current value of the processor’s time-stamp counter (a 64-bit MSR) into the EDX:EAX registers and also loads the IA32_TSC_AUX MSR (address C000_0103H) into the ECX register. The EDX register is loaded with the high-order 32 bits of the IA32_TSC MSR; the EAX register is loaded with the low-order 32 bits of the IA32_TSC MSR; and the ECX register is loaded with the low-order 32-bits of IA32_TSC_AUX MSR. On processors that support the Intel 64 architecture, the high-order 32 bits of each of RAX, RDX, and RCX are cleared.</p>
-<p>The processor monotonically increments the time-stamp counter MSR every clock cycle and resets it to 0 whenever the processor is reset. See “Time Stamp Counter” in Chapter 17 of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3B, for specific details of the time stamp counter behavior.</p>
+<p>The processor monotonically increments the time-stamp counter MSR every clock cycle and resets it to 0 whenever the processor is reset. See “Time Stamp Counter” in Chapter 17 of the <em>Intel® 64 and IA-32 Architectures Software</em> <em>Developer’s Manual, Volume 3B, for specific details of the time stamp counter behavior.</em></p>
 <p>When in protected or virtual 8086 mode, the time stamp disable (TSD) flag in register CR4 restricts the use of the RDTSCP instruction as follows. When the TSD flag is clear, the RDTSCP instruction can be executed at any privilege level; when the flag is set, the instruction can only be executed at privilege level 0. (When in real-address mode, the RDTSCP instruction is always enabled.)</p>
 <p>The RDTSCP instruction waits until all previous instructions have been executed before reading the counter.</p>
 <table>
 <tr>
-	<td>However, The presence of the RDTSCP instruction is indicated by CPUID leaf 80000001H, EDX bit 27. If the bit is set to 1 then RDTSCP is present on the processor. See “Changes to Instruction Behavior in VMX Non-Root Operation” in Chapter 25 of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3C, for more information about the behavior of this instruction in VMX non-root operation.</td>
+	<td>However, The presence of the RDTSCP instruction is indicated by CPUID leaf 80000001H, EDX bit 27. If the bit is set to 1 then RDTSCP is present on the processor. See “Changes to Instruction Behavior in VMX Non-Root Operation” in Chapter 25 of the <em>Intel® 64 and IA-32 Archi<em>t</em>ectures Software Developer’s Manual, Volume 3C, for more information about the behavior of this instruction in</em> VMX non-root operation.</td>
 	<td>subsequent instructions may begin execution before the read operation is performed.</td>
 </tr>
 </table>

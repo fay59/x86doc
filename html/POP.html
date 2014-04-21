@@ -18,51 +18,51 @@
 </tr>
 <tr>
 	<td>8F /0</td>
-	<td>POP r/m16</td>
+	<td>POP r/<em>m16</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Pop top of stack into m16; increment stack pointer.</td>
+	<td>Pop top of stack into <em>m16</em>; increment stack pointer.</td>
 </tr>
 <tr>
 	<td>8F /0</td>
-	<td>POP r/m32</td>
+	<td>POP r/<em>m32</em></td>
 	<td>M</td>
 	<td>N.E.</td>
 	<td>Valid</td>
-	<td>Pop top of stack into m32; increment stack pointer.</td>
+	<td>Pop top of stack into <em>m32</em>; increment stack pointer.</td>
 </tr>
 <tr>
 	<td>8F /0</td>
-	<td>POP r/m64</td>
+	<td>POP r/<em>m64</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Pop top of stack into m64; increment stack pointer. Cannot encode 32-bit operand size.</td>
+	<td>Pop top of stack into <em>m64</em>; increment stack pointer. Cannot encode 32-bit operand size.</td>
 </tr>
 <tr>
-	<td>58+ rw</td>
-	<td>POP r16</td>
+	<td>58+ <em>rw</em></td>
+	<td>POP <em>r16</em></td>
 	<td>O</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Pop top of stack into r16; increment stack pointer.</td>
+	<td>Pop top of stack into <em>r16</em>; increment stack pointer.</td>
 </tr>
 <tr>
-	<td>58+ rd</td>
-	<td>POP r32</td>
+	<td>58+ <em>rd</em></td>
+	<td>POP <em>r32</em></td>
 	<td>O</td>
 	<td>N.E.</td>
 	<td>Valid</td>
-	<td>Pop top of stack into r32; increment stack pointer.</td>
+	<td>Pop top of stack into <em>r32</em>; increment stack pointer.</td>
 </tr>
 <tr>
-	<td>58+ rd</td>
-	<td>POP r64</td>
+	<td>58+ <em>rd</em></td>
+	<td>POP <em>r64</em></td>
 	<td>O</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Pop top of stack into r64; increment stack pointer. Cannot encode 32-bit operand size.</td>
+	<td>Pop top of stack into <em>r64</em>; increment stack pointer. Cannot encode 32-bit operand size.</td>
 </tr>
 <tr>
 	<td>1F</td>
@@ -181,7 +181,7 @@
 <p>The POP instruction cannot pop a value into the CS register. To load the CS register from the stack, use the RET instruction.</p>
 <p>If the ESP register is used as a base register for addressing a destination operand in memory, the POP instruction computes the effective address of the operand after it increments the ESP register. For the case of a 16-bit stack where ESP wraps to 0H as a result of the POP instruction, the resulting location of the memory write is processorfamily-specific.</p>
 <p>The POP ESP instruction increments the stack pointer (ESP) before data at the old top of stack is written into the destination.</p>
-<p>A POP SS instruction inhibits all interrupts, including the NMI interrupt, until after execution of the next instruction. This action allows sequential execution of POP SS and MOV ESP, EBP instructions without the danger of having an invalid stack during an interrupt1. However, use of the LSS instruction is the preferred method of loading the SS and ESP registers.</p>
+<p>A POP SS instruction inhibits all interrupts, including the NMI interrupt, until after execution of the next instruction. This action allows sequential execution of POP SS and MOV ESP, EBP instructions without the danger of having an invalid stack during an interrupt<sup>1</sup>. However, use of the LSS instruction is the preferred method of loading the SS and ESP registers.</p>
 <p>In 64-bit mode, using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). When in 64-bit mode, POPs using 32-bit operands are not encodable and POPs to DS, ES, SS are not valid. See the summary chart at the beginning of this section for encoding data and limits.</p>
 <h2 id="operation">Operation</h2>
 <pre>IF StackAddrSize = 32

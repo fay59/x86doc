@@ -16,18 +16,18 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 12 /r MOVHLPS xmm1, xmm2</td>
+	<td>0F 12 /<em>r</em> MOVHLPS<em> xmm1, xmm2</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Move two packed single-precision floatingpoint values from high quadword of xmm2 to low quadword of xmm1.</td>
+	<td>Move two packed single-precision floatingpoint values from high quadword of <em>xmm2</em> to low quadword of <em>xmm1</em>.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.0F.WIG 12 /r VMOVHLPS xmm1, xmm2, xmm3</td>
+	<td>VEX.NDS.128.0F.WIG 12 /r VMOVHLPS <em>xmm1, xmm2, xmm3</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Merge two packed single-precision floatingpoint values from high quadword of xmm3 and low quadword of xmm2.</td>
+	<td>Merge two packed single-precision floatingpoint values from high quadword of <em>xmm3</em> and low quadword of <em>xmm2</em>.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -55,7 +55,7 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>This instruction cannot be used for memory to register moves. 128-bit two-argument form: Moves two packed single-precision floating-point values from the high quadword of the second XMM argument (second operand) to the low quadword of the first XMM register (first argument). The high quadword of the destination operand is left unchanged. Bits (VLMAX-1:64) of the corresponding YMM destination register are unmodified. 128-bit three-argument form Moves two packed single-precision floating-point values from the high quadword of the third XMM argument (third operand) to the low quadword of the destination (first operand). Copies the high quadword from the second XMM argument (second operand) to the high quadword of the destination (first operand). Bits (VLMAX-1:128) of the destination YMM register are zeroed.</p>
+<p>This instruction cannot be used for memory to register moves. <strong>128-bit two-argument form:</strong> Moves two packed single-precision floating-point values from the high quadword of the second XMM argument (second operand) to the low quadword of the first XMM register (first argument). The high quadword of the destination operand is left unchanged. Bits (VLMAX-1:64) of the corresponding YMM destination register are unmodified. <strong>128-bit three-argument form</strong> Moves two packed single-precision floating-point values from the high quadword of the third XMM argument (third operand) to the low quadword of the destination (first operand). Copies the high quadword from the second XMM argument (second operand) to the high quadword of the destination (first operand). Bits (VLMAX-1:128) of the destination YMM register are zeroed.</p>
 <p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). If VMOVHLPS is encoded with VEX.L= 1, an attempt to execute the instruction encoded with VEX.L= 1 will cause an #UD exception.</p>
 <h2 id="operation">Operation</h2>
 <pre>MOVHLPS (128-bit two-argument form)

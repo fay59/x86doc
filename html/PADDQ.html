@@ -16,35 +16,35 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F D4 /r1 PADDQ mm1, mm2/m64</td>
+	<td>0F D4 /<em>r</em><sup>1</sup> PADDQ <em>mm1, mm2/m64</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Add quadword integer mm2/m64 to mm1.</td>
+	<td>Add quadword integer <em>mm2/m64</em> to <em>mm1.</em></td>
 </tr>
 <tr>
-	<td>66 0F D4 /r PADDQ xmm1, xmm2/m128</td>
+	<td>66 0F D4 /<em>r</em> PADDQ <em>xmm1, xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Add packed quadword integers xmm2/m128 to xmm1.</td>
+	<td>Add packed quadword integers<em> xmm2/m128</em> to <em>xmm1.</em></td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG D4 /r VPADDQ xmm1, xmm2, xmm3/m128</td>
+	<td>VEX.NDS.128.66.0F.WIG D4 /r VPADDQ <em>xmm1, xmm2, xmm3/m128</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Add packed quadword integers xmm3/m128 and xmm2.</td>
+	<td>Add packed quadword integers <em>xmm3/m128</em> and <em>xmm2</em>.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG D4 /r VPADDQ ymm1, ymm2, ymm3/m256</td>
+	<td>VEX.NDS.256.66.0F.WIG D4 /r VPADDQ<em> ymm1, ymm2, ymm3/m256</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Add packed quadword integers from ymm2, ymm3/m256 and store in ymm1.</td>
+	<td>Add packed quadword integers from <em>ymm2,</em> <em><em>ymm3/m256 and store in ymm1.</em></em></td>
 </tr>
 </table>
-<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual,</em> <em><em>Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and</em></em> <em>IA-32 Architectures Software Developer’s Manual, Volume 3A.</em></p>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>

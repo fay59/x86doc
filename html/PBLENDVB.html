@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>66 0F 38 10 /r PBLENDVB xmm1, xmm2/m128, &lt;XMM0&gt;</td>
+	<td>66 0F 38 10 /r PBLENDVB <em>xmm1, xmm2/m128, &lt;XMM0&gt;</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE4_1</td>
-	<td>Select byte values from xmm1 and xmm2/m128 from mask specified in the high bit of each byte in XMM0 and store the values into xmm1.</td>
+	<td>Select byte values from <em>xmm1</em> and <em>xmm2/m128 from mask specified in the high</em> bit of each byte in <em>XMM0 </em>and store the values into <em>xmm1.</em></td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F3A.W0 4C /r /is4 VPBLENDVB xmm1, xmm2, xmm3/m128, xmm4</td>
+	<td>VEX.NDS.128.66.0F3A.W0 4C /r /is4 VPBLENDVB <em>xmm1, xmm2, xmm3/m128, xmm4</em></td>
 	<td>RVMR</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Select byte values from xmm2 and xmm3/m128 using mask bits in the specified mask register, xmm4, and store the values into xmm1.</td>
+	<td>Select byte values from <em>xmm2</em> and <em>xmm3/m128 using mask bits in the specified</em> mask register, <em>xmm4</em>, and store the values into <em>xmm1</em>.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F3A.W0 4C /r /is4 VPBLENDVB ymm1, ymm2, ymm3/m256, ymm4</td>
+	<td>VEX.NDS.256.66.0F3A.W0 4C /r /is4 VPBLENDVB <em>ymm1, ymm2, ymm3/m256, ymm4</em></td>
 	<td>RVMR</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Select byte values from ymm2 and ymm3/m256 from mask specified in the high bit of each byte in ymm4 and store the values into ymm1.</td>
+	<td>Select byte values from <em>ymm2</em> and <em>ymm3/m256 from mask specified in the high</em> bit of each byte in <em>ymm4</em> and store the values into <em>ymm1</em>.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>

@@ -17,15 +17,15 @@
 </tr>
 <tr>
 	<td>DD /4</td>
-	<td>FRSTOR m94/108byte</td>
+	<td>FRSTOR <em>m94/108byte</em></td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Load FPU state from m94byte or m108byte.</td>
+	<td>Load FPU state from <em>m94byte</em> or <em>m108byte</em>.</td>
 </tr>
 </table>
 <h2 id="description">Description</h2>
 <p>Loads the FPU state (operating environment and register stack) from the memory area specified with the source operand. This state data is typically written to the specified memory location by a previous FSAVE/FNSAVE instruction.</p>
-<p>The FPU operating environment consists of the FPU control word, status word, tag word, instruction pointer, data pointer, and last opcode. Figures 8-9 through 8-12 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, show the layout in memory of the stored environment, depending on the operating mode of the processor (protected or real) and the current operand-size attribute (16-bit or 32-bit). In virtual-8086 mode, the real mode layouts are used. The contents of the FPU register stack are stored in the 80 bytes immediately following the operating environment image.</p>
+<p>The FPU operating environment consists of the FPU control word, status word, tag word, instruction pointer, data pointer, and last opcode. Figures 8-9 through 8-12 in the <em>Intel® 64 and IA-32 Architectures Software Developer’s</em> <em>Manual, Volume 1, show the layout in memory of the stored environment, depending on the operating mode of the</em> processor (protected or real) and the current operand-size attribute (16-bit or 32-bit). In virtual-8086 mode, the real mode layouts are used. The contents of the FPU register stack are stored in the 80 bytes immediately following the operating environment image.</p>
 <p>The FRSTOR instruction should be executed in the same operating mode as the corresponding FSAVE/FNSAVE instruction.</p>
 <p>If one or more unmasked exception bits are set in the new FPU status word, a floating-point exception will be generated. To avoid raising exceptions when loading a new operating environment, clear all the exception flags in the FPU status word that is being loaded.</p>
 <p>This instruction’s operation is the same in non-64-bit modes and 64-bit mode.</p>

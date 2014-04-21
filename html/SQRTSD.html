@@ -16,18 +16,18 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>F2 0F 51 /r SQRTSD xmm1, xmm2/m64</td>
+	<td>F2 0F 51 /<em>r</em> SQRTSD <em>xmm1</em>, <em>xmm2/m64</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Computes square root of the low doubleprecision floating-point value in xmm2/m64 and stores the results in xmm1.</td>
+	<td>Computes square root of the low doubleprecision floating-point value in <em>xmm2/m64</em> and stores the results in <em>xmm1</em>.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.LIG.F2.0F.WIG 51/r VSQRTSD xmm1,xmm2, xmm3/m64</td>
+	<td>VEX.NDS.LIG.F2.0F.WIG 51/r VSQRTSD<em> xmm1,xmm2, xmm3/m64</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Computes square root of the low doubleprecision floating point value in xmm3/m64 and stores the results in xmm2. Also, upper double precision floating-point value (bits[127:64]) from xmm2 are copied to xmm1[127:64].</td>
+	<td>Computes square root of the low doubleprecision floating point value in <em>xmm3/m64</em> and stores the results in <em>xmm2</em>. Also, upper double precision floating-point value (bits[127:64]) from <em>xmm2</em> are copied to <em>xmm1[127:64].</em></td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -55,7 +55,7 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Computes the square root of the low double-precision floating-point value in the source operand (second operand) and stores the double-precision floating-point result in the destination operand. The source operand can be an XMM register or a 64-bit memory location. The destination operand is an XMM register. The high quadword of the destination operand remains unchanged. See Figure 11-4 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, for an illustration of a scalar double-precision floating-point operation.</p>
+<p>Computes the square root of the low double-precision floating-point value in the source operand (second operand) and stores the double-precision floating-point result in the destination operand. The source operand can be an XMM register or a 64-bit memory location. The destination operand is an XMM register. The high quadword of the destination operand remains unchanged. See Figure 11-4 in the <em>Intel® 64 and IA-32 Architectures Software</em> <em>Developer’s Manual, Volume 1, for an illustration of a scalar double-precision floating-point operation.</em></p>
 <p>In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: The first source operand and the destination operand are the same. Bits (VLMAX1:64) of the corresponding YMM destination register remain unchanged. VEX.128 encoded version: Bits (VLMAX-1:128) of the destination YMM register are zeroed.</p>
 <h2 id="operation">Operation</h2>
 <pre>SQRTSD (128-bit Legacy SSE version)

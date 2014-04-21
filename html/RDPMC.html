@@ -46,11 +46,11 @@
 <p>The EAX register is loaded with the low-order 32 bits. The EDX register is loaded with the supported high-order bits of the counter. The number of high-order bits loaded into EDX is implementation specific on processors that do no support architectural performance monitoring. The width of fixed-function and general-purpose performance counters on processors supporting architectural performance monitoring are reported by CPUID 0AH leaf. See below for the treatment of the EDX register for “fast” reads.</p>
 <p>The ECX register selects one of two type of performance counters, specifies the index relative to the base of each counter type, and selects “fast” read mode if supported. The two counter types are :</p>
 <ul>
-	<li>General-purpose or special-purpose performance counters: The number of general-purpose counters is model specific if the processor does not support architectural performance monitoring, see Chapter 30 of Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3B. Special-purpose counters are available only in selected processor members, see Section 30.13, 30.14 of Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3B. This counter type is selected if ECX[30] is clear.</li>
-	<li>Fixed-function performance counter. The number fixed-function performance counters is enumerated by CPUID 0AH leaf. See Chapter 30 of Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3B. This counter type is selected if ECX[30] is set.</li>
+	<li>General-purpose or special-purpose performance counters: The number of general-purpose counters is model specific if the processor does not support architectural performance monitoring, see Chapter 30 of <em>Intel® 64</em> <em>and IA-32 Architectures Software Developer’s Manual, Volume 3B. Special-purpose counters are available only</em> in selected processor members, see Section 30.13, 30.14 of <em>Intel® 64 and IA-32 Architectures Software</em> <em>Developer’s Manual, Volume 3B. This counter type is selected if ECX[30] is clear.</em></li>
+	<li>Fixed-function performance counter. The number fixed-function performance counters is enumerated by CPUID 0AH leaf. See Chapter 30 of <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume</em> <em>3B. This counter type is selected if ECX[30] is set.</em></li>
 </ul>
 <p>ECX[29:0] specifies the index. The width of general-purpose performance counters are 40-bits for processors that do not support architectural performance monitoring counters.The width of special-purpose performance counters are implementation specific. The width of fixed-function performance counters and general-purpose performance counters on processor supporting architectural performance monitoring are reported by CPUID 0AH leaf.</p>
-<p>Table 4-12 lists valid indices of the general-purpose and special-purpose performance counters according to the derived DisplayFamily_DisplayModel values of CPUID encoding for each processor family (see CPUID instruction in Chapter 3, “Instruction Set Reference, A-M” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A).</p>
+<p>Table 4-12 lists valid indices of the general-purpose and special-purpose performance counters according to the derived DisplayFamily_DisplayModel values of CPUID encoding for each processor family (see CPUID instruction in Chapter 3, “Instruction Set Reference, A-M” in the <em>Intel® 64 and IA-32 Architectures Software Developer’s</em> <em>Manual, Volume 2A).</em></p>
 <h3 id="table-4-12-valid-general-and-special-purpose-performance-counter-index-range-for-rdpmc">Table 4-12. Valid General and Special Purpose Performance Counter Index Range for RDPMC</h3>
 <table>
 <tr>
@@ -66,7 +66,7 @@
 	<td>0, 1</td>
 </tr>
 <tr>
-	<td>Pentium® 4, Intel® Xeon processors</td>
+	<td>Pentium<em><sup>®</sup></em><sup> 4, Intel<em><sup>®</sup></em> Xeon processors</td>
 	<td>0FH_00H, 0FH_01H, 0FH_02H</td>
 	<td>≥ 0 and ≤ 17</td>
 	<td>≥ 0 and ≤ 17</td>
@@ -90,7 +90,7 @@
 	<td>≥ 0 and ≤ 17</td>
 </tr>
 <tr>
-	<td>Intel® Core™ Solo and Intel® Core™ Duo processors, Dual-core Intel® Xeon® processor LV Table 4-12.</td>
+	<td>Intel<em><sup>®</sup></em><sup> Core™ Solo and Intel<em><sup>®</sup></em><sup> Core™ Duo processors, Dual-core Intel<em><sup>®</sup></em><sup> Xeon<em><sup>®</sup></em> processor LV Table 4-12.</td>
 	<td>06H_0EH Valid General and Special Purpose Performance Counter Index Range for RDPMC (Contd.)</td>
 	<td>0, 1</td>
 	<td>0, 1</td>
@@ -102,7 +102,7 @@
 	<td>General-purpose Counters</td>
 </tr>
 <tr>
-	<td>Intel® Core™2 Duo processor, Intel Xeon processor</td>
+	<td>Intel<em><sup>®</sup></em> Core™2 Duo processor, Intel Xeon processor</td>
 	<td>06H_0FH</td>
 	<td>0, 1</td>
 	<td>0, 1</td>
@@ -117,7 +117,7 @@
 	<td>≥ 0 and ≤ 17</td>
 </tr>
 <tr>
-	<td>Intel® Core™2 Duo processor family, Intel Xeon processor family - general-purpose PMC</td>
+	<td>Intel<em><sup>®</sup></em> Core™2 Duo processor family, Intel Xeon processor family - general-purpose PMC</td>
 	<td>06H_17H</td>
 	<td>0, 1</td>
 	<td>0, 1</td>
@@ -129,13 +129,13 @@
 	<td>0, 1</td>
 </tr>
 <tr>
-	<td>Intel® Atom™ processor family</td>
+	<td>Intel<em><sup>®</sup></em> Atom™ processor family</td>
 	<td>06H_1CH</td>
 	<td>0, 1</td>
 	<td>0, 1</td>
 </tr>
 <tr>
-	<td>Intel® Core™i7 processor, Intel Xeon processors 5500 series</td>
+	<td>Intel<em><sup>®</sup></em> Core™i7 processor, Intel Xeon processors 5500 series</td>
 	<td>06H_1AH, 06H_1EH, 06H_1FH, 06H_2EH</td>
 	<td>0-3</td>
 	<td>0, 1, 2, 3</td>
@@ -147,7 +147,7 @@
 <p>On Intel Xeon processor 7400 series, there are eight 32-bit special-purpose counters addressable with indices 2-9, ECX[30]=0.</p>
 <p>When in protected or virtual 8086 mode, the performance-monitoring counters enabled (PCE) flag in register CR4 restricts the use of the RDPMC instruction as follows. When the PCE flag is set, the RDPMC instruction can be executed at any privilege level; when the flag is clear, the instruction can only be executed at privilege level 0. (When in real-address mode, the RDPMC instruction is always enabled.)</p>
 <p>The performance-monitoring counters can also be read with the RDMSR instruction, when executing at privilege level 0.</p>
-<p>The performance-monitoring counters are event counters that can be programmed to count events such as the number of instructions decoded, number of interrupts received, or number of cache loads. Chapter 19, “Performance Monitoring Events,” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3B, lists the events that can be counted for various processors in the Intel 64 and IA-32 architecture families.</p>
+<p>The performance-monitoring counters are event counters that can be programmed to count events such as the number of instructions decoded, number of interrupts received, or number of cache loads. Chapter 19, “Performance Monitoring Events,” in the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3B</em>, lists the events that can be counted for various processors in the Intel 64 and IA-32 architecture families.</p>
 <p>The RDPMC instruction is not a serializing instruction; that is, it does not imply that all the events caused by the preceding instructions have been completed or that events caused by subsequent instructions have not begun. If an exact event count is desired, software must insert a serializing instruction (such as the CPUID instruction) before and/or after the RDPMC instruction.</p>
 <p>In the Pentium 4 and Intel Xeon processors, performing back-to-back fast reads are not guaranteed to be monotonic. To guarantee monotonicity on back-to-back reads, a serializing instruction must be placed between the two RDPMC instructions.</p>
 <p>The RDPMC instruction can execute in 16-bit addressing mode or virtual-8086 mode; however, the full contents of the ECX register are used to select the counter, and the event count is stored in the full EAX and EDX registers. The RDPMC instruction was introduced into the IA-32 Architecture in the Pentium Pro processor and the Pentium processor with MMX technology. The earlier Pentium processors have performance-monitoring counters, but they must be read with the RDMSR instruction.</p>

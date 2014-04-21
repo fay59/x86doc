@@ -16,25 +16,25 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 14 /r UNPCKLPS xmm1, xmm2/m128</td>
+	<td>0F 14 /<em>r</em> UNPCKLPS <em>xmm1, xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Unpacks and Interleaves single-precision floating-point values from low quadwords of xmm1 and xmm2/mem into xmm1.</td>
+	<td>Unpacks and Interleaves single-precision floating-point values from low quadwords of <em><em><em>xmm1 and xmm2/mem into xmm1.</em></em></em></td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.0F.WIG 14 /r VUNPCKLPS xmm1,xmm2, xmm3/m128</td>
+	<td>VEX.NDS.128.0F.WIG 14 /r VUNPCKLPS <em>xmm1,xmm2, xmm3/m128</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Unpacks and Interleaves single-precision floating-point values from low quadwords of xmm2 and xmm3/m128.</td>
+	<td>Unpacks and Interleaves single-precision floating-point values from low quadwords of <em><em>xmm2 and xmm3/m128.</em></em></td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.0F.WIG 14 /r VUNPCKLPS ymm1,ymm2,ymm3/m256</td>
+	<td>VEX.NDS.256.0F.WIG 14 /r VUNPCKLPS <em>ymm1,ymm2,ymm3/m256</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Unpacks and Interleaves single-precision floating-point values from low quadwords of ymm2 and ymm3/m256.</td>
+	<td>Unpacks and Interleaves single-precision floating-point values from low quadwords of <em><em>ymm2 and ymm3/m256.</em></em></td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -80,10 +80,10 @@
 </tr>
 <tr>
 	<td>DEST</td>
-	<td>Y1 UNPCKLPS Instruction Low Unpack and Interleave Operation</td>
-	<td>X1</td>
-	<td>Y0</td>
-	<td>X0 Figure 4-26.</td>
+	<td><strong>Y1</strong> UNPCKLPS Instruction Low Unpack and Interleave Operation</td>
+	<td><strong>X1</strong></td>
+	<td><strong>Y0</strong></td>
+	<td><strong>X0</strong> Figure 4-26.</td>
 </tr>
 </table>
 <p>When unpacking from a memory operand, an implementation may fetch only the appropriate 64 bits; however, alignment to 16-byte boundary and normal segment checking will still be enforced.</p>

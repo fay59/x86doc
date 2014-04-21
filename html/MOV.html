@@ -17,255 +17,255 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>88 /r REX + 88 /r</td>
-	<td>MOV r/m8,r8 MOV r/m8***,r8***</td>
+	<td>88 /<em>r</em> REX + 88 /<em>r</em></td>
+	<td>MOV <em>r/m8,r8</em> MOV <em>r/m8</em><sup>***,</sup><em>r8</em><sup>***</sup></td>
 	<td>MR MR</td>
 	<td>Valid Valid</td>
 	<td>Valid N.E.</td>
-	<td>Move r8 to r/m8. Move r8 to r/m8.</td>
+	<td>Move <em>r8</em> to <em>r/m8.</em> Move <em>r8</em> to <em>r/m8.</em></td>
 </tr>
 <tr>
-	<td>89 /r</td>
-	<td>MOV r/m16,r16</td>
+	<td>89 /<em>r</em></td>
+	<td>MOV <em>r/m16,r16</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Move r16 to r/m16.</td>
+	<td>Move <em>r16</em> to <em>r/m16.</em></td>
 </tr>
 <tr>
-	<td>89 /r</td>
-	<td>MOV r/m32,r32</td>
+	<td>89 /<em>r</em></td>
+	<td>MOV <em>r/m32,r32</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Move r32 to r/m32.</td>
+	<td>Move <em>r32</em> to <em>r/m32.</em></td>
 </tr>
 <tr>
-	<td>REX.W + 89 /r</td>
-	<td>MOV r/m64,r64</td>
+	<td>REX.W + 89 /<em>r</em></td>
+	<td>MOV <em>r/m64,r64</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Move r64 to r/m64.</td>
+	<td>Move <em>r64</em> to <em>r/m64.</em></td>
 </tr>
 <tr>
-	<td>8A /r</td>
-	<td>MOV r8,r/m8</td>
+	<td>8A /<em>r</em></td>
+	<td>MOV <em>r8,r/m8</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Move r/m8 to r8.</td>
+	<td>Move <em>r/m8</em> to <em>r8.</em></td>
 </tr>
 <tr>
-	<td>REX + 8A /r</td>
-	<td>MOV r8***,r/m8***</td>
-	<td>RM</td>
-	<td>Valid</td>
-	<td>N.E.</td>
-	<td>Move r/m8 to r8.</td>
-</tr>
-<tr>
-	<td>8B /r</td>
-	<td>MOV r16,r/m16</td>
-	<td>RM</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>Move r/m16 to r16.</td>
-</tr>
-<tr>
-	<td>8B /r</td>
-	<td>MOV r32,r/m32</td>
-	<td>RM</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>Move r/m32 to r32.</td>
-</tr>
-<tr>
-	<td>REX.W + 8B /r</td>
-	<td>MOV r64,r/m64</td>
+	<td>REX + 8A /<em>r</em></td>
+	<td>MOV <em>r8***,r/m8***</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Move r/m64 to r64.</td>
+	<td>Move <em>r/m8</em> to <em>r8.</em></td>
 </tr>
 <tr>
-	<td>8C /r</td>
-	<td>MOV r/m16,Sreg**</td>
-	<td>MR</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>Move segment register to r/m16.</td>
-</tr>
-<tr>
-	<td>REX.W + 8C /r</td>
-	<td>MOV r/m64,Sreg**</td>
-	<td>MR</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>Move zero extended 16-bit segment register to r/m64.</td>
-</tr>
-<tr>
-	<td>8E /r</td>
-	<td>MOV Sreg,r/m16**</td>
+	<td>8B /<em>r</em></td>
+	<td>MOV <em>r16,r/m16</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Move r/m16 to segment register.</td>
+	<td>Move <em>r/m16</em> to <em>r16.</em></td>
 </tr>
 <tr>
-	<td>REX.W + 8E /r</td>
-	<td>MOV Sreg,r/m64**</td>
+	<td>8B /<em>r</em></td>
+	<td>MOV <em>r32,r/m32</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Move lower 16 bits of r/m64 to segment register.</td>
+	<td>Move <em>r/m32</em> to <em>r32.</em></td>
+</tr>
+<tr>
+	<td>REX.W + 8B /<em>r</em></td>
+	<td>MOV <em>r64,r/m64</em></td>
+	<td>RM</td>
+	<td>Valid</td>
+	<td>N.E.</td>
+	<td>Move <em>r/m64</em> to <em>r64.</em></td>
+</tr>
+<tr>
+	<td>8C /<em>r</em></td>
+	<td>MOV <em>r/m16,Sreg</em>**</td>
+	<td>MR</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Move segment register to <em>r/m16.</em></td>
+</tr>
+<tr>
+	<td>REX.W + 8C /<em>r</em></td>
+	<td>MOV <em>r/m64,Sreg</em>**</td>
+	<td>MR</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Move zero extended 16-bit segment register to <em>r/m64.</em></td>
+</tr>
+<tr>
+	<td>8E /<em>r</em></td>
+	<td>MOV <em>Sreg,r/m16</em>**</td>
+	<td>RM</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Move <em>r/m16</em> to segment register.</td>
+</tr>
+<tr>
+	<td>REX.W + 8E /<em>r</em></td>
+	<td>MOV <em>Sreg,r/m64</em>**</td>
+	<td>RM</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Move <em>lower 16 bits of r/m64</em> to segment register.</td>
 </tr>
 <tr>
 	<td>A0</td>
-	<td>MOV AL,moffs8*</td>
+	<td>MOV AL,<em>moffs8</em>*</td>
 	<td>FD</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Move byte at (seg:offset) to AL.</td>
+	<td>Move byte at (<em>seg:offset</em>) to AL.</td>
 </tr>
 <tr>
 	<td>REX.W + A0</td>
-	<td>MOV AL,moffs8*</td>
+	<td>MOV AL,<em>moffs8</em>*</td>
 	<td>FD</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Move byte at (offset) to AL.</td>
+	<td>Move byte at<em> </em>(<em>offset</em>) to AL.</td>
 </tr>
 <tr>
 	<td>A1</td>
-	<td>MOV AX,moffs16*</td>
+	<td>MOV AX,<em>moffs16</em>*</td>
 	<td>FD</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Move word at (seg:offset) to AX.</td>
+	<td>Move word at (<em>seg:offset</em>) to AX.</td>
 </tr>
 <tr>
 	<td>A1</td>
-	<td>MOV EAX,moffs32*</td>
+	<td>MOV EAX,<em>moffs32</em>*</td>
 	<td>FD</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Move doubleword at (seg:offset) to EAX.</td>
+	<td>Move doubleword at (<em>seg:offset</em>) to EAX.</td>
 </tr>
 <tr>
 	<td>REX.W + A1</td>
-	<td>MOV RAX,moffs64*</td>
+	<td>MOV RAX,<em>moffs64</em>*</td>
 	<td>FD</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Move quadword at (offset) to RAX.</td>
+	<td>Move quadword at (<em>offset</em>) to RAX.</td>
 </tr>
 <tr>
 	<td>A2 REX.W + A2</td>
-	<td>MOV moffs8,AL MOV moffs8***,AL</td>
+	<td>MOV <em>moffs8</em>,AL MOV <em>moffs8</em><sup>***</sup>,AL</td>
 	<td>TD TD</td>
 	<td>Valid Valid</td>
 	<td>Valid N.E.</td>
-	<td>Move AL to (seg:offset). Move AL to (offset).</td>
+	<td>Move AL to (<em>seg:offset</em>). Move AL to (<em>offset</em>).</td>
 </tr>
 <tr>
 	<td>A3</td>
-	<td>MOV moffs16*,AX</td>
+	<td>MOV <em>moffs16</em>*,AX</td>
 	<td>TD</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Move AX to (seg:offset).</td>
+	<td>Move AX to (<em>seg:offset</em>).</td>
 </tr>
 <tr>
 	<td>A3</td>
-	<td>MOV moffs32*,EAX</td>
+	<td>MOV <em>moffs32</em>*,EAX</td>
 	<td>TD</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Move EAX to (seg:offset).</td>
+	<td>Move EAX to (<em>seg:offset</em>).</td>
 </tr>
 <tr>
 	<td>REX.W + A3</td>
-	<td>MOV moffs64*,RAX</td>
+	<td>MOV <em>moffs64</em>*,RAX</td>
 	<td>TD</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Move RAX to (offset).</td>
+	<td>Move RAX to (<em>offset</em>).</td>
 </tr>
 <tr>
-	<td>B0+ rb ib REX + B0+ rb ib</td>
-	<td>MOV r8, imm8 MOV r8***, imm8</td>
+	<td>B0+ <em>rb ib</em> REX + B0+ <em>rb ib</em></td>
+	<td>MOV <em>r8, imm8</em> MOV <em>r8</em><sup>***</sup><em>, imm8</em></td>
 	<td>OI OI</td>
 	<td>Valid Valid</td>
 	<td>Valid N.E.</td>
-	<td>Move imm8 to r8. Move imm8 to r8.</td>
+	<td>Move <em>imm8</em> to <em>r8.</em> Move <em>imm8</em> to <em>r8.</em></td>
 </tr>
 <tr>
-	<td>B8+ rw iw</td>
-	<td>MOV r16, imm16</td>
+	<td>B8+ <em>rw iw</em></td>
+	<td>MOV <em>r16, imm16</em></td>
 	<td>OI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Move imm16 to r16.</td>
+	<td>Move <em>imm16</em> to <em>r16.</em></td>
 </tr>
 <tr>
-	<td>B8+ rd id</td>
-	<td>MOV r32, imm32</td>
+	<td>B8+ <em>rd id</em></td>
+	<td>MOV <em>r32, imm32</em></td>
 	<td>OI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Move imm32 to r32.</td>
+	<td>Move <em>imm32</em> to <em>r32.</em></td>
 </tr>
 <tr>
-	<td>REX.W + B8+ rd io</td>
-	<td>MOV r64, imm64</td>
+	<td>REX.W + B8+ <em>rd io</em></td>
+	<td>MOV <em>r64, imm64</em></td>
 	<td>OI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Move imm64 to r64.</td>
+	<td>Move <em>imm64</em> to <em>r64.</em></td>
 </tr>
 <tr>
-	<td>C6 /0 ib</td>
-	<td>MOV r/m8, imm8</td>
+	<td>C6 /<em>0 ib</em></td>
+	<td>MOV <em>r/m8, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Move imm8 to r/m8.</td>
+	<td>Move <em>imm8</em> to <em>r/m8.</em></td>
 </tr>
 <tr>
-	<td>REX + C6 /0 ib</td>
-	<td>MOV r/m8***, imm8</td>
-	<td>MI</td>
-	<td>Valid</td>
-	<td>N.E.</td>
-	<td>Move imm8 to r/m8.</td>
-</tr>
-<tr>
-	<td>C7 /0 iw</td>
-	<td>MOV r/m16, imm16</td>
-	<td>MI</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>Move imm16 to r/m16.</td>
-</tr>
-<tr>
-	<td>C7 /0 id</td>
-	<td>MOV r/m32, imm32</td>
-	<td>MI</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>Move imm32 to r/m32.</td>
-</tr>
-<tr>
-	<td>REX.W + C7 /0 io</td>
-	<td>MOV r/m64, imm32</td>
+	<td>REX + C6 /<em>0 ib</em></td>
+	<td>MOV <em>r/m8***, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Move imm32 sign extended to 64-bits to r/m64.</td>
+	<td>Move <em>imm8</em> to <em>r/m8.</em></td>
+</tr>
+<tr>
+	<td>C7 /<em>0 iw</em></td>
+	<td>MOV <em>r/m16, imm16</em></td>
+	<td>MI</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Move <em>imm16</em> to <em>r/m16.</em></td>
+</tr>
+<tr>
+	<td>C7 /<em>0 id</em></td>
+	<td>MOV <em>r/m32, imm32</em></td>
+	<td>MI</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Move <em>imm32</em> to <em>r/m32.</em></td>
+</tr>
+<tr>
+	<td>REX.W + C7 /<em>0 io</em></td>
+	<td>MOV <em>r/m64, imm32</em></td>
+	<td>MI</td>
+	<td>Valid</td>
+	<td>N.E.</td>
+	<td>Move <em>imm32 sign extended to 64-bits </em>to <em>r/m64.</em></td>
 </tr>
 </table>
-<p class="notes">Notes: * The moffs8, moffs16, moffs32 and moffs64 operands specify a simple offset relative to the segment base, where 8, 16, 32 and 64 refer to the size of the data. The address-size attribute of the instruction determines the size of the offset, either 16, 32 or 64 bits. ** In 32-bit mode, the assembler may insert the 16-bit operand-size prefix with this instruction (see the following “Description” section for further information). ***In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.</p>
+<p class="notes">Notes: * The <em>moffs8</em>, <em>moffs16</em>, <em>moffs32 </em>and <em>moffs64</em> operands specify a simple offset relative to the segment base, where 8, 16, 32 and 64 refer to the size of the data. The address-size attribute of the instruction determines the size of the offset, either 16, 32 or 64 bits. ** In 32-bit mode, the assembler may insert the 16-bit operand-size prefix with this instruction (see the following “Description” section for further information). ***In 64-bit mode, <em>r/m8</em> can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.</p>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>
@@ -323,7 +323,7 @@
 <p>The MOV instruction cannot be used to load the CS register. Attempting to do so results in an invalid opcode exception (#UD). To load the CS register, use the far JMP, CALL, or RET instruction.</p>
 <p>If the destination operand is a segment register (DS, ES, FS, GS, or SS), the source operand must be a valid segment selector. In protected mode, moving a segment selector into a segment register automatically causes the segment descriptor information associated with that segment selector to be loaded into the hidden (shadow) part of the segment register. While loading this information, the segment selector and segment descriptor information is validated (see the “Operation” algorithm below). The segment descriptor data is obtained from the GDT or LDT entry for the specified segment selector.</p>
 <p>A NULL segment selector (values 0000-0003) can be loaded into the DS, ES, FS, and GS registers without causing a protection exception. However, any subsequent attempt to reference a segment whose corresponding segment register is loaded with a NULL value causes a general protection exception (#GP) and no memory reference occurs.</p>
-<p>Loading the SS register with a MOV instruction inhibits all interrupts until after the execution of the next instruction. This operation allows a stack pointer to be loaded into the ESP register with the next instruction (MOV ESP, stack-pointer value) before an interrupt occurs1. Be aware that the LSS instruction offers a more efficient method of loading the SS and ESP registers.</p>
+<p>Loading the SS register with a MOV instruction inhibits all interrupts until after the execution of the next instruction. This operation allows a stack pointer to be loaded into the ESP register with the next instruction (MOV ESP, <strong>stack-pointer value) before an interrupt occurs<sup>1</sup>. Be aware that the LSS instruction offers a more efficient</strong> method of loading the SS and ESP registers.</p>
 <p>When operating in 32-bit mode and moving data between a segment register and a general-purpose register, the 32-bit IA-32 processors do not require the use of the 16-bit operand-size prefix (a byte with the value 66H) with</p>
 <table>
 <tr>

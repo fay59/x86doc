@@ -16,46 +16,46 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 10 /r MOVUPS xmm1, xmm2/m128</td>
+	<td>0F 10 /<em>r</em> MOVUPS <em>xmm1, xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Move packed single-precision floating-point values from xmm2/m128 to xmm1.</td>
+	<td>Move packed single-precision floating-point values from <em>xmm2/m128</em> to <em>xmm1</em>.</td>
 </tr>
 <tr>
-	<td>VEX.128.0F.WIG 10 /r VMOVUPS xmm1, xmm2/m128</td>
+	<td>VEX.128.0F.WIG 10 /r VMOVUPS <em>xmm1, xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Move unaligned packed single-precision floating-point from xmm2/mem to xmm1.</td>
+	<td>Move unaligned packed single-precision floating-point from <em>xmm2/mem</em> to <em>xmm1</em>.</td>
 </tr>
 <tr>
-	<td>VEX.256.0F.WIG 10 /r VMOVUPS ymm1, ymm2/m256</td>
+	<td>VEX.256.0F.WIG 10 /r VMOVUPS <em>ymm1, ymm2/m256</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Move unaligned packed single-precision floating-point from ymm2/mem to ymm1.</td>
+	<td>Move unaligned packed single-precision floating-point from <em>ymm2/mem</em> to <em>ymm1</em>.</td>
 </tr>
 <tr>
-	<td>0F 11 /r MOVUPS xmm2/m128, xmm1</td>
+	<td>0F 11 /<em>r</em> MOVUPS <em>xmm2/m128, xmm1</em></td>
 	<td>MR</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Move packed single-precision floating-point values from xmm1 to xmm2/m128.</td>
+	<td>Move packed single-precision floating-point values from <em>xmm1</em> to <em>xmm2/m128</em>.</td>
 </tr>
 <tr>
-	<td>VEX.128.0F.WIG 11 /r VMOVUPS xmm2/m128, xmm1</td>
+	<td>VEX.128.0F.WIG 11 /r VMOVUPS <em>xmm2/m128, xmm1</em></td>
 	<td>MR</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Move unaligned packed single-precision floating-point from xmm1 to xmm2/mem.</td>
+	<td>Move unaligned packed single-precision floating-point from <em>xmm1</em> to <em>xmm2/mem</em>.</td>
 </tr>
 <tr>
-	<td>VEX.256.0F.WIG 11 /r VMOVUPS ymm2/m256, ymm1</td>
+	<td>VEX.256.0F.WIG 11 /r VMOVUPS <em>ymm2/m256, ymm1</em></td>
 	<td>MR</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Move unaligned packed single-precision floating-point from ymm1 to ymm2/mem.</td>
+	<td>Move unaligned packed single-precision floating-point from <em>ymm1</em> to <em>ymm2/mem</em>.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -85,7 +85,7 @@
 <h2 id="description">Description</h2>
 <p>128-bit versions: Moves a double quadword containing four packed single-precision floating-point values from the source operand (second operand) to the destination operand (first operand). This instruction can be used to load an XMM register from a 128-bit memory location, store the contents of an XMM register into a 128-bit memory location, or move data between two XMM registers.</p>
 <p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged.</p>
-<p>When the source or destination operand is a memory operand, the operand may be unaligned on a 16-byte boundary without causing a general-protection exception (#GP) to be generated.1</p>
+<p>When the source or destination operand is a memory operand, the operand may be unaligned on a 16-byte boundary without causing a general-protection exception (#GP) to be generated.<sup>1</sup></p>
 <p>To move packed single-precision floating-point values to and from memory locations that are known to be aligned on 16-byte boundaries, use the MOVAPS instruction.</p>
 <p>While executing in 16-bit addressing mode, a linear address for a 128-bit data access that overlaps the end of a 16bit segment is not allowed and is defined as reserved behavior. A specific processor implementation may or may not generate a general-protection exception (#GP) in this situation, and the address that spans the end of the segment may or may not wrap around to the beginning of the segment. VEX.128 encoded version: Bits (VLMAX-1:128) of the destination YMM register are zeroed.</p>
 <p>VEX.256 encoded version: Moves 256 bits of packed single-precision floating-point values from the source operand (second operand) to the destination operand (first operand). This instruction can be used to load a YMM register from a 256-bit memory location, to store the contents of a YMM register into a 256-bit memory location, or to move data between two YMM registers. Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.</p>

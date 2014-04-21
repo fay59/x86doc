@@ -18,283 +18,283 @@
 </tr>
 <tr>
 	<td>D0 /2</td>
-	<td>RCL r/m8, 1</td>
+	<td>RCL <em>r/m8</em>, 1</td>
 	<td>M1</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 9 bits (CF, r/m8) left once.</td>
+	<td>Rotate 9 bits (CF, <em>r/m8</em>) left once.</td>
 </tr>
 <tr>
 	<td>REX + D0 /2</td>
-	<td>RCL r/m8*, 1</td>
+	<td>RCL <em>r/m8*</em>, 1</td>
 	<td>M1</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 9 bits (CF, r/m8) left once.</td>
+	<td>Rotate 9 bits (CF, <em>r/m8</em>) left once.</td>
 </tr>
 <tr>
 	<td>D2 /2</td>
-	<td>RCL r/m8, CL</td>
+	<td>RCL <em>r/m8</em>, CL</td>
 	<td>MC</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 9 bits (CF, r/m8) left CL times.</td>
+	<td>Rotate 9 bits (CF, <em>r/m8</em>) left CL times.</td>
 </tr>
 <tr>
 	<td>REX + D2 /2</td>
-	<td>RCL r/m8*, CL</td>
+	<td>RCL <em>r/m8*</em>, CL</td>
 	<td>MC</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 9 bits (CF, r/m8) left CL times.</td>
+	<td>Rotate 9 bits (CF, <em>r/m8</em>) left CL times.</td>
 </tr>
 <tr>
-	<td>C0 /2 ib</td>
-	<td>RCL r/m8, imm8</td>
+	<td>C0 /2 <em>ib</em></td>
+	<td>RCL <em>r/m8, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 9 bits (CF, r/m8) left imm8 times.</td>
+	<td>Rotate 9 bits (CF, <em>r/m8</em>) left <em>imm8</em> times.</td>
 </tr>
 <tr>
-	<td>REX + C0 /2 ib</td>
-	<td>RCL r/m8*, imm8</td>
+	<td>REX + C0 /2 <em>ib</em></td>
+	<td>RCL <em>r/m8*, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 9 bits (CF, r/m8) left imm8 times.</td>
+	<td>Rotate 9 bits (CF, <em>r/m8</em>) left <em>imm8</em> times.</td>
 </tr>
 <tr>
 	<td>D1 /2</td>
-	<td>RCL r/m16, 1</td>
+	<td>RCL <em>r/m16</em>, 1</td>
 	<td>M1</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 17 bits (CF, r/m16) left once.</td>
+	<td>Rotate 17 bits (CF, <em>r/m16</em>) left once.</td>
 </tr>
 <tr>
 	<td>D3 /2</td>
-	<td>RCL r/m16, CL</td>
+	<td>RCL <em>r/m16</em>, CL</td>
 	<td>MC</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 17 bits (CF, r/m16) left CL times.</td>
+	<td>Rotate 17 bits (CF, <em>r/m16</em>) left CL times.</td>
 </tr>
 <tr>
-	<td>C1 /2 ib</td>
-	<td>RCL r/m16, imm8</td>
+	<td>C1 /2 <em>ib</em></td>
+	<td>RCL <em>r/m16, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 17 bits (CF, r/m16) left imm8 times.</td>
+	<td>Rotate 17 bits (CF, <em>r/m16</em>) left <em>imm8</em> times.</td>
 </tr>
 <tr>
 	<td>D1 /2</td>
-	<td>RCL r/m32, 1</td>
+	<td>RCL <em>r/m32</em>, 1</td>
 	<td>M1</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 33 bits (CF, r/m32) left once.</td>
+	<td>Rotate 33 bits (CF, <em>r/m32</em>) left once.</td>
 </tr>
 <tr>
 	<td>REX.W + D1 /2</td>
-	<td>RCL r/m64, 1</td>
+	<td>RCL <em>r/m64</em>, 1</td>
 	<td>M1</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 65 bits (CF, r/m64) left once. Uses a 6 bit count.</td>
+	<td>Rotate 65 bits (CF, <em>r/m64</em>) left once. Uses a 6 bit count.</td>
 </tr>
 <tr>
 	<td>D3 /2</td>
-	<td>RCL r/m32, CL</td>
+	<td>RCL <em>r/m32</em>, CL</td>
 	<td>MC</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 33 bits (CF, r/m32) left CL times.</td>
+	<td>Rotate 33 bits (CF, <em>r/m32</em>) left CL times.</td>
 </tr>
 <tr>
 	<td>REX.W + D3 /2</td>
-	<td>RCL r/m64, CL</td>
+	<td>RCL <em>r/m64</em>, CL</td>
 	<td>MC</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 65 bits (CF, r/m64) left CL times. Uses a 6 bit count.</td>
+	<td>Rotate 65 bits (CF, <em>r/m64</em>) left CL times. Uses a 6 bit count.</td>
 </tr>
 <tr>
-	<td>C1 /2 ib</td>
-	<td>RCL r/m32, imm8</td>
+	<td>C1 /2 <em>ib</em></td>
+	<td>RCL <em>r/m32, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 33 bits (CF, r/m32) left imm8 times.</td>
+	<td>Rotate 33 bits (CF, <em>r/m32</em>) left <em>imm8</em> times.</td>
 </tr>
 <tr>
-	<td>REX.W + C1 /2 ib</td>
-	<td>RCL r/m64, imm8</td>
+	<td>REX.W + C1 /2 <em>ib</em></td>
+	<td>RCL <em>r/m64, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 65 bits (CF, r/m64) left imm8 times. Uses a 6 bit count.</td>
+	<td>Rotate 65 bits (CF, <em>r/m64</em>) left <em>imm8</em> times. Uses a 6 bit count.</td>
 </tr>
 <tr>
 	<td>D0 /3</td>
-	<td>RCR r/m8, 1</td>
+	<td>RCR <em>r/m8</em>, 1</td>
 	<td>M1</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 9 bits (CF, r/m8) right once.</td>
+	<td>Rotate 9 bits (CF, <em>r/m8</em>) right once.</td>
 </tr>
 <tr>
 	<td>REX + D0 /3</td>
-	<td>RCR r/m8*, 1</td>
+	<td>RCR <em>r/m8*</em>, 1</td>
 	<td>M1</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 9 bits (CF, r/m8) right once.</td>
+	<td>Rotate 9 bits (CF, <em>r/m8</em>) right once.</td>
 </tr>
 <tr>
 	<td>D2 /3</td>
-	<td>RCR r/m8, CL</td>
+	<td>RCR <em>r/m8</em>, CL</td>
 	<td>MC</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 9 bits (CF, r/m8) right CL times.</td>
+	<td>Rotate 9 bits (CF, <em>r/m8</em>) right CL times.</td>
 </tr>
 <tr>
 	<td>REX + D2 /3</td>
-	<td>RCR r/m8*, CL</td>
+	<td>RCR <em>r/m8*</em>, CL</td>
 	<td>MC</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 9 bits (CF, r/m8) right CL times.</td>
+	<td>Rotate 9 bits (CF, <em>r/m8</em>) right CL times.</td>
 </tr>
 <tr>
-	<td>C0 /3 ib</td>
-	<td>RCR r/m8, imm8</td>
+	<td>C0 /3 <em>ib</em></td>
+	<td>RCR <em>r/m8, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 9 bits (CF, r/m8) right imm8 times.</td>
+	<td>Rotate 9 bits (CF, <em>r/m8</em>) right <em>imm8</em> times.</td>
 </tr>
 <tr>
-	<td>REX + C0 /3 ib</td>
-	<td>RCR r/m8*, imm8</td>
+	<td>REX + C0 /3 <em>ib</em></td>
+	<td>RCR <em>r/m8*, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 9 bits (CF, r/m8) right imm8 times.</td>
+	<td>Rotate 9 bits (CF, <em>r/m8</em>) right <em>imm8</em> times.</td>
 </tr>
 <tr>
 	<td>D1 /3</td>
-	<td>RCR r/m16, 1</td>
+	<td>RCR <em>r/m16</em>, 1</td>
 	<td>M1</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 17 bits (CF, r/m16) right once.</td>
+	<td>Rotate 17 bits (CF, <em>r/m16</em>) right once.</td>
 </tr>
 <tr>
 	<td>D3 /3</td>
-	<td>RCR r/m16, CL</td>
+	<td>RCR <em>r/m16</em>, CL</td>
 	<td>MC</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 17 bits (CF, r/m16) right CL times.</td>
+	<td>Rotate 17 bits (CF, <em>r/m16</em>) right CL times.</td>
 </tr>
 <tr>
-	<td>C1 /3 ib</td>
-	<td>RCR r/m16, imm8</td>
+	<td>C1 /3 <em>ib</em></td>
+	<td>RCR <em>r/m16, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 17 bits (CF, r/m16) right imm8 times.</td>
+	<td>Rotate 17 bits (CF, <em>r/m16</em>) right <em>imm8</em> times.</td>
 </tr>
 <tr>
 	<td>D1 /3</td>
-	<td>RCR r/m32, 1</td>
+	<td>RCR <em>r/m32</em>, 1</td>
 	<td>M1</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 33 bits (CF, r/m32) right once. Uses a 6 bit count.</td>
+	<td>Rotate 33 bits (CF, <em>r/m32</em>) right once. Uses a 6 bit count.</td>
 </tr>
 <tr>
 	<td>REX.W + D1 /3</td>
-	<td>RCR r/m64, 1</td>
+	<td>RCR <em>r/m64</em>, 1</td>
 	<td>M1</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 65 bits (CF, r/m64) right once. Uses a 6 bit count.</td>
+	<td>Rotate 65 bits (CF, <em>r/m64</em>) right once. Uses a 6 bit count.</td>
 </tr>
 <tr>
 	<td>D3 /3</td>
-	<td>RCR r/m32, CL</td>
+	<td>RCR <em>r/m32</em>, CL</td>
 	<td>MC</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 33 bits (CF, r/m32) right CL times.</td>
+	<td>Rotate 33 bits (CF, <em>r/m32</em>) right CL times.</td>
 </tr>
 <tr>
 	<td>REX.W + D3 /3</td>
-	<td>RCR r/m64, CL</td>
+	<td>RCR <em>r/m64</em>, CL</td>
 	<td>MC</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 65 bits (CF, r/m64) right CL times. Uses a 6 bit count.</td>
+	<td>Rotate 65 bits (CF, <em>r/m64</em>) right CL times. Uses a 6 bit count.</td>
 </tr>
 <tr>
-	<td>C1 /3 ib</td>
-	<td>RCR r/m32, imm8</td>
+	<td>C1 /3 <em>ib</em></td>
+	<td>RCR <em>r/m32, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 33 bits (CF, r/m32) right imm8 times.</td>
+	<td>Rotate 33 bits (CF, <em>r/m32</em>) right <em>imm8</em> times.</td>
 </tr>
 <tr>
-	<td>REX.W + C1 /3 ib</td>
-	<td>RCR r/m64, imm8</td>
+	<td>REX.W + C1 /3 <em>ib</em></td>
+	<td>RCR <em>r/m64, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 65 bits (CF, r/m64) right imm8 times. Uses a 6 bit count.</td>
+	<td>Rotate 65 bits (CF, <em>r/m64</em>) right <em>imm8</em> times. Uses a 6 bit count.</td>
 </tr>
 <tr>
 	<td>D0 /0</td>
-	<td>ROL r/m8, 1</td>
+	<td>ROL <em>r/m8</em>, 1</td>
 	<td>M1</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 8 bits r/m8 left once.</td>
+	<td>Rotate 8 bits <em>r/m8</em> left once.</td>
 </tr>
 <tr>
 	<td>REX + D0 /0</td>
-	<td>ROL r/m8*, 1</td>
+	<td>ROL <em>r/m8*</em>, 1</td>
 	<td>M1</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 8 bits r/m8 left once</td>
+	<td>Rotate 8 bits <em>r/m8</em> left once</td>
 </tr>
 <tr>
 	<td>D2 /0</td>
-	<td>ROL r/m8, CL</td>
+	<td>ROL <em>r/m8</em>, CL</td>
 	<td>MC</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 8 bits r/m8 left CL times.</td>
+	<td>Rotate 8 bits <em>r/m8</em> left CL times.</td>
 </tr>
 <tr>
 	<td>REX + D2 /0</td>
-	<td>ROL r/m8*, CL</td>
+	<td>ROL <em>r/m8*</em>, CL</td>
 	<td>MC</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 8 bits r/m8 left CL times.</td>
+	<td>Rotate 8 bits <em>r/m8</em> left CL times.</td>
 </tr>
 <tr>
-	<td>C0 /0 ib</td>
-	<td>ROL r/m8, imm8</td>
+	<td>C0 /0 <em>ib</em></td>
+	<td>ROL <em>r/m8, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 8 bits r/m8 left imm8 times.</td>
+	<td>Rotate 8 bits <em>r/m8</em> left <em>imm8</em> times.</td>
 </tr>
 <tr>
 	<td>Opcode**</td>
@@ -305,204 +305,204 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>REX + C0 /0 ib</td>
-	<td>ROL r/m8*, imm8</td>
+	<td>REX + C0 /0 <em>ib</em></td>
+	<td>ROL <em>r/m8*, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 8 bits r/m8 left imm8 times.</td>
+	<td>Rotate 8 bits <em>r/m8</em> left <em>imm8</em> times.</td>
 </tr>
 <tr>
 	<td>D1 /0</td>
-	<td>ROL r/m16, 1</td>
+	<td>ROL <em>r/m16</em>, 1</td>
 	<td>M1</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 16 bits r/m16 left once.</td>
+	<td>Rotate 16 bits <em>r/m16</em> left once.</td>
 </tr>
 <tr>
 	<td>D3 /0</td>
-	<td>ROL r/m16, CL</td>
+	<td>ROL <em>r/m16</em>, CL</td>
 	<td>MC</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 16 bits r/m16 left CL times.</td>
+	<td>Rotate 16 bits <em>r/m16</em> left CL times.</td>
 </tr>
 <tr>
-	<td>C1 /0 ib</td>
-	<td>ROL r/m16, imm8</td>
+	<td>C1 /0 <em>ib</em></td>
+	<td>ROL <em>r/m16, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 16 bits r/m16 left imm8 times.</td>
+	<td>Rotate 16 bits <em>r/m16</em> left <em>imm8</em> times.</td>
 </tr>
 <tr>
 	<td>D1 /0</td>
-	<td>ROL r/m32, 1</td>
+	<td>ROL <em>r/m32</em>, 1</td>
 	<td>M1</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 32 bits r/m32 left once.</td>
+	<td>Rotate 32 bits <em>r/m32</em> left once.</td>
 </tr>
 <tr>
 	<td>REX.W + D1 /0</td>
-	<td>ROL r/m64, 1</td>
+	<td>ROL <em>r/m64</em>, 1</td>
 	<td>M1</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 64 bits r/m64 left once. Uses a 6 bit count.</td>
+	<td>Rotate 64 bits <em>r/m64</em> left once. Uses a 6 bit count.</td>
 </tr>
 <tr>
 	<td>D3 /0</td>
-	<td>ROL r/m32, CL</td>
+	<td>ROL <em>r/m32</em>, CL</td>
 	<td>MC</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 32 bits r/m32 left CL times.</td>
+	<td>Rotate 32 bits <em>r/m32</em> left CL times.</td>
 </tr>
 <tr>
 	<td>REX.W + D3 /0</td>
-	<td>ROL r/m64, CL</td>
+	<td>ROL <em>r/m64</em>, CL</td>
 	<td>MC</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 64 bits r/m64 left CL times. Uses a 6 bit count.</td>
+	<td>Rotate 64 bits <em>r/m64</em> left CL times. Uses a 6 bit count.</td>
 </tr>
 <tr>
-	<td>C1 /0 ib</td>
-	<td>ROL r/m32, imm8</td>
+	<td>C1 /0 <em>ib</em></td>
+	<td>ROL <em>r/m32, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 32 bits r/m32 left imm8 times.</td>
+	<td>Rotate 32 bits <em>r/m32</em> left <em>imm8</em> times.</td>
 </tr>
 <tr>
-	<td>REX.W + C1 /0 ib</td>
-	<td>ROL r/m64, imm8</td>
+	<td>REX.W + C1 /0 <em>ib</em></td>
+	<td>ROL <em>r/m64, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 64 bits r/m64 left imm8 times. Uses a 6 bit count.</td>
+	<td>Rotate 64 bits <em>r/m64</em> left <em>imm8</em> times. Uses a 6 bit count.</td>
 </tr>
 <tr>
 	<td>D0 /1</td>
-	<td>ROR r/m8, 1</td>
+	<td>ROR <em>r/m8</em>, 1</td>
 	<td>M1</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 8 bits r/m8 right once.</td>
+	<td>Rotate 8 bits <em>r/m8</em> right once.</td>
 </tr>
 <tr>
 	<td>REX + D0 /1</td>
-	<td>ROR r/m8*, 1</td>
+	<td>ROR <em>r/m8*</em>, 1</td>
 	<td>M1</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 8 bits r/m8 right once.</td>
+	<td>Rotate 8 bits <em>r/m8</em> right once.</td>
 </tr>
 <tr>
 	<td>D2 /1</td>
-	<td>ROR r/m8, CL</td>
+	<td>ROR <em>r/m8</em>, CL</td>
 	<td>MC</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 8 bits r/m8 right CL times.</td>
+	<td>Rotate 8 bits <em>r/m8</em> right CL times.</td>
 </tr>
 <tr>
 	<td>REX + D2 /1</td>
-	<td>ROR r/m8*, CL</td>
+	<td>ROR <em>r/m8*</em>, CL</td>
 	<td>MC</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 8 bits r/m8 right CL times.</td>
+	<td>Rotate 8 bits <em>r/m8</em> right CL times.</td>
 </tr>
 <tr>
-	<td>C0 /1 ib</td>
-	<td>ROR r/m8, imm8</td>
+	<td>C0 /1 <em>ib</em></td>
+	<td>ROR <em>r/m8, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 8 bits r/m16 right imm8 times.</td>
+	<td>Rotate 8 bits <em>r/m16</em> right <em>imm8</em> times.</td>
 </tr>
 <tr>
-	<td>REX + C0 /1 ib</td>
-	<td>ROR r/m8*, imm8</td>
+	<td>REX + C0 /1 <em>ib</em></td>
+	<td>ROR <em>r/m8*, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 8 bits r/m16 right imm8 times.</td>
+	<td>Rotate 8 bits <em>r/m16</em> right <em>imm8</em> times.</td>
 </tr>
 <tr>
 	<td>D1 /1</td>
-	<td>ROR r/m16, 1</td>
+	<td>ROR <em>r/m16</em>, 1</td>
 	<td>M1</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 16 bits r/m16 right once.</td>
+	<td>Rotate 16 bits <em>r/m16</em> right once.</td>
 </tr>
 <tr>
 	<td>D3 /1</td>
-	<td>ROR r/m16, CL</td>
+	<td>ROR <em>r/m16</em>, CL</td>
 	<td>MC</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 16 bits r/m16 right CL times.</td>
+	<td>Rotate 16 bits <em>r/m16</em> right CL times.</td>
 </tr>
 <tr>
-	<td>C1 /1 ib</td>
-	<td>ROR r/m16, imm8</td>
+	<td>C1 /1 <em>ib</em></td>
+	<td>ROR <em>r/m16, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 16 bits r/m16 right imm8 times.</td>
+	<td>Rotate 16 bits <em>r/m16</em> right <em>imm8</em> times.</td>
 </tr>
 <tr>
 	<td>D1 /1</td>
-	<td>ROR r/m32, 1</td>
+	<td>ROR <em>r/m32</em>, 1</td>
 	<td>M1</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 32 bits r/m32 right once.</td>
+	<td>Rotate 32 bits <em>r/m32</em> right once.</td>
 </tr>
 <tr>
 	<td>REX.W + D1 /1</td>
-	<td>ROR r/m64, 1</td>
+	<td>ROR <em>r/m64</em>, 1</td>
 	<td>M1</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 64 bits r/m64 right once. Uses a 6 bit count.</td>
+	<td>Rotate 64 bits <em>r/m64</em> right once. Uses a 6 bit count.</td>
 </tr>
 <tr>
 	<td>D3 /1</td>
-	<td>ROR r/m32, CL</td>
+	<td>ROR <em>r/m32</em>, CL</td>
 	<td>MC</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 32 bits r/m32 right CL times.</td>
+	<td>Rotate 32 bits <em>r/m32</em> right CL times.</td>
 </tr>
 <tr>
 	<td>REX.W + D3 /1</td>
-	<td>ROR r/m64, CL</td>
+	<td>ROR <em>r/m64</em>, CL</td>
 	<td>MC</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 64 bits r/m64 right CL times. Uses a 6 bit count.</td>
+	<td>Rotate 64 bits <em>r/m64</em> right CL times. Uses a 6 bit count.</td>
 </tr>
 <tr>
-	<td>C1 /1 ib</td>
-	<td>ROR r/m32, imm8</td>
+	<td>C1 /1 <em>ib</em></td>
+	<td>ROR <em>r/m32, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Rotate 32 bits r/m32 right imm8 times.</td>
+	<td>Rotate 32 bits <em>r/m32</em> right <em>imm8</em> times.</td>
 </tr>
 <tr>
-	<td>REX.W + C1 /1 ib</td>
-	<td>ROR r/m64, imm8</td>
+	<td>REX.W + C1 /1 <em>ib</em></td>
+	<td>ROR <em>r/m64, imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Rotate 64 bits r/m64 right imm8 times. Uses a 6 bit count.</td>
+	<td>Rotate 64 bits <em>r/m64</em> right <em>imm8</em> times. Uses a 6 bit count.</td>
 </tr>
 </table>
 <p class="notes">Notes: * In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. ** See IA-32 Architecture Compatibility section below.</p>
@@ -558,7 +558,7 @@ ESAC;
 WHILE (tempCOUNT ≠ 0)
   DO
      tempCF ← MSB(DEST);
-     DEST ← (DEST ∗ 2) + CF;
+     DEST ← (DEST<em> </em>∗ 2) + CF;
      CF ← tempCF;
      tempCOUNT ← tempCOUNT - 1;
   OD;
@@ -575,7 +575,7 @@ FI;
 WHILE (tempCOUNT ≠ 0)
   DO
      tempCF ← LSB(SRC);
-     DEST ← (DEST / 2) + (CF * 2SIZE);
+     DEST<em> </em>← (DEST / 2) + (CF * 2<sup>SIZE</sup>);
      CF ← tempCF;
      tempCOUNT ← tempCOUNT - 1;
   OD;
@@ -589,7 +589,7 @@ tempCOUNT ← (COUNT &amp; COUNTMASK) MOD SIZE
 WHILE (tempCOUNT ≠ 0)
   DO
      tempCF ← MSB(DEST);
-     DEST ← (DEST ∗ 2) + tempCF;
+     DEST ← (DEST<em> </em>∗ 2) + tempCF;
      tempCOUNT ← tempCOUNT - 1;
   OD;
 ELIHW;
@@ -603,7 +603,7 @@ tempCOUNT ← (COUNT &amp; COUNTMASK) MOD SIZE
 WHILE (tempCOUNT ≠ 0)
   DO
      tempCF ← LSB(SRC);
-     DEST ← (DEST / 2) + (tempCF ∗ 2SIZE);
+     DEST<em> </em>← (DEST / 2) + (tempCF ∗ 2<sup>SIZE</sup>);
      tempCOUNT ← tempCOUNT - 1;
   OD;
 ELIHW;

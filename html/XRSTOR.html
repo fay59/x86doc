@@ -18,19 +18,19 @@
 </tr>
 <tr>
 	<td>0F AE /5</td>
-	<td>XRSTOR mem</td>
+	<td>XRSTOR <em>mem</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Restore state components specified by EDX:EAX from mem.</td>
+	<td>Restore state components specified by EDX:EAX from <em>mem</em>.</td>
 </tr>
 <tr>
 	<td>REX.W+ 0F AE /5</td>
-	<td>XRSTOR64 mem</td>
+	<td>XRSTOR64 <em>mem</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Restore state components specified by EDX:EAX from mem.</td>
+	<td>Restore state components specified by EDX:EAX from <em>mem</em>.</td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -52,16 +52,16 @@
 </table>
 <h2 id="description">Description</h2>
 <p>Performs a full or partial restore of processor state components from the XSAVE area located at the memory address specified by the source operand. The implicit EDX:EAX register pair specifies a 64-bit instruction mask. The specific state components restored correspond to the bits set in the requested-feature bitmap (RFBM), which is the logical-AND of EDX:EAX and XCR0.</p>
-<p>The format of the XSAVE area is detailed in Section 13.4, “XSAVE Area,” of Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1.</p>
-<p>Section 13.7, “Operation of XRSTOR,” of Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1 provides a detailed description of the operation of the XRSTOR instruction. The following items provide a highlevel outline:</p>
+<p>The format of the XSAVE area is detailed in Section 13.4, “XSAVE Area,” of <em>Intel® 64 and IA-32 Architectures Soft<em>w</em>are Developer’s Manual, Volume 1.</em></p>
+<p>Section 13.7, “Operation of XRSTOR,” of <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume</em> <em>1 provides a detailed description of the operation of the XRSTOR instruction. The following items provide a highl</em>evel outline:</p>
 <ul>
 	<li>Execution of XRSTOR may take one of two forms: standard and compacted. Bit 63 of the XCOMP_BV field in the XSAVE header determines which form is used: value 0 specifies the standard form, while value 1 specifies the compacted form.</li>
-	<li>If RFBM[i] = 0, XRSTOR does not update state component i.1</li>
-	<li>If RFBM[i] = 1 and bit i is clear in the XSTATE_BV field in the XSAVE header, XRSTOR initializes state component i.</li>
-	<li>If RFBM[i] = 1 and XSTATE_BV[i] = 1, XRSTOR loads state component i from the XSAVE area.</li>
+	<li>If RFBM[<em>i</em>] = 0, XRSTOR does not update state component <em>i</em>.<sup>1</sup></li>
+	<li>If RFBM[<em>i</em>] = 1 and bit<em> i</em> is clear in the XSTATE_BV field in the XSAVE header, XRSTOR initializes state component <em>i</em>.</li>
+	<li>If RFBM[<em>i</em>] = 1 and XSTATE_BV[<em>i</em>] = 1, XRSTOR loads state component<em> i</em> from the XSAVE area.</li>
 	<li>The standard form of XRSTOR treats MXCSR (which is part of state component 1 — SSE) differently from the XMM registers. If either form attempts to load MXCSR with an illegal value, a general-protection exception (#GP) occurs.</li>
 	<li>XRSTOR loads the internal value XRSTOR_INFO, which may be used to optimize a subsequent execution of XSAVEOPT or XSAVES.</li>
-	<li>Immediately following an execution of XRSTOR, the processor tracks as in-use (not in initial configuration) any state component i for which RFBM[i] = 1 and XSTATE_BV[i] = 1; it tracks as modified any state component i for which RFBM[i] = 0.</li>
+	<li>Immediately following an execution of XRSTOR, the processor tracks as in-use (not in initial configuration) any state component<em> i</em> for which RFBM[<em>i</em>] = 1 and XSTATE_BV[<em>i</em>] = 1; it tracks as modified any state component <em><em>i for which RFBM[i] = 0.</em></em></li>
 </ul>
 <p>Use of a source operand not aligned to 64-byte boundary (for 64-bit and 32-bit modes) results in a general-protection (#GP) exception. In 64-bit mode, the upper 32 bits of RDX and RAX are ignored.</p>
 <h2 id="operation">Operation</h2>

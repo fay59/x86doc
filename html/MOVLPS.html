@@ -16,32 +16,32 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 12 /r MOVLPS xmm, m64</td>
+	<td>0F 12 /<em>r</em> MOVLPS <em>xmm</em>, <em>m64</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Move two packed single-precision floatingpoint values from m64 to low quadword of xmm.</td>
+	<td>Move two packed single-precision floatingpoint values from <em>m64</em> to low quadword of <em>xmm.</em></td>
 </tr>
 <tr>
-	<td>0F 13 /r MOVLPS m64, xmm</td>
+	<td>0F 13 /<em>r</em> MOVLPS <em>m64</em>, <em>xmm</em></td>
 	<td>MR</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Move two packed single-precision floatingpoint values from low quadword of xmm to m64.</td>
+	<td>Move two packed single-precision floatingpoint values from low quadword of <em>xmm</em> to <em>m64.</em></td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.0F.WIG 12 /r VMOVLPS xmm2, xmm1, m64</td>
+	<td>VEX.NDS.128.0F.WIG 12 /r VMOVLPS <em>xmm2, xmm1, m64</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Merge two packed single-precision floatingpoint values from m64 and the high quadword of xmm1.</td>
+	<td>Merge two packed single-precision floatingpoint values from <em>m64 </em>and the high quadword of <em>xmm1</em>.</td>
 </tr>
 <tr>
-	<td>VEX.128.0F.WIG 13/r VMOVLPS m64, xmm1</td>
+	<td>VEX.128.0F.WIG 13/r VMOVLPS <em>m64, xmm1</em></td>
 	<td>MR</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Move two packed single-precision floatingpoint values from low quadword of xmm1 to m64.</td>
+	<td>Move two packed single-precision floatingpoint values from low quadword of <em>xmm1</em> to <em>m64.</em></td>
 </tr>
 </table>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
@@ -76,8 +76,8 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>This instruction cannot be used for register to register or memory to memory moves. 128-bit Legacy SSE load: Moves two packed single-precision floating-point values from the source 64-bit memory operand and stores them in the low 64-bits of the destination XMM register. The upper 64bits of the XMM register are preserved. The upper 128-bits of the corresponding YMM destination register are preserved.</p>
-<p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). VEX.128 encoded load: Loads two packed single-precision floating-point values from the source 64-bit memory operand (third operand), merges them with the upper 64-bits of the first source XMM register (second operand), and stores them in the low 128-bits of the destination XMM register (first operand). The upper 128-bits of the destination YMM register are zeroed. 128-bit store: Loads two packed single-precision floating-point values from the low 64-bits of the XMM register source (second operand) to the 64-bit memory location (first operand). Note: VMOVLPS (store) (VEX.128.0F 13 /r) is legal and has the same behavior as the existing 0F 13 store. For VMOVLPS (store) (VEX.128.0F 13 /r) instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD.</p>
+<p>This instruction cannot be used for register to register or memory to memory moves. <strong>128-bit Legacy SSE load:</strong> Moves two packed single-precision floating-point values from the source 64-bit memory operand and stores them in the low 64-bits of the destination XMM register. The upper 64bits of the XMM register are preserved. The upper 128-bits of the corresponding YMM destination register are preserved.</p>
+<p>In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15). <strong>VEX.128 encoded load:</strong> Loads two packed single-precision floating-point values from the source 64-bit memory operand (third operand), merges them with the upper 64-bits of the first source XMM register (second operand), and stores them in the low 128-bits of the destination XMM register (first operand). The upper 128-bits of the destination YMM register are zeroed. <strong>128-bit store:</strong> Loads two packed single-precision floating-point values from the low 64-bits of the XMM register source (second operand) to the 64-bit memory location (first operand). Note: VMOVLPS (store) (VEX.128.0F 13 /r) is legal and has the same behavior as the existing 0F 13 store. For VMOVLPS (store) (VEX.128.0F 13 /r) instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD.</p>
 <p>If VMOVLPS is encoded with VEX.L= 1, an attempt to execute the instruction encoded with VEX.L= 1 will cause an #UD exception.</p>
 <h2 id="operation">Operation</h2>
 <pre>MOVLPS (128-bit Legacy SSE load)

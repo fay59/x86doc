@@ -16,63 +16,63 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 63 /r1 PACKSSWB mm1, mm2/m64</td>
+	<td>0F 63 /r<sup>1</sup> PACKSSWB <em>mm1, mm2/m64</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Converts 4 packed signed word integers from mm1 and from mm2/m64 into 8 packed signed byte integers in mm1 using signed saturation.</td>
+	<td>Converts 4 packed signed word integers from <em><em>mm1 and from mm2/m64 into 8 packed</em></em> signed byte integers in <em>mm1 </em>using<em> </em>signed saturation<em>.</em></td>
 </tr>
 <tr>
-	<td>66 0F 63 /r PACKSSWB xmm1, xmm2/m128</td>
+	<td>66 0F 63 /<em>r</em> PACKSSWB <em>xmm1, xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Converts 8 packed signed word integers from xmm1 and from xxm2/m128 into 16 packed signed byte integers in xxm1 using signed saturation.</td>
+	<td>Converts 8 packed signed word integers from <em><em>xmm1 and from xxm2/m128 into 16 packed</em></em> signed byte integers in <em>xxm1 </em>using<em> </em>signed saturation.</td>
 </tr>
 <tr>
-	<td>0F 6B /r1 PACKSSDW mm1, mm2/m64</td>
+	<td>0F 6B /<em>r</em><sup>1</sup> PACKSSDW <em>mm1, mm2/m64</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Converts 2 packed signed doubleword integers from mm1 and from mm2/m64 into 4 packed signed word integers in mm1 using signed saturation.</td>
+	<td>Converts 2 packed signed doubleword integers from <em>mm1</em> and from <em>mm2/m64</em> into 4 packed signed word integers in <em>mm1 </em>using signed saturation.</td>
 </tr>
 <tr>
-	<td>66 0F 6B /r PACKSSDW xmm1, xmm2/m128</td>
+	<td>66 0F 6B /<em>r</em> PACKSSDW <em>xmm1, xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Converts 4 packed signed doubleword integers from xmm1 and from xxm2/m128 into 8 packed signed word integers in xxm1 using signed saturation.</td>
+	<td>Converts 4 packed signed doubleword integers from <em>xmm1</em> and from <em>xxm2/m128</em> into 8 packed signed word integers in <em>xxm1</em> using signed saturation.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG 63 /r VPACKSSWB xmm1,xmm2, xmm3/m128</td>
+	<td>VEX.NDS.128.66.0F.WIG 63 /r VPACKSSWB <em>xmm1,xmm2, xmm3/m128</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Converts 8 packed signed word integers from xmm2 and from xmm3/m128 into 16 packed signed byte integers in xmm1 using signed saturation.</td>
+	<td>Converts 8 packed signed word integers from <em><em>xmm2 and from xmm3/m128 into 16 packed</em></em> signed byte integers in <em>xmm1</em> using signed saturation.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG 6B /r VPACKSSDW xmm1,xmm2, xmm3/m128</td>
+	<td>VEX.NDS.128.66.0F.WIG 6B /r VPACKSSDW<em> xmm1,xmm2, xmm3/m128</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Converts 4 packed signed doubleword integers from xmm2 and from xmm3/m128 into 8 packed signed word integers in xmm1 using signed saturation.</td>
+	<td>Converts 4 packed signed doubleword integers from <em>xmm2 </em>and from <em>xmm3/m128</em> into 8 packed signed word integers in<em> xmm1</em> using signed saturation.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG 63 /r VPACKSSWB ymm1, ymm2, ymm3/m256</td>
+	<td>VEX.NDS.256.66.0F.WIG 63 /r VPACKSSWB <em>ymm1, ymm2, ymm3/m256</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Converts 16 packed signed word integers from ymm2 and from ymm3/m256 into 32 packed signed byte integers in ymm1 using signed saturation.</td>
+	<td>Converts 16 packed signed word integers from <em>ymm2</em> and from <em>ymm3/m256</em> into 32 packed signed byte integers in <em>ymm1 </em>using signed saturation.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG 6B /r VPACKSSDW ymm1, ymm2, ymm3/m256</td>
+	<td>VEX.NDS.256.66.0F.WIG 6B /r VPACKSSDW <em>ymm1, ymm2, ymm3/m256</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Converts 8 packed signed doubleword integers from ymm2 and from ymm3/m256 into 16 packed signed word integers in ymm1using signed saturation.</td>
+	<td>Converts 8 packed signed doubleword integers from <em>ymm2</em> and from <em>ymm3/m256</em> into 16 packed signed word integers in <em><em>ymm1using signed saturation.</em></em></td>
 </tr>
 </table>
-<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual,</em> <em><em>Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and</em></em> <em>IA-32 Architectures Software Developer’s Manual, Volume 3A.</em></p>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>

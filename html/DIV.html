@@ -18,43 +18,43 @@
 </tr>
 <tr>
 	<td>F6 /6</td>
-	<td>DIV r/m8</td>
+	<td>DIV <em>r/m8</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Unsigned divide AX by r/m8, with result stored in AL ← Quotient, AH ← Remainder.</td>
+	<td>Unsigned divide AX by <em>r/m8</em>, with result stored in AL ← Quotient, AH ← Remainder.</td>
 </tr>
 <tr>
 	<td>REX + F6 /6</td>
-	<td>DIV r/m8*</td>
+	<td>DIV <em>r/m8</em><sup>*</sup></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Unsigned divide AX by r/m8, with result stored in AL ← Quotient, AH ← Remainder.</td>
+	<td>Unsigned divide AX by <em>r/m8</em>, with result stored in AL ← Quotient, AH ← Remainder.</td>
 </tr>
 <tr>
 	<td>F7 /6</td>
-	<td>DIV r/m16</td>
+	<td>DIV <em>r/m16</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Unsigned divide DX:AX by r/m16, with result stored in AX ← Quotient, DX ← Remainder.</td>
+	<td>Unsigned divide DX:AX by <em>r/m16</em>, with result stored in AX ← Quotient, DX ← Remainder.</td>
 </tr>
 <tr>
 	<td>F7 /6</td>
-	<td>DIV r/m32</td>
+	<td>DIV <em>r/m32</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Unsigned divide EDX:EAX by r/m32, with result stored in EAX ← Quotient, EDX ←Remainder.</td>
+	<td>Unsigned divide EDX:EAX by <em>r/m32</em>, with result stored in EAX ← Quotient, EDX ←Remainder.</td>
 </tr>
 <tr>
 	<td>REX.W + F7 /6</td>
-	<td>DIV r/m64</td>
+	<td>DIV <em>r/m64</em></td>
 	<td>M</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Unsigned divide RDX:RAX by r/m64, with result stored in RAX ← Quotient, RDX ←Remainder.</td>
+	<td>Unsigned divide RDX:RAX by <em>r/m64</em>, with result stored in RAX ← Quotient, RDX ←Remainder.</td>
 </tr>
 </table>
 <p class="notes">Notes: * In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.</p>
@@ -113,7 +113,7 @@
 	<td>r/m32</td>
 	<td>EAX</td>
 	<td>EDX</td>
-	<td>232 − 1</td>
+	<td>2<sup>32</sup> − 1</td>
 </tr>
 <tr>
 	<td>Doublequadword/quadword</td>
@@ -121,7 +121,7 @@
 	<td>r/m64</td>
 	<td>RAX</td>
 	<td>RDX</td>
-	<td>264 − 1</td>
+	<td>2<sup>64</sup> − 1</td>
 </tr>
 </table>
 <h2 id="operation">Operation</h2>

@@ -4,6 +4,160 @@ import bs4
 import sys
 from StringIO import StringIO
 
+# not my most efficient class
+class AttributedString(object):
+	bold = 1
+	italic = 2
+	underlined = 3
+	subscript = 4
+	superscript = 5
+	
+	def __init__(self, string, attributes = {}):
+		self.value = string
+		self.attributes = dict(attributes)
+	
+	def add_attribute(self, begin, end, attribute):
+		if begin >= end: return
+		new_attributes = {}
+		merged = False
+		for current_begin in self.attributes:
+			for current_attribute, current_end in self.attributes[current_begin]:
+				if current_attribute != attribute or (begin > current_end or end < current_begin):
+					if current_begin not in new_attributes:
+						new_attributes[current_begin] = []
+					new_attributes[current_begin].append((current_attribute, current_end))
+					continue
+			
+				begin = min(begin, current_begin)
+				end = max(end, current_end)
+				if begin not in new_attributes:
+					new_attributes[begin] = []
+				new_attributes[begin].append((attribute, end))
+				merged = True
+				break
+		
+		if merged == False:
+			if begin not in new_attributes:
+				new_attributes[begin] = []
+			new_attributes[begin].append((attribute, end))
+				
+		self.attributes = new_attributes
+	
+	def append(self, that):
+		currentLength = len(self.value)
+		for begin in that.attributes:
+			key = begin + currentLength
+			if key not in self.attributes: self.attributes[key] = []
+			for attribute, end in that.attributes[begin]:
+				self.attributes[key].append((attribute, end + currentLength))
+		self.value += that.value
+	
+	def split(self, position):
+		left_string = self.value[:position]
+		right_string = self.value[position:]
+		left_attributes = {}
+		right_attributes = {}
+		for begin in self.attributes:
+			for attribute, end in self.attributes[begin]:
+				if begin < position:
+					if begin not in left_attributes: left_attributes[begin] = []
+					left_attributes[begin].append((attribute, min(position, end)))
+					if end > position:
+						if 0 not in right_attributes: right_attributes[0] = []
+						right_attributes[0].append((attribute, end - position))
+				else:
+					key = begin - position
+					if key not in right_attributes: right_attributes[key] = []
+					right_attributes[key].append((attribute, end - position))
+		
+		return (AttributedString(left_string, left_attributes), AttributedString(right_string, right_attributes))
+	
+	def lstrip(self):
+		initialLength = len(self.value)
+		that = AttributedString(self.value.lstrip())
+		diff = initialLength - len(that.value)
+		new_attributes = {}
+		for begin in self.attributes:
+			begin -= diff
+			new_attributes[begin] = []
+			for attribute, end in self.attributes[begin]:
+				new_attributes[begin].append((attribute, end - diff))
+		that.attributes = new_attributes
+		return that
+	
+	def rstrip(self):
+		initialLength = len(self.value)
+		that = AttributedString(self.value.rstrip())
+		limit = len(that.value)
+		new_attributes = {}
+		for begin in self.attributes:
+			if begin >= limit: continue
+			new_attributes[begin] = []
+			for attribute, end in self.attributes[begin]:
+				end = min(end, limit)
+				if end != begin:
+					new_attributes[begin].append((attribute, end))
+		that.attributes = new_attributes
+		return that
+	
+	def strip(self):
+		return self.lstrip().rstrip()
+	
+	def __tag_for_attribute(self, attribute):
+		return ['', 'strong', 'em', 'u', 'sub', 'sup'][attribute]
+	
+	def html(self):
+		events = {}
+		for key in self.attributes:
+			begin = key
+			for item, end in self.attributes[key]:
+				tag = self.__tag_for_attribute(item)
+				if begin not in events: events[begin] = []
+				if end not in events: events[end] = []
+				events[begin].append(tag)
+				events[end].append("/" + tag)
+		
+		event_keys = events.keys()
+		event_keys.sort()
+		
+		try:
+			html = ""
+			tag_stack = []
+			string_index = 0
+			reopen_stack = []
+			for key in event_keys:
+				while len(reopen_stack) != 0:
+					reopen = reopen_stack.pop()
+					html += "<%s>" % reopen
+					tag_stack.append(reopen)
+			
+				html += self.value[string_index:key]
+				string_index = key
+				tags = events[key]
+				tags.sort()
+			
+				for tag in tags:
+					if tag[0] == '/': # close
+						tag = tag[1:]
+						if tag not in reopen_stack:
+							tag_to_close = tag_stack.pop()
+							while tag_to_close != tag:
+								html += "</%s>" % tag_to_close
+								reopen_stack.append(tag_to_close)
+								tag_to_close = tag_stack.pop()
+						
+							html += "</%s>" % tag
+					else:
+						html += "<%s>" % tag
+						tag_stack.append(tag)
+	
+			html += self.value[string_index:]
+			return html
+		except:
+			print self.value
+			print self.attributes
+			raise
+
 class TextCell(object):
 	def __init__(self, x, y, style, contents, x_approx = False):
 		self.style = style
@@ -13,7 +167,7 @@ class TextCell(object):
 		self.contents = contents
 	
 	def __repr__(self):
-		return ("%i: %s" % (self.x, self.contents)).encode("UTF-8")
+		return ("%i: %s" % (self.x, self.contents.html())).encode("UTF-8")
 
 class UglyDocument(object):
 	def __init__(self, soup):
@@ -51,9 +205,10 @@ class UglyDocument(object):
 				for key in classes[klass]:
 					style[key] = classes[klass][key]
 		
-		for prop in tag["style"].split(";"):
-			key, value = self.__css_property(prop)
-			style[key] = value
+		if tag.has_attr("style"):
+			for prop in tag["style"].split(";"):
+				key, value = self.__css_property(prop)
+				style[key] = value
 		
 		return style
 	
@@ -71,28 +226,59 @@ class UglyDocument(object):
 			for child in children[slice_first:]:
 				yield child
 	
+	def __attributed_string(self, tag):
+		new_string = AttributedString("")
+		for child in tag.children:
+			if isinstance(child, bs4.Tag):
+				new_string.append(self.__attributed_string(child))
+			else:
+				assert isinstance(child, bs4.NavigableString)
+				safe = unicode(child)
+				for find, replace in (("&", "&amp;"), ("<", "&lt;"), (">", "&gt;")):
+					safe = safe.replace(find, replace)
+				new_string.value += safe
+		
+		length = len(new_string.value)
+		style = self.__tag_style(tag)
+		if tag.name == "sup":
+			new_string.add_attribute(0, length, AttributedString.superscript)
+		elif tag.name == "sub":
+			new_string.add_attribute(0, length, AttributedString.subscript)
+		
+		if "font-weight" in style and style["font-weight"] == "bold":
+			new_string.add_attribute(0, length, AttributedString.bold)
+		
+		if "font-style" in style and style["font-style"] == "italic":
+			new_string.add_attribute(0, length, AttributedString.italic)
+		
+		return new_string
+	
 	def all_cells(self):
+		bold = 1
+		italic = 2
+		underline = 4
+		sub = 8
+		sup = 16
+		
 		for div in self.__all_divs():
 			style = self.__tag_style(div)
 			x = style["left"]
 			y = style["top"]
 			
-			# TODO change <span> tags into <em>, <strong> somewhere around this place
-			
-			text = div.text.strip().replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+			text = self.__attributed_string(div)
 			text_parts = []
-			last_offset = 0
-			match = re.search(" {2,}", text)
+			match = re.search(" {2,}", text.value)
 			while match != None:
-				text_parts.append(text[last_offset:match.end()])
-				last_offset += match.end()
-				match = re.search(" {2,}", text[last_offset:])
-			text_parts.append(text[last_offset:])
+				left, right = text.split(match.end())
+				text_parts.append(left)
+				text = right
+				match = re.search(" {2,}", text.value)
+			text_parts.append(text)
 			
 			x_approx = False
 			for part in text_parts:
 				yield TextCell(x, y, style, part.strip(), x_approx)
-				x += len(part) * style["font-size"] / 2 # approximation
+				x += len(part.value) * style["font-size"] / 2 # approximation
 				x_approx = True
 	
 	def all_rows(self):
@@ -118,11 +304,12 @@ class DocumentWriter(object):
 	def write(self, row):
 		if self.__output_mode == "p":
 			if self.__break_p(row):
-				text = self.__output_mode_data["contents"]
+				text = self.__output_mode_data["contents"] 
 				if self.__output_mode_data["color"] == [0,0,0]:
 					css_class = ' class="%s"' % self.__output_mode_data["class"] if "class" in self.__output_mode_data else ""
-					self.__output.write("<p%s>%s</p>\n" % (css_class, text))
+					self.__output.write("<p%s>%s</p>\n" % (css_class, text.html()))
 				else:
+					text = text.value
 					lowered = text.lower()
 					if lowered != "notes:":
 						if self.__output_mode_data["size"] > 12:
@@ -152,23 +339,23 @@ class DocumentWriter(object):
 				
 			distance = cell.x - self.__output_mode_data["left"]
 			self.__output.write(" " * int(round(distance / 6.75)))
-			self.__output.write(cell.contents.replace(u"", u"←") + "\n")
+			self.__output.write(cell.contents.html().replace(u"", u"←") + "\n")
 			return True
 			
 		elif self.__output_mode == "list":
 			if self.__break_list(row):
-				if len(self.__output_mode_data["contents"]) != 0:
-					self.__output.write("\t<li>%s</li>\n" % self.__output_mode_data["contents"])
+				if len(self.__output_mode_data["contents"].value) != 0:
+					self.__output.write("\t<li>%s</li>\n" % self.__output_mode_data["contents"].html())
 				self.__output.write("</ul>\n")
 				self.__output_mode = None
 				return self.write(row)
 			
-			if row[0].contents == u"•" and len(self.__output_mode_data["contents"]) != 0:
-				self.__output.write("\t<li>%s</li>\n" % self.__output_mode_data["contents"])
-				self.__output_mode_data["contents"] = ""
+			if row[0].contents.value == u"•" and len(self.__output_mode_data["contents"].value) != 0:
+				self.__output.write("\t<li>%s</li>\n" % self.__output_mode_data["contents"].html())
+				self.__output_mode_data["contents"] = AttributedString("")
 			
 			for cell in row:
-				if cell.contents == u"•": continue
+				if cell.contents.value == u"•": continue
 				self.__output_mode_data["contents"] = self.__append(self.__output_mode_data["contents"], cell.contents)
 			return True
 			
@@ -204,13 +391,13 @@ class DocumentWriter(object):
 			# figure out output mode
 			length = len(row)
 			if length == 0: return False
-			elif length == 1 or re.match(r"Table [0-9]+-[0-9]+\.", row[0].contents):
+			elif length == 1 or re.match(r"Table [0-9]+-[0-9]+\.", row[0].contents.value):
 				cell = row[0]
 				self.__output_mode = "p"
 				self.__output_mode_data = {
 					"top": cell.y,
 					"left": cell.x,
-					"contents": "",
+					"contents": AttributedString(""),
 					"color": cell.style["color"],
 					"size": cell.style["font-size"],
 				}
@@ -222,11 +409,11 @@ class DocumentWriter(object):
 							self.__output_mode_data = {}
 							return False
 					
-					lowered = cell.contents.lower()
+					lowered = cell.contents.value.lower()
 					# hacks!
 					if lowered == "notes:":
 						self.__output_mode_data["color"] = [0,0,0]
-						self.__output_mode_data["contents"] = "Notes: "
+						self.__output_mode_data["contents"] = AttributedString("Notes: ")
 						self.__output_mode_data["class"] = "notes"
 						return True
 				
@@ -236,10 +423,10 @@ class DocumentWriter(object):
 						self.__output.write("<pre>")
 						return True
 			else:
-				if row[0].contents == u"•":
+				if row[0].contents.value == u"•":
 					self.__output.write("<ul>\n")
 					self.__output_mode = "list"
-					self.__output_mode_data = {"indent": row[1].x, "contents": ""}
+					self.__output_mode_data = {"indent": row[1].x, "contents": AttributedString("")}
 					return self.write(row)
 				
 				# pretty much a table if it's not a list
@@ -277,12 +464,12 @@ class DocumentWriter(object):
 		for row in row_data: 
 			self.__output.write("<tr>\n")
 			for text in row:
-				self.__output.write("\t<td>%s</td>\n" % text)
+				self.__output.write("\t<td>%s</td>\n" % text.html())
 			self.__output.write("</tr>\n")
 		self.__output.write("</table>\n")
 	
 	def __break_p(self, row):
-		if len(row) != 1 and not re.match(r"Table [0-9]+-[0-9]+\.", row[0].contents): return True
+		if len(row) != 1 and not re.match(r"Table [0-9]+-[0-9]+\.", row[0].contents.value): return True
 		
 		cell = row[0]
 		if cell.style["color"] != self.__output_mode_data["color"]: return True
@@ -292,7 +479,7 @@ class DocumentWriter(object):
 	def __break_list(self, row):
 		length = len(row)
 		if length == 0: return True
-		if row[0].contents != u"•" and row[0].x < self.__output_mode_data["indent"] - 5:
+		if row[0].contents.value != u"•" and row[0].x < self.__output_mode_data["indent"] - 5:
 			return True
 		return False
 	
@@ -308,10 +495,21 @@ class DocumentWriter(object):
 		return False
 	
 	def __append(self, a, b):
-		if len(a) == 0: return b
-		if a[-1].isalnum() or a[-1] in self.__spaced_chars: return a + " " + b
-		if a[-1] == u"-": return a[:-1] + b
-		return a + b
+		if len(a.value) == 0: return b
+		if a.value[-1].isalnum() or a.value[-1] in self.__spaced_chars:
+			c = AttributedString(a.value, a.attributes)
+			c.append(AttributedString(" "))
+			c.append(b)
+			return c
+			
+		if a.value[-1] == u"-":
+			c = AttributedString(a.value[:-1], a.attributes)
+			c.append(b)
+			return c
+		
+		c = AttributedString(a.value, a.attributes)
+		c.append(b)
+		return c
 	
 	def save(self, name_func):
 		self.write([])

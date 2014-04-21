@@ -17,180 +17,180 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>14 ib</td>
-	<td>ADC AL, imm8</td>
+	<td>14 <em>ib</em></td>
+	<td>ADC AL, <em>imm8</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Add with carry imm8 to AL.</td>
+	<td>Add with carry <em>imm8</em> to AL.</td>
 </tr>
 <tr>
-	<td>15 iw</td>
-	<td>ADC AX, imm16</td>
+	<td>15 <em>iw</em></td>
+	<td>ADC AX, <em>imm16</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Add with carry imm16 to AX.</td>
+	<td>Add with carry <em>imm16</em> to AX.</td>
 </tr>
 <tr>
-	<td>15 id</td>
-	<td>ADC EAX, imm32</td>
+	<td>15 <em>id</em></td>
+	<td>ADC EAX, <em>imm32</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Add with carry imm32 to EAX.</td>
+	<td>Add with carry <em>imm32</em> to EAX.</td>
 </tr>
 <tr>
-	<td>REX.W + 15 id</td>
-	<td>ADC RAX, imm32</td>
+	<td>REX.W + 15 <em>id</em></td>
+	<td>ADC RAX, <em>imm32</em></td>
 	<td>I</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Add with carry imm32 sign extended to 64bits to RAX.</td>
+	<td>Add with carry <em>imm32 sign extended to 64<em>b</em>its to RAX.</em></td>
 </tr>
 <tr>
-	<td>80 /2 ib</td>
-	<td>ADC r/m8, imm8</td>
+	<td>80 /2 <em>ib</em></td>
+	<td>ADC <em>r/m8</em>, <em>imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Add with carry imm8 to r/m8.</td>
+	<td>Add with carry <em>imm8</em> to <em>r/m8.</em></td>
 </tr>
 <tr>
-	<td>REX + 80 /2 ib</td>
-	<td>ADC r/m8*, imm8</td>
-	<td>MI</td>
-	<td>Valid</td>
-	<td>N.E.</td>
-	<td>Add with carry imm8 to r/m8.</td>
-</tr>
-<tr>
-	<td>81 /2 iw</td>
-	<td>ADC r/m16, imm16</td>
-	<td>MI</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>Add with carry imm16 to r/m16.</td>
-</tr>
-<tr>
-	<td>81 /2 id</td>
-	<td>ADC r/m32, imm32</td>
-	<td>MI</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>Add with CF imm32 to r/m32.</td>
-</tr>
-<tr>
-	<td>REX.W + 81 /2 id</td>
-	<td>ADC r/m64, imm32</td>
+	<td>REX + 80 /2 <em>ib</em></td>
+	<td>ADC <em>r/m8</em><sup>*</sup>, <em>imm8</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Add with CF imm32 sign extended to 64-bits to r/m64.</td>
+	<td>Add with carry <em>imm8</em> to <em>r/m8.</em></td>
 </tr>
 <tr>
-	<td>83 /2 ib</td>
-	<td>ADC r/m16, imm8</td>
+	<td>81 /2 <em>iw</em></td>
+	<td>ADC <em>r/m16, imm16</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Add with CF sign-extended imm8 to r/m16.</td>
+	<td>Add with carry <em>imm16</em> to <em>r/m16.</em></td>
 </tr>
 <tr>
-	<td>83 /2 ib</td>
-	<td>ADC r/m32, imm8</td>
+	<td>81 /2 <em>id</em></td>
+	<td>ADC <em>r/m32, imm32</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Add with CF sign-extended imm8 into r/m32.</td>
+	<td>Add with CF <em>imm32</em> to <em>r/m32.</em></td>
 </tr>
 <tr>
-	<td>REX.W + 83 /2 ib</td>
-	<td>ADC r/m64, imm8</td>
+	<td>REX.W + 81 /2 <em>id</em></td>
+	<td>ADC <em>r/m64, imm32</em></td>
 	<td>MI</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Add with CF sign-extended imm8 into r/m64.</td>
+	<td>Add with CF <em>imm32</em> sign extended to 64-bits to <em>r/m64.</em></td>
 </tr>
 <tr>
-	<td>10 /r</td>
-	<td>ADC r/m8, r8</td>
+	<td>83 /2 <em>ib</em></td>
+	<td>ADC <em>r/m16, imm8</em></td>
+	<td>MI</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Add with CF sign-extended <em>imm8</em> to<em> r/m16.</em></td>
+</tr>
+<tr>
+	<td>83 /2 <em>ib</em></td>
+	<td>ADC <em>r/m32, imm8</em></td>
+	<td>MI</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Add with CF sign-extended <em>imm8</em> into <em>r/m32.</em></td>
+</tr>
+<tr>
+	<td>REX.W + 83 /2 <em>ib</em></td>
+	<td>ADC <em>r/m64, imm8</em></td>
+	<td>MI</td>
+	<td>Valid</td>
+	<td>N.E.</td>
+	<td>Add with CF sign-extended <em>imm8</em> into <em>r/m64.</em></td>
+</tr>
+<tr>
+	<td>10 /<em>r</em></td>
+	<td>ADC <em>r/m8, r8</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Add with carry byte register to r/m8.</td>
+	<td>Add with carry byte register to <em>r/m8.</em></td>
 </tr>
 <tr>
-	<td>REX + 10 /r</td>
-	<td>ADC r/m8*, r8*</td>
+	<td>REX + 10 /<em>r</em></td>
+	<td>ADC <em>r/m8</em><sup>*</sup><em>, r8</em><sup>*</sup></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Add with carry byte register to r/m64.</td>
+	<td>Add with carry byte register to <em>r/m64.</em></td>
 </tr>
 <tr>
-	<td>11 /r</td>
-	<td>ADC r/m16, r16</td>
+	<td>11 /<em>r</em></td>
+	<td>ADC <em>r/m16, r16</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Add with carry r16 to r/m16.</td>
+	<td>Add with carry <em>r16</em> to <em>r/m16.</em></td>
 </tr>
 <tr>
-	<td>11 /r</td>
-	<td>ADC r/m32, r32</td>
+	<td>11 /<em>r</em></td>
+	<td>ADC <em>r/m32, r32</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Add with CF r32 to r/m32.</td>
+	<td>Add with CF <em>r32</em> to <em>r/m32.</em></td>
 </tr>
 <tr>
-	<td>REX.W + 11 /r</td>
-	<td>ADC r/m64, r64</td>
+	<td>REX.W + 11 /<em>r</em></td>
+	<td>ADC <em>r/m64, r64</em></td>
 	<td>MR</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Add with CF r64 to r/m64.</td>
+	<td>Add with CF <em>r64</em> to <em>r/m64.</em></td>
 </tr>
 <tr>
-	<td>12 /r</td>
-	<td>ADC r8, r/m8</td>
+	<td>12 /<em>r</em></td>
+	<td>ADC <em>r8, r/m8</em></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>Valid</td>
-	<td>Add with carry r/m8 to byte register.</td>
+	<td>Add with carry <em>r/m8</em> to byte register.</td>
 </tr>
 <tr>
-	<td>REX + 12 /r</td>
-	<td>ADC r8*, r/m8*</td>
-	<td>RM</td>
-	<td>Valid</td>
-	<td>N.E.</td>
-	<td>Add with carry r/m64 to byte register.</td>
-</tr>
-<tr>
-	<td>13 /r</td>
-	<td>ADC r16, r/m16</td>
-	<td>RM</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>Add with carry r/m16 to r16.</td>
-</tr>
-<tr>
-	<td>13 /r</td>
-	<td>ADC r32, r/m32</td>
-	<td>RM</td>
-	<td>Valid</td>
-	<td>Valid</td>
-	<td>Add with CF r/m32 to r32.</td>
-</tr>
-<tr>
-	<td>REX.W + 13 /r</td>
-	<td>ADC r64, r/m64</td>
+	<td>REX + 12 /<em>r</em></td>
+	<td>ADC <em>r8</em><sup>*</sup><em>, r/m8</em><sup>*</sup></td>
 	<td>RM</td>
 	<td>Valid</td>
 	<td>N.E.</td>
-	<td>Add with CF r/m64 to r64.</td>
+	<td>Add with carry <em>r/m64</em> to byte register.</td>
+</tr>
+<tr>
+	<td>13 /<em>r</em></td>
+	<td>ADC <em>r16, r/m16</em></td>
+	<td>RM</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Add with carry <em>r/m16</em> to <em>r16.</em></td>
+</tr>
+<tr>
+	<td>13 /<em>r</em></td>
+	<td>ADC <em>r32, r/m32</em></td>
+	<td>RM</td>
+	<td>Valid</td>
+	<td>Valid</td>
+	<td>Add with CF <em>r/m32</em> to <em>r32.</em></td>
+</tr>
+<tr>
+	<td>REX.W + 13 /<em>r</em></td>
+	<td>ADC <em>r64, r/m64</em></td>
+	<td>RM</td>
+	<td>Valid</td>
+	<td>N.E.</td>
+	<td>Add with CF <em>r/m64</em> to <em>r64.</em></td>
 </tr>
 </table>
 <p class="notes">Notes: *In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.</p>

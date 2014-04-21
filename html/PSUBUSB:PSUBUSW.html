@@ -16,63 +16,63 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F D8 /r1 PSUBUSB mm, mm/m64</td>
+	<td>0F D8 /<em>r</em><sup>1</sup> PSUBUSB <em>mm, mm/m64</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Subtract unsigned packed bytes in mm/m64 from unsigned packed bytes in mm and saturate result.</td>
+	<td>Subtract unsigned packed bytes in <em>mm/m64</em> from unsigned packed bytes in <em>mm</em> and saturate result.</td>
 </tr>
 <tr>
-	<td>66 0F D8 /r PSUBUSB xmm1, xmm2/m128</td>
+	<td>66 0F D8 /<em>r</em> PSUBUSB <em>xmm1</em>, <em>xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Subtract packed unsigned byte integers in xmm2/m128 from packed unsigned byte integers in xmm1 and saturate result.</td>
+	<td>Subtract packed unsigned byte integers in <em>xmm2/m128 from packed unsigned byte</em> integers in xmm1 and saturate result.</td>
 </tr>
 <tr>
-	<td>0F D9 /r1 PSUBUSW mm, mm/m64</td>
+	<td>0F D9 /<em>r</em><sup>1</sup> PSUBUSW <em>mm, mm/m64</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>MMX</td>
-	<td>Subtract unsigned packed words in mm/m64 from unsigned packed words in mm and saturate result.</td>
+	<td>Subtract unsigned packed words in <em>mm/m64</em> from unsigned packed words in <em>mm </em>and saturate result.</td>
 </tr>
 <tr>
-	<td>66 0F D9 /r PSUBUSW xmm1, xmm2/m128</td>
+	<td>66 0F D9 /<em>r</em> PSUBUSW <em>xmm1</em>, <em>xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Subtract packed unsigned word integers in xmm2/m128 from packed unsigned word integers in xmm1 and saturate result.</td>
+	<td>Subtract packed unsigned word integers in <em>xmm2/m128 from packed unsigned word</em> integers in <em>xmm1</em> and saturate result.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG D8 /r VPSUBUSB xmm1, xmm2, xmm3/m128</td>
+	<td>VEX.NDS.128.66.0F.WIG D8 /r VPSUBUSB <em>xmm1, xmm2, xmm3/m128</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Subtract packed unsigned byte integers in xmm3/m128 from packed unsigned byte integers in xmm2 and saturate result.</td>
+	<td>Subtract packed unsigned byte integers in <em>xmm3/m128 from packed unsigned byte</em> integers in <em>xmm2</em> and saturate result.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F.WIG D9 /r VPSUBUSW xmm1, xmm2, xmm3/m128</td>
+	<td>VEX.NDS.128.66.0F.WIG D9 /r VPSUBUSW<em> xmm1, xmm2, xmm3/m128</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Subtract packed unsigned word integers in xmm3/m128 from packed unsigned word integers in xmm2 and saturate result.</td>
+	<td>Subtract packed unsigned word integers in <em>xmm3/m128 from packed unsigned word</em> integers in <em>xmm2</em> and saturate result.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG D8 /r VPSUBUSB ymm1, ymm2, ymm3/m256</td>
+	<td>VEX.NDS.256.66.0F.WIG D8 /r VPSUBUSB <em>ymm1, ymm2, ymm3/m256</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Subtract packed unsigned byte integers in ymm3/m256 from packed unsigned byte integers in ymm2 and saturate result.</td>
+	<td>Subtract packed unsigned byte integers in <em>ymm3/m256 from packed unsigned byte</em> integers in <em>ymm2</em> and saturate result.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F.WIG D9 /r VPSUBUSW ymm1, ymm2, ymm3/m256</td>
+	<td>VEX.NDS.256.66.0F.WIG D9 /r VPSUBUSW <em>ymm1, ymm2, ymm3/m256</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Subtract packed unsigned word integers in ymm3/m256 from packed unsigned word integers in ymm2 and saturate result.</td>
+	<td>Subtract packed unsigned word integers in <em>ymm3/m256 from packed unsigned word</em> integers in <em>ymm2</em> and saturate result.</td>
 </tr>
 </table>
-<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual,</em> <em><em>Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and</em></em> <em>IA-32 Architectures Software Developer’s Manual, Volume 3A.</em></p>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>
@@ -98,7 +98,7 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>Performs a SIMD subtract of the packed unsigned integers of the source operand (second operand) from the packed unsigned integers of the destination operand (first operand), and stores the packed unsigned integer results in the destination operand. See Figure 9-4 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, for an illustration of a SIMD operation. Overflow is handled with unsigned saturation, as described in the following paragraphs.</p>
+<p>Performs a SIMD subtract of the packed unsigned integers of the source operand (second operand) from the packed unsigned integers of the destination operand (first operand), and stores the packed unsigned integer results in the destination operand. See Figure 9-4 in the <em>Intel® 64 and IA-32 Architectures Software Developer’s</em> <em>Manual, Volume 1, for an illustration of a SIMD operation. Overflow is handled with unsigned saturation, as</em> described in the following paragraphs.</p>
 <p>These instructions can operate on either 64-bit or 128-bit operands.</p>
 <p>The (V)PSUBUSB instruction subtracts packed unsigned byte integers. When an individual byte result is less than zero, the saturated value of 00H is written to the destination operand.</p>
 <p>The (V)PSUBUSW instruction subtracts packed unsigned word integers. When an individual word result is less than zero, the saturated value of 0000H is written to the destination operand.</p>

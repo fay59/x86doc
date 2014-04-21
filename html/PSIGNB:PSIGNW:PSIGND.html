@@ -16,91 +16,91 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>0F 38 08 /r1 PSIGNB mm1, mm2/m64</td>
+	<td>0F 38 08 /r<sup>1</sup> PSIGNB <em>mm1, mm2/m64</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSSE3</td>
-	<td>Negate/zero/preserve packed byte integers in mm1 depending on the corresponding sign in mm2/m64.</td>
+	<td>Negate/zero/preserve packed byte integers in <em>mm1 depending on the corresponding sign in</em> <em>mm2/m64.</em></td>
 </tr>
 <tr>
-	<td>66 0F 38 08 /r PSIGNB xmm1, xmm2/m128</td>
+	<td>66 0F 38 08 /r PSIGNB <em>xmm1, xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSSE3</td>
-	<td>Negate/zero/preserve packed byte integers in xmm1 depending on the corresponding sign in xmm2/m128.</td>
+	<td>Negate/zero/preserve packed byte integers in <em>xmm1 depending on the corresponding sign in</em> <em>xmm2/m128.</em></td>
 </tr>
 <tr>
-	<td>0F 38 09 /r1 PSIGNW mm1, mm2/m64</td>
+	<td>0F 38 09 /r<sup>1</sup> PSIGNW <em>mm1, mm2/m64</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSSE3</td>
-	<td>Negate/zero/preserve packed word integers in mm1 depending on the corresponding sign in mm2/m128.</td>
+	<td>Negate/zero/preserve packed word integers in<em> mm1 </em>depending on the corresponding sign in <em>mm2/m128</em>.</td>
 </tr>
 <tr>
-	<td>66 0F 38 09 /r PSIGNW xmm1, xmm2/m128</td>
+	<td>66 0F 38 09 /r PSIGNW <em>xmm1, xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSSE3</td>
-	<td>Negate/zero/preserve packed word integers in xmm1 depending on the corresponding sign in xmm2/m128.</td>
+	<td>Negate/zero/preserve packed word integers in <em>xmm1</em> depending on the corresponding sign in <em>xmm2/m128</em>.</td>
 </tr>
 <tr>
-	<td>0F 38 0A /r1 PSIGND mm1, mm2/m64</td>
+	<td>0F 38 0A /r<sup>1</sup> PSIGND <em>mm1, mm2/m64</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSSE3</td>
-	<td>Negate/zero/preserve packed doubleword integers in mm1 depending on the corresponding sign in mm2/m128.</td>
+	<td>Negate/zero/preserve packed doubleword integers in <em>mm1</em> depending on the corresponding sign in <em>mm2/m128</em>.</td>
 </tr>
 <tr>
-	<td>66 0F 38 0A /r PSIGND xmm1, xmm2/m128</td>
+	<td>66 0F 38 0A /r PSIGND <em>xmm1, xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSSE3</td>
-	<td>Negate/zero/preserve packed doubleword integers in xmm1 depending on the corresponding sign in xmm2/m128.</td>
+	<td>Negate/zero/preserve packed doubleword integers in <em>xmm1</em> depending on the corresponding sign in <em>xmm2/m128</em>.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F38.WIG 08 /r VPSIGNB xmm1, xmm2, xmm3/m128</td>
+	<td>VEX.NDS.128.66.0F38.WIG 08 /r VPSIGNB <em>xmm1, xmm2, xmm3/m128</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Negate/zero/preserve packed byte integers in xmm2 depending on the corresponding sign in xmm3/m128.</td>
+	<td>Negate/zero/preserve packed byte integers in <em>xmm2 depending on the corresponding sign in</em> <em>xmm3/m128.</em></td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F38.WIG 09 /r VPSIGNW xmm1, xmm2, xmm3/m128</td>
+	<td>VEX.NDS.128.66.0F38.WIG 09 /r VPSIGNW <em>xmm1, xmm2, xmm3/m128</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Negate/zero/preserve packed word integers in xmm2 depending on the corresponding sign in xmm3/m128.</td>
+	<td>Negate/zero/preserve packed word integers in <em>xmm2</em> depending on the corresponding sign in <em>xmm3/m128</em>.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.128.66.0F38.WIG 0A /r VPSIGND xmm1, xmm2, xmm3/m128</td>
+	<td>VEX.NDS.128.66.0F38.WIG 0A /r VPSIGND <em>xmm1, xmm2, xmm3/m128</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Negate/zero/preserve packed doubleword integers in xmm2 depending on the corresponding sign in xmm3/m128.</td>
+	<td>Negate/zero/preserve packed doubleword integers in <em>xmm2</em> depending on the corresponding sign in <em>xmm3/m128</em>.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F38.WIG 08 /r VPSIGNB ymm1, ymm2, ymm3/m256</td>
+	<td>VEX.NDS.256.66.0F38.WIG 08 /r VPSIGNB <em>ymm1, ymm2, ymm3/m256</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Negate packed byte integers in ymm2 if the corresponding sign in ymm3/m256 is less than zero.</td>
+	<td>Negate packed byte integers in <em>ymm2</em> if the corresponding sign in <em>ymm3/m256</em> is less than zero.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F38.WIG 09 /r VPSIGNW ymm1, ymm2, ymm3/m256</td>
+	<td>VEX.NDS.256.66.0F38.WIG 09 /r VPSIGNW <em>ymm1, ymm2, ymm3/m256</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Negate packed 16-bit integers in ymm2 if the corresponding sign in ymm3/m256 is less than zero.</td>
+	<td>Negate packed 16-bit integers in <em>ymm2</em> if the corresponding sign in <em>ymm3/m256</em> is less than zero.</td>
 </tr>
 <tr>
-	<td>VEX.NDS.256.66.0F38.WIG 0A /r VPSIGND ymm1, ymm2, ymm3/m256</td>
+	<td>VEX.NDS.256.66.0F38.WIG 0A /r VPSIGND<em> ymm1, ymm2, ymm3/m256</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Negate packed doubleword integers in ymm2 if the corresponding sign in ymm3/m256 is less than zero.</td>
+	<td>Negate packed doubleword integers in <em>ymm2</em> if the corresponding sign in <em>ymm3/m256</em> is less than zero.</td>
 </tr>
 </table>
-<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.</p>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual,</em> <em><em>Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and</em></em> <em>IA-32 Architectures Software Developer’s Manual, Volume 3A.</em></p>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>

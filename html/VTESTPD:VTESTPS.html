@@ -16,28 +16,28 @@
 	<td>Description</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F38.W0 0E /r VTESTPS xmm1, xmm2/m128</td>
+	<td>VEX.128.66.0F38.W0 0E /r VTESTPS <em>xmm1, xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
 	<td>Set ZF and CF depending on sign bit AND and ANDN of packed single-precision floating-point sources.</td>
 </tr>
 <tr>
-	<td>VEX.256.66.0F38.W0 0E /r VTESTPS ymm1, ymm2/m256</td>
+	<td>VEX.256.66.0F38.W0 0E /r VTESTPS <em>ymm1, ymm2/m256</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
 	<td>Set ZF and CF depending on sign bit AND and ANDN of packed single-precision floating-point sources.</td>
 </tr>
 <tr>
-	<td>VEX.128.66.0F38.W0 0F /r VTESTPD xmm1, xmm2/m128</td>
+	<td>VEX.128.66.0F38.W0 0F /r VTESTPD <em>xmm1, xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
 	<td>Set ZF and CF depending on sign bit AND and ANDN of packed double-precision floating-point sources.</td>
 </tr>
 <tr>
-	<td>VEX.256.66.0F38.W0 0F /r VTESTPD ymm1, ymm2/m256</td>
+	<td>VEX.256.66.0F38.W0 0F /r VTESTPD <em>ymm1, ymm2/m256</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>AVX</td>
@@ -62,7 +62,7 @@
 </tr>
 </table>
 <h2 id="description">Description</h2>
-<p>VTESTPS performs a bitwise comparison of all the sign bits of the packed single-precision elements in the first source operation and corresponding sign bits in the second source operand. If the AND of the source sign bits with the dest sign bits produces all zeros, the ZF is set else the ZF is clear. If the AND of the source sign bits with the inverted dest sign bits produces all zeros the CF is set else the CF is clear. An attempt to execute VTESTPS with VEX.W=1 will cause #UD. VTESTPD performs a bitwise comparison of all the sign bits of the double-precision elements in the first source operation and corresponding sign bits in the second source operand. If the AND of the source sign bits with the dest sign bits produces all zeros, the ZF is set else the ZF is clear. If the AND the source sign bits with the inverted dest sign bits produces all zeros the CF is set else the CF is clear. An attempt to execute VTESTPS with VEX.W=1 will cause #UD. The first source register is specified by the ModR/M reg field. 128-bit version: The first source register is an XMM register. The second source register can be an XMM register or a 128-bit memory location. The destination register is not modified. VEX.256 encoded version: The first source register is a YMM register. The second source register can be a YMM register or a 256-bit memory location. The destination register is not modified. Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise instructions will #UD.</p>
+<p>VTESTPS performs a bitwise comparison of all the sign bits of the packed single-precision elements in the first source operation and corresponding sign bits in the second source operand. If the AND of the source sign bits with the dest sign bits produces all zeros, the ZF is set else the ZF is clear. If the AND of the source sign bits with the inverted dest sign bits produces all zeros the CF is set else the CF is clear. An attempt to execute VTESTPS with VEX.W=1 will cause #UD. VTESTPD performs a bitwise comparison of all the sign bits of the double-precision elements in the first source operation and corresponding sign bits in the second source operand. If the AND of the source sign bits with the dest sign bits produces all zeros, the ZF is set else the ZF is clear. If the AND the source sign bits with the inverted dest sign bits produces all zeros the CF is set else the CF is clear. An attempt to execute VTESTPS with VEX.W=1 will cause #UD. The first source register is specified by the ModR/M <em>reg</em> field. 128-bit version: The first source register is an XMM register. The second source register can be an XMM register or a 128-bit memory location. The destination register is not modified. VEX.256 encoded version: The first source register is a YMM register. The second source register can be a YMM register or a 256-bit memory location. The destination register is not modified. Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise instructions will #UD.</p>
 <h2 id="operation">Operation</h2>
 <pre>VTESTPS (128-bit version)
 TEMP[127:0] ← SRC[127:0] AND DEST[127:0]
