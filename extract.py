@@ -133,43 +133,40 @@ class AttributedString(object):
 		event_keys = events.keys()
 		event_keys.sort()
 		
-		try:
-			html = ""
-			tag_stack = []
-			string_index = 0
-			reopen_stack = []
-			for key in event_keys:
-				while len(reopen_stack) != 0:
-					reopen = reopen_stack.pop()
-					html += "<%s>" % reopen
-					tag_stack.append(reopen)
-			
-				html += self.value[string_index:key]
-				string_index = key
-				tags = events[key]
-				tags.sort()
-			
-				for tag in tags:
-					if tag[0] == '/': # close
-						tag = tag[1:]
-						if tag not in reopen_stack:
-							tag_to_close = tag_stack.pop()
-							while tag_to_close != tag:
-								html += "</%s>" % tag_to_close
-								reopen_stack.append(tag_to_close)
-								tag_to_close = tag_stack.pop()
-						
-							html += "</%s>" % tag
+		html = ""
+		tag_stack = []
+		string_index = 0
+		reopen_stack = []
+		for key in event_keys:
+			while len(reopen_stack) != 0:
+				reopen = reopen_stack.pop()
+				html += "<%s>" % reopen
+				tag_stack.append(reopen)
+		
+			html += self.value[string_index:key]
+			string_index = key
+			tags = events[key]
+			tags.sort()
+		
+			for tag in tags:
+				if tag[0] == '/': # close
+					tag = tag[1:]
+					if tag in reopen_stack:
+						del reopen_stack[reopen_stack.index(tag)]
 					else:
-						html += "<%s>" % tag
-						tag_stack.append(tag)
-	
-			html += self.value[string_index:]
-			return html
-		except:
-			print self.value
-			print self.attributes
-			raise
+						tag_to_close = tag_stack.pop()
+						while tag_to_close != tag:
+							html += "</%s>" % tag_to_close
+							reopen_stack.append(tag_to_close)
+							tag_to_close = tag_stack.pop()
+					
+						html += "</%s>" % tag
+				else:
+					html += "<%s>" % tag
+					tag_stack.append(tag)
+
+		html += self.value[string_index:]
+		return html
 
 class TextCell(object):
 	def __init__(self, x, y, style, contents, x_approx = False):
