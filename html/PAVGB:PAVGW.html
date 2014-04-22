@@ -20,14 +20,14 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE</td>
-	<td>Average packed unsigned byte integers from <em><em>mm2/m64 and mm1 with rounding.</em></em></td>
+	<td>Average packed unsigned byte integers from <em>mm2/m64</em> and <em>mm1</em> with rounding.</td>
 </tr>
 <tr>
 	<td>66 0F E0, /<em>r</em> PAVGB <em>xmm1</em>, <em>xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Average packed unsigned byte integers from <em><em>xmm2/m128 and xmm1 with rounding.</em></em></td>
+	<td>Average packed unsigned byte integers from <em>xmm2/m128</em> and <em>xmm1</em> with rounding.</td>
 </tr>
 <tr>
 	<td>0F E3 /<em>r</em><sup>1</sup> PAVGW <em>mm1, mm2/m64</em></td>
@@ -41,21 +41,21 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Average packed unsigned word integers from <em><em>xmm2/m128 and xmm1 with rounding.</em></em></td>
+	<td>Average packed unsigned word integers from <em>xmm2/m128</em> and <em>xmm1</em> with rounding.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG E0 /r VPAVGB <em>xmm1, xmm2, xmm3/m128</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Average packed unsigned byte integers from <em><em>xmm3/m128 and xmm2 with rounding.</em></em></td>
+	<td>Average packed unsigned byte integers from <em>xmm3/m128</em> and <em>xmm2</em> with rounding.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.WIG E3 /r VPAVGW <em>xmm1, xmm2, xmm3/m128</em></td>
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Average packed unsigned word integers from <em><em>xmm3/m128 and xmm2 with rounding.</em></em></td>
+	<td>Average packed unsigned word integers from <em>xmm3/m128</em> and <em>xmm2</em> with rounding.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F.WIG E0 /r VPAVGB <em>ymm1</em>, <em>ymm2, ymm3/m256</em></td>
@@ -69,10 +69,10 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Average packed unsigned word integers from <em><em><em>ymm2, ymm3/m256 with rounding to ymm1.</em></em></em></td>
+	<td>Average packed unsigned word integers from <em>ymm2</em>, <em>ymm3/m256</em> with rounding to <em>ymm1</em>.</td>
 </tr>
 </table>
-<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual,</em> <em><em>Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and</em></em> <em>IA-32 Architectures Software Developer’s Manual, Volume 3A.</em></p>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual,</em> <em>Volume 2A</em> and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the <em>Intel® 64 and</em> <em>IA-32 Architectures Software Developer’s Manual, Volume 3A</em>.</p>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>

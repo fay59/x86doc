@@ -27,7 +27,7 @@
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSE2</td>
-	<td>Move the low word of <em>r32</em> or from <em>m16</em> into <em><em>xmm at the word position specified by imm8.</em></em></td>
+	<td>Move the low word of <em>r32</em> or from <em>m16</em> into <em>xmm</em> at the word position specified by <em>imm8</em>.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F.W0 C4 /r ib VPINSRW <em>xmm1, xmm2, r32/m16, imm8</em></td>
@@ -37,7 +37,7 @@
 	<td>Insert a word integer value from<em> r32/m16</em> and rest from <em>xmm2</em> into <em>xmm1</em> at the word offset in <em>imm8</em>.</td>
 </tr>
 </table>
-<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual,</em> <em><em>Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and</em></em> <em>IA-32 Architectures Software Developer’s Manual, Volume 3A.</em> 2. In 64-bit mode, VEX.W1 is ignored for VPINSRW (similar to legacy REX.W=1 prefix in PINSRW).</p>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual,</em> <em>Volume 2A</em> and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the <em>Intel® 64 and</em> <em>IA-32 Architectures Software Developer’s Manual, Volume 3A</em>. 2. In 64-bit mode, VEX.W1 is ignored for VPINSRW (similar to legacy REX.W=1 prefix in PINSRW).</p>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>

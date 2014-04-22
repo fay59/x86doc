@@ -107,7 +107,7 @@
 <p>mented; if the DF flag is 1, the (E)SI and (E)DI registers are decremented.) The registers are incremented or decremented by 1 for byte operations, by 2 for word operations, or by 4 for doubleword operations.</p>
 <h2 id="note">NOTE</h2>
 <p>To improve performance, more recent processors support modifications to the processor’s operation during the string store operations initiated with MOVS and MOVSB. See Section 7.3.9.3 in the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1</em> for additional information on fast-string operation.</p>
-<p>The MOVS, MOVSB, MOVSW, and MOVSD instructions can be preceded by the REP prefix (see “REP/REPE/REPZ /REPNE/REPNZ—Repeat String Operation Prefix” in Chapter 4 of the <em>Intel® 64 and IA-32 Architectures Software</em> <em>Developer’s Manual, Volume 2B, for a description of the REP prefix) for block moves of ECX bytes, words, or</em> doublewords.</p>
+<p>The MOVS, MOVSB, MOVSW, and MOVSD instructions can be preceded by the REP prefix (see “REP/REPE/REPZ /REPNE/REPNZ—Repeat String Operation Prefix” in Chapter 4 of the <em>Intel® 64 and IA-32 Architectures Software</em> <em>Developer’s Manual, Volume 2B</em>, for a description of the REP prefix) for block moves of ECX bytes, words, or doublewords.</p>
 <p>In 64-bit mode, the instruction’s default address size is 64 bits, 32-bit address size is supported using the prefix 67H. The 64-bit addresses are specified by RSI and RDI; 32-bit address are specified by ESI and EDI. Use of the REX.W prefix promotes doubleword operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.</p>
 <h2 id="operation">Operation</h2>
 <pre>DEST ← SRC;

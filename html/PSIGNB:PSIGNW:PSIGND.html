@@ -20,14 +20,14 @@
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSSE3</td>
-	<td>Negate/zero/preserve packed byte integers in <em>mm1 depending on the corresponding sign in</em> <em>mm2/m64.</em></td>
+	<td>Negate/zero/preserve packed byte integers in <em>mm1</em> depending on the corresponding sign in <em>mm2/m64.</em></td>
 </tr>
 <tr>
 	<td>66 0F 38 08 /r PSIGNB <em>xmm1, xmm2/m128</em></td>
 	<td>RM</td>
 	<td>V/V</td>
 	<td>SSSE3</td>
-	<td>Negate/zero/preserve packed byte integers in <em>xmm1 depending on the corresponding sign in</em> <em>xmm2/m128.</em></td>
+	<td>Negate/zero/preserve packed byte integers in <em>xmm1</em> depending on the corresponding sign in <em>xmm2/m128</em>.</td>
 </tr>
 <tr>
 	<td>0F 38 09 /r<sup>1</sup> PSIGNW <em>mm1, mm2/m64</em></td>
@@ -62,7 +62,7 @@
 	<td>RVM</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Negate/zero/preserve packed byte integers in <em>xmm2 depending on the corresponding sign in</em> <em>xmm3/m128.</em></td>
+	<td>Negate/zero/preserve packed byte integers in <em>xmm2 </em>depending on the corresponding sign in <em>xmm3/m128</em>.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.128.66.0F38.WIG 09 /r VPSIGNW <em>xmm1, xmm2, xmm3/m128</em></td>
@@ -100,7 +100,7 @@
 	<td>Negate packed doubleword integers in <em>ymm2</em> if the corresponding sign in <em>ymm3/m256</em> is less than zero.</td>
 </tr>
 </table>
-<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual,</em> <em><em>Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and</em></em> <em>IA-32 Architectures Software Developer’s Manual, Volume 3A.</em></p>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual,</em> <em>Volume 2A</em> and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the <em>Intel® 64 and</em> <em>IA-32 Architectures Software Developer’s Manual, Volume 3A</em>.</p>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>

@@ -20,7 +20,7 @@
 	<td>RMI</td>
 	<td>V/V</td>
 	<td>SSSE3</td>
-	<td>Concatenate destination and source operands, extract byte-aligned result shifted to the right by constant value in <em>imm8</em> into <em>mm1.</em></td>
+	<td>Concatenate destination and source operands, extract byte-aligned result shifted to the right by constant value in <em>imm8</em> into <em>mm1</em>.</td>
 </tr>
 <tr>
 	<td>66 0F 3A 0F /r ib PALIGNR <em>xmm1, xmm2/m128, imm8</em></td>
@@ -34,17 +34,17 @@
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX</td>
-	<td>Concatenate <em>xmm2 </em>and <em>xmm3/m128</em>, extract byte aligned result shifted to the right by constant value in<em> imm8 </em>and result is stored in <em>xmm1.</em></td>
+	<td>Concatenate <em>xmm2 </em>and <em>xmm3/m128</em>, extract byte aligned result shifted to the right by constant value in<em> imm8 </em>and result is stored in <em>xmm1</em>.</td>
 </tr>
 <tr>
 	<td>VEX.NDS.256.66.0F3A.WIG 0F /r ib VPALIGNR <em>ymm1, ymm2, ymm3/m256, imm8</em></td>
 	<td>RVMI</td>
 	<td>V/V</td>
 	<td>AVX2</td>
-	<td>Concatenate pairs of 16 bytes in ymm2 and <em>ymm3/m256 into 32-byte intermediate</em> result, extract byte-aligned, 16-byte result shifted to the right by constant values in <em>imm8 from each intermediate result, and two</em> 16-byte results are stored in <em>ymm1</em>.</td>
+	<td>Concatenate pairs of 16 bytes in ymm2 and <em>ymm3/m256</em> into 32-byte intermediate result, extract byte-aligned, 16-byte result shifted to the right by constant values in <em>imm8</em> from each intermediate result, and two 16-byte results are stored in <em>ymm1</em>.</td>
 </tr>
 </table>
-<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual,</em> <em><em>Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and</em></em> <em>IA-32 Architectures Software Developer’s Manual, Volume 3A.</em></p>
+<p class="notes">Notes: 1. See note in Section 2.4, “Instruction Exception Specification” in the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual,</em> <em>Volume 2A</em> and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the <em>Intel® 64 and</em> <em>IA-32 Architectures Software Developer’s Manual, Volume 3A</em>.</p>
 <h2 id="instruction-operand-encoding">Instruction Operand Encoding</h2>
 <table>
 <tr>

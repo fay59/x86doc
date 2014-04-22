@@ -52,7 +52,7 @@
 </table>
 <h2 id="description">Description</h2>
 <p>Performs a full or partial save of processor state components to the XSAVE area located at the memory address specified by the destination operand. The implicit EDX:EAX register pair specifies a 64-bit instruction mask. The specific state components saved correspond to the bits set in the requested-feature bitmap (RFBM), which is the logical-AND of EDX:EAX and XCR0.</p>
-<p>The format of the XSAVE area is detailed in Section 13.4, “XSAVE Area,” of <em>Intel® 64 and IA-32 Architectures Soft<em>w</em>are Developer’s Manual, Volume 1.</em></p>
+<p>The format of the XSAVE area is detailed in Section 13.4, “XSAVE Area,” of <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1</em>.</p>
 <p>Section 13.6, “Operation of XSAVE,” of <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1</em> provides a detailed description of the operation of the XSAVE instruction. The following items provide a high-level outline:</p>
 <ul>
 	<li>XSAVE saves state component <em>i</em> if and only if RFBM[<em>i</em>] = 1.<sup>1</sup></li>

@@ -106,11 +106,11 @@
 </tr>
 <tr>
 	<td>FCW</td>
-	<td>x87 FPU Control Word (16 bits). See Figure 8-6 in the <em>Intel® 64 and IA-32 Architectures Software</em> <em>Developer’s Manual, Volume 1, for the layout of the x87 FPU control word.</em></td>
+	<td>x87 FPU Control Word (16 bits). See Figure 8-6 in the <em>Intel® 64 and IA-32 Architectures Software</em> <em>Developer’s Manual, Volume 1</em>, for the layout of the x87 FPU control word.</td>
 </tr>
 <tr>
 	<td>FSW</td>
-	<td>x87 FPU Status Word (16 bits). See Figure 8-4 in the <em>Intel® 64 and IA-32 Architectures Software</em> <em>Developer’s Manual, Volume 1, for the layout of the x87 FPU status word.</em></td>
+	<td>x87 FPU Status Word (16 bits). See Figure 8-4 in the <em>Intel® 64 and IA-32 Architectures Software</em> <em>Developer’s Manual, Volume 1</em>, for the layout of the x87 FPU status word.</td>
 </tr>
 <tr>
 	<td>Abridged FTW</td>
@@ -122,7 +122,7 @@
 </tr>
 <tr>
 	<td>FPU IP</td>
-	<td>x87 FPU Instruction Pointer Offset (32 bits). The contents of this field differ depending on the current addressing mode (32-bit or 16-bit) of the processor when the FXSAVE instruction was executed: 32-bit mode — 32-bit IP offset. 16-bit mode — low 16 bits are IP offset; high 16 bits are reserved. See “x87 FPU Instruction and Operand (Data) Pointers” in Chapter 8 of the <em>Intel® 64 and IA-32</em> <em>Architectures Software Developer’s Manual, Volume 1, for a description of the x87 FPU instruction</em> pointer.</td>
+	<td>x87 FPU Instruction Pointer Offset (32 bits). The contents of this field differ depending on the current addressing mode (32-bit or 16-bit) of the processor when the FXSAVE instruction was executed: 32-bit mode — 32-bit IP offset. 16-bit mode — low 16 bits are IP offset; high 16 bits are reserved. See “x87 FPU Instruction and Operand (Data) Pointers” in Chapter 8 of the <em>Intel® 64 and IA-32</em> <em>Architectures Software Developer’s Manual, Volume 1</em>, for a description of the x87 FPU instruction pointer.</td>
 </tr>
 <tr>
 	<td>FPU CS</td>
@@ -134,7 +134,7 @@
 </tr>
 <tr>
 	<td>FPU DP</td>
-	<td>x87 FPU Instruction Operand (Data) Pointer Offset (32 bits). The contents of this field differ depending on the current addressing mode (32-bit or 16-bit) of the processor when the FXSAVE instruction was executed: 32-bit mode — 32-bit DP offset. 16-bit mode — low 16 bits are DP offset; high 16 bits are reserved. See “x87 FPU Instruction and Operand (Data) Pointers” in Chapter 8 of the <em>Intel® 64 and IA-32</em> <em>Architectures Software Developer’s Manual, Volume 1, for a description of the x87 FPU operand</em> pointer.</td>
+	<td>x87 FPU Instruction Operand (Data) Pointer Offset (32 bits). The contents of this field differ depending on the current addressing mode (32-bit or 16-bit) of the processor when the FXSAVE instruction was executed: 32-bit mode — 32-bit DP offset. 16-bit mode — low 16 bits are DP offset; high 16 bits are reserved. See “x87 FPU Instruction and Operand (Data) Pointers” in Chapter 8 of the <em>Intel® 64 and IA-32</em> <em>Architectures Software Developer’s Manual, Volume 1</em>, for a description of the x87 FPU operand pointer.</td>
 </tr>
 <tr>
 	<td>FPU DS</td>
@@ -142,11 +142,11 @@
 </tr>
 <tr>
 	<td>MXCSR</td>
-	<td>MXCSR Register State (32 bits). See Figure 10-3 in the <em>Intel® 64 and IA-32 Architectures Software</em> <em>Developer’s Manual, Volume 1, for the layout of the MXCSR register. If the OSFXSR bit in control</em> register CR4 is not set, the FXSAVE instruction may not save this register. This behavior is implementation dependent.</td>
+	<td>MXCSR Register State (32 bits). See Figure 10-3 in the <em>Intel® 64 and IA-32 Architectures Software</em> <em>Developer’s Manual, Volume 1</em>, for the layout of the MXCSR register. If the OSFXSR bit in control register CR4 is not set, the FXSAVE instruction may not save this register. This behavior is implementation dependent.</td>
 </tr>
 <tr>
 	<td>MXCSR_MASK</td>
-	<td>MXCSR_MASK (32 bits). This mask can be used to adjust values written to the MXCSR register, ensuring that reserved bits are set to 0. Set the mask bits and flags in MXCSR to the mode of operation desired for SSE and SSE2 SIMD floating-point instructions. See “Guidelines for Writing to the MXCSR Register” in Chapter 11 of the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual,</em> <em>Volume 1, for instructions for how to determine and use the MXCSR_MASK value.</em></td>
+	<td>MXCSR_MASK (32 bits). This mask can be used to adjust values written to the MXCSR register, ensuring that reserved bits are set to 0. Set the mask bits and flags in MXCSR to the mode of operation desired for SSE and SSE2 SIMD floating-point instructions. See “Guidelines for Writing to the MXCSR Register” in Chapter 11 of the <em>Intel® 64 and IA-32 Architectures Software Developer’s Manual,</em> <em>Volume 1</em>, for instructions for how to determine and use the MXCSR_MASK value.</td>
 </tr>
 <tr>
 	<td>ST0/MM0 through ST7/MM7</td>
@@ -484,6 +484,6 @@ FI;
 </tr>
 </table>
 <h2 id="implementation-note">Implementation Note</h2>
-<p>The order in which the processor signals general-protection (#GP) and page-fault (#PF) exceptions when they both occur on an instruction boundary is given in Table 5-2 in the <em>Intel® 64 and IA-32 Architectures Software</em> <em>Developer’s Manual, Volume 3B. This order vary for FXSAVE for different processor implementations.</em></p>
+<p>The order in which the processor signals general-protection (#GP) and page-fault (#PF) exceptions when they both occur on an instruction boundary is given in Table 5-2 in the <em>Intel® 64 and IA-32 Architectures Software</em> <em>Developer’s Manual, Volume 3B</em>. This order vary for FXSAVE for different processor implementations.</p>
 </body>
 </html>

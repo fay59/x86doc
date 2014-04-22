@@ -8,130 +8,92 @@ from StringIO import StringIO
 class AttributedString(object):
 	bold = 1
 	italic = 2
-	underlined = 3
-	subscript = 4
-	superscript = 5
+	underlined = 4
+	subscript = 8
+	superscript = 16
 	
-	def __init__(self, string, attributes = {}):
+	@staticmethod
+	def non(attribute):
+		if attribute <= AttributedString.superscript:
+			return attribute << 5
+		else:
+			return attribute >> 5
+	
+	def __init__(self, string="", attributes=None):
 		self.value = string
-		self.attributes = dict(attributes)
+		self.attributes = [0] * len(string) if attributes == None else attributes[:]
+		assert len(self.value) == len(self.attributes)
 	
 	def add_attribute(self, begin, end, attribute):
-		if begin >= end: return
-		new_attributes = {}
-		merged = False
-		for current_begin in self.attributes:
-			for current_attribute, current_end in self.attributes[current_begin]:
-				if current_attribute != attribute or (begin > current_end or end < current_begin):
-					if current_begin not in new_attributes:
-						new_attributes[current_begin] = []
-					new_attributes[current_begin].append((current_attribute, current_end))
-					continue
-			
-				begin = min(begin, current_begin)
-				end = max(end, current_end)
-				if begin not in new_attributes:
-					new_attributes[begin] = []
-				new_attributes[begin].append((attribute, end))
-				merged = True
-				break
-		
-		if merged == False:
-			if begin not in new_attributes:
-				new_attributes[begin] = []
-			new_attributes[begin].append((attribute, end))
-				
-		self.attributes = new_attributes
+		for i in xrange(begin, end):
+			if self.attributes[i] & AttributedString.non(attribute) == 0:
+				self.attributes[i] |= attribute
 	
 	def append(self, that):
-		currentLength = len(self.value)
-		that_attributes = dict(that.attributes)
-		if 0 in that_attributes:
-			for begin in self.attributes:
-				for i in xrange(0, len(self.attributes[begin])):
-					attribute, end = self.attributes[begin][i]
-					if end != currentLength: continue
-					for j in xrange(0, len(that_attributes[0])):
-						other_attribute, other_end = that_attributes[0][j]
-						if other_attribute == attribute:
-							self.attributes[begin][i] = (attribute, other_end + currentLength)
-							del that_attributes[0][j]
-							break
-		
-		for begin in that_attributes:
-			key = begin + currentLength
-			if key not in self.attributes: self.attributes[key] = []
-			for attribute, end in that.attributes[begin]:
-				self.attributes[key].append((attribute, end + currentLength))
 		self.value += that.value
+		self.attributes += that.attributes
 	
 	def split(self, position):
-		left_string = self.value[:position]
-		right_string = self.value[position:]
-		left_attributes = {}
-		right_attributes = {}
-		for begin in self.attributes:
-			for attribute, end in self.attributes[begin]:
-				if begin < position:
-					if begin not in left_attributes: left_attributes[begin] = []
-					left_attributes[begin].append((attribute, min(position, end)))
-					if end > position:
-						if 0 not in right_attributes: right_attributes[0] = []
-						right_attributes[0].append((attribute, end - position))
-				else:
-					key = begin - position
-					if key not in right_attributes: right_attributes[key] = []
-					right_attributes[key].append((attribute, end - position))
-		
-		return (AttributedString(left_string, left_attributes), AttributedString(right_string, right_attributes))
+		left = AttributedString(self.value[:position], self.attributes[:position])
+		right = AttributedString(self.value[position:], self.attributes[position:])
+		return (left, right)
 	
 	def lstrip(self):
-		initialLength = len(self.value)
-		that = AttributedString(self.value.lstrip())
-		diff = initialLength - len(that.value)
-		new_attributes = {}
-		for begin in self.attributes:
-			begin -= diff
-			new_attributes[begin] = []
-			for attribute, end in self.attributes[begin]:
-				new_attributes[begin].append((attribute, end - diff))
-		that.attributes = new_attributes
-		return that
+		stripped = self.value.lstrip()
+		attributes = self.attributes[-len(stripped):]
+		return AttributedString(stripped, attributes)
 	
 	def rstrip(self):
-		initialLength = len(self.value)
-		that = AttributedString(self.value.rstrip())
-		limit = len(that.value)
-		new_attributes = {}
-		for begin in self.attributes:
-			if begin >= limit: continue
-			new_attributes[begin] = []
-			for attribute, end in self.attributes[begin]:
-				end = min(end, limit)
-				if end != begin:
-					new_attributes[begin].append((attribute, end))
-		that.attributes = new_attributes
-		return that
+		stripped = self.value.rstrip()
+		attributes = self.attributes[:len(stripped)]
+		return AttributedString(stripped, attributes)
 	
 	def strip(self):
 		return self.lstrip().rstrip()
 	
-	def __tag_for_attribute(self, attribute):
-		return ['', 'strong', 'em', 'u', 'sub', 'sup'][attribute]
-	
-	def __str__(self): return self.html()
+	def __build_open_close_map(self):
+		events = {}
+		prev_attributes = 0
+		tags = ['strong', 'em', 'u', 'sub', 'sup']
+		for i in xrange(0, len(self.attributes)):
+			attribute_bitmap = self.attributes[i] & 31
+			difference = attribute_bitmap ^ prev_attributes
+			opening = difference & attribute_bitmap
+			closing = difference & prev_attributes
+			j = 0
+			while opening != 0:
+				if opening & 1:
+					tag = tags[j]
+					if i not in events: events[i] = []
+					events[i].append(tag)
+				opening >>= 1
+				j += 1
+			
+			j = 0
+			while closing != 0:
+				if closing & 1:
+					tag = tags[j]
+					if i not in events: events[i] = []
+					events[i].append("/" + tag)
+				closing >>= 1
+				j += 1
+			
+			prev_attributes = attribute_bitmap
+		
+		j = 0
+		i += 1
+		closing = prev_attributes
+		while closing != 0:
+			if closing & 1:
+				tag = tags[j]
+				if i not in events: events[i] = []
+				events[i].append("/" + tag)
+			closing >>= 1
+			j += 1
+		return events
 	
 	def html(self):
-		events = {}
-		for key in self.attributes:
-			begin = key
-			for item, end in self.attributes[key]:
-				tag = self.__tag_for_attribute(item)
-				if begin not in events: events[begin] = []
-				if end not in events: events[end] = []
-				events[begin].append(tag)
-				events[end].append("/" + tag)
-		
+		events = self.__build_open_close_map()
 		event_keys = events.keys()
 		event_keys.sort()
 		
@@ -169,6 +131,8 @@ class AttributedString(object):
 
 		html += self.value[string_index:]
 		return html
+	
+	def __str__(self): return self.html()
 
 class TextCell(object):
 	def __init__(self, page, x, y, style, contents, x_approx = False):
@@ -250,20 +214,29 @@ class UglyDocument(object):
 				safe = unicode(child)
 				for find, replace in (("&", "&amp;"), ("<", "&lt;"), (">", "&gt;")):
 					safe = safe.replace(find, replace)
-				new_string.value += safe
+				new_string.append(AttributedString(safe))
 		
 		length = len(new_string.value)
 		style = self.__tag_style(tag)
+		
 		if tag.name == "sup":
 			new_string.add_attribute(0, length, AttributedString.superscript)
 		elif tag.name == "sub":
 			new_string.add_attribute(0, length, AttributedString.subscript)
 		
-		if "font-weight" in style and style["font-weight"] == "bold":
-			new_string.add_attribute(0, length, AttributedString.bold)
-		
-		if "font-style" in style and style["font-style"] == "italic":
-			new_string.add_attribute(0, length, AttributedString.italic)
+		if "font-weight" in style:
+			weight = style["font-weight"]
+			if weight == "bold":
+				new_string.add_attribute(0, length, AttributedString.bold)
+			elif weight == "normal":
+				new_string.add_attribute(0, length, AttributedString.non(AttributedString.bold))
+				
+		if "font-style" in style:
+			style = style["font-style"]
+			if style == "italic":
+				new_string.add_attribute(0, length, AttributedString.italic)
+			elif style == "normal":
+				new_string.add_attribute(0, length, AttributedString.non(AttributedString.italic))
 		
 		return new_string
 	
@@ -524,7 +497,7 @@ class DocumentWriter(object):
 			return c
 			
 		if a.value[-1] == u"-":
-			c = AttributedString(a.value[:-1], a.attributes)
+			c = AttributedString(a.value[:-1], a.attributes[:-1])
 			c.append(b)
 			return c
 		
