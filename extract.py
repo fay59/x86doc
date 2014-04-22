@@ -119,6 +119,8 @@ class AttributedString(object):
 	def __tag_for_attribute(self, attribute):
 		return ['', 'strong', 'em', 'u', 'sub', 'sup'][attribute]
 	
+	def __str__(self): return self.html()
+	
 	def html(self):
 		events = {}
 		for key in self.attributes:
@@ -169,7 +171,8 @@ class AttributedString(object):
 		return html
 
 class TextCell(object):
-	def __init__(self, x, y, style, contents, x_approx = False):
+	def __init__(self, page, x, y, style, contents, x_approx = False):
+		self.page = page
 		self.style = style
 		self.x = x
 		self.x_approx = x_approx
@@ -232,9 +235,10 @@ class UglyDocument(object):
 			slice_first = 1
 			if len(children[0].text.strip()) == 0:
 				slice_first += 1
-		
+			
 			for child in children[slice_first:]:
 				yield child
+			yield "page-break"
 	
 	def __attributed_string(self, tag):
 		new_string = AttributedString("")
@@ -269,8 +273,13 @@ class UglyDocument(object):
 		underline = 4
 		sub = 8
 		sup = 16
+		page = 0
 		
 		for div in self.__all_divs():
+			if div == "page-break":
+				page += 1
+				continue
+			
 			style = self.__tag_style(div)
 			x = style["left"]
 			y = style["top"]
@@ -287,18 +296,20 @@ class UglyDocument(object):
 			
 			x_approx = False
 			for part in text_parts:
-				yield TextCell(x, y, style, part.strip(), x_approx)
+				yield TextCell(page, x, y, style, part.strip(), x_approx)
 				x += len(part.value) * style["font-size"] / 2 # approximation
 				x_approx = True
 	
 	def all_rows(self):
 		row = []
 		last_y = 0
+		last_page = 0
 		for cell in self.all_cells():
-			if abs(last_y - cell.y) > 3 and len(row) != 0:
+			if cell.page != last_page or (abs(last_y - cell.y) > 3 and len(row) != 0):
 				row.sort(lambda a, b: cmp(a.x - b.x, 0))
 				yield row
 				row = []
+				last_page = cell.page
 			row.append(cell)
 			last_y = cell.y
 		yield row
