@@ -94,4 +94,4 @@ class x86ManParser(object):
 		y1 = self.yBase + self.pageHeight - bbox[1]
 		x2 = bbox[2]
 		y2 = self.yBase + self.pageHeight - bbox[3]
-		return pdftable.Rect(x1, y1, x2, y2)
+		return pdftable.Rect(x1, y2, x2, y1)

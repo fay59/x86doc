@@ -32,6 +32,10 @@ class Rect(object):
 		if that.y1() - self.y2() - threshold > 0:
 			return False
 		return True
+	
+	def debug_html(self, color, cls="black"):
+		fmt = '<div class="%s" style="position:absolute;left:%fpx;top:%fpx;width:%fpx;height:%fpx;border:1px %s solid;background-color:%s"></div>'
+		return fmt % (cls, self.x1(), self.y1(), self.width(), self.height(), color, color)
 
 def sort_rect_by_position(x, y, dimension):
 	return lambda rect: y(rect) * dimension + x(rect)
@@ -128,6 +132,9 @@ class Table(object):
 		col = self.__data_col_index(x)
 		index = self.__data_layout[row][col]
 		self.__data_storage[index] = value
+	
+	def bounds(self):
+		return Rect(self.__columns[0], self.__rows[0], self.__columns[-1], self.__rows[-1])
 	
 	def __identify_dimension(self, lines, key):
 		lines.sort(key=key)
