@@ -295,7 +295,6 @@ def main():
 		(lines if (rect.width() < 9 or rect.height() < 9) else figures).append(rect)
 
 	# group lines into tables
-	i = 0
 	while len(lines) > 0:
 		table = cluster_rects(lines)
 		tables.append(table)

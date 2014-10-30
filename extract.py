@@ -25,8 +25,8 @@ def main(argv):
 		interpreter.process_page(page)
 		page = device.get_result()
 		parser.process_page(page)
+	parser.flush()
 	fd.close()
-	htmlWriter.close()
 
 if __name__ == "__main__":
 	result = main(sys.argv)
