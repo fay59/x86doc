@@ -15,6 +15,9 @@ class Rect(object):
 	def width(self): return abs(self.__x1 - self.__x2)
 	def height(self): return abs(self.__y1 - self.__y2)
 	
+	def union(self, rect):
+		return Rect(min(rect.x1(), self.x1()), min(rect.y1(), self.y1()), max(rect.x2(), self.x2()), max(rect.y2(), self.y2()))
+	
 	def vertical(self): return self.width() < self.height()
 	def horizontal(self): return self.height() < self.width()
 	
@@ -122,19 +125,37 @@ class Table(object):
 		self.__init_data_storage()
 	
 	def get_at(self, x, y):
-		row = self.__data_row_index(y)
-		col = self.__data_col_index(x)
-		index = self.__data_layout[row][col]
-		return self.__data_storage[index]
-	
-	def set_at(self, x, y, value):
-		row = self.__data_row_index(y)
-		col = self.__data_col_index(x)
-		index = self.__data_layout[row][col]
-		self.__data_storage[index] = value
+		row_index = self.__data_row_index(y)
+		col_index = self.__data_col_index(x)
+		return self.__get_at(col_index, row_index)
 	
 	def bounds(self):
 		return Rect(self.__columns[0], self.__rows[0], self.__columns[-1], self.__rows[-1])
+	
+	def cell_size(self, x, y):
+		row_index = self.__data_row_index(y)
+		col_index = self.__data_col_index(x)
+		return self.__cell_size(col_index, row_index)
+	
+	def debug_html(self):
+		print '<table border="1">'
+		print_index = -1
+		for row_index in xrange(0, len(self.__data_layout)):
+			row = self.__data_layout[row_index]
+			print "<tr>"
+			for cell_index in xrange(0, len(row)):
+				cell = row[cell_index]
+				if print_index >= cell: continue
+				width, height = self.cell_size(cell_index, row_index)
+				colspan = (' colspan="%i"' % width) if width != 1 else ""
+				rowspan = (' rowspan="%i"' % height) if height != 1 else ""
+				print "<td%s%s>" % (colspan, rowspan)
+				for element in self.__get_at(cell_index, row_index):
+					print element.get_text().replace("<", "&lt;").replace(">", "&gt;")
+				print "</td>"
+				print_index = cell
+			print "</tr>"
+		print "</table>"
 	
 	def __identify_dimension(self, lines, key):
 		lines.sort(key=key)
@@ -213,9 +234,10 @@ class Table(object):
 					i += 1
 					last_index = row[cell_index]
 				row[cell_index] = i
-			print row
-		print
-		self.__data_storage = [None] * self.__data_layout[-1][-1]
+		
+		self.__data_storage = []
+		for i in xrange(0, self.__data_layout[-1][-1] + 1):
+			self.__data_storage.append([])
 	
 	def __data_row_index(self, y):
 		return self.__dim_index(self.__rows, y)
@@ -224,11 +246,43 @@ class Table(object):
 		return self.__dim_index(self.__columns, x)
 	
 	def __dim_index(self, array, value):
-		for i in xrange(len(array) - 1, -1, -1):
-			v = array[i]
-			if value > v or pretty_much_equal(v, value):
-				return i
-		raise Exception("improbable")
+		for i in xrange(1, len(array)):
+			ref_value = array[i]
+			if ref_value > value:
+				return i - 1
+		
+		raise Exception("improbable (%g between %g and %g)" % (value, array[0], array[-1]))
+	
+	def __get_at(self, x, y):
+		row = self.__data_layout[y]
+		data_index = row[x]
+		return self.__data_storage[data_index]
+	
+	def __cell_size(self, column, row):
+		value = self.__data_layout[row][column]
+		width = 0
+		x = column
+		while x >= 0 and self.__data_layout[row][x] == value:
+			width += 1
+			x -= 1
+		
+		x = column + 1
+		while x < len(self.__data_layout[row]) and self.__data_layout[row][x] == value:
+			width += 1
+			x += 1
+		
+		height = 0
+		y = row
+		while y >= 0 and self.__data_layout[y][column] == value:
+			height += 1
+			y -= 1
+		
+		y = row + 1
+		while y < len(self.__data_layout) and self.__data_layout[y][column] == value:
+			height += 1
+			y += 1
+		
+		return (width, height)
 
 def main():
 	rects = [[45.120,39.720,494.340,53.640],
