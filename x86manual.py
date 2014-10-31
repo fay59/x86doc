@@ -40,6 +40,8 @@ class CharCollection(object):
 		while len(self.chars[-1].get_text().strip()) == 0:
 			self.chars.pop()
 	
+	def bounds(self): return self.rect
+	
 	def append(self, line):
 		self.rect = self.rect.union(line.rect)
 		self.chars += line.chars
@@ -56,11 +58,14 @@ class CharCollection(object):
 	def font_size(self):
 		return self.chars[0].matrix[0]
 	
-	def get_text(self):
-		return u"".join([c.get_text() for c in self.chars])
+	def __str__(self):
+		uni = u"".join([c.get_text() for c in self.chars])
+		if uni[-1] != "-" and uni[-1] != "/":
+			uni += " "
+		return uni
 	
 	def __repr__(self):
-		return u"<%r text=%r>" % (self.rect, self.get_text())
+		return u"<%r text=%r>" % (self.rect, unicode(self))
 
 class x86ManParser(object):
 	def __init__(self, outputDir, laParams):
@@ -91,13 +96,20 @@ class x86ManParser(object):
 				else:
 					orphans.append(line)
 			lines = orphans
-			print table.debug_html()
+		
+		for table in tables:
+			if table.rows() == 1 and table.columns() == 1:
+				if len(table.get_at(0, 0)) != 0:
+					separated = table.separate_from_contents(CharCollection.bounds)
+					print separated.debug_html().encode("UTF-8")
+			else:
+				print table.debug_html().encode("UTF-8")
 		
 		self.textLines = orphans
 		self.__merge_text()
 		
 		for line in self.textLines:
-			print line
+			print unicode(line).encode("UTF-8")
 		print
 		
 		self.ltRects = []

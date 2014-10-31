@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+
 class Rect(object):
 	def __init__(self, x1, y1, x2, y2):
 		self.__x1 = x1
@@ -36,7 +39,7 @@ class Rect(object):
 			return False
 		return True
 	
-	def debug_html(self, color, cls="black"):
+	def debug_html(self, color="black", cls="black"):
 		fmt = '<div class="%s" style="position:absolute;left:%fpx;top:%fpx;width:%fpx;height:%fpx;border:1px %s solid;background-color:%s"></div>'
 		return fmt % (cls, self.x1(), self.y1(), self.width(), self.height(), color, color)
 
@@ -68,6 +71,20 @@ def cluster_rects(lines):
 		table_group += removed
 		just_removed = removed
 	return table_group
+
+# this is not particularly statistically sound, but I think that it works
+def count_segments(list):
+	list.sort()
+	expected_distance = (list[-1] - list[0]) / len(list)
+	last_item = list[0]
+	clusters = [1]
+	for item in list[1:]:
+		if item - last_item < expected_distance / 2:
+			clusters[-1] += 1
+		else:
+			clusters.append(1)
+		last_item = item
+	return clusters
 
 def pretty_much_equal(a, b, threshold = 2):
 	return abs(a - b) < threshold
@@ -129,6 +146,9 @@ class Table(object):
 		col_index = self.__data_col_index(x)
 		return self.__get_at(col_index, row_index)
 	
+	def rows(self): return len(self.__rows) - 1
+	def columns(self): return len(self.__columns) - 1
+	
 	def bounds(self):
 		return Rect(self.__columns[0], self.__rows[0], self.__columns[-1], self.__rows[-1])
 	
@@ -137,25 +157,75 @@ class Table(object):
 		col_index = self.__data_col_index(x)
 		return self.__cell_size(col_index, row_index)
 	
+	def separate_from_contents(self, rect_function):
+		assert len(self.__rows) == 2 and len(self.__columns) == 2
+		assert len(self.__data_storage[0]) != 0
+		
+		rows = []
+		cols = []
+		for item in self.__data_storage[0]:
+			rect = rect_function(item)
+			cols.append(rect.x1())
+			rows.append(rect.y1())
+		
+		rows.sort()
+		last_value = rows[0]
+		result = [last_value]
+		for row in rows[1:]:
+			if row - last_value >= 12:
+				result.append(row)
+			last_value = row
+		rows = result
+		
+		bounds = self.bounds()
+		
+		# is it a centered table?
+		clusters = count_segments(cols)
+		if all((cluster == clusters[0] for cluster in clusters)):
+			cols = cols[::clusters[0]]
+		else:
+			last_value = cols[0]
+			result = [last_value]
+			for col in cols[1:]:
+				if not pretty_much_equal(col, last_value):
+					result.append(col)
+				last_value = col
+			cols = result
+		
+		cols[0] = bounds.x1()
+		cols.append(bounds.x2())
+		rows[0] = bounds.y1()
+		rows.append(bounds.y2())
+		
+		rects = [Rect(col, bounds.y1(), col, bounds.y2()) for col in cols]
+		rects += [Rect(bounds.x1(), row, bounds.x2(), row) for row in rows]
+		
+		table = Table(rects)
+		for item in self.__data_storage[0]:
+			rect = rect_function(item)
+			table.get_at(rect.xmid(), rect.ymid()).append(item)
+		return table
+	
 	def debug_html(self):
-		print '<table border="1">'
+		result = '<table border="1">'
 		print_index = -1
 		for row_index in xrange(0, len(self.__data_layout)):
 			row = self.__data_layout[row_index]
-			print "<tr>"
+			result += "<tr>"
 			for cell_index in xrange(0, len(row)):
 				cell = row[cell_index]
 				if print_index >= cell: continue
 				width, height = self.cell_size(cell_index, row_index)
 				colspan = (' colspan="%i"' % width) if width != 1 else ""
 				rowspan = (' rowspan="%i"' % height) if height != 1 else ""
-				print "<td%s%s>" % (colspan, rowspan)
+				result += "<td%s%s>" % (colspan, rowspan)
 				for element in self.__get_at(cell_index, row_index):
-					print element.get_text().replace("<", "&lt;").replace(">", "&gt;")
-				print "</td>"
+					result += unicode(element).replace("<", "&lt;").replace(">", "&gt;")
+				result += "</td>"
 				print_index = cell
-			print "</tr>"
-		print "</table>"
+			result += "</tr>"
+		result += "</table>"
+		return result
 	
 	def __identify_dimension(self, lines, key):
 		lines.sort(key=key)
