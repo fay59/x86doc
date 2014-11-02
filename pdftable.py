@@ -141,10 +141,10 @@ class Table(object):
 		
 		self.__init_data_storage()
 	
-	def get_at(self, x, y):
+	def get_at_pixel(self, x, y):
 		row_index = self.__data_row_index(y)
 		col_index = self.__data_col_index(x)
-		return self.__get_at(col_index, row_index)
+		return self.get_at(col_index, row_index)
 	
 	def rows(self): return len(self.__rows) - 1
 	def columns(self): return len(self.__columns) - 1
@@ -203,13 +203,13 @@ class Table(object):
 		table = Table(rects)
 		for item in self.__data_storage[0]:
 			rect = rect_function(item)
-			table.get_at(rect.xmid(), rect.ymid()).append(item)
+			table.get_at_pixel(rect.xmid(), rect.ymid()).append(item)
 		return table
 	
 	def debug_html(self):
 		result = '<table border="1">'
 		print_index = -1
-		for row_index in xrange(0, len(self.__data_layout)):
+		for row_index in xrange(0, self.rows()):
 			row = self.__data_layout[row_index]
 			result += "<tr>"
 			for cell_index in xrange(0, len(row)):
@@ -219,7 +219,7 @@ class Table(object):
 				colspan = (' colspan="%i"' % width) if width != 1 else ""
 				rowspan = (' rowspan="%i"' % height) if height != 1 else ""
 				result += "<td%s%s>" % (colspan, rowspan)
-				for element in self.__get_at(cell_index, row_index):
+				for element in self.get_at(cell_index, row_index):
 					result += unicode(element).replace("<", "&lt;").replace(">", "&gt;")
 				result += "</td>"
 				print_index = cell
@@ -323,7 +323,7 @@ class Table(object):
 		
 		raise Exception("improbable (%g between %g and %g)" % (value, array[0], array[-1]))
 	
-	def __get_at(self, x, y):
+	def get_at(self, x, y):
 		row = self.__data_layout[y]
 		data_index = row[x]
 		return self.__data_storage[data_index]

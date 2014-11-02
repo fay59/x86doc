@@ -6,6 +6,18 @@ import pdftable
 import sys
 import math
 
+def escape_html(a):
+	return a.replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")
+
+def sort_topdown_ltr(a, b):
+	aa = a.bounds()
+	bb = b.bounds()
+	if aa.y1() < bb.y1(): return -1
+	if aa.y1() > bb.y1(): return 1
+	if aa.x1() < bb.x1(): return -1
+	if aa.x1() > bb.x1(): return 1
+	return 0
+
 class AttributedText(object):
 	def __init__(self, text, font, size):
 		self.text = text
@@ -92,25 +104,20 @@ class x86ManParser(object):
 			bounds = table.bounds()
 			for line in lines:
 				if bounds.intersects(line.rect, 0):
-					table.get_at(line.rect.xmid(), line.rect.ymid()).append(line)
+					table.get_at_pixel(line.rect.xmid(), line.rect.ymid()).append(line)
 				else:
 					orphans.append(line)
 			lines = orphans
 		
-		for table in tables:
+		for i in xrange(0, len(tables)):
+			table = tables[i]
 			if table.rows() == 1 and table.columns() == 1:
-				if len(table.get_at(0, 0)) != 0:
-					separated = table.separate_from_contents(CharCollection.bounds)
-					print separated.debug_html().encode("UTF-8")
-			else:
-				print table.debug_html().encode("UTF-8")
+				if len(table.get_at_pixel(0, 0)) != 0:
+					tables[i] = table.separate_from_contents(CharCollection.bounds)
 		
-		self.textLines = orphans
-		self.__merge_text()
-		
-		for line in self.textLines:
-			print unicode(line).encode("UTF-8")
-		print
+		displayable = self.__merge_text(orphans) + tables
+		displayable.sort(cmp=sort_topdown_ltr)
+		self.__output_file(displayable)
 		
 		self.ltRects = []
 		self.textLines = []
@@ -157,7 +164,7 @@ class x86ManParser(object):
 		y2 = self.yBase - bbox[3]
 		return pdftable.Rect(x1, y2, x2, y1)
 	
-	def __merge_text(self):
+	def __merge_text(self, lines):
 		def sort_text(a, b):
 			if a.rect.x1() < b.rect.x1():
 				return -1
@@ -169,9 +176,11 @@ class x86ManParser(object):
 				return 0
 			return 1
 		
-		self.textLines.sort(cmp=sort_text)
-		merged = [self.textLines[0]]
-		for line in self.textLines[1:]:
+		if len(lines) == 0: return
+		
+		lines.sort(cmp=sort_text)
+		merged = [lines[0]]
+		for line in lines[1:]:
 			last = merged[-1]
 			same_x = pdftable.pretty_much_equal(line.rect.x1(), last.rect.x1())
 			same_font = last.font_name() == line.font_name()
@@ -184,4 +193,47 @@ class x86ManParser(object):
 				last.append(line)
 			else:
 				merged.append(line)
-		self.textLines = merged
+		return merged
+	
+	def __output_file(self, displayable):
+		title = [p.strip() for p in unicode(displayable[0]).split(u"—")][0]
+		path = "%s/%s.html" % (self.outputDir, title.replace("/", ":"))
+		with open(path, "w") as fd:
+			fd.write(self.__output_page(displayable).encode("UTF-8"))
+	
+	def __output_page(self, displayable):
+		title = unicode(displayable[0])
+		result = [""]
+		def write_line(line): result[0] += line + "\n"
+		write_line("<!DOCTYPE hmtl>")
+		write_line("<html>")
+		write_line("<head>")
+		write_line('<meta charset="UTF-8">')
+		write_line("<title>%s</title>" % escape_html(title))
+		write_line("</head>")
+		write_line("<body>")
+		for element in displayable:
+			result[0] += self.__output_html(element)
+		write_line("</body>")
+		write_line("</html>")
+		return result[0]
+	
+	def __output_html(self, element):
+		result = ""
+		if isinstance(element, list):
+			return "".join([unicode(e) for e in element])
+		if isinstance(element, CharCollection):
+			# TODO fonts and stuff
+			result = unicode(element)
+		elif isinstance(element, pdftable.Table):
+			result += "<table>\n"
+			for row in xrange(0, element.rows()):
+				result += "<tr>\n"
+				for col in xrange(0, element.columns()):
+					result += "<td>"
+					sub = element.get_at(col, row)
+					result += self.__output_html(sub)
+					result += "</td>\n"
+				result += "</tr>\n"
+			result += "</table>\n"
+		return result
