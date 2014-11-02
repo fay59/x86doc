@@ -73,13 +73,13 @@ def cluster_rects(lines):
 	return table_group
 
 # this is not particularly statistically sound, but I think that it works
-def count_segments(list):
+def count_segments(list, expected_clusters):
 	list.sort()
-	expected_distance = (list[-1] - list[0]) / len(list)
+	expected_distance = (list[-1] - list[0]) / expected_clusters
 	last_item = list[0]
 	clusters = [1]
 	for item in list[1:]:
-		if item - last_item < expected_distance / 2:
+		if item - last_item < expected_distance:
 			clusters[-1] += 1
 		else:
 			clusters.append(1)
@@ -178,9 +178,10 @@ class Table(object):
 		rows = result
 		
 		bounds = self.bounds()
+		cols.sort()
 		
 		# is it a centered table?
-		clusters = count_segments(cols)
+		clusters = count_segments(cols, len(cols) / len(self.__data_storage))
 		if all((cluster == clusters[0] for cluster in clusters)):
 			cols = cols[::clusters[0]]
 		else:

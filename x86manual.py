@@ -18,26 +18,6 @@ def sort_topdown_ltr(a, b):
 	if aa.x1() > bb.x1(): return 1
 	return 0
 
-class AttributedText(object):
-	def __init__(self, text, font, size):
-		self.text = text
-		self.font = font
-		self.size = size
-		pass
-
-class AttributedParagraph(object):
-	def __init(self):
-		self.nodes = []
-	
-	def push(self, char, font, size):
-		if len(self.nodes) > 0:
-			last = self.nodes[-1]
-			if last.font == font and last.size == size:
-				last.text += char
-				return
-		
-		self.nodes.append(AttributedText(text, font, size))
-
 class FakeChar(object):
 	def __init__(self, t):
 		self.text = t
@@ -49,7 +29,7 @@ class CharCollection(object):
 	def __init__(self, rect, iterable):
 		self.rect = rect
 		self.chars = [c for c in iterable]
-		while len(self.chars[-1].get_text().strip()) == 0:
+		while len(self.chars) > 0 and len(self.chars[-1].get_text().strip()) == 0:
 			self.chars.pop()
 	
 	def bounds(self): return self.rect
@@ -65,14 +45,14 @@ class CharCollection(object):
 		self.chars.append(FakeChar(c))
 	
 	def font_name(self):
-		return self.chars[0].fontname
+		return self.chars[0].fontname[7:] if len(self.chars) != 0 else ""
 	
 	def font_size(self):
-		return self.chars[0].matrix[0]
+		return self.chars[0].matrix[0] if len(self.chars) != 0 else 0
 	
 	def __str__(self):
 		uni = u"".join([c.get_text() for c in self.chars])
-		if uni[-1] != "-" and uni[-1] != "/":
+		if len(uni) > 0 and uni[-1] != "-" and uni[-1] != "/":
 			uni += " "
 		return uni
 	
@@ -84,6 +64,8 @@ class x86ManParser(object):
 		self.outputDir = outputDir
 		self.laParams = laParams
 		self.yBase = 0
+		self.success = 0
+		self.fail = 0
 		
 		self.ltRects = []
 		self.textLines = []
@@ -117,19 +99,29 @@ class x86ManParser(object):
 		
 		displayable = self.__merge_text(orphans) + tables
 		displayable.sort(cmp=sort_topdown_ltr)
-		self.__output_file(displayable)
 		
-		self.ltRects = []
-		self.textLines = []
+		self.__output_file(displayable)
 	
 	def begin_page(self, page):
+		self.thisPageLtRects = []
+		self.thisPageTextLines = []
 		self.yBase += page.bbox[3] - page.bbox[1]
 	
 	def end_page(self, page):
 		if len(self.thisPageTextLines) > 0:
 			firstLine = self.thisPageTextLines[0]
-			if firstLine.font_name().endswith("NeoSansIntel") and firstLine.font_size() >= 12:
-				self.flush()
+			if firstLine.font_name() == "NeoSansIntelMedium" and firstLine.font_size() >= 12:
+				if len(self.ltRects) > 0 or len(self.textLines) > 0:
+					try:
+						self.flush()
+						self.success += 1
+					except:
+						print "*** couldn't flush to disk"
+						self.fail += 1
+		
+					self.ltRects = []
+					self.textLines = []
+		
 		self.ltRects += self.thisPageLtRects
 		self.textLines += self.thisPageTextLines
 	
@@ -166,14 +158,14 @@ class x86ManParser(object):
 	
 	def __merge_text(self, lines):
 		def sort_text(a, b):
-			if a.rect.x1() < b.rect.x1():
-				return -1
-			if a.rect.x1() == b.rect.x1():
+			if pdftable.pretty_much_equal(a.rect.x1(), b.rect.x1()):
 				if a.rect.y1() < b.rect.y1():
 					return -1
 				if a.rect.y1() == b.rect.y1():
 					return 1
 				return 0
+			if a.rect.x1() < b.rect.x1():
+				return -1
 			return 1
 		
 		if len(lines) == 0: return
@@ -185,7 +177,7 @@ class x86ManParser(object):
 			same_x = pdftable.pretty_much_equal(line.rect.x1(), last.rect.x1())
 			same_font = last.font_name() == line.font_name()
 			same_size = last.font_size() == line.font_size()
-			decent_descent = line.rect.y1() - last.rect.y2() < 5
+			decent_descent = line.rect.y1() - last.rect.y2() < 2.5
 			if same_x and same_font and same_size and decent_descent:
 				lastChar = last.chars[-1].get_text()[-1]
 				if not (lastChar == "-" or lastChar == "/"):
@@ -198,8 +190,10 @@ class x86ManParser(object):
 	def __output_file(self, displayable):
 		title = [p.strip() for p in unicode(displayable[0]).split(u"—")][0]
 		path = "%s/%s.html" % (self.outputDir, title.replace("/", ":"))
+		print "Writing to %s" % path
+		file_data = self.__output_page(displayable).encode("UTF-8")
 		with open(path, "w") as fd:
-			fd.write(self.__output_page(displayable).encode("UTF-8"))
+			fd.write(file_data)
 	
 	def __output_page(self, displayable):
 		title = unicode(displayable[0])
@@ -209,6 +203,7 @@ class x86ManParser(object):
 		write_line("<html>")
 		write_line("<head>")
 		write_line('<meta charset="UTF-8">')
+		write_line('<link rel="stylesheet" type="text/css" href="style.css">')
 		write_line("<title>%s</title>" % escape_html(title))
 		write_line("</head>")
 		write_line("<body>")
@@ -223,17 +218,48 @@ class x86ManParser(object):
 		if isinstance(element, list):
 			return "".join([unicode(e) for e in element])
 		if isinstance(element, CharCollection):
-			# TODO fonts and stuff
-			result = unicode(element)
+			result = self.__output_text(element)
 		elif isinstance(element, pdftable.Table):
 			result += "<table>\n"
 			for row in xrange(0, element.rows()):
 				result += "<tr>\n"
 				for col in xrange(0, element.columns()):
 					result += "<td>"
-					sub = element.get_at(col, row)
-					result += self.__output_html(sub)
+					children = self.__merge_text(element.get_at(col, row))
+					if len(children) == 1:
+						result += self.__output_html(children[0])
+					else:
+						for child in children:
+							result += "<p>%s</p>\n" % self.__output_html(child)
 					result += "</td>\n"
 				result += "</tr>\n"
 			result += "</table>\n"
+		return result
+	
+	def __output_text(self, element):
+		bold = False
+		italic = False
+		superscript = False
+		
+		tag = u"p"
+		if element.font_name() == "NeoSansIntelMedium":
+			if element.font_size() >= 12:
+				tag = "h1"
+			elif element.font_size() >= 9.9:
+				tag = "h2" if element.bounds().x1() < 50 else "h3"
+			else:
+				bold = True
+		
+		result = "<%s>" % tag
+		if bold: result += "<strong>"
+		if italic: result += "<em>"
+		if superscript: result += "<sup>"
+		
+		# TODO style transitions
+		result += unicode(element).strip()
+		
+		if superscript: result += "</sup>"
+		if italic: result += "</em>"
+		if bold: result += "</strong>"
+		result += "</%s>" % tag
 		return result

@@ -1,0 +1,3 @@
+table { border-collapse: collapse }
+th, td { padding: 0px 10px; border: 1px #ddd solid; vertical-align: top }
+.notes { font-size: 9pt; }
