@@ -220,17 +220,26 @@ class x86ManParser(object):
 		if isinstance(element, CharCollection):
 			result = self.__output_text(element)
 		elif isinstance(element, pdftable.Table):
+			print_index = -1
 			result += "<table>\n"
 			for row in xrange(0, element.rows()):
 				result += "<tr>\n"
 				for col in xrange(0, element.columns()):
-					result += "<td>"
+					index = element.data_index(col, row)
+					if index <= print_index: continue
+					index = print_index
+					
+					size = element.cell_size(col, row)
+					colspan = (' colspan="%i"' % size[0]) if size[0] > 1 else ""
+					rowspan = (' rowspan="%i"' % size[1]) if size[1] > 1 else ""
+					result += "<td%s%s>" % (colspan, rowspan)
 					children = self.__merge_text(element.get_at(col, row))
-					if len(children) == 1:
-						result += self.__output_html(children[0])
-					else:
-						for child in children:
-							result += "<p>%s</p>\n" % self.__output_html(child)
+					if children != None:
+						if len(children) == 1:
+							result += self.__output_html(children[0])
+						else:
+							for child in children:
+								result += "<p>%s</p>\n" % self.__output_html(child)
 					result += "</td>\n"
 				result += "</tr>\n"
 			result += "</table>\n"

@@ -157,6 +157,9 @@ class Table(object):
 		col_index = self.__data_col_index(x)
 		return self.__cell_size(col_index, row_index)
 	
+	def data_index(self, x, y):
+		return self.__data_storage[y][x]
+	
 	def separate_from_contents(self, rect_function):
 		assert len(self.__rows) == 2 and len(self.__columns) == 2
 		assert len(self.__data_storage[0]) != 0
