@@ -5,6 +5,7 @@ from pdfminer.layout import *
 import pdftable
 import sys
 import math
+import bisect
 
 def escape_html(a):
 	return a.replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")
@@ -17,6 +18,76 @@ def sort_topdown_ltr(a, b):
 	if aa.x1() < bb.x1(): return -1
 	if aa.x1() > bb.x1(): return 1
 	return 0
+
+def __fix_table(contents, bounds, rows, columns):
+	rects = [pdftable.Rect(col, bounds.y1(), col, bounds.y2()) for col in columns]
+	rects += [pdftable.Rect(bounds.x1(), row, bounds.x2(), row) for row in rows]
+	table = pdftable.Table(rects)
+	for item in contents:
+		bounds = item.bounds()
+		table.get_at_pixel(bounds.xmid(), bounds.ymid()).append(item)
+	return table
+
+def center_aligned_table(table):
+	assert table.rows() == 1 and table.columns() == 1
+	bounds = table.bounds()
+	contents = table.get_at(0, 0)[:]
+	contents.sort(cmp=sort_topdown_ltr)
+	columns = [bounds.x1()]
+	y0 = contents[0].bounds().y1()
+	for i in xrange(0, len(contents) - 1):
+		item = contents[i]
+		next_item = contents[i+1]
+		if not pdftable.pretty_much_equal(y0, next_item.bounds().y1()): break
+		columns.append((item.bounds().x2() + next_item.bounds().x1()) / 2)
+	columns.append(bounds.x2())
+	
+	ys = set()
+	for item in contents:
+		hundreds = round(item.bounds.ymid() * 100)
+		ys.add(hundreds.add)
+	
+	rows = [bounds.y1()]
+	ys = list(ys)
+	ys.sort()
+	i = 1
+	while i != len(ys):
+		if not pdftable.pretty_much_equal(ys[i], ys[i-1]):
+			rows.append((ys[i] + ys[i-1]) / 2)
+	rows.append(bounds.y2())
+	
+	return __fix_table(contents, bounds, rows, columns)
+
+def left_aligned_table(table):
+	assert table.rows() == 1 and table.columns() == 1
+	bounds = table.bounds()
+	contents = table.get_at(0, 0)[:]
+	contents.sort(cmp=sort_topdown_ltr)
+	
+	columns = []
+	row_tops = []
+	row_bottoms = []
+	pme = pdftable.pretty_much_equal
+	for item in contents:
+		item_bounds = item.bounds()
+		y1 = item_bounds.y1()
+		y2 = item_bounds.y2()
+		if len(row_tops) == 0 or (not pme(y1, row_bottoms[-1], 3) and not pme(y1, row_tops[-1])):
+			row_tops.append(y1)
+			row_bottoms.append(y2)
+		
+		col = item_bounds.x1()
+		col_index = bisect.bisect(columns, item_bounds.x1())
+		if col_index != 0 and pme(columns[col_index - 1], col): continue
+		if col_index != len(columns) and pme(columns[col_index], col): continue
+		bisect.insort(columns, col)
+	
+	rows = row_tops
+	rows[0] = bounds.y1()
+	rows.append(bounds.y2())
+	columns[0] = bounds.x1()
+	columns.append(bounds.x2())
+	return __fix_table(contents, bounds, rows, columns)
 
 class FakeChar(object):
 	def __init__(self, t):
@@ -71,6 +142,7 @@ class x86ManParser(object):
 		self.textLines = []
 		self.thisPageLtRects = []
 		self.thisPageTextLines = []
+		self.__title_stack = []
 	
 	def flush(self):
 		tables = []
@@ -90,12 +162,6 @@ class x86ManParser(object):
 				else:
 					orphans.append(line)
 			lines = orphans
-		
-		for i in xrange(0, len(tables)):
-			table = tables[i]
-			if table.rows() == 1 and table.columns() == 1:
-				if len(table.get_at_pixel(0, 0)) != 0:
-					tables[i] = table.separate_from_contents(CharCollection.bounds)
 		
 		displayable = self.__merge_text(orphans) + tables
 		displayable.sort(cmp=sort_topdown_ltr)
@@ -221,6 +287,13 @@ class x86ManParser(object):
 			result = self.__output_text(element)
 		elif isinstance(element, pdftable.Table):
 			print_index = -1
+			if element.rows() == 1 and element.columns() == 1:				
+				if len(self.__title_stack) == 1:
+					# instruction table
+					element = left_aligned_table(element)
+				elif len(self.__title_stack) == 2 and self.__title_stack[1].lower() == "instruction operand encoding":
+					element = center_aligned_table(element)
+			
 			result += "<table>\n"
 			for row in xrange(0, element.rows()):
 				result += "<tr>\n"
@@ -250,14 +323,24 @@ class x86ManParser(object):
 		italic = False
 		superscript = False
 		
+		stack_index = None
 		tag = u"p"
 		if element.font_name() == "NeoSansIntelMedium":
 			if element.font_size() >= 12:
 				tag = "h1"
+				stack_index = 0
 			elif element.font_size() >= 9.9:
-				tag = "h2" if element.bounds().x1() < 50 else "h3"
+				if element.bounds().x1() < 50:
+					tag = "h2"
+					stack_index = 1
+				else:
+					tag = "h3"
+					stack_index = 2
 			else:
 				bold = True
+		
+		self.__title_stack = self.__title_stack[:stack_index]
+		self.__title_stack.append(unicode(element))
 		
 		result = "<%s>" % tag
 		if bold: result += "<strong>"
