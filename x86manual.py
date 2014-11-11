@@ -58,36 +58,48 @@ def center_aligned_table(table):
 	
 	return __fix_table(contents, bounds, rows, columns)
 
-def left_aligned_table(table):
-	assert table.rows() == 1 and table.columns() == 1
-	bounds = table.bounds()
-	contents = table.get_at(0, 0)[:]
+def left_aligned_table(source):
+	assert source.rows() == 1 and source.columns() == 1
+	bounds = source.bounds()
+	contents = source.get_at(0, 0)[:]
 	contents.sort(cmp=sort_topdown_ltr)
 	
+	table = []
+	row = []
 	columns = []
-	row_tops = []
-	row_bottoms = []
-	pme = pdftable.pretty_much_equal
+	last_y = contents[0].bounds().y1()
 	for item in contents:
 		item_bounds = item.bounds()
-		y1 = item_bounds.y1()
-		y2 = item_bounds.y2()
-		if len(row_tops) == 0 or (not pme(y1, row_bottoms[-1], 3) and not pme(y1, row_tops[-1])):
-			row_tops.append(y1)
-			row_bottoms.append(y2)
-		
-		col = item_bounds.x1()
-		col_index = bisect.bisect(columns, item_bounds.x1())
-		if col_index != 0 and pme(columns[col_index - 1], col): continue
-		if col_index != len(columns) and pme(columns[col_index], col): continue
-		bisect.insort(columns, col)
+		if not pdftable.pretty_much_equal(item_bounds.y1(), last_y):
+			break
+		columns.append(item_bounds.x1())
 	
-	rows = row_tops
-	rows[0] = bounds.y1()
-	rows.append(bounds.y2())
-	columns[0] = bounds.x1()
-	columns.append(bounds.x2())
-	return __fix_table(contents, bounds, rows, columns)
+	last_y = contents[0].bounds().y1()
+	row = [[]] * len(columns)
+	for item in contents:
+		item_bounds = item.bounds()
+		if not pdftable.pretty_much_equal(item_bounds.y1(), last_y):
+			if any((len(c) == 0 for c in row)):
+				for i in xrange(0, len(columns)):
+					table[-1][i] += row[i]
+			else: table.append(row)
+			row = [[]] * len(columns)
+			last_y = item_bounds.y1()
+		
+		for i in xrange(0, len(columns)):
+			if pdftable.pretty_much_equal(item_bounds.x1(), columns[i]):
+				col_index = i
+				break
+		else: raise Exception("No matching column!")
+		
+		row[col_index] = [item]
+	
+	if any((len(c) == 0 for c in row)):
+		for i in xrange(0, len(columns)):
+			table[-1][i] += row[i]
+	else: table.append(row)
+	
+	return pdftable.ImplicitTable(bounds, table)
 
 class FakeChar(object):
 	def __init__(self, t):

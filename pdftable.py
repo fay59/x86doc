@@ -89,6 +89,41 @@ def count_segments(list, expected_clusters):
 def pretty_much_equal(a, b, threshold = 2):
 	return abs(a - b) < threshold
 
+class ImplicitTable(object):
+	def __init__(self, bounds, table_data):
+		self.__bounds = bounds
+		self.__data = table_data
+	
+	def get_at_pixels(self, x, y):
+		raise Exception("Not supported on implicit tables")
+	
+	def get_at(self, x, y):
+		return self.__data[y][x]
+	
+	def rows(self): return len(self.__data)
+	def columns(self): return len(self.__data[0])
+	def bounds(self): return self.__bounds
+	
+	def cell_size(self, x, y):
+		assert x >= 0 and x < self.columns()
+		assert y >= 0 and y < self.rows()
+		return (1, 1)
+	
+	def data_index(self, x, y): return y * self.columns() + x
+	
+	def debug_html(self):
+		result = '<table border="1">'
+		for row in self.__data:
+			result += '<tr>'
+			for cell in row:
+				result += '<td>'
+				for element in ell:
+					result += unicode(element).replace("<", "&lt;").replace(">", "&gt;")
+				result += '</td>'
+			result += '</tr>'
+		result += '</table>'
+		return result
+
 class Table(object):
 	def __init__(self, group):
 		ver = []
@@ -146,6 +181,11 @@ class Table(object):
 		col_index = self.__data_col_index(x)
 		return self.get_at(col_index, row_index)
 	
+	def get_at(self, x, y):
+		row = self.__data_layout[y]
+		data_index = row[x]
+		return self.__data_storage[data_index]
+	
 	def rows(self): return len(self.__rows) - 1
 	def columns(self): return len(self.__columns) - 1
 	
@@ -159,56 +199,6 @@ class Table(object):
 	
 	def data_index(self, x, y):
 		return self.__data_layout[y][x]
-	
-	def separate_from_contents(self, rect_function):
-		assert len(self.__rows) == 2 and len(self.__columns) == 2
-		assert len(self.__data_storage[0]) != 0
-		
-		rows = []
-		cols = []
-		for item in self.__data_storage[0]:
-			rect = rect_function(item)
-			cols.append(rect.x1())
-			rows.append(rect.y1())
-		
-		rows.sort()
-		last_value = rows[0]
-		result = [last_value]
-		for row in rows[1:]:
-			if row - last_value >= 12:
-				result.append(row)
-			last_value = row
-		rows = result
-		
-		bounds = self.bounds()
-		cols.sort()
-		
-		# is it a centered table?
-		clusters = count_segments(cols, len(cols) / len(self.__data_storage))
-		if all((cluster == clusters[0] for cluster in clusters)):
-			cols = cols[::clusters[0]]
-		else:
-			last_value = cols[0]
-			result = [last_value]
-			for col in cols[1:]:
-				if not pretty_much_equal(col, last_value):
-					result.append(col)
-				last_value = col
-			cols = result
-		
-		cols[0] = bounds.x1()
-		cols.append(bounds.x2())
-		rows[0] = bounds.y1()
-		rows.append(bounds.y2())
-		
-		rects = [Rect(col, bounds.y1(), col, bounds.y2()) for col in cols]
-		rects += [Rect(bounds.x1(), row, bounds.x2(), row) for row in rows]
-		
-		table = Table(rects)
-		for item in self.__data_storage[0]:
-			rect = rect_function(item)
-			table.get_at_pixel(rect.xmid(), rect.ymid()).append(item)
-		return table
 	
 	def debug_html(self):
 		result = '<table border="1">'
@@ -326,11 +316,6 @@ class Table(object):
 				return i - 1
 		
 		raise Exception("improbable (%g between %g and %g)" % (value, array[0], array[-1]))
-	
-	def get_at(self, x, y):
-		row = self.__data_layout[y]
-		data_index = row[x]
-		return self.__data_storage[data_index]
 	
 	def __cell_size(self, column, row):
 		value = self.__data_layout[row][column]
