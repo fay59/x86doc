@@ -18,7 +18,7 @@ def main(argv):
 		print "Document not extractable."
 		return 1
 	
-	params = LAParams(char_margin=1.9)
+	params = LAParams(char_margin=1)
 	resMan = PDFResourceManager(caching=True)
 	device = PDFPageAggregator(resMan, laparams=params)
 	interpreter = PDFPageInterpreter(resMan, device)

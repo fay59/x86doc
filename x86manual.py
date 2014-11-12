@@ -19,44 +19,45 @@ def sort_topdown_ltr(a, b):
 	if aa.x1() > bb.x1(): return 1
 	return 0
 
-def __fix_table(contents, bounds, rows, columns):
-	rects = [pdftable.Rect(col, bounds.y1(), col, bounds.y2()) for col in columns]
-	rects += [pdftable.Rect(bounds.x1(), row, bounds.x2(), row) for row in rows]
-	table = pdftable.Table(rects)
-	for item in contents:
-		bounds = item.bounds()
-		table.get_at_pixel(bounds.xmid(), bounds.ymid()).append(item)
-	return table
-
-def center_aligned_table(table):
-	assert table.rows() == 1 and table.columns() == 1
-	bounds = table.bounds()
-	contents = table.get_at(0, 0)[:]
+def center_aligned_table(source):
+	assert source.rows() == 1 and source.columns() == 1
+	bounds = source.bounds()
+	contents = source.get_at(0, 0)[:]
 	contents.sort(cmp=sort_topdown_ltr)
-	columns = [bounds.x1()]
-	y0 = contents[0].bounds().y1()
-	for i in xrange(0, len(contents) - 1):
-		item = contents[i]
-		next_item = contents[i+1]
-		if not pdftable.pretty_much_equal(y0, next_item.bounds().y1()): break
-		columns.append((item.bounds().x2() + next_item.bounds().x1()) / 2)
-	columns.append(bounds.x2())
-	
-	ys = set()
+	column_centers = []
+	last_y = contents[0].bounds().y1()
 	for item in contents:
-		hundreds = round(item.bounds.ymid() * 100)
-		ys.add(hundreds.add)
+		if not pdftable.pretty_much_equal(last_y, item.bounds().y1()): break
+		column_centers.append(item.bounds().xmid())
 	
-	rows = [bounds.y1()]
-	ys = list(ys)
-	ys.sort()
-	i = 1
-	while i != len(ys):
-		if not pdftable.pretty_much_equal(ys[i], ys[i-1]):
-			rows.append((ys[i] + ys[i-1]) / 2)
-	rows.append(bounds.y2())
+	table = []
+	row = [[]] * len(column_centers)
+	for item in contents:
+		item_bounds = item.bounds()
+		if not pdftable.pretty_much_equal(item_bounds.y1(), last_y):
+			if any((len(c) == 0 for c in row)):
+				for i in xrange(0, len(column_centers)):
+					table[-1][i] += row[i]
+			else: table.append(row)
+			row = [[]] * len(column_centers)
+			last_y = item_bounds.y1()
+		
+		col_index = None
+		min_dist = float("inf")
+		for i in xrange(0, len(column_centers)):
+			distance = abs(item_bounds.xmid() - column_centers[i])
+			if distance < min_dist:
+				min_dist = distance
+				col_index = i
+		
+		row[col_index] = [item]
 	
-	return __fix_table(contents, bounds, rows, columns)
+	if any((len(c) == 0 for c in row)):
+		for i in xrange(0, len(column_centers)):
+			table[-1][i] += row[i]
+	else: table.append(row)
+	
+	return pdftable.ImplicitTable(bounds, table)
 
 def left_aligned_table(source):
 	assert source.rows() == 1 and source.columns() == 1
@@ -190,12 +191,18 @@ class x86ManParser(object):
 			firstLine = self.thisPageTextLines[0]
 			if firstLine.font_name() == "NeoSansIntelMedium" and firstLine.font_size() >= 12:
 				if len(self.ltRects) > 0 or len(self.textLines) > 0:
-					try:
+					# convenience: if we're debugging, let an exception crash
+					# the script
+					if __debug__:
 						self.flush()
 						self.success += 1
-					except:
-						print "*** couldn't flush to disk"
-						self.fail += 1
+					else:
+						try:
+							self.flush()
+							self.success += 1
+						except:
+							print "*** couldn't flush to disk"
+							self.fail += 1
 		
 					self.ltRects = []
 					self.textLines = []
@@ -303,7 +310,7 @@ class x86ManParser(object):
 				if len(self.__title_stack) == 1:
 					# instruction table
 					element = left_aligned_table(element)
-				elif len(self.__title_stack) == 2 and self.__title_stack[1].lower() == "instruction operand encoding":
+				elif self.__title_stack[-1].strip().lower() == "instruction operand encoding":
 					element = center_aligned_table(element)
 			
 			result += "<table>\n"
