@@ -234,12 +234,11 @@ class x86ManParser(object):
 			self.process_item(item)
 		self.end_page(page)
 	
+	def __fix_rect(self, r):
+		return pdftable.Rect(r.x1(), self.yBase - r.y1(), r.x2(), self.yBase - r.y2())
+	
 	def __fix_bbox(self, bbox):
-		x1 = bbox[0]
-		y1 = self.yBase - bbox[1]
-		x2 = bbox[2]
-		y2 = self.yBase - bbox[3]
-		return pdftable.Rect(x1, y2, x2, y1)
+		return self.__fix_rect(pdftable.Rect(bbox[0], bbox[3], bbox[2], bbox[1]))
 	
 	def __merge_text(self, lines):
 		def sort_text(a, b):
