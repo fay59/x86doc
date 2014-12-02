@@ -3,6 +3,7 @@
 
 from pdfminer.layout import *
 import pdftable
+import htmltext
 import sys
 import math
 import bisect
@@ -91,7 +92,9 @@ def left_aligned_table(source):
 			if pdftable.pretty_much_equal(item_bounds.x1(), columns[i]):
 				col_index = i
 				break
-		else: raise Exception("No matching column!")
+		else:
+			print columns
+			raise Exception("No matching column!")
 		
 		row[col_index] = [item]
 	
@@ -110,16 +113,32 @@ class FakeChar(object):
 		return self.text
 
 class CharCollection(object):
-	def __init__(self, rect, iterable):
-		self.rect = rect
+	def __init__(self, iterable):
 		self.chars = [c for c in iterable]
 		while len(self.chars) > 0 and len(self.chars[-1].get_text().strip()) == 0:
 			self.chars.pop()
+		
+		# bounds excluding abnormally-placed characters (exponents, symbols)
+		self.approx_rect = self.__approximative_bounds()
+		# actual, complete bounds (modified by caller)
+		self.rect = self.approx_rect
 	
-	def bounds(self): return self.rect
+	def bounds(self): return self.approx_rect
+	
+	def __approximative_bounds(self):
+		if len(self.chars) == 0: return self.rect
+		size = self.font_size()
+		approx = None
+		for c in self.chars:
+			if hasattr(c, "matrix") and c.matrix[0] == size:
+				rect = pdftable.Rect(c.x0, c.y1, c.x1, c.y0)
+				if approx == None: approx = rect
+				elif approx.y1() == rect.y1(): approx = approx.union(rect)
+		return approx
 	
 	def append(self, line):
 		self.rect = self.rect.union(line.rect)
+		self.approx_rect = self.approx_rect.union(line.approx_rect)
 		self.chars += line.chars
 		while len(self.chars[-1].get_text().strip()) == 0:
 			self.chars.pop()
@@ -156,6 +175,7 @@ class x86ManParser(object):
 		self.thisPageLtRects = []
 		self.thisPageTextLines = []
 		self.__title_stack = []
+		self.__is_code = False
 	
 	def flush(self):
 		tables = []
@@ -164,6 +184,7 @@ class x86ManParser(object):
 			if len(cluster) >= 4:
 				tables.append(pdftable.Table(cluster))
 		
+		assert len(tables) > 0
 		# fill tables
 		lines = self.textLines
 		for table in tables:
@@ -213,8 +234,11 @@ class x86ManParser(object):
 	def process_text_line(self, line):
 		# ignore header and footer
 		if line.bbox[1] < 740 and line.bbox[1] > 50:
-			rect = self.__fix_bbox(line.bbox)
-			self.thisPageTextLines.append(CharCollection(rect, line))
+			coll = CharCollection(line)
+			coll.rect = self.__fix_bbox(line.bbox)
+			coll.approx_rect = self.__fix_rect(coll.approx_rect)
+			if unicode(coll).find("*") != -1: print coll.rect, coll.approx_rect
+			self.thisPageTextLines.append(coll)
 	
 	def process_rect(self, rect):
 		self.thisPageLtRects.append(self.__fix_bbox(rect.bbox))
@@ -259,10 +283,9 @@ class x86ManParser(object):
 		for line in lines[1:]:
 			last = merged[-1]
 			same_x = pdftable.pretty_much_equal(line.rect.x1(), last.rect.x1())
-			same_font = last.font_name() == line.font_name()
 			same_size = last.font_size() == line.font_size()
-			decent_descent = line.rect.y1() - last.rect.y2() < 2.5
-			if same_x and same_font and same_size and decent_descent:
+			decent_descent = line.approx_rect.y1() - last.approx_rect.y2() < 2.5
+			if same_x and same_size and decent_descent:
 				lastChar = last.chars[-1].get_text()[-1]
 				if not (lastChar == "-" or lastChar == "/"):
 					last.append_char(" ")
@@ -302,7 +325,13 @@ class x86ManParser(object):
 		if isinstance(element, list):
 			return "".join([unicode(e) for e in element])
 		if isinstance(element, CharCollection):
-			result = self.__output_text(element)
+			kind, result = self.__output_text(element)
+			if kind[0] == "h":
+				level = int(kind[1]) - 1
+				self.__title_stack = self.__title_stack[0:level]
+				self.__title_stack.append(result)
+			result = "<%s>%s</%s>\n" % (kind, result, kind)
+			
 		elif isinstance(element, pdftable.Table):
 			print_index = -1
 			if element.rows() == 1 and element.columns() == 1:				
@@ -310,6 +339,7 @@ class x86ManParser(object):
 					# instruction table
 					element = left_aligned_table(element)
 				elif self.__title_stack[-1].strip().lower() == "instruction operand encoding":
+					# operands encoding
 					element = center_aligned_table(element)
 			
 			result += "<table>\n"
@@ -320,56 +350,65 @@ class x86ManParser(object):
 					if index <= print_index: continue
 					index = print_index
 					
-					size = element.cell_size(col, row)
-					colspan = (' colspan="%i"' % size[0]) if size[0] > 1 else ""
-					rowspan = (' rowspan="%i"' % size[1]) if size[1] > 1 else ""
-					result += "<td%s%s>" % (colspan, rowspan)
+					cell_tag = "td"
+					contents = ""
 					children = self.__merge_text(element.get_at(col, row))
 					if children != None:
 						if len(children) == 1:
-							result += self.__output_html(children[0])
+							kind, text = self.__output_text(children[0])
+							text = text.strip()
+							if kind != "p":
+								contents = text
+								cell_tag = "th"
+							elif text[0:8] == "<strong>":
+								contents = text[8:-9]
+								cell_tag = "th"
+							else:
+								contents = text
 						else:
+							contents = "\n"
 							for child in children:
-								result += "<p>%s</p>\n" % self.__output_html(child)
-					result += "</td>\n"
+								contents += self.__output_html(child)
+					
+					size = element.cell_size(col, row)
+					colspan = (' colspan="%i"' % size[0]) if size[0] > 1 else ""
+					rowspan = (' rowspan="%i"' % size[1]) if size[1] > 1 else ""
+					result += "<%s%s%s>%s</%s>\n" % (cell_tag, colspan, rowspan, contents, cell_tag)
 				result += "</tr>\n"
 			result += "</table>\n"
 		return result
 	
 	def __output_text(self, element):
-		bold = False
-		italic = False
-		superscript = False
+		if len(element.chars) == 0: return ""
 		
-		stack_index = None
-		tag = u"p"
+		text = htmltext.HtmlText()
+		
+		# what kind of text block is this?
+		kind = "p"
 		if element.font_name() == "NeoSansIntelMedium":
-			if element.font_size() >= 12:
-				tag = "h1"
-				stack_index = 0
+			if element.font_size() >= 12: kind = "h1"
 			elif element.font_size() >= 9.9:
-				if element.bounds().x1() < 50:
-					tag = "h2"
-					stack_index = 1
-				else:
-					tag = "h3"
-					stack_index = 2
+				if element.bounds().x1() < 50: kind = "h2"
+				else: kind = "h3"
 			else:
-				bold = True
+				text.append(htmltext.OpenTag("strong"))
 		
-		self.__title_stack = self.__title_stack[:stack_index]
-		self.__title_stack.append(unicode(element))
+		style = [element.chars[0].fontname, element.chars[0].matrix[0:4]]
+		for char in element.chars:
+			if hasattr(char, "fontname") and hasattr(char, "matrix"):
+				this_style = [char.fontname, char.matrix[0:4]]
+				if this_style != style and this_style[0].find("Symbol") == -1:
+					this_italic = this_style[0].find("Italic") != -1
+					if this_italic != (style[0].find("Italic") != -1):
+						if this_italic: text.append(htmltext.OpenTag("em"))
+						else: text.append(htmltext.CloseTag("em"))
+					
+					if this_style[1][0] < style[1][0]:
+						text.append(htmltext.OpenTag("sup"))
+					elif style[1][0] < this_style[1][0]:
+						text.append(htmltext.CloseTag("sup"))
+					style = this_style
+					
+			text.append(char.get_text())
 		
-		result = "<%s>" % tag
-		if bold: result += "<strong>"
-		if italic: result += "<em>"
-		if superscript: result += "<sup>"
-		
-		# TODO style transitions
-		result += unicode(element).strip()
-		
-		if superscript: result += "</sup>"
-		if italic: result += "</em>"
-		if bold: result += "</strong>"
-		result += "</%s>" % tag
-		return result
+		return (kind, text.to_html())
