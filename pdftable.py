@@ -89,12 +89,20 @@ def count_segments(list, expected_clusters):
 def pretty_much_equal(a, b, threshold = 2):
 	return abs(a - b) < threshold
 
-class ImplicitTable(object):
+class TableBase(object):
+	def get_at(self, x, y): raise Exception("Not implemented")
+	def rows(self): raise Exception("Not implemented")
+	def columns(self): raise Exception("Not implemented")
+	def bounds(self): raise Exception("Not implemented")
+	def cell_size(self, x, y): raise Exception("Not implemented")
+	def data_index(self, x, y): raise Exception("Not implemented")
+
+class ImplicitTable(TableBase):
 	def __init__(self, bounds, table_data):
 		self.__bounds = bounds
 		self.__data = table_data
 	
-	def get_at_pixels(self, x, y):
+	def get_at_pixel(self, x, y):
 		raise Exception("Not supported on implicit tables")
 	
 	def get_at(self, x, y):
@@ -124,7 +132,7 @@ class ImplicitTable(object):
 		result += '</table>'
 		return result
 
-class Table(object):
+class Table(TableBase):
 	def __init__(self, group):
 		ver = []
 		hor = []

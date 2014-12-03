@@ -81,7 +81,10 @@ class HtmlText(object):
 					tag_stack.append(tag)
 					result += tag.open()
 			else:
-				result += unicode(token)
+				uni = unicode(token)
+				for pair in [("&", "&amp;"), ("<", "&lt;"), (">", "&gt;")]:
+					uni = uni.replace(pair[0], pair[1])
+				result += uni
 		
 		while len(tag_stack) > 0:
 			result += tag_stack.pop().close()

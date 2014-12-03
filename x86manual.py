@@ -20,6 +20,18 @@ def sort_topdown_ltr(a, b):
 	if aa.x1() > bb.x1(): return 1
 	return 0
 
+class TableDataSet(pdftable.TableBase):
+	def __init__(self, bounds, data):
+		self.__data = data
+		self.__bounds = bounds
+	
+	def rows(self): return 1
+	def columns(self): return 1
+	def bounds(self): return self.__bounds
+	def get_at(self, x, y):
+		assert x == 0 and y == 0
+		return self.__data[:]
+
 def center_aligned_table(source):
 	assert source.rows() == 1 and source.columns() == 1
 	bounds = source.bounds()
@@ -113,15 +125,15 @@ class FakeChar(object):
 		return self.text
 
 class CharCollection(object):
-	def __init__(self, iterable):
+	def __init__(self, iterable, rect):
 		self.chars = [c for c in iterable]
 		while len(self.chars) > 0 and len(self.chars[-1].get_text().strip()) == 0:
 			self.chars.pop()
 		
+		# actual, complete bounds (modified by caller)
+		self.rect = rect
 		# bounds excluding abnormally-placed characters (exponents, symbols)
 		self.approx_rect = self.__approximative_bounds()
-		# actual, complete bounds (modified by caller)
-		self.rect = self.approx_rect
 	
 	def bounds(self): return self.approx_rect
 	
@@ -197,7 +209,34 @@ class x86ManParser(object):
 					orphans.append(line)
 			lines = orphans
 		
-		displayable = self.__merge_text(orphans) + tables
+		# exception tables
+		i = 0
+		remaining = []
+		while i < len(orphans):
+			line = orphans[i]
+			if line.font_name() == "NeoSansIntelMedium" and unicode(line).strip().lower()[-10:] == "exceptions":
+				remaining.append(line)
+				i += 1
+				
+				table_data = []
+				rect = None
+				while i < len(orphans):
+					line = orphans[i]
+					if line.font_name() == "NeoSansIntelMedium": break
+					table_data.append(line)
+					if rect == None: rect = line.rect
+					else: rect = rect.union(line.rect)
+					i += 1
+				
+				if len(table_data) > 1:
+					tables.append(TableDataSet(rect, table_data))
+				else:
+					remaining += table_data
+			else:
+				remaining.append(line)
+				i += 1
+		
+		displayable = self.__merge_text(remaining) + tables
 		displayable.sort(cmp=sort_topdown_ltr)
 		
 		self.__output_file(displayable)
@@ -234,10 +273,8 @@ class x86ManParser(object):
 	def process_text_line(self, line):
 		# ignore header and footer
 		if line.bbox[1] < 740 and line.bbox[1] > 50:
-			coll = CharCollection(line)
-			coll.rect = self.__fix_bbox(line.bbox)
+			coll = CharCollection(line, self.__fix_bbox(line.bbox))
 			coll.approx_rect = self.__fix_rect(coll.approx_rect)
-			if unicode(coll).find("*") != -1: print coll.rect, coll.approx_rect
 			self.thisPageTextLines.append(coll)
 	
 	def process_rect(self, rect):
@@ -278,13 +315,14 @@ class x86ManParser(object):
 		
 		if len(lines) == 0: return
 		
-		lines.sort(cmp=sort_text)
+		lines.sort(cmp=sort_topdown_ltr)
 		merged = [lines[0]]
 		for line in lines[1:]:
 			last = merged[-1]
+			print last.approx_rect.y2(), line.approx_rect.y1(), unicode(line)
 			same_x = pdftable.pretty_much_equal(line.rect.x1(), last.rect.x1())
 			same_size = last.font_size() == line.font_size()
-			decent_descent = line.approx_rect.y1() - last.approx_rect.y2() < 2.5
+			decent_descent = line.approx_rect.y1() - last.approx_rect.y2() < 1.2
 			if same_x and same_size and decent_descent:
 				lastChar = last.chars[-1].get_text()[-1]
 				if not (lastChar == "-" or lastChar == "/"):
@@ -323,26 +361,34 @@ class x86ManParser(object):
 	def __output_html(self, element):
 		result = ""
 		if isinstance(element, list):
-			return "".join([unicode(e) for e in element])
-		if isinstance(element, CharCollection):
+			result = "".join([unicode(e) for e in element])
+		
+		elif isinstance(element, CharCollection):
 			kind, result = self.__output_text(element)
 			if kind[0] == "h":
 				level = int(kind[1]) - 1
 				self.__title_stack = self.__title_stack[0:level]
 				self.__title_stack.append(result)
 			result = "<%s>%s</%s>\n" % (kind, result, kind)
-			
-		elif isinstance(element, pdftable.Table):
+		
+		elif isinstance(element, pdftable.TableBase):
 			print_index = -1
+			attributes = ""
 			if element.rows() == 1 and element.columns() == 1:				
 				if len(self.__title_stack) == 1:
 					# instruction table
 					element = left_aligned_table(element)
-				elif self.__title_stack[-1].strip().lower() == "instruction operand encoding":
-					# operands encoding
-					element = center_aligned_table(element)
+				else:
+					heading = self.__title_stack[-1].strip().lower()
+					if heading == "instruction operand encoding":
+						# operands encoding
+						element = center_aligned_table(element)
+					elif heading[-10:] == "exceptions":
+						# exception table
+						element = left_aligned_table(element)
+						attributes += ' class="exception-table"'
 			
-			result += "<table>\n"
+			result += "<table%s>\n" % attributes
 			for row in xrange(0, element.rows()):
 				result += "<tr>\n"
 				for col in xrange(0, element.columns()):
@@ -403,10 +449,13 @@ class x86ManParser(object):
 						if this_italic: text.append(htmltext.OpenTag("em"))
 						else: text.append(htmltext.CloseTag("em"))
 					
-					if this_style[1][0] < style[1][0]:
-						text.append(htmltext.OpenTag("sup"))
-					elif style[1][0] < this_style[1][0]:
-						text.append(htmltext.CloseTag("sup"))
+					# Intel inconsistently switches between Arial and Verdana
+					# and uses different font sizes
+					if this_style[0].find("Arial") == -1 and style[0].find("Arial") == -1:
+						if this_style[1][0] < style[1][0]:
+							text.append(htmltext.OpenTag("sup"))
+						elif style[1][0] < this_style[1][0]:
+							text.append(htmltext.CloseTag("sup"))
 					style = this_style
 					
 			text.append(char.get_text())
