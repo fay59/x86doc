@@ -373,7 +373,7 @@ class x86ManParser(object):
 			if result.tokens[0].tag[0] == "h":
 				level = int(result.tokens[0].tag[1]) - 1
 				self.__title_stack = self.__title_stack[0:level]
-				self.__title_stack.append(u"".join(result.tokens[1:-1]).strip().lower())
+				self.__title_stack.append(u"".join((c for c in result.tokens[1:-1] if isinstance(c, unicode))).strip().lower())
 			return result
 		
 		if isinstance(element, pdftable.TableBase):

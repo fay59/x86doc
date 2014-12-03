@@ -21,7 +21,7 @@ class OpenTag(object):
 			return ""
 		result = ""
 		for key in self.attributes:
-			result += ' %s="%s"' % (key, self.attributes[key].replace('"', '&quot;'))
+			result += ' %s="%s"' % (key, unicode(self.attributes[key]).replace("&", "&amp;").replace('"', '&quot;'))
 		return result
 	
 	def open(self):
