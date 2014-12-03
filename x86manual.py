@@ -458,6 +458,7 @@ class x86ManParser(object):
 		
 		text.append(open)
 		if strong: text.append(OpenTag("strong"))
+		if style[0].find("Italic") != -1: text.append(OpenTag("em"))
 		
 		for char in element.chars:
 			if hasattr(char, "fontname") and hasattr(char, "matrix"):
