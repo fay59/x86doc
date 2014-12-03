@@ -1,4 +1,6 @@
 .*
 *.pdf
 *.pyc
+*.pyo
 pdfminer/*
+html/*

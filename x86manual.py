@@ -3,7 +3,7 @@
 
 from pdfminer.layout import *
 import pdftable
-import htmltext
+from htmltext import *
 import sys
 import math
 import bisect
@@ -319,7 +319,6 @@ class x86ManParser(object):
 		merged = [lines[0]]
 		for line in lines[1:]:
 			last = merged[-1]
-			print last.approx_rect.y2(), line.approx_rect.y1(), unicode(line)
 			same_x = pdftable.pretty_much_equal(line.rect.x1(), last.rect.x1())
 			same_size = last.font_size() == line.font_size()
 			decent_descent = line.approx_rect.y1() - last.approx_rect.y2() < 1.2
@@ -343,101 +342,114 @@ class x86ManParser(object):
 	def __output_page(self, displayable):
 		title = unicode(displayable[0])
 		result = [""]
-		def write_line(line): result[0] += line + "\n"
-		write_line("<!DOCTYPE hmtl>")
-		write_line("<html>")
-		write_line("<head>")
-		write_line('<meta charset="UTF-8">')
-		write_line('<link rel="stylesheet" type="text/css" href="style.css">')
-		write_line("<title>%s</title>" % escape_html(title))
-		write_line("</head>")
-		write_line("<body>")
+		text = HtmlText()
+		text.append(OpenTag("html"))
+		text.append(OpenTag("head"))
+		text.append(OpenTag("meta", attributes={"charset": "UTF-8"}, self_closes=True))
+		text.append(OpenTag("link", attributes={"rel": "stylesheet", "type": "text/css", "href": "style.css"}, self_closes=True))
+		text.append(OpenTag("title"))
+		text.append(title)
+		text.append(CloseTag("title"))
+		text.append(CloseTag("head"))
+		text.append(OpenTag("body"))
+		
 		for element in displayable:
-			result[0] += self.__output_html(element)
-		write_line("</body>")
-		write_line("</html>")
-		return result[0]
+			text.append(self.__output_html(element))
+		
+		return "<!DOCTYPE html>" + text.to_html()
 	
 	def __output_html(self, element):
-		result = ""
 		if isinstance(element, list):
-			result = "".join([unicode(e) for e in element])
+			result = HtmlText()
+			for e in element:
+				result.append(unicode(e))
+			return result
 		
-		elif isinstance(element, CharCollection):
-			kind, result = self.__output_text(element)
-			if kind[0] == "h":
-				level = int(kind[1]) - 1
+		if isinstance(element, CharCollection):
+			result = self.__output_text(element)
+			if result.tokens[0].tag[0] == "h":
+				level = int(result.tokens[0].tag[1]) - 1
 				self.__title_stack = self.__title_stack[0:level]
-				self.__title_stack.append(result)
-			result = "<%s>%s</%s>\n" % (kind, result, kind)
+				self.__title_stack.append(u"".join(result.tokens[1:]).strip().lower())
+			return result
 		
-		elif isinstance(element, pdftable.TableBase):
+		if isinstance(element, pdftable.TableBase):
+			result = HtmlText()
 			print_index = -1
-			attributes = ""
-			if element.rows() == 1 and element.columns() == 1:				
+			attributes = {}
+			if element.rows() == 1 and element.columns() == 1:
 				if len(self.__title_stack) == 1:
 					# instruction table
 					element = left_aligned_table(element)
 				else:
-					heading = self.__title_stack[-1].strip().lower()
+					heading = self.__title_stack[-1]
 					if heading == "instruction operand encoding":
 						# operands encoding
 						element = center_aligned_table(element)
 					elif heading[-10:] == "exceptions":
 						# exception table
 						element = left_aligned_table(element)
-						attributes += ' class="exception-table"'
+						attributes["class"] = "exception-table"
 			
-			result += "<table%s>\n" % attributes
+			result.append(OpenTag("table", attributes=attributes))
 			for row in xrange(0, element.rows()):
-				result += "<tr>\n"
+				result.append(OpenTag("tr"))
 				for col in xrange(0, element.columns()):
 					index = element.data_index(col, row)
 					if index <= print_index: continue
 					index = print_index
 					
 					cell_tag = "td"
-					contents = ""
+					contents = HtmlText()
 					children = self.__merge_text(element.get_at(col, row))
 					if children != None:
 						if len(children) == 1:
-							kind, text = self.__output_text(children[0])
-							text = text.strip()
-							if kind != "p":
-								contents = text
-								cell_tag = "th"
-							elif text[0:8] == "<strong>":
-								contents = text[8:-9]
+							contents = self.__output_text(children[0])
+							if contents.tokens[0].tag != "p":
+								contents.tokens = contents.tokens[1:]
 								cell_tag = "th"
 							else:
-								contents = text
+								tok = contents.tokens[1]
+								if hasattr(tok, "tag") and tok.tag == "strong":
+									contents.tokens = contents.tokens[2:]
+									cell_tag = "th"
+								else:
+									contents.tokens = contents.tokens[1:]
 						else:
-							contents = "\n"
 							for child in children:
-								contents += self.__output_html(child)
+								contents.append(self.__output_html(child))
 					
+					attributes = {}
 					size = element.cell_size(col, row)
-					colspan = (' colspan="%i"' % size[0]) if size[0] > 1 else ""
-					rowspan = (' rowspan="%i"' % size[1]) if size[1] > 1 else ""
-					result += "<%s%s%s>%s</%s>\n" % (cell_tag, colspan, rowspan, contents, cell_tag)
-				result += "</tr>\n"
-			result += "</table>\n"
-		return result
+					if size[0] > 1: attributes["colspan"] = size[0]
+					if size[1] > 1: attributes["rowspan"] = size[1]
+					result.append(OpenTag(cell_tag, attributes=attributes))
+					result.append(contents)
+					result.append(CloseTag(cell_tag))
+				result.append(CloseTag("tr"))
+			result.append(CloseTag("table"))
+			return result
+		
+		assert False
+		return HtmlText()
 	
 	def __output_text(self, element):
 		if len(element.chars) == 0: return ""
 		
-		text = htmltext.HtmlText()
-		
+		text = HtmlText()
 		# what kind of text block is this?
 		kind = "p"
+		strong = False
 		if element.font_name() == "NeoSansIntelMedium":
 			if element.font_size() >= 12: kind = "h1"
 			elif element.font_size() >= 9.9:
 				if element.bounds().x1() < 50: kind = "h2"
 				else: kind = "h3"
 			else:
-				text.append(htmltext.OpenTag("strong"))
+				strong = True
+		
+		text.append(OpenTag(kind))
+		if strong: text.append(OpenTag("strong"))
 		
 		style = [element.chars[0].fontname, element.chars[0].matrix[0:4]]
 		for char in element.chars:
@@ -446,18 +458,18 @@ class x86ManParser(object):
 				if this_style != style and this_style[0].find("Symbol") == -1:
 					this_italic = this_style[0].find("Italic") != -1
 					if this_italic != (style[0].find("Italic") != -1):
-						if this_italic: text.append(htmltext.OpenTag("em"))
-						else: text.append(htmltext.CloseTag("em"))
+						if this_italic: text.append(OpenTag("em"))
+						else: text.append(CloseTag("em"))
 					
 					# Intel inconsistently switches between Arial and Verdana
 					# and uses different font sizes
 					if this_style[0].find("Arial") == -1 and style[0].find("Arial") == -1:
 						if this_style[1][0] < style[1][0]:
-							text.append(htmltext.OpenTag("sup"))
+							text.append(OpenTag("sup"))
 						elif style[1][0] < this_style[1][0]:
-							text.append(htmltext.CloseTag("sup"))
+							text.append(CloseTag("sup"))
 					style = this_style
 					
 			text.append(char.get_text())
 		
-		return (kind, text.to_html())
+		return text

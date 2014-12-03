@@ -7,11 +7,12 @@
 import re
 
 class OpenTag(object):
-	def __init__(self, tag, coalesce=False, attributes={}):
+	def __init__(self, tag, coalesce=False, attributes={}, self_closes = False):
 		self.tag = tag
 		self.coalesce = coalesce
 		self.attributes = attributes
 		self.closed_by = None
+		self.self_closes = self_closes
 	
 	def __attribute_string(self):
 		if len(self.attributes) == 0:
@@ -39,55 +40,72 @@ class CloseTag(object):
 
 class HtmlText(object):
 	def __init__(self):
-		self.__tokens = []
+		self.tokens = []
 	
 	def append(self, token):
 		if self.__is_close(token):
-			for prev in reversed(self.__tokens):
+			for prev in reversed(self.tokens):
 				if self.__is_open(prev) and prev.closed_by == None and prev.tag == token.tag:
 					token.closes = prev
 					prev.closed_by = token
 					break
 			else: raise Exception("No matching OpenTag found!")
-		elif len(self.__tokens) > 0 and self.__is_open(token):
-			for i in xrange(-1, -len(self.__tokens), -1):
-				last = self.__tokens[i]
+		elif len(self.tokens) > 0 and self.__is_open(token):
+			for i in xrange(-1, -len(self.tokens), -1):
+				last = self.tokens[i]
 				is_close = self.__is_close(last)
 				if not (is_close or self.__is_open(last)):
 					break
-				if is_close and last.tag == token.tag and last.coalesce and last.attributes == token.attributes:
-					positive = len(self.__tokens) + i
-					self.__tokens = self.__tokens[0:positive] + self.__tokens[positive+1:]
+				if is_close and last.tag == token.tag and last.closes.coalesce and last.closes.attributes == token.attributes:
+					positive = len(self.tokens) + i
+					self.tokens = self.tokens[0:positive] + self.tokens[positive+1:]
 					return
+		elif hasattr(token, "tokens"):
+			close_stack = []
+			for t in token.tokens:
+				if self.__is_open(t): close_stack.append(t)
+				elif self.__is_close(t):
+					assert close_stack[-1].tag == t.tag
+					close_stack.pop()
+				self.tokens.append(t)
+			while len(close_stack) > 0:
+				self.tokens.append(CloseTag(close_stack.pop().tag))
+			return
 		
-		self.__tokens.append(token)
+		self.tokens.append(token)
 	
 	def to_html(self):
 		tag_stack = []
 		result = u""
-		for token in self.__tokens:
+		was_text = False
+		for token in self.tokens:
 			if isinstance(token, OpenTag):
-				tag_stack.append(token)
-				result += token.open()
+				was_text = False
+				if not token.self_closes:
+					tag_stack.append(token)
+				result += "\n" + token.open()
 			elif isinstance(token, CloseTag):
+				was_text = False
 				close_it = tag_stack.pop()
 				reopen_it = []
 				while close_it.tag != token.tag:
-					result += close_it.close()
+					result += "\n" + close_it.close()
 					reopen_it.append(close_it)
 					close_it = tag_stack.pop()
-				result += close_it.close()
+				result += "\n" + close_it.close()
 				for tag in reversed(reopen_it):
 					tag_stack.append(tag)
-					result += tag.open()
+					result += "\n" + tag.open()
 			else:
+				if not was_text: result += "\n"
+				was_text = True
 				uni = unicode(token)
 				for pair in [("&", "&amp;"), ("<", "&lt;"), (">", "&gt;")]:
 					uni = uni.replace(pair[0], pair[1])
 				result += uni
 		
 		while len(tag_stack) > 0:
-			result += tag_stack.pop().close()
+			result += "\n" + tag_stack.pop().close()
 		return result
 	
 	def __is_open(self, token):
