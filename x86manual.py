@@ -439,7 +439,8 @@ class x86ManParser(object):
 	def __output_text(self, element):
 		if len(element.chars) == 0: return ""
 		
-		style = [element.chars[0].fontname, element.chars[0].matrix[0:4]]
+		style = [element.chars[0].fontname, element.chars[0].matrix]
+		last_style = style
 		text = HtmlText()
 		# what kind of text block is this?
 		open = OpenTag("p")
@@ -462,7 +463,7 @@ class x86ManParser(object):
 		
 		for char in element.chars:
 			if hasattr(char, "fontname") and hasattr(char, "matrix"):
-				this_style = [char.fontname, char.matrix[0:4]]
+				this_style = [char.fontname, char.matrix]
 				if this_style != style and this_style[0].find("Symbol") == -1:
 					this_italic = this_style[0].find("Italic") != -1
 					if this_italic != (style[0].find("Italic") != -1):
@@ -473,10 +474,13 @@ class x86ManParser(object):
 					# and uses different font sizes
 					if this_style[0].find("Arial") == -1 and style[0].find("Arial") == -1:
 						if this_style[1][0] < style[1][0]:
-							text.append(OpenTag("sup"))
+							tag = "sup" if this_style[1][5] > last_style[1][5] else "sub"
+							text.append(OpenTag(tag))
 						elif style[1][0] < this_style[1][0]:
-							text.append(CloseTag("sup"))
+							tag = "sup" if this_style[1][5] < last_style[1][5] else "sub"
+							text.append(CloseTag(tag))
 					style = this_style
+				last_style = this_style
 					
 			text.append(char.get_text())
 		text.autoclose()
