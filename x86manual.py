@@ -199,34 +199,49 @@ class x86ManParser(object):
 				tables.append(pdftable.Table(cluster))
 		
 		assert len(tables) > 0
+		
+		lines = self.textLines[:]
+		lines.sort(cmp=sort_topdown_ltr)
+		
 		# explicit tables
-		lines = self.textLines
 		for table in tables:
 			orphans = []
 			bounds = table.bounds()
-			for line in lines:
+			for i in xrange(0, len(lines)):
+				line = lines[i]
 				if bounds.intersects(line.rect, 0):
+					# Some pages have their "NOTES" section embedded inside the
+					# table rectangle. What were you thinking, Intel?
+					if line.font_name() == "NeoSansIntelMedium" and unicode(line).lower().startswith("notes"):
+						orphans += lines[i:]
+						break
 					table.get_at_pixel(line.rect.xmid(), line.rect.ymid()).append(line)
 				else:
 					orphans.append(line)
 			lines = orphans
 		
 		# exception tables
-		lines.sort(cmp=sort_topdown_ltr)
 		orphans = []
 		table_data = []
-		is_exc_section = False
+		is_table_section = False
+		expected_char = None
 		for line in lines:
 			if line.font_name() == "NeoSansIntelMedium":
 				orphans.append(line)
-				is_exc_section = unicode(line).strip().lower()[-10:] == "exceptions"
-				if len(table_data) > 0:
+				title = unicode(line).strip().lower()
+				if title[-10:] == "exceptions":
+					is_table_section = True
+					expected_char = '#'
+				elif title == "fpu flags affected":
+					is_table_section = True
+					expected_char = 'C'
+				if is_table_section and len(table_data) > 0:
 					tables.append(TableDataSet(table_data))
 					table_data = []
 				continue
 			
-			if is_exc_section:
-				if line.bounds().x1() < 50 and line.chars[0].get_text() != '#':
+			if is_table_section:
+				if line.bounds().x1() < 50 and line.chars[0].get_text() != expected_char:
 					orphans.append(line)
 					if len(table_data) > 0:
 						tables.append(TableDataSet(table_data))
@@ -389,8 +404,7 @@ class x86ManParser(object):
 					if heading == "instruction operand encoding":
 						# operands encoding
 						element = center_aligned_table(element)
-					elif heading[-10:] == "exceptions":
-						# exception table
+					elif isinstance(element, TableDataSet):
 						element = left_aligned_table(element)
 						attributes["class"] = "exception-table"
 			
@@ -440,7 +454,6 @@ class x86ManParser(object):
 		if len(element.chars) == 0: return ""
 		
 		style = [element.chars[0].fontname, element.chars[0].matrix]
-		last_style = style
 		text = HtmlText()
 		# what kind of text block is this?
 		open = OpenTag("p")
@@ -464,23 +477,22 @@ class x86ManParser(object):
 		for char in element.chars:
 			if hasattr(char, "fontname") and hasattr(char, "matrix"):
 				this_style = [char.fontname, char.matrix]
-				if this_style != style and this_style[0].find("Symbol") == -1:
-					this_italic = this_style[0].find("Italic") != -1
-					if this_italic != (style[0].find("Italic") != -1):
-						if this_italic: text.append(OpenTag("em"))
-						else: text.append(CloseTag("em"))
-					
+				this_italic = this_style[0].find("Italic") != -1
+				if this_italic != (style[0].find("Italic") != -1):
+					if this_italic: text.append(OpenTag("em"))
+					else: text.append(CloseTag("em"))
+				
+				if this_style != style and this_style[0].find("Symbol") == -1 and style[0].find("Symbol") == -1:					
 					# Intel inconsistently switches between Arial and Verdana
 					# and uses different font sizes
 					if this_style[0].find("Arial") == -1 and style[0].find("Arial") == -1:
 						if this_style[1][0] < style[1][0]:
-							tag = "sup" if this_style[1][5] > last_style[1][5] else "sub"
+							tag = "sup" if this_style[1][5] > style[1][5] else "sub"
 							text.append(OpenTag(tag))
 						elif style[1][0] < this_style[1][0]:
-							tag = "sup" if this_style[1][5] < last_style[1][5] else "sub"
+							tag = "sup" if this_style[1][5] < style[1][5] else "sub"
 							text.append(CloseTag(tag))
-					style = this_style
-				last_style = this_style
+				style = this_style
 					
 			text.append(char.get_text())
 		text.autoclose()
