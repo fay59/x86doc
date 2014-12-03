@@ -6,7 +6,7 @@
 
 import re
 
-block_tags__ = set(["h1", "h2", "h3", "p", "pre", "table", "tr", "td"])
+block_tags__ = set(["h1", "h2", "h3", "p", "pre", "table", "tr", "td", "th"])
 
 class OpenTag(object):
 	def __init__(self, tag, coalesce=False, attributes={}, self_closes = False):

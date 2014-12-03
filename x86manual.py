@@ -21,9 +21,11 @@ def sort_topdown_ltr(a, b):
 	return 0
 
 class TableDataSet(pdftable.TableBase):
-	def __init__(self, bounds, data):
+	def __init__(self, data):
 		self.__data = data
-		self.__bounds = bounds
+		self.__bounds = data[0].bounds()
+		for r in self.__data:
+			self.__bounds = self.__bounds.union(r.bounds())
 	
 	def rows(self): return 1
 	def columns(self): return 1
@@ -197,7 +199,7 @@ class x86ManParser(object):
 				tables.append(pdftable.Table(cluster))
 		
 		assert len(tables) > 0
-		# fill tables
+		# explicit tables
 		lines = self.textLines
 		for table in tables:
 			orphans = []
@@ -210,33 +212,34 @@ class x86ManParser(object):
 			lines = orphans
 		
 		# exception tables
-		i = 0
-		remaining = []
-		while i < len(orphans):
-			line = orphans[i]
-			if line.font_name() == "NeoSansIntelMedium" and unicode(line).strip().lower()[-10:] == "exceptions":
-				remaining.append(line)
-				i += 1
-				
-				table_data = []
-				rect = None
-				while i < len(orphans):
-					line = orphans[i]
-					if line.font_name() == "NeoSansIntelMedium": break
-					table_data.append(line)
-					if rect == None: rect = line.rect
-					else: rect = rect.union(line.rect)
-					i += 1
-				
-				if len(table_data) > 1:
-					tables.append(TableDataSet(rect, table_data))
+		lines.sort(cmp=sort_topdown_ltr)
+		orphans = []
+		table_data = []
+		is_exc_section = False
+		for line in lines:
+			if line.font_name() == "NeoSansIntelMedium":
+				orphans.append(line)
+				is_exc_section = unicode(line).strip().lower()[-10:] == "exceptions"
+				if len(table_data) > 0:
+					tables.append(TableDataSet(table_data))
+					table_data = []
+				continue
+			
+			if is_exc_section:
+				if line.bounds().x1() < 50 and line.chars[0].get_text() != '#':
+					orphans.append(line)
+					if len(table_data) > 0:
+						tables.append(TableDataSet(table_data))
+						table_data = []
 				else:
-					remaining += table_data
+					table_data.append(line)
 			else:
-				remaining.append(line)
-				i += 1
+				orphans.append(line)
 		
-		displayable = self.__merge_text(remaining) + tables
+		if len(table_data) > 0:
+			tables.append(TableDataSet(table_data))
+		
+		displayable = self.__merge_text(orphans) + tables
 		displayable.sort(cmp=sort_topdown_ltr)
 		
 		self.__output_file(displayable)
