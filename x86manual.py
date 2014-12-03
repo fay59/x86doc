@@ -370,7 +370,7 @@ class x86ManParser(object):
 			if result.tokens[0].tag[0] == "h":
 				level = int(result.tokens[0].tag[1]) - 1
 				self.__title_stack = self.__title_stack[0:level]
-				self.__title_stack.append(u"".join(result.tokens[1:]).strip().lower())
+				self.__title_stack.append(u"".join(result.tokens[1:-1]).strip().lower())
 			return result
 		
 		if isinstance(element, pdftable.TableBase):
@@ -406,15 +406,15 @@ class x86ManParser(object):
 						if len(children) == 1:
 							contents = self.__output_text(children[0])
 							if contents.tokens[0].tag != "p":
-								contents.tokens = contents.tokens[1:]
+								contents.tokens = contents.tokens[1:-1]
 								cell_tag = "th"
 							else:
 								tok = contents.tokens[1]
 								if hasattr(tok, "tag") and tok.tag == "strong":
-									contents.tokens = contents.tokens[2:]
+									contents.tokens = contents.tokens[2:-2]
 									cell_tag = "th"
 								else:
-									contents.tokens = contents.tokens[1:]
+									contents.tokens = contents.tokens[1:-1]
 						else:
 							for child in children:
 								contents.append(self.__output_html(child))
@@ -436,22 +436,26 @@ class x86ManParser(object):
 	def __output_text(self, element):
 		if len(element.chars) == 0: return ""
 		
+		style = [element.chars[0].fontname, element.chars[0].matrix[0:4]]
 		text = HtmlText()
 		# what kind of text block is this?
-		kind = "p"
+		open = OpenTag("p")
 		strong = False
 		if element.font_name() == "NeoSansIntelMedium":
-			if element.font_size() >= 12: kind = "h1"
+			if element.font_size() >= 12: open.tag = "h1"
 			elif element.font_size() >= 9.9:
-				if element.bounds().x1() < 50: kind = "h2"
-				else: kind = "h3"
+				if element.bounds().x1() < 50: open.tag = "h2"
+				else: open.tag = "h3"
 			else:
 				strong = True
+		elif element.font_name() == "NeoSansIntel" and self.__title_stack[-1] == "operation":
+			open = OpenTag("pre", True)
+			indent = int((element.bounds().x1() - 45) / 3.375)
+			element.chars = [FakeChar(' ')] * indent + element.chars
 		
-		text.append(OpenTag(kind))
+		text.append(open)
 		if strong: text.append(OpenTag("strong"))
 		
-		style = [element.chars[0].fontname, element.chars[0].matrix[0:4]]
 		for char in element.chars:
 			if hasattr(char, "fontname") and hasattr(char, "matrix"):
 				this_style = [char.fontname, char.matrix[0:4]]
@@ -471,5 +475,5 @@ class x86ManParser(object):
 					style = this_style
 					
 			text.append(char.get_text())
-		
+		text.autoclose()
 		return text
