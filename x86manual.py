@@ -479,7 +479,7 @@ class x86ManParser(object):
 					if this_style.size < style0.size: open.append(OpenTag(baseline[0]))
 					else: close.append(CloseTag(baseline[1]))
 				
-				for tag in close: text.append(tag)
+				for tag in reversed(close): text.append(tag)
 				for tag in open: text.append(tag)
 				style = this_style
 					

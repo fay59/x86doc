@@ -98,7 +98,6 @@ class List(object):
 			self.rect = self.rect.union(i.bounds())
 	
 	def bounds(self): return self.rect
-		
 
 class TableBase(object):
 	def get_at(self, x, y): raise Exception("Not implemented")
