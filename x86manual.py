@@ -6,7 +6,7 @@ import pdftable
 from htmltext import *
 import sys
 import math
-import bisect
+import re
 
 def escape_html(a):
 	return a.replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")
@@ -108,6 +108,7 @@ def left_aligned_table(source):
 				break
 		else:
 			print columns
+			print contents
 			raise Exception("No matching column!")
 		
 		row[col_index] = [item]
@@ -194,6 +195,9 @@ class FontStyle(object):
 		if self.baseline > that.baseline: return ("sup", "sub")
 		assert False
 
+fpu_flags_format__ = re.compile(r"^C[0-9]")
+exceptions_format__ = re.compile(r"^#?[A-Z]{2}")
+
 class x86ManParser(object):
 	def __init__(self, outputDir, laParams):
 		self.outputDir = outputDir
@@ -210,70 +214,11 @@ class x86ManParser(object):
 		self.__is_code = False
 	
 	def flush(self):
-		tables = []
-		while len(self.ltRects) > 0:
-			cluster = pdftable.cluster_rects(self.ltRects)
-			if len(cluster) >= 4:
-				tables.append(pdftable.Table(cluster))
-		
-		assert len(tables) > 0
-		
-		lines = self.textLines[:]
-		lines.sort(cmp=sort_topdown_ltr)
-		
-		# explicit tables
-		for table in tables:
-			orphans = []
-			bounds = table.bounds()
-			for i in xrange(0, len(lines)):
-				line = lines[i]
-				if bounds.intersects(line.rect, 0):
-					# Some pages have their "NOTES" section embedded inside the
-					# table rectangle. What were you thinking, Intel?
-					if line.font_name() == "NeoSansIntelMedium" and unicode(line).lower().startswith("notes"):
-						orphans += lines[i:]
-						break
-					table.get_at_pixel(line.rect.xmid(), line.rect.ymid()).append(line)
-				else:
-					orphans.append(line)
-			lines = orphans
-		
-		# exception tables
-		orphans = []
-		table_data = []
-		is_table_section = False
-		expected_char = None
-		for line in lines:
-			if line.font_name() == "NeoSansIntelMedium":
-				orphans.append(line)
-				title = unicode(line).strip().lower()
-				if title[-10:] == "exceptions":
-					is_table_section = True
-					expected_char = '#'
-				elif title == "fpu flags affected":
-					is_table_section = True
-					expected_char = 'C'
-				if is_table_section and len(table_data) > 0:
-					tables.append(TableDataSet(table_data))
-					table_data = []
-				continue
-			
-			if is_table_section:
-				if line.bounds().x1() < 50 and line.chars[0].get_text() != expected_char:
-					orphans.append(line)
-					if len(table_data) > 0:
-						tables.append(TableDataSet(table_data))
-						table_data = []
-				else:
-					table_data.append(line)
-			else:
-				orphans.append(line)
-		
-		if len(table_data) > 0:
-			tables.append(TableDataSet(table_data))
-		
-		displayable = self.__merge_text(orphans) + tables
-		displayable.sort(cmp=sort_topdown_ltr)
+		try:
+			displayable = self.__prepare_display()
+		except:
+			print "Failed to prepare for %s" % unicode(self.textLines[0])
+			raise
 		
 		self.__output_file(displayable)
 	
@@ -284,6 +229,7 @@ class x86ManParser(object):
 	
 	def end_page(self, page):
 		if len(self.thisPageTextLines) > 0:
+			self.thisPageTextLines.sort(cmp=sort_topdown_ltr)
 			firstLine = self.thisPageTextLines[0]
 			if firstLine.font_name() == "NeoSansIntelMedium" and firstLine.font_size() >= 12:
 				if len(self.ltRects) > 0 or len(self.textLines) > 0:
@@ -522,4 +468,73 @@ class x86ManParser(object):
 			text.append(string)
 		text.autoclose()
 		return text
+	
+	def __prepare_display(self):
+		tables = []
+		while len(self.ltRects) > 0:
+			cluster = pdftable.cluster_rects(self.ltRects)
+			if len(cluster) >= 4:
+				tables.append(pdftable.Table(cluster))
+	
+		assert len(tables) > 0
+	
+		lines = self.textLines[:]
+		lines.sort(cmp=sort_topdown_ltr)
+	
+		# explicit tables
+		for table in tables:
+			orphans = []
+			bounds = table.bounds()
+			for i in xrange(0, len(lines)):
+				line = lines[i]
+				if bounds.intersects(line.rect, 0):
+					# Some pages have their "NOTES" section embedded inside the
+					# table rectangle. What were you thinking, Intel?
+					if line.font_name() == "NeoSansIntelMedium" and unicode(line).lower().startswith("notes"):
+						orphans += lines[i:]
+						break
+					table.get_at_pixel(line.rect.xmid(), line.rect.ymid()).append(line)
+				else:
+					orphans.append(line)
+			lines = orphans
+	
+		# exception tables
+		orphans = []
+		table_data = []
+		is_table_section = False
+		expected_format = None
+		for line in lines:
+			if line.font_name() == "NeoSansIntelMedium":
+				orphans.append(line)
+				title = unicode(line).strip().lower()
+				if title[-10:] == "exceptions":
+					is_table_section = True
+					expected_format = exceptions_format__
+				elif title == "fpu flags affected":
+					is_table_section = True
+					expected_format = fpu_flags_format__
+				if is_table_section and len(table_data) > 0:
+					tables.append(TableDataSet(table_data))
+					table_data = []
+				continue
+		
+			if is_table_section:
+				if line.bounds().x1() > 50:
+					table_data.append(line)
+				elif expected_format.search(unicode(line)) == None:
+					orphans.append(line)
+					if len(table_data) > 0:
+						tables.append(TableDataSet(table_data))
+						table_data = []
+				else:
+					table_data.append(line)
+			else:
+				orphans.append(line)
+	
+		if len(table_data) > 0:
+			tables.append(TableDataSet(table_data))
+	
+		displayable = self.__merge_text(orphans) + tables
+		displayable.sort(cmp=sort_topdown_ltr)
+		return displayable
 		
