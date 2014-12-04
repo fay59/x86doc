@@ -20,19 +20,26 @@ def sort_topdown_ltr(a, b):
 	if aa.x1() > bb.x1(): return 1
 	return 0
 
-class TableDataSet(pdftable.TableBase):
+class SingleCellTable(pdftable.TableBase):
 	def __init__(self, data):
 		self.__data = data
-		self.__bounds = data[0].bounds()
-		for r in self.__data:
-			self.__bounds = self.__bounds.union(r.bounds())
+		if len(self.__data) > 0:
+			self.rect = data[0].bounds()
+			for r in self.__data:
+				self.rect = self.rect.union(r.bounds())
 	
+	def item_count(self): return len(self.__data)
 	def rows(self): return 1
 	def columns(self): return 1
-	def bounds(self): return self.__bounds
+	def bounds(self): return self.rect
 	def get_at(self, x, y):
 		assert x == 0 and y == 0
-		return self.__data[:]
+		return self.__data
+	
+	def get_at_pixel(self, x, y):
+		if self.rect.x1() <= x and self.rect.x2() >= x and self.rect.y1() <= y and self.rect.y2() >= y:
+			return self.__data
+		return None
 
 def center_aligned_table(source):
 	assert source.rows() == 1 and source.columns() == 1
@@ -207,6 +214,7 @@ class x86ManParser(object):
 		self.fail = 0
 		
 		self.ltRects = []
+		self.curves = []
 		self.textLines = []
 		self.thisPageLtRects = []
 		self.thisPageTextLines = []
@@ -245,8 +253,9 @@ class x86ManParser(object):
 						except:
 							print "*** couldn't flush to disk"
 							self.fail += 1
-		
+					
 					self.ltRects = []
+					self.curves = []
 					self.textLines = []
 		
 		self.ltRects += self.thisPageLtRects
@@ -263,11 +272,17 @@ class x86ManParser(object):
 	def process_rect(self, rect):
 		self.thisPageLtRects.append(self.__fix_bbox(rect.bbox))
 	
+	def process_curve(self, curve):
+		curve = pdftable.Curve([self.__fix_point(p) for p in curve.pts])
+		self.curves.append(curve)
+	
 	def process_item(self, item, n=0):
 		if isinstance(item, LTTextLineHorizontal):
 			self.process_text_line(item)
 		elif isinstance(item, LTRect):
 			self.process_rect(item)
+		elif isinstance(item, LTCurve):
+			self.process_curve(item)
 		elif isinstance(item, LTContainer):
 			for obj in item:
 				self.process_item(obj, n+1)
@@ -277,6 +292,9 @@ class x86ManParser(object):
 		for item in page:
 			self.process_item(item)
 		self.end_page(page)
+	
+	def __fix_point(self, p):
+		return (p[0], self.yBase - p[1])
 	
 	def __fix_rect(self, r):
 		return pdftable.Rect(r.x1(), self.yBase - r.y1(), r.x2(), self.yBase - r.y2())
@@ -315,7 +333,7 @@ class x86ManParser(object):
 		return merged
 	
 	def __output_file(self, displayable):
-		title_parts = [p.strip() for p in unicode(displayable[0]).split(u"—")]
+		title_parts = [p.strip() for p in re.split(u"\s*[-—]\s*", unicode(displayable[0]), 1)]
 		if len(title_parts) != 2:
 			print displayable[0].font_size(), unicode(displayable[0:5])
 			print title_parts
@@ -388,7 +406,7 @@ class x86ManParser(object):
 					if heading.startswith("instruction operand encoding"):
 						# operands encoding
 						element = center_aligned_table(element)
-					elif isinstance(element, TableDataSet):
+					elif isinstance(element, SingleCellTable):
 						element = left_aligned_table(element)
 						attributes["class"] = "exception-table"
 			
@@ -488,24 +506,33 @@ class x86ManParser(object):
 		return text
 	
 	def __prepare_display(self):
-		tables = []
-		while len(self.ltRects) > 0:
-			cluster = pdftable.cluster_rects(self.ltRects)
+		frames = []
+		lines = []
+		for rect in self.ltRects:
+			if (rect.horizontal() and rect.height() > 8) or (rect.vertical() and rect.width() > 8):
+				table = SingleCellTable([])
+				table.rect = rect
+				frames.append(table)
+			else:
+				lines.append(rect)
+		
+		while len(lines) > 0:
+			cluster = pdftable.cluster_rects(lines)
 			if len(cluster) >= 4:
-				tables.append(pdftable.Table(cluster))
+				frames.append(pdftable.Table(cluster))
 	
-		assert len(tables) > 0
-	
-		lines = self.textLines[:]
-		lines.sort(cmp=sort_topdown_ltr)
+		curves = sorted(self.curves, cmp=sort_topdown_ltr)
+		lines = sorted(self.textLines, cmp=sort_topdown_ltr)
 	
 		# explicit tables
-		for table in tables:
+		figures = []
+		tables = []
+		for table in frames:
 			orphans = []
 			bounds = table.bounds()
 			for i in xrange(0, len(lines)):
 				line = lines[i]
-				if bounds.intersects(line.rect, 0):
+				if bounds.intersects(line.bounds(), 0):
 					# Some pages have their "NOTES" section embedded inside the
 					# table rectangle. What were you thinking, Intel?
 					if line.font_name() == "NeoSansIntelMedium" and unicode(line).lower().startswith("notes"):
@@ -515,6 +542,7 @@ class x86ManParser(object):
 				else:
 					orphans.append(line)
 			lines = orphans
+			tables.append(table)
 	
 		# exception tables
 		orphans = []
@@ -532,7 +560,7 @@ class x86ManParser(object):
 					is_table_section = True
 					expected_format = fpu_flags_format__
 				if is_table_section and len(table_data) > 0:
-					tables.append(TableDataSet(table_data))
+					tables.append(SingleCellTable(table_data))
 					table_data = []
 				continue
 		
@@ -542,7 +570,7 @@ class x86ManParser(object):
 				elif expected_format.search(unicode(line)) == None:
 					orphans.append(line)
 					if len(table_data) > 0:
-						tables.append(TableDataSet(table_data))
+						tables.append(SingleCellTable(table_data))
 						table_data = []
 				else:
 					table_data.append(line)
@@ -550,8 +578,18 @@ class x86ManParser(object):
 				orphans.append(line)
 	
 		if len(table_data) > 0:
-			tables.append(TableDataSet(table_data))
+			tables.append(SingleCellTable(table_data))
 		
+		clean_tables = []
+		for table in tables:
+			if table.item_count() == 0: continue
+			if table.item_count() == 1:
+				assert table.rows() == 1 and table.columns() == 1
+				orphans.append(table.get_at(0, 0)[0])
+				continue
+			clean_tables.append(table)
+		
+		tables = clean_tables
 		# lists
 		lines = self.__merge_text(orphans)
 		orphans = []

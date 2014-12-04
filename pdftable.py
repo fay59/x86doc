@@ -89,6 +89,21 @@ def count_segments(list, expected_clusters):
 def pretty_much_equal(a, b, threshold = 2):
 	return abs(a - b) < threshold
 
+class Curve(object):
+	def __init__(self, points):
+		assert len(points) > 1
+		x = [float("inf"), float("-inf")]
+		y = x[:]
+		for p in points:
+			x[0] = min(p[0], x[0])
+			x[1] = max(p[0], x[1])
+			y[0] = min(p[1], y[0])
+			y[1] = max(p[1], y[1])
+		self.__bounds = Rect(x[0], y[0], x[1], y[1])
+		self.points = points
+	
+	def bounds(self): return self.__bounds
+
 class List(object):
 	def __init__(self, items):
 		assert len(items) > 0
@@ -102,6 +117,7 @@ class List(object):
 class TableBase(object):
 	def get_at(self, x, y): raise Exception("Not implemented")
 	def rows(self): raise Exception("Not implemented")
+	def item_count(self): raise Exception("Not implemented")
 	def columns(self): raise Exception("Not implemented")
 	def bounds(self): raise Exception("Not implemented")
 	def cell_size(self, x, y): raise Exception("Not implemented")
@@ -117,6 +133,13 @@ class ImplicitTable(TableBase):
 	
 	def get_at(self, x, y):
 		return self.__data[y][x]
+	
+	def item_count(self):
+		count = 0
+		for row in self.__data:
+			for cell in row:
+				count += len(col)
+		return count
 	
 	def rows(self): return len(self.__data)
 	def columns(self): return len(self.__data[0])
@@ -206,6 +229,11 @@ class Table(TableBase):
 	
 	def rows(self): return len(self.__rows) - 1
 	def columns(self): return len(self.__columns) - 1
+	
+	def item_count(self):
+		count = 0
+		for cell in self.__data_storage: count += len(cell)
+		return count
 	
 	def bounds(self):
 		return Rect(self.__columns[0], self.__rows[0], self.__columns[-1], self.__rows[-1])
