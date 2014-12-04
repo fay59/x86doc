@@ -12,10 +12,11 @@ They say that you're never better served than by yourself, so I took the matter
 into my own, [pdfminer][3]-gloved hands to extract HTML pages straight from the
 documentation PDF themselves.
 
-*This branch is experimental.* Right now, it doesn't produce any useful output.
-However, it is expected to eventually do, and that output will be of much better
-quality than the crappy converter/BeautifulSoup combo. Be sure to check out the
-`master` branch if you want the final result.
+*This branch is experimental.* Right now, it parses about 415 of the 470ish
+instructions documented in Volume 2A and Volume 2B. Complex pages usually (but
+not always) render better with this branch than the `master` branch, but not all
+pages render. Be sure to check out the `master` branch if you want something
+immediately usable.
 
 The current documentation set can be found on [this page][4].
 
