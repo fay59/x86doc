@@ -455,7 +455,7 @@ class x86ManParser(object):
 			element.chars = [FakeChar(' ')] * indent + element.chars
 		
 		text.append(open)
-		if strong: text.append(OpenTag("strong"))
+		if strong or style.font_is("Bold"): text.append(OpenTag("strong"))
 		if style.font_is("Italic"): text.append(OpenTag("em"))
 		
 		for char in element.chars:
@@ -468,6 +468,11 @@ class x86ManParser(object):
 				if this_italic != style.font_is("Italic"):
 					if this_italic: open.append(OpenTag("em"))
 					else: close.append(CloseTag("em"))
+				
+				this_bold = this_style.font_is("Bold")
+				if this_bold != style.font_is("Bold"):
+					if this_bold: open.append(OpenTag("strong"))
+					else: close.append(CloseTag("strong"))
 				
 				baseline = this_style.compare_baseline(style)
 				if baseline != None:
