@@ -362,6 +362,19 @@ class x86ManParser(object):
 				self.__title_stack.append(u"".join((c for c in result.tokens[1:-1] if isinstance(c, unicode))).strip().lower())
 			return result
 		
+		if isinstance(element, pdftable.List):
+			result = HtmlText()
+			result.append(OpenTag("ul"))
+			for item in element.items:
+				item_result = self.__output_html(item)
+				if item_result.tokens[0].tag == "p":
+					item_result.tokens = item_result.tokens[1:-1]
+				result.append(OpenTag("li"))
+				result.append(item_result)
+				result.append(CloseTag("li"))
+			result.append(CloseTag("ul"))
+			return result
+		
 		if isinstance(element, pdftable.TableBase):
 			result = HtmlText()
 			print_index = -1
@@ -533,8 +546,31 @@ class x86ManParser(object):
 	
 		if len(table_data) > 0:
 			tables.append(TableDataSet(table_data))
-	
-		displayable = self.__merge_text(orphans) + tables
+		
+		# lists
+		lines = self.__merge_text(orphans)
+		orphans = []
+		lists = []
+		this_list = []
+		i = 0
+		while i < len(lines):
+			line = lines[i]
+			if line.chars[0].get_text() == u"•":
+				if len(line.chars) == 1:
+					i += 1
+					line = lines[i]
+				else:
+					for j in xrange(1, len(line.chars)):
+						if not line.chars[j].get_text().isspace(): break
+					line.chars = line.chars[j:]
+				this_list.append(line)
+			else:
+				if len(this_list) > 0:
+					lists.append(pdftable.List(this_list))
+					this_list = []
+				orphans.append(line)
+			i += 1
+		
+		displayable = self.__merge_text(orphans) + tables + lists
 		displayable.sort(cmp=sort_topdown_ltr)
 		return displayable
-		

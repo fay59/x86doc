@@ -89,6 +89,17 @@ def count_segments(list, expected_clusters):
 def pretty_much_equal(a, b, threshold = 2):
 	return abs(a - b) < threshold
 
+class List(object):
+	def __init__(self, items):
+		assert len(items) > 0
+		self.items = items
+		self.rect = items[0].bounds()
+		for i in items[1:]:
+			self.rect = self.rect.union(i.bounds())
+	
+	def bounds(self): return self.rect
+		
+
 class TableBase(object):
 	def get_at(self, x, y): raise Exception("Not implemented")
 	def rows(self): raise Exception("Not implemented")
