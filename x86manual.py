@@ -176,6 +176,24 @@ class CharCollection(object):
 	def __repr__(self):
 		return u"<%r text=%r>" % (self.rect, unicode(self))
 
+class FontStyle(object):
+	def __init__(self, char):
+		self.font = char.fontname[7:]
+		self.size = char.matrix[0]
+		self.baseline = char.matrix[5]
+	
+	def font_is(self, name):
+		return self.font.find(name) != -1
+	
+	def compare_baseline(self, that):
+		diff = abs(that.baseline - self.baseline)
+		if diff < 0.5 or diff > 8:
+			return None
+		
+		if self.baseline < that.baseline: return ("sub", "sup")
+		if self.baseline > that.baseline: return ("sup", "sub")
+		assert False
+
 class x86ManParser(object):
 	def __init__(self, outputDir, laParams):
 		self.outputDir = outputDir
@@ -350,7 +368,12 @@ class x86ManParser(object):
 		return merged
 	
 	def __output_file(self, displayable):
-		title = [p.strip() for p in unicode(displayable[0]).split(u"—")][0]
+		title_parts = [p.strip() for p in unicode(displayable[0]).split(u"—")]
+		if len(title_parts) != 2:
+			print title_parts
+			raise Exception("Can't decode title")
+		
+		title = title_parts[0]
 		path = "%s/%s.html" % (self.outputDir, title.replace("/", ":"))
 		print "Writing to %s" % path
 		file_data = self.__output_page(displayable).encode("UTF-8")
@@ -401,7 +424,7 @@ class x86ManParser(object):
 					element = left_aligned_table(element)
 				else:
 					heading = self.__title_stack[-1]
-					if heading == "instruction operand encoding":
+					if heading.startswith("instruction operand encoding"):
 						# operands encoding
 						element = center_aligned_table(element)
 					elif isinstance(element, TableDataSet):
@@ -453,9 +476,9 @@ class x86ManParser(object):
 	def __output_text(self, element):
 		if len(element.chars) == 0: return ""
 		
-		style = [element.chars[0].fontname, element.chars[0].matrix]
+		style = FontStyle(element.chars[0])
+		style0 = style
 		text = HtmlText()
-		# what kind of text block is this?
 		open = OpenTag("p")
 		strong = False
 		if element.font_name() == "NeoSansIntelMedium":
@@ -472,28 +495,29 @@ class x86ManParser(object):
 		
 		text.append(open)
 		if strong: text.append(OpenTag("strong"))
-		if style[0].find("Italic") != -1: text.append(OpenTag("em"))
+		if style.font_is("Italic"): text.append(OpenTag("em"))
 		
 		for char in element.chars:
+			string = char.get_text()
+			open = []
+			close = []
 			if hasattr(char, "fontname") and hasattr(char, "matrix"):
-				this_style = [char.fontname, char.matrix]
-				this_italic = this_style[0].find("Italic") != -1
-				if this_italic != (style[0].find("Italic") != -1):
-					if this_italic: text.append(OpenTag("em"))
-					else: text.append(CloseTag("em"))
+				this_style = FontStyle(char)
+				this_italic = this_style.font_is("Italic")
+				if this_italic != style.font_is("Italic"):
+					if this_italic: open.append(OpenTag("em"))
+					else: close.append(CloseTag("em"))
 				
-				if this_style != style and this_style[0].find("Symbol") == -1 and style[0].find("Symbol") == -1:					
-					# Intel inconsistently switches between Arial and Verdana
-					# and uses different font sizes
-					if this_style[0].find("Arial") == -1 and style[0].find("Arial") == -1:
-						if this_style[1][0] < style[1][0]:
-							tag = "sup" if this_style[1][5] > style[1][5] else "sub"
-							text.append(OpenTag(tag))
-						elif style[1][0] < this_style[1][0]:
-							tag = "sup" if this_style[1][5] < style[1][5] else "sub"
-							text.append(CloseTag(tag))
+				baseline = this_style.compare_baseline(style)
+				if baseline != None:
+					if this_style.size < style0.size: open.append(OpenTag(baseline[0]))
+					else: close.append(CloseTag(baseline[1]))
+				
+				for tag in close: text.append(tag)
+				for tag in open: text.append(tag)
 				style = this_style
 					
-			text.append(char.get_text())
+			text.append(string)
 		text.autoclose()
 		return text
+		

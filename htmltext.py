@@ -31,7 +31,7 @@ class OpenTag(object):
 		return "</%s>" % self.tag
 	
 	def __str__(self): return self.open()
-	def __repr__(self): return "<OpenTag %s>" % str(self)
+	def __repr__(self): return "<OpenTag %s %s>" % (self.tag, self.__attribute_string())
 
 class CloseTag(object):
 	def __init__(self, tag):
@@ -39,7 +39,7 @@ class CloseTag(object):
 		self.tag = tag
 	
 	def __str__(self): return "</%s>" % self.tag
-	def __repr__(self): return "<CloseTag %s>" % str(self)
+	def __repr__(self): return "<CloseTag %s>" % self.tag
 
 class HtmlText(object):
 	def __init__(self):
@@ -50,7 +50,10 @@ class HtmlText(object):
 		for t in self.tokens:
 			if self.__is_open(t): close_stack.append(t)
 			elif self.__is_close(t):
-				assert close_stack[-1].tag == t.tag
+				if not (close_stack[-1].tag == t.tag):
+					print close_stack
+					print self.tokens
+					raise Exception("autoclose mismatch")
 				close_stack.pop()
 		
 		while len(close_stack) > 0:
@@ -63,7 +66,9 @@ class HtmlText(object):
 					token.closes = prev
 					prev.closed_by = token
 					break
-			else: raise Exception("No matching OpenTag found!")
+			else:
+				print self.tokens
+				raise Exception("No matching OpenTag for %s found!" % token.tag)
 		elif len(self.tokens) > 0 and self.__is_open(token):
 			for i in xrange(-1, -len(self.tokens), -1):
 				last = self.tokens[i]
