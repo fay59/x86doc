@@ -40,6 +40,14 @@ class SingleCellTable(pdftable.TableBase):
 		if self.rect.x1() <= x and self.rect.x2() >= x and self.rect.y1() <= y and self.rect.y2() >= y:
 			return self.__data
 		return None
+	
+	def get_everything(self): return self.__data
+
+class Figure(object):
+	def __init__(self, table):
+		self.data = table
+	
+	def bounds(self): return self.data.bounds()
 
 def center_aligned_table(source):
 	assert source.rows() == 1 and source.columns() == 1
@@ -393,6 +401,30 @@ class x86ManParser(object):
 			result.append(CloseTag("ul"))
 			return result
 		
+		if isinstance(element, Figure):
+			def flatten(t):
+				everything = t.get_everything()
+				result = everything[:]
+				for i in result:
+					if isinstance(i, pdftable.TableBase):
+						everything += flatten(i)
+				return everything
+			
+			flat = flatten(element.data)
+			svg = HtmlText()
+			if len([f for f in flat if isinstance(f, CharCollection)]) > 0:
+				bounds = element.bounds()
+				attribs = {
+					"width": bounds.width() * 1.5,
+					"height": bounds.height() * 1.5,
+					"viewBox": "%f %f %f %f" % (bounds.x1(), bounds.y1(), bounds.width(), bounds.height())
+				}
+				svg.append(OpenTag("svg", attributes=attribs))
+				for item in flat:
+					svg.append(self.__output_svg(item))
+				svg.autoclose()
+			return svg
+		
 		if isinstance(element, pdftable.TableBase):
 			result = HtmlText()
 			print_index = -1
@@ -451,6 +483,33 @@ class x86ManParser(object):
 		
 		assert False
 		return HtmlText()
+	
+	def __output_svg(self, element):
+		self_bounds = element.bounds()
+		attributes = {"x": self_bounds.x1(), "y": self_bounds.y1()}
+		result = HtmlText()
+		if isinstance(element, CharCollection):
+			# for now, let's assume that any figure text is plain text
+			attributes["y"] += self_bounds.height() * 0.8
+			attributes["style"] = "font-size:%fpt" % element.font_size()
+			attributes["textLength"] = self_bounds.width()
+			attributes["lengthAdjust"] = "spacingAndGlyphs"
+			result.append(OpenTag("text", attributes=attributes))
+			result.append(unicode(element).strip())
+			result.append(CloseTag("text"))
+			return result
+		
+		if isinstance(element, pdftable.TableBase):
+			attributes["width"] = self_bounds.width()
+			attributes["height"] = self_bounds.height()
+			attributes["style"] = "fill:rgba(0,0,0,0);stroke:rgb(0,0,0);stroke-width:1pt;";
+			result.append(OpenTag("rect", attributes=attributes))
+			result.append(CloseTag("rect"))
+			return result
+		
+		print element.__class__.__name__
+		#assert False
+		return result
 	
 	def __output_text(self, element):
 		if len(element.chars) == 0: return ""
@@ -516,32 +575,34 @@ class x86ManParser(object):
 			else:
 				lines.append(rect)
 		
+		orphans = []
 		while len(lines) > 0:
 			cluster = pdftable.cluster_rects(lines)
 			if len(cluster) >= 4:
 				frames.append(pdftable.Table(cluster))
+			else:
+				orphans += cluster
 	
-		curves = sorted(self.curves, cmp=sort_topdown_ltr)
-		lines = sorted(self.textLines, cmp=sort_topdown_ltr)
+		curves = sorted(self.curves + orphans, cmp=sort_topdown_ltr)
+		textLines = sorted(self.textLines, cmp=sort_topdown_ltr)
 	
 		# explicit tables
-		figures = []
 		tables = []
 		for table in frames:
 			orphans = []
 			bounds = table.bounds()
-			for i in xrange(0, len(lines)):
-				line = lines[i]
+			for i in xrange(0, len(textLines)):
+				line = textLines[i]
 				if bounds.intersects(line.bounds(), 0):
 					# Some pages have their "NOTES" section embedded inside the
 					# table rectangle. What were you thinking, Intel?
 					if line.font_name() == "NeoSansIntelMedium" and unicode(line).lower().startswith("notes"):
-						orphans += lines[i:]
+						orphans += textLines[i:]
 						break
 					table.get_at_pixel(line.rect.xmid(), line.rect.ymid()).append(line)
 				else:
 					orphans.append(line)
-			lines = orphans
+			textLines = orphans
 			tables.append(table)
 	
 		# exception tables
@@ -549,7 +610,7 @@ class x86ManParser(object):
 		table_data = []
 		is_table_section = False
 		expected_format = None
-		for line in lines:
+		for line in textLines:
 			if line.font_name() == "NeoSansIntelMedium":
 				orphans.append(line)
 				title = unicode(line).strip().lower()
@@ -580,28 +641,56 @@ class x86ManParser(object):
 		if len(table_data) > 0:
 			tables.append(SingleCellTable(table_data))
 		
-		clean_tables = []
-		for table in tables:
-			if table.item_count() == 0: continue
-			if table.item_count() == 1:
-				assert table.rows() == 1 and table.columns() == 1
-				orphans.append(table.get_at(0, 0)[0])
-				continue
-			clean_tables.append(table)
+		# tables versus figures (versus useless frames)
+		all_tables = sorted(tables, key=lambda x: x.bounds().area())
+		tables = set()
+		figures = set()
+		sublevel_figures = set()
+		i = 0
+		while i < len(all_tables):
+			smaller = all_tables[i]
+			if smaller.rows() != 1 or smaller.columns() != 1:
+				tables.add(smaller)
+			else:
+				j = i + 1
+				smaller_bounds = smaller.bounds()
+				while j < len(all_tables):
+					bigger = all_tables[j]
+					if bigger.bounds().contains(smaller_bounds):
+						bigger.get_at_pixel(smaller_bounds.xmid(), smaller_bounds.ymid()).append(smaller)
+						figures.add(bigger)
+						figures.add(smaller)
+						sublevel_figures.add(smaller)
+						break
+					j += 1
+				else:
+					tables.add(smaller)
+			i += 1
 		
-		tables = clean_tables
+		top_figures = [Figure(t) for t in figures - sublevel_figures]
+		top_tables = list(tables - figures)
+		
+		i = 0
+		while i < len(top_tables):
+			count = top_tables[i].item_count()
+			if count > 1: i += 1
+			else:
+				if count == 1:
+					orphans += top_tables[i].get_at(0,0)
+				top_tables.pop(i)
+		
 		# lists
-		lines = self.__merge_text(orphans)
+		textLines = self.__merge_text(orphans)
 		orphans = []
 		lists = []
 		this_list = []
 		i = 0
-		while i < len(lines):
-			line = lines[i]
+		while i < len(textLines):
+			line = textLines[i]
 			if line.chars[0].get_text() == u"•":
 				if len(line.chars) == 1:
 					i += 1
-					line = lines[i]
+					line = textLines[i]
 				else:
 					for j in xrange(1, len(line.chars)):
 						if not line.chars[j].get_text().isspace(): break
@@ -614,6 +703,6 @@ class x86ManParser(object):
 				orphans.append(line)
 			i += 1
 		
-		displayable = self.__merge_text(orphans) + tables + lists
+		displayable = self.__merge_text(orphans) + top_tables + top_figures
 		displayable.sort(cmp=sort_topdown_ltr)
 		return displayable

@@ -48,7 +48,7 @@ class HtmlText(object):
 	def autoclose(self):
 		close_stack = []
 		for t in self.tokens:
-			if self.__is_open(t): close_stack.append(t)
+			if self.__is_open(t) and not t.self_closes: close_stack.append(t)
 			elif self.__is_close(t):
 				if not (close_stack[-1].tag == t.tag):
 					print close_stack

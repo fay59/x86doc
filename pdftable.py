@@ -17,6 +17,7 @@ class Rect(object):
 	
 	def width(self): return abs(self.__x1 - self.__x2)
 	def height(self): return abs(self.__y1 - self.__y2)
+	def area(self): return self.width() * self.height()
 	
 	def union(self, rect):
 		return Rect(min(rect.x1(), self.x1()), min(rect.y1(), self.y1()), max(rect.x2(), self.x2()), max(rect.y2(), self.y2()))
@@ -38,6 +39,9 @@ class Rect(object):
 		if that.y1() - self.y2() - threshold > 0:
 			return False
 		return True
+	
+	def contains(self, that):
+		return self.x1() <= that.x1() and self.x2() >= that.x2() and self.y1() <= that.y1() and self.y2() >= that.y2()
 	
 	def debug_html(self, color="black", cls="black"):
 		fmt = '<div class="%s" style="position:absolute;left:%fpx;top:%fpx;width:%fpx;height:%fpx;border:1px %s solid;background-color:%s"></div>'
@@ -116,6 +120,7 @@ class List(object):
 
 class TableBase(object):
 	def get_at(self, x, y): raise Exception("Not implemented")
+	def get_everything(self): raise Exception("Not implemented")
 	def rows(self): raise Exception("Not implemented")
 	def item_count(self): raise Exception("Not implemented")
 	def columns(self): raise Exception("Not implemented")
@@ -133,6 +138,11 @@ class ImplicitTable(TableBase):
 	
 	def get_at(self, x, y):
 		return self.__data[y][x]
+	
+	def get_everything(self):
+		result = []
+		for c in self.__data: result += c
+		return result
 	
 	def item_count(self):
 		count = 0
@@ -226,6 +236,11 @@ class Table(TableBase):
 		row = self.__data_layout[y]
 		data_index = row[x]
 		return self.__data_storage[data_index]
+	
+	def get_everything(self):
+		result = []
+		for c in self.__data_storage: result += c
+		return result
 	
 	def rows(self): return len(self.__rows) - 1
 	def columns(self): return len(self.__columns) - 1
