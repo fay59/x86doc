@@ -311,7 +311,8 @@ class x86ManParser(object):
 		if line.bbox[1] < 740 and line.bbox[1] > 50:
 			coll = CharCollection(line, self.__fix_bbox(line.bbox))
 			coll.approx_rect = self.__fix_rect(coll.approx_rect)
-			self.thisPageTextLines.append(coll)
+			if len(coll.chars) > 0:
+				self.thisPageTextLines.append(coll)
 	
 	def process_rect(self, rect):
 		self.thisPageLtRects.append(self.__fix_bbox(rect.bbox))
@@ -370,6 +371,7 @@ class x86ManParser(object):
 	def __output_file(self, displayable):
 		title_parts = [p.strip() for p in unicode(displayable[0]).split(u"—")]
 		if len(title_parts) != 2:
+			print displayable[0].font_size(), unicode(displayable[0:5])
 			print title_parts
 			raise Exception("Can't decode title")
 		
@@ -397,7 +399,7 @@ class x86ManParser(object):
 		for element in displayable:
 			text.append(self.__output_html(element))
 		
-		return "<!DOCTYPE html>" + text.to_html()
+		return "<!DOCTYPE html>\n" + text.to_html()
 	
 	def __output_html(self, element):
 		if isinstance(element, list):

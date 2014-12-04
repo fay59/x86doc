@@ -6,7 +6,7 @@
 
 import re
 
-block_tags__ = set(["h1", "h2", "h3", "p", "pre", "table", "tr", "td", "th"])
+inline_tags__ = set(["em", "strong", "sup", "sub"])
 
 class OpenTag(object):
 	def __init__(self, tag, coalesce=False, attributes={}, self_closes = False):
@@ -106,7 +106,7 @@ class HtmlText(object):
 			if isinstance(token, OpenTag):
 				if not token.self_closes:
 					tag_stack.append(token)
-				if token.tag in block_tags__: result += "\n"
+				if not token.tag in inline_tags__: result += "\n"
 				result += token.open()
 			elif isinstance(token, CloseTag):
 				close_it = tag_stack.pop()
