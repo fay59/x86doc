@@ -278,7 +278,8 @@ class x86ManParser(object):
 				self.thisPageTextLines.append(coll)
 	
 	def process_rect(self, rect):
-		self.thisPageLtRects.append(self.__fix_bbox(rect.bbox))
+		if rect.bbox[1] < 740 and rect.bbox[1] > 50:
+			self.thisPageLtRects.append(self.__fix_bbox(rect.bbox))
 	
 	def process_curve(self, curve):
 		curve = pdftable.Curve([self.__fix_point(p) for p in curve.pts])
