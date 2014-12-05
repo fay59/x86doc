@@ -507,8 +507,17 @@ class x86ManParser(object):
 			result.append(CloseTag("rect"))
 			return result
 		
+		if isinstance(element, pdftable.Curve):
+			def pt(p): return "%f,%f" % (p[0], p[1])
+			d = "M%s " % pt(element.points[0])
+			for point in element.points[1:]:
+				d += "L%s " % pt(point)
+			result.append(OpenTag("path", attributes={"d": d, "style": "stroke:black"}))
+			result.append(CloseTag("path"))
+			return result
+		
 		print element.__class__.__name__
-		#assert False
+		assert False
 		return result
 	
 	def __output_text(self, element):
@@ -583,7 +592,7 @@ class x86ManParser(object):
 			else:
 				orphans += cluster
 	
-		curves = sorted(self.curves + orphans, cmp=sort_topdown_ltr)
+		curves = sorted(self.curves + [Curve(o) for o in orphans], cmp=sort_topdown_ltr)
 		textLines = sorted(self.textLines, cmp=sort_topdown_ltr)
 	
 		# explicit tables
@@ -670,6 +679,14 @@ class x86ManParser(object):
 		top_figures = [Figure(t) for t in figures - sublevel_figures]
 		top_tables = list(tables - figures)
 		
+		orphanCurves = []
+		for figure in top_figures:
+			for curve in curves:
+				if figure.bounds().contains(curve.bounds()):
+					figure.data.get_at(0,0).append(curve)
+				else:
+					orphanCurves.append(curve)
+			curves = orphanCurves
 		i = 0
 		while i < len(top_tables):
 			count = top_tables[i].item_count()
