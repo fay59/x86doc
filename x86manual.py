@@ -589,9 +589,11 @@ class x86ManParser(object):
 		while len(lines) > 0:
 			cluster = pdftable.cluster_rects(lines)
 			if len(cluster) >= 4:
-				frames.append(pdftable.Table(cluster))
-			else:
-				orphans += cluster
+				try:
+					frames.append(pdftable.Table(cluster))
+					continue
+				except: pass
+			orphans += cluster
 	
 		curves = sorted(self.curves + [pdftable.Curve(o.points()) for o in orphans], cmp=sort_topdown_ltr)
 		textLines = sorted(self.textLines, cmp=sort_topdown_ltr)
