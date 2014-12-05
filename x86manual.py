@@ -593,7 +593,7 @@ class x86ManParser(object):
 			else:
 				orphans += cluster
 	
-		curves = sorted(self.curves + [Curve(o) for o in orphans], cmp=sort_topdown_ltr)
+		curves = sorted(self.curves + [pdftable.Curve(o.points()) for o in orphans], cmp=sort_topdown_ltr)
 		textLines = sorted(self.textLines, cmp=sort_topdown_ltr)
 	
 		# explicit tables

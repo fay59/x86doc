@@ -19,6 +19,9 @@ class Rect(object):
 	def height(self): return abs(self.__y1 - self.__y2)
 	def area(self): return self.width() * self.height()
 	
+	def points(self):
+		return ((self.__x1, self.__y1), (self.__x1, self.__y2), (self.__x2, self.__y2), (self.__x2, self.__y1))
+	
 	def union(self, rect):
 		return Rect(min(rect.x1(), self.x1()), min(rect.y1(), self.y1()), max(rect.x2(), self.x2()), max(rect.y2(), self.y2()))
 	

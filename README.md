@@ -20,79 +20,58 @@ immediately usable.
 
 The `master` documentation set can be found on [this page][4].
 
-As of now, these are the 63 instructions that do not parse at all. Most fail
+As of now, these are the 37 instructions that do not parse at all. Most fail
 because of one of these reasons:
 
 * the page contains a frameless figure and the script freaks out;
-* the page contains framed and frameless figures and the script freaks out;
 * the page contains footnotes and the script freaks out;
 * some table lines are abnormally thick;
 * some tables seem to be all right but the script still freaks out.
 
+232/245
+211/235
+433/480
+
 The list is:
 
-* **CMPPD**—Compare Packed Double-Precision Floating-Point Values
-* **CPUID**—CPU Identification
+* **CPUID**—CPU Identification *(unsure, really long)*
 * **CVTDQ2PD**—Convert Packed Dword Integers to Packed Double-Precision FP Values *(frameless figure)*
 * **CVTPD2PS**—Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values *(frameless figure)*
 * **CVTPS2PD**—Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values *(frameless figure)*
 * **FADD/FADDP/FIADD**—Add *(abnormally thick table lines)*
 * **FDIV/FDIVP/FIDIV**—Divide *(abnormally thick table lines)*
 * **FDIVR/FDIVRP/FIDIVR**—Reverse Divide *(abnormally thick table lines)*
-* **FIST/FISTP**—Store Integer 
-* **FXSAVE**—Save x87 FPU, MMX Technology, and SSE State 
-* **FYL2XP1**—Compute y ∗ log2(x +1) 
-* **HADDPD**—Packed Double-FP Horizontal Add 
-* **HADDPS**—Packed Single-FP Horizontal Add 
-* **HSUBPD**—Packed Double-FP Horizontal Subtract 
-* **HSUBPS**—Packed Single-FP Horizontal Subtract 
-* **INVLPG**—Invalidate TLB Entries 
-* **INVPCID**—Invalidate Process-Context Identifier 
-* **MASKMOVDQU**—Store Selected Bytes of Double Quadword 
-* **MFENCE**—Memory Fence 
-* **MOV**—Move 
-* **MOVDQU**—Move Unaligned Double Quadword 
-* **MOVMSKPS**—Extract Packed Single-Precision Floating-Point Sign Mask 
-* **MOVNTDQ**—Store Double Quadword Using Non-Temporal Hint 
-* **MOVNTPD**—Store Packed Double-Precision Floating-Point Values Using Non-Temporal Hint 
-* **MOVNTPS**—Store Packed Single-Precision Floating-Point Values Using Non-Temporal Hint 
-* **MOVUPD**—Move Unaligned Packed Double-Precision Floating-Point Values 
-* **MOVUPS**—Move Unaligned Packed Single-Precision Floating-Point Values 
-* **MPSADBW**—Compute Multiple Packed Sums of Absolute Difference 
-* **PALIGNR**—Packed Align Right 
-* **PDEP**—Parallel Bits Deposit 
-* **PEXT**—Parallel Bits Extract 
-* **PMADDWD**—Multiply and Add Packed Integers 
-* **PMULHUW**—Multiply Packed Unsigned Integers and Store High Result 
-* **PMULLW**—Multiply Packed Signed Integers and Store Low Result 
-* **POP**—Pop a Value from the Stack 
-* **POPF/POPFD/POPFQ**—Pop Stack into EFLAGS Register 
-* **PSADBW**—Compute Sum of Absolute Differences 
-* **PSHUFD**—Shuffle Packed Doublewords 
-* **PSLLW/PSLLD/PSLLQ**—Shift Packed Data Left Logical 
-* **PSRAW/PSRAD**—Shift Packed Data Right Arithmetic 
-* **PSRLW/PSRLD/PSRLQ**—Shift Packed Data Right Logical 
-* **ROUNDPD**—Round Packed Double Precision Floating-Point Values 
-* **SHUFPD**—Shuffle Packed Double-Precision Floating-Point Values 
-* **SHUFPS**—Shuffle Packed Single-Precision Floating-Point Values 
-* **STI**—Set Interrupt Flag 
-* **SYSRET**—Return From Fast System Call 
-* **UNPCKHPD**—Unpack and Interleave High Packed Double-Precision Floating-Point Values 
-* **UNPCKHPS**—Unpack and Interleave High Packed Single-Precision Floating-Point Values 
-* **UNPCKLPD**—Unpack and Interleave Low Packed Double-Precision Floating-Point Values 
-* **UNPCKLPS**—Unpack and Interleave Low Packed Single-Precision Floating-Point Values 
-* **VBROADCAST**—Broadcast Floating-Point Data 
-* **VCVTPS2PH**—Convert Single-Precision FP value to 16-bit FP value 
-* **VPBROADCAST**—Broadcast Integer Data 
-* **VPERM2I128**—Permute Integer Values 
-* **VPERMILPD**—Permute Double-Precision Floating-Point Values 
-* **VPERMILPS**—Permute Single-Precision Floating-Point Values 
+* **FXSAVE**—Save x87 FPU, MMX Technology, and SSE State *(unsure)*
+* **HADDPD**—Packed Double-FP Horizontal Add *(frameless figure)*
+* **HADDPS**—Packed Single-FP Horizontal Add *(frameless figure)*
+* **HSUBPD**—Packed Double-FP Horizontal Subtract *(frameless figure)*
+* **HSUBPS**—Packed Single-FP Horizontal Subtract *(frameless figure)*
+* **MPSADBW**—Compute Multiple Packed Sums of Absolute Difference *(unsure)*
+* **PALIGNR**—Packed Align Right *(frameless figure)*
+* **PDEP**—Parallel Bits Deposit *(frameless figure)*
+* **PEXT**—Parallel Bits Extract *(frameless figure)*
+* **PMADDWD**—Multiply and Add Packed Integers *(unsure)*
+* **PMULHUW**—Multiply Packed Unsigned Integers and Store High Result *(unsure)*
+* **PMULLW**—Multiply Packed Signed Integers and Store Low Result *(unsure)*
+* **PSADBW**—Compute Sum of Absolute Differences *(unsure)*
+* **PSHUFD**—Shuffle Packed Doublewords *(frameless figure)*
+* **PSLLW/PSLLD/PSLLQ**—Shift Packed Data Left Logical *(unsure)*
+* **PSRAW/PSRAD**—Shift Packed Data Right Arithmetic *(unsure)*
+* **PSRLW/PSRLD/PSRLQ**—Shift Packed Data Right Logical *(unsure)*
+* **ROUNDPD**—Round Packed Double Precision Floating-Point Values *(unsure)*
+* **SHUFPD**—Shuffle Packed Double-Precision Floating-Point Values *(unsure)*
+* **SHUFPS**—Shuffle Packed Single-Precision Floating-Point Values *(unsure)*
+* **UNPCKHPD**—Unpack and Interleave High Packed Double-Precision Floating-Point Values *(unsure)*
+* **UNPCKHPS**—Unpack and Interleave High Packed Single-Precision Floating-Point Values *(unsure)*
+* **UNPCKLPD**—Unpack and Interleave Low Packed Double-Precision Floating-Point Values *(unsure)*
+* **UNPCKLPS**—Unpack and Interleave Low Packed Single-Precision Floating-Point Values *(unsure)*
+* **VBROADCAST**—Broadcast Floating-Point Data *(unsure)*
+* **VCVTPS2PH**—Convert Single-Precision FP value to 16-bit FP value *(unsure)*
+* **VPBROADCAST**—Broadcast Integer Data *(frameless figures)*
+* **VPERM2I128**—Permute Integer Values *(frameless figures)*
+* **VPERMILPD**—Permute Double-Precision Floating-Point Values *(frameless figures)*
+* **VPERMILPS**—Permute Single-Precision Floating-Point Values *(frameless figures)*
 * **VPERM2F128**—Permute Floating-Point Values 
-* **XRSTOR**—Restore Processor Extended States 
-* **XSAVE**—Save Processor Extended States 
-* **XSAVEC**—Save Processor Extended States with Compaction 
-* **XSAVEOPT**—Save Processor Extended States Optimized 
-* **XSAVES**—Save Processor Extended States Supervisor 
 
 I'm working on that.
 
