@@ -12,33 +12,22 @@ They say that you're never better served than by yourself, so I took the matter
 into my own, [pdfminer][3]-gloved hands to extract HTML pages straight from the
 documentation PDF themselves.
 
-*This branch is experimental.* Right now, it parses 417 of the 480 instructions
-documented in Volume 2A and Volume 2B. Complex pages usually (but not always)
-render better with this branch than the `master` branch, but not all pages
-render. Be sure to check out the `master` branch if you want something
-immediately usable.
+This is still not perfect, but it's already much better than the other solution
+(and it doesn't involve an ugly third-party).
 
-The `master` documentation set can be found on [this page][4].
+How To Run
+----------
 
-As of now, these are the 13 instructions that do not parse at all. Most of them
-fail because they contain a frameless figure. The list is:
+1. Install [`pdfminer`][3];
+2. Get yourself a copy of the [Volume A][1] and [Volume B][2] PDFs.
+3. `pdfminer` doesn't understand how these are encrypted, so print them to PDF,
+	both starting only from the first instruction in the document (not the whole
+	document);
+4. Run `python extract.py vol2a.pdf vol2b.pdf`;
+5. Go grab a coffee;
+6. Enjoy your documentation set.
 
-* **CVTDQ2PD**—Convert Packed Dword Integers to Packed Double-Precision FP Values
-* **CVTPS2PD**—Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values
-* **HADDPD**—Packed Double-FP Horizontal Add
-* **HADDPS**—Packed Single-FP Horizontal Add
-* **HSUBPD**—Packed Double-FP Horizontal Subtract
-* **HSUBPS**—Packed Single-FP Horizontal Subtract
-* **PDEP**—Parallel Bits Deposit
-* **PEXT**—Parallel Bits Extract
-* **PSADBW**—Compute Sum of Absolute Differences
-* **VBROADCAST**—Broadcast Floating-Point Data
-* **VPBROADCAST**—Broadcast Integer Data
-* **VPERM2I128**—Permute Integer Values
-* **VPERMILPD**—Permute Double-Precision Floating-Point Values
-* **VPERM2F128**—Permute Floating-Point Values
-
-I'm working on that.
+The set is also available online at [felixcloutier.com/x86][4].
 
   [1]: http://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-2a-manual.pdf
   [2]: http://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-2b-manual.pdf

@@ -605,7 +605,7 @@ class x86ManParser(object):
 			bounds = table.bounds()
 			for i in xrange(0, len(textLines)):
 				line = textLines[i]
-				if bounds.intersects(line.bounds(), 0):
+				if bounds.contains(line.bounds()):
 					# Some pages have their "NOTES" section embedded inside the
 					# table rectangle. What were you thinking, Intel?
 					if line.font_name() == "NeoSansIntelMedium" and unicode(line).lower().startswith("notes"):
