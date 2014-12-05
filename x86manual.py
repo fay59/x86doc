@@ -688,6 +688,7 @@ class x86ManParser(object):
 				else:
 					orphanCurves.append(curve)
 			curves = orphanCurves
+			orphanCurves = []
 		i = 0
 		while i < len(top_tables):
 			count = top_tables[i].item_count()

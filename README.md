@@ -20,16 +20,25 @@ immediately usable.
 
 The `master` documentation set can be found on [this page][4].
 
-As of now, these are the 63 instructions that do not parse at all:
+As of now, these are the 63 instructions that do not parse at all. Most fail
+because of one of these reasons:
 
-* **CMPPD**—Compare Packed Double-Precision Floating-Point Values 
-* **CPUID**—CPU Identification 
-* **CVTDQ2PD**—Convert Packed Dword Integers to Packed Double-Precision FP Values 
-* **CVTPD2PS**—Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values 
-* **CVTPS2PD**—Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values 
-* **FADD/FADDP/FIADD**—Add 
-* **FDIV/FDIVP/FIDIV**—Divide 
-* **FDIVR/FDIVRP/FIDIVR**—Reverse Divide 
+* the page contains a frameless figure and the script freaks out;
+* the page contains framed and frameless figures and the script freaks out;
+* the page contains footnotes and the script freaks out;
+* some table lines are abnormally thick;
+* some tables seem to be all right but the script still freaks out.
+
+The list is:
+
+* **CMPPD**—Compare Packed Double-Precision Floating-Point Values
+* **CPUID**—CPU Identification
+* **CVTDQ2PD**—Convert Packed Dword Integers to Packed Double-Precision FP Values *(frameless figure)*
+* **CVTPD2PS**—Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values *(frameless figure)*
+* **CVTPS2PD**—Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values *(frameless figure)*
+* **FADD/FADDP/FIADD**—Add *(abnormally thick table lines)*
+* **FDIV/FDIVP/FIDIV**—Divide *(abnormally thick table lines)*
+* **FDIVR/FDIVRP/FIDIVR**—Reverse Divide *(abnormally thick table lines)*
 * **FIST/FISTP**—Store Integer 
 * **FXSAVE**—Save x87 FPU, MMX Technology, and SSE State 
 * **FYL2XP1**—Compute y ∗ log2(x +1) 
@@ -63,7 +72,6 @@ As of now, these are the 63 instructions that do not parse at all:
 * **PSLLW/PSLLD/PSLLQ**—Shift Packed Data Left Logical 
 * **PSRAW/PSRAD**—Shift Packed Data Right Arithmetic 
 * **PSRLW/PSRLD/PSRLQ**—Shift Packed Data Right Logical 
-* **PUNPCKHBW/PUNPCKHWD/PUNPCKHDQ/PUNPCKHQDQ**—Unpack High Data 
 * **ROUNDPD**—Round Packed Double Precision Floating-Point Values 
 * **SHUFPD**—Shuffle Packed Double-Precision Floating-Point Values 
 * **SHUFPS**—Shuffle Packed Single-Precision Floating-Point Values 
@@ -85,14 +93,6 @@ As of now, these are the 63 instructions that do not parse at all:
 * **XSAVEC**—Save Processor Extended States with Compaction 
 * **XSAVEOPT**—Save Processor Extended States Optimized 
 * **XSAVES**—Save Processor Extended States Supervisor 
-
-Most fail because of one of these reasons:
-
-* the page contains a frameless figure and the script freaks out;
-* the page contains framed and frameless figures and the script freaks out;
-* the page contains footnotes and the script freaks out;
-* some table lines are abnormally thick;
-* some tables seem to be all right but the script still freaks out.
 
 I'm working on that.
 

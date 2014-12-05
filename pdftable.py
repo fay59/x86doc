@@ -299,7 +299,7 @@ class Table(TableBase):
 			missing_lines.append(Rect(x, y1, x, y2))
 		
 		topY = self.__rows[0]
-		botY = self.__rows[-1]
+		botY = self.__rows[-1] - 0.001
 		lastX = self.__columns[0]
 		lastY = botY
 		for line in vertical[1:]:
@@ -322,7 +322,7 @@ class Table(TableBase):
 			missing_lines.append(Rect(x1, y, x2, y))
 		
 		topX = self.__columns[0]
-		botX = self.__columns[-1]
+		botX = self.__columns[-1] - 0.001
 		lastX = botX
 		lastY = self.__rows[0]
 		for line in horizontal[1:]:
