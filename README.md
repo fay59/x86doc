@@ -12,19 +12,17 @@ They say that you're never better served than by yourself, so I took the matter
 into my own, [pdfminer][3]-gloved hands to extract HTML pages straight from the
 documentation PDF themselves.
 
-*This branch is experimental.* Right now, it parses about 415 of the 470ish
-instructions documented in Volume 2A and Volume 2B. Complex pages usually (but
-not always) render better with this branch than the `master` branch, but not all
-pages render. Be sure to check out the `master` branch if you want something
+*This branch is experimental.* Right now, it parses 417 of the 480 instructions
+documented in Volume 2A and Volume 2B. Complex pages usually (but not always)
+render better with this branch than the `master` branch, but not all pages
+render. Be sure to check out the `master` branch if you want something
 immediately usable.
 
 The `master` documentation set can be found on [this page][4].
 
-As of now, these are the 46 instructions that do not parse at all:
+As of now, these are the 63 instructions that do not parse at all:
 
-* **ADDSUBPD**—Packed Double-FP Add/Subtract 
-* **ADDSUBPS**—Packed Single-FP Add/Subtract 
-* **CMPPD**—Compare Packed Double-Precision Floating-Point Values
+* **CMPPD**—Compare Packed Double-Precision Floating-Point Values 
 * **CPUID**—CPU Identification 
 * **CVTDQ2PD**—Convert Packed Dword Integers to Packed Double-Precision FP Values 
 * **CVTPD2PS**—Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values 
@@ -34,13 +32,23 @@ As of now, these are the 46 instructions that do not parse at all:
 * **FDIVR/FDIVRP/FIDIVR**—Reverse Divide 
 * **FIST/FISTP**—Store Integer 
 * **FXSAVE**—Save x87 FPU, MMX Technology, and SSE State 
+* **FYL2XP1**—Compute y ∗ log2(x +1) 
 * **HADDPD**—Packed Double-FP Horizontal Add 
 * **HADDPS**—Packed Single-FP Horizontal Add 
 * **HSUBPD**—Packed Double-FP Horizontal Subtract 
 * **HSUBPS**—Packed Single-FP Horizontal Subtract 
-* **MOVDDUP**—Move One Double-FP and Duplicate 
-* **MOVSHDUP**—Move Packed Single-FP High and Duplicate 
-* **MOVSLDUP**—Move Packed Single-FP Low and Duplicate 
+* **INVLPG**—Invalidate TLB Entries 
+* **INVPCID**—Invalidate Process-Context Identifier 
+* **MASKMOVDQU**—Store Selected Bytes of Double Quadword 
+* **MFENCE**—Memory Fence 
+* **MOV**—Move 
+* **MOVDQU**—Move Unaligned Double Quadword 
+* **MOVMSKPS**—Extract Packed Single-Precision Floating-Point Sign Mask 
+* **MOVNTDQ**—Store Double Quadword Using Non-Temporal Hint 
+* **MOVNTPD**—Store Packed Double-Precision Floating-Point Values Using Non-Temporal Hint 
+* **MOVNTPS**—Store Packed Single-Precision Floating-Point Values Using Non-Temporal Hint 
+* **MOVUPD**—Move Unaligned Packed Double-Precision Floating-Point Values 
+* **MOVUPS**—Move Unaligned Packed Single-Precision Floating-Point Values 
 * **MPSADBW**—Compute Multiple Packed Sums of Absolute Difference 
 * **PALIGNR**—Packed Align Right 
 * **PDEP**—Parallel Bits Deposit 
@@ -48,15 +56,19 @@ As of now, these are the 46 instructions that do not parse at all:
 * **PMADDWD**—Multiply and Add Packed Integers 
 * **PMULHUW**—Multiply Packed Unsigned Integers and Store High Result 
 * **PMULLW**—Multiply Packed Signed Integers and Store Low Result 
+* **POP**—Pop a Value from the Stack 
 * **POPF/POPFD/POPFQ**—Pop Stack into EFLAGS Register 
 * **PSADBW**—Compute Sum of Absolute Differences 
 * **PSHUFD**—Shuffle Packed Doublewords 
 * **PSLLW/PSLLD/PSLLQ**—Shift Packed Data Left Logical 
 * **PSRAW/PSRAD**—Shift Packed Data Right Arithmetic 
 * **PSRLW/PSRLD/PSRLQ**—Shift Packed Data Right Logical 
+* **PUNPCKHBW/PUNPCKHWD/PUNPCKHDQ/PUNPCKHQDQ**—Unpack High Data 
 * **ROUNDPD**—Round Packed Double Precision Floating-Point Values 
 * **SHUFPD**—Shuffle Packed Double-Precision Floating-Point Values 
 * **SHUFPS**—Shuffle Packed Single-Precision Floating-Point Values 
+* **STI**—Set Interrupt Flag 
+* **SYSRET**—Return From Fast System Call 
 * **UNPCKHPD**—Unpack and Interleave High Packed Double-Precision Floating-Point Values 
 * **UNPCKHPS**—Unpack and Interleave High Packed Single-Precision Floating-Point Values 
 * **UNPCKLPD**—Unpack and Interleave Low Packed Double-Precision Floating-Point Values 
@@ -68,12 +80,17 @@ As of now, these are the 46 instructions that do not parse at all:
 * **VPERMILPD**—Permute Double-Precision Floating-Point Values 
 * **VPERMILPS**—Permute Single-Precision Floating-Point Values 
 * **VPERM2F128**—Permute Floating-Point Values 
+* **XRSTOR**—Restore Processor Extended States 
+* **XSAVE**—Save Processor Extended States 
+* **XSAVEC**—Save Processor Extended States with Compaction 
+* **XSAVEOPT**—Save Processor Extended States Optimized 
+* **XSAVES**—Save Processor Extended States Supervisor 
 
 Most fail because of one of these reasons:
 
-* the page contains a framed figure and the script freaks out;
 * the page contains a frameless figure and the script freaks out;
 * the page contains framed and frameless figures and the script freaks out;
+* the page contains footnotes and the script freaks out;
 * some table lines are abnormally thick;
 * some tables seem to be all right but the script still freaks out.
 
